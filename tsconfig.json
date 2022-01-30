@@ -24,6 +24,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "src"
+    "src",
+    ".eslintrc.js"
   ]
 }

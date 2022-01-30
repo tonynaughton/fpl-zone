@@ -1,6 +1,6 @@
 import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React, { Component } from "react";
-import "./login.css";
+import "./authentication.css";
 
 export class Login extends Component {
   public handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -15,7 +15,13 @@ export class Login extends Component {
 
   public render(): JSX.Element {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+      <Box
+        className="auth-view"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
+      >
         <Container component="main" maxWidth="sm">
           <Grid container spacing="10" alignItems="center">
             <Grid item>
@@ -31,7 +37,7 @@ export class Login extends Component {
               </Typography>
             </Grid>
           </Grid>
-          <Box component="form" onClick={this.handleSubmit} className="login-form" noValidate>
+          <Box component="form" onClick={this.handleSubmit} className="auth-form" noValidate>
             <TextField
               className="text-input"
               margin="normal"
@@ -64,20 +70,20 @@ export class Login extends Component {
             >
               Login
             </Button>
-            <Typography sx={{ mt: 6 }} fontSize="1.5em" textAlign="center" component="p">
-              Don&apos;t have an account?
-            </Typography>
-            <Button
-              sx={{ mt: 1 }}
-              className="action-button"
-              color="secondary"
-              type="submit"
-              fullWidth
-              variant="contained"
-            >
-              Register
-            </Button>
           </Box>
+          <Typography sx={{ mt: 6 }} fontSize="1.5em" textAlign="center" component="p">
+            Don&apos;t have an account?
+          </Typography>
+          <Button
+            href="/register"
+            sx={{ mt: 1 }}
+            className="action-button"
+            color="secondary"
+            fullWidth
+            variant="contained"
+          >
+            Register
+          </Button>
         </Container>
       </Box>
     );

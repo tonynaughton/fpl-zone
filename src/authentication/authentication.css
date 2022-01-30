@@ -3,7 +3,7 @@
   width: auto;
 }
 
-.login-form .action-button {
+.auth-view .action-button {
   font-size: 1.8em;
   text-transform: none;
 }

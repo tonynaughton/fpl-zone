@@ -18,6 +18,11 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
+  "overrides": [
+    {
+        "files": ["*.ts", "*.tsx"]
+    }
+  ],
   "parser": "@typescript-eslint/parser",
   "root": true,
   "plugins": ["react", "@typescript-eslint"],
