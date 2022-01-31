@@ -1,134 +1,171 @@
-import { Box, Button, Container, Grid, TextField, Typography, Paper } from "@mui/material";
-import React, { Component } from "react";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+  Link as MuiLink,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+import GoogleIcon from "@mui/icons-material/Google";
+import { auth, registerWithEmailAndPassword, signInWithGoogle } from "../config/firebase";
 import "./authentication.css";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-export class Register extends Component {
-  public handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+export default function Register() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [fplId, setFplId] = useState("");
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  const register = () => {
+    registerWithEmailAndPassword(firstName, lastName, email, password, fplId);
   };
 
-  public render(): JSX.Element {
-    return (
-      <>
-        <Button
-          href="/login"
-          size="large"
-          color="info"
-          variant="contained"
-          startIcon={<ArrowBackIcon />}
-          sx={{ position: "absolute", top: 50, left: 50 }}
-        >
-          Login
-        </Button>
-        <Box
-          className="auth-view"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-        >
-          <Container component="main" maxWidth="sm">
-            <Grid container spacing="10" alignItems="center">
-              <Grid item>
-                <img
-                  className="football-icon"
-                  alt="logo"
-                  src={`${process.env.PUBLIC_URL}/assets/images/football.png`}
-                />
-              </Grid>
-              <Grid item>
-                <Typography component="h1" variant="h1" textAlign="center">
-                  FPL ZONE
-                </Typography>
-              </Grid>
-            </Grid>
-            <Box component="form" onClick={this.handleSubmit} className="auth-form" noValidate>
-              <TextField
-                className="text-input"
-                margin="normal"
-                id="first-name"
-                required
-                name="first-name"
-                placeholder="First name"
-                fullWidth
-                autoFocus
-              />
-              <TextField
-                className="text-input"
-                margin="normal"
-                id="last-name"
-                required
-                name="last-name"
-                placeholder="Last name"
-                fullWidth
-                autoFocus
-              />
-              <TextField
-                sx={{ mt: 5 }}
-                className="text-input"
-                margin="normal"
-                id="email"
-                required
-                name="email"
-                autoComplete="email"
-                placeholder="Email"
-                fullWidth
-                autoFocus
-              />
-              <TextField
-                sx={{ mt: 5 }}
-                className="text-input"
-                margin="normal"
-                id="password"
-                required
-                name="password"
-                autoComplete="current-password"
-                placeholder="Password"
-                type="password"
-                fullWidth
-              />
-              <TextField
-                className="text-input"
-                margin="normal"
-                id="repeat-password"
-                required
-                name="repeat-password"
-                placeholder="Repeat password"
-                type="password"
-                fullWidth
-              />
-              <TextField
-                sx={{ mt: 5 }}
-                className="text-input"
-                margin="normal"
-                id="fpl-id"
-                required
-                name="fpl-id"
-                placeholder="FPL ID (optional)"
-                fullWidth
-                autoFocus
-              />
-              <Button
-                sx={{ mt: 5 }}
-                className="action-button"
-                color="secondary"
-                type="submit"
-                fullWidth
-                variant="contained"
-              >
-                Register
-              </Button>
-            </Box>
-          </Container>
+  useEffect(() => {
+    if (loading) return;
+    if (user) navigate("/dashboard");
+  }, [user, loading, navigate]);
+
+  return (
+    <Box
+      className="auth-view"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+    >
+      <Container component="main" maxWidth="sm">
+        <Grid container spacing="10" alignItems="center">
+          <Grid item>
+            <img
+              className="football-icon"
+              alt="logo"
+              src={`${process.env.PUBLIC_URL}/assets/images/football.png`}
+            />
+          </Grid>
+          <Grid item>
+            <Typography component="h1" variant="h1" textAlign="center">
+              FPL ZONE
+            </Typography>
+          </Grid>
+        </Grid>
+        <Box component="div">
+          <TextField
+            className="text-input"
+            margin="normal"
+            id="first-name"
+            required
+            name="first-name"
+            placeholder="First name"
+            fullWidth
+            autoFocus
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <TextField
+            className="text-input"
+            margin="normal"
+            id="last-name"
+            required
+            name="last-name"
+            placeholder="Last name"
+            fullWidth
+            autoFocus
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <TextField
+            className="text-input"
+            margin="normal"
+            id="email"
+            required
+            name="email"
+            autoComplete="email"
+            placeholder="Email"
+            fullWidth
+            autoFocus
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            className="text-input"
+            margin="normal"
+            id="password"
+            required
+            name="password"
+            autoComplete="current-password"
+            placeholder="Password"
+            type="password"
+            fullWidth
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <TextField
+            className="text-input"
+            margin="normal"
+            id="repeat-password"
+            required
+            name="repeat-password"
+            placeholder="Repeat password"
+            type="password"
+            fullWidth
+            value={repeatPassword}
+            onChange={(e) => setRepeatPassword(e.target.value)}
+          />
+          <TextField
+            className="text-input"
+            margin="normal"
+            id="fpl-id"
+            required
+            name="fpl-id"
+            placeholder="FPL ID (optional)"
+            fullWidth
+            autoFocus
+            value={fplId}
+            onChange={(e) => setFplId(e.target.value)}
+          />
+          <Button
+            sx={{ mt: 5 }}
+            className="action-button"
+            color="secondary"
+            type="submit"
+            fullWidth
+            variant="contained"
+            onClick={register}
+          >
+            Register
+          </Button>
+          <Button
+            color="info"
+            onClick={signInWithGoogle}
+            sx={{ mt: 2 }}
+            className="action-button google-login"
+            fullWidth
+            variant="contained"
+          >
+            <GoogleIcon sx={{ mr: 2 }} />
+            Login with Google
+          </Button>
+          <MuiLink
+            textAlign="center"
+            color="black"
+            component="a"
+            underline="none"
+            href="/login"
+            display="block"
+            className="auth-link"
+          >
+            Already have an account? Login now.
+          </MuiLink>
         </Box>
-      </>
-    );
-  }
+      </Container>
+    </Box>
+  );
 }

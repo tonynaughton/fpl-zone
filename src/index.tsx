@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import { Login } from "authentication/login";
-import { Register } from "authentication/register";
+import Login from "authentication/login";
+import Register from "authentication/register";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import GameweekLive from "gameweek_live/gameweek_live";
+import Reset from "authentication/reset";
 import "./global.css";
 
 const customTheme = createTheme({
@@ -43,6 +45,8 @@ const App = (): JSX.Element => {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/reset" element={<Reset />} />
+          <Route path="/gameweek-live" element={<GameweekLive />} />
         </Routes>
       </Router>
     </ThemeProvider>

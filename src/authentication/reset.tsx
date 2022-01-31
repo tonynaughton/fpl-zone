@@ -8,21 +8,19 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../config/firebase";
-import GoogleIcon from "@mui/icons-material/Google";
-import "./authentication.css";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+import { auth, sendPasswordReset } from "../config/firebase";
+import "./authentication.css";
 
-export default function Login() {
+export default function Reset() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) return;
-    if (user) navigate("/gameweek-live");
+    if (user) navigate("/dashboard");
   }, [user, loading, navigate]);
 
   return (
@@ -62,51 +60,16 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <TextField
-            className="text-input"
-            margin="normal"
-            id="password"
-            required
-            name="password"
-            autoComplete="current-password"
-            placeholder="Password"
-            type="password"
-            fullWidth
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
           <Button
-            onClick={() => logInWithEmailAndPassword(email, password)}
+            onClick={() => sendPasswordReset(email)}
             sx={{ mt: 2 }}
             className="action-button"
             color="secondary"
             fullWidth
             variant="contained"
           >
-            Login
+            Send password reset email
           </Button>
-          <Button
-            color="info"
-            onClick={signInWithGoogle}
-            sx={{ mt: 2 }}
-            className="action-button google-login"
-            fullWidth
-            variant="contained"
-          >
-            <GoogleIcon sx={{ mr: 2 }} />
-            Login with Google
-          </Button>
-          <MuiLink
-            textAlign="center"
-            color="black"
-            component="a"
-            underline="none"
-            href="/reset"
-            display="block"
-            className="auth-link"
-          >
-            Forgot Password?
-          </MuiLink>
           <MuiLink
             textAlign="center"
             color="black"
