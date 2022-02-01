@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, db, logout } from "../config/firebase";
+import { auth, db, logout } from "config/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { Box, Button, Container, Typography } from "@mui/material";
 
-export default function Dashboard() {
+export default function Dashboard(): JSX.Element {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  const fetchUserName = async () => {
+  const fetchUserName = async (): Promise<void> => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);

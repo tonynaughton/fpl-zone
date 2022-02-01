@@ -1,20 +1,13 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-  Link as MuiLink,
-} from "@mui/material";
+import { Box, Button, Container, TextField, Link as MuiLink } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../config/firebase";
+import { auth, logInWithEmailAndPassword, signInWithGoogle } from "config/firebase";
 import GoogleIcon from "@mui/icons-material/Google";
 import "./authentication.css";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Logo from "components/logo/logo";
 
-export default function Login() {
+export default function Login(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading] = useAuthState(auth);
@@ -34,20 +27,7 @@ export default function Login() {
       minHeight="100vh"
     >
       <Container component="main" maxWidth="sm">
-        <Grid container spacing="10" alignItems="center">
-          <Grid item>
-            <img
-              className="football-icon"
-              alt="logo"
-              src={`${process.env.PUBLIC_URL}/assets/images/football.png`}
-            />
-          </Grid>
-          <Grid item>
-            <Typography component="h1" variant="h1" textAlign="center">
-              FPL ZONE
-            </Typography>
-          </Grid>
-        </Grid>
+        <Logo />
         <Box component="div">
           <TextField
             className="text-input"

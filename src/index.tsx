@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import Login from "authentication/login";
-import Register from "authentication/register";
+import Login from "components/authentication/login";
+import Register from "components/authentication/register";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import GameweekLive from "gameweek_live/gameweek_live";
-import Reset from "authentication/reset";
+import GameweekLive from "components/gameweek_live/gameweek_live";
+import Reset from "components/authentication/reset";
 import "./global.css";
 
 const customTheme = createTheme({

@@ -1,20 +1,13 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-  Link as MuiLink,
-} from "@mui/material";
+import { Box, Button, Container, TextField, Link as MuiLink } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
-import { auth, registerWithEmailAndPassword, signInWithGoogle } from "../config/firebase";
+import { auth, registerWithEmailAndPassword, signInWithGoogle } from "config/firebase";
 import "./authentication.css";
+import Logo from "components/logo/logo";
 
-export default function Register() {
+export default function Register(): JSX.Element {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -42,20 +35,7 @@ export default function Register() {
       minHeight="100vh"
     >
       <Container component="main" maxWidth="sm">
-        <Grid container spacing="10" alignItems="center">
-          <Grid item>
-            <img
-              className="football-icon"
-              alt="logo"
-              src={`${process.env.PUBLIC_URL}/assets/images/football.png`}
-            />
-          </Grid>
-          <Grid item>
-            <Typography component="h1" variant="h1" textAlign="center">
-              FPL ZONE
-            </Typography>
-          </Grid>
-        </Grid>
+        <Logo />
         <Box component="div">
           <TextField
             className="text-input"
