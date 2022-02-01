@@ -3,7 +3,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "config/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import NavDrawer from "components/nav_drawer/nav_drawer";
 
 export default function Dashboard(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -30,13 +31,12 @@ export default function Dashboard(): JSX.Element {
   });
 
   return (
-    <Container component="main" maxWidth="md">
-      <Box component="div">
-        <Typography variant="h2">Logged in as: {name}</Typography>
-        <Button size="large" color="info" onClick={logout}>
-          Logout
-        </Button>
-      </Box>
-    </Container>
+    <Box component="div">
+      <NavDrawer />
+      <Typography variant="h2">Logged in as: {name}</Typography>
+      <Button size="large" color="info" onClick={logout}>
+        Logout
+      </Button>
+    </Box>
   );
 }
