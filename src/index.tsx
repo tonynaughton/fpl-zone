@@ -7,7 +7,12 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import GameweekLive from "components/gameweek_live/gameweek_live";
 import Reset from "components/authentication/reset";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { faFutbol } from "@fortawesome/free-solid-svg-icons";
 import "./global.css";
+
+library.add(fas, faFutbol);
 
 const customTheme = createTheme({
   typography: {

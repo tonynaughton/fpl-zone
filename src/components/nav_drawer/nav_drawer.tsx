@@ -1,17 +1,15 @@
 import React from "react";
 import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import Logo from "components/logo/logo";
-import { Grid, ListItemButton } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import "./nav_drawer.css";
+import { MenuItem } from "./types";
+import MenuList from "./menu_list";
 
 const drawerWidth = 250;
 
-const mainMenuItems = [
+const mainMenuItems: MenuItem[] = [
   { label: "gameweek live", href: "/gameweek-live" },
   { label: "my team", href: "/gameweek-live" },
   { label: "fixtures & results", href: "/fixtures-and-results" },
@@ -19,7 +17,7 @@ const mainMenuItems = [
   { label: "social", href: "/social" },
 ];
 
-const endMenuItems = [
+const endMenuItems: MenuItem[] = [
   { label: "account", href: "/account" },
   { label: "logout", href: "/logout" },
 ];
@@ -33,6 +31,7 @@ export default function NavDrawer() {
         "& .MuiDrawer-paper": {
           width: drawerWidth,
           boxSizing: "border-box",
+          backgroundColor: "#16B7EA",
         },
       }}
       variant="permanent"
@@ -43,25 +42,10 @@ export default function NavDrawer() {
           <Logo compact={true} />
         </Grid>
       </Grid>
-      <List>
-        {mainMenuItems.map((item, index) => (
-          <ListItemButton key={index} href={item.href}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText sx={{ color: "black" }} primary={item.label.toUpperCase()} />
-          </ListItemButton>
-        ))}
-        <Divider />
-        {endMenuItems.map((item, index) => (
-          <ListItemButton key={index} href={item.href}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText sx={{ color: "black" }} primary={item.label.toUpperCase()} />
-          </ListItemButton>
-        ))}
-      </List>
+      <Box height="100%" display="flex" flexDirection="column" justifyContent="space-between">
+        <MenuList items={mainMenuItems} />
+        <MenuList items={endMenuItems} />
+      </Box>
     </Drawer>
   );
 }

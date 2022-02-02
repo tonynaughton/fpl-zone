@@ -31,12 +31,14 @@ export default function Dashboard(): JSX.Element {
   });
 
   return (
-    <Box component="div">
+    <Box component="div" sx={{ display: "flex" }}>
       <NavDrawer />
-      <Typography variant="h2">Logged in as: {name}</Typography>
-      <Button size="large" color="info" onClick={logout}>
-        Logout
-      </Button>
+      <Box component="main" sx={{ flexGrow: 1 }}>
+        <Typography variant="h2">Logged in as: {name}</Typography>
+        <Button size="large" color="info" onClick={logout}>
+          Logout
+        </Button>
+      </Box>
     </Box>
   );
 }
