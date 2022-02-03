@@ -15,15 +15,20 @@ export default function MenuList({ items, activeId }: MenuListProps) {
           sx={{
             m: 2,
             ...(item.id === activeId && { color: "black" }),
-            "&:hover": { color: "black", backgroundColor: "inherit" },
+            "&:hover": { backgroundColor: "inherit" },
           }}
+          disableRipple={true}
           key={index}
           href={item.href}
         >
           <ListItemText
-            disableTypography
             primary={item.label.toUpperCase()}
-            className="menu-item-text"
+            primaryTypographyProps={{
+              fontSize: "30px",
+              lineHeight: "normal",
+              color: "white",
+              sx: { "&:hover": { color: "black" } },
+            }}
           />
         </ListItemButton>
       ))}

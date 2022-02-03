@@ -20,7 +20,13 @@ export default function Logo({ compact }: LogoProps) {
         />
       </Grid>
       <Grid item sx={{ ml: 1 }}>
-        <Typography component="h1" fontSize={textVariant} textAlign="center">
+        <Typography
+          component="h1"
+          fontSize={textVariant}
+          textAlign="center"
+          sx={{ userSelect: "none" }}
+          color="primary.contrastText"
+        >
           FPL Zone
         </Typography>
       </Grid>

@@ -30,10 +30,11 @@ const customTheme = createTheme({
       main: "#F9F9F9",
     },
     background: {
-      default: "#16B7EA",
+      default: "#F9F9F9",
     },
     text: {
-      primary: "#F9F9F9",
+      primary: "#000000",
+      secondary: "#16B7EA",
     },
   },
   shape: {
