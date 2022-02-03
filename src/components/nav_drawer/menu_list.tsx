@@ -4,14 +4,19 @@ import { MenuItem } from "./types";
 
 interface MenuListProps {
   items: MenuItem[];
+  activeId: string;
 }
 
-export default function MenuList({ items }: MenuListProps) {
+export default function MenuList({ items, activeId }: MenuListProps) {
   return (
     <List>
       {items.map((item: MenuItem, index: number) => (
         <ListItemButton
-          sx={{ m: 2, "& .MuiListItemButton-hover": { backgroundColor: "red" } }}
+          sx={{
+            m: 2,
+            ...(item.id === activeId && { color: "black" }),
+            "&:hover": { color: "black", backgroundColor: "inherit" },
+          }}
           key={index}
           href={item.href}
         >
