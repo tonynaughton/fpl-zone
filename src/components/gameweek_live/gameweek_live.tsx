@@ -3,7 +3,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "config/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import Layout from "components/layout/layout";
 
 export default function Dashboard(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -30,13 +31,11 @@ export default function Dashboard(): JSX.Element {
   });
 
   return (
-    <Container component="main" maxWidth="md">
-      <Box component="div">
-        <Typography variant="h2">Logged in as: {name}</Typography>
-        <Button size="large" color="info" onClick={logout}>
-          Logout
-        </Button>
-      </Box>
-    </Container>
+    <Layout active="gameweek-live">
+      <Typography variant="h2">Logged in as: {name}</Typography>
+      <Button size="large" color="info" onClick={logout}>
+        Logout
+      </Button>
+    </Layout>
   );
 }
