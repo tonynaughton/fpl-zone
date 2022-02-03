@@ -5,7 +5,7 @@ import { auth, db, logout } from "config/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { Button, Typography } from "@mui/material";
 import Layout from "components/layout/layout";
-import { ApiProvider } from "api/fpl_api_provider";
+import { gameweekLiveData } from "api/fpl_api_provider";
 
 export default function Dashboard(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -25,23 +25,24 @@ export default function Dashboard(): JSX.Element {
     }
   };
 
-  const fetchFixtures = async () => {
-    // eslint-disable-next-line no-console
-    console.log(await ApiProvider.getAllFixtures());
+  const fetchGwLiveData = async () => {
+    gameweekLiveData();
   };
 
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/login");
     fetchUserName();
-    fetchFixtures();
   });
 
   return (
     <Layout active="gameweek-live">
       <Typography variant="h2">Logged in as: {name}</Typography>
-      <Button size="large" color="info" onClick={logout}>
+      <Button size="large" onClick={logout}>
         Logout
+      </Button>
+      <Button size="large" onClick={fetchGwLiveData}>
+        Fetch GW Data
       </Button>
     </Layout>
   );

@@ -14,7 +14,6 @@ export default function MenuList({ items, activeId }: MenuListProps) {
         <ListItemButton
           sx={{
             m: 2,
-            ...(item.id === activeId && { color: "black" }),
             "&:hover": { backgroundColor: "inherit" },
           }}
           disableRipple={true}
@@ -26,7 +25,7 @@ export default function MenuList({ items, activeId }: MenuListProps) {
             primaryTypographyProps={{
               fontSize: "30px",
               lineHeight: "normal",
-              color: "white",
+              ...(item.id === activeId ? { color: "black" } : { color: "white" }),
               sx: { "&:hover": { color: "black" } },
             }}
           />
