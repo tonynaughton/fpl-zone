@@ -9,7 +9,10 @@ export default function Logo({ compact }: LogoProps) {
   const logoDimens = compact ? "50px" : "100px";
   const textVariant = compact ? "40px" : "100px";
   return (
-    <Grid container sx={{ display: "flex", justifyContent: "center", pt: 2, pb: 2 }}>
+    <Grid
+      container
+      sx={{ display: "flex", justifyContent: "center", alignItems: "center", pt: 2, pb: 2 }}
+    >
       <Grid item>
         <img
           className="football-icon"

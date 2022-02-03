@@ -5,6 +5,7 @@ import { auth, db, logout } from "config/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { Button, Typography } from "@mui/material";
 import Layout from "components/layout/layout";
+import { ApiProvider } from "api/fpl_api_provider";
 
 export default function Dashboard(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -24,10 +25,16 @@ export default function Dashboard(): JSX.Element {
     }
   };
 
+  const fetchFixtures = async () => {
+    // eslint-disable-next-line no-console
+    console.log(await ApiProvider.getAllFixtures());
+  };
+
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/login");
     fetchUserName();
+    fetchFixtures();
   });
 
   return (
