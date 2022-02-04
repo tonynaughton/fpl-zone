@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav Drawer Tests Renders as expected 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiDrawer-root MuiDrawer-docked css-750k1e-MuiDrawer-docked"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft css-12i7wg6-MuiPaper-root-MuiDrawer-paper"
+    >
+      <div
+        class="logo-container MuiBox-root css-0"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-1tj0vxz-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <img
+              alt="logo"
+              class="football-icon"
+              height="50px"
+              src="/assets/images/football.png"
+              width="50px"
+            />
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item css-yu75kd-MuiGrid-root"
+          >
+            <h1
+              class="MuiTypography-root MuiTypography-body1 css-1ncgoc1-MuiTypography-root"
+            >
+              FPL Zone
+            </h1>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-zf9gw9"
+      >
+        <ul
+          class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+        >
+          <a
+            class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-om9qhu-MuiButtonBase-root-MuiListItemButton-root"
+            href="/gameweek-live"
+            tabindex="0"
+          >
+            <div
+              class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-3lumh6-MuiTypography-root"
+              >
+                GAMEWEEK LIVE
+              </span>
+            </div>
+          </a>
+          <a
+            class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-om9qhu-MuiButtonBase-root-MuiListItemButton-root"
+            href="/gameweek-live"
+            tabindex="0"
+          >
+            <div
+              class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              >
+                MY TEAM
+              </span>
+            </div>
+          </a>
+          <a
+            class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-om9qhu-MuiButtonBase-root-MuiListItemButton-root"
+            href="/fixtures-and-results"
+            tabindex="0"
+          >
+            <div
+              class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              >
+                FIXTURES & RESULTS
+              </span>
+            </div>
+          </a>
+          <a
+            class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-om9qhu-MuiButtonBase-root-MuiListItemButton-root"
+            href="/analysis"
+            tabindex="0"
+          >
+            <div
+              class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              >
+                ANALYSIS
+              </span>
+            </div>
+          </a>
+          <a
+            class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-om9qhu-MuiButtonBase-root-MuiListItemButton-root"
+            href="/social"
+            tabindex="0"
+          >
+            <div
+              class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              >
+                SOCIAL
+              </span>
+            </div>
+          </a>
+        </ul>
+        <ul
+          class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+        >
+          <a
+            class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-om9qhu-MuiButtonBase-root-MuiListItemButton-root"
+            href="/logout"
+            tabindex="0"
+          >
+            <div
+              class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              >
+                LOGOUT
+              </span>
+            </div>
+          </a>
+          <a
+            class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-om9qhu-MuiButtonBase-root-MuiListItemButton-root"
+            href="/account"
+            tabindex="0"
+          >
+            <div
+              class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              >
+                ACCOUNT
+              </span>
+            </div>
+          </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
