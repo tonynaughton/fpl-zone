@@ -3,9 +3,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "config/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { Button, Typography } from "@mui/material";
-import Layout from "components/layout/layout";
-import { gameweekLiveData } from "api/fpl_api_provider";
+import { Button } from "@mui/material";
+import AppLayout from "components/layout/app_layout";
 
 export default function Dashboard(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -25,10 +24,6 @@ export default function Dashboard(): JSX.Element {
     }
   };
 
-  const fetchGwLiveData = async () => {
-    gameweekLiveData();
-  };
-
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/login");
@@ -36,14 +31,10 @@ export default function Dashboard(): JSX.Element {
   });
 
   return (
-    <Layout active="gameweek-live">
-      <Typography variant="h2">Logged in as: {name}</Typography>
+    <AppLayout active="gameweek-live" title="Gameweek Live">
       <Button size="large" onClick={logout}>
         Logout
       </Button>
-      <Button size="large" onClick={fetchGwLiveData}>
-        Fetch GW Data
-      </Button>
-    </Layout>
+    </AppLayout>
   );
 }
