@@ -22,9 +22,6 @@
     "baseUrl": "src/"
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
     "src",
-    ".eslintrc.js"
   ]
 }
