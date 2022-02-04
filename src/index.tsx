@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router, Navigate } from "react-router-dom";
 import Login from "components/authentication/login";
 import Register from "components/authentication/register";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -11,6 +11,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { faFutbol } from "@fortawesome/free-solid-svg-icons";
 import "./global.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "config/firebase";
+import PrivateRoute from "components/authentication/private_route";
 
 library.add(fas, faFutbol);
 
@@ -48,11 +51,12 @@ const App = (): JSX.Element => {
       <CssBaseline />
       <Router>
         <Routes>
+          <Route path="*" element={<Login />} />
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset" element={<Reset />} />
-          <Route path="/gameweek-live" element={<GameweekLive />} />
+          <Route path="/gameweek-live" element={<PrivateRoute component={<GameweekLive />} />} />
         </Routes>
       </Router>
     </ThemeProvider>
