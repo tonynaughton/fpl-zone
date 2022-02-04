@@ -6,10 +6,6 @@ import "./nav_drawer.css";
 import { MenuItem } from "./types";
 import MenuList from "./menu_list";
 
-interface NavDrawerProps {
-  activeId: string;
-}
-
 const drawerWidth = 250;
 
 const mainMenuItems: MenuItem[] = [
@@ -24,6 +20,10 @@ const endMenuItems: MenuItem[] = [
   { id: "logout", label: "logout", href: "/logout" },
   { id: "account", label: "account", href: "/account" },
 ];
+
+interface NavDrawerProps {
+  activeId: string;
+}
 
 export default function NavDrawer({ activeId }: NavDrawerProps) {
   return (

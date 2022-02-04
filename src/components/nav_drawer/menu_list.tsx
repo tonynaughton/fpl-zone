@@ -1,5 +1,6 @@
 import { List, ListItemButton, ListItemText } from "@mui/material";
 import React from "react";
+import { Link, Navigate } from "react-router-dom";
 import { MenuItem } from "./types";
 
 interface MenuListProps {
@@ -18,7 +19,8 @@ export default function MenuList({ items, activeId }: MenuListProps) {
           }}
           disableRipple={true}
           key={index}
-          href={item.href}
+          component={Link}
+          to={item.href}
         >
           <ListItemText
             primary={item.label.toUpperCase()}
