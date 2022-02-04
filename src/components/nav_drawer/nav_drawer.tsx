@@ -9,23 +9,23 @@ import MenuList from "./menu_list";
 const drawerWidth = 250;
 
 const mainMenuItems: MenuItem[] = [
-  { id: "gameweek-live", label: "gameweek live", href: "/gameweek-live" },
-  { id: "my-team", label: "my team", href: "/gameweek-live" },
-  { id: "fix-and-res", label: "fixtures & results", href: "/fixtures-and-results" },
-  { id: "analysis", label: "analysis", href: "/analysis" },
-  { id: "social", label: "social", href: "/social" },
+  { label: "gameweek live", href: "/gameweek-live" },
+  { label: "my team", href: "/gameweek-live" },
+  { label: "fixtures & results", href: "/fixtures-and-results" },
+  { label: "analysis", href: "/analysis" },
+  { label: "social", href: "/social" },
 ];
 
 const endMenuItems: MenuItem[] = [
-  { id: "logout", label: "logout", href: "/logout" },
-  { id: "account", label: "account", href: "/account" },
+  { label: "logout", href: "/logout" },
+  { label: "account", href: "/account" },
 ];
 
 interface NavDrawerProps {
-  activeId: string;
+  activeLabel: string;
 }
 
-export default function NavDrawer({ activeId }: NavDrawerProps) {
+export default function NavDrawer({ activeLabel }: NavDrawerProps) {
   return (
     <Drawer
       sx={{
@@ -46,8 +46,8 @@ export default function NavDrawer({ activeId }: NavDrawerProps) {
         <Logo compact={true} />
       </Box>
       <Box height="100%" display="flex" flexDirection="column" justifyContent="space-between">
-        <MenuList items={mainMenuItems} activeId={activeId} />
-        <MenuList items={endMenuItems} activeId={activeId} />
+        <MenuList items={mainMenuItems} activeLabel={activeLabel} />
+        <MenuList items={endMenuItems} activeLabel={activeLabel} />
       </Box>
     </Drawer>
   );

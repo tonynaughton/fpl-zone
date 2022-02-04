@@ -1,14 +1,14 @@
 import { List, ListItemButton, ListItemText } from "@mui/material";
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MenuItem } from "./types";
 
 interface MenuListProps {
   items: MenuItem[];
-  activeId: string;
+  activeLabel: string;
 }
 
-export default function MenuList({ items, activeId }: MenuListProps) {
+export default function MenuList({ items, activeLabel }: MenuListProps) {
   return (
     <List>
       {items.map((item: MenuItem, index: number) => (
@@ -27,7 +27,7 @@ export default function MenuList({ items, activeId }: MenuListProps) {
             primaryTypographyProps={{
               fontSize: "30px",
               lineHeight: "normal",
-              ...(item.id === activeId ? { color: "black" } : { color: "white" }),
+              ...(item.label === activeLabel ? { color: "black" } : { color: "white" }),
               sx: { "&:hover": { color: "black" } },
             }}
           />

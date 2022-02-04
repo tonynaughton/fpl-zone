@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, db, logout } from "config/firebase";
+import { auth, db } from "config/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { Button } from "@mui/material";
 import AppLayout from "components/layout/app_layout";
 
 export default function Dashboard(): JSX.Element {
@@ -30,11 +29,5 @@ export default function Dashboard(): JSX.Element {
     fetchUserName();
   });
 
-  return (
-    <AppLayout active="gameweek-live" title="Gameweek Live">
-      <Button size="large" onClick={logout}>
-        Logout
-      </Button>
-    </AppLayout>
-  );
+  return <AppLayout activeLabel="gameweek live"></AppLayout>;
 }
