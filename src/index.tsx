@@ -11,6 +11,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { faFutbol } from "@fortawesome/free-solid-svg-icons";
 import "./global.css";
+import PrivateRoute from "components/authentication/private_route";
+import Logout from "components/authentication/logout";
 
 library.add(fas, faFutbol);
 
@@ -48,11 +50,13 @@ const App = (): JSX.Element => {
       <CssBaseline />
       <Router>
         <Routes>
+          <Route path="*" element={<Login />} />
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset" element={<Reset />} />
-          <Route path="/gameweek-live" element={<GameweekLive />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/gameweek-live" element={<PrivateRoute component={<GameweekLive />} />} />
         </Routes>
       </Router>
     </ThemeProvider>
