@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  updateEmail,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -102,20 +103,31 @@ export const sendPasswordReset = async (email) => {
   }
 };
 
-export const updateUserDetails = async (uid, firstName, lastName, fplId = "") => {
+export const updateUserDetails = async (uid, firstName, lastName, email, fplId = "") => {
+  console.log("🚀 ~ file: firebase.js ~ line 107 ~ updateUserDetails ~ email", email);
   const q = query(collection(db, "users"), where("uid", "==", uid));
   const docs = await getDocs(q);
   const user = doc(db, "users", docs.docs[0].id);
   try {
+    updateEmail(auth.currentUser, email);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(err);
+    alert(err.message);
+    return;
+  }
+  try {
     await updateDoc(user, {
       firstName,
       lastName,
+      email,
       fplId,
     });
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(err);
     alert(err.message);
+    return;
   }
 };
 

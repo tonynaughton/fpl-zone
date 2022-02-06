@@ -35,8 +35,6 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
       setFirstName(data.firstName);
       setLastName(data.lastName);
       setEmail(data.email);
-      setPassword(data.password);
-      setRepeatPassword(data.password);
       setFplId(data.fplId);
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -49,7 +47,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
     if (!user) {
       await registerWithEmailAndPassword(firstName, lastName, email, password, fplId);
     } else {
-      await updateUserDetails(user.uid, firstName, lastName, fplId);
+      await updateUserDetails(user.uid, firstName, lastName, email, fplId);
     }
   };
 
@@ -58,7 +56,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
     if (registerPage && user) navigate("/dashboard");
     if (user) setExistingDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loading, registerPage, user]);
 
   return (
     <Box component="div">
@@ -98,35 +96,36 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
         autoFocus
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        disabled={!registerPage}
       />
-      <TextField
-        className="text-input"
-        margin="normal"
-        id="password"
-        required
-        name="password"
-        autoComplete="current-password"
-        placeholder="Password"
-        type="password"
-        fullWidth
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        disabled={!registerPage}
-      />
-      <TextField
-        className="text-input"
-        margin="normal"
-        id="repeat-password"
-        required
-        name="repeat-password"
-        placeholder="Repeat password"
-        type="password"
-        fullWidth
-        value={repeatPassword}
-        onChange={(e) => setRepeatPassword(e.target.value)}
-        disabled={!registerPage}
-      />
+      {registerPage && (
+        <>
+          <TextField
+            className="text-input"
+            margin="normal"
+            id="password"
+            required
+            name="password"
+            autoComplete="current-password"
+            placeholder="Password"
+            type="password"
+            fullWidth
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <TextField
+            className="text-input"
+            margin="normal"
+            id="repeat-password"
+            required
+            name="repeat-password"
+            placeholder="Repeat password"
+            type="password"
+            fullWidth
+            value={repeatPassword}
+            onChange={(e) => setRepeatPassword(e.target.value)}
+          />
+        </>
+      )}
       <TextField
         className="text-input"
         margin="normal"
