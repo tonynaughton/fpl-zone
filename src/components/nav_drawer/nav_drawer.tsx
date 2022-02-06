@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import "./nav_drawer.css";
 import { MenuItem } from "./types";
 import MenuList from "./menu_list";
+import GameweekCountdown from "./gw_countdown";
 
 const drawerWidth = 250;
 
@@ -44,6 +45,7 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps) {
     >
       <Box className="logo-container">
         <Logo compact={true} />
+        <GameweekCountdown />
       </Box>
       <Box height="100%" display="flex" flexDirection="column" justifyContent="space-between">
         <MenuList items={mainMenuItems} activeLabel={activeLabel} />
