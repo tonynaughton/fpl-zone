@@ -13,6 +13,7 @@ import { faFutbol } from "@fortawesome/free-solid-svg-icons";
 import "./global.css";
 import PrivateRoute from "components/authentication/private_route";
 import Logout from "components/authentication/logout";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 library.add(fas, faFutbol);
 
@@ -44,22 +45,32 @@ const customTheme = createTheme({
   },
 });
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
 const App = (): JSX.Element => {
   return (
-    <ThemeProvider theme={customTheme}>
-      <CssBaseline />
-      <Router>
-        <Routes>
-          <Route path="*" element={<Login />} />
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/reset" element={<Reset />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/gameweek-live" element={<PrivateRoute component={<GameweekLive />} />} />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={customTheme}>
+        <CssBaseline />
+        <Router>
+          <Routes>
+            <Route path="*" element={<Login />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/reset" element={<Reset />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/gameweek-live" element={<PrivateRoute component={<GameweekLive />} />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 

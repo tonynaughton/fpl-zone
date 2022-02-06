@@ -7,26 +7,26 @@ import AppLayout from "components/layout/app_layout";
 
 export default function Dashboard(): JSX.Element {
   const [user, loading] = useAuthState(auth);
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  const fetchUserName = async (): Promise<void> => {
-    try {
-      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setName(data.name);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error(err);
-      alert("An error occured while fetching user data");
-    }
-  };
+  // const fetchUserName = async (): Promise<void> => {
+  //   try {
+  //     const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+  //     const doc = await getDocs(q);
+  //     const data = doc.docs[0].data();
+  //     setName(data.name);
+  //   } catch (err) {
+  //     // eslint-disable-next-line no-console
+  //     console.error(err);
+  //     alert("An error occured while fetching user data");
+  //   }
+  // };
 
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/login");
-    fetchUserName();
+    // fetchUserName();
   });
 
   return <AppLayout activeLabel="gameweek live"></AppLayout>;
