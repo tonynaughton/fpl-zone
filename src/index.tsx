@@ -14,6 +14,7 @@ import "./global.css";
 import PrivateRoute from "components/authentication/private_route";
 import Logout from "components/authentication/logout";
 import { QueryClient, QueryClientProvider } from "react-query";
+import ManageAccount from "components/authentication/manage_account";
 
 library.add(fas, faFutbol);
 
@@ -66,6 +67,7 @@ const App = (): JSX.Element => {
             <Route path="/register" element={<Register />} />
             <Route path="/reset" element={<Reset />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/account" element={<PrivateRoute component={<ManageAccount />} />} />
             <Route path="/gameweek-live" element={<PrivateRoute component={<GameweekLive />} />} />
           </Routes>
         </Router>
