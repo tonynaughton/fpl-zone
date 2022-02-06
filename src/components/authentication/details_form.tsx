@@ -3,11 +3,21 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
-import { auth, registerWithEmailAndPassword, signInWithGoogle } from "config/firebase";
+import {
+  auth,
+  registerWithEmailAndPassword,
+  signInWithGoogle,
+  db,
+  updateUserDetails,
+} from "config/firebase";
 import "./authentication.css";
-import AuthLayout from "./auth_layout";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
-export default function DetailsForm(): JSX.Element {
+interface DetailsFormProps {
+  registerPage: boolean;
+}
+
+export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,22 +27,38 @@ export default function DetailsForm(): JSX.Element {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
-  function updateDetailsFunction() {
-    throw new Error("Function not implemented.");
-  }
+  const setExistingDetails = async (): Promise<void> => {
+    try {
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
+      setFirstName(data.firstName);
+      setLastName(data.lastName);
+      setEmail(data.email);
+      setPassword(data.password);
+      setRepeatPassword(data.password);
+      setFplId(data.fplId);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+      alert("An error occured while fetching user data");
+    }
+  };
 
-  const onDetailsSave = () => {
-    !user
-      ? registerWithEmailAndPassword(firstName, lastName, email, password, fplId)
-      : updateDetailsFunction();
+  const onDetailsSave = async () => {
+    if (!user) {
+      await registerWithEmailAndPassword(firstName, lastName, email, password, fplId);
+    } else {
+      await updateUserDetails(user.uid, firstName, lastName, fplId);
+    }
   };
 
   useEffect(() => {
     if (loading) return;
-    if (!user) {
-      console.log(user);
-    }
-  }, [user, loading, navigate]);
+    if (registerPage && user) navigate("/dashboard");
+    if (user) setExistingDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Box component="div">
@@ -72,6 +98,7 @@ export default function DetailsForm(): JSX.Element {
         autoFocus
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        disabled={!registerPage}
       />
       <TextField
         className="text-input"
@@ -85,6 +112,7 @@ export default function DetailsForm(): JSX.Element {
         fullWidth
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        disabled={!registerPage}
       />
       <TextField
         className="text-input"
@@ -97,6 +125,7 @@ export default function DetailsForm(): JSX.Element {
         fullWidth
         value={repeatPassword}
         onChange={(e) => setRepeatPassword(e.target.value)}
+        disabled={!registerPage}
       />
       <TextField
         className="text-input"
@@ -119,9 +148,9 @@ export default function DetailsForm(): JSX.Element {
         variant="contained"
         onClick={onDetailsSave}
       >
-        {!user ? "Register" : "Update"}
+        {registerPage ? "Register" : "Update"}
       </Button>
-      {!user && (
+      {registerPage && (
         <>
           <Button
             color="info"

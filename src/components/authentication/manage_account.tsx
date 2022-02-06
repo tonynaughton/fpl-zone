@@ -7,7 +7,7 @@ export default function ManageAccount(): JSX.Element {
   return (
     <AppLayout activeLabel="account">
       <Container component="main" maxWidth="sm">
-        <DetailsForm />
+        <DetailsForm registerPage={false} />
       </Container>
     </AppLayout>
   );

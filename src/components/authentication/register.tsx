@@ -5,7 +5,7 @@ import DetailsForm from "./details_form";
 export default function Register(): JSX.Element {
   return (
     <AuthLayout>
-      <DetailsForm />
+      <DetailsForm registerPage={true} />
     </AuthLayout>
   );
 }

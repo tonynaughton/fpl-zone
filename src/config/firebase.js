@@ -8,7 +8,16 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from "firebase/auth";
-import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -69,7 +78,8 @@ export const registerWithEmailAndPassword = async (
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
-      name: `${firstName} ${lastName}`,
+      firstName,
+      lastName,
       authProvider: "local",
       email,
       fplId,
@@ -85,6 +95,23 @@ export const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(err);
+    alert(err.message);
+  }
+};
+
+export const updateUserDetails = async (uid, firstName, lastName, fplId = "") => {
+  const q = query(collection(db, "users"), where("uid", "==", uid));
+  const docs = await getDocs(q);
+  const user = doc(db, "users", docs.docs[0].id);
+  try {
+    await updateDoc(user, {
+      firstName,
+      lastName,
+      fplId,
+    });
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(err);
