@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "config/firebase";
 import AppLayout from "components/layout/app_layout";
 
-export default function Dashboard(): JSX.Element {
+export default function GameweekLivePage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 

@@ -5,9 +5,9 @@ import { auth, logInWithEmailAndPassword, signInWithGoogle } from "config/fireba
 import GoogleIcon from "@mui/icons-material/Google";
 import "./authentication.css";
 import { useAuthState } from "react-firebase-hooks/auth";
-import AuthLayout from "./auth_layout";
+import AuthLayout from "../components/authentication/auth_layout";
 
-export default function Login(): JSX.Element {
+export default function LoginPage(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading] = useAuthState(auth);
