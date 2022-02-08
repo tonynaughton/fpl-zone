@@ -21,20 +21,20 @@ export default function GameweekLivePage(): JSX.Element {
 
   const { data: gameData } = useQuery("game-data", getGameData);
 
-  let gameweeks: Gameweek[];
-  let players: Player[] | undefined;
+  let allGameweeks: Gameweek[];
+  let allPlayers: Player[] | undefined;
   let currentGameweek: Gameweek | undefined;
 
   if (gameData) {
-    gameweeks = gameData.events;
-    players = gameData.elements;
-    currentGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
+    allGameweeks = gameData.events;
+    allPlayers = gameData.elements;
+    currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
   }
 
   return (
     <AppLayout activeLabel="gameweek live">
       <ComponentContainer title="summary">
-        <GameweekSummary gameweek={currentGameweek} players={players} />
+        <GameweekSummary gameweek={currentGameweek} players={allPlayers} />
       </ComponentContainer>
     </AppLayout>
   );

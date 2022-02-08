@@ -10,7 +10,7 @@ interface GameweekSummaryProps {
 }
 
 export default function GameweekSummary({ gameweek, players }: GameweekSummaryProps): JSX.Element {
-  const topPlayerId = gameweek?.top_element_info.id;
+  const topPlayerId = gameweek?.top_element_info?.id;
   const starPlayer: Player | undefined = GetPlayerById(topPlayerId, players);
   const mostTransferredIn: Player | undefined = GetPlayerById(
     gameweek?.most_transferred_in,
@@ -23,12 +23,12 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
   );
 
   const summaryData = [
-    { label: "star player:", data: `${starPlayer?.web_name}` },
-    { label: "highest score:", data: gameweek?.highest_score },
-    { label: "average score:", data: gameweek?.average_entry_score },
-    { label: "most transferred in:", data: mostTransferredIn?.web_name },
-    { label: "most captained:", data: mostCaptained?.web_name },
-    { label: "most vice-captained:", data: mostViceCaptained?.web_name },
+    { label: "star player:", data: `${starPlayer?.web_name}` || "N/A" },
+    { label: "highest score:", data: gameweek?.highest_score || "N/A" },
+    { label: "average score:", data: gameweek?.average_entry_score || "N/A" },
+    { label: "most transferred in:", data: mostTransferredIn?.web_name || "N/A" },
+    { label: "most captained:", data: mostCaptained?.web_name || "N/A" },
+    { label: "most vice-captained:", data: mostViceCaptained?.web_name || "N/A" },
   ];
 
   return (
