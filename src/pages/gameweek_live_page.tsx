@@ -6,8 +6,11 @@ import AppLayout from "components/layout/app_layout";
 import { Box, Container } from "@mui/material";
 import GameweekSummary from "components/gameweek_summary/gameweek_summary";
 import { useQuery } from "react-query";
-import { getGameData } from "api/fpl_api_provider";
+import { getGameData, getTeamData } from "api/fpl_api_provider";
 import { Gameweek } from "types/gameweek";
+import { Player } from "types/player";
+import { GetPlayerById } from "helpers";
+import { Team } from "types/team";
 
 export default function GameweekLivePage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -18,18 +21,34 @@ export default function GameweekLivePage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const { data, isError } = useQuery("game-data", getGameData);
+  const { data: gameData } = useQuery("game-data", getGameData);
 
-  if (isError || !data) return <></>;
+  let gameweeks: Gameweek[];
+  let players: Player[];
+  let currentGameweek: Gameweek | undefined;
+  let starPlayer: Player | undefined;
 
-  const gameweeks: Gameweek[] = data.events;
-  const currentGameweek: Gameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
+  if (gameData) {
+    gameweeks = gameData.events;
+    players = gameData.elements;
+    currentGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
+    starPlayer = GetPlayerById(currentGameweek.top_element_info.id, players);
+  }
+
+  const topTeamId = currentGameweek?.highest_scoring_entry;
+  const { data: topTeam } = useQuery<Team, Error>(
+    ["top-team", topTeamId],
+    () => getTeamData(topTeamId),
+    {
+      enabled: !!topTeamId,
+    }
+  );
 
   return (
     <AppLayout activeLabel="gameweek live">
       <Container maxWidth="xl">
         <Box width="100%" border="1px solid black">
-          <GameweekSummary gameweek={currentGameweek} />
+          <GameweekSummary gameweek={currentGameweek} starPlayer={starPlayer} topTeam={topTeam} />
         </Box>
       </Container>
     </AppLayout>
