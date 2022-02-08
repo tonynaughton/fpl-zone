@@ -5,9 +5,6 @@ import RegisterPage from "pages/register_page";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import ResetPage from "pages/reset_page";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { faFutbol } from "@fortawesome/free-solid-svg-icons";
 import "./global.css";
 import PrivateRoute from "components/authentication/private_route";
 import Logout from "components/authentication/logout";
@@ -15,8 +12,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import AccountPage from "pages/account_page";
 import LoginPage from "pages/login_page";
 import GameweekLivePage from "pages/gameweek_live_page";
-
-library.add(fas, faFutbol);
 
 const customTheme = createTheme({
   typography: {
