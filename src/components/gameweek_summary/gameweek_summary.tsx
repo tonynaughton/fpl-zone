@@ -33,26 +33,26 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
   const summaryData: SummaryDataItem[] = [
     {
       label: "star player:",
-      data: `${starPlayer?.web_name}`,
+      data: `${starPlayer?.web_name} - ${gameweek?.top_element_info.points}`,
       teamCode: starPlayer?.team_code,
-    },
-    { label: "highest score:", data: gameweek?.highest_score },
-    { label: "average score:", data: gameweek?.average_entry_score },
-    {
-      label: "most transferred in:",
-      data: mostTransferredIn?.web_name,
-      teamCode: mostTransferredIn?.team_code,
     },
     {
       label: "most captained:",
       data: mostCaptained?.web_name,
       teamCode: mostCaptained?.team_code,
     },
+    { label: "highest score:", data: `${gameweek?.highest_score}` },
+    {
+      label: "most transferred in:",
+      data: `${mostTransferredIn?.web_name} - ${mostTransferredIn?.transfers_in_event}`,
+      teamCode: mostTransferredIn?.team_code,
+    },
     {
       label: "most vice-captained:",
       data: mostViceCaptained?.web_name,
       teamCode: mostViceCaptained?.team_code,
     },
+    { label: "average score:", data: `${gameweek?.average_entry_score}` },
   ];
 
   const renderGridItem = (item: SummaryDataItem, key: number) => {
@@ -61,15 +61,25 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
         alt="crest-img"
         key={key}
-        height={75}
-        width={75}
+        height={40}
+        width={40}
       />
     ) : undefined;
     return (
       <Grid item xs={4}>
-        {img}
-        <Typography sx={{ fontSize: 25 }}>{item.label.toUpperCase()}</Typography>
-        <Typography sx={{ fontSize: 25 }}>{item.data || "N/A"}</Typography>
+        <Typography sx={{ fontSize: 30 }}>{item.label.toUpperCase()}</Typography>
+        <Grid
+          container
+          alignItems="center"
+          columnGap={2}
+          justifyContent="center"
+          sx={{ mt: 2, width: "100%" }}
+        >
+          <Grid item>{img}</Grid>
+          <Grid item>
+            <Typography sx={{ fontSize: 24 }}>{item.data || "N/A"}</Typography>
+          </Grid>
+        </Grid>
       </Grid>
     );
   };
