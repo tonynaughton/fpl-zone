@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gameweek Summary Tests Renders as expected 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-8atqhb"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container css-cx4quw-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+        >
+          STAR PLAYER:
+        </p>
+        <div
+          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <img
+              alt="crest-img"
+              height="40"
+              src="/assets/images/crests/3.png"
+              width="40"
+            />
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              data-testid="star player:"
+            >
+              Willian - 13
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+        >
+          MOST CAPTAINED:
+        </p>
+        <div
+          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <img
+              alt="crest-img"
+              height="40"
+              src="/assets/images/crests/3.png"
+              width="40"
+            />
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              data-testid="most captained:"
+            >
+              Leno
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+        >
+          HIGHEST SCORE:
+        </p>
+        <div
+          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          />
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              data-testid="highest score:"
+            >
+              73
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+        >
+          MOST TRANSFERRED IN:
+        </p>
+        <div
+          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <img
+              alt="crest-img"
+              height="40"
+              src="/assets/images/crests/3.png"
+              width="40"
+            />
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              data-testid="most transferred in:"
+            >
+              Leno - 32
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+        >
+          MOST VICE-CAPTAINED:
+        </p>
+        <div
+          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <img
+              alt="crest-img"
+              height="40"
+              src="/assets/images/crests/3.png"
+              width="40"
+            />
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              data-testid="most vice-captained:"
+            >
+              Rúnarsson
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+        >
+          AVERAGE SCORE:
+        </p>
+        <div
+          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          />
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              data-testid="average score:"
+            >
+              10
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
