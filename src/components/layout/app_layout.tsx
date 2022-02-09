@@ -1,6 +1,6 @@
 import React from "react";
 import NavDrawer from "components/nav_drawer/nav_drawer";
-import { Box, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 
 interface LayoutProps {
   activeLabel: string;
@@ -14,7 +14,7 @@ export default function AppLayout(props: React.PropsWithChildren<LayoutProps>) {
         <Typography textAlign="center" variant="h3" sx={{ mt: 2, mb: 2 }}>
           {props.activeLabel.toUpperCase()}
         </Typography>
-        {props.children}
+        <Container maxWidth="xl">{props.children}</Container>
       </Box>
     </Box>
   );

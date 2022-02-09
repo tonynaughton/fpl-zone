@@ -16,11 +16,11 @@ import {
   getBestLeagues,
 } from "./fpl_api_provider";
 
-const mockGameweek = "20";
-const mockTeamId = "11458";
-const mockLeagueId = "395";
-const mockPage = "3";
-const mockPlayerId = "374";
+const mockGameweek = 20;
+const mockTeamId = 11458;
+const mockLeagueId = 395;
+const mockPage = 3;
+const mockPlayerId = 374;
 
 describe("FPL API Provider Tests", () => {
   it("getGameData", async () => {

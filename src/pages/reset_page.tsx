@@ -3,10 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, sendPasswordReset } from "config/firebase";
-import "./authentication.css";
-import AuthLayout from "./auth_layout";
+import AuthLayout from "../components/authentication/auth_layout";
 
-export default function Reset(): JSX.Element {
+export default function ResetPage(): JSX.Element {
   const [email, setEmail] = useState("");
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();

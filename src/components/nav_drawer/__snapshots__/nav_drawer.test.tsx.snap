@@ -12,7 +12,7 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
         class="logo-container MuiBox-root css-0"
       >
         <div
-          class="MuiGrid-root MuiGrid-container css-1tj0vxz-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-1ebt5mt-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
@@ -51,7 +51,7 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
               class="MuiListItemText-root css-tlelie-MuiListItemText-root"
             >
               <span
-                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-3lumh6-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
               >
                 GAMEWEEK LIVE
               </span>
