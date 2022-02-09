@@ -2,9 +2,7 @@ import React from "react";
 import { Gameweek } from "types/gameweek";
 import { Box, Grid, Typography } from "@mui/material";
 import { Player } from "types/player";
-import { GetPlayerById, getTeamShirtColour } from "helpers";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTshirt } from "@fortawesome/free-solid-svg-icons";
+import { GetPlayerById } from "helpers";
 
 interface GameweekSummaryProps {
   gameweek?: Gameweek;
@@ -77,7 +75,9 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
         >
           <Grid item>{img}</Grid>
           <Grid item>
-            <Typography sx={{ fontSize: 24 }}>{item.data || "N/A"}</Typography>
+            <Typography data-testid={item.label} sx={{ fontSize: 24 }}>
+              {item.data || "N/A"}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
