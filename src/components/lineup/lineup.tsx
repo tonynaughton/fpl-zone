@@ -45,7 +45,12 @@ export default function Lineup({ gameweek, players, positions }: LineupProps) {
       );
     } else {
       return (
-        <Grid container item xs={12} justifyContent="space-between">
+        <Grid
+          container
+          item
+          xs={12}
+          justifyContent={players.length === 4 ? "space-between" : "center"}
+        >
           {players.map((player, index) => {
             return (
               <Grid key={index} item xs={3}>
@@ -59,7 +64,7 @@ export default function Lineup({ gameweek, players, positions }: LineupProps) {
   };
 
   return (
-    <Grid container sx={{ pl: 8, pr: 8 }} rowGap={2}>
+    <Grid container sx={{ pl: 8, pr: 8 }} rowGap={2} maxWidth={1000} margin="auto">
       {renderPlayersRow(team.goalkeepers)}
       {renderPlayersRow(team.defenders)}
       {renderPlayersRow(team.midfielders)}

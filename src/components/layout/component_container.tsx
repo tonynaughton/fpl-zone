@@ -28,9 +28,9 @@ export default function ComponentContainer({ title, children }: ComponentContain
           height: "auto",
         }}
       >
-        <Typography fontSize={30}>{title.toUpperCase()}</Typography>
+        <Typography fontSize={18}>{title.toUpperCase()}</Typography>
       </Box>
-      <Box sx={{ mt: "60px" }}>{children}</Box>
+      <Box>{children}</Box>
     </Box>
   );
 }

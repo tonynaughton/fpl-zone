@@ -64,17 +64,11 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
     ) : undefined;
     return (
       <Grid item xs={4} key={key}>
-        <Typography sx={{ fontSize: 30 }}>{item.label.toUpperCase()}</Typography>
-        <Grid
-          container
-          alignItems="center"
-          columnGap={2}
-          justifyContent="center"
-          sx={{ mt: 2, width: "100%" }}
-        >
+        <Typography sx={{ fontSize: 20 }}>{item.label.toUpperCase()}</Typography>
+        <Grid container alignItems="center" columnGap={2} justifyContent="center" sx={{ mt: 1 }}>
           <Grid item>{img}</Grid>
           <Grid item>
-            <Typography data-testid={item.label} sx={{ fontSize: 24 }}>
+            <Typography data-testid={item.label} sx={{ fontSize: 18 }}>
               {item.data || "N/A"}
             </Typography>
           </Grid>
@@ -85,7 +79,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Grid container alignItems="center" textAlign="center" rowGap={5} sx={{ mb: 5 }}>
+      <Grid container alignItems="center" textAlign="center" rowGap={3}>
         {summaryData.map((stat, index): JSX.Element => renderGridItem(stat, index))}
       </Grid>
     </Box>
