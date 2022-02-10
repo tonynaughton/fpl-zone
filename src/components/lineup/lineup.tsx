@@ -4,7 +4,7 @@ import { Gameweek } from "types/gameweek";
 import { Player as PlayerType } from "types/player";
 import { Position } from "types/position";
 import _ from "lodash";
-import Player from "./player";
+import Player from "../player/player";
 
 interface LineupProps {
   gameweek?: Gameweek;
