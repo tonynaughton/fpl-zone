@@ -58,13 +58,12 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
       <img
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
         alt="crest-img"
-        key={key}
         height={40}
         width={40}
       />
     ) : undefined;
     return (
-      <Grid item xs={4}>
+      <Grid item xs={4} key={key}>
         <Typography sx={{ fontSize: 30 }}>{item.label.toUpperCase()}</Typography>
         <Grid
           container
