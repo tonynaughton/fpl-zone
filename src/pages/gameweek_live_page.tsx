@@ -9,9 +9,9 @@ import { getGameData } from "api/fpl_api_provider";
 import { Gameweek } from "types/gameweek";
 import { Player } from "types/player";
 import ComponentContainer from "components/layout/component_container";
-import Lineup from "components/lineup/lineup";
 import { Grid } from "@mui/material";
 import { Position } from "types/position";
+import DreamTeam from "components/dream_team/dream_team";
 
 export default function GameweekLivePage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -46,7 +46,7 @@ export default function GameweekLivePage(): JSX.Element {
         </Grid>
         <Grid item xs={12}>
           <ComponentContainer title="dream team">
-            <Lineup gameweek={currentGameweek} players={allPlayers} positions={positions} />
+            <DreamTeam players={allPlayers} positions={positions} />
           </ComponentContainer>
         </Grid>
       </Grid>
