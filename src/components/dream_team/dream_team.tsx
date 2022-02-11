@@ -19,11 +19,11 @@ export default function DreamTeam({ players, positions }: DreamTeamProps) {
   };
 
   const squad: Squad = {
-    goalkeepers: getTopPlayersByPosition("Goalkeeper", 1),
-    defenders: getTopPlayersByPosition("Defender", 4),
-    midfielders: getTopPlayersByPosition("Midfielder", 4),
-    forwards: getTopPlayersByPosition("Forward", 2),
+    goalkeepers: getTopPlayersByPosition("Goalkeeper", 2),
+    defenders: getTopPlayersByPosition("Defender", 5),
+    midfielders: getTopPlayersByPosition("Midfielder", 5),
+    forwards: getTopPlayersByPosition("Forward", 3),
   };
 
-  return <Lineup squad={squad} />;
+  return <Lineup squad={squad} positions={positions} />;
 }
