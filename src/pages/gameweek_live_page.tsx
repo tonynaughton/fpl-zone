@@ -22,7 +22,7 @@ export default function GameweekLivePage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const { data: gameData, isLoading } = useQuery("game-data", getGameData);
+  const { data: gameData, isLoading, isError } = useQuery("game-data", getGameData);
 
   let allGameweeks: Gameweek[];
   let allPlayers: Player[] | undefined;
@@ -50,12 +50,14 @@ export default function GameweekLivePage(): JSX.Element {
     <AppLayout activeLabel="gameweek live">
       <Grid container rowGap={5}>
         <Grid item xs={12}>
-          <ComponentContainer title="summary">
+          <ComponentContainer isLoading={isLoading} isError={isError} title="summary">
             <GameweekSummary gameweek={currentGameweek} players={allPlayers} />
           </ComponentContainer>
         </Grid>
         <Grid item xs={12}>
-          <ComponentContainer title="dream team">{renderDreamTeam()}</ComponentContainer>
+          <ComponentContainer isLoading={isLoading} isError={isError} title="dream team">
+            {renderDreamTeam()}
+          </ComponentContainer>
         </Grid>
       </Grid>
     </AppLayout>

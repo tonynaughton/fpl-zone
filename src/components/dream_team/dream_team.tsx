@@ -26,20 +26,18 @@ export default function DreamTeam({ players, positions }: DreamTeamProps) {
   });
 
   // Combining remaining players into one array
-  const remainingPlayers = squad.flat();
+  const remainingPlayers = _(squad).flatten().orderBy(["event_points"], ["desc"]).value();
 
   // Function which adds remaining players to first XI
   const addRemainingFirstXIPlayers = (): void => {
     while (remainingPlayers.length > 4) {
       let playerAdded = false;
-      while (!playerAdded) {
-        for (let x = 0; x < remainingPlayers.length; x++) {
-          const pos = remainingPlayers[x].element_type;
-          if (firstXI[pos - 1].length < positions[pos - 1].squad_max_play) {
-            firstXI[pos - 1].push(remainingPlayers[x]);
-            remainingPlayers.splice(x, 1);
-            playerAdded = true;
-          }
+      for (let x = 0; !playerAdded && x < remainingPlayers.length; x++) {
+        const pos = remainingPlayers[x].element_type;
+        if (firstXI[pos - 1].length < positions[pos - 1].squad_max_play) {
+          firstXI[pos - 1].push(remainingPlayers[x]);
+          remainingPlayers.splice(x, 1);
+          playerAdded = true;
         }
       }
     }

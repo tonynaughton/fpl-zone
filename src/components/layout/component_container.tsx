@@ -1,12 +1,41 @@
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import React from "react";
 
 interface ComponentContainerProps {
   title: string;
+  isLoading?: boolean;
+  isError?: boolean;
   children: JSX.Element;
 }
 
-export default function ComponentContainer({ title, children }: ComponentContainerProps) {
+export default function ComponentContainer({
+  title,
+  isLoading,
+  isError,
+  children,
+}: ComponentContainerProps) {
+  const renderChildren = (): JSX.Element => {
+    if (isLoading) {
+      return (
+        <Grid
+          container
+          display="flex"
+          alignItems="center"
+          direction="column"
+          justifyContent="center"
+          rowGap={2}
+        >
+          <Typography fontSize={20}>Fetching data..</Typography>
+          <CircularProgress />
+        </Grid>
+      );
+    } else if (isError) {
+      return <Typography>Error fetching data!</Typography>;
+    } else {
+      return children;
+    }
+  };
+
   return (
     <Box
       width="100%"
@@ -30,7 +59,7 @@ export default function ComponentContainer({ title, children }: ComponentContain
       >
         <Typography fontSize={18}>{title.toUpperCase()}</Typography>
       </Box>
-      <Box>{children}</Box>
+      <Box>{renderChildren()}</Box>
     </Box>
   );
 }
