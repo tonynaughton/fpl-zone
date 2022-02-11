@@ -2,20 +2,19 @@ import { Grid } from "@mui/material";
 import React from "react";
 import { Player as PlayerType } from "types/player";
 import Player from "../player/player";
-import { Squad } from "types/squad";
 
 interface LineupProps {
-  firstXI: Squad;
+  firstXI: PlayerType[][];
   bench: PlayerType[];
 }
 
 export default function Lineup({ firstXI, bench }: LineupProps) {
-  const renderPlayersRow = (players: PlayerType[]): JSX.Element => {
+  const renderPlayersRow = (players: PlayerType[], key: number): JSX.Element => {
     return (
-      <Grid container item xs={12} justifyContent="center">
-        {players.map((player, index) => {
+      <Grid key={key} container item xs={12} justifyContent="center">
+        {players.map((player, key) => {
           return (
-            <Grid key={index} item xs={3}>
+            <Grid key={key} item xs={3}>
               <Player player={player} />
             </Grid>
           );
@@ -26,10 +25,9 @@ export default function Lineup({ firstXI, bench }: LineupProps) {
 
   return (
     <Grid container sx={{ pl: 8, pr: 8 }} rowGap={2} maxWidth={1000} margin="auto">
-      {renderPlayersRow(firstXI.goalkeepers)}
-      {renderPlayersRow(firstXI.defenders)}
-      {renderPlayersRow(firstXI.midfielders)}
-      {renderPlayersRow(firstXI.forwards)}
+      {firstXI.map((positionGroup, index) => {
+        return renderPlayersRow(positionGroup, index);
+      })}
     </Grid>
   );
 }
