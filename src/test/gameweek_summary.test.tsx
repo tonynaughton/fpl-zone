@@ -18,15 +18,13 @@ describe("Gameweek Summary Tests", () => {
   describe("Data displays correctly", () => {
     it("Star player", () => {
       render(createComponent());
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const starPlayer = GetPlayerById(mockGameweek.top_element, mockPlayers)!;
+      const starPlayer = GetPlayerById(mockGameweek.top_element, mockPlayers);
       expect(screen.getByTestId("star player:")).toHaveTextContent(starPlayer.web_name);
     });
 
     it("Most Captained", () => {
       render(createComponent());
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const mostCaptainedPlayer = GetPlayerById(mockGameweek.most_captained, mockPlayers)!;
+      const mostCaptainedPlayer = GetPlayerById(mockGameweek.most_captained, mockPlayers);
       expect(screen.getByTestId("most captained:")).toHaveTextContent(mostCaptainedPlayer.web_name);
     });
 
@@ -39,8 +37,7 @@ describe("Gameweek Summary Tests", () => {
 
     it("Most Transferred In", () => {
       render(createComponent());
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const mostTransfInPlayer = GetPlayerById(mockGameweek.most_transferred_in, mockPlayers)!;
+      const mostTransfInPlayer = GetPlayerById(mockGameweek.most_transferred_in, mockPlayers);
       expect(screen.getByTestId("most transferred in:")).toHaveTextContent(
         mostTransfInPlayer.web_name
       );
@@ -48,8 +45,7 @@ describe("Gameweek Summary Tests", () => {
 
     it("Most Vice-captained", () => {
       render(createComponent());
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const mostViceCaptPlayer = GetPlayerById(mockGameweek.most_vice_captained, mockPlayers)!;
+      const mostViceCaptPlayer = GetPlayerById(mockGameweek.most_vice_captained, mockPlayers);
       expect(screen.getByTestId("most vice-captained:")).toHaveTextContent(
         mostViceCaptPlayer.web_name
       );

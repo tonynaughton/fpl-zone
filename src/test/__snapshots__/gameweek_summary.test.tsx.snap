@@ -6,18 +6,18 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
     class="MuiBox-root css-8atqhb"
   >
     <div
-      class="MuiGrid-root MuiGrid-container css-cx4quw-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-container css-1yrjdnf-MuiGrid-root"
     >
       <div
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-gy28c7-MuiTypography-root"
         >
           STAR PLAYER:
         </p>
         <div
-          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-1yind3g-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
@@ -30,13 +30,13 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
             />
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item css-1dmize5-MuiGrid-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="star player:"
             >
-              Willian - 13
+              Jankin - 13
             </p>
           </div>
         </div>
@@ -45,12 +45,12 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-gy28c7-MuiTypography-root"
         >
           MOST CAPTAINED:
         </p>
         <div
-          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-1yind3g-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
@@ -58,18 +58,18 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
             <img
               alt="crest-img"
               height="40"
-              src="/assets/images/crests/3.png"
+              src="/assets/images/crests/7.png"
               width="40"
             />
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item css-1dmize5-MuiGrid-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="most captained:"
             >
-              Leno
+              Triner
             </p>
           </div>
         </div>
@@ -78,21 +78,21 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-gy28c7-MuiTypography-root"
         >
           HIGHEST SCORE:
         </p>
         <div
-          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-1yind3g-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
           />
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item css-1dmize5-MuiGrid-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="highest score:"
             >
               73
@@ -104,12 +104,12 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-gy28c7-MuiTypography-root"
         >
           MOST TRANSFERRED IN:
         </p>
         <div
-          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-1yind3g-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
@@ -117,18 +117,18 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
             <img
               alt="crest-img"
               height="40"
-              src="/assets/images/crests/3.png"
+              src="/assets/images/crests/6.png"
               width="40"
             />
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item css-1dmize5-MuiGrid-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="most transferred in:"
             >
-              Leno - 32
+              Summerill - 2057
             </p>
           </div>
         </div>
@@ -137,12 +137,12 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-gy28c7-MuiTypography-root"
         >
           MOST VICE-CAPTAINED:
         </p>
         <div
-          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-1yind3g-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
@@ -150,18 +150,18 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
             <img
               alt="crest-img"
               height="40"
-              src="/assets/images/crests/3.png"
+              src="/assets/images/crests/7.png"
               width="40"
             />
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item css-1dmize5-MuiGrid-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="most vice-captained:"
             >
-              Rúnarsson
+              Bauldrey
             </p>
           </div>
         </div>
@@ -170,21 +170,21 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-f8nw7v-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-gy28c7-MuiTypography-root"
         >
           AVERAGE SCORE:
         </p>
         <div
-          class="MuiGrid-root MuiGrid-container css-1saz8ao-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-1yind3g-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
           />
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item css-1dmize5-MuiGrid-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-1o7ozsq-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="average score:"
             >
               10

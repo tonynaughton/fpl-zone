@@ -1,0 +1,589 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dream Team Tests Renders as expected 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiGrid-root MuiGrid-container css-1sgmr83-MuiGrid-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-10 css-1bckcqk-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/7.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  TRINER
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  30
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/6.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  TARGETT
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  28
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/3.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  JANKIN
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  13
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/6.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  SUMMERILL
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  13
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/2.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  MALLOY
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  13
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/3.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  HILLAN
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  25
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/18.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  MULLER
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  24
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/19.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  TINGLEY
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  12
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/19.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  WORKES
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  22
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                height="55"
+                src="/assets/images/kits/14.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                >
+                  LEGGATT
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                >
+                  17
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column MuiGrid-grid-xs-2 css-1djelbh-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-fkexd4-MuiTypography-root"
+        >
+          BENCH
+        </p>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <img
+              alt="kit-img"
+              height="55"
+              src="/assets/images/kits/7.png"
+            />
+          </div>
+          <div
+            class="MuiBox-root css-1kj8kb6"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+              >
+                BAULDREY
+              </p>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+              >
+                23
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <img
+              alt="kit-img"
+              height="55"
+              src="/assets/images/kits/14.png"
+            />
+          </div>
+          <div
+            class="MuiBox-root css-1kj8kb6"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+              >
+                TURBEFIELD
+              </p>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+              >
+                9
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <img
+              alt="kit-img"
+              height="55"
+              src="/assets/images/kits/13.png"
+            />
+          </div>
+          <div
+            class="MuiBox-root css-1kj8kb6"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+              >
+                MACEK
+              </p>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+              >
+                7
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <img
+              alt="kit-img"
+              height="55"
+              src="/assets/images/kits/14.png"
+            />
+          </div>
+          <div
+            class="MuiBox-root css-1kj8kb6"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+              >
+                MIETTINEN
+              </p>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+              >
+                6
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
