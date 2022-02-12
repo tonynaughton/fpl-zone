@@ -4,14 +4,14 @@ import React from "react";
 interface ComponentContainerProps {
   title: string;
   isLoading?: boolean;
-  isError?: boolean;
+  error?: unknown;
   children: JSX.Element;
 }
 
 export default function ComponentContainer({
   title,
   isLoading,
-  isError,
+  error,
   children,
 }: ComponentContainerProps) {
   const renderChildren = (): JSX.Element => {
@@ -29,8 +29,8 @@ export default function ComponentContainer({
           <CircularProgress />
         </Grid>
       );
-    } else if (isError) {
-      return <Typography>Error fetching data!</Typography>;
+    } else if (error) {
+      return <Typography>Error fetching data: {error}</Typography>;
     } else {
       return children;
     }
@@ -41,7 +41,7 @@ export default function ComponentContainer({
       width="100%"
       border="2px solid black"
       padding={3}
-      sx={{ boxShadow: 4, position: "relative" }}
+      sx={{ boxShadow: 4, position: "relative", height: "100%" }}
     >
       <Box
         sx={{
@@ -59,7 +59,7 @@ export default function ComponentContainer({
       >
         <Typography fontSize={18}>{title.toUpperCase()}</Typography>
       </Box>
-      <Box>{renderChildren()}</Box>
+      {renderChildren()}
     </Box>
   );
 }

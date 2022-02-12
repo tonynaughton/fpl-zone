@@ -1,8 +1,9 @@
 import React from "react";
 import { Player } from "types/player";
 
-export function GetPlayerById(playerId?: number, players?: Player[]) {
-  return players?.find((player) => player.id === playerId);
+export function GetPlayerById(playerId: number, players: Player[]): Player {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return players.find((player) => player.id === playerId)!;
 }
 
 export function getTeamShirtColour(team_code: number): string | undefined {

@@ -9,7 +9,7 @@ import { getGameData } from "api/fpl_api_provider";
 import { Gameweek } from "types/gameweek";
 import { Player } from "types/player";
 import ComponentContainer from "components/layout/component_container";
-import { CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { Position } from "types/position";
 import DreamTeam from "components/dream_team/dream_team";
 
@@ -22,7 +22,7 @@ export default function GameweekLivePage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const { data: gameData, isLoading, isError } = useQuery("game-data", getGameData);
+  const { data: gameData, isLoading, error } = useQuery("game-data", getGameData);
 
   let allGameweeks: Gameweek[];
   let allPlayers: Player[] | undefined;
@@ -39,8 +39,22 @@ export default function GameweekLivePage(): JSX.Element {
   const renderDreamTeam = (): JSX.Element => {
     if (isLoading) {
       return <CircularProgress />;
-    } else if (allPlayers && positions) {
+    } else if (gameData && allPlayers && positions) {
       return <DreamTeam players={allPlayers} positions={positions} />;
+    } else {
+      return (
+        <Typography textAlign="center" width="100%">
+          Error getting data!
+        </Typography>
+      );
+    }
+  };
+
+  const renderGameweekSummary = (): JSX.Element => {
+    if (isLoading) {
+      return <CircularProgress />;
+    } else if (gameData && currentGameweek && allPlayers) {
+      return <GameweekSummary gameweek={currentGameweek} players={allPlayers} />;
     } else {
       return <Typography>Error getting data!</Typography>;
     }
@@ -48,18 +62,27 @@ export default function GameweekLivePage(): JSX.Element {
 
   return (
     <AppLayout activeLabel="gameweek live">
-      <Grid container rowGap={5}>
-        <Grid item xs={12}>
-          <ComponentContainer isLoading={isLoading} isError={isError} title="summary">
-            <GameweekSummary gameweek={currentGameweek} players={allPlayers} />
+      <Box
+        sx={{
+          height: "100%",
+          maxHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          rowGap: 3,
+        }}
+      >
+        <Box sx={{ height: "auto" }}>
+          <ComponentContainer isLoading={isLoading} error={error} title="summary">
+            {renderGameweekSummary()}
           </ComponentContainer>
-        </Grid>
-        <Grid item xs={12}>
-          <ComponentContainer isLoading={isLoading} isError={isError} title="dream team">
+        </Box>
+        <Box sx={{ flexGrow: "1", height: "100%" }}>
+          <ComponentContainer isLoading={isLoading} error={error} title="dream team">
             {renderDreamTeam()}
           </ComponentContainer>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </AppLayout>
   );
 }

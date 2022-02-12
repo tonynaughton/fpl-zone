@@ -14,7 +14,22 @@ export default function Lineup({ firstXI, bench }: LineupProps) {
 
   const renderFirstXI = (): JSX.Element => {
     return (
-      <Grid item container sx={{ pl: 8, pr: 8 }} rowGap={2} maxWidth={1000} margin="auto" xs={10}>
+      <Grid
+        item
+        container
+        sx={{
+          pl: 8,
+          pr: 8,
+          backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/pitch.png)`,
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+          height: "100%",
+        }}
+        rowGap={2}
+        maxWidth={1000}
+        margin="auto"
+        xs={10}
+      >
         {firstXI.map((positionGroup, key) => {
           return (
             <Grid key={key} container item xs={12} justifyContent="center">
@@ -34,9 +49,9 @@ export default function Lineup({ firstXI, bench }: LineupProps) {
 
   const renderBench = (): JSX.Element => {
     return (
-      <Grid container item justifyContent="center" direction="column" xs={2}>
+      <Grid container item justifyContent="center" direction="column" rowGap={1} xs={2}>
         <Grid item>
-          <Typography fontSize={25} textAlign="center" sx={{ mb: 2 }}>
+          <Typography fontSize={20} textAlign="center" sx={{ mb: 1 }}>
             BENCH
           </Typography>
         </Grid>
@@ -52,7 +67,7 @@ export default function Lineup({ firstXI, bench }: LineupProps) {
   };
 
   return (
-    <Grid container>
+    <Grid height="100%" container>
       {renderFirstXI()}
       {renderBench()}
     </Grid>

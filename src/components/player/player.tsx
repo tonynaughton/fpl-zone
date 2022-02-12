@@ -13,16 +13,35 @@ export default function Player({ player }: PlayerProps): JSX.Element {
         <img
           src={`${process.env.PUBLIC_URL}/assets/images/kits/${player.team_code}.png`}
           alt="kit-img"
-          height={50}
-          width={50}
+          height={55}
         />
       </Grid>
-      <Grid item>
-        <Typography>{player.web_name}</Typography>
-      </Grid>
-      <Grid item>
-        <Typography>{player.event_points}</Typography>
-      </Grid>
+      <Box
+        sx={{
+          backgroundColor: "#5fdd6b",
+          color: "black",
+          textAlign: "center",
+          width: "80%",
+          pl: 0.5,
+          pr: 0.5,
+        }}
+      >
+        <Grid item>
+          <Typography
+            fontSize={14}
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {player.web_name.toUpperCase()}
+          </Typography>
+        </Grid>
+        <Grid item className="player-text-points">
+          <Typography fontSize={14}>{player.event_points}</Typography>
+        </Grid>
+      </Box>
     </Grid>
   );
 }
