@@ -23,8 +23,8 @@ export default function AppLayout(props: React.PropsWithChildren<LayoutProps>): 
         <Typography
           textAlign="center"
           component="h1"
-          variant="h4"
-          sx={{ mt: 1.5, mb: 1, height: "auto" }}
+          variant="h3"
+          sx={{ mt: 3, mb: 2, height: "auto" }}
         >
           {props.activeLabel.toUpperCase()}
         </Typography>
