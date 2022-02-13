@@ -1,4 +1,4 @@
-import { Leagues } from "./league";
+import { LeagueType } from "./league";
 
 export interface Team {
   id: number;
@@ -16,7 +16,7 @@ export interface Team {
   summary_event_points: number;
   summary_event_rank: number;
   current_event: number;
-  leagues: Leagues;
+  leagues: LeagueType;
   name: string;
   name_change_blocked: boolean;
   kit: string;

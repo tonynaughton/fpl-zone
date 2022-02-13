@@ -13,7 +13,7 @@ export default function ComponentContainer({
   isLoading,
   error,
   children,
-}: ComponentContainerProps) {
+}: ComponentContainerProps): JSX.Element {
   const renderChildren = (): JSX.Element => {
     if (isLoading) {
       return (

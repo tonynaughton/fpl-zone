@@ -15,7 +15,7 @@ export default function LoginForm(): JSX.Element {
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/gameweek-live");
-    const listener = (event: { code: string; preventDefault: () => void }) => {
+    const listener = (event: { code: string; preventDefault: () => void }): void => {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         event.preventDefault();
         logInWithEmailAndPassword(email, password);
@@ -41,7 +41,7 @@ export default function LoginForm(): JSX.Element {
           fullWidth
           autoFocus
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e): void => setEmail(e.target.value)}
         />
         <TextField
           className="text-input"
@@ -54,10 +54,10 @@ export default function LoginForm(): JSX.Element {
           type="password"
           fullWidth
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e): void => setPassword(e.target.value)}
         />
         <Button
-          onClick={() => logInWithEmailAndPassword(email, password)}
+          onClick={(): Promise<void> => logInWithEmailAndPassword(email, password)}
           sx={{ mt: 2, fontSize: "1.8em", textTransform: "none" }}
           color="secondary"
           fullWidth

@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import ResetPage from "pages/reset_page";
 import "./global.css";
-import PrivateRoute from "components/authentication/private_route";
+import PrivateRoute from "private_route";
 import Logout from "components/authentication/logout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import AccountPage from "pages/account_page";

@@ -5,7 +5,7 @@ interface LogoProps {
   compact?: boolean;
 }
 
-export default function Logo({ compact }: LogoProps) {
+export default function Logo({ compact }: LogoProps): JSX.Element {
   const logoDimens = compact ? "50px" : "100px";
   const textVariant = compact ? "40px" : "100px";
   return (

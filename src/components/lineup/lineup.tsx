@@ -5,14 +5,14 @@ import Player from "../player/player";
 import _ from "lodash";
 
 interface LineupProps {
-  firstXI: PlayerType[][];
+  selected: PlayerType[][];
   bench: PlayerType[];
 }
 
-export default function Lineup({ firstXI, bench }: LineupProps) {
+export default function Lineup({ selected, bench }: LineupProps): JSX.Element {
   const sortedBench = _.sortBy(bench, ["element_type"]);
 
-  const renderFirstXI = (): JSX.Element => {
+  const renderSelected = (): JSX.Element => {
     return (
       <Grid
         item
@@ -31,7 +31,7 @@ export default function Lineup({ firstXI, bench }: LineupProps) {
         xs={10}
         data-testid="first-xi-players"
       >
-        {firstXI.map((positionGroup, key) => {
+        {selected.map((positionGroup, key) => {
           return (
             <Grid key={key} container item xs={12} justifyContent="center">
               {positionGroup.map((player, key) => {
@@ -77,7 +77,7 @@ export default function Lineup({ firstXI, bench }: LineupProps) {
 
   return (
     <Grid height="100%" container>
-      {renderFirstXI()}
+      {renderSelected()}
       {renderBench()}
     </Grid>
   );

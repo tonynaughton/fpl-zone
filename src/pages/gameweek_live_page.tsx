@@ -22,24 +22,24 @@ export default function GameweekLivePage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const { data: gameData, isLoading, error } = useQuery("game-data", getGameData);
+  const { data, isLoading, error } = useQuery("game-data", getGameData);
 
   let allGameweeks: Gameweek[];
   let allPlayers: Player[] | undefined;
   let positions: Position[] | undefined;
   let currentGameweek: Gameweek | undefined;
 
-  if (gameData) {
-    allGameweeks = gameData.events;
-    allPlayers = gameData.elements;
-    positions = gameData.element_types;
+  if (data) {
+    allGameweeks = data.events;
+    allPlayers = data.elements;
+    positions = data.element_types;
     currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
   }
 
   const renderDreamTeam = (): JSX.Element => {
     if (isLoading) {
       return <CircularProgress />;
-    } else if (gameData && allPlayers && positions) {
+    } else if (data && allPlayers && positions) {
       return <DreamTeam players={allPlayers} positions={positions} />;
     } else {
       return (
@@ -53,7 +53,7 @@ export default function GameweekLivePage(): JSX.Element {
   const renderGameweekSummary = (): JSX.Element => {
     if (isLoading) {
       return <CircularProgress />;
-    } else if (gameData && currentGameweek && allPlayers) {
+    } else if (data && currentGameweek && allPlayers) {
       return <GameweekSummary gameweek={currentGameweek} players={allPlayers} />;
     } else {
       return <Typography>Error getting data!</Typography>;
