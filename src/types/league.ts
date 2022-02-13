@@ -1,4 +1,26 @@
-export interface Classic {
+interface NewEntries {
+  has_next: boolean;
+  page: number;
+  results: unknown[];
+}
+
+export interface League {
+  id: number;
+  name: string;
+  created: Date;
+  closed: boolean;
+  max_entries?: unknown;
+  league_type: string;
+  scoring: string;
+  admin_entry: number;
+  start_event: number;
+  code_privacy: string;
+  has_cup: boolean;
+  cup_league?: unknown;
+  rank?: unknown;
+}
+
+interface Classic {
   id: number;
   name: string;
   short_name: string;
@@ -20,7 +42,7 @@ export interface Classic {
   entry_last_rank: number;
 }
 
-export interface H2h {
+interface H2h {
   id: number;
   name: string;
   short_name?: unknown;
@@ -42,20 +64,20 @@ export interface H2h {
   entry_last_rank: number;
 }
 
-export interface Status {
+interface Status {
   qualification_event?: unknown;
   qualification_numbers?: unknown;
   qualification_rank?: unknown;
   qualification_state?: unknown;
 }
 
-export interface Cup {
+interface Cup {
   matches: unknown[];
   status: Status;
   cup_league: number;
 }
 
-export interface CupMatch {
+interface CupMatch {
   id: number;
   entry_1_entry: number;
   entry_1_name: string;
@@ -83,9 +105,48 @@ export interface CupMatch {
   knockout_name: string;
 }
 
-export interface Leagues {
+interface Result {
+  id: number;
+  event_total: number;
+  player_name: string;
+  rank: number;
+  last_rank: number;
+  rank_sort: number;
+  total: number;
+  entry: number;
+  entry_name: string;
+}
+
+interface Standings {
+  has_next: boolean;
+  page: number;
+  results: Result[];
+}
+
+export interface LeagueType {
   classic: Classic[];
   h2h: H2h[];
   cup: Cup;
   cup_matches: CupMatch[];
+}
+
+export interface LeagueData {
+  new_entries: NewEntries;
+  last_updated_data: Date;
+  league: League;
+  standings: Standings;
+}
+
+export interface LeagueDataWithPage {
+  new_entries: NewEntries;
+  last_updated_data: Date;
+  league: League;
+  standings: Standings;
+}
+
+export interface BestLeague {
+  league: number;
+  entries: number;
+  average_score: string;
+  name: string;
 }

@@ -9,7 +9,7 @@ interface LineupProps {
   bench: PlayerType[];
 }
 
-export default function Lineup({ firstXI, bench }: LineupProps) {
+export default function Lineup({ firstXI, bench }: LineupProps): JSX.Element {
   const sortedBench = _.sortBy(bench, ["element_type"]);
 
   const renderFirstXI = (): JSX.Element => {

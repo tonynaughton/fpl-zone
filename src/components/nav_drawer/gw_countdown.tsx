@@ -26,7 +26,7 @@ export default function GameweekCountdown(): JSX.Element {
     completed: boolean;
   }
 
-  const renderer = ({ days, hours, minutes, completed }: CountdownRenderProps) => {
+  const renderer = ({ days, hours, minutes, completed }: CountdownRenderProps): JSX.Element => {
     const gameweekName = nextGameweek.name.toUpperCase();
     const daysLabel = days + " DAY" + (days > 1 ? "S" : "");
     const hoursLabel = hours + " HR" + (hours > 1 ? "S" : "");

@@ -43,7 +43,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
     }
   };
 
-  const onDetailsSave = async () => {
+  const onDetailsSave = async (): Promise<void> => {
     if (!user) {
       await registerWithEmailAndPassword(firstName, lastName, email, password, fplId);
     } else {
@@ -55,7 +55,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
     if (loading) return;
     if (registerPage && user) navigate("/dashboard");
     if (user) setExistingDetails();
-    const listener = (event: { code: string; preventDefault: () => void }) => {
+    const listener = (event: { code: string; preventDefault: () => void }): void => {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         event.preventDefault();
         onDetailsSave();
@@ -80,7 +80,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
         fullWidth
         autoFocus
         value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
+        onChange={(e): void => setFirstName(e.target.value)}
       />
       <TextField
         className="text-input"
@@ -92,7 +92,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
         fullWidth
         autoFocus
         value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
+        onChange={(e): void => setLastName(e.target.value)}
       />
       <TextField
         className="text-input"
@@ -105,7 +105,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
         fullWidth
         autoFocus
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e): void => setEmail(e.target.value)}
       />
       {registerPage && (
         <>
@@ -120,7 +120,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
             type="password"
             fullWidth
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e): void => setPassword(e.target.value)}
           />
           <TextField
             className="text-input"
@@ -132,7 +132,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
             type="password"
             fullWidth
             value={repeatPassword}
-            onChange={(e) => setRepeatPassword(e.target.value)}
+            onChange={(e): void => setRepeatPassword(e.target.value)}
           />
         </>
       )}
@@ -146,7 +146,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
         fullWidth
         autoFocus
         value={fplId}
-        onChange={(e) => setFplId(e.target.value)}
+        onChange={(e): void => setFplId(e.target.value)}
       />
       <Button
         sx={{ mt: 5 }}

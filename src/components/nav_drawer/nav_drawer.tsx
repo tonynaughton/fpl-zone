@@ -26,7 +26,7 @@ interface NavDrawerProps {
   activeLabel: string;
 }
 
-export default function NavDrawer({ activeLabel }: NavDrawerProps) {
+export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element {
   return (
     <Drawer
       sx={{

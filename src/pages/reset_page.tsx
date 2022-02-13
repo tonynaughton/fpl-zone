@@ -29,10 +29,10 @@ export default function ResetPage(): JSX.Element {
           fullWidth
           autoFocus
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e): void => setEmail(e.target.value)}
         />
         <Button
-          onClick={() => sendPasswordReset(email)}
+          onClick={(): Promise<void> => sendPasswordReset(email)}
           sx={{ mt: 2 }}
           className="action-button"
           color="secondary"

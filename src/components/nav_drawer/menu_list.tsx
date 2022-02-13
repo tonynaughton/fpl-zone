@@ -8,7 +8,7 @@ interface MenuListProps {
   activeLabel: string;
 }
 
-export default function MenuList({ items, activeLabel }: MenuListProps) {
+export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Element {
   return (
     <List>
       {items.map((item: MenuItem, index: number) => (
