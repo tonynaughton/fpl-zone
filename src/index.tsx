@@ -12,6 +12,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import AccountPage from "pages/account_page";
 import LoginPage from "pages/login_page";
 import GameweekLivePage from "pages/gameweek_live_page";
+import MyTeamPage from "pages/my_team";
 
 const customTheme = createTheme({
   typography: {
@@ -67,6 +68,7 @@ const App = (): JSX.Element => {
               path="/gameweek-live"
               element={<PrivateRoute component={<GameweekLivePage />} />}
             />
+            <Route path="/my-team" element={<PrivateRoute component={<MyTeamPage />} />} />
           </Routes>
         </Router>
       </ThemeProvider>
