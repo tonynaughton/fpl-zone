@@ -23,7 +23,7 @@ export interface Player {
   second_name: string;
   selected_by_percent: string;
   special: boolean;
-  squad_number?: any;
+  squad_number?: unknown;
   status: string;
   team: number;
   team_code: number;
@@ -60,10 +60,10 @@ export interface Player {
   threat_rank_type: number;
   ict_index_rank: number;
   ict_index_rank_type: number;
-  corners_and_indirect_freekicks_order?: any;
+  corners_and_indirect_freekicks_order?: unknown;
   corners_and_indirect_freekicks_text: string;
-  direct_freekicks_order?: any;
+  direct_freekicks_order?: unknown;
   direct_freekicks_text: string;
-  penalties_order?: any;
+  penalties_order?: unknown;
   penalties_text: string;
 }

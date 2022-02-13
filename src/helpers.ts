@@ -1,5 +1,6 @@
-import React from "react";
+import _ from "lodash";
 import { Player } from "types/player";
+import { Position } from "types/position";
 
 export function GetPlayerById(playerId: number, players: Player[]): Player {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -33,4 +34,38 @@ export function getTeamShirtColour(team_code: number): string | undefined {
     return obj.code === team_code;
   });
   return result?.color;
+}
+
+// Helper function used to divide a squad of players into First XI and bench
+export function selectLineup(
+  squad: Player[][],
+  positions: Position[]
+): { firstXIPlayers: Player[][]; benchPlayers: Player[] } {
+  const firstXIPlayers = squad.map((playerGroup, index) => {
+    return playerGroup.splice(0, positions[index].squad_min_play);
+  });
+
+  const benchPlayers = _(squad).flatten().orderBy(["event_points"], ["desc"]).value();
+
+  const addRemainingFirstXI = (playerGroup: Player[]): void => {
+    let playerAdded = false;
+    playerGroup.forEach((player, index) => {
+      if (!playerAdded) {
+        const pos = player.element_type;
+        if (firstXIPlayers[pos - 1].length < positions[pos - 1].squad_max_play) {
+          firstXIPlayers[pos - 1].push(player);
+          playerGroup.splice(index, 1);
+          playerAdded = true;
+        }
+      }
+    });
+
+    if (playerGroup.length > 4) {
+      addRemainingFirstXI(playerGroup);
+    }
+  };
+
+  addRemainingFirstXI(benchPlayers);
+
+  return { firstXIPlayers, benchPlayers };
 }

@@ -4,8 +4,8 @@ export interface Classic {
   short_name: string;
   created: Date;
   closed: boolean;
-  rank?: any;
-  max_entries?: any;
+  rank?: unknown;
+  max_entries?: unknown;
   league_type: string;
   scoring: string;
   admin_entry?: number;
@@ -23,11 +23,11 @@ export interface Classic {
 export interface H2h {
   id: number;
   name: string;
-  short_name?: any;
+  short_name?: unknown;
   created: Date;
   closed: boolean;
-  rank?: any;
-  max_entries?: any;
+  rank?: unknown;
+  max_entries?: unknown;
   league_type: string;
   scoring: string;
   admin_entry?: number;
@@ -36,21 +36,21 @@ export interface H2h {
   entry_can_admin: boolean;
   entry_can_invite: boolean;
   has_cup: boolean;
-  cup_league?: any;
-  cup_qualified?: any;
+  cup_league?: unknown;
+  cup_qualified?: unknown;
   entry_rank: number;
   entry_last_rank: number;
 }
 
 export interface Status {
-  qualification_event?: any;
-  qualification_numbers?: any;
-  qualification_rank?: any;
-  qualification_state?: any;
+  qualification_event?: unknown;
+  qualification_numbers?: unknown;
+  qualification_rank?: unknown;
+  qualification_state?: unknown;
 }
 
 export interface Cup {
-  matches: any[];
+  matches: unknown[];
   status: Status;
   cup_league: number;
 }
@@ -76,9 +76,9 @@ export interface CupMatch {
   is_knockout: boolean;
   league: number;
   winner: number;
-  seed_value?: any;
+  seed_value?: unknown;
   event: number;
-  tiebreak?: any;
+  tiebreak?: unknown;
   is_bye: boolean;
   knockout_name: string;
 }

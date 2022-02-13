@@ -51,8 +51,6 @@ export const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
     alert(err.message);
   }
 };
@@ -61,8 +59,6 @@ export const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
     alert(err.message);
   }
 };
@@ -86,8 +82,6 @@ export const registerWithEmailAndPassword = async (
       fplId,
     });
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
     alert(err.message);
   }
 };
@@ -97,22 +91,17 @@ export const sendPasswordReset = async (email) => {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
     alert(err.message);
   }
 };
 
 export const updateUserDetails = async (uid, firstName, lastName, email, fplId = "") => {
-  console.log("🚀 ~ file: firebase.js ~ line 107 ~ updateUserDetails ~ email", email);
   const q = query(collection(db, "users"), where("uid", "==", uid));
   const docs = await getDocs(q);
   const user = doc(db, "users", docs.docs[0].id);
   try {
     updateEmail(auth.currentUser, email);
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
     alert(err.message);
     return;
   }
@@ -124,8 +113,6 @@ export const updateUserDetails = async (uid, firstName, lastName, email, fplId =
       fplId,
     });
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
     alert(err.message);
     return;
   }
