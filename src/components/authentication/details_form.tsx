@@ -55,8 +55,18 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
     if (loading) return;
     if (registerPage && user) navigate("/dashboard");
     if (user) setExistingDetails();
+    const listener = (event: { code: string; preventDefault: () => void }) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+        onDetailsSave();
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading, registerPage, user]);
+  }, [loading, navigate, onDetailsSave, registerPage, user]);
 
   return (
     <Box component="div">

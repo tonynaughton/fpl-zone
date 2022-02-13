@@ -15,7 +15,17 @@ export default function LoginForm(): JSX.Element {
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/gameweek-live");
-  }, [user, loading, navigate]);
+    const listener = (event: { code: string; preventDefault: () => void }) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+        logInWithEmailAndPassword(email, password);
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [user, loading, navigate, email, password]);
 
   return (
     <AuthLayout>
@@ -52,6 +62,7 @@ export default function LoginForm(): JSX.Element {
           color="secondary"
           fullWidth
           variant="contained"
+          type="submit"
         >
           Login
         </Button>
