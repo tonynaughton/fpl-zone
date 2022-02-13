@@ -58,7 +58,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
     { label: "average score:", data: gameweek?.average_entry_score },
   ];
 
-  const renderGridItem = (item: SummaryDataItem, key: number) => {
+  const renderGridItem = (item: SummaryDataItem, key: number): JSX.Element => {
     const img: JSX.Element | undefined = item.teamCode ? (
       <img
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}

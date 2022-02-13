@@ -15,12 +15,15 @@
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src/"
+    "baseUrl": "src/",
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true
   },
   "include": [
     "src",

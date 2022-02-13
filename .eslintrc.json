@@ -5,27 +5,36 @@
     "jest": true
   },
   "rules": {
-    "no-console": "warn",
+    "no-console": "off",
     "import/first": "error",
-    "react/prop-types": "off"
+    "react/prop-types": "error",
+    "no-loops/no-loops": 2,
+    "no-whitespace-before-property": "error",
+    "semi": ["error", "always"],
+    "no-unused-vars":"error",
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
   "extends": [
     "react-app",
     "react-app/jest",
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
     "prettier"
   ],
   "overrides": [
     {
-        "files": ["*.ts", "*.tsx"]
+        "files": ["*.ts", "*.tsx"],
+        "rules":{
+          "@typescript-eslint/explicit-function-return-type": "warn"
+        }
     }
   ],
   "parser": "@typescript-eslint/parser",
   "root": true,
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "no-loops"],
   "parserOptions": {
     "ecmaVersion": 11,
     "ecmaFeatures": {
