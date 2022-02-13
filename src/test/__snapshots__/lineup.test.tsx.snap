@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dream Team Tests Renders as expected 1`] = `
+exports[`Lineup Tests Snapshot test 1`] = `
 <DocumentFragment>
   <div
     class="MuiGrid-root MuiGrid-container css-1sgmr83-MuiGrid-root"
   >
     <div
       class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-10 css-1bckcqk-MuiGrid-root"
+      data-testid="first-xi-players"
     >
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-s2k0j8-MuiGrid-root"
@@ -16,12 +17,14 @@ exports[`Dream Team Tests Renders as expected 1`] = `
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="662"
           >
             <div
               class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
               <img
                 alt="kit-img"
+                data-testid="player-shirt-image"
                 height="55"
                 src="/assets/images/kits/7.png"
               />
@@ -34,6 +37,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
                 >
                   TRINER
                 </p>
@@ -43,8 +47,95 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
                 >
                   30
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="9"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                data-testid="player-shirt-image"
+                height="55"
+                src="/assets/images/kits/7.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  BAULDREY
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  23
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="550"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                data-testid="player-shirt-image"
+                height="55"
+                src="/assets/images/kits/5.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  CLAMPE
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  16
                 </p>
               </div>
             </div>
@@ -59,12 +150,14 @@ exports[`Dream Team Tests Renders as expected 1`] = `
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="828"
           >
             <div
               class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
               <img
                 alt="kit-img"
+                data-testid="player-shirt-image"
                 height="55"
                 src="/assets/images/kits/3.png"
               />
@@ -77,6 +170,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
                 >
                   JANKIN
                 </p>
@@ -86,6 +180,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
                 >
                   13
                 </p>
@@ -98,12 +193,14 @@ exports[`Dream Team Tests Renders as expected 1`] = `
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="324"
           >
             <div
               class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
               <img
                 alt="kit-img"
+                data-testid="player-shirt-image"
                 height="55"
                 src="/assets/images/kits/6.png"
               />
@@ -116,6 +213,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
                 >
                   SUMMERILL
                 </p>
@@ -125,6 +223,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
                 >
                   13
                 </p>
@@ -137,12 +236,14 @@ exports[`Dream Team Tests Renders as expected 1`] = `
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="929"
           >
             <div
               class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
               <img
                 alt="kit-img"
+                data-testid="player-shirt-image"
                 height="55"
                 src="/assets/images/kits/2.png"
               />
@@ -155,6 +256,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
                 >
                   MALLOY
                 </p>
@@ -164,6 +266,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
                 >
                   13
                 </p>
@@ -176,12 +279,14 @@ exports[`Dream Team Tests Renders as expected 1`] = `
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="156"
           >
             <div
               class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
               <img
                 alt="kit-img"
+                data-testid="player-shirt-image"
                 height="55"
                 src="/assets/images/kits/14.png"
               />
@@ -194,6 +299,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
                 >
                   TURBEFIELD
                 </p>
@@ -203,8 +309,95 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
                 >
                   9
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="286"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                data-testid="player-shirt-image"
+                height="55"
+                src="/assets/images/kits/5.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  MACMENEMY
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  7
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="304"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                data-testid="player-shirt-image"
+                height="55"
+                src="/assets/images/kits/13.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  SIVES
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  4
                 </p>
               </div>
             </div>
@@ -219,14 +412,16 @@ exports[`Dream Team Tests Renders as expected 1`] = `
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="756"
           >
             <div
               class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
               <img
                 alt="kit-img"
+                data-testid="player-shirt-image"
                 height="55"
-                src="/assets/images/kits/18.png"
+                src="/assets/images/kits/14.png"
               />
             </div>
             <div
@@ -237,8 +432,9 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
                 >
-                  MULLER
+                  MIETTINEN
                 </p>
               </div>
               <div
@@ -246,8 +442,9 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
                 >
-                  24
+                  6
                 </p>
               </div>
             </div>
@@ -258,12 +455,57 @@ exports[`Dream Team Tests Renders as expected 1`] = `
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="428"
           >
             <div
               class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
               <img
                 alt="kit-img"
+                data-testid="player-shirt-image"
+                height="55"
+                src="/assets/images/kits/13.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  MACEK
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  7
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="938"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                data-testid="player-shirt-image"
                 height="55"
                 src="/assets/images/kits/2.png"
               />
@@ -276,6 +518,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
                 >
                   PERRINGTON
                 </p>
@@ -285,6 +528,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
                 >
                   16
                 </p>
@@ -297,12 +541,57 @@ exports[`Dream Team Tests Renders as expected 1`] = `
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="505"
           >
             <div
               class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
               <img
                 alt="kit-img"
+                data-testid="player-shirt-image"
+                height="55"
+                src="/assets/images/kits/18.png"
+              />
+            </div>
+            <div
+              class="MuiBox-root css-1kj8kb6"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  MULLER
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  24
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-1o7apob-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="137"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <img
+                alt="kit-img"
+                data-testid="player-shirt-image"
                 height="55"
                 src="/assets/images/kits/19.png"
               />
@@ -315,6 +604,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
                 >
                   TINGLEY
                 </p>
@@ -324,6 +614,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
                 >
                   12
                 </p>
@@ -340,12 +631,14 @@ exports[`Dream Team Tests Renders as expected 1`] = `
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+            data-testid="466"
           >
             <div
               class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
               <img
                 alt="kit-img"
+                data-testid="player-shirt-image"
                 height="55"
                 src="/assets/images/kits/19.png"
               />
@@ -358,6 +651,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  data-testid="player-name"
                 >
                   WORKES
                 </p>
@@ -367,6 +661,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  data-testid="player-score"
                 >
                   22
                 </p>
@@ -378,6 +673,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
     </div>
     <div
       class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column MuiGrid-grid-xs-2 css-1djelbh-MuiGrid-root"
+      data-testid="bench-players"
     >
       <div
         class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
@@ -393,51 +689,14 @@ exports[`Dream Team Tests Renders as expected 1`] = `
       >
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          data-testid="286"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
           >
             <img
               alt="kit-img"
-              height="55"
-              src="/assets/images/kits/7.png"
-            />
-          </div>
-          <div
-            class="MuiBox-root css-1kj8kb6"
-          >
-            <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
-              >
-                BAULDREY
-              </p>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
-            >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-              >
-                23
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-      >
-        <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-        >
-          <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-          >
-            <img
-              alt="kit-img"
+              data-testid="player-shirt-image"
               height="55"
               src="/assets/images/kits/5.png"
             />
@@ -450,6 +709,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                data-testid="player-name"
               >
                 MACMENEMY
               </p>
@@ -459,6 +719,7 @@ exports[`Dream Team Tests Renders as expected 1`] = `
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                data-testid="player-score"
               >
                 7
               </p>
@@ -471,12 +732,14 @@ exports[`Dream Team Tests Renders as expected 1`] = `
       >
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          data-testid="304"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
           >
             <img
               alt="kit-img"
+              data-testid="player-shirt-image"
               height="55"
               src="/assets/images/kits/13.png"
             />
@@ -489,8 +752,9 @@ exports[`Dream Team Tests Renders as expected 1`] = `
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                data-testid="player-name"
               >
-                MACEK
+                SIVES
               </p>
             </div>
             <div
@@ -498,8 +762,9 @@ exports[`Dream Team Tests Renders as expected 1`] = `
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                data-testid="player-score"
               >
-                7
+                4
               </p>
             </div>
           </div>
@@ -510,14 +775,16 @@ exports[`Dream Team Tests Renders as expected 1`] = `
       >
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          data-testid="137"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
           >
             <img
               alt="kit-img"
+              data-testid="player-shirt-image"
               height="55"
-              src="/assets/images/kits/14.png"
+              src="/assets/images/kits/19.png"
             />
           </div>
           <div
@@ -528,8 +795,9 @@ exports[`Dream Team Tests Renders as expected 1`] = `
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                data-testid="player-name"
               >
-                MIETTINEN
+                TINGLEY
               </p>
             </div>
             <div
@@ -537,8 +805,9 @@ exports[`Dream Team Tests Renders as expected 1`] = `
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                data-testid="player-score"
               >
-                6
+                12
               </p>
             </div>
           </div>

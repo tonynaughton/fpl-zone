@@ -29,6 +29,7 @@ export default function Lineup({ firstXI, bench }: LineupProps) {
         maxWidth={1000}
         margin="auto"
         xs={10}
+        data-testid="first-xi-players"
       >
         {firstXI.map((positionGroup, key) => {
           return (
@@ -49,7 +50,15 @@ export default function Lineup({ firstXI, bench }: LineupProps) {
 
   const renderBench = (): JSX.Element => {
     return (
-      <Grid container item justifyContent="center" direction="column" rowGap={1} xs={2}>
+      <Grid
+        container
+        item
+        justifyContent="center"
+        direction="column"
+        rowGap={1}
+        xs={2}
+        data-testid="bench-players"
+      >
         <Grid item>
           <Typography fontSize={20} textAlign="center" sx={{ mb: 1 }}>
             BENCH
