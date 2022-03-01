@@ -11,7 +11,7 @@
     "no-loops/no-loops": 2,
     "no-whitespace-before-property": "error",
     "semi": ["error", "always"],
-    "no-unused-vars":"error",
+    "no-unused-vars":"warn",
     "@typescript-eslint/explicit-function-return-type": "off"
   },
   "extends": [

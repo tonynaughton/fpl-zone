@@ -1,3 +1,4 @@
+import { Team } from "types";
 import { Player } from "types/player";
 
 export function GetPlayerById(playerId: number, players: Player[]): Player {

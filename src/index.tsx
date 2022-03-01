@@ -12,7 +12,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import AccountPage from "pages/account_page";
 import LoginPage from "pages/login_page";
 import GameweekLivePage from "pages/gameweek_live_page";
-import MyTeamPage from "pages/my_team";
+import MyTeamPage from "pages/my_team_page";
 
 const customTheme = createTheme({
   typography: {
