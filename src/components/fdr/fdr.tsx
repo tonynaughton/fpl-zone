@@ -7,14 +7,21 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  CircularProgress,
+  Box,
+  Typography,
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { Fixture, Gameweek, Player, Team } from "types";
 import _ from "lodash";
+import FixtureBox from "./fixture_box";
+import "./fdr.css";
+
+type BaseItem = Player | Team;
 
 interface FdrTableProps {
   currentGameweek: Gameweek;
-  type: Player[] | Team[];
+  type: BaseItem[];
   teams: Team[];
 }
 
@@ -24,8 +31,7 @@ interface FdrTableState {
 
 export default class FdrTable extends React.Component<FdrTableProps, FdrTableState> {
   public isPlayerTable: boolean;
-  public baseItem: Player[] | Team[];
-  public names: string[];
+  public baseItem: BaseItem[];
   public nameColumnTitle: string;
   public nextFiveGameweeks: number[];
 
@@ -36,8 +42,6 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
     this.baseItem = this.isPlayerTable
       ? (this.props.type as Player[])
       : (this.props.type as Team[]);
-    this.names = [];
-    this.baseItem.forEach((p) => this.names.push(p.web_name));
     this.nameColumnTitle = this.isPlayerTable ? "Player" : "Team";
     this.nextFiveGameweeks = Array(5)
       .fill(this.props.currentGameweek.id + 1)
@@ -48,85 +52,99 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
     };
   }
 
-  public componentDidMount = async (): Promise<void> => {
-    const nextFiveGameweekFixtures: Fixture[][] = [];
-    this.nextFiveGameweeks.forEach(async (gameweek) => {
-      const fixtures = await getGameweekFixtures(gameweek);
-      nextFiveGameweekFixtures.push(fixtures);
-    });
-    this.setState({ nextFiveGameweekFixtures });
+  public renderBaseItemName = (baseItem: BaseItem): string => {
+    return "web_name" in baseItem ? baseItem.web_name : baseItem.name;
   };
 
-  public getNextFiveTeamFixtures = (baseItem: Player | Team): number[][] => {
-    if (this.state.nextFiveGameweekFixtures === []) {
-      return [];
-    }
+  public getTeamById = (teamId: number): string | undefined => {
+    const team = this.props.teams.find((t) => t.id === teamId);
+    return team?.short_name;
+  };
 
+  public async fetchNextFiveGameweekFixtures(): Promise<Fixture[][]> {
+    const nextFiveGameweekFixtures: Fixture[][] = [];
+    // For loop must be used as async await cannot be used in a forEach loop
+    // eslint-disable-next-line no-loops/no-loops
+    for (const gameweek of this.nextFiveGameweeks) {
+      await getGameweekFixtures(gameweek).then((fixtures) => {
+        nextFiveGameweekFixtures.push(fixtures);
+      });
+    }
+    return nextFiveGameweekFixtures;
+  }
+
+  public componentDidMount = async (): Promise<void> => {
+    await this.fetchNextFiveGameweekFixtures().then((nextFiveGameweekFixtures) => {
+      this.setState({ nextFiveGameweekFixtures });
+    });
+  };
+
+  public getNextFiveTeamFixtures = (baseItem: BaseItem, fixtures: Fixture[][]): Fixture[][] => {
     const fixturesByTeam: Fixture[][] = [];
-    this.state.nextFiveGameweekFixtures.forEach((gameweek) => {
+    fixtures.forEach((gameweek) => {
       const teamFixtures = gameweek.filter(
         (f) => f.team_h === baseItem.id || f.team_a === baseItem.id
       );
       fixturesByTeam.push([...teamFixtures]);
     });
-
-    const oppositionsIds: number[][] = [];
-    fixturesByTeam.forEach((f) => {
-      const ids = f.map((f) => (f.team_h === baseItem.id ? f.team_a : f.team_h));
-      oppositionsIds.push(ids);
-    });
-    return oppositionsIds;
+    return fixturesByTeam;
   };
 
-  public renderBaseItemName = (baseItem: Player | Team): string => {
-    return "web_name" in baseItem ? baseItem.web_name : baseItem.name;
-  };
-
-  public getTeamAbbreviationById = (teamId: number): string | undefined => {
-    const team = this.props.teams.find((t) => t.id === teamId);
-    return team?.short_name;
-  };
-
-  public renderRow = (baseItem: Player | Team, index: number): JSX.Element => {
-    const teamIds = this.getNextFiveTeamFixtures(baseItem);
+  public renderRow = (baseItem: BaseItem, index: number): JSX.Element => {
+    const teamFixtures = this.getNextFiveTeamFixtures(
+      baseItem,
+      this.state.nextFiveGameweekFixtures
+    );
     return (
       <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
         <TableCell component="th" scope="row" key={index}>
           {this.renderBaseItemName(baseItem)}
         </TableCell>
-        {_.map(teamIds, (gameweek) =>
-          _.map(gameweek, (teamId, key) => (
-            <TableCell key={key}>{this.getTeamAbbreviationById(teamId)}</TableCell>
-          ))
-        )}
+        {_.map(teamFixtures, (fixtures, key) => (
+          <FixtureBox
+            fixtures={fixtures}
+            baseItem={baseItem}
+            isPlayerTable={this.isPlayerTable}
+            key={key}
+            getTeamById={this.getTeamById}
+          />
+        ))}
       </TableRow>
     );
   };
 
-  public renderTableBody = (): JSX.Element => {
-    const fixtures = this.state.nextFiveGameweekFixtures;
-    if (_.isEmpty(fixtures)) {
-      return <></>;
-    } else {
-      return (
-        <>{this.baseItem.map((item: Player | Team, key: number) => this.renderRow(item, key))}</>
-      );
-    }
-  };
-
   public render(): JSX.Element {
-    return (
-      <TableContainer component={Paper}>
-        <Table aria-label="fdr table" size="small">
+    return _.isEmpty(this.state.nextFiveGameweekFixtures) ? (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        sx={{ height: "100%", rowGap: "20px" }}
+      >
+        <Typography>Fetching fixture data..</Typography>
+        <CircularProgress />
+      </Box>
+    ) : (
+      <TableContainer component={Paper} sx={{ mt: 6 }}>
+        <Table
+          aria-label="fdr table"
+          size="small"
+          sx={{ tableLayout: "fixed", "& .MuiTableCell-root": { padding: "2px 4px" } }}
+        >
           <TableHead>
             <TableRow>
               <TableCell>{this.nameColumnTitle}</TableCell>
               {this.nextFiveGameweeks.map((gameweekNumber, index) => (
-                <TableCell key={index}>{gameweekNumber}</TableCell>
+                <TableCell sx={{ textAlign: "center" }} key={index}>
+                  GW {gameweekNumber}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>{this.renderTableBody()}</TableBody>
+          <TableBody>
+            {this.baseItem.map((item: BaseItem, key: number) => this.renderRow(item, key))}
+          </TableBody>
         </Table>
       </TableContainer>
     );

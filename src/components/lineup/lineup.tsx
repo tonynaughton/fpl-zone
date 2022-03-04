@@ -76,7 +76,7 @@ export default function Lineup({ selected, bench }: LineupProps): JSX.Element {
   };
 
   return (
-    <Grid height="100%" container>
+    <Grid height="100%" sx={{ p: 3 }} container>
       {renderSelected()}
       {renderBench()}
     </Grid>

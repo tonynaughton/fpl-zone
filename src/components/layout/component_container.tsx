@@ -40,7 +40,7 @@ export default function ComponentContainer({
     <Box
       width="100%"
       border="2px solid black"
-      sx={{ boxShadow: 4, position: "relative", height: "100%", padding: 3 }}
+      sx={{ boxShadow: 4, position: "relative", height: "100%" }}
     >
       <Box
         sx={{
