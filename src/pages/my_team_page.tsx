@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
-import { auth } from "config/firebase";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, getUserFplTeamId } from "config/firebase";
 import AppLayout from "components/layout/app_layout";
 import { useQuery } from "react-query";
-import { getGameData } from "api/fpl_api_provider";
+import { getGameData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
-import { Gameweek, Team } from "types";
+import { Gameweek } from "types";
 import ComponentContainer from "components/layout/component_container";
-import { CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import Loading from "components/layout/loading";
+import { GetPlayerById } from "helpers";
+import _ from "lodash";
 
 export default function MyTeamPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -19,23 +22,45 @@ export default function MyTeamPage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  let allGameweeks: Gameweek[];
-  let currentGameweek: Gameweek | undefined;
-  let allTeams: Team[] | undefined;
+  const { data: fplId } = useQuery([user?.uid], getUserFplTeamId);
+  const { data: gameData, isLoading, error } = useQuery("game-data", getGameData);
 
-  const { data, isLoading, error } = useQuery("game-data", getGameData);
+  const allTeams = gameData?.teams;
+  const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
 
-  if (data) {
-    allGameweeks = data.events;
-    allTeams = data.teams;
-    currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
-  }
+  const { data: teamData } = useQuery(
+    [fplId, currentGameweek],
+    async () => {
+      const response = await getTeamPicksForGameweek(fplId, currentGameweek.id);
+      return response;
+    },
+    { enabled: !!(currentGameweek && fplId) }
+  );
+
+  const playersFromTeamData =
+    gameData &&
+    teamData &&
+    _(teamData.picks)
+      .map((pick) => GetPlayerById(pick.element, gameData.elements))
+      .sortBy("element_type")
+      .value();
 
   const renderFdrTable = (): JSX.Element => {
-    if (isLoading) {
-      return <CircularProgress />;
-    } else if (data && currentGameweek && allTeams) {
-      return <FdrTable currentGameweek={currentGameweek} type={allTeams} teams={allTeams} />;
+    if (!fplId) {
+      return (
+        <Box display="flex" alignItems="center" justifyContent="center" sx={{ height: "100%" }}>
+          Please add your FPL ID in&nbsp;
+          <Link to="/account" style={{ textDecoration: "none", color: "#16B7EA" }}>
+            Account
+          </Link>
+        </Box>
+      );
+    } else if (!!gameData && !!currentGameweek && !!allTeams && !!playersFromTeamData) {
+      return (
+        <FdrTable currentGameweek={currentGameweek} type={playersFromTeamData} teams={allTeams} />
+      );
+    } else if (isLoading) {
+      return <Loading message="Fetching game data.." />;
     } else {
       return <Typography>Error getting data!</Typography>;
     }
