@@ -15,6 +15,8 @@ import { getGameweekFixtures } from "api/fpl_api_provider";
 import { Fixture, Gameweek, Player, Team } from "types";
 import _ from "lodash";
 import FixtureBox from "./fixture_box";
+import DifficultyLegend from "./difficulty_legend";
+
 import "./fdr.css";
 
 type BaseItem = Player | Team;
@@ -126,27 +128,32 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
         <CircularProgress />
       </Box>
     ) : (
-      <TableContainer component={Paper} sx={{ mt: 6 }}>
-        <Table
-          aria-label="fdr table"
-          size="small"
-          sx={{ tableLayout: "fixed", "& .MuiTableCell-root": { padding: "2px 4px" } }}
-        >
-          <TableHead>
-            <TableRow>
-              <TableCell>{this.nameColumnTitle}</TableCell>
-              {this.nextFiveGameweeks.map((gameweekNumber, index) => (
-                <TableCell sx={{ textAlign: "center" }} key={index}>
-                  GW {gameweekNumber}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.baseItem.map((item: BaseItem, key: number) => this.renderRow(item, key))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Box>
+        <Box display="flex" justifyContent="center" alignItems="center" height="3.5em">
+          <DifficultyLegend />
+        </Box>
+        <TableContainer component={Paper}>
+          <Table
+            aria-label="fdr table"
+            size="small"
+            sx={{ tableLayout: "fixed", "& .MuiTableCell-root": { padding: "2px 4px" } }}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>{this.nameColumnTitle}</TableCell>
+                {this.nextFiveGameweeks.map((gameweekNumber, index) => (
+                  <TableCell sx={{ textAlign: "center" }} key={index}>
+                    GW {gameweekNumber}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.baseItem.map((item: BaseItem, key: number) => this.renderRow(item, key))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
     );
   }
 }

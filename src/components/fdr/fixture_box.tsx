@@ -1,6 +1,7 @@
 import { Box, TableCell } from "@mui/material";
 import React from "react";
 import { Fixture, Player, Team } from "types";
+import { fdrColours } from "./difficulty_legend";
 
 interface FixtureBoxProps {
   fixtures: Fixture[];
@@ -15,14 +16,6 @@ export default function FixtureBox({
   isPlayerTable,
   getTeamById,
 }: FixtureBoxProps): JSX.Element {
-  const fdrColours = {
-    1: "#09BA59",
-    2: "#93E02D",
-    3: "#F5CF38",
-    4: "#DE7628",
-    5: "#FF193C",
-  };
-
   const renderBox = (fixture: Fixture, key: number): JSX.Element => {
     const teamId = isPlayerTable ? (baseItem as Player).team : (baseItem as Team).id;
     const isHome = fixture.team_h === teamId;
