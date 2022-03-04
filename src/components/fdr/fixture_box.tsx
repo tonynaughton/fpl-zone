@@ -27,8 +27,11 @@ export default function FixtureBox({
         sx={{
           backgroundColor: `${fdrColours[difficulty]}`,
           p: 0.5,
+          display: "flex",
           flexGrow: 1,
-          textAlign: "center",
+          justifyContent: "center",
+          height: "100%",
+          alignItems: "center",
         }}
         key={key}
       >
@@ -39,7 +42,7 @@ export default function FixtureBox({
 
   return (
     <TableCell scope="row">
-      <Box display="flex" sx={{ width: "100%" }}>
+      <Box display="flex" sx={{ width: "100%", height: "100%", alignItems: "center" }}>
         {fixtures.map((fixture, key) => renderBox(fixture, key))}
       </Box>
     </TableCell>

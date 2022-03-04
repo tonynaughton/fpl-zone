@@ -16,8 +16,7 @@ import { Fixture, Gameweek, Player, Team } from "types";
 import _ from "lodash";
 import FixtureBox from "./fixture_box";
 import DifficultyLegend from "./difficulty_legend";
-
-import "./fdr.css";
+import Loading from "components/layout/loading";
 
 type BaseItem = Player | Team;
 
@@ -54,8 +53,19 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
     };
   }
 
-  public renderBaseItemName = (baseItem: BaseItem): string => {
-    return "web_name" in baseItem ? baseItem.web_name : baseItem.name;
+  public renderBaseItemName = (baseItem: BaseItem): JSX.Element => {
+    const name = this.isPlayerTable ? (baseItem as Player).web_name : (baseItem as Team).name;
+    const teamId = this.isPlayerTable ? (baseItem as Player).team_code : (baseItem as Team).code;
+    return (
+      <Box display="flex" alignItems="center" sx={{ columnGap: 1, ml: 0.5 }}>
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/images/crests/${teamId}.png`}
+          alt="crest-img"
+          height="22px"
+        />
+        {name}
+      </Box>
+    );
   };
 
   public getTeamById = (teamId: number): string | undefined => {
@@ -117,26 +127,21 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
 
   public render(): JSX.Element {
     return _.isEmpty(this.state.nextFiveGameweekFixtures) ? (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-        sx={{ height: "100%", rowGap: "20px" }}
-      >
-        <Typography>Fetching fixture data..</Typography>
-        <CircularProgress />
-      </Box>
+      <Loading message="Fetching fixture data.." />
     ) : (
-      <Box>
-        <Box display="flex" justifyContent="center" alignItems="center" height="3.5em">
+      <>
+        <Box display="flex" justifyContent="center" alignItems="center" height="6%">
           <DifficultyLegend />
         </Box>
-        <TableContainer component={Paper}>
+        <TableContainer component={Box} height="94%">
           <Table
             aria-label="fdr table"
             size="small"
-            sx={{ tableLayout: "fixed", "& .MuiTableCell-root": { padding: "2px 4px" } }}
+            sx={{
+              tableLayout: "fixed",
+              height: "100%",
+              "& .MuiTableCell-root": { padding: "2px 4px" },
+            }}
           >
             <TableHead>
               <TableRow>
@@ -153,7 +158,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
             </TableBody>
           </Table>
         </TableContainer>
-      </Box>
+      </>
     );
   }
 }
