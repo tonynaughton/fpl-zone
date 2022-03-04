@@ -18,6 +18,7 @@ import {
   addDoc,
   updateDoc,
   doc,
+  getDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -116,6 +117,17 @@ export const updateUserDetails = async (uid, firstName, lastName, email, fplId =
     alert(err.message);
     return;
   }
+};
+
+export const getUserFplTeamId = async (props) => {
+  const uid = props.queryKey[0];
+  if (!uid) return;
+  const q = query(collection(db, "users"), where("uid", "==", uid));
+  const docs = await getDocs(q);
+  const userRef = doc(db, "users", docs.docs[0].id);
+  const user = await getDoc(userRef);
+  const userData = user.data();
+  return userData.fplId;
 };
 
 export const logout = () => {

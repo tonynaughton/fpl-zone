@@ -27,6 +27,7 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const setExistingDetails = async (): Promise<void> => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
@@ -37,8 +38,6 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
       setEmail(data.email);
       setFplId(data.fplId);
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error(err);
       alert("An error occured while fetching user data");
     }
   };
@@ -55,13 +54,16 @@ export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Ele
     if (loading) return;
     if (registerPage && user) navigate("/dashboard");
     if (user) setExistingDetails();
+
     const listener = (event: { code: string; preventDefault: () => void }): void => {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         event.preventDefault();
         onDetailsSave();
       }
     };
+
     document.addEventListener("keydown", listener);
+
     return () => {
       document.removeEventListener("keydown", listener);
     };

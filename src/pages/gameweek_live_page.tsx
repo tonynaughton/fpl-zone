@@ -12,6 +12,7 @@ import ComponentContainer from "components/layout/component_container";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { Position } from "types/position";
 import DreamTeam from "components/dream_team/dream_team";
+import Loading from "components/layout/loading";
 
 export default function GameweekLivePage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -38,7 +39,7 @@ export default function GameweekLivePage(): JSX.Element {
 
   const renderDreamTeam = (): JSX.Element => {
     if (isLoading) {
-      return <CircularProgress />;
+      return <Loading message="Fetching game data data.." />;
     } else if (data && allPlayers && positions) {
       return <DreamTeam players={allPlayers} positions={positions} />;
     } else {
@@ -52,7 +53,7 @@ export default function GameweekLivePage(): JSX.Element {
 
   const renderGameweekSummary = (): JSX.Element => {
     if (isLoading) {
-      return <CircularProgress />;
+      return <Loading message="Fetching game data.." />;
     } else if (data && currentGameweek && allPlayers) {
       return <GameweekSummary gameweek={currentGameweek} players={allPlayers} />;
     } else {

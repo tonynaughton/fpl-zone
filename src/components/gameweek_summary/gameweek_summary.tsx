@@ -112,7 +112,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", p: 3 }}>
       <Grid container textAlign="center" rowGap={2}>
         {summaryData.map((stat, index): JSX.Element => renderGridItem(stat, index))}
       </Grid>

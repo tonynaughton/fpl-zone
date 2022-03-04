@@ -3,8 +3,10 @@ export interface Fixture {
   code: number;
   team_h: number;
   team_h_score?: unknown;
+  team_h_difficulty: number;
   team_a: number;
   team_a_score?: unknown;
+  team_a_difficulty: number;
   event: number;
   finished: boolean;
   minutes: number;

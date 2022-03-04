@@ -11,7 +11,7 @@ const drawerWidth = 250;
 
 const mainMenuItems: MenuItem[] = [
   { label: "gameweek live", href: "/gameweek-live" },
-  { label: "my team", href: "/gameweek-live" },
+  { label: "my team", href: "/my-team" },
   { label: "fixtures & results", href: "/fixtures-and-results" },
   { label: "analysis", href: "/analysis" },
   { label: "social", href: "/social" },
