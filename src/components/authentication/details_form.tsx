@@ -1,8 +1,4 @@
-import { Box, Button, TextField, Link as MuiLink } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
-import GoogleIcon from "@mui/icons-material/Google";
 import {
   auth,
   registerWithEmailAndPassword,
@@ -10,183 +6,299 @@ import {
   db,
   updateUserDetails,
 } from "config/firebase";
-import "./authentication.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Button,
+  TextField,
+  Link as MuiLink,
+  Snackbar,
+  Alert,
+  AlertColor,
+} from "@mui/material";
+import GoogleIcon from "@mui/icons-material/Google";
+import "./authentication.css";
+import Loading from "components/layout/loading";
 
 interface DetailsFormProps {
   registerPage: boolean;
 }
 
-export default function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const [fplId, setFplId] = useState("");
+interface FormInput {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  repeatPassword: string;
+  fplId: string;
+}
+
+export default function ReactHookFormTest({ registerPage }: DetailsFormProps): JSX.Element {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const setExistingDetails = async (): Promise<void> => {
+  const defaultValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
+    fplId: "",
+  };
+
+  const [userData, setUserData] = useState(defaultValues);
+
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState("info");
+  const [userFound, setUserFound] = useState(false);
+
+  const setSnackbar = (message: string, severity = "info"): void => {
+    setSnackbarMessage(message);
+    setSnackbarOpen(true);
+    setSnackbarSeverity(severity);
+  };
+
+  const handleSnackbarClose = (): void => {
+    setSnackbarOpen(false);
+  };
+
+  const setDefaultValues = async (): Promise<void> => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setFirstName(data.firstName);
-      setLastName(data.lastName);
-      setEmail(data.email);
-      setFplId(data.fplId);
+      const userData = doc.docs[0].data();
+      setUserData({
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        email: userData.email,
+        password: "",
+        repeatPassword: "",
+        fplId: userData.fplId,
+      });
+      setUserFound(true);
     } catch (err) {
       alert("An error occured while fetching user data");
     }
   };
 
-  const onDetailsSave = async (): Promise<void> => {
-    if (!user) {
-      await registerWithEmailAndPassword(firstName, lastName, email, password, fplId);
-    } else {
-      await updateUserDetails(user.uid, firstName, lastName, email, fplId);
-    }
-  };
+  const { control, handleSubmit, reset } = useForm<FormInput>({ defaultValues });
 
   useEffect(() => {
     if (loading) return;
+    user && setDefaultValues();
     if (registerPage && user) navigate("/dashboard");
-    if (user) setExistingDetails();
-
-    const listener = (event: { code: string; preventDefault: () => void }): void => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        event.preventDefault();
-        onDetailsSave();
-      }
-    };
-
-    document.addEventListener("keydown", listener);
-
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading, navigate, onDetailsSave, registerPage, user]);
+  }, [loading, navigate, registerPage, user]);
+
+  useEffect(() => {
+    reset(userData);
+  }, [reset, userData]);
+
+  const onDetailsSave: SubmitHandler<FormInput> = async (data: FormInput) => {
+    if (!user) {
+      try {
+        await registerWithEmailAndPassword(
+          data.firstName,
+          data.lastName,
+          data.email,
+          data.password,
+          data.fplId
+        ).then(() => {
+          setSnackbar("Registration successful", "success");
+        });
+      } catch (err) {
+        setSnackbar("Registration failed: " + err, "warning");
+      }
+    } else {
+      await updateUserDetails(user.uid, data.firstName, data.lastName, data.email, data.fplId).then(
+        () => {
+          setSnackbar("Details updated successfully", "success");
+        }
+      );
+    }
+  };
 
   return (
     <Box component="div">
-      <TextField
-        className="text-input"
-        margin="normal"
-        id="first-name"
-        required
-        name="first-name"
-        placeholder="First name"
-        fullWidth
-        autoFocus
-        value={firstName}
-        onChange={(e): void => setFirstName(e.target.value)}
-      />
-      <TextField
-        className="text-input"
-        margin="normal"
-        id="last-name"
-        required
-        name="last-name"
-        placeholder="Last name"
-        fullWidth
-        autoFocus
-        value={lastName}
-        onChange={(e): void => setLastName(e.target.value)}
-      />
-      <TextField
-        className="text-input"
-        margin="normal"
-        id="email"
-        required
-        name="email"
-        autoComplete="email"
-        placeholder="Email"
-        fullWidth
-        autoFocus
-        value={email}
-        onChange={(e): void => setEmail(e.target.value)}
-      />
-      {registerPage && (
+      {!registerPage && !userFound ? (
+        <Loading message="Fetching user data.." />
+      ) : (
         <>
-          <TextField
-            className="text-input"
-            margin="normal"
-            id="password"
-            required
-            name="password"
-            autoComplete="current-password"
-            placeholder="Password"
-            type="password"
-            fullWidth
-            value={password}
-            onChange={(e): void => setPassword(e.target.value)}
-          />
-          <TextField
-            className="text-input"
-            margin="normal"
-            id="repeat-password"
-            required
-            name="repeat-password"
-            placeholder="Repeat password"
-            type="password"
-            fullWidth
-            value={repeatPassword}
-            onChange={(e): void => setRepeatPassword(e.target.value)}
-          />
+          <form onSubmit={handleSubmit(onDetailsSave)}>
+            <Controller
+              name="firstName"
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                <TextField
+                  className="text-input"
+                  margin="normal"
+                  placeholder="First name"
+                  fullWidth
+                  error={!!error}
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+            />
+            <Controller
+              name="lastName"
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                <TextField
+                  className="text-input"
+                  margin="normal"
+                  placeholder="Last name"
+                  fullWidth
+                  error={!!error}
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+            />
+            <Controller
+              name="email"
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                <TextField
+                  className="text-input"
+                  margin="normal"
+                  placeholder="Email"
+                  fullWidth
+                  error={!!error}
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+            />
+            {registerPage && (
+              <>
+                <Controller
+                  name="password"
+                  control={control}
+                  rules={{
+                    required: true,
+                  }}
+                  render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                    <TextField
+                      className="text-input"
+                      margin="normal"
+                      placeholder="Password"
+                      fullWidth
+                      error={!!error}
+                      value={value}
+                      onChange={onChange}
+                      type="password"
+                      inputProps={{ form: { autoComplete: "off" } }}
+                    />
+                  )}
+                />
+                <Controller
+                  name="repeatPassword"
+                  control={control}
+                  rules={{
+                    required: true,
+                  }}
+                  render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                    <TextField
+                      className="text-input"
+                      margin="normal"
+                      placeholder="Repeat password"
+                      fullWidth
+                      error={!!error}
+                      value={value}
+                      onChange={onChange}
+                      type="password"
+                      inputProps={{ form: { autoComplete: "off" } }}
+                    />
+                  )}
+                />
+              </>
+            )}
+            <Controller
+              name="fplId"
+              control={control}
+              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                <TextField
+                  className="text-input"
+                  margin="normal"
+                  placeholder="FPL ID (optional)"
+                  fullWidth
+                  error={!!error}
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+            />
+            <Button
+              sx={{ mt: 5 }}
+              className="action-button"
+              color="secondary"
+              type="submit"
+              fullWidth
+              variant="contained"
+            >
+              {registerPage ? "Register" : "Update"}
+            </Button>
+          </form>
+          {registerPage && (
+            <>
+              <Button
+                color="info"
+                onClick={signInWithGoogle}
+                sx={{ mt: 2 }}
+                className="action-button google-login"
+                fullWidth
+                variant="contained"
+              >
+                <GoogleIcon sx={{ mr: 2 }} />
+                Login with Google
+              </Button>
+              <MuiLink
+                textAlign="center"
+                color="black"
+                component="a"
+                underline="none"
+                href="/login"
+                display="block"
+                className="auth-link"
+              >
+                Already have an account? Login now.
+              </MuiLink>
+            </>
+          )}
         </>
       )}
-      <TextField
-        className="text-input"
-        margin="normal"
-        id="fpl-id"
-        required
-        name="fpl-id"
-        placeholder="FPL ID (optional)"
-        fullWidth
-        autoFocus
-        value={fplId}
-        onChange={(e): void => setFplId(e.target.value)}
-      />
-      <Button
-        sx={{ mt: 5 }}
-        className="action-button"
-        color="secondary"
-        type="submit"
-        fullWidth
-        variant="contained"
-        onClick={onDetailsSave}
+      <Snackbar
+        autoHideDuration={6000}
+        open={snackbarOpen}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
       >
-        {registerPage ? "Register" : "Update"}
-      </Button>
-      {registerPage && (
-        <>
-          <Button
-            color="info"
-            onClick={signInWithGoogle}
-            sx={{ mt: 2 }}
-            className="action-button google-login"
-            fullWidth
-            variant="contained"
-          >
-            <GoogleIcon sx={{ mr: 2 }} />
-            Login with Google
-          </Button>
-          <MuiLink
-            textAlign="center"
-            color="black"
-            component="a"
-            underline="none"
-            href="/login"
-            display="block"
-            className="auth-link"
-          >
-            Already have an account? Login now.
-          </MuiLink>
-        </>
-      )}
+        <Alert
+          onClose={handleSnackbarClose}
+          severity={snackbarSeverity as AlertColor}
+          elevation={6}
+          variant="filled"
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
