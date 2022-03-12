@@ -62,7 +62,7 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
     setSnackbarSeverity(severity);
   };
 
-  const handleClose = (): void => {
+  const handleSnackbarClose = (): void => {
     setSnackbarOpen(false);
   };
 
@@ -284,14 +284,14 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
       <Snackbar
         autoHideDuration={6000}
         open={snackbarOpen}
-        onClose={handleClose}
+        onClose={handleSnackbarClose}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "right",
         }}
       >
         <Alert
-          onClose={handleClose}
+          onClose={handleSnackbarClose}
           severity={snackbarSeverity as AlertColor}
           elevation={6}
           variant="filled"
