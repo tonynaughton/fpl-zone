@@ -4,6 +4,7 @@ import { Box, Container, Typography } from "@mui/material";
 
 interface LayoutProps {
   activeLabel: string;
+  direction: string;
 }
 
 export default function AppLayout(props: React.PropsWithChildren<LayoutProps>): JSX.Element {
@@ -29,7 +30,19 @@ export default function AppLayout(props: React.PropsWithChildren<LayoutProps>): 
           {props.activeLabel.toUpperCase()}
         </Typography>
         <Container sx={{ flexGrow: "1", mb: 3 }} maxWidth="xl">
-          {props.children}
+          <Box
+            sx={{
+              height: "100%",
+              maxHeight: "100vh",
+              display: "flex",
+              flexDirection: props.direction,
+              justifyContent: "space-between",
+              columnGap: 3,
+              rowGap: 3,
+            }}
+          >
+            {props.children}
+          </Box>
         </Container>
       </Box>
     </Box>

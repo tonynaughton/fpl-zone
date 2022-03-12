@@ -22,7 +22,8 @@ export default function Player({ player }: PlayerProps): JSX.Element {
           backgroundColor: "#5fdd6b",
           color: "black",
           textAlign: "center",
-          width: "80%",
+          width: "6em",
+          maxWidth: "80%",
           pl: 0.5,
           pr: 0.5,
         }}
