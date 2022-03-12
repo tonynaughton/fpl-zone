@@ -62,27 +62,16 @@ export default function GameweekLivePage(): JSX.Element {
   };
 
   return (
-    <AppLayout activeLabel="gameweek live">
-      <Box
-        sx={{
-          height: "100%",
-          maxHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          rowGap: 3,
-        }}
-      >
-        <Box sx={{ height: "auto" }}>
-          <ComponentContainer isLoading={isLoading} error={error} title="summary">
-            {renderGameweekSummary()}
-          </ComponentContainer>
-        </Box>
-        <Box sx={{ flexGrow: "1", height: "100%" }}>
-          <ComponentContainer isLoading={isLoading} error={error} title="dream team">
-            {renderDreamTeam()}
-          </ComponentContainer>
-        </Box>
+    <AppLayout activeLabel="gameweek live" direction="column">
+      <Box sx={{ height: "auto" }}>
+        <ComponentContainer isLoading={isLoading} error={error} title="summary">
+          {renderGameweekSummary()}
+        </ComponentContainer>
+      </Box>
+      <Box sx={{ flexGrow: "1", height: "100%" }}>
+        <ComponentContainer isLoading={isLoading} error={error} title="dream team">
+          {renderDreamTeam()}
+        </ComponentContainer>
       </Box>
     </AppLayout>
   );

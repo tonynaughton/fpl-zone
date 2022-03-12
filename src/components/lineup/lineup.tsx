@@ -18,25 +18,24 @@ export default function Lineup({ selected, bench }: LineupProps): JSX.Element {
         item
         container
         sx={{
-          pl: 8,
-          pr: 8,
+          pl: 5,
+          pr: 5,
           backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/pitch.png)`,
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
           height: "100%",
         }}
         rowGap={2}
-        maxWidth={1000}
         margin="auto"
         xs={10}
         data-testid="first-xi-players"
       >
         {selected.map((positionGroup, key) => {
           return (
-            <Grid key={key} container item xs={12} justifyContent="center">
+            <Grid key={key} container item xs={12} justifyContent="space-around">
               {positionGroup.map((player, key) => {
                 return (
-                  <Grid key={key} item xs={2}>
+                  <Grid key={key} item xs={12 / positionGroup.length}>
                     <Player player={player} />
                   </Grid>
                 );

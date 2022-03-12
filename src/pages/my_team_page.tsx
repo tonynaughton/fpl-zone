@@ -6,12 +6,13 @@ import AppLayout from "components/layout/app_layout";
 import { useQuery } from "react-query";
 import { getGameData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
-import { Gameweek } from "types";
+import { Gameweek, Player } from "types";
 import ComponentContainer from "components/layout/component_container";
 import { Box, Typography } from "@mui/material";
 import Loading from "components/layout/loading";
 import { GetPlayerById } from "helpers";
 import _ from "lodash";
+import Lineup from "components/lineup/lineup";
 
 export default function MyTeamPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -45,6 +46,53 @@ export default function MyTeamPage(): JSX.Element {
       .sortBy("element_type")
       .value();
 
+  const getSelectedPlayers = (): Player[][] => {
+    const selectedByPos: Player[][] = [];
+    const firstXIPicks = _.slice(teamData?.picks, 0, 10);
+    gameData?.element_types.forEach((pos) => {
+      const picks = firstXIPicks.filter((pick) => {
+        const player = GetPlayerById(pick.element, gameData.elements);
+        return player.element_type === pos.id;
+      });
+      const players = picks.map((pick) => GetPlayerById(pick.element, gameData.elements));
+      selectedByPos.push(players);
+    });
+    return selectedByPos;
+  };
+
+  const getBenchPlayers = (): Player[] => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const benchPlayersPicks = teamData!.picks.slice(11, 14);
+    const benchPlayers = benchPlayersPicks.map((pick) =>
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      GetPlayerById(pick.element, gameData!.elements)
+    );
+    return benchPlayers;
+  };
+
+  const EnterFPLID = (): JSX.Element => {
+    return (
+      <Box display="flex" alignItems="center" justifyContent="center" sx={{ height: "100%" }}>
+        Please add your FPL ID in&nbsp;
+        <Link to="/account" style={{ textDecoration: "none", color: "#16B7EA" }}>
+          Account
+        </Link>
+      </Box>
+    );
+  };
+
+  const renderTeamComponent = (): JSX.Element => {
+    if (!fplId) {
+      return <EnterFPLID />;
+    } else if (!!gameData && !!currentGameweek && !!allTeams && !!playersFromTeamData) {
+      return <Lineup selected={getSelectedPlayers()} bench={getBenchPlayers()} />;
+    } else if (isLoading) {
+      return <Loading message="Fetching game data.." />;
+    } else {
+      return <Typography>Error getting data!</Typography>;
+    }
+  };
+
   const renderFdrTable = (): JSX.Element => {
     if (!fplId) {
       return (
@@ -67,7 +115,10 @@ export default function MyTeamPage(): JSX.Element {
   };
 
   return (
-    <AppLayout activeLabel="my team">
+    <AppLayout activeLabel="my team" direction="row">
+      <ComponentContainer title="team" isLoading={isLoading} error={error}>
+        {renderTeamComponent()}
+      </ComponentContainer>
       <ComponentContainer title="fdr" isLoading={isLoading} error={error}>
         {renderFdrTable()}
       </ComponentContainer>
