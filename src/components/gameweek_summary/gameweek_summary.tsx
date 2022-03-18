@@ -2,7 +2,7 @@ import React from "react";
 import { Gameweek } from "types/gameweek";
 import { Box, Grid, Typography } from "@mui/material";
 import { Player } from "types/player";
-import { GetPlayerById } from "helpers";
+import { GetPlayerById, numberWithCommas } from "helpers";
 
 interface GameweekSummaryProps {
   gameweek: Gameweek;
@@ -28,10 +28,15 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
     ? GetPlayerById(gameweek.most_vice_captained, players)
     : undefined;
 
+  let mostTransferredInCount = "";
+  if (mostTransferredIn) {
+    mostTransferredInCount = numberWithCommas(mostTransferredIn?.transfers_in_event);
+  }
+
   const summaryData: SummaryDataItem[] = [
     {
       label: "star player:",
-      data: starPlayer && `${starPlayer?.web_name} - ${gameweek?.top_element_info?.points}`,
+      data: starPlayer && `${starPlayer?.web_name} -  ${gameweek?.top_element_info?.points} pts`,
       teamCode: starPlayer?.team_code,
     },
     {
@@ -41,13 +46,12 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
     },
     {
       label: "highest score:",
-      data: gameweek?.highest_score && `${gameweek?.highest_score}`,
+      data: gameweek?.highest_score && `${gameweek?.highest_score} pts`,
     },
     {
       label: "most transferred in:",
       data:
-        mostTransferredIn &&
-        `${mostTransferredIn?.web_name} - ${mostTransferredIn?.transfers_in_event}`,
+        mostTransferredIn && `${mostTransferredIn?.web_name} - ${mostTransferredInCount} transfers`,
       teamCode: mostTransferredIn?.team_code,
     },
     {
@@ -55,7 +59,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
       data: mostViceCaptained?.web_name,
       teamCode: mostViceCaptained?.team_code,
     },
-    { label: "average score:", data: gameweek?.average_entry_score },
+    { label: "average score:", data: `${gameweek?.average_entry_score} pts` },
   ];
 
   const renderGridItem = (item: SummaryDataItem, key: number): JSX.Element => {

@@ -24,6 +24,7 @@ export default function ComponentContainer({
           direction="column"
           justifyContent="center"
           rowGap={2}
+          sx={{ height: "100%" }}
         >
           <Typography fontSize={20}>Fetching data..</Typography>
           <CircularProgress />

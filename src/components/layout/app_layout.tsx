@@ -29,7 +29,7 @@ export default function AppLayout(props: React.PropsWithChildren<LayoutProps>): 
         >
           {props.activeLabel.toUpperCase()}
         </Typography>
-        <Container sx={{ flexGrow: "1", mb: 3 }} maxWidth="xl">
+        <Container sx={{ flexGrow: "1", mb: 3 }} maxWidth={false}>
           <Box
             sx={{
               height: "100%",

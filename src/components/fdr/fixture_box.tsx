@@ -1,4 +1,4 @@
-import { Box, TableCell } from "@mui/material";
+import { Box, TableCell, Typography } from "@mui/material";
 import React from "react";
 import { Fixture, Player, Team } from "types";
 import { fdrColours } from "./difficulty_legend";
@@ -25,17 +25,29 @@ export default function FixtureBox({
     return (
       <Box
         sx={{
-          backgroundColor: `${fdrColours[difficulty]}`,
           p: 0.5,
           display: "flex",
-          flexGrow: 1,
-          justifyContent: "center",
+          backgroundColor: `${fdrColours[difficulty]}`,
           height: "100%",
+          flexGrow: 1,
+          overflow: "hidden",
+          justifyContent: "center",
           alignItems: "center",
         }}
         key={key}
       >
-        {getTeamById(oppositionId)} ({isHome ? "H" : "A"})
+        <Box
+          sx={{
+            p: 0.2,
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+          }}
+        >
+          <Typography fontSize={14}>
+            {getTeamById(oppositionId)} ({isHome ? "H" : "A"})
+          </Typography>
+        </Box>
       </Box>
     );
   };

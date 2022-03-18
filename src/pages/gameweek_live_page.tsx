@@ -9,10 +9,11 @@ import { getGameData } from "api/fpl_api_provider";
 import { Gameweek } from "types/gameweek";
 import { Player } from "types/player";
 import ComponentContainer from "components/layout/component_container";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Position } from "types/position";
 import DreamTeam from "components/dream_team/dream_team";
 import Loading from "components/layout/loading";
+import Error from "components/layout/error";
 
 export default function GameweekLivePage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -43,11 +44,7 @@ export default function GameweekLivePage(): JSX.Element {
     } else if (data && allPlayers && positions) {
       return <DreamTeam players={allPlayers} positions={positions} />;
     } else {
-      return (
-        <Typography textAlign="center" width="100%">
-          Error getting data!
-        </Typography>
-      );
+      return <Error message="Error getting data!" />;
     }
   };
 
