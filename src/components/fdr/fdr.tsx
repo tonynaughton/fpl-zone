@@ -1,15 +1,12 @@
 import React from "react";
 import {
-  Paper,
   Table,
   TableContainer,
   TableHead,
   TableRow,
   TableCell,
   TableBody,
-  CircularProgress,
   Box,
-  Typography,
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { Fixture, Gameweek, Player, Team } from "types";
@@ -57,13 +54,30 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
     const name = this.isPlayerTable ? (baseItem as Player).web_name : (baseItem as Team).name;
     const teamId = this.isPlayerTable ? (baseItem as Player).team_code : (baseItem as Team).code;
     return (
-      <Box display="flex" alignItems="center" sx={{ columnGap: 1, ml: 0.5 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          columnGap: 1,
+          ml: 0.5,
+          whiteSpace: "nowrap",
+        }}
+      >
         <img
           src={`${process.env.PUBLIC_URL}/assets/images/crests/${teamId}.png`}
           alt="crest-img"
           height="22px"
         />
-        {name}
+        <Box
+          sx={{
+            display: "block",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {name}
+        </Box>
       </Box>
     );
   };
