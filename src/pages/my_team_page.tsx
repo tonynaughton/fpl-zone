@@ -11,8 +11,9 @@ import ComponentContainer from "components/layout/component_container";
 import { Box, Typography } from "@mui/material";
 import Loading from "components/layout/loading";
 import { GetPlayerById } from "helpers";
-import _ from "lodash";
 import Lineup from "components/lineup/lineup";
+import Error from "components/layout/error";
+import _ from "lodash";
 
 export default function MyTeamPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -48,7 +49,7 @@ export default function MyTeamPage(): JSX.Element {
 
   const getSelectedPlayers = (): Player[][] => {
     const selectedByPos: Player[][] = [];
-    const firstXIPicks = _.slice(teamData?.picks, 0, 10);
+    const firstXIPicks = _.slice(teamData?.picks, 0, 11);
     gameData?.element_types.forEach((pos) => {
       const picks = firstXIPicks.filter((pick) => {
         const player = GetPlayerById(pick.element, gameData.elements);
@@ -62,7 +63,7 @@ export default function MyTeamPage(): JSX.Element {
 
   const getBenchPlayers = (): Player[] => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const benchPlayersPicks = teamData!.picks.slice(11, 14);
+    const benchPlayersPicks = teamData!.picks.slice(11, 15);
     const benchPlayers = benchPlayersPicks.map((pick) =>
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       GetPlayerById(pick.element, gameData!.elements)
@@ -89,7 +90,7 @@ export default function MyTeamPage(): JSX.Element {
     } else if (isLoading) {
       return <Loading message="Fetching game data.." />;
     } else {
-      return <Typography>Error getting data!</Typography>;
+      return <Error message="Error getting data!" />;
     }
   };
 
