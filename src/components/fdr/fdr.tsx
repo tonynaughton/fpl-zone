@@ -107,7 +107,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
 
   public getNextFiveTeamFixtures = (baseItem: BaseItem, fixtures: Fixture[][]): Fixture[][] => {
     const fixturesByTeam: Fixture[][] = [];
-    const teamId = this.isPlayerTable ? (baseItem as Player).team : (baseItem as Team).code;
+    const teamId = this.isPlayerTable ? (baseItem as Player).team : (baseItem as Team).id;
     fixtures.forEach((gameweek) => {
       const teamFixtures = gameweek.filter((f) => f.team_h === teamId || f.team_a === teamId);
       fixturesByTeam.push([...teamFixtures]);
@@ -142,11 +142,16 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
     return _.isEmpty(this.state.nextFiveGameweekFixtures) ? (
       <Loading message="Fetching fixture data.." />
     ) : (
-      <>
-        <Box display="flex" justifyContent="center" alignItems="center" height="6%">
-          <DifficultyLegend />
-        </Box>
-        <TableContainer component={Box} height="94%">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        overflow="hidden"
+        height="100%"
+      >
+        <DifficultyLegend />
+        <TableContainer>
           <Table
             aria-label="fdr table"
             size="small"
@@ -171,7 +176,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
             </TableBody>
           </Table>
         </TableContainer>
-      </>
+      </Box>
     );
   }
 }

@@ -13,6 +13,7 @@ import AccountPage from "pages/account_page";
 import LoginPage from "pages/login_page";
 import GameweekLivePage from "pages/gameweek_live_page";
 import MyTeamPage from "pages/my_team_page";
+import FixturesAndResultsPage from "pages/fixtures_and_results_page";
 
 const customTheme = createTheme({
   typography: {
@@ -69,6 +70,10 @@ const App = (): JSX.Element => {
               element={<PrivateRoute component={<GameweekLivePage />} />}
             />
             <Route path="/my-team" element={<PrivateRoute component={<MyTeamPage />} />} />
+            <Route
+              path="/fixtures-and-results"
+              element={<PrivateRoute component={<FixturesAndResultsPage />} />}
+            />
           </Routes>
         </Router>
       </ThemeProvider>
