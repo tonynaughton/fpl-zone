@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
 import AppLayout from "components/layout/app_layout";
@@ -36,6 +36,10 @@ export default function FixturesAndResultsPage(): JSX.Element {
 
   const allTeams = gameData?.teams;
   const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
+  const latestGameweek =
+    currentGameweek?.deadline_time < new Date()
+      ? currentGameweek
+      : (gameData?.events.find((gw) => gw.is_previous) as Gameweek);
 
   const renderFdrTable = (): JSX.Element => {
     if (!!gameData && !!currentGameweek && !!allTeams) {
@@ -49,7 +53,7 @@ export default function FixturesAndResultsPage(): JSX.Element {
 
   const renderResults = (): JSX.Element => {
     if (!!gameData && !!currentGameweek && !!allTeams && !!fixtures) {
-      return <Results teams={allTeams} fixtures={fixtures} currentGameweek={currentGameweek} />;
+      return <Results teams={allTeams} fixtures={fixtures} latestGameweek={latestGameweek} />;
     } else if (fixturesLoading) {
       return <Loading message="Fetching game data.." />;
     } else {
@@ -59,12 +63,18 @@ export default function FixturesAndResultsPage(): JSX.Element {
 
   return (
     <AppLayout activeLabel="fixtures & results" direction="row">
-      <ComponentContainer isLoading={gameDataLoading} error={gameDataError} title="fdr">
-        {renderFdrTable()}
-      </ComponentContainer>
-      <ComponentContainer isLoading={gameDataLoading} error={fixturesError} title="results">
-        {renderResults()}
-      </ComponentContainer>
+      <Grid container columnSpacing={4}>
+        <Grid item xs={8}>
+          <ComponentContainer isLoading={gameDataLoading} error={gameDataError} title="fdr">
+            {renderFdrTable()}
+          </ComponentContainer>
+        </Grid>
+        <Grid item xs={4}>
+          <ComponentContainer isLoading={gameDataLoading} error={fixturesError} title="results">
+            {renderResults()}
+          </ComponentContainer>
+        </Grid>
+      </Grid>
     </AppLayout>
   );
 }
