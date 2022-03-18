@@ -149,15 +149,16 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
         alignItems="center"
         overflow="hidden"
         height="100%"
+        sx={{ "& .MuiTableContainer-root": { height: "100%" } }}
       >
         <DifficultyLegend />
         <TableContainer>
           <Table
             aria-label="fdr table"
-            size="small"
             sx={{
               tableLayout: "fixed",
               height: "100%",
+              flexGrow: "1",
               "& .MuiTableCell-root": { padding: "2px 4px" },
             }}
           >

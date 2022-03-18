@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Box } from "@mui/material";
-import { getGameData } from "api/fpl_api_provider";
+import { getAllFixtures, getGameData } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
 import AppLayout from "components/layout/app_layout";
 import ComponentContainer from "components/layout/component_container";
@@ -11,6 +11,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { Gameweek } from "types";
+import Results from "components/results/results";
 
 export default function FixturesAndResultsPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -21,7 +22,17 @@ export default function FixturesAndResultsPage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const { data: gameData, isLoading, error } = useQuery("game-data", getGameData);
+  const {
+    data: gameData,
+    isLoading: gameDataLoading,
+    error: gameDataError,
+  } = useQuery("game-data", getGameData);
+
+  const {
+    data: fixtures,
+    isLoading: fixturesLoading,
+    error: fixturesError,
+  } = useQuery("fixture-data", getAllFixtures);
 
   const allTeams = gameData?.teams;
   const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
@@ -29,7 +40,17 @@ export default function FixturesAndResultsPage(): JSX.Element {
   const renderFdrTable = (): JSX.Element => {
     if (!!gameData && !!currentGameweek && !!allTeams) {
       return <FdrTable currentGameweek={currentGameweek} type={allTeams} teams={allTeams} />;
-    } else if (isLoading) {
+    } else if (gameDataLoading) {
+      return <Loading message="Fetching game data.." />;
+    } else {
+      return <Error message="Error getting data!" />;
+    }
+  };
+
+  const renderResults = (): JSX.Element => {
+    if (!!gameData && !!currentGameweek && !!allTeams && !!fixtures) {
+      return <Results teams={allTeams} fixtures={fixtures} currentGameweek={currentGameweek} />;
+    } else if (fixturesLoading) {
       return <Loading message="Fetching game data.." />;
     } else {
       return <Error message="Error getting data!" />;
@@ -38,16 +59,12 @@ export default function FixturesAndResultsPage(): JSX.Element {
 
   return (
     <AppLayout activeLabel="fixtures & results" direction="row">
-      <Box sx={{ height: "auto" }}>
-        <ComponentContainer isLoading={isLoading} error={error} title="fdr">
-          {renderFdrTable()}
-        </ComponentContainer>
-      </Box>
-      <Box sx={{ flexGrow: "1", height: "100%" }}>
-        <ComponentContainer isLoading={isLoading} error={error} title="results">
-          {renderFdrTable()}
-        </ComponentContainer>
-      </Box>
+      <ComponentContainer isLoading={gameDataLoading} error={gameDataError} title="fdr">
+        {renderFdrTable()}
+      </ComponentContainer>
+      <ComponentContainer isLoading={gameDataLoading} error={fixturesError} title="results">
+        {renderResults()}
+      </ComponentContainer>
     </AppLayout>
   );
 }
