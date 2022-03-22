@@ -11,8 +11,8 @@ export const fdrColours = {
 
 export default function DifficultyLegend(): JSX.Element {
   return (
-    <Box display="flex" sx={{ alignItems: "center" }}>
-      <Typography sx={{ mr: 1 }}>Difficulty:</Typography>
+    <Box display="flex" sx={{ alignItems: "center", minHeight: "50px" }}>
+      <Typography sx={{ mr: 1 }}>Difficulty legend:</Typography>
       {Object.keys(fdrColours).map((colour) => {
         return (
           <Box
