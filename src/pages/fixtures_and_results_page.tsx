@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
 import AppLayout from "components/layout/app_layout";
@@ -36,8 +36,9 @@ export default function FixturesAndResultsPage(): JSX.Element {
 
   const allTeams = gameData?.teams;
   const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
+  const currentGameweekDeadline = new Date(currentGameweek?.deadline_time);
   const latestGameweek =
-    currentGameweek?.deadline_time < new Date()
+    currentGameweekDeadline < new Date()
       ? currentGameweek
       : (gameData?.events.find((gw) => gw.is_previous) as Gameweek);
 
