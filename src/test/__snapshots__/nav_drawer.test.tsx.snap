@@ -59,7 +59,7 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
           </a>
           <a
             class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-om9qhu-MuiButtonBase-root-MuiListItemButton-root"
-            href="/gameweek-live"
+            href="/my-team"
             tabindex="0"
           >
             <div
