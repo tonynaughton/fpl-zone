@@ -1,0 +1,608 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Results Tests Snapshot test 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-174b3rz"
+  >
+    <div
+      class="MuiBox-root css-gmuwbf"
+    >
+      <button
+        aria-label="prev-gameweek"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+        data-testid="prev-gameweek-btn"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="ArrowBackIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+        data-testid="selected-gameweek-title"
+      >
+        GAMEWEEK 24
+      </p>
+      <button
+        aria-label="prev-gameweek"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+        data-testid="next-gameweek-btn"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="ArrowForwardIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+    <div
+      class="MuiBox-root css-1h5wsee"
+    >
+      <div
+        class="MuiBox-root css-qwbho3"
+        data-testid="result-239"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-pdc5oe"
+            >
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/4.png"
+                width="30"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-112bld7-MuiTypography-root"
+              >
+                  Newcastle
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-gmuwbf"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-197tr25-MuiTypography-root"
+              >
+                3 - 1
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-1wknec8"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-9ht3fv-MuiTypography-root"
+              >
+                Everton  
+              </p>
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/11.png"
+                width="30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-qwbho3"
+        data-testid="result-235"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-pdc5oe"
+            >
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/21.png"
+                width="30"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-112bld7-MuiTypography-root"
+              >
+                  West Ham
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-gmuwbf"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-197tr25-MuiTypography-root"
+              >
+                1 - 0
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-1wknec8"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-9ht3fv-MuiTypography-root"
+              >
+                Watford  
+              </p>
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/57.png"
+                width="30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-qwbho3"
+        data-testid="result-233"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-pdc5oe"
+            >
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/90.png"
+                width="30"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-112bld7-MuiTypography-root"
+              >
+                  Burnley
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-gmuwbf"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-197tr25-MuiTypography-root"
+              >
+                1 - 1
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-1wknec8"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-9ht3fv-MuiTypography-root"
+              >
+                Man Utd  
+              </p>
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/1.png"
+                width="30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-qwbho3"
+        data-testid="result-238"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-pdc5oe"
+            >
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/43.png"
+                width="30"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-112bld7-MuiTypography-root"
+              >
+                  Man City
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-gmuwbf"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-197tr25-MuiTypography-root"
+              >
+                2 - 0
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-1wknec8"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-9ht3fv-MuiTypography-root"
+              >
+                Brentford  
+              </p>
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/94.png"
+                width="30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-qwbho3"
+        data-testid="result-234"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-pdc5oe"
+            >
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/45.png"
+                width="30"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-112bld7-MuiTypography-root"
+              >
+                  Norwich
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-gmuwbf"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-197tr25-MuiTypography-root"
+              >
+                1 - 1
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-1wknec8"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-9ht3fv-MuiTypography-root"
+              >
+                Crystal Palace  
+              </p>
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/31.png"
+                width="30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-qwbho3"
+        data-testid="result-240"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-pdc5oe"
+            >
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/6.png"
+                width="30"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-112bld7-MuiTypography-root"
+              >
+                  Spurs
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-gmuwbf"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-197tr25-MuiTypography-root"
+              >
+                2 - 3
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-1wknec8"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-9ht3fv-MuiTypography-root"
+              >
+                Southampton  
+              </p>
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/20.png"
+                width="30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-qwbho3"
+        data-testid="result-231"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-pdc5oe"
+            >
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/7.png"
+                width="30"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-112bld7-MuiTypography-root"
+              >
+                  Aston Villa
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-gmuwbf"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-197tr25-MuiTypography-root"
+              >
+                3 - 3
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-1wknec8"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-9ht3fv-MuiTypography-root"
+              >
+                Leeds  
+              </p>
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/2.png"
+                width="30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-qwbho3"
+        data-testid="result-237"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-pdc5oe"
+            >
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/14.png"
+                width="30"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-112bld7-MuiTypography-root"
+              >
+                  Liverpool
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-gmuwbf"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-197tr25-MuiTypography-root"
+              >
+                2 - 0
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-1wknec8"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-9ht3fv-MuiTypography-root"
+              >
+                Leicester  
+              </p>
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/13.png"
+                width="30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-qwbho3"
+        data-testid="result-236"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-pdc5oe"
+            >
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/39.png"
+                width="30"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-112bld7-MuiTypography-root"
+              >
+                  Wolves
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-gmuwbf"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-197tr25-MuiTypography-root"
+              >
+                0 - 1
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-1wknec8"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-9ht3fv-MuiTypography-root"
+              >
+                Arsenal  
+              </p>
+              <img
+                alt="team-crest"
+                height="30"
+                src="/assets/images/crests/3.png"
+                width="30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

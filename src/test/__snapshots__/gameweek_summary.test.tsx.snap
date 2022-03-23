@@ -3,7 +3,7 @@
 exports[`Gameweek Summary Tests Renders as expected 1`] = `
 <DocumentFragment>
   <div
-    class="MuiBox-root css-8atqhb"
+    class="MuiBox-root css-1r4ai6y"
   >
     <div
       class="MuiGrid-root MuiGrid-container css-1yrjdnf-MuiGrid-root"
@@ -36,7 +36,7 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
               class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="star player:"
             >
-              Jankin - 13
+              Jankin -  13 pts
             </p>
           </div>
         </div>
@@ -95,7 +95,7 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
               class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="highest score:"
             >
-              73
+              73 pts
             </p>
           </div>
         </div>
@@ -128,7 +128,7 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
               class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="most transferred in:"
             >
-              Summerill - 2057
+              Summerill - 2,057 transfers
             </p>
           </div>
         </div>
@@ -187,7 +187,7 @@ exports[`Gameweek Summary Tests Renders as expected 1`] = `
               class="MuiTypography-root MuiTypography-body1 css-1vd0kub-MuiTypography-root"
               data-testid="average score:"
             >
-              10
+              10 pts
             </p>
           </div>
         </div>

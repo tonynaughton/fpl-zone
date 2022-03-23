@@ -7,12 +7,13 @@ export interface Fixture {
   team_a: number;
   team_a_score?: unknown;
   team_a_difficulty: number;
-  event: number;
+  event: number | null;
+  started: boolean | null;
   finished: boolean;
   minutes: number;
   provisional_start_time: boolean;
-  kickoff_time: Date;
-  event_name: string;
-  is_home: boolean;
-  difficulty: number;
+  kickoff_time: string | null;
+  stats: unknown[];
+  finished_provisional?: boolean;
+  pulse_id: number;
 }

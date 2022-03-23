@@ -26,7 +26,7 @@ export default function Results({ teams, fixtures, latestGameweek }: ResultsProp
     const awayTeam = getTeamById(result.team_a, teams);
 
     let resultScore: string;
-    const kickOffTime = new Date(result.kickoff_time);
+    const kickOffTime = new Date(result.kickoff_time || "");
 
     if (kickOffTime < new Date()) {
       resultScore = `${result.team_h_score} - ${result.team_a_score}`;
@@ -40,11 +40,13 @@ export default function Results({ teams, fixtures, latestGameweek }: ResultsProp
 
     return (
       <Box
+        key={key}
         width="100%"
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
+        data-testid={`result-${result.id}`}
       >
         <Grid container>
           <Grid item xs={4}>
@@ -118,15 +120,19 @@ export default function Results({ teams, fixtures, latestGameweek }: ResultsProp
           size="medium"
           onClick={fetchPreviousGameweekResults}
           disabled={selectedGameweek <= 1}
+          data-testid="prev-gameweek-btn"
         >
           <ArrowBack />
         </IconButton>
-        <Typography fontSize={20}>GAMEWEEK {selectedGameweek}</Typography>
+        <Typography fontSize={20} data-testid="selected-gameweek-title">
+          GAMEWEEK {selectedGameweek}
+        </Typography>
         <IconButton
           aria-label="prev-gameweek"
           size="medium"
           onClick={fetchNextGameweekResults}
           disabled={selectedGameweek >= 38}
+          data-testid="next-gameweek-btn"
         >
           <ArrowForward />
         </IconButton>
