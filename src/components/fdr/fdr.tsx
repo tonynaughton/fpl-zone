@@ -15,7 +15,7 @@ import FixtureBox from "./fixture_box";
 import DifficultyLegend from "./difficulty_legend";
 import Loading from "components/layout/loading";
 
-type BaseItem = Player | Team;
+export type BaseItem = Player | Team;
 
 interface FdrTableProps {
   currentGameweek: Gameweek;
@@ -53,6 +53,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
   public renderBaseItemName = (baseItem: BaseItem): JSX.Element => {
     const name = this.isPlayerTable ? (baseItem as Player).web_name : (baseItem as Team).name;
     const teamId = this.isPlayerTable ? (baseItem as Player).team_code : (baseItem as Team).code;
+    const testId = `base-item-${name}`;
     return (
       <Box
         sx={{
@@ -62,6 +63,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
           ml: 0.5,
           whiteSpace: "nowrap",
         }}
+        data-testid={testId}
       >
         <img
           src={`${process.env.PUBLIC_URL}/assets/images/crests/${teamId}.png`}
@@ -120,8 +122,13 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
       baseItem,
       this.state.nextFiveGameweekFixtures
     );
+    const testId = `fixture-row-${baseItem.id}`;
     return (
-      <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+      <TableRow
+        key={index}
+        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+        data-testid={testId}
+      >
         <TableCell component="th" scope="row" key={index}>
           {this.renderBaseItemName(baseItem)}
         </TableCell>
@@ -150,6 +157,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
         overflow="hidden"
         height="100%"
         sx={{ "& .MuiTableContainer-root": { height: "100%" } }}
+        data-testid="fdr-container"
       >
         <DifficultyLegend />
         <TableContainer>
@@ -163,7 +171,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
             }}
           >
             <TableHead>
-              <TableRow>
+              <TableRow data-testid="table-head-column-title">
                 <TableCell sx={{ textAlign: "center" }}>{this.nameColumnTitle}</TableCell>
                 {this.nextFiveGameweeks.map((gameweekNumber, index) => (
                   <TableCell sx={{ textAlign: "center" }} key={index}>
