@@ -1,11 +1,12 @@
-import { Box, TableCell, Typography } from "@mui/material";
 import React from "react";
+import { Box, TableCell, Typography } from "@mui/material";
 import { Fixture, Player, Team } from "types";
 import { fdrColours } from "./difficulty_legend";
+import { BaseItem } from "./fdr";
 
 interface FixtureBoxProps {
   fixtures: Fixture[];
-  baseItem: Player | Team;
+  baseItem: BaseItem;
   isPlayerTable: boolean;
   getTeamById: (teamId: number) => string | undefined;
 }
@@ -21,6 +22,7 @@ export default function FixtureBox({
     const isHome = fixture.team_h === teamId;
     const oppositionId = isHome ? fixture.team_a : fixture.team_h;
     const difficulty = isHome ? fixture.team_h_difficulty : fixture.team_a_difficulty;
+    const testId = `fix-box-bg-${fixture.id}`;
 
     return (
       <Box
@@ -35,6 +37,7 @@ export default function FixtureBox({
           alignItems: "center",
         }}
         key={key}
+        data-testid={testId}
       >
         <Box
           sx={{
@@ -54,7 +57,11 @@ export default function FixtureBox({
 
   return (
     <TableCell scope="row">
-      <Box display="flex" sx={{ width: "100%", height: "100%", alignItems: "center" }}>
+      <Box
+        display="flex"
+        sx={{ width: "100%", height: "100%", alignItems: "center" }}
+        data-testid="fixture-box-container"
+      >
         {fixtures.map((fixture, key) => renderBox(fixture, key))}
       </Box>
     </TableCell>
