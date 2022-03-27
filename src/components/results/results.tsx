@@ -3,6 +3,7 @@ import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { Fixture, Gameweek, Team } from "types";
 import { getTeamById } from "helpers";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import "./results.css";
 
 interface ResultsProps {
   teams: Team[];
@@ -46,7 +47,9 @@ export default function Results({ teams, fixtures, latestGameweek }: ResultsProp
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
+        height="10%"
         data-testid={`result-${result.id}`}
+        className="fixture-container"
       >
         <Grid container>
           <Grid item xs={4}>
@@ -67,8 +70,8 @@ export default function Results({ teams, fixtures, latestGameweek }: ResultsProp
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={4}>
-            <Box display="flex" alignItems="center" justifyContent="center">
+          <Grid item xs={4} display="flex" alignItems="center" justifyContent="center">
+            <Box>
               <Typography fontSize={16} key={key}>
                 {resultScore}
               </Typography>
@@ -140,9 +143,10 @@ export default function Results({ teams, fixtures, latestGameweek }: ResultsProp
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent="space-evenly"
+        justifyContent="flex-start"
         alignItems="center"
         sx={{ height: "100%", width: "100%", pl: 2, pr: 2 }}
+        className="fixture-list-container"
       >
         {gameweekFixtures.map((result, key) => renderResult(result, key))}
       </Box>
