@@ -1,4 +1,4 @@
-import { Fixture, Team } from "types";
+import { Fixture, PlayerStat, Team } from "types";
 import { Gameweek } from "types/gameweek";
 import { Player } from "types/player";
 import { Position } from "types/position";
@@ -73195,5 +73195,76 @@ export const mockFixtures: Fixture[] = [
     team_h_difficulty: 3,
     team_a_difficulty: 2,
     pulse_id: 66721,
+  },
+];
+
+export const mockElementStats: PlayerStat[] = [
+  {
+    label: "Minutes played",
+    name: "minutes",
+  },
+  {
+    label: "Goals scored",
+    name: "goals_scored",
+  },
+  {
+    label: "Assists",
+    name: "assists",
+  },
+  {
+    label: "Clean sheets",
+    name: "clean_sheets",
+  },
+  {
+    label: "Goals conceded",
+    name: "goals_conceded",
+  },
+  {
+    label: "Own goals",
+    name: "own_goals",
+  },
+  {
+    label: "Penalties saved",
+    name: "penalties_saved",
+  },
+  {
+    label: "Penalties missed",
+    name: "penalties_missed",
+  },
+  {
+    label: "Yellow cards",
+    name: "yellow_cards",
+  },
+  {
+    label: "Red cards",
+    name: "red_cards",
+  },
+  {
+    label: "Saves",
+    name: "saves",
+  },
+  {
+    label: "Bonus",
+    name: "bonus",
+  },
+  {
+    label: "Bonus Points System",
+    name: "bps",
+  },
+  {
+    label: "Influence",
+    name: "influence",
+  },
+  {
+    label: "Creativity",
+    name: "creativity",
+  },
+  {
+    label: "Threat",
+    name: "threat",
+  },
+  {
+    label: "ICT Index",
+    name: "ict_index",
   },
 ];

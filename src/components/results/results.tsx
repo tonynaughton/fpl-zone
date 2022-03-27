@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Grid, IconButton, Typography } from "@mui/material";
-import { Fixture, Gameweek, Player, Team } from "types";
+import { Fixture, Gameweek, Player, PlayerStat, Team } from "types";
 import { formatDate, getTeamById } from "helpers";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import MatchDetailsModal from "./match_details_modal";
@@ -10,12 +10,14 @@ interface ResultsProps {
   fixtures: Fixture[];
   latestGameweek: Gameweek;
   players: Player[];
+  elementStats: PlayerStat[];
 }
 export default function Results({
   teams,
   fixtures,
   latestGameweek,
   players,
+  elementStats,
 }: ResultsProps): JSX.Element {
   const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
@@ -48,7 +50,7 @@ export default function Results({
 
     return (
       <Grid container>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <Box display="flex" alignItems="center" justifyContent="left" overflow="hidden">
             <img
               src={`${process.env.PUBLIC_URL}/assets/images/crests/${homeTeam.code}.png`}
@@ -57,7 +59,7 @@ export default function Results({
               width={30}
             />
             <Typography
-              fontSize={16}
+              fontSize={20}
               key={key}
               textAlign="left"
               sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}
@@ -66,15 +68,15 @@ export default function Results({
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={4} display="flex" alignItems="center" justifyContent="center">
-          <Typography fontSize={16} key={key}>
+        <Grid item xs={2} display="flex" alignItems="center" justifyContent="center">
+          <Typography fontSize={20} key={key}>
             {matchStatus}
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <Box display="flex" alignItems="center" justifyContent="right">
             <Typography
-              fontSize={16}
+              fontSize={20}
               key={key}
               textAlign="right"
               sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}
@@ -175,6 +177,7 @@ export default function Results({
           selectedResult={selectedResult}
           renderResult={renderResult}
           players={players}
+          elementStats={elementStats}
         />
       )}
     </Box>

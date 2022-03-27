@@ -1,12 +1,12 @@
-export interface Goalscorer {
+export interface StatValue {
   value: number;
   element: number;
 }
 
 interface Stat {
   identifier: string;
-  a: Goalscorer[];
-  h: Goalscorer[];
+  a: StatValue[];
+  h: StatValue[];
 }
 
 export interface Fixture {

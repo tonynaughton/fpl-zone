@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, IconButton, Typography } from "@mui/material";
-import { Fixture, Goalscorer, Player } from "types";
+import { Fixture, StatValue, Player, PlayerStat } from "types";
 import { Close } from "@mui/icons-material";
 import { formatDate, GetPlayerById } from "helpers";
 
@@ -10,6 +10,7 @@ interface MatchDetailsModalProps {
   selectedResult: Fixture;
   renderResult: (result: Fixture, matchStarted: boolean) => JSX.Element;
   players: Player[];
+  elementStats: PlayerStat[];
 }
 
 export default function MatchDetailsModal({
@@ -18,35 +19,75 @@ export default function MatchDetailsModal({
   selectedResult,
   renderResult,
   players,
+  elementStats,
 }: MatchDetailsModalProps): JSX.Element {
-  const renderGoalscorers = (goalscorers: Goalscorer[], isAway = false): JSX.Element => {
-    return (
-      <>
-        {goalscorers.map((goalscorer, key) => (
-          <Box
-            display="flex"
-            justifyContent={isAway ? "right" : "left"}
-            flexDirection={isAway ? "row" : "row-reverse"}
-            key={key}
-          >
-            <Typography>
-              {GetPlayerById(goalscorer.element, players).web_name}
-              {goalscorer.value > 1 ? ` (${goalscorer.value})` : ""}
-            </Typography>
-            &nbsp;&nbsp;
-            <img
-              src={`${process.env.PUBLIC_URL}/assets/images/football.png`}
-              alt="football"
-              height={20}
-              width={20}
-            />
-          </Box>
-        ))}
-      </>
+  console.log("🚀 ~ file: match_details_modal.tsx ~ line 23 ~ elementStats", elementStats);
+  const statImageNames = {
+    goals_scored: "football",
+    assists: "boot",
+    yellow_cards: "yellow_card",
+    red_cards: "red_card",
+  };
+
+  const renderStat = (identifier: string): JSX.Element => {
+    const renderStatColumn = (statValues: StatValue[], isAway = false): JSX.Element => {
+      return (
+        <>
+          {statValues.map((stat, key) => (
+            <Box
+              display="flex"
+              justifyContent={isAway ? "right" : "left"}
+              flexDirection={isAway ? "row" : "row-reverse"}
+              key={key}
+            >
+              <Typography>
+                {GetPlayerById(stat.element, players).web_name}
+                {stat.value > 1 ? ` (${stat.value})` : ""}
+              </Typography>
+              &nbsp;&nbsp;
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/images/${statImageNames[identifier]}.png`}
+                alt={statImageNames[identifier]}
+                height={20}
+              />
+            </Box>
+          ))}
+        </>
+      );
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const stats = selectedResult.stats.find((stat) => stat.identifier === identifier)!;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const statTitle = elementStats.find((stat) => stat.name === identifier)!;
+    const statsExist = stats.h.length > 0 || stats.a.length > 0;
+    return statsExist ? (
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          pt: 1.5,
+        }}
+      >
+        <Typography component="h5" fontSize={18} sx={{ pb: 1 }}>
+          {statTitle.label.toUpperCase()}
+        </Typography>
+        <Grid container>
+          <Grid item xs={6}>
+            {renderStatColumn(stats.h)}
+          </Grid>
+          <Grid item xs={6}>
+            {renderStatColumn(stats.a, true)}
+          </Grid>
+        </Grid>
+      </Box>
+    ) : (
+      <></>
     );
   };
 
-  const goalsScored = selectedResult?.stats.find((stat) => stat.identifier === "goals_scored");
   return (
     <Box
       sx={{
@@ -85,20 +126,27 @@ export default function MatchDetailsModal({
         >
           <Close />
         </IconButton>
-        {selectedResult.kickoff_time && (
-          <Typography>{formatDate(new Date(selectedResult.kickoff_time))}</Typography>
-        )}
-        {renderResult(selectedResult, true)}
-        {goalsScored && (
-          <Grid container sx={{ pt: 2, borderTop: "1px solid gray" }}>
-            <Grid item xs={6}>
-              {renderGoalscorers(goalsScored.h)}
-            </Grid>
-            <Grid item xs={6}>
-              {renderGoalscorers(goalsScored.a, true)}
-            </Grid>
-          </Grid>
-        )}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            flexDirection: "column",
+            alignItems: "center",
+            rowGap: 3,
+          }}
+        >
+          {selectedResult.kickoff_time && (
+            <Typography fontSize={18}>
+              {formatDate(new Date(selectedResult.kickoff_time))}
+            </Typography>
+          )}
+          {renderResult(selectedResult, true)}
+          {renderStat("goals_scored")}
+          {renderStat("assists")}
+          {renderStat("yellow_cards")}
+          {renderStat("red_cards")}
+        </Box>
       </Box>
     </Box>
   );
