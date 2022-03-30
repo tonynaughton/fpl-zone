@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Player as PlayerType } from "types/player";
 import Player from "../player/player";
 import _ from "lodash";
@@ -14,70 +14,72 @@ export default function Lineup({ selected, bench }: LineupProps): JSX.Element {
 
   const renderSelected = (): JSX.Element => {
     return (
-      <Grid
-        item
-        container
+      <Box
+        data-testid="first-xi-players"
         sx={{
-          pl: 5,
-          pr: 5,
+          p: 5,
           backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/pitch.png)`,
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
           height: "100%",
+          rowSpacing: 2,
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
         }}
-        rowGap={2}
-        margin="auto"
-        xs={10}
-        data-testid="first-xi-players"
       >
         {selected.map((positionGroup, key) => {
           return (
-            <Grid key={key} container item xs={12} justifyContent="space-around">
+            <Box
+              key={key}
+              sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
               {positionGroup.map((player, key) => {
-                return (
-                  <Grid key={key} item xs={12 / positionGroup.length}>
-                    <Player player={player} />
-                  </Grid>
-                );
+                return <Player player={player} key={key} />;
               })}
-            </Grid>
+            </Box>
           );
         })}
-      </Grid>
+      </Box>
     );
   };
 
   const renderBench = (): JSX.Element => {
     return (
-      <Grid
-        container
-        item
-        justifyContent="center"
-        direction="column"
-        rowGap={1}
-        xs={2}
-        data-testid="bench-players"
-      >
-        <Grid item>
-          <Typography fontSize={20} textAlign="center" sx={{ mb: 1 }}>
-            BENCH
-          </Typography>
-        </Grid>
-        {sortedBench.map((player, key) => {
-          return (
-            <Grid item key={key}>
-              <Player player={player} />
-            </Grid>
-          );
-        })}
-      </Grid>
+      <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column", rowGap: 2 }}>
+        <Typography fontSize={20}>Bench</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-around",
+            alignItems: "center",
+            rowSpacing: 2,
+            pl: 10,
+            pr: 10,
+          }}
+          data-testid="bench-players"
+        >
+          {sortedBench.map((player, key) => {
+            return <Player player={player} key={key} />;
+          })}
+        </Box>
+      </Box>
     );
   };
 
   return (
-    <Grid height="100%" sx={{ p: 3 }} container>
+    <Box sx={{ height: "100%", p: 3, display: "flex", flexDirection: "column" }}>
       {renderSelected()}
       {renderBench()}
-    </Grid>
+    </Box>
   );
 }
