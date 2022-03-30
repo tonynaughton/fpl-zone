@@ -1,17 +1,33 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Results from "components/results/results";
-import { mockGameweek, mockTeams, mockFixtures } from "./fixture-data";
-import { Fixture, Gameweek, Team } from "types";
+import {
+  mockGameweek,
+  mockTeams,
+  mockFixtures,
+  mockPlayers,
+  mockElementStats,
+} from "./fixture-data";
+import { Fixture, Gameweek, Player, PlayerStat, Team } from "types";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("Results Tests", () => {
   let teams: Team[];
   let fixtures: Fixture[];
   let latestGameweek: Gameweek;
+  let players: Player[];
+  let elementStats: PlayerStat[];
 
   function createComponent(): JSX.Element {
-    return <Results teams={teams} fixtures={fixtures} latestGameweek={latestGameweek} />;
+    return (
+      <Results
+        teams={teams}
+        fixtures={fixtures}
+        latestGameweek={latestGameweek}
+        players={players}
+        elementStats={elementStats}
+      />
+    );
   }
 
   function clickPrevGameweekBtn(): void {
@@ -28,6 +44,8 @@ describe("Results Tests", () => {
     teams = mockTeams;
     fixtures = mockFixtures;
     latestGameweek = mockGameweek;
+    players = mockPlayers;
+    elementStats = mockElementStats;
   });
 
   it("Snapshot test", () => {

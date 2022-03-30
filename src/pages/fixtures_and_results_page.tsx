@@ -35,6 +35,8 @@ export default function FixturesAndResultsPage(): JSX.Element {
   } = useQuery("fixture-data", getAllFixtures);
 
   const allTeams = gameData?.teams;
+  const allPlayers = gameData?.elements;
+  const elementStats = gameData?.element_stats;
   const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
   const currentGameweekDeadline = new Date(currentGameweek?.deadline_time);
   const latestGameweek =
@@ -53,8 +55,23 @@ export default function FixturesAndResultsPage(): JSX.Element {
   };
 
   const renderResults = (): JSX.Element => {
-    if (!!gameData && !!currentGameweek && !!allTeams && !!fixtures) {
-      return <Results teams={allTeams} fixtures={fixtures} latestGameweek={latestGameweek} />;
+    if (
+      !!gameData &&
+      !!currentGameweek &&
+      !!allTeams &&
+      !!fixtures &&
+      !!allPlayers &&
+      !!elementStats
+    ) {
+      return (
+        <Results
+          teams={allTeams}
+          fixtures={fixtures}
+          latestGameweek={latestGameweek}
+          players={allPlayers}
+          elementStats={elementStats}
+        />
+      );
     } else if (fixturesLoading) {
       return <Loading message="Fetching game data.." />;
     } else {

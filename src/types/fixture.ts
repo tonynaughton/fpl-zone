@@ -1,3 +1,14 @@
+export interface StatValue {
+  value: number;
+  element: number;
+}
+
+interface Stat {
+  identifier: string;
+  a: StatValue[];
+  h: StatValue[];
+}
+
 export interface Fixture {
   id: number;
   code: number;
@@ -13,7 +24,7 @@ export interface Fixture {
   minutes: number;
   provisional_start_time: boolean;
   kickoff_time: string | null;
-  stats: unknown[];
+  stats: Stat[];
   finished_provisional?: boolean;
   pulse_id: number;
 }

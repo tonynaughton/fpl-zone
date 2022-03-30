@@ -44,3 +44,11 @@ export function getTeamShirtColour(team_code: number): string | undefined {
 export function numberWithCommas(x: number): string {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+export function formatDate(kickOffDateTime: Date): string {
+  return (
+    kickOffDateTime.toLocaleDateString(navigator.language, { day: "numeric", month: "short" }) +
+    " " +
+    kickOffDateTime.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })
+  );
+}
