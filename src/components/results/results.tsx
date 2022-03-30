@@ -49,7 +49,7 @@ export default function Results({
     }
 
     return (
-      <Grid container>
+      <Grid container columnSpacing={2}>
         <Grid item xs={5}>
           <Box display="flex" alignItems="center" justifyContent="left" overflow="hidden">
             <img
@@ -69,7 +69,7 @@ export default function Results({
           </Box>
         </Grid>
         <Grid item xs={2} display="flex" alignItems="center" justifyContent="center">
-          <Typography fontSize={20} key={key}>
+          <Typography fontSize={20} key={key} sx={{ whiteSpace: "nowrap" }}>
             {matchStatus}
           </Typography>
         </Grid>

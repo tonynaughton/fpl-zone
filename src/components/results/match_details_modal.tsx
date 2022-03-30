@@ -39,8 +39,16 @@ export default function MatchDetailsModal({
               justifyContent={isAway ? "right" : "left"}
               flexDirection={isAway ? "row" : "row-reverse"}
               key={key}
+              sx={{ whiteSpace: "nowrap", textOverflow: "hidden" }}
             >
-              <Typography>
+              <Typography
+                sx={{
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                  overflow: "hidden",
+                  display: "block",
+                }}
+              >
                 {GetPlayerById(stat.element, players).web_name}
                 {stat.value > 1 ? ` (${stat.value})` : ""}
               </Typography>
@@ -74,7 +82,7 @@ export default function MatchDetailsModal({
         <Typography component="h5" fontSize={18} sx={{ pb: 1 }}>
           {statTitle.label.toUpperCase()}
         </Typography>
-        <Grid container>
+        <Grid container columnSpacing={2}>
           <Grid item xs={6}>
             {renderStatColumn(stats.h)}
           </Grid>
