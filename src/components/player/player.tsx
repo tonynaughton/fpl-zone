@@ -14,38 +14,47 @@ export default function Player({ player }: PlayerProps): JSX.Element {
           data-testid="player-shirt-image"
           src={`${process.env.PUBLIC_URL}/assets/images/kits/${player.team_code}.png`}
           alt="kit-img"
-          height={55}
+          height={50}
         />
       </Grid>
       <Box
         sx={{
-          backgroundColor: "#5fdd6b",
           color: "black",
           textAlign: "center",
-          width: "6em",
-          maxWidth: "80%",
+          width: "100%",
+          maxWidth: "6em",
           pl: 0.5,
           pr: 0.5,
         }}
       >
-        <Grid item>
+        <Box sx={{ display: "flex", height: "100%", width: "100%", justifyContent: "center" }}>
           <Typography
             data-testid="player-name"
-            fontSize={14}
             sx={{
+              p: 0.5,
               overflow: "hidden",
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
+              backgroundColor: "#16B7EA",
+              fontSize: "14px",
+              width: "100%",
             }}
           >
             {player.web_name.toUpperCase()}
           </Typography>
-        </Grid>
-        <Grid item className="player-text-points">
-          <Typography data-testid="player-score" fontSize={14}>
+          <Typography
+            data-testid="player-score"
+            sx={{
+              backgroundColor: "#5fdd6b",
+              fontSize: "14px",
+              p: 0.5,
+              width: "50%",
+              maxWidth: "2em",
+            }}
+          >
             {player.event_points}
           </Typography>
-        </Grid>
+        </Box>
       </Box>
     </Grid>
   );

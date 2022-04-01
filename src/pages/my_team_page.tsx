@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth, getUserFplTeamId } from "config/firebase";
 import AppLayout from "components/layout/app_layout";
 import { useQuery } from "react-query";
-import { getGameData, getTeamPicksForGameweek } from "api/fpl_api_provider";
+import { getGameData, getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
-import { Gameweek, Player } from "types";
+import { Gameweek, Player, TeamData, TeamPicks } from "types";
 import ComponentContainer from "components/layout/component_container";
 import { Box, Typography } from "@mui/material";
 import Loading from "components/layout/loading";
@@ -30,7 +30,7 @@ export default function MyTeamPage(): JSX.Element {
   const allTeams = gameData?.teams;
   const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
 
-  const { data: teamData } = useQuery(
+  const { data: teamPicks } = useQuery(
     [fplId, currentGameweek],
     async () => {
       const response = await getTeamPicksForGameweek(fplId, currentGameweek.id);
@@ -39,17 +39,26 @@ export default function MyTeamPage(): JSX.Element {
     { enabled: !!(currentGameweek && fplId) }
   );
 
-  const playersFromTeamData =
+  const { data: teamData } = useQuery(
+    [fplId],
+    async () => {
+      const response = await getTeamData(fplId);
+      return response;
+    },
+    { enabled: !!fplId }
+  );
+
+  const playersFromTeamPicks =
     gameData &&
-    teamData &&
-    _(teamData.picks)
+    teamPicks &&
+    _(teamPicks.picks)
       .map((pick) => GetPlayerById(pick.element, gameData.elements))
       .sortBy("element_type")
       .value();
 
   const getSelectedPlayers = (): Player[][] => {
     const selectedByPos: Player[][] = [];
-    const firstXIPicks = _.slice(teamData?.picks, 0, 11);
+    const firstXIPicks = _.slice(teamPicks?.picks, 0, 11);
     gameData?.element_types.forEach((pos) => {
       const picks = firstXIPicks.filter((pick) => {
         const player = GetPlayerById(pick.element, gameData.elements);
@@ -63,7 +72,7 @@ export default function MyTeamPage(): JSX.Element {
 
   const getBenchPlayers = (): Player[] => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const benchPlayersPicks = teamData!.picks.slice(11, 15);
+    const benchPlayersPicks = teamPicks!.picks.slice(11, 15);
     const benchPlayers = benchPlayersPicks.map((pick) =>
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       GetPlayerById(pick.element, gameData!.elements)
@@ -85,8 +94,21 @@ export default function MyTeamPage(): JSX.Element {
   const renderTeamComponent = (): JSX.Element => {
     if (!fplId) {
       return <EnterFPLID />;
-    } else if (!!gameData && !!currentGameweek && !!allTeams && !!playersFromTeamData) {
-      return <Lineup selected={getSelectedPlayers()} bench={getBenchPlayers()} />;
+    } else if (
+      !!gameData &&
+      !!currentGameweek &&
+      !!allTeams &&
+      !!playersFromTeamPicks &&
+      !!teamPicks
+    ) {
+      return (
+        <Lineup
+          selected={getSelectedPlayers()}
+          bench={getBenchPlayers()}
+          teamPicks={teamPicks as TeamPicks}
+          teamData={teamData as TeamData}
+        />
+      );
     } else if (isLoading) {
       return <Loading message="Fetching game data.." />;
     } else {
@@ -104,9 +126,9 @@ export default function MyTeamPage(): JSX.Element {
           </Link>
         </Box>
       );
-    } else if (!!gameData && !!currentGameweek && !!allTeams && !!playersFromTeamData) {
+    } else if (!!gameData && !!currentGameweek && !!allTeams && !!playersFromTeamPicks) {
       return (
-        <FdrTable currentGameweek={currentGameweek} type={playersFromTeamData} teams={allTeams} />
+        <FdrTable currentGameweek={currentGameweek} type={playersFromTeamPicks} teams={allTeams} />
       );
     } else if (isLoading) {
       return <Loading message="Fetching game data.." />;
