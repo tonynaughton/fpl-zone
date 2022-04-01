@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, IconButton, Typography } from "@mui/material";
-import { Fixture, StatValue, Player, PlayerStat } from "types";
+import { Fixture, StatValue, Player, PlayerStat, Team, CustomResult } from "types";
 import { Close } from "@mui/icons-material";
 import { formatDate, GetPlayerById } from "helpers";
 
@@ -8,9 +8,10 @@ interface MatchDetailsModalProps {
   isResultsModalOpen: boolean;
   setResultsModalOpen: (value: boolean) => void;
   selectedResult: Fixture;
-  renderResult: (result: Fixture, matchStarted: boolean) => JSX.Element;
+  renderResult: (result: CustomResult, matchStarted: boolean, teams: Team[]) => JSX.Element;
   players: Player[];
   elementStats: PlayerStat[];
+  allTeams: Team[];
 }
 
 export default function MatchDetailsModal({
@@ -20,6 +21,7 @@ export default function MatchDetailsModal({
   renderResult,
   players,
   elementStats,
+  allTeams,
 }: MatchDetailsModalProps): JSX.Element {
   console.log("🚀 ~ file: match_details_modal.tsx ~ line 23 ~ elementStats", elementStats);
   const statImageNames = {
@@ -96,6 +98,14 @@ export default function MatchDetailsModal({
     );
   };
 
+  const customResult: CustomResult = {
+    team_h: selectedResult.team_h,
+    team_h_score: (selectedResult.team_h_score as number) || null,
+    team_a: selectedResult.team_a,
+    team_a_score: (selectedResult.team_a_score as number) || null,
+    kickoff_time: selectedResult.kickoff_time,
+  };
+
   return (
     <Box
       sx={{
@@ -149,7 +159,7 @@ export default function MatchDetailsModal({
               {formatDate(new Date(selectedResult.kickoff_time))}
             </Typography>
           )}
-          {renderResult(selectedResult, true)}
+          {renderResult(customResult, true, allTeams)}
           {renderStat("goals_scored")}
           {renderStat("assists")}
           {renderStat("yellow_cards")}

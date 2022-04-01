@@ -4,7 +4,7 @@ export interface PlayerPerformance {
   opponent_team: number;
   total_points: number;
   was_home: boolean;
-  kickoff_time: Date;
+  kickoff_time: string;
   team_h_score: number;
   team_a_score: number;
   round: number;
