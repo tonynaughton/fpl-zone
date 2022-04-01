@@ -1,12 +1,19 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { Player as PlayerType } from "types/player";
+import { Info } from "@mui/icons-material";
 
 interface PlayerProps {
   player: PlayerType;
+  onPlayerInfoClick: (player: PlayerType) => void;
+  compressed: boolean;
 }
 
-export default function Player({ player }: PlayerProps): JSX.Element {
+export default function Player({
+  player,
+  onPlayerInfoClick,
+  compressed,
+}: PlayerProps): JSX.Element {
   return (
     <Box
       sx={{
@@ -20,11 +27,11 @@ export default function Player({ player }: PlayerProps): JSX.Element {
       <Box
         sx={{
           display: "block",
-          width: "4vw",
-          height: "5vh",
+          width: compressed ? "3.5vw" : "5.5vw",
+          height: compressed ? "5.5vh" : "7.5vh",
           margin: "auto",
           backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/kits/${player.team_code}.png)`,
-          backgroundSize: "100%",
+          backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       />
@@ -32,37 +39,74 @@ export default function Player({ player }: PlayerProps): JSX.Element {
         sx={{
           color: "black",
           textAlign: "center",
-          width: "7vw",
-          pl: 0.5,
-          pr: 0.5,
+          width: compressed ? "6.5vw" : "9vw",
+          maxWidth: "180px",
         }}
       >
-        <Box sx={{ display: "flex", height: "100%", width: "100%", justifyContent: "center" }}>
-          <Typography
-            data-testid="player-name"
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            height: compressed ? "3vh" : "4vh",
+          }}
+        >
+          <Box
             sx={{
-              p: 0.5,
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
               backgroundColor: "#16B7EA",
-              fontSize: "1em",
               width: "75%",
+              overflow: "hidden",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              p: compressed ? 0.5 : 1,
             }}
           >
-            {player.web_name.toUpperCase()}
-          </Typography>
-          <Typography
-            data-testid="player-score"
+            <Typography
+              data-testid="player-name"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                fontSize: compressed ? "0.8em" : "1em",
+              }}
+            >
+              {player.web_name.toUpperCase()}
+            </Typography>
+          </Box>
+          <Box
             sx={{
+              width: "25%",
+              minWidth: compressed ? "20px" : "30px",
+              overflow: "hidden",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               backgroundColor: "#5fdd6b",
-              fontSize: "1em",
-              p: 0.5,
-              width: "1.5em",
             }}
           >
-            {player.event_points}
-          </Typography>
+            <Typography
+              data-testid="player-score"
+              sx={{
+                fontSize: compressed ? "0.8em" : "1em",
+              }}
+            >
+              {player.event_points}
+            </Typography>
+          </Box>
+          <Box
+            onClick={(): void => onPlayerInfoClick(player)}
+            sx={{
+              p: compressed ? 0.5 : 1,
+              display: "flex",
+              alignItems: "center",
+              backgroundColor: "black",
+              "& :hover": {
+                cursor: "pointer",
+              },
+            }}
+          >
+            <Info sx={{ color: "white", fontSize: "1em" }} />
+          </Box>
         </Box>
       </Box>
     </Box>

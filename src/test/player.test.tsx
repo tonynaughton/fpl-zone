@@ -7,8 +7,12 @@ import "@testing-library/jest-dom/extend-expect";
 describe("Player Tests", () => {
   const mockPlayer = mockPlayers[0];
 
+  const mockOnPlayerInfoClick = (): void => console.log("TEST");
+
   const createComponent = (): JSX.Element => {
-    return <Player player={mockPlayer} />;
+    return (
+      <Player player={mockPlayer} onPlayerInfoClick={mockOnPlayerInfoClick} compressed={false} />
+    );
   };
 
   it("Snapshot test", () => {

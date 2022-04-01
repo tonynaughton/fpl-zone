@@ -22,7 +22,7 @@ export default function Results({
   const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
   const [isResultsModalOpen, setResultsModalOpen] = useState<boolean>(false);
-  const [selectedResult, setSelectedResult] = useState<Fixture | undefined>(undefined);
+  const [selectedResult, setSelectedResult] = useState<Fixture | null>(null);
 
   useEffect(() => {
     const currentGameweekFixtures = fixtures.filter(

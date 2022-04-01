@@ -9,7 +9,6 @@ import {
   LeagueDataWithPage,
   PlayerSummary,
   Region,
-  Team,
   TeamHistory,
   Transfer,
   TeamData,

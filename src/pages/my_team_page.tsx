@@ -29,6 +29,7 @@ export default function MyTeamPage(): JSX.Element {
 
   const allTeams = gameData?.teams;
   const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
+  const elementStats = gameData?.element_stats;
 
   const { data: teamPicks } = useQuery(
     [fplId, currentGameweek],
@@ -99,7 +100,8 @@ export default function MyTeamPage(): JSX.Element {
       !!currentGameweek &&
       !!allTeams &&
       !!playersFromTeamPicks &&
-      !!teamPicks
+      !!teamPicks &&
+      !!elementStats
     ) {
       return (
         <Lineup
@@ -107,6 +109,9 @@ export default function MyTeamPage(): JSX.Element {
           bench={getBenchPlayers()}
           teamPicks={teamPicks as TeamPicks}
           teamData={teamData as TeamData}
+          elementStats={elementStats}
+          compressed
+          teams={allTeams}
         />
       );
     } else if (isLoading) {

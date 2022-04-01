@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { Player as PlayerType, TeamData, TeamPicks } from "types";
+import { Player as PlayerType, PlayerStat, Team, TeamData, TeamPicks } from "types";
 import Player from "../player/player";
 import _ from "lodash";
 import { numberWithCommas } from "helpers";
+import PlayerInfoModal from "./player_info_modal";
 
 interface LineupProps {
   selected: PlayerType[][];
   bench: PlayerType[];
+  elementStats: PlayerStat[];
+  compressed?: boolean;
   teamPicks?: TeamPicks;
   teamData?: TeamData;
+  teams: Team[];
 }
 
-export default function Lineup({ selected, bench, teamPicks, teamData }: LineupProps): JSX.Element {
+export default function Lineup({
+  selected,
+  bench,
+  elementStats,
+  teamPicks,
+  teamData,
+  compressed = false,
+  teams,
+}: LineupProps): JSX.Element {
+  const [isPlayerInfoModalOpen, setPlayerInfoModalOpen] = useState<boolean>(false);
+  const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
+
   const sortedBench = _.sortBy(bench, ["element_type"]);
   const activeChip = teamPicks?.active_chip ? teamPicks?.active_chip.toUpperCase() : "None";
+
+  const handlePlayerInfoClick = (player: PlayerType): void => {
+    setPlayerInfoModalOpen(true);
+    setSelectedPlayer(player);
+  };
 
   const renderInfo = (): JSX.Element => {
     const textStyling = {
@@ -107,7 +127,14 @@ export default function Lineup({ selected, bench, teamPicks, teamData }: LineupP
               }}
             >
               {positionGroup.map((player, key) => {
-                return <Player player={player} key={key} />;
+                return (
+                  <Player
+                    player={player}
+                    onPlayerInfoClick={handlePlayerInfoClick}
+                    key={key}
+                    compressed={compressed}
+                  />
+                );
               })}
             </Box>
           );
@@ -138,7 +165,14 @@ export default function Lineup({ selected, bench, teamPicks, teamData }: LineupP
           data-testid="bench-players"
         >
           {sortedBench.map((player, key) => {
-            return <Player player={player} key={key} />;
+            return (
+              <Player
+                player={player}
+                onPlayerInfoClick={handlePlayerInfoClick}
+                key={key}
+                compressed={compressed}
+              />
+            );
           })}
         </Box>
       </Box>
@@ -146,10 +180,21 @@ export default function Lineup({ selected, bench, teamPicks, teamData }: LineupP
   };
 
   return (
-    <Box sx={{ height: "100%", p: 3, display: "flex", flexDirection: "column", rowGap: 1.5 }}>
-      {!!teamData && !!teamPicks && renderInfo()}
-      {renderSelected()}
-      {renderBench()}
-    </Box>
+    <>
+      <Box sx={{ height: "100%", p: 3, display: "flex", flexDirection: "column", rowGap: 1.5 }}>
+        {!!teamData && !!teamPicks && renderInfo()}
+        {renderSelected()}
+        {renderBench()}
+      </Box>
+      {selectedPlayer && (
+        <PlayerInfoModal
+          isPlayerInfoModalOpen={isPlayerInfoModalOpen}
+          setPlayerInfoModalOpen={setPlayerInfoModalOpen}
+          selectedPlayer={selectedPlayer}
+          elementStats={elementStats}
+          teams={teams}
+        />
+      )}
+    </>
   );
 }
