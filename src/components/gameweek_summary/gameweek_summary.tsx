@@ -11,8 +11,9 @@ interface GameweekSummaryProps {
 
 interface SummaryDataItem {
   label: string;
-  data?: string | number;
   teamCode?: number;
+  playerName?: string;
+  statValue?: string | number;
 }
 
 export default function GameweekSummary({ gameweek, players }: GameweekSummaryProps): JSX.Element {
@@ -35,91 +36,113 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
 
   const summaryData: SummaryDataItem[] = [
     {
+      label: "highest score:",
+      statValue: `${gameweek?.highest_score} pts`,
+    },
+    { label: "average score:", statValue: `${gameweek?.average_entry_score} pts` },
+    {
       label: "star player:",
-      data: starPlayer && `${starPlayer?.web_name} -  ${gameweek?.top_element_info?.points} pts`,
       teamCode: starPlayer?.team_code,
+      playerName: `${starPlayer?.first_name} ${starPlayer?.second_name}`,
+      statValue: `${gameweek?.top_element_info?.points} pts`,
     },
     {
       label: "most captained:",
-      data: mostCaptained?.web_name,
       teamCode: mostCaptained?.team_code,
-    },
-    {
-      label: "highest score:",
-      data: gameweek?.highest_score && `${gameweek?.highest_score} pts`,
-    },
-    {
-      label: "most transferred in:",
-      data:
-        mostTransferredIn && `${mostTransferredIn?.web_name} - ${mostTransferredInCount} transfers`,
-      teamCode: mostTransferredIn?.team_code,
+      playerName: `${mostCaptained?.first_name} ${mostCaptained?.second_name}`,
     },
     {
       label: "most vice-captained:",
-      data: mostViceCaptained?.web_name,
       teamCode: mostViceCaptained?.team_code,
+      playerName: `${mostViceCaptained?.first_name} ${mostViceCaptained?.second_name}`,
     },
-    { label: "average score:", data: `${gameweek?.average_entry_score} pts` },
+    {
+      label: "most transferred in:",
+      teamCode: mostTransferredIn?.team_code,
+      playerName: `${mostTransferredIn?.first_name} ${mostTransferredIn?.second_name}`,
+      statValue: `${mostTransferredInCount} transfers`,
+    },
   ];
 
-  const renderGridItem = (item: SummaryDataItem, key: number): JSX.Element => {
+  const renderSummaryItem = (item: SummaryDataItem, key: number): JSX.Element => {
     const img: JSX.Element | undefined = item.teamCode ? (
       <img
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
         alt="crest-img"
-        height={40}
-        width={40}
+        height={30}
       />
     ) : undefined;
     return (
-      <Grid item xs={4} key={key}>
+      <Box
+        key={key}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Typography
-          sx={{ fontSize: 20, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+          sx={{
+            fontSize: "20px",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            textAlign: "center",
+            overflow: "hidden",
+          }}
         >
           {item.label.toUpperCase()}
         </Typography>
-        <Grid
-          container
-          alignItems="center"
-          flexDirection="row"
-          flexWrap="nowrap"
-          columnGap={2}
-          justifyContent="center"
+        <Box
           sx={{
-            mt: 1,
-            fontSize: 18,
+            display: "flex",
+            columnGap: 1,
+            alignItems: "center",
+            mt: 0.5,
+            justifyContent: "center",
           }}
         >
-          <Grid item>{img}</Grid>
-          <Grid
-            item
+          {img}
+          <Typography
+            data-testid={item.label}
             sx={{
-              fontSize: 18,
+              fontSize: "18px",
+              textOverflow: "ellipsis",
+              textAlign: "center",
+              whiteSpace: "nowrap",
               overflow: "hidden",
             }}
           >
-            <Typography
-              data-testid={item.label}
-              sx={{
-                fontSize: 18,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {item.data || "N/A"}
-            </Typography>
-          </Grid>
-        </Grid>
-      </Grid>
+            {item.playerName}
+          </Typography>
+        </Box>
+        <Typography
+          data-testid={item.label}
+          sx={{
+            mt: 0.5,
+            fontSize: "18px",
+            textOverflow: "ellipsis",
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+          }}
+        >
+          {item.statValue}
+        </Typography>
+      </Box>
     );
   };
 
   return (
-    <Box sx={{ width: "100%", p: 3 }}>
-      <Grid container textAlign="center" rowGap={2}>
-        {summaryData.map((stat, index): JSX.Element => renderGridItem(stat, index))}
-      </Grid>
+    <Box
+      sx={{
+        p: 8,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        rowGap: 3,
+        height: "100%",
+      }}
+    >
+      {summaryData.map((stat, index): JSX.Element => renderSummaryItem(stat, index))}
     </Box>
   );
 }
