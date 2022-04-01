@@ -14,6 +14,7 @@ interface LineupProps {
 
 export default function Lineup({ selected, bench, teamPicks, teamData }: LineupProps): JSX.Element {
   const sortedBench = _.sortBy(bench, ["element_type"]);
+  const activeChip = teamPicks?.active_chip ? teamPicks?.active_chip.toUpperCase() : "None";
 
   const renderInfo = (): JSX.Element => {
     const textStyling = {
@@ -52,7 +53,7 @@ export default function Lineup({ selected, bench, teamPicks, teamData }: LineupP
             <Typography sx={textStyling}>
               ACTIVE CHIP:
               <br />
-              {teamPicks.active_chip.toUpperCase()}
+              {activeChip}
             </Typography>
           )}
           {teamData && (
