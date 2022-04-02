@@ -34,7 +34,8 @@ describe("Player Tests", () => {
     const playerScoreText = screen.getByTestId("player-score");
     expect(playerScoreText).toHaveTextContent(mockPlayer.event_points.toString());
 
-    const shirtImage = screen.getByAltText("kit-img") as HTMLImageElement;
-    expect(shirtImage.src).toContain(`${mockPlayer.team_code}.png`);
+    const kitImageContainer = screen.getByTestId("kit-img-container") as HTMLImageElement;
+    const url = `${process.env.PUBLIC_URL}/assets/images/kits/${mockPlayer.team_code}.png`;
+    expect(kitImageContainer).toHaveStyle(`background-image: url(${url})`);
   });
 });

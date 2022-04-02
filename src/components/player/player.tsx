@@ -51,6 +51,7 @@ export default function Player({
       data-testid={player.id}
     >
       <Box
+        data-testid="kit-img-container"
         sx={{
           display: "block",
           width: compressed ? "3.5vw" : "5.5vw",
