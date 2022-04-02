@@ -9,6 +9,14 @@ interface Stat {
   h: StatValue[];
 }
 
+export interface CustomResult {
+  team_h: number;
+  team_a: number;
+  team_h_score: number | null;
+  team_a_score: number | null;
+  kickoff_time: string | null;
+}
+
 export interface Fixture {
   id: number;
   code: number;

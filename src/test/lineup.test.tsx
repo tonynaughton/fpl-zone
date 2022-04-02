@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { mockPlayers, mockPositions } from "./fixture-data";
+import { mockElementStats, mockPlayers, mockPositions, mockTeams } from "./fixture-data";
 import "@testing-library/jest-dom/extend-expect";
 import Lineup from "components/lineup/lineup";
 import { Player } from "types/player";
@@ -17,7 +17,14 @@ describe("Lineup Tests", () => {
   });
   const mockBench = mockPlayers.slice(11, 14) as Player[];
   const createComponent = (): JSX.Element => {
-    return <Lineup selected={mockSelected} bench={mockBench} />;
+    return (
+      <Lineup
+        selected={mockSelected}
+        bench={mockBench}
+        elementStats={mockElementStats}
+        teams={mockTeams}
+      />
+    );
   };
   it("Snapshot test", () => {
     const { asFragment } = render(createComponent());

@@ -9,11 +9,12 @@ import { getGameData } from "api/fpl_api_provider";
 import { Gameweek } from "types/gameweek";
 import { Player } from "types/player";
 import ComponentContainer from "components/layout/component_container";
-import { Box, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Position } from "types/position";
 import DreamTeam from "components/dream_team/dream_team";
 import Loading from "components/layout/loading";
 import Error from "components/layout/error";
+import { PlayerStat, Team } from "types";
 
 export default function GameweekLivePage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -28,21 +29,32 @@ export default function GameweekLivePage(): JSX.Element {
 
   let allGameweeks: Gameweek[];
   let allPlayers: Player[] | undefined;
+  let allTeams: Team[];
   let positions: Position[] | undefined;
   let currentGameweek: Gameweek | undefined;
+  let elementStats: PlayerStat[];
 
   if (data) {
     allGameweeks = data.events;
     allPlayers = data.elements;
+    allTeams = data.teams;
     positions = data.element_types;
     currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
+    elementStats = data.element_stats;
   }
 
   const renderDreamTeam = (): JSX.Element => {
     if (isLoading) {
       return <Loading message="Fetching game data data.." />;
-    } else if (data && allPlayers && positions) {
-      return <DreamTeam players={allPlayers} positions={positions} />;
+    } else if (data && allPlayers && positions && elementStats) {
+      return (
+        <DreamTeam
+          players={allPlayers}
+          positions={positions}
+          elementStats={elementStats}
+          teams={allTeams}
+        />
+      );
     } else {
       return <Error message="Error getting data!" />;
     }
@@ -59,17 +71,19 @@ export default function GameweekLivePage(): JSX.Element {
   };
 
   return (
-    <AppLayout activeLabel="gameweek live" direction="column">
-      <Box sx={{ height: "auto" }}>
-        <ComponentContainer isLoading={isLoading} error={error} title="summary">
-          {renderGameweekSummary()}
-        </ComponentContainer>
-      </Box>
-      <Box sx={{ flexGrow: "1", height: "100%" }}>
-        <ComponentContainer isLoading={isLoading} error={error} title="dream team">
-          {renderDreamTeam()}
-        </ComponentContainer>
-      </Box>
+    <AppLayout activeLabel="gameweek live" direction="row">
+      <Grid container columnSpacing={4}>
+        <Grid item xs={9}>
+          <ComponentContainer isLoading={isLoading} error={error} title="dream team">
+            {renderDreamTeam()}
+          </ComponentContainer>
+        </Grid>
+        <Grid item xs={3}>
+          <ComponentContainer isLoading={isLoading} error={error} title="summary">
+            {renderGameweekSummary()}
+          </ComponentContainer>
+        </Grid>
+      </Grid>
     </AppLayout>
   );
 }

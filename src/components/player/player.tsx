@@ -1,52 +1,114 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Player as PlayerType } from "types/player";
+import { Info } from "@mui/icons-material";
 
 interface PlayerProps {
   player: PlayerType;
+  handlePlayerPerformanceClick: (player: PlayerType) => void;
+  compressed: boolean;
 }
 
-export default function Player({ player }: PlayerProps): JSX.Element {
+export default function Player({
+  player,
+  handlePlayerPerformanceClick,
+  compressed,
+}: PlayerProps): JSX.Element {
   return (
-    <Grid container direction="column" alignItems="center" data-testid={player.id}>
-      <Grid item>
-        <img
-          data-testid="player-shirt-image"
-          src={`${process.env.PUBLIC_URL}/assets/images/kits/${player.team_code}.png`}
-          alt="kit-img"
-          height={55}
-        />
-      </Grid>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alginItems: "center",
+        justifyContent: "center",
+      }}
+      data-testid={player.id}
+    >
       <Box
         sx={{
-          backgroundColor: "#5fdd6b",
+          display: "block",
+          width: compressed ? "3.5vw" : "5.5vw",
+          height: compressed ? "5.5vh" : "7.5vh",
+          margin: "auto",
+          backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/kits/${player.team_code}.png)`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      <Box
+        sx={{
           color: "black",
           textAlign: "center",
-          width: "6em",
-          maxWidth: "80%",
-          pl: 0.5,
-          pr: 0.5,
+          width: compressed ? "6.5vw" : "9vw",
+          maxWidth: "180px",
         }}
       >
-        <Grid item>
-          <Typography
-            data-testid="player-name"
-            fontSize={14}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            height: compressed ? "3vh" : "4vh",
+          }}
+        >
+          <Box
             sx={{
+              backgroundColor: "#16B7EA",
+              width: "75%",
               overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              p: compressed ? 0.5 : 1,
             }}
           >
-            {player.web_name.toUpperCase()}
-          </Typography>
-        </Grid>
-        <Grid item className="player-text-points">
-          <Typography data-testid="player-score" fontSize={14}>
-            {player.event_points}
-          </Typography>
-        </Grid>
+            <Typography
+              data-testid="player-name"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                fontSize: compressed ? "0.8em" : "1em",
+              }}
+            >
+              {player.web_name.toUpperCase()}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              width: "25%",
+              minWidth: compressed ? "20px" : "30px",
+              overflow: "hidden",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#5fdd6b",
+            }}
+          >
+            <Typography
+              data-testid="player-score"
+              sx={{
+                fontSize: compressed ? "0.8em" : "1em",
+              }}
+            >
+              {player.event_points}
+            </Typography>
+          </Box>
+          <Box
+            onClick={(): void => handlePlayerPerformanceClick(player)}
+            sx={{
+              p: compressed ? 0.5 : 1,
+              display: "flex",
+              alignItems: "center",
+              backgroundColor: "black",
+              "& :hover": {
+                cursor: "pointer",
+              },
+            }}
+          >
+            <Info sx={{ color: "white", fontSize: "1em" }} />
+          </Box>
+        </Box>
       </Box>
-    </Grid>
+    </Box>
   );
 }

@@ -3,13 +3,21 @@ import { Player } from "types/player";
 import { Position } from "types/position";
 import _ from "lodash";
 import Lineup from "components/lineup/lineup";
+import { PlayerStat, Team } from "types";
 
 interface DreamTeamProps {
   players: Player[];
   positions: Position[];
+  elementStats: PlayerStat[];
+  teams: Team[];
 }
 
-export default function DreamTeam({ players, positions }: DreamTeamProps): JSX.Element {
+export default function DreamTeam({
+  players,
+  positions,
+  elementStats,
+  teams,
+}: DreamTeamProps): JSX.Element {
   const getTopPlayersByPosition = (positionId: number, max: number): Player[] => {
     return _(players)
       .filter(["element_type", positionId])
@@ -56,5 +64,12 @@ export default function DreamTeam({ players, positions }: DreamTeamProps): JSX.E
 
   const benchPlayers = addRemainingSelectedPlayers(remainingPlayers);
 
-  return <Lineup selected={selectedPlayers} bench={benchPlayers} />;
+  return (
+    <Lineup
+      selected={selectedPlayers}
+      bench={benchPlayers}
+      elementStats={elementStats}
+      teams={teams}
+    />
+  );
 }

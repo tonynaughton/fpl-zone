@@ -9,9 +9,9 @@ import {
   LeagueDataWithPage,
   PlayerSummary,
   Region,
-  Team,
   TeamHistory,
   Transfer,
+  TeamData,
 } from "types";
 
 export const base_url = "http://localhost:8010/proxy";
@@ -36,7 +36,7 @@ export const getGameweekData = async (gameweek: number): Promise<Gameweek> => {
   return response.data;
 };
 
-export const getTeamData = async (teamId: number | undefined): Promise<Team> => {
+export const getTeamData = async (teamId: number | undefined): Promise<TeamData> => {
   const response = await axios.get(`${base_url}/entry/${teamId}/`);
   return response.data;
 };
