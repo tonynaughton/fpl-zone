@@ -7,11 +7,15 @@ import "@testing-library/jest-dom/extend-expect";
 describe("Player Tests", () => {
   const mockPlayer = mockPlayers[0];
 
-  const mockOnPlayerInfoClick = (): void => console.log("TEST");
+  const mockHandlePlayerPerformanceClick = (): void => console.log("TEST");
 
   const createComponent = (): JSX.Element => {
     return (
-      <Player player={mockPlayer} onPlayerInfoClick={mockOnPlayerInfoClick} compressed={false} />
+      <Player
+        player={mockPlayer}
+        handlePlayerPerformanceClick={mockHandlePlayerPerformanceClick}
+        compressed={false}
+      />
     );
   };
 

@@ -5,13 +5,13 @@ import { Info } from "@mui/icons-material";
 
 interface PlayerProps {
   player: PlayerType;
-  onPlayerInfoClick: (player: PlayerType) => void;
+  handlePlayerPerformanceClick: (player: PlayerType) => void;
   compressed: boolean;
 }
 
 export default function Player({
   player,
-  onPlayerInfoClick,
+  handlePlayerPerformanceClick,
   compressed,
 }: PlayerProps): JSX.Element {
   return (
@@ -94,7 +94,7 @@ export default function Player({
             </Typography>
           </Box>
           <Box
-            onClick={(): void => onPlayerInfoClick(player)}
+            onClick={(): void => handlePlayerPerformanceClick(player)}
             sx={{
               p: compressed ? 0.5 : 1,
               display: "flex",

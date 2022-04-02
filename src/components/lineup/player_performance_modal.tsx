@@ -10,57 +10,47 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { CustomResult, Player, PlayerPerformance, PlayerStat, Team } from "types";
+import { CustomResult, Player, PlayerStat, Team } from "types";
 import { Close } from "@mui/icons-material";
 import { getPlayerData } from "api/fpl_api_provider";
 import { useQuery } from "react-query";
-import { formatDate, getTeamById } from "helpers";
 import Loading from "components/layout/loading";
 import { renderResult } from "components/results/results";
 import _ from "lodash";
 
-interface Stat {
-  name: string;
-  value: number;
-}
-
-interface PlayerInfoModalProps {
-  isPlayerInfoModalOpen: boolean;
-  setPlayerInfoModalOpen: (value: boolean) => void;
+interface PlayerPerformanceModalProps {
+  isPlayerPerformanceModalOpen: boolean;
+  setPlayerPerformanceModalOpen: (value: boolean) => void;
   selectedPlayer: Player;
   elementStats: PlayerStat[];
   teams: Team[];
 }
 
-export default function PlayerInfoModal({
-  isPlayerInfoModalOpen,
-  setPlayerInfoModalOpen,
+export default function PlayerPerformanceModal({
+  isPlayerPerformanceModalOpen: isPlayerInfoModalOpen,
+  setPlayerPerformanceModalOpen: setPlayerInfoModalOpen,
   selectedPlayer,
   elementStats,
   teams,
-}: PlayerInfoModalProps): JSX.Element {
+}: PlayerPerformanceModalProps): JSX.Element {
   const { data: playerInfo } = useQuery([selectedPlayer], async () => {
     return getPlayerData(selectedPlayer.id);
   });
 
-  const performance = playerInfo?.history.slice(-1)[0];
-
-  const statImageNames = {
-    goals_scored: "football",
-    assists: "boot",
-    yellow_cards: "yellow_card",
-    red_cards: "red_card",
-  };
+  const playerPerformance = playerInfo?.history.slice(-1)[0];
 
   const renderHeader = (): JSX.Element => {
     const playerName = `${selectedPlayer.first_name.toUpperCase()} ${selectedPlayer.second_name.toUpperCase()}`;
-    const customResult: CustomResult = {
-      team_h: performance!.was_home ? selectedPlayer.team : performance!.opponent_team,
-      team_a: performance!.was_home ? performance!.opponent_team : selectedPlayer.team,
-      team_h_score: performance!.team_h_score,
-      team_a_score: performance!.team_a_score,
-      kickoff_time: performance!.kickoff_time,
-    };
+    let customResult: CustomResult | null = null;
+    if (playerPerformance) {
+      customResult = {
+        team_h: playerPerformance.was_home ? selectedPlayer.team : playerPerformance.opponent_team,
+        team_a: playerPerformance.was_home ? playerPerformance.opponent_team : selectedPlayer.team,
+        team_h_score: playerPerformance.team_h_score,
+        team_a_score: playerPerformance.team_a_score,
+        kickoff_time: playerPerformance.kickoff_time,
+      };
+    }
 
     return (
       <Box
@@ -70,31 +60,34 @@ export default function PlayerInfoModal({
           alignItems: "center",
           flexDirection: "column",
           rowGap: 1,
+          width: "100%",
         }}
       >
         <Typography fontSize={26} component="h3">
           {playerName}
         </Typography>
-        <Box sx={{ display: "flex", alginItems: "center" }}>
-          {renderResult(customResult, true, teams)}
+        <Box sx={{ display: "flex", alginItems: "center", width: "50%" }}>
+          {!!customResult && renderResult(customResult, true, teams)}
         </Box>
       </Box>
     );
   };
 
   const stats = _.pickBy(
-    performance,
+    playerPerformance,
     (value, key) => !!(elementStats.find((el) => el.name === key) && value > 0)
   );
+
+  const headerStyling = { backgroundColor: "rgb(224, 224, 224)" };
 
   const renderStatsTable = (): JSX.Element => {
     return (
       <TableContainer component={Box}>
-        <Table>
+        <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Statistic</TableCell>
-              <TableCell>Value</TableCell>
+              <TableCell sx={headerStyling}>STATISTIC</TableCell>
+              <TableCell sx={headerStyling}>VALUE</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -160,7 +153,7 @@ export default function PlayerInfoModal({
             rowGap: 3,
           }}
         >
-          {selectedPlayer && performance ? (
+          {selectedPlayer && playerPerformance ? (
             <>
               {renderHeader()}
               {renderStatsTable()}

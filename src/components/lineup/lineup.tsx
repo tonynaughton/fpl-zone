@@ -4,7 +4,7 @@ import { Player as PlayerType, PlayerStat, Team, TeamData, TeamPicks } from "typ
 import Player from "../player/player";
 import _ from "lodash";
 import { numberWithCommas } from "helpers";
-import PlayerInfoModal from "./player_info_modal";
+import PlayerPerformanceModal from "./player_performance_modal";
 
 interface LineupProps {
   selected: PlayerType[][];
@@ -25,18 +25,18 @@ export default function Lineup({
   compressed = false,
   teams,
 }: LineupProps): JSX.Element {
-  const [isPlayerInfoModalOpen, setPlayerInfoModalOpen] = useState<boolean>(false);
+  const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
 
   const sortedBench = _.sortBy(bench, ["element_type"]);
   const activeChip = teamPicks?.active_chip ? teamPicks?.active_chip.toUpperCase() : "None";
 
-  const handlePlayerInfoClick = (player: PlayerType): void => {
-    setPlayerInfoModalOpen(true);
+  const handlePlayerPerformanceClick = (player: PlayerType): void => {
+    setPlayerPerformanceModalOpen(true);
     setSelectedPlayer(player);
   };
 
-  const renderInfo = (): JSX.Element => {
+  const renderLineupInfo = (): JSX.Element => {
     const textStyling = {
       display: "block",
       fontSize: "18px",
@@ -130,7 +130,7 @@ export default function Lineup({
                 return (
                   <Player
                     player={player}
-                    onPlayerInfoClick={handlePlayerInfoClick}
+                    handlePlayerPerformanceClick={handlePlayerPerformanceClick}
                     key={key}
                     compressed={compressed}
                   />
@@ -168,7 +168,7 @@ export default function Lineup({
             return (
               <Player
                 player={player}
-                onPlayerInfoClick={handlePlayerInfoClick}
+                handlePlayerPerformanceClick={handlePlayerPerformanceClick}
                 key={key}
                 compressed={compressed}
               />
@@ -182,14 +182,14 @@ export default function Lineup({
   return (
     <>
       <Box sx={{ height: "100%", p: 3, display: "flex", flexDirection: "column", rowGap: 1.5 }}>
-        {!!teamData && !!teamPicks && renderInfo()}
+        {!!teamData && !!teamPicks && renderLineupInfo()}
         {renderSelected()}
         {renderBench()}
       </Box>
       {selectedPlayer && (
-        <PlayerInfoModal
-          isPlayerInfoModalOpen={isPlayerInfoModalOpen}
-          setPlayerInfoModalOpen={setPlayerInfoModalOpen}
+        <PlayerPerformanceModal
+          isPlayerPerformanceModalOpen={isPlayerPerformanceModalOpen}
+          setPlayerPerformanceModalOpen={setPlayerPerformanceModalOpen}
           selectedPlayer={selectedPlayer}
           elementStats={elementStats}
           teams={teams}
