@@ -69,7 +69,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
       <img
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
         alt="crest-img"
-        height={30}
+        height="100%"
       />
     ) : undefined;
     return (
@@ -78,11 +78,12 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
         sx={{
           display: "flex",
           flexDirection: "column",
+          height: "100%",
         }}
       >
         <Typography
           sx={{
-            fontSize: "20px",
+            fontSize: "2.2vh",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
             textAlign: "center",
@@ -98,13 +99,14 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
             alignItems: "center",
             mt: 0.5,
             justifyContent: "center",
+            maxHeight: "2.5em",
           }}
         >
           {img}
           <Typography
             data-testid={item.label}
             sx={{
-              fontSize: "18px",
+              fontSize: "1.8vh",
               textOverflow: "ellipsis",
               textAlign: "center",
               whiteSpace: "nowrap",
@@ -118,7 +120,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
           data-testid={item.label}
           sx={{
             mt: 0.5,
-            fontSize: "18px",
+            fontSize: "1.8vh",
             textOverflow: "ellipsis",
             textAlign: "center",
             whiteSpace: "nowrap",
