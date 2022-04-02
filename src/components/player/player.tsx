@@ -7,12 +7,37 @@ interface PlayerProps {
   player: PlayerType;
   handlePlayerPerformanceClick: (player: PlayerType) => void;
   compressed: boolean;
+  multiplier: number;
+  isCaptain?: boolean;
+  isViceCaptain?: boolean;
 }
+
+const renderArmband = (isVice = false): JSX.Element => {
+  return (
+    <Box
+      sx={{
+        borderRadius: "50%",
+        padding: "5px",
+        backgroundColor: "white",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "2em",
+        height: "2em",
+      }}
+    >
+      {isVice ? "V" : "C"}
+    </Box>
+  );
+};
 
 export default function Player({
   player,
   handlePlayerPerformanceClick,
   compressed,
+  multiplier: multipler,
+  isCaptain = false,
+  isViceCaptain = false,
 }: PlayerProps): JSX.Element {
   return (
     <Box
@@ -21,6 +46,7 @@ export default function Player({
         flexDirection: "column",
         alginItems: "center",
         justifyContent: "center",
+        position: "relative",
       }}
       data-testid={player.id}
     >
@@ -90,7 +116,7 @@ export default function Player({
                 fontSize: compressed ? "0.8em" : "1em",
               }}
             >
-              {player.event_points}
+              {player.event_points * multipler}
             </Typography>
           </Box>
           <Box
@@ -108,6 +134,8 @@ export default function Player({
             <Info sx={{ color: "white", fontSize: "1em" }} />
           </Box>
         </Box>
+        {isCaptain && renderArmband()}
+        {isViceCaptain && renderArmband(true)}
       </Box>
     </Box>
   );
