@@ -43,8 +43,25 @@ export default function GameweekLivePage(): JSX.Element {
     elementStats = data.element_stats;
   }
 
+  // FPL game gets temporarily suspended when it is updating (i.e. fetched data will be inaccurate).
+  // This update takes place at the beginning of each gameweek between the deadline
+  // and kick off of the first match.
+  const checkGameIsUpdating = (): boolean => {
+    if (currentGameweek) {
+      const deadline = new Date(currentGameweek?.deadline_time);
+      const timeDifference = new Date().getTime() - deadline.getTime();
+      // If current time is between deadline and first match, game will be updating
+      if (timeDifference < 5400000) return true;
+    }
+    return false;
+  };
+
+  const gameIsUpdating = checkGameIsUpdating();
+
   const renderDreamTeam = (): JSX.Element => {
-    if (isLoading) {
+    if (gameIsUpdating) {
+      return <Loading message="Game is updating.." />;
+    } else if (isLoading) {
       return <Loading message="Fetching game data data.." />;
     } else if (data && allPlayers && positions && elementStats) {
       return (
@@ -61,7 +78,9 @@ export default function GameweekLivePage(): JSX.Element {
   };
 
   const renderGameweekSummary = (): JSX.Element => {
-    if (isLoading) {
+    if (gameIsUpdating) {
+      return <Loading message="Game is updating.." />;
+    } else if (isLoading) {
       return <Loading message="Fetching game data.." />;
     } else if (data && currentGameweek && allPlayers) {
       return <GameweekSummary gameweek={currentGameweek} players={allPlayers} />;
