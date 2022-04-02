@@ -1,6 +1,6 @@
 import React from "react";
 import { Gameweek } from "types/gameweek";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Player } from "types/player";
 import { GetPlayerById, numberWithCommas } from "helpers";
 
@@ -37,30 +37,34 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
   const summaryData: SummaryDataItem[] = [
     {
       label: "highest score:",
-      statValue: `${gameweek?.highest_score} pts`,
+      statValue: `${gameweek?.highest_score || 0} pts`,
     },
-    { label: "average score:", statValue: `${gameweek?.average_entry_score} pts` },
+    { label: "average score:", statValue: `${gameweek?.average_entry_score || 0} pts` },
     {
       label: "star player:",
       teamCode: starPlayer?.team_code,
-      playerName: `${starPlayer?.first_name} ${starPlayer?.second_name}`,
-      statValue: `${gameweek?.top_element_info?.points} pts`,
+      playerName: `${starPlayer?.first_name || ""} ${starPlayer?.second_name || ""}`,
+      statValue: `${gameweek?.top_element_info?.points || 0} pts`,
     },
     {
       label: "most captained:",
       teamCode: mostCaptained?.team_code,
-      playerName: `${mostCaptained?.first_name} ${mostCaptained?.second_name}`,
+      playerName: mostCaptained
+        ? `${mostCaptained.first_name} ${mostCaptained.second_name}`
+        : "N/A",
     },
     {
       label: "most vice-captained:",
       teamCode: mostViceCaptained?.team_code,
-      playerName: `${mostViceCaptained?.first_name} ${mostViceCaptained?.second_name}`,
+      playerName: mostViceCaptained
+        ? `${mostViceCaptained.first_name} ${mostViceCaptained.second_name}`
+        : "N/A",
     },
     {
       label: "most transferred in:",
       teamCode: mostTransferredIn?.team_code,
-      playerName: `${mostTransferredIn?.first_name} ${mostTransferredIn?.second_name}`,
-      statValue: `${mostTransferredInCount} transfers`,
+      playerName: `${mostTransferredIn?.first_name || ""} ${mostTransferredIn?.second_name || ""}`,
+      statValue: `${mostTransferredInCount || 0} transfers`,
     },
   ];
 
@@ -113,7 +117,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
               overflow: "hidden",
             }}
           >
-            {item.playerName}
+            {item.playerName || ""}
           </Typography>
         </Box>
         <Typography
@@ -127,7 +131,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
             overflow: "hidden",
           }}
         >
-          {item.statValue}
+          {item.statValue || ""}
         </Typography>
       </Box>
     );

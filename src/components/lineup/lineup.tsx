@@ -127,12 +127,16 @@ export default function Lineup({
               }}
             >
               {positionGroup.map((player, key) => {
+                const pick = teamPicks?.picks.find((pick) => pick.element === player.id);
                 return (
                   <Player
                     player={player}
                     handlePlayerPerformanceClick={handlePlayerPerformanceClick}
                     key={key}
                     compressed={compressed}
+                    isCaptain={pick?.is_captain ? true : undefined}
+                    isViceCaptain={pick?.is_vice_captain ? true : undefined}
+                    multiplier={pick?.multiplier || 1}
                   />
                 );
               })}
@@ -165,12 +169,14 @@ export default function Lineup({
           data-testid="bench-players"
         >
           {sortedBench.map((player, key) => {
+            const pick = teamPicks?.picks.find((pick) => pick.element === player.id);
             return (
               <Player
                 player={player}
                 handlePlayerPerformanceClick={handlePlayerPerformanceClick}
                 key={key}
                 compressed={compressed}
+                multiplier={pick?.multiplier || 1}
               />
             );
           })}

@@ -15,6 +15,7 @@ describe("Player Tests", () => {
         player={mockPlayer}
         handlePlayerPerformanceClick={mockHandlePlayerPerformanceClick}
         compressed={false}
+        multiplier={1}
       />
     );
   };
