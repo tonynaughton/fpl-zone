@@ -15,6 +15,7 @@ interface PlayerProps {
 const renderArmband = (isVice = false): JSX.Element => {
   return (
     <Box
+      data-testid="armband-container"
       sx={{
         borderRadius: "50%",
         padding: "5px",
