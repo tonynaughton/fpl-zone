@@ -3,410 +3,491 @@
 exports[`Dream Team Tests Snapshot test 1`] = `
 <DocumentFragment>
   <div
-    class="MuiGrid-root MuiGrid-container css-1odby6v-MuiGrid-root"
+    class="MuiBox-root css-12kpaeh"
   >
     <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-10 css-1sf73xg-MuiGrid-root"
+      class="MuiBox-root css-1bxf5j8"
       data-testid="first-xi-players"
     >
       <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-1yrhruj-MuiGrid-root"
+        class="MuiBox-root css-geg32f"
       >
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
+          data-testid="662"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-            data-testid="662"
+            class="MuiBox-root css-m3owix"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <img
-                alt="kit-img"
-                data-testid="player-shirt-image"
-                height="55"
-                src="/assets/images/kits/7.png"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1gn4x21"
+              class="MuiBox-root css-3e87oq"
             >
               <div
-                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
                   data-testid="player-name"
                 >
                   TRINER
                 </p>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
                   data-testid="player-score"
                 >
                   30
                 </p>
+              </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-1yrhruj-MuiGrid-root"
+        class="MuiBox-root css-geg32f"
       >
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
+          data-testid="828"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-            data-testid="828"
+            class="MuiBox-root css-1hwhk2i"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <img
-                alt="kit-img"
-                data-testid="player-shirt-image"
-                height="55"
-                src="/assets/images/kits/3.png"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1gn4x21"
+              class="MuiBox-root css-3e87oq"
             >
               <div
-                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
                   data-testid="player-name"
                 >
                   JANKIN
                 </p>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
                   data-testid="player-score"
                 >
                   13
                 </p>
               </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
+          data-testid="324"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-            data-testid="324"
+            class="MuiBox-root css-ki4kbn"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <img
-                alt="kit-img"
-                data-testid="player-shirt-image"
-                height="55"
-                src="/assets/images/kits/6.png"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1gn4x21"
+              class="MuiBox-root css-3e87oq"
             >
               <div
-                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
                   data-testid="player-name"
                 >
                   SUMMERILL
                 </p>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
                   data-testid="player-score"
                 >
                   13
                 </p>
               </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
+          data-testid="929"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-            data-testid="929"
+            class="MuiBox-root css-ramzw9"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <img
-                alt="kit-img"
-                data-testid="player-shirt-image"
-                height="55"
-                src="/assets/images/kits/2.png"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1gn4x21"
+              class="MuiBox-root css-3e87oq"
             >
               <div
-                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
                   data-testid="player-name"
                 >
                   MALLOY
                 </p>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
                   data-testid="player-score"
                 >
                   13
                 </p>
               </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
+          data-testid="156"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-            data-testid="156"
+            class="MuiBox-root css-yvqdr8"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <img
-                alt="kit-img"
-                data-testid="player-shirt-image"
-                height="55"
-                src="/assets/images/kits/14.png"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1gn4x21"
+              class="MuiBox-root css-3e87oq"
             >
               <div
-                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
                   data-testid="player-name"
                 >
                   TURBEFIELD
                 </p>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
                   data-testid="player-score"
                 >
                   9
                 </p>
+              </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-1yrhruj-MuiGrid-root"
+        class="MuiBox-root css-geg32f"
       >
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
+          data-testid="505"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-            data-testid="505"
+            class="MuiBox-root css-1w92tz0"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <img
-                alt="kit-img"
-                data-testid="player-shirt-image"
-                height="55"
-                src="/assets/images/kits/18.png"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1gn4x21"
+              class="MuiBox-root css-3e87oq"
             >
               <div
-                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
                   data-testid="player-name"
                 >
                   MULLER
                 </p>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
                   data-testid="player-score"
                 >
                   24
                 </p>
               </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
+          data-testid="938"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-            data-testid="938"
+            class="MuiBox-root css-ramzw9"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <img
-                alt="kit-img"
-                data-testid="player-shirt-image"
-                height="55"
-                src="/assets/images/kits/2.png"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1gn4x21"
+              class="MuiBox-root css-3e87oq"
             >
               <div
-                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
                   data-testid="player-name"
                 >
                   PERRINGTON
                 </p>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
                   data-testid="player-score"
                 >
                   16
                 </p>
               </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
+          data-testid="137"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-            data-testid="137"
+            class="MuiBox-root css-1b560z9"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <img
-                alt="kit-img"
-                data-testid="player-shirt-image"
-                height="55"
-                src="/assets/images/kits/19.png"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1gn4x21"
+              class="MuiBox-root css-3e87oq"
             >
               <div
-                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
                   data-testid="player-name"
                 >
                   TINGLEY
                 </p>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
                   data-testid="player-score"
                 >
                   12
                 </p>
+              </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 css-1yrhruj-MuiGrid-root"
+        class="MuiBox-root css-geg32f"
       >
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
+          data-testid="466"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
-            data-testid="466"
+            class="MuiBox-root css-1b560z9"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-            >
-              <img
-                alt="kit-img"
-                data-testid="player-shirt-image"
-                height="55"
-                src="/assets/images/kits/19.png"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1gn4x21"
+              class="MuiBox-root css-3e87oq"
             >
               <div
-                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
                   data-testid="player-name"
                 >
                   WORKES
                 </p>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
+                class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
                   data-testid="player-score"
                 >
                   22
                 </p>
+              </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
               </div>
             </div>
           </div>
@@ -414,186 +495,222 @@ exports[`Dream Team Tests Snapshot test 1`] = `
       </div>
     </div>
     <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column MuiGrid-grid-xs-2 css-1djelbh-MuiGrid-root"
-      data-testid="bench-players"
+      class="MuiBox-root css-1alt9xp"
     >
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
       >
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-fkexd4-MuiTypography-root"
-        >
-          BENCH
-        </p>
-      </div>
+        Bench
+      </p>
       <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        class="MuiBox-root css-1doxykz"
+        data-testid="bench-players"
       >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
           data-testid="9"
         >
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-          >
-            <img
-              alt="kit-img"
-              data-testid="player-shirt-image"
-              height="55"
-              src="/assets/images/kits/7.png"
-            />
-          </div>
+            class="MuiBox-root css-m3owix"
+            data-testid="kit-img-container"
+          />
           <div
-            class="MuiBox-root css-1gn4x21"
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              class="MuiBox-root css-3e87oq"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
-                data-testid="player-name"
+              <div
+                class="MuiBox-root css-2f68vp"
               >
-                BAULDREY
-              </p>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
-            >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                data-testid="player-score"
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  BAULDREY
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
               >
-                23
-              </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  23
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-      >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
           data-testid="286"
         >
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-          >
-            <img
-              alt="kit-img"
-              data-testid="player-shirt-image"
-              height="55"
-              src="/assets/images/kits/5.png"
-            />
-          </div>
+            class="MuiBox-root css-1386e90"
+            data-testid="kit-img-container"
+          />
           <div
-            class="MuiBox-root css-1gn4x21"
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              class="MuiBox-root css-3e87oq"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
-                data-testid="player-name"
+              <div
+                class="MuiBox-root css-2f68vp"
               >
-                MACMENEMY
-              </p>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
-            >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                data-testid="player-score"
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  MACMENEMY
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
               >
-                7
-              </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  7
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-      >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
           data-testid="428"
         >
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-          >
-            <img
-              alt="kit-img"
-              data-testid="player-shirt-image"
-              height="55"
-              src="/assets/images/kits/13.png"
-            />
-          </div>
+            class="MuiBox-root css-4x3s25"
+            data-testid="kit-img-container"
+          />
           <div
-            class="MuiBox-root css-1gn4x21"
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              class="MuiBox-root css-3e87oq"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
-                data-testid="player-name"
+              <div
+                class="MuiBox-root css-2f68vp"
               >
-                MACEK
-              </p>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
-            >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                data-testid="player-score"
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  MACEK
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
               >
-                7
-              </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  7
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-      >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-t0zib5-MuiGrid-root"
+          class="MuiBox-root css-hgxypz"
           data-testid="756"
         >
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-          >
-            <img
-              alt="kit-img"
-              data-testid="player-shirt-image"
-              height="55"
-              src="/assets/images/kits/14.png"
-            />
-          </div>
+            class="MuiBox-root css-yvqdr8"
+            data-testid="kit-img-container"
+          />
           <div
-            class="MuiBox-root css-1gn4x21"
+            class="MuiBox-root css-9pa3st"
           >
             <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              class="MuiBox-root css-3e87oq"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1hrwrfg-MuiTypography-root"
-                data-testid="player-name"
+              <div
+                class="MuiBox-root css-2f68vp"
               >
-                MIETTINEN
-              </p>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item player-text-points css-13i4rnv-MuiGrid-root"
-            >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
-                data-testid="player-score"
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  MIETTINEN
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
               >
-                6
-              </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  6
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-qrsfhp"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>

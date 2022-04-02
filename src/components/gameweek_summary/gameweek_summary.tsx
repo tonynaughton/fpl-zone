@@ -36,32 +36,32 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
 
   const summaryData: SummaryDataItem[] = [
     {
-      label: "highest score:",
+      label: "highest score",
       statValue: `${gameweek?.highest_score || 0} pts`,
     },
-    { label: "average score:", statValue: `${gameweek?.average_entry_score || 0} pts` },
+    { label: "average score", statValue: `${gameweek?.average_entry_score || 0} pts` },
     {
-      label: "star player:",
+      label: "star player",
       teamCode: starPlayer?.team_code,
       playerName: `${starPlayer?.first_name || ""} ${starPlayer?.second_name || ""}`,
       statValue: `${gameweek?.top_element_info?.points || 0} pts`,
     },
     {
-      label: "most captained:",
+      label: "most captained",
       teamCode: mostCaptained?.team_code,
       playerName: mostCaptained
         ? `${mostCaptained.first_name} ${mostCaptained.second_name}`
         : "N/A",
     },
     {
-      label: "most vice-captained:",
+      label: "most vice-captained",
       teamCode: mostViceCaptained?.team_code,
       playerName: mostViceCaptained
         ? `${mostViceCaptained.first_name} ${mostViceCaptained.second_name}`
         : "N/A",
     },
     {
-      label: "most transferred in:",
+      label: "most transferred in",
       teamCode: mostTransferredIn?.team_code,
       playerName: `${mostTransferredIn?.first_name || ""} ${mostTransferredIn?.second_name || ""}`,
       statValue: `${mostTransferredInCount || 0} transfers`,
@@ -72,7 +72,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
     const img: JSX.Element | undefined = item.teamCode ? (
       <img
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
-        alt="crest-img"
+        alt={`${item.label}-crest-img`}
         height="100%"
       />
     ) : undefined;
@@ -86,6 +86,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
         }}
       >
         <Typography
+          data-testid={`${item.label}-label`}
           sx={{
             fontSize: "2.2vh",
             textOverflow: "ellipsis",
@@ -108,7 +109,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
         >
           {img}
           <Typography
-            data-testid={item.label}
+            data-testid={`${item.label}-player-name`}
             sx={{
               fontSize: "1.8vh",
               textOverflow: "ellipsis",
@@ -121,7 +122,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
           </Typography>
         </Box>
         <Typography
-          data-testid={item.label}
+          data-testid={`${item.label}-stat-value`}
           sx={{
             mt: 0.5,
             fontSize: "1.8vh",
