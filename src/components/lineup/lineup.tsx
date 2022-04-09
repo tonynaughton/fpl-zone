@@ -39,7 +39,6 @@ export default function Lineup({
   const renderLineupInfo = (): JSX.Element => {
     const textStyling = {
       display: "block",
-      fontSize: "18px",
       overflow: "hidden",
       textOverflow: "ellipsis",
       width: "50%",
@@ -50,13 +49,16 @@ export default function Lineup({
         sx={{
           display: "flex",
           flexDirection: "column",
+          rowGap: 1,
           width: "100%",
           maxWidth: "80%",
           margin: "auto",
         }}
       >
         {teamData && (
-          <Typography sx={{ fontSize: "30px", textAlign: "center" }}>{teamData.name}</Typography>
+          <Typography variant="h2" textAlign="center">
+            {teamData.name}
+          </Typography>
         )}
         <Box
           sx={{
@@ -64,28 +66,29 @@ export default function Lineup({
             justifyContent: "center",
             alignItems: "center",
             columnGap: 1,
-            mt: 1,
+            mt: 2,
+            mb: 2,
             overflow: "hidden",
             width: "100%",
           }}
         >
           {teamPicks && (
-            <Typography sx={textStyling}>
-              ACTIVE CHIP:
+            <Typography sx={textStyling} variant="h5">
+              Active Chip:
               <br />
               {activeChip}
             </Typography>
           )}
           {teamData && (
-            <Typography sx={textStyling}>
-              GW POINTS:
+            <Typography sx={textStyling} variant="h5">
+              GW Points:
               <br />
               {teamData.summary_event_points}
             </Typography>
           )}
           {teamData && (
-            <Typography sx={textStyling}>
-              OVERALL RANK:
+            <Typography sx={textStyling} variant="h5">
+              Overall Rank:
               <br />
               {numberWithCommas(teamData.summary_overall_rank)}
             </Typography>
@@ -158,7 +161,7 @@ export default function Lineup({
           p: 1.5,
         }}
       >
-        <Typography fontSize={20}>Bench</Typography>
+        <Typography variant="h5">Bench</Typography>
         <Box
           sx={{
             display: "flex",

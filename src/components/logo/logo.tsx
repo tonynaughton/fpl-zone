@@ -22,6 +22,7 @@ export default function Logo({ compact }: LogoProps): JSX.Element {
       <Grid item sx={{ ml: 1 }}>
         <Typography
           component="h1"
+          variant="h1"
           fontSize={textVariant}
           textAlign="center"
           sx={{ userSelect: "none" }}

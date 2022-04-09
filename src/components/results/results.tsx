@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import { CustomResult, Fixture, Gameweek, Player, PlayerStat, Team } from "types";
 import { formatDate, getTeamById } from "helpers";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
@@ -31,7 +31,7 @@ export const renderResult = (
   }
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
+    <Box sx={{ display: "flex", alignItems: "center", width: "100%", columnGap: 4 }}>
       <Box
         display="flex"
         alignItems="center"
@@ -47,7 +47,7 @@ export const renderResult = (
           width={30}
         />
         <Typography
-          fontSize={20}
+          variant="h5"
           key={key}
           textAlign="left"
           sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}
@@ -56,7 +56,7 @@ export const renderResult = (
         </Typography>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", flex: 0.7 }}>
-        <Typography fontSize={20} key={key} sx={{ whiteSpace: "nowrap" }}>
+        <Typography key={key} sx={{ whiteSpace: "nowrap" }} variant="h5">
           {matchStatus}
         </Typography>
       </Box>
@@ -69,7 +69,7 @@ export const renderResult = (
         justifyContent="right"
       >
         <Typography
-          fontSize={20}
+          variant="h5"
           key={key}
           textAlign="right"
           sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}
@@ -130,7 +130,9 @@ export default function Results({
           disabled={selectedGameweek <= 1}
           data-testid="prev-gameweek-btn"
         >
-          <ArrowBack />
+          <Tooltip title="Previous gameweek">
+            <ArrowBack />
+          </Tooltip>
         </IconButton>
         <Typography fontSize={20} data-testid="selected-gameweek-title">
           GAMEWEEK {selectedGameweek}
@@ -142,7 +144,9 @@ export default function Results({
           disabled={selectedGameweek >= 38}
           data-testid="next-gameweek-btn"
         >
-          <ArrowForward />
+          <Tooltip title="Next gameweek">
+            <ArrowForward />
+          </Tooltip>
         </IconButton>
       </Box>
       <Box

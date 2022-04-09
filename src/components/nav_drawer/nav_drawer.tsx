@@ -1,11 +1,11 @@
 import React from "react";
 import Drawer from "@mui/material/Drawer";
 import Logo from "components/logo/logo";
-import { Box } from "@mui/material";
-import "./nav_drawer.css";
+import { Box, Typography } from "@mui/material";
 import { MenuItem } from "./types";
 import MenuList from "./menu_list";
 import GameweekCountdown from "./gw_countdown";
+import "./nav_drawer.css";
 
 const drawerWidth = 250;
 
@@ -14,7 +14,7 @@ const mainMenuItems: MenuItem[] = [
   { label: "my team", href: "/my-team" },
   { label: "fixtures & results", href: "/fixtures-and-results" },
   { label: "analysis", href: "/analysis" },
-  { label: "social", href: "/social" },
+  // { label: "social", href: "/social" },
 ];
 
 const endMenuItems: MenuItem[] = [

@@ -27,23 +27,23 @@ export default function GameweekCountdown(): JSX.Element {
   }
 
   const renderer = ({ days, hours, minutes, completed }: CountdownRenderProps): JSX.Element => {
-    const gameweekName = nextGameweek.name.toUpperCase();
-    const daysLabel = days ? days + " DAY" + (days > 1 ? "S" : "") : "";
-    const hoursLabel = hours ? hours + " HR" + (hours > 1 ? "S" : "") : "";
-    const minsLabel = minutes ? minutes + " MIN" + (minutes > 1 ? "S" : "") : "";
+    const gameweekName = nextGameweek.name;
+    const daysLabel = days ? days + " day" + (days > 1 ? "s" : "") : "";
+    const hoursLabel = hours ? hours + " hr" + (hours > 1 ? "s" : "") : "";
+    const minsLabel = minutes ? minutes + " min" + (minutes > 1 ? "s" : "") : "";
     const countdown = [daysLabel, hoursLabel, minsLabel].join(" ");
     if (completed) {
       return (
         <Typography>
           {gameweekName}
           <br />
-          IN PROGRESS
+          in progress
         </Typography>
       );
     } else {
       return (
         <Typography>
-          {gameweekName} DEADLINE
+          {gameweekName} deadline:
           <br />
           {countdown}
         </Typography>
