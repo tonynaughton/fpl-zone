@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Tooltip, Typography } from "@mui/material";
 import { Player as PlayerType } from "types/player";
 import { Info } from "@mui/icons-material";
 
@@ -90,15 +90,15 @@ export default function Player({
             }}
           >
             <Typography
+              variant="body2"
               data-testid="player-name"
               sx={{
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
-                fontSize: compressed ? "0.8em" : "1em",
               }}
             >
-              {player.web_name.toUpperCase()}
+              {player.web_name}
             </Typography>
           </Box>
           <Box
@@ -112,29 +112,27 @@ export default function Player({
               backgroundColor: "#5fdd6b",
             }}
           >
-            <Typography
-              data-testid="player-score"
-              sx={{
-                fontSize: compressed ? "0.8em" : "1em",
-              }}
-            >
+            <Typography variant="body2" data-testid="player-score">
               {player.event_points * multipler}
             </Typography>
           </Box>
-          <Box
-            onClick={(): void => handlePlayerPerformanceClick(player)}
-            sx={{
-              p: compressed ? 0.5 : 1,
-              display: "flex",
-              alignItems: "center",
-              backgroundColor: "black",
-              "& :hover": {
-                cursor: "pointer",
-              },
-            }}
-          >
-            <Info sx={{ color: "white", fontSize: "1em" }} />
-          </Box>
+          <Tooltip title="Performance">
+            <Box
+              onClick={(): void => handlePlayerPerformanceClick(player)}
+              sx={{
+                p: compressed ? 0.5 : 1,
+                display: "flex",
+                alignItems: "center",
+                backgroundColor: "black",
+                "& :hover": {
+                  cursor: "pointer",
+                },
+                justifyContent: "center",
+              }}
+            >
+              <Info sx={{ color: "white" }} />
+            </Box>
+          </Tooltip>
         </Box>
         {isCaptain && renderArmband()}
         {isViceCaptain && renderArmband(true)}

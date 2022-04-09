@@ -81,8 +81,8 @@ export default function MatchDetailsModal({
           pt: 1.5,
         }}
       >
-        <Typography component="h5" fontSize={18} sx={{ pb: 1 }}>
-          {statTitle.label.toUpperCase()}
+        <Typography component="h5" sx={{ pb: 1 }}>
+          {statTitle.label}
         </Typography>
         <Grid container columnSpacing={2}>
           <Grid item xs={6}>
@@ -154,11 +154,7 @@ export default function MatchDetailsModal({
             rowGap: 3,
           }}
         >
-          {selectedResult.kickoff_time && (
-            <Typography fontSize={18}>
-              {formatDate(new Date(selectedResult.kickoff_time))}
-            </Typography>
-          )}
+          {selectedResult.kickoff_time && formatDate(new Date(selectedResult.kickoff_time))}
           {renderResult(customResult, true, allTeams)}
           {renderStat("goals_scored")}
           {renderStat("assists")}

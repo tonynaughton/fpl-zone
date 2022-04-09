@@ -7,6 +7,7 @@ import {
   TableCell,
   TableBody,
   Box,
+  Typography,
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { Fixture, Gameweek, Player, Team } from "types";
@@ -78,7 +79,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
             textOverflow: "ellipsis",
           }}
         >
-          {name}
+          <Typography variant="body2">{name}</Typography>
         </Box>
       </Box>
     );
@@ -130,7 +131,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
         data-testid={testId}
       >
         <TableCell component="th" scope="row" key={index}>
-          {this.renderBaseItemName(baseItem)}
+          <Typography variant="body1">{this.renderBaseItemName(baseItem)}</Typography>
         </TableCell>
         {_.map(teamFixtures, (fixtures, key) => (
           <FixtureBox

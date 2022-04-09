@@ -43,28 +43,24 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
     {
       label: "star player",
       teamCode: starPlayer?.team_code,
-      playerName: `${starPlayer?.first_name || ""} ${starPlayer?.second_name || ""}`,
+      playerName: starPlayer?.web_name || "",
       statValue: `${gameweek?.top_element_info?.points || 0} pts`,
     },
     {
       label: "most captained",
       teamCode: mostCaptained?.team_code,
-      playerName: mostCaptained
-        ? `${mostCaptained.first_name} ${mostCaptained.second_name}`
-        : "N/A",
+      playerName: mostCaptained ? mostCaptained.web_name : "N/A",
     },
     {
       label: "most vice-captained",
       teamCode: mostViceCaptained?.team_code,
-      playerName: mostViceCaptained
-        ? `${mostViceCaptained.first_name} ${mostViceCaptained.second_name}`
-        : "N/A",
+      playerName: mostViceCaptained ? mostViceCaptained.web_name : "N/A",
     },
     {
       label: "most transferred in",
       teamCode: mostTransferredIn?.team_code,
-      playerName: `${mostTransferredIn?.first_name || ""} ${mostTransferredIn?.second_name || ""}`,
-      statValue: `${mostTransferredInCount || 0} transfers`,
+      playerName: `${mostTransferredIn?.web_name || ""}`,
+      statValue: `${mostTransferredInCount || 0} transfers in`,
     },
   ];
 
@@ -73,7 +69,7 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
       <img
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
         alt={`${item.label}-crest-img`}
-        height="100%"
+        height="80%"
       />
     ) : undefined;
     return (
@@ -87,8 +83,9 @@ export default function GameweekSummary({ gameweek, players }: GameweekSummaryPr
       >
         <Typography
           data-testid={`${item.label}-label`}
+          variant="h3"
           sx={{
-            fontSize: "2.2vh",
+            fontSize: "2.4vh",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
             textAlign: "center",
