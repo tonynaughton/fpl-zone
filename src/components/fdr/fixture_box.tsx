@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, TableCell, Typography } from "@mui/material";
+import { Box, TableCell, Tooltip, Typography } from "@mui/material";
 import { Fixture, Player, Team } from "types";
 import { fdrColours } from "./difficulty_legend";
 import { BaseItem } from "./fdr";
@@ -23,43 +23,51 @@ export default function FixtureBox({
     const oppositionId = isHome ? fixture.team_a : fixture.team_h;
     const difficulty = isHome ? fixture.team_h_difficulty : fixture.team_a_difficulty;
     const testId = `fix-box-bg-${fixture.id}`;
+    const text = `${getTeamById(oppositionId)} (${isHome ? "H" : "A"})`;
 
     return (
-      <Box
-        sx={{
-          p: 0.5,
-          display: "flex",
-          backgroundColor: `${fdrColours[difficulty]}`,
-          height: "100%",
-          flexGrow: 1,
-          overflow: "hidden",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        key={key}
-        data-testid={testId}
-      >
+      <Tooltip title={text} placement="top" enterDelay={500} arrow>
         <Box
           sx={{
-            p: 0.2,
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
+            p: 0.5,
+            display: "flex",
+            backgroundColor: `${fdrColours[difficulty]}`,
+            height: "100%",
+            flexGrow: 1,
             overflow: "hidden",
+            justifyContent: "center",
+            alignItems: "center",
+            flexBasis: 1,
           }}
+          key={key}
+          data-testid={testId}
         >
-          <Typography fontSize={14}>
-            {getTeamById(oppositionId)} ({isHome ? "H" : "A"})
-          </Typography>
+          <Box
+            sx={{
+              p: 0.2,
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+            }}
+          >
+            <Typography variant="body2" sx={{ textOverflow: "ellipsis", overflow: "hidden" }}>
+              {text}
+            </Typography>
+          </Box>
         </Box>
-      </Box>
+      </Tooltip>
     );
   };
 
   return (
     <TableCell scope="row">
       <Box
-        display="flex"
-        sx={{ width: "100%", height: "100%", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          height: "100%",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+        }}
         data-testid="fixture-box-container"
       >
         {fixtures.map((fixture, key) => renderBox(fixture, key))}

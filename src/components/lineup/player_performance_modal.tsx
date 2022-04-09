@@ -59,14 +59,12 @@ export default function PlayerPerformanceModal({
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          rowGap: 1,
+          rowGap: 2,
           width: "100%",
         }}
       >
-        <Typography fontSize={26} component="h3">
-          {playerName}
-        </Typography>
-        <Box sx={{ display: "flex", alginItems: "center", width: "50%" }}>
+        <Typography variant="h4">{playerName}</Typography>
+        <Box sx={{ display: "flex", alginItems: "center", width: "80%" }}>
           {!!customResult && renderResult(customResult, true, teams)}
         </Box>
       </Box>
@@ -85,17 +83,25 @@ export default function PlayerPerformanceModal({
       <TableContainer component={Box}>
         <Table size="small">
           <TableHead>
-            <TableRow>
-              <TableCell sx={headerStyling}>STATISTIC</TableCell>
-              <TableCell sx={headerStyling}>VALUE</TableCell>
+            <TableRow sx={headerStyling}>
+              <TableCell>
+                <Typography sx={{ fontWeight: 700 }}>Statistic</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography sx={{ fontWeight: 700 }}>Value</Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {Object.keys(stats).map((stat, key) => {
               return (
                 <TableRow key={key}>
-                  <TableCell>{elementStats.find((el) => el.name === stat)?.label}</TableCell>
-                  <TableCell>{stats[stat]}</TableCell>
+                  <TableCell>
+                    <Typography>{elementStats.find((el) => el.name === stat)?.label}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography>{stats[stat]}</Typography>
+                  </TableCell>
                 </TableRow>
               );
             })}

@@ -17,7 +17,35 @@ import FixturesAndResultsPage from "pages/fixtures_and_results_page";
 
 const customTheme = createTheme({
   typography: {
-    fontFamily: ["Grandstander", "Roboto Condensed"].join(","),
+    fontFamily: ["Poppins", "Grandstander"].join(","),
+    h1: {
+      fontFamily: "Grandstander",
+      fontSize: 45,
+    },
+    h2: {
+      fontFamily: "Grandstander",
+      fontSize: 40,
+    },
+    h3: {
+      fontFamily: "Grandstander",
+      fontSize: 30,
+    },
+    h4: {
+      fontFamily: "Grandstander",
+      fontSize: 25,
+    },
+    h5: {
+      fontFamily: "Poppins",
+      fontSize: 18,
+    },
+    body1: {
+      fontFamily: "Poppins",
+      fontSize: 16,
+    },
+    body2: {
+      fontFamily: "Poppins",
+      fontSize: "1.5vh",
+    },
   },
   palette: {
     primary: {
@@ -40,6 +68,24 @@ const customTheme = createTheme({
   },
   shape: {
     borderRadius: 10,
+  },
+  components: {
+    MuiTooltip: {
+      defaultProps: {
+        arrow: true,
+        placement: "top",
+      },
+      styleOverrides: {
+        tooltip: {
+          fontSize: "1.5vh",
+          color: "white",
+          backgroundColor: "black",
+        },
+        arrow: {
+          color: "black",
+        },
+      },
+    },
   },
 });
 
