@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/fpl-zone/static/js/main.95e6eb2b.js",
+    "main.js": "/fpl-zone/static/js/main.6dcb0dd0.js",
     "index.html": "/fpl-zone/index.html",
-    "main.95e6eb2b.js.map": "/fpl-zone/static/js/main.95e6eb2b.js.map"
+    "main.6dcb0dd0.js.map": "/fpl-zone/static/js/main.6dcb0dd0.js.map"
   },
   "entrypoints": [
-    "static/js/main.95e6eb2b.js"
+    "static/js/main.6dcb0dd0.js"
   ]
 }
