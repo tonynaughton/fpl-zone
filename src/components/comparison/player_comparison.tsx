@@ -1,41 +1,31 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Gameweek } from "types/gameweek";
-import {
-  Autocomplete,
-  Box,
-  Checkbox,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Autocomplete, Box, Checkbox, TextField, Typography } from "@mui/material";
 import { Player } from "types/player";
 import { getTeamById } from "helpers";
-import { Fixture, PlayerStat, Team } from "types";
+import { Fixture, Gameweek, PlayerStat, Team } from "types";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { ArrowUpward } from "@mui/icons-material";
+import ComparisonTable from "./comparison_table";
 
 interface PlayerComparisonProps {
   players: Player[];
   teams: Team[];
   fixtures: Fixture[];
-  gameweek: Gameweek;
   elementStats: PlayerStat[];
+  gameweek: Gameweek;
 }
 
 export default function PlayerComparison({
   players,
   teams,
   fixtures,
-  gameweek,
   elementStats,
+  gameweek,
 }: PlayerComparisonProps): JSX.Element {
-  console.log("🚀 ~ file: player_comparison.tsx ~ line 38 ~ gameweek", gameweek);
+  console.log("🚀 ~ file: player_comparison.tsx ~ line 27 ~ gameweek", gameweek);
   console.log("🚀 ~ file: player_comparison.tsx ~ line 38 ~ fixtures", fixtures);
   const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
@@ -94,65 +84,40 @@ export default function PlayerComparison({
     );
   };
 
-  const renderPlayerComparisonTable = (): JSX.Element => {
-    const textStyle = {
-      fontSize: 16,
-    };
-
+  const renderAddPlayersBtn = (): JSX.Element => {
     return (
-      <Table
-        aria-label="player comparison table"
+      <Box
         sx={{
-          tableLayout: "fixed",
-          flexGrow: "1",
-          "& .MuiTableCell-root": { p: 0, maxHeight: "100px" },
+          display: "flex",
+          height: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          p: 2,
         }}
       >
-        <TableBody>
-          <TableRow sx={{ height: "160px", p: 0 }}>
-            <TableCell></TableCell>
-            {selectedPlayers.map((player, key) => {
-              const imgId = player.photo.replace(".jpg", "");
-              const playerImgUrl = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
-              return (
-                <TableCell key={key} sx={{ p: 0, height: "160px" }}>
-                  <img src={playerImgUrl} alt="player-img" height="160px" width="auto" />
-                </TableCell>
-              );
-            })}
-          </TableRow>
-          <TableRow sx={{ backgroundColor: "rgb(224, 224, 224)", height: "2em" }}>
-            <TableCell></TableCell>
-            {selectedPlayers.map((player, key) => {
-              return (
-                <TableCell key={key}>
-                  <Typography
-                    sx={textStyle}
-                  >{`${player.first_name.toUpperCase()} ${player.second_name.toUpperCase()}`}</Typography>
-                </TableCell>
-              );
-            })}
-          </TableRow>
-          {elementStats.map((stat, key) => {
-            return (
-              <TableRow key={key}>
-                <TableCell>
-                  <Typography variant="body2" sx={{ pl: 1.5 }}>
-                    {stat.label}
-                  </Typography>
-                </TableCell>
-                {selectedPlayers.map((player, key) => {
-                  return (
-                    <TableCell key={key}>
-                      <Typography sx={textStyle}>{player[stat.name]}</Typography>
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+        <Box
+          onClick={(): void => setDropdownOpen(true)}
+          sx={{
+            display: "flex",
+            boxShadow: 5,
+            alignItems: "center",
+            p: 2,
+            flexDirection: "column",
+            rowGap: 2,
+            borderRadius: "10%",
+            cursor: "pointer",
+            "&:hover": {
+              backgroundColor: "rgb(224, 224, 224)",
+            },
+            width: "20%",
+          }}
+        >
+          <ArrowUpward
+            sx={{ borderRadius: "50%", backgroundColor: "#16B7EA", color: "white", fontSize: 40 }}
+          />
+          <Typography textAlign="center">Add a player from the drop down to get started</Typography>
+        </Box>
+      </Box>
     );
   };
 
@@ -167,42 +132,13 @@ export default function PlayerComparison({
     >
       {renderComparisonOptions()}
       {selectedPlayers.length > 0 ? (
-        renderPlayerComparisonTable()
+        <ComparisonTable
+          selectedPlayers={selectedPlayers}
+          teams={teams}
+          elementStats={elementStats}
+        />
       ) : (
-        <Box
-          sx={{
-            display: "flex",
-            height: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            p: 2,
-          }}
-        >
-          <Box
-            onClick={(): void => setDropdownOpen(true)}
-            sx={{
-              display: "flex",
-              boxShadow: 5,
-              alignItems: "center",
-              p: 2,
-              flexDirection: "column",
-              rowGap: 2,
-              borderRadius: "10%",
-              cursor: "pointer",
-              "&:hover": {
-                backgroundColor: "rgb(224, 224, 224)",
-              },
-              width: "20%",
-            }}
-          >
-            <ArrowUpward
-              sx={{ borderRadius: "50%", backgroundColor: "#16B7EA", color: "white", fontSize: 40 }}
-            />
-            <Typography textAlign="center">
-              Add a players from the drop down to get started
-            </Typography>
-          </Box>
-        </Box>
+        renderAddPlayersBtn()
       )}
     </Box>
   );
