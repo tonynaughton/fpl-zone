@@ -27,7 +27,7 @@ export default function GameweekCountdown(): JSX.Element {
   }
 
   const renderer = ({ days, hours, minutes, completed }: CountdownRenderProps): JSX.Element => {
-    const gameweekName = nextGameweek.name;
+    const gameweekName = nextGameweek.name.toUpperCase();
     const daysLabel = days ? days + " day" + (days > 1 ? "s" : "") : "";
     const hoursLabel = hours ? hours + " hr" + (hours > 1 ? "s" : "") : "";
     const minsLabel = minutes ? minutes + " min" + (minutes > 1 ? "s" : "") : "";
@@ -35,7 +35,7 @@ export default function GameweekCountdown(): JSX.Element {
     if (completed) {
       return (
         <Typography>
-          {gameweekName}
+          {gameweekName.toUpperCase()}
           <br />
           in progress
         </Typography>
@@ -43,9 +43,9 @@ export default function GameweekCountdown(): JSX.Element {
     } else {
       return (
         <Typography>
-          {gameweekName} deadline:
+          {gameweekName} DEADLINE:
           <br />
-          {countdown}
+          {countdown.toUpperCase()}
         </Typography>
       );
     }

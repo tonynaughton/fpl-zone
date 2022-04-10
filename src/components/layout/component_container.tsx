@@ -57,7 +57,7 @@ export default function ComponentContainer({
           height: "auto",
         }}
       >
-        <Typography variant="h4">{title.toUpperCase()}</Typography>
+        <Typography variant="h3">{title.toUpperCase()}</Typography>
       </Box>
       {renderChildren()}
     </Box>
