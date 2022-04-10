@@ -81,8 +81,8 @@ export default function MatchDetailsModal({
           pt: 1.5,
         }}
       >
-        <Typography component="h5" sx={{ pb: 1 }}>
-          {statTitle.label}
+        <Typography component="h4" variant="h5" sx={{ pb: 1 }}>
+          {statTitle.label.toUpperCase()}
         </Typography>
         <Grid container columnSpacing={2}>
           <Grid item xs={6}>
@@ -132,7 +132,7 @@ export default function MatchDetailsModal({
           p: 4,
           flexDirection: "column",
           alignItems: "center",
-          rowGap: "1em",
+          rowGap: 1,
           zIndex: 2000,
         }}
         // https://stackoverflow.com/questions/49637047/prevent-onclick-from-firing-if-another-element-is-on-top
@@ -151,10 +151,12 @@ export default function MatchDetailsModal({
             width: "100%",
             flexDirection: "column",
             alignItems: "center",
-            rowGap: 3,
+            rowGap: 2,
           }}
         >
-          {selectedResult.kickoff_time && formatDate(new Date(selectedResult.kickoff_time))}
+          <Typography variant="h5">
+            {selectedResult.kickoff_time && formatDate(new Date(selectedResult.kickoff_time))}
+          </Typography>
           {renderResult(customResult, true, allTeams)}
           {renderStat("goals_scored")}
           {renderStat("assists")}
