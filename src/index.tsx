@@ -17,33 +17,32 @@ import FixturesAndResultsPage from "pages/fixtures_and_results_page";
 
 const customTheme = createTheme({
   typography: {
-    fontFamily: ["Poppins", "Grandstander"].join(","),
+    fontFamily: ["Grandstander"].join(","),
+    fontWeightRegular: 500,
     h1: {
-      fontFamily: "Grandstander",
-      fontSize: 45,
+      fontWeight: 600,
+      fontSize: 42,
     },
     h2: {
-      fontFamily: "Grandstander",
-      fontSize: 40,
+      fontWeight: 600,
+      fontSize: 32,
     },
     h3: {
-      fontFamily: "Grandstander",
-      fontSize: 30,
+      fontWeight: 600,
+      fontSize: "2.4vh",
     },
     h4: {
-      fontFamily: "Grandstander",
+      fontWeight: 600,
       fontSize: 25,
     },
     h5: {
-      fontFamily: "Poppins",
+      fontWeight: 600,
       fontSize: 18,
     },
     body1: {
-      fontFamily: "Poppins",
       fontSize: 16,
     },
     body2: {
-      fontFamily: "Poppins",
       fontSize: "1.5vh",
     },
   },

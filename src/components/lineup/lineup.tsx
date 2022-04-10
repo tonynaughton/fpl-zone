@@ -76,21 +76,23 @@ export default function Lineup({
             <Typography sx={textStyling} variant="h5">
               Active Chip:
               <br />
-              {activeChip}
+              <Typography variant="body1">{activeChip}</Typography>
             </Typography>
           )}
           {teamData && (
             <Typography sx={textStyling} variant="h5">
               GW Points:
               <br />
-              {teamData.summary_event_points}
+              <Typography variant="body1">{teamData.summary_event_points}</Typography>
             </Typography>
           )}
           {teamData && (
             <Typography sx={textStyling} variant="h5">
               Overall Rank:
               <br />
-              {numberWithCommas(teamData.summary_overall_rank)}
+              <Typography variant="body1">
+                {numberWithCommas(teamData.summary_overall_rank)}
+              </Typography>
             </Typography>
           )}
         </Box>
