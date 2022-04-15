@@ -86,6 +86,13 @@ const customTheme = createTheme({
         },
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          padding: "0 0.5vw",
+        },
+      },
+    },
   },
 });
 

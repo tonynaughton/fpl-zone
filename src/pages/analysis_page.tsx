@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
-import { getAllFixtures, getGameData } from "api/fpl_api_provider";
+import { getGameData } from "api/fpl_api_provider";
 import AppLayout from "components/layout/app_layout";
 import ComponentContainer from "components/layout/component_container";
 import Error from "components/layout/error";
@@ -9,7 +9,6 @@ import { auth } from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { Gameweek } from "types";
 import PlayerComparison from "components/comparison/player_comparison";
 
 export default function AnalysisPage(): JSX.Element {
@@ -27,35 +26,23 @@ export default function AnalysisPage(): JSX.Element {
     error: gameDataError,
   } = useQuery("game-data", getGameData);
 
-  const {
-    data: fixtures,
-    isLoading: fixturesLoading,
-    error: fixturesError,
-  } = useQuery("fixture-data", getAllFixtures);
-
   const allTeams = gameData?.teams;
   const players = gameData?.elements;
   const elementStats = gameData?.element_stats;
-  const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
-  const currentGameweekDeadline = new Date(currentGameweek?.deadline_time);
-  const latestGameweek =
-    currentGameweekDeadline < new Date()
-      ? currentGameweek
-      : (gameData?.events.find((gw) => gw.is_previous) as Gameweek);
+  const positions = gameData?.element_types;
 
   const renderPlayerComparsion = (): JSX.Element => {
-    const propsAvailable = !!(players && fixtures && elementStats && latestGameweek && allTeams);
+    const propsAvailable = !!(players && elementStats && allTeams && positions);
     if (propsAvailable) {
       return (
         <PlayerComparison
-          gameweek={latestGameweek}
           players={players}
-          fixtures={fixtures}
           elementStats={elementStats}
           teams={allTeams}
+          positions={positions}
         />
       );
-    } else if (gameDataLoading || fixturesLoading) {
+    } else if (gameDataLoading) {
       return <Loading message="Fetching game data.." />;
     } else {
       return <Error message="Error getting data!" />;
@@ -64,11 +51,7 @@ export default function AnalysisPage(): JSX.Element {
 
   return (
     <AppLayout activeLabel="analysis" direction="row">
-      <ComponentContainer
-        isLoading={gameDataLoading}
-        error={gameDataError || fixturesError}
-        title="comparison"
-      >
+      <ComponentContainer isLoading={gameDataLoading} error={gameDataError} title="comparison">
         {renderPlayerComparsion()}
       </ComponentContainer>
     </AppLayout>

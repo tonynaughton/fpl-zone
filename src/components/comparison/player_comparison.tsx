@@ -1,48 +1,50 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import { Autocomplete, Box, Checkbox, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Alert, Autocomplete, Box, Chip, TextField, Typography, Snackbar } from "@mui/material";
 import { Player } from "types/player";
 import { getTeamById } from "helpers";
-import { Fixture, Gameweek, PlayerStat, Team } from "types";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { PlayerStat, Position, Team } from "types";
 import { ArrowUpward } from "@mui/icons-material";
 import ComparisonTable from "./comparison_table";
 
 interface PlayerComparisonProps {
   players: Player[];
   teams: Team[];
-  fixtures: Fixture[];
   elementStats: PlayerStat[];
-  gameweek: Gameweek;
+  positions: Position[];
 }
 
 export default function PlayerComparison({
   players,
   teams,
-  fixtures,
   elementStats,
-  gameweek,
+  positions,
 }: PlayerComparisonProps): JSX.Element {
-  console.log("🚀 ~ file: player_comparison.tsx ~ line 27 ~ gameweek", gameweek);
-  console.log("🚀 ~ file: player_comparison.tsx ~ line 38 ~ fixtures", fixtures);
+  const MAX_PLAYER_COUNT = 10;
   const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleAutocompleteChange = (_event: unknown, value: Player[]): void => {
     setSelectedPlayers(value);
   };
 
-  const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-  const checkedIcon = <CheckBoxIcon fontSize="small" />;
+  useEffect(() => {
+    if (selectedPlayers.length === MAX_PLAYER_COUNT) {
+      setSnackbarOpen(true);
+    }
+  }, [selectedPlayers]);
 
-  const renderDropdownOption = (props, player: Player, { selected }): JSX.Element => {
+  const renderDropdownOption = (props, player: Player): JSX.Element => {
+    const positionName = positions.find((pos) => pos.id === player.element_type);
     return (
       // eslint-disable-next-line react/prop-types
       <li {...props} key={props.id}>
-        <Checkbox icon={icon} checkedIcon={checkedIcon} sx={{ mr: 0.5 }} checked={selected} />
-        {`${player.first_name} ${player.second_name}`}
+        <Typography>
+          {`${player.first_name} ${player.second_name} (${
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            positionName!.singular_name_short
+          })`}
+        </Typography>
       </li>
     );
   };
@@ -54,11 +56,9 @@ export default function PlayerComparison({
           display: "flex",
           alignItems: "center",
           JustifyContent: "center",
-          width: "100%",
-          margin: "auto",
           columnGap: 2,
-          p: 1.5,
-          pl: "180px",
+          p: 2,
+          pl: "10vw",
         }}
       >
         <Typography sx={{ fontSize: 22, color: "black" }}>Players: </Typography>
@@ -73,12 +73,25 @@ export default function PlayerComparison({
           open={dropdownOpen}
           onOpen={(): void => setDropdownOpen(true)}
           onClose={(): void => setDropdownOpen(false)}
-          limitTags={4}
+          limitTags={MAX_PLAYER_COUNT}
           getOptionLabel={(player: Player): string => `${player.first_name} ${player.second_name}`}
           renderOption={renderDropdownOption}
           renderInput={(params): JSX.Element => <TextField {...params} />}
           size="small"
           onChange={handleAutocompleteChange}
+          clearOnBlur
+          onBlur={(): void => setDropdownOpen(false)}
+          disabled={selectedPlayers.length >= MAX_PLAYER_COUNT}
+          renderTags={(player: Player[], getTagProps): JSX.Element[] =>
+            player.map((player, index) => (
+              <Chip
+                {...getTagProps({ index })}
+                key={index}
+                label={<Typography variant="body2">{player.web_name}</Typography>}
+                disabled={false}
+              />
+            ))
+          }
         />
       </Box>
     );
@@ -140,6 +153,24 @@ export default function PlayerComparison({
       ) : (
         renderAddPlayersBtn()
       )}
+      <Snackbar
+        autoHideDuration={5000}
+        open={snackbarOpen}
+        onClose={(): void => setSnackbarOpen(false)}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <Alert
+          onClose={(): void => setSnackbarOpen(false)}
+          severity="error"
+          elevation={6}
+          variant="filled"
+        >
+          Maximum player count reached ({MAX_PLAYER_COUNT})
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
