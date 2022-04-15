@@ -1,47 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "config/firebase";
 import AppLayout from "components/layout/app_layout";
 import GameweekSummary from "components/gameweek_summary/gameweek_summary";
-import { useQuery } from "react-query";
-import { getGameData } from "api/fpl_api_provider";
 import { Gameweek } from "types/gameweek";
-import { Player } from "types/player";
 import ComponentContainer from "components/layout/component_container";
 import { Grid, Typography } from "@mui/material";
-import { Position } from "types/position";
 import DreamTeam from "components/dream_team/dream_team";
 import Loading from "components/layout/loading";
 import Error from "components/layout/error";
-import { PlayerStat, Team } from "types";
+import { GameData } from "types";
+import { GameDataContext } from "index";
 
 export default function GameweekLivePage(): JSX.Element {
-  const [user, loading] = useAuthState(auth);
+  const [user, userLoading] = useAuthState(auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loading) return;
+    if (userLoading) return;
     if (!user) return navigate("/login");
   });
 
-  const { data, isLoading, error } = useQuery("game-data", getGameData);
+  const gameData = useContext(GameDataContext) as GameData;
 
-  let allGameweeks: Gameweek[];
-  let allPlayers: Player[] | undefined;
-  let allTeams: Team[];
-  let positions: Position[] | undefined;
-  let currentGameweek: Gameweek | undefined;
-  let elementStats: PlayerStat[];
-
-  if (data) {
-    allGameweeks = data.events;
-    allPlayers = data.elements;
-    allTeams = data.teams;
-    positions = data.element_types;
-    currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
-    elementStats = data.element_stats;
-  }
+  const allGameweeks = gameData.events;
+  const allPlayers = gameData.elements;
+  const allTeams = gameData.teams;
+  const positions = gameData.element_types;
+  const currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
+  const elementStats = gameData.element_stats;
 
   // FPL game gets temporarily suspended when it is updating (i.e. fetched data will be inaccurate).
   // This update takes place at the beginning of each gameweek between the deadline
@@ -61,9 +49,7 @@ export default function GameweekLivePage(): JSX.Element {
   const renderDreamTeam = (): JSX.Element => {
     if (gameIsUpdating) {
       return <Loading message="Game is updating.." />;
-    } else if (isLoading) {
-      return <Loading message="Fetching game data data.." />;
-    } else if (data && allPlayers && positions && elementStats) {
+    } else {
       return (
         <DreamTeam
           players={allPlayers}
@@ -72,20 +58,14 @@ export default function GameweekLivePage(): JSX.Element {
           teams={allTeams}
         />
       );
-    } else {
-      return <Error message="Error getting data!" />;
     }
   };
 
   const renderGameweekSummary = (): JSX.Element => {
     if (gameIsUpdating) {
       return <Loading message="Game is updating.." />;
-    } else if (isLoading) {
-      return <Loading message="Fetching game data.." />;
-    } else if (data && currentGameweek && allPlayers) {
-      return <GameweekSummary gameweek={currentGameweek} players={allPlayers} />;
     } else {
-      return <Typography>Error getting data!</Typography>;
+      return <GameweekSummary gameweek={currentGameweek} players={allPlayers} />;
     }
   };
 
@@ -93,14 +73,10 @@ export default function GameweekLivePage(): JSX.Element {
     <AppLayout activeLabel="gameweek live" direction="row">
       <Grid container columnSpacing={4}>
         <Grid item xs={9}>
-          <ComponentContainer isLoading={isLoading} error={error} title="dream team">
-            {renderDreamTeam()}
-          </ComponentContainer>
+          <ComponentContainer title="dream team">{renderDreamTeam()}</ComponentContainer>
         </Grid>
         <Grid item xs={3}>
-          <ComponentContainer isLoading={isLoading} error={error} title="summary">
-            {renderGameweekSummary()}
-          </ComponentContainer>
+          <ComponentContainer title="summary">{renderGameweekSummary()}</ComponentContainer>
         </Grid>
       </Grid>
     </AppLayout>
