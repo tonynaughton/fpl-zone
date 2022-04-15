@@ -14,6 +14,7 @@ import LoginPage from "pages/login_page";
 import GameweekLivePage from "pages/gameweek_live_page";
 import MyTeamPage from "pages/my_team_page";
 import FixturesAndResultsPage from "pages/fixtures_and_results_page";
+import AnalysisPage from "pages/analysis_page";
 
 const customTheme = createTheme({
   typography: {
@@ -85,6 +86,13 @@ const customTheme = createTheme({
         },
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          padding: "0 0.5vw",
+        },
+      },
+    },
   },
 });
 
@@ -119,6 +127,7 @@ const App = (): JSX.Element => {
               path="/fixtures-and-results"
               element={<PrivateRoute component={<FixturesAndResultsPage />} />}
             />
+            <Route path="/analysis" element={<PrivateRoute component={<AnalysisPage />} />} />
           </Routes>
         </Router>
       </ThemeProvider>
