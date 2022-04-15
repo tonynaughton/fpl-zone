@@ -6,6 +6,7 @@ import {
   Snackbar,
   Alert,
   AlertColor,
+  OutlinedInput,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +15,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { useAuthState } from "react-firebase-hooks/auth";
 import AuthLayout from "./auth_layout";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import TogglePasswordVis from "./toggle_password_vis";
 
 interface FormInput {
   email: string;
@@ -32,6 +34,7 @@ export default function LoginForm(): JSX.Element {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState("info");
+  const [showPassword, setShowPassword] = useState(false);
 
   const setSnackbar = (message: string, severity = "info"): void => {
     setSnackbarMessage(message);
@@ -102,16 +105,22 @@ export default function LoginForm(): JSX.Element {
               required: true,
             }}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-              <TextField
+              <OutlinedInput
+                sx={{ mt: 2 }}
                 autoFocus
                 className="text-input"
-                margin="normal"
                 placeholder="Password"
                 fullWidth
                 error={!!error}
                 value={value}
                 onChange={onChange}
-                type="password"
+                type={showPassword ? "text" : "password"}
+                endAdornment={
+                  <TogglePasswordVis
+                    showPassword={showPassword}
+                    setShowPassword={setShowPassword}
+                  />
+                }
               />
             )}
           />

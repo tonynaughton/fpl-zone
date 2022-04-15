@@ -8,12 +8,12 @@ import { getGameData, getTeamData, getTeamPicksForGameweek } from "api/fpl_api_p
 import FdrTable from "components/fdr/fdr";
 import { Gameweek, Player, TeamData, TeamPicks } from "types";
 import ComponentContainer from "components/layout/component_container";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Loading from "components/layout/loading";
 import { GetPlayerById } from "helpers";
 import Lineup from "components/lineup/lineup";
-import Error from "components/layout/error";
 import _ from "lodash";
+import Error from "components/layout/error";
 
 export default function MyTeamPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -24,8 +24,19 @@ export default function MyTeamPage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const { data: fplId } = useQuery([user?.uid], getUserFplTeamId);
-  const { data: gameData, isLoading, error } = useQuery("game-data", getGameData);
+  const {
+    data: fplId,
+    isLoading: fplIdFetchIsLoading,
+    error: fplIdFetchError,
+  } = useQuery([user?.uid], getUserFplTeamId);
+  const {
+    data: gameData,
+    isLoading: gameDataFetchIsLoading,
+    error: gameDataFetchError,
+  } = useQuery("game-data", getGameData);
+
+  const isLoading = !!(gameDataFetchIsLoading && fplIdFetchIsLoading);
+  const fetchError = fplIdFetchError || gameDataFetchError;
 
   const allTeams = gameData?.teams;
   const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
@@ -93,16 +104,17 @@ export default function MyTeamPage(): JSX.Element {
   };
 
   const renderTeamComponent = (): JSX.Element => {
+    const propsAvailable = !!(
+      gameData &&
+      currentGameweek &&
+      allTeams &&
+      playersFromTeamPicks &&
+      teamPicks &&
+      elementStats
+    );
     if (!fplId) {
       return <EnterFPLID />;
-    } else if (
-      !!gameData &&
-      !!currentGameweek &&
-      !!allTeams &&
-      !!playersFromTeamPicks &&
-      !!teamPicks &&
-      !!elementStats
-    ) {
+    } else if (propsAvailable) {
       return (
         <Lineup
           selected={getSelectedPlayers()}
@@ -114,40 +126,34 @@ export default function MyTeamPage(): JSX.Element {
           teams={allTeams}
         />
       );
-    } else if (isLoading) {
-      return <Loading message="Fetching game data.." />;
+    } else if (fetchError) {
+      return <Error message="Error getting data" />;
     } else {
-      return <Error message="Error getting data!" />;
+      return <Loading message="Fetching data.." />;
     }
   };
 
   const renderFdrTable = (): JSX.Element => {
+    const propsAvailable = !!(currentGameweek && playersFromTeamPicks && allTeams);
     if (!fplId) {
-      return (
-        <Box display="flex" alignItems="center" justifyContent="center" sx={{ height: "100%" }}>
-          Please add your FPL ID in&nbsp;
-          <Link to="/account" style={{ textDecoration: "none", color: "#16B7EA" }}>
-            Account
-          </Link>
-        </Box>
-      );
-    } else if (!!gameData && !!currentGameweek && !!allTeams && !!playersFromTeamPicks) {
+      return <EnterFPLID />;
+    } else if (propsAvailable) {
       return (
         <FdrTable currentGameweek={currentGameweek} type={playersFromTeamPicks} teams={allTeams} />
       );
-    } else if (isLoading) {
-      return <Loading message="Fetching game data.." />;
+    } else if (fetchError) {
+      return <Error message="Error getting data" />;
     } else {
-      return <Typography>Error getting data!</Typography>;
+      return <Loading message="Fetching data.." />;
     }
   };
 
   return (
     <AppLayout activeLabel="my team" direction="row">
-      <ComponentContainer title="team" isLoading={isLoading} error={error}>
+      <ComponentContainer title="team" isLoading={isLoading} error={fetchError}>
         {renderTeamComponent()}
       </ComponentContainer>
-      <ComponentContainer title="fdr" isLoading={isLoading} error={error}>
+      <ComponentContainer title="fdr" isLoading={isLoading} error={fetchError}>
         {renderFdrTable()}
       </ComponentContainer>
     </AppLayout>

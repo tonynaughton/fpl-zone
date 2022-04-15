@@ -18,10 +18,16 @@ import {
   Snackbar,
   Alert,
   AlertColor,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import "./authentication.css";
 import Loading from "components/layout/loading";
+import TogglePasswordVis from "./toggle_password_vis";
+import { Info } from "@mui/icons-material";
+import FplIdModal from "./fpl_id_modal";
 
 interface DetailsFormProps {
   registerPage: boolean;
@@ -55,6 +61,9 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState("info");
   const [userFound, setUserFound] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+  const [showFplIdModal, setShowFplIdModal] = useState(false);
 
   const setSnackbar = (message: string, severity = "info"): void => {
     setSnackbarMessage(message);
@@ -192,16 +201,22 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
                     required: true,
                   }}
                   render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                    <TextField
+                    <OutlinedInput
+                      sx={{ mt: 2 }}
                       className="text-input"
-                      margin="normal"
                       placeholder="Password"
                       fullWidth
                       error={!!error}
                       value={value}
                       onChange={onChange}
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       inputProps={{ form: { autoComplete: "off" } }}
+                      endAdornment={
+                        <TogglePasswordVis
+                          showPassword={showPassword}
+                          setShowPassword={setShowPassword}
+                        />
+                      }
                     />
                   )}
                 />
@@ -212,16 +227,22 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
                     required: true,
                   }}
                   render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                    <TextField
+                    <OutlinedInput
+                      sx={{ mt: 1 }}
                       className="text-input"
-                      margin="normal"
                       placeholder="Repeat password"
                       fullWidth
                       error={!!error}
                       value={value}
                       onChange={onChange}
-                      type="password"
+                      type={showRepeatPassword ? "text" : "password"}
                       inputProps={{ form: { autoComplete: "off" } }}
+                      endAdornment={
+                        <TogglePasswordVis
+                          showPassword={showRepeatPassword}
+                          setShowPassword={setShowRepeatPassword}
+                        />
+                      }
                     />
                   )}
                 />
@@ -231,14 +252,26 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
               name="fplId"
               control={control}
               render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <TextField
+                <OutlinedInput
+                  sx={{ mt: 2 }}
                   className="text-input"
-                  margin="normal"
                   placeholder="FPL ID (optional)"
                   fullWidth
                   error={!!error}
                   value={value}
                   onChange={onChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="show fpl id modal"
+                        onClick={(): void => setShowFplIdModal(true)}
+                        onMouseDown={(event): void => event.preventDefault()}
+                        edge="end"
+                      >
+                        <Info />
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
               )}
             />
@@ -281,6 +314,7 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
           )}
         </>
       )}
+      <FplIdModal modalVisible={showFplIdModal} setModalOpen={setShowFplIdModal} />
       <Snackbar
         autoHideDuration={6000}
         open={snackbarOpen}
