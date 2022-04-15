@@ -14,7 +14,8 @@ import { GetPlayerById } from "helpers";
 import Lineup from "components/lineup/lineup";
 import _ from "lodash";
 import Error from "components/layout/error";
-import { GameDataContext } from "index";
+import { AppDataContext } from "index";
+import { AppData } from "types/app_data";
 
 export default function MyTeamPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -25,8 +26,8 @@ export default function MyTeamPage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const gameData = useContext(GameDataContext) as GameData;
-  const currentGameweek = gameData.events.find((gw) => gw.is_current) as Gameweek;
+  const appData = useContext(AppDataContext) as AppData;
+  const currentGameweek = appData.gameData.events.find((gw) => gw.is_current) as Gameweek;
 
   // Fetching users stored FPL ID (if exists)
   const {
@@ -75,12 +76,14 @@ export default function MyTeamPage(): JSX.Element {
       const getSelectedPlayers = (): Player[][] => {
         const selectedByPos: Player[][] = [];
         const firstXIPicks = _.slice(teamPicks?.picks, 0, 11);
-        gameData.element_types.forEach((pos) => {
+        appData.gameData.element_types.forEach((pos) => {
           const picks = firstXIPicks.filter((pick) => {
-            const player = GetPlayerById(pick.element, gameData.elements);
+            const player = GetPlayerById(pick.element, appData.gameData.elements);
             return player.element_type === pos.id;
           });
-          const players = picks.map((pick) => GetPlayerById(pick.element, gameData.elements));
+          const players = picks.map((pick) =>
+            GetPlayerById(pick.element, appData.gameData.elements)
+          );
           selectedByPos.push(players);
         });
         return selectedByPos;
@@ -92,7 +95,7 @@ export default function MyTeamPage(): JSX.Element {
         const benchPlayersPicks = teamPicks!.picks.slice(11, 15);
         const benchPlayers = benchPlayersPicks.map((pick) =>
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          GetPlayerById(pick.element, gameData!.elements)
+          GetPlayerById(pick.element, appData!.gameData.elements)
         );
         return benchPlayers;
       };
@@ -103,9 +106,9 @@ export default function MyTeamPage(): JSX.Element {
           bench={getBenchPlayers()}
           teamPicks={teamPicks as TeamPicks}
           teamData={teamData as TeamData}
-          elementStats={gameData.element_stats}
+          elementStats={appData.gameData.element_stats}
           compressed
-          teams={gameData.teams}
+          teams={appData.gameData.teams}
         />
       );
     } else if (fplIdFetchError) {
@@ -126,11 +129,15 @@ export default function MyTeamPage(): JSX.Element {
       const fdrPlayers =
         teamPicks &&
         _(teamPicks.picks)
-          .map((pick) => GetPlayerById(pick.element, gameData.elements))
+          .map((pick) => GetPlayerById(pick.element, appData.gameData.elements))
           .sortBy("element_type")
           .value();
       return (
-        <FdrTable currentGameweek={currentGameweek} type={fdrPlayers} teams={gameData.teams} />
+        <FdrTable
+          currentGameweek={currentGameweek}
+          type={fdrPlayers}
+          teams={appData.gameData.teams}
+        />
       );
     } else if (fplIdFetchError) {
       return <Error message="Error getting FPL ID" />;

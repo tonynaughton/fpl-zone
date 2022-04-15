@@ -6,8 +6,8 @@ import { auth } from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import PlayerComparison from "components/comparison/player_comparison";
-import { GameData } from "types";
-import { GameDataContext } from "index";
+import { AppDataContext } from "index";
+import { AppData } from "types/app_data";
 
 export default function AnalysisPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -18,15 +18,15 @@ export default function AnalysisPage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const gameData = useContext(GameDataContext) as GameData;
+  const appData = useContext(AppDataContext) as AppData;
 
   const renderPlayerComparsion = (): JSX.Element => {
     return (
       <PlayerComparison
-        players={gameData.elements}
-        elementStats={gameData.element_stats}
-        teams={gameData.teams}
-        positions={gameData.element_types}
+        players={appData.gameData.elements}
+        elementStats={appData.gameData.element_stats}
+        teams={appData.gameData.teams}
+        positions={appData.gameData.element_types}
       />
     );
   };
