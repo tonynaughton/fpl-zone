@@ -6,10 +6,9 @@ import AppLayout from "components/layout/app_layout";
 import GameweekSummary from "components/gameweek_summary/gameweek_summary";
 import { Gameweek } from "types/gameweek";
 import ComponentContainer from "components/layout/component_container";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import DreamTeam from "components/dream_team/dream_team";
 import Loading from "components/layout/loading";
-import Error from "components/layout/error";
 import { GameData } from "types";
 import { GameDataContext } from "index";
 

@@ -26,7 +26,7 @@ export default function FixtureBox({
     const text = `${getTeamById(oppositionId)} (${isHome ? "H" : "A"})`;
 
     return (
-      <Tooltip title={text} placement="top" enterDelay={500} arrow>
+      <Tooltip title={text} placement="top" enterDelay={500} key={key} arrow>
         <Box
           sx={{
             p: 0.5,
