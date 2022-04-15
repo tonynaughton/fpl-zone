@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import RegisterPage from "pages/register_page";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import ResetPage from "pages/reset_page";
-import "./global.css";
 import PrivateRoute from "private_route";
 import Logout from "components/authentication/logout";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import AccountPage from "pages/account_page";
 import LoginPage from "pages/login_page";
 import GameweekLivePage from "pages/gameweek_live_page";
 import MyTeamPage from "pages/my_team_page";
 import FixturesAndResultsPage from "pages/fixtures_and_results_page";
 import AnalysisPage from "pages/analysis_page";
+import { getGameData } from "api/fpl_api_provider";
+import "./global.css";
+import { GameData } from "types";
+import Loading from "components/layout/loading";
 
 const customTheme = createTheme({
   typography: {
@@ -93,6 +96,16 @@ const customTheme = createTheme({
         },
       },
     },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#F9F9F9",
+        },
+        input: {
+          color: "black",
+        },
+      },
+    },
   },
 });
 
@@ -104,32 +117,50 @@ const queryClient = new QueryClient({
   },
 });
 
+export const GameDataContext = React.createContext<GameData | null>(null);
+
 const App = (): JSX.Element => {
-  return (
+  const [gameData, setGameData] = useState<GameData | null>(null);
+
+  useEffect(() => {
+    async function fetchGameData(): Promise<void> {
+      return await getGameData().then((response) => {
+        setGameData(response);
+      });
+    }
+
+    fetchGameData();
+  }, []);
+
+  return !gameData ? (
+    <Loading message="Loading.." />
+  ) : (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={customTheme}>
-        <CssBaseline />
-        <Router>
-          <Routes>
-            <Route path="*" element={<LoginPage />} />
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/reset" element={<ResetPage />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/account" element={<PrivateRoute component={<AccountPage />} />} />
-            <Route
-              path="/gameweek-live"
-              element={<PrivateRoute component={<GameweekLivePage />} />}
-            />
-            <Route path="/my-team" element={<PrivateRoute component={<MyTeamPage />} />} />
-            <Route
-              path="/fixtures-and-results"
-              element={<PrivateRoute component={<FixturesAndResultsPage />} />}
-            />
-            <Route path="/analysis" element={<PrivateRoute component={<AnalysisPage />} />} />
-          </Routes>
-        </Router>
+        <GameDataContext.Provider value={gameData}>
+          <CssBaseline />
+          <Router>
+            <Routes>
+              <Route path="*" element={<LoginPage />} />
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/reset" element={<ResetPage />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/account" element={<PrivateRoute component={<AccountPage />} />} />
+              <Route
+                path="/gameweek-live"
+                element={<PrivateRoute component={<GameweekLivePage />} />}
+              />
+              <Route path="/my-team" element={<PrivateRoute component={<MyTeamPage />} />} />
+              <Route
+                path="/fixtures-and-results"
+                element={<PrivateRoute component={<FixturesAndResultsPage />} />}
+              />
+              <Route path="/analysis" element={<PrivateRoute component={<AnalysisPage />} />} />
+            </Routes>
+          </Router>
+        </GameDataContext.Provider>
       </ThemeProvider>
     </QueryClientProvider>
   );
