@@ -9,8 +9,8 @@ import ComponentContainer from "components/layout/component_container";
 import { Grid } from "@mui/material";
 import DreamTeam from "components/dream_team/dream_team";
 import Loading from "components/layout/loading";
-import { GameData } from "types";
-import { GameDataContext } from "index";
+import { AppDataContext } from "index";
+import { AppData } from "types/app_data";
 
 export default function GameweekLivePage(): JSX.Element {
   const [user, userLoading] = useAuthState(auth);
@@ -21,14 +21,11 @@ export default function GameweekLivePage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const gameData = useContext(GameDataContext) as GameData;
+  const appData = useContext(AppDataContext) as AppData;
 
-  const allGameweeks = gameData.events;
-  const allPlayers = gameData.elements;
-  const allTeams = gameData.teams;
-  const positions = gameData.element_types;
+  const allGameweeks = appData.gameData.events;
+  const allPlayers = appData.gameData.elements;
   const currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
-  const elementStats = gameData.element_stats;
 
   // FPL game gets temporarily suspended when it is updating (i.e. fetched data will be inaccurate).
   // This update takes place at the beginning of each gameweek between the deadline
@@ -51,10 +48,10 @@ export default function GameweekLivePage(): JSX.Element {
     } else {
       return (
         <DreamTeam
-          players={allPlayers}
-          positions={positions}
-          elementStats={elementStats}
-          teams={allTeams}
+          players={appData.gameData.elements}
+          positions={appData.gameData.element_types}
+          elementStats={appData.gameData.element_stats}
+          teams={appData.gameData.teams}
         />
       );
     }

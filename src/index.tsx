@@ -14,10 +14,11 @@ import GameweekLivePage from "pages/gameweek_live_page";
 import MyTeamPage from "pages/my_team_page";
 import FixturesAndResultsPage from "pages/fixtures_and_results_page";
 import AnalysisPage from "pages/analysis_page";
-import { getGameData } from "api/fpl_api_provider";
+import { getAllFixtures, getGameData } from "api/fpl_api_provider";
 import "./global.css";
-import { GameData } from "types";
+import { Fixture, GameData } from "types";
 import Loading from "components/layout/loading";
+import { AppData } from "types/app_data";
 
 const customTheme = createTheme({
   typography: {
@@ -117,15 +118,17 @@ const queryClient = new QueryClient({
   },
 });
 
-export const GameDataContext = React.createContext<GameData | null>(null);
+export const AppDataContext = React.createContext<AppData | null>(null);
 
 const App = (): JSX.Element => {
-  const [gameData, setGameData] = useState<GameData | null>(null);
+  const [appData, setAppData] = useState<AppData | null>(null);
 
   useEffect(() => {
     async function fetchGameData(): Promise<void> {
-      return await getGameData().then((response) => {
-        setGameData(response);
+      await getGameData().then(async (gameData) => {
+        await getAllFixtures().then((fixtureData) => {
+          setAppData({ gameData, fixtureData });
+        });
       });
     }
 
@@ -136,7 +139,7 @@ const App = (): JSX.Element => {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={customTheme}>
         <CssBaseline />
-        {!gameData ? (
+        {!appData ? (
           <Box
             sx={{
               display: "flex",
@@ -148,7 +151,7 @@ const App = (): JSX.Element => {
             <Loading message="Loading.." />
           </Box>
         ) : (
-          <GameDataContext.Provider value={gameData}>
+          <AppDataContext.Provider value={appData}>
             <Router>
               <Routes>
                 <Route path="*" element={<LoginPage />} />
@@ -170,7 +173,7 @@ const App = (): JSX.Element => {
                 <Route path="/analysis" element={<PrivateRoute component={<AnalysisPage />} />} />
               </Routes>
             </Router>
-          </GameDataContext.Provider>
+          </AppDataContext.Provider>
         )}
       </ThemeProvider>
     </QueryClientProvider>
