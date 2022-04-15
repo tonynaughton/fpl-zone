@@ -131,7 +131,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
         data-testid={testId}
       >
         <TableCell component="th" scope="row" key={index}>
-          <Typography variant="body1">{this.renderBaseItemName(baseItem)}</Typography>
+          {this.renderBaseItemName(baseItem)}
         </TableCell>
         {_.map(teamFixtures, (fixtures, key) => (
           <FixtureBox

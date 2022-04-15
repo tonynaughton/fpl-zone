@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Grid } from "@mui/material";
-import { getAllFixtures, getGameData } from "api/fpl_api_provider";
+import { getAllFixtures } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
 import AppLayout from "components/layout/app_layout";
 import ComponentContainer from "components/layout/component_container";
@@ -10,8 +10,9 @@ import { auth } from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { Gameweek } from "types";
+import { GameData, Gameweek } from "types";
 import Results from "components/results/results";
+import { GameDataContext } from "index";
 
 export default function FixturesAndResultsPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
@@ -22,11 +23,7 @@ export default function FixturesAndResultsPage(): JSX.Element {
     if (!user) return navigate("/login");
   });
 
-  const {
-    data: gameData,
-    isLoading: gameDataLoading,
-    error: gameDataError,
-  } = useQuery("game-data", getGameData);
+  const gameData = useContext(GameDataContext) as GameData;
 
   const {
     data: fixtures,
@@ -34,46 +31,32 @@ export default function FixturesAndResultsPage(): JSX.Element {
     error: fixturesError,
   } = useQuery("fixture-data", getAllFixtures);
 
-  const allTeams = gameData?.teams;
-  const allPlayers = gameData?.elements;
-  const elementStats = gameData?.element_stats;
-  const currentGameweek = gameData?.events.find((gw) => gw.is_current) as Gameweek;
-  const currentGameweekDeadline = new Date(currentGameweek?.deadline_time);
+  const currentGameweek = gameData.events.find((gw) => gw.is_current) as Gameweek;
+  const currentGameweekDeadline = new Date(currentGameweek.deadline_time);
   const latestGameweek =
     currentGameweekDeadline < new Date()
       ? currentGameweek
       : (gameData?.events.find((gw) => gw.is_previous) as Gameweek);
 
   const renderFdrTable = (): JSX.Element => {
-    if (!!gameData && !!currentGameweek && !!allTeams) {
-      return <FdrTable currentGameweek={currentGameweek} type={allTeams} teams={allTeams} />;
-    } else if (gameDataLoading) {
-      return <Loading message="Fetching game data.." />;
-    } else {
-      return <Error message="Error getting data!" />;
-    }
+    return (
+      <FdrTable currentGameweek={currentGameweek} type={gameData.teams} teams={gameData.teams} />
+    );
   };
 
   const renderResults = (): JSX.Element => {
-    if (
-      !!gameData &&
-      !!currentGameweek &&
-      !!allTeams &&
-      !!fixtures &&
-      !!allPlayers &&
-      !!elementStats
-    ) {
+    if (fixtures) {
       return (
         <Results
-          teams={allTeams}
+          teams={gameData.teams}
           fixtures={fixtures}
           latestGameweek={latestGameweek}
-          players={allPlayers}
-          elementStats={elementStats}
+          players={gameData.elements}
+          elementStats={gameData.element_stats}
         />
       );
     } else if (fixturesLoading) {
-      return <Loading message="Fetching game data.." />;
+      return <Loading message="Fetching fixture data.." />;
     } else {
       return <Error message="Error getting data!" />;
     }
@@ -83,12 +66,10 @@ export default function FixturesAndResultsPage(): JSX.Element {
     <AppLayout activeLabel="fixtures & results" direction="row">
       <Grid container columnSpacing={4}>
         <Grid item xs={8}>
-          <ComponentContainer isLoading={gameDataLoading} error={gameDataError} title="fdr">
-            {renderFdrTable()}
-          </ComponentContainer>
+          <ComponentContainer title="fdr">{renderFdrTable()}</ComponentContainer>
         </Grid>
         <Grid item xs={4}>
-          <ComponentContainer isLoading={gameDataLoading} error={fixturesError} title="results">
+          <ComponentContainer error={fixturesError} title="results">
             {renderResults()}
           </ComponentContainer>
         </Grid>

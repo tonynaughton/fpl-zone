@@ -1,11 +1,3 @@
-.MuiInputBase-root {
-  background-color: white;
-}
-
-.MuiInputBase-root .MuiInputBase-input {
-  color: black;
-}
-
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px #ffffff inset;
 }
