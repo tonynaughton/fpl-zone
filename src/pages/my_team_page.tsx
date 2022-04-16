@@ -6,11 +6,11 @@ import AppLayout from "components/layout/app_layout";
 import { useQuery } from "react-query";
 import { getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
-import { GameData, Gameweek, Player, TeamData, TeamPicks } from "types";
+import { Gameweek, Player, TeamData, TeamPicks } from "types";
 import ComponentContainer from "components/layout/component_container";
 import { Box } from "@mui/material";
 import Loading from "components/layout/loading";
-import { GetPlayerById } from "helpers";
+import { checkGameUpdatingStatus, GetPlayerById } from "helpers";
 import Lineup from "components/lineup/lineup";
 import _ from "lodash";
 import Error from "components/layout/error";
@@ -69,8 +69,11 @@ export default function MyTeamPage(): JSX.Element {
   };
 
   const renderTeamComponent = (): JSX.Element => {
+    const gameUpdatingStatus = checkGameUpdatingStatus(appData.gameData.events);
     if (!fplId) {
       return <EnterFPLID />;
+    } else if (gameUpdatingStatus) {
+      return <Loading message="Game is updating" />;
     } else if (teamPicks && teamData) {
       // Function which returns an array of players divided into sub arrays by position
       const getSelectedPlayers = (): Player[][] => {

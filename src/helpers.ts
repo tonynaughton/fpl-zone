@@ -1,4 +1,4 @@
-import { Team } from "types";
+import { Gameweek, Team } from "types";
 import { Player } from "types/player";
 
 export function GetPlayerById(playerId: number, players: Player[]): Player {
@@ -51,4 +51,25 @@ export function formatDate(kickOffDateTime: Date): string {
     " " +
     kickOffDateTime.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })
   );
+}
+
+// FPL game gets temporarily suspended when it is updating (i.e. fetched data will be inaccurate).
+// This update takes place at the beginning of each gameweek just after the deadline
+// for approximately 1.5 hours.
+export function checkGameUpdatingStatus(gameweeks: Gameweek[]): boolean {
+  const currentDateTime = new Date();
+  const currentGameweek = gameweeks.find((gameweek) => gameweek.is_current) as Gameweek;
+  const nextGameweek = gameweeks.find((gameweek) => gameweek.is_next) as Gameweek;
+  // Checking if next gamewek deadline has passed.
+  // There can sometimes be a delay in update of gameweek is_next status.
+  const relevantGameweek =
+    new Date(nextGameweek.deadline_time) < currentDateTime ? nextGameweek : currentGameweek;
+  const deadline = new Date(relevantGameweek.deadline_time);
+  const timeDifference = currentDateTime.getTime() - deadline.getTime();
+  // If current time is 1.5 hours (5400000 ms) since deadline, game will be updating
+  if (timeDifference < 5400000) {
+    return true;
+  } else {
+    return false;
+  }
 }
