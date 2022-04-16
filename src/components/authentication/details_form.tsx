@@ -95,12 +95,7 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
     }
   };
 
-  const {
-    control,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormInput>({ defaultValues });
+  const { control, handleSubmit, reset } = useForm<FormInput>({ defaultValues });
 
   useEffect(() => {
     if (loading) return;
@@ -148,18 +143,16 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
               name="firstName"
               control={control}
               render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <>
-                  <TextField
-                    className="text-input"
-                    margin="normal"
-                    placeholder="First name"
-                    fullWidth
-                    error={!!error}
-                    required
-                    value={value}
-                    onChange={onChange}
-                  />
-                </>
+                <TextField
+                  className="text-input"
+                  margin="normal"
+                  placeholder="First name"
+                  fullWidth
+                  error={!!error}
+                  required
+                  value={value}
+                  onChange={onChange}
+                />
               )}
             />
             <Controller
@@ -331,9 +324,6 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
           {snackbarMessage}
         </Alert>
       </Snackbar>
-      <Box>
-        <Typography sx={{ color: "white" }}>{errors.firstName?.message}</Typography>
-      </Box>
     </Box>
   );
 }
