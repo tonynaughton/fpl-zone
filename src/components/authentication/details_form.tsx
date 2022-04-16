@@ -21,6 +21,7 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
+  Typography,
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import "./authentication.css";
@@ -94,7 +95,12 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
     }
   };
 
-  const { control, handleSubmit, reset } = useForm<FormInput>({ defaultValues });
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormInput>({ defaultValues });
 
   useEffect(() => {
     if (loading) return;
@@ -141,27 +147,24 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
             <Controller
               name="firstName"
               control={control}
-              rules={{
-                required: true,
-              }}
               render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <TextField
-                  className="text-input"
-                  margin="normal"
-                  placeholder="First name"
-                  fullWidth
-                  error={!!error}
-                  value={value}
-                  onChange={onChange}
-                />
+                <>
+                  <TextField
+                    className="text-input"
+                    margin="normal"
+                    placeholder="First name"
+                    fullWidth
+                    error={!!error}
+                    required
+                    value={value}
+                    onChange={onChange}
+                  />
+                </>
               )}
             />
             <Controller
               name="lastName"
               control={control}
-              rules={{
-                required: true,
-              }}
               render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                 <TextField
                   className="text-input"
@@ -169,6 +172,7 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
                   placeholder="Last name"
                   fullWidth
                   error={!!error}
+                  required
                   value={value}
                   onChange={onChange}
                 />
@@ -177,9 +181,6 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
             <Controller
               name="email"
               control={control}
-              rules={{
-                required: true,
-              }}
               render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                 <TextField
                   className="text-input"
@@ -187,6 +188,7 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
                   placeholder="Email"
                   fullWidth
                   error={!!error}
+                  required
                   value={value}
                   onChange={onChange}
                 />
@@ -197,9 +199,6 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
                 <Controller
                   name="password"
                   control={control}
-                  rules={{
-                    required: true,
-                  }}
                   render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                     <OutlinedInput
                       sx={{ mt: 2 }}
@@ -207,6 +206,7 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
                       placeholder="Password"
                       fullWidth
                       error={!!error}
+                      required
                       value={value}
                       onChange={onChange}
                       type={showPassword ? "text" : "password"}
@@ -223,9 +223,6 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
                 <Controller
                   name="repeatPassword"
                   control={control}
-                  rules={{
-                    required: true,
-                  }}
                   render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                     <OutlinedInput
                       sx={{ mt: 1 }}
@@ -233,6 +230,7 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
                       placeholder="Repeat password"
                       fullWidth
                       error={!!error}
+                      required
                       value={value}
                       onChange={onChange}
                       type={showRepeatPassword ? "text" : "password"}
@@ -333,6 +331,9 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
           {snackbarMessage}
         </Alert>
       </Snackbar>
+      <Box>
+        <Typography sx={{ color: "white" }}>{errors.firstName?.message}</Typography>
+      </Box>
     </Box>
   );
 }
