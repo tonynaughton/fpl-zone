@@ -79,7 +79,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
             textOverflow: "ellipsis",
           }}
         >
-          <Typography variant="body2">{name}</Typography>
+          <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{name}</Typography>
         </Box>
       </Box>
     );

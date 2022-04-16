@@ -43,12 +43,16 @@ const customTheme = createTheme({
       fontWeight: 600,
       fontSize: 18,
     },
+    h6: {
+      fontWeight: 600,
+      fontSize: "1.8vh",
+    },
     body1: {
       fontSize: 16,
     },
     body2: {
       fontSize: "1.5vh",
-    },
+    }
   },
   palette: {
     primary: {
@@ -104,6 +108,11 @@ const customTheme = createTheme({
         input: {
           color: "black",
         },
+      },
+    },
+    MuiTypography: {
+      defaultProps: {
+        variant: "body2",
       },
     },
   },

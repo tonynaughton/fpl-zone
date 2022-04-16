@@ -47,7 +47,6 @@ export const renderResult = (
           width={30}
         />
         <Typography
-          variant="h5"
           key={key}
           textAlign="left"
           sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}
@@ -56,7 +55,7 @@ export const renderResult = (
         </Typography>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", flex: 0.7 }}>
-        <Typography key={key} sx={{ whiteSpace: "nowrap" }} variant="h5">
+        <Typography key={key} sx={{ whiteSpace: "nowrap" }} >
           {matchStatus}
         </Typography>
       </Box>
@@ -69,7 +68,6 @@ export const renderResult = (
         justifyContent="right"
       >
         <Typography
-          variant="h5"
           key={key}
           textAlign="right"
           sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}
@@ -134,7 +132,7 @@ export default function Results({
             <ArrowBack />
           </Tooltip>
         </IconButton>
-        <Typography fontSize={20} data-testid="selected-gameweek-title">
+        <Typography variant="h6" data-testid="selected-gameweek-title">
           GAMEWEEK {selectedGameweek}
         </Typography>
         <IconButton

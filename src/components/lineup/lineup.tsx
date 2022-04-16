@@ -73,26 +73,24 @@ export default function Lineup({
           }}
         >
           {teamPicks && (
-            <Typography sx={textStyling} variant="h5">
+            <Typography sx={textStyling} variant="h6">
               Active Chip:
               <br />
-              <Typography variant="body1">{activeChip}</Typography>
+              <Typography>{activeChip}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={textStyling} variant="h5">
+            <Typography sx={textStyling} variant="h6">
               GW Points:
               <br />
-              <Typography variant="body1">{teamData.summary_event_points}</Typography>
+              <Typography>{teamData.summary_event_points}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={textStyling} variant="h5">
+            <Typography sx={textStyling} variant="h6">
               Overall Rank:
               <br />
-              <Typography variant="body1">
-                {numberWithCommas(teamData.summary_overall_rank)}
-              </Typography>
+              <Typography>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
             </Typography>
           )}
         </Box>
