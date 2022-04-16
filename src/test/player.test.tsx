@@ -11,7 +11,7 @@ describe("Player Tests", () => {
   let mockIsCaptain: boolean;
   let mockIsViceCaptain: boolean;
 
-  const mockHandlePlayerPerformanceClick = (): void => console.log("TEST");
+  const mockHandlePlayerPerformanceClick = (): JSX.Element => <></>;
 
   const createComponent = (): JSX.Element => {
     return (

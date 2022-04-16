@@ -23,7 +23,6 @@ export default function MatchDetailsModal({
   elementStats,
   allTeams,
 }: MatchDetailsModalProps): JSX.Element {
-  console.log("🚀 ~ file: match_details_modal.tsx ~ line 23 ~ elementStats", elementStats);
   const statImageNames = {
     goals_scored: "football",
     assists: "boot",

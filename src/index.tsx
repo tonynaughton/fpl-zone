@@ -7,7 +7,7 @@ import { Box, CssBaseline } from "@mui/material";
 import ResetPage from "pages/reset_page";
 import PrivateRoute from "private_route";
 import Logout from "components/authentication/logout";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import AccountPage from "pages/account_page";
 import LoginPage from "pages/login_page";
 import GameweekLivePage from "pages/gameweek_live_page";
@@ -15,10 +15,9 @@ import MyTeamPage from "pages/my_team_page";
 import FixturesAndResultsPage from "pages/fixtures_and_results_page";
 import AnalysisPage from "pages/analysis_page";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
-import "./global.css";
-import { Fixture, GameData } from "types";
 import Loading from "components/layout/loading";
 import { AppData } from "types/app_data";
+import "./global.css";
 
 const customTheme = createTheme({
   typography: {
