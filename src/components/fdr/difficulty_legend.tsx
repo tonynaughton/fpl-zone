@@ -15,14 +15,13 @@ export default function DifficultyLegend(): JSX.Element {
       sx={{
         display: "flex",
         alignItems: "center",
-        minHeight: "50px",
+        minHeight: "6vh",
         width: "60%",
         margin: "auto",
         justifyContent: "center",
       }}
     >
       <Typography
-        variant="body1"
         sx={{
           mr: 1,
           textOverflow: "ellipsis",
