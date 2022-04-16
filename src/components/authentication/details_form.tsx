@@ -21,7 +21,6 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
-  Typography,
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import "./authentication.css";
