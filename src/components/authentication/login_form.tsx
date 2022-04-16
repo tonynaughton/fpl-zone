@@ -82,15 +82,13 @@ export default function LoginForm(): JSX.Element {
           <Controller
             name="email"
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <TextField
                 autoFocus
                 className="text-input"
                 margin="normal"
                 placeholder="Email"
+                required
                 fullWidth
                 error={!!error}
                 value={value}
@@ -101,9 +99,6 @@ export default function LoginForm(): JSX.Element {
           <Controller
             name="password"
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <OutlinedInput
                 sx={{ mt: 2 }}
@@ -112,6 +107,7 @@ export default function LoginForm(): JSX.Element {
                 placeholder="Password"
                 fullWidth
                 error={!!error}
+                required
                 value={value}
                 onChange={onChange}
                 type={showPassword ? "text" : "password"}
