@@ -13,10 +13,10 @@ export function ErrorMessage({ message }: ErrorProps): JSX.Element {
       justifyContent="center"
       alignItems="center"
       flexDirection="column"
-      sx={{ height: "100%", rowGap: "20px" }}
+      sx={{ rowGap: "2em" }}
     >
-      <Warning />
-      <Typography>{message}</Typography>
+      <Typography variant="body1">{message}</Typography>
+      <Warning sx={{ fontSize: "5vh" }} />
     </Box>
   );
 }

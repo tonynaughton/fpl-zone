@@ -12,10 +12,10 @@ export function LoadingMessage({ message }: LoadingMessageProps): JSX.Element {
       justifyContent="center"
       alignItems="center"
       flexDirection="column"
-      sx={{ height: "100%", rowGap: "20px" }}
+      sx={{ rowGap: "2em" }}
     >
-      <Typography>{message}</Typography>
-      <CircularProgress />
+      <Typography variant="body1">{message}</Typography>
+      <CircularProgress sx={{ color: "black" }} />
     </Box>
   );
 }
