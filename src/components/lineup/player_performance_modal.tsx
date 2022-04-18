@@ -23,9 +23,9 @@ import { Close } from "@mui/icons-material";
 import { getPlayerData } from "api/fpl_api_provider";
 import { useQuery } from "react-query";
 import { LoadingMessage } from "components/layout";
-import { renderResult } from "components/results/results";
 import _ from "lodash";
 import { AppDataContext } from "app_content";
+import { renderResult } from "components/results/result";
 
 interface PlayerPerformanceModalProps {
   isPlayerPerformanceModalOpen: boolean;
