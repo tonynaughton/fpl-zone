@@ -42,9 +42,12 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
       ? (this.props.type as Player[])
       : (this.props.type as Team[]);
     this.nameColumnTitle = this.isPlayerTable ? "Player" : "Team";
-    this.nextFiveGameweeks = Array(5)
-      .fill(this.props.currentGameweek.id + 1)
-      .map((e, i) => e + i);
+    this.nextFiveGameweeks = [];
+
+    // eslint-disable-next-line no-loops/no-loops
+    for (let x = this.props.currentGameweek.id; x <= 38 && this.nextFiveGameweeks.length < 5; x++) {
+      this.nextFiveGameweeks.push(x);
+    }
 
     this.state = {
       nextFiveGameweekFixtures: [],
@@ -79,7 +82,9 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
             textOverflow: "ellipsis",
           }}
         >
-          <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{name}</Typography>
+          <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            {name}
+          </Typography>
         </Box>
       </Box>
     );
