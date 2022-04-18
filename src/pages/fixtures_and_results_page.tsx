@@ -1,16 +1,15 @@
 import React, { useContext, useEffect } from "react";
 import { Grid } from "@mui/material";
 import FdrTable from "components/fdr/fdr";
-import AppLayout from "components/layout/app_layout";
-import ComponentContainer from "components/layout/component_container";
+import { AppLayout, ComponentContainer } from "components/layout";
 import { auth } from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { Gameweek, AppData } from "types";
 import Results from "components/results/results";
-import { AppDataContext } from "index";
+import { AppDataContext } from "app_content";
 
-export default function FixturesAndResultsPage(): JSX.Element {
+export function FixturesAndResultsPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 

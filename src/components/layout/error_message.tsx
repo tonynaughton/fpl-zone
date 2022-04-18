@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { Warning } from "@mui/icons-material";
 
-interface LoadingProps {
+interface ErrorProps {
   message: string;
 }
 
-export default function Loading({ message }: LoadingProps): JSX.Element {
+export function ErrorMessage({ message }: ErrorProps): JSX.Element {
   return (
     <Box
       display="flex"
@@ -14,8 +15,8 @@ export default function Loading({ message }: LoadingProps): JSX.Element {
       flexDirection="column"
       sx={{ height: "100%", rowGap: "20px" }}
     >
+      <Warning />
       <Typography>{message}</Typography>
-      <CircularProgress />
     </Box>
   );
 }

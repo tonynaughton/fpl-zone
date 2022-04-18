@@ -12,7 +12,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
-  Button,
+Button,
   TextField,
   Link as MuiLink,
   Snackbar,
@@ -23,11 +23,11 @@ import {
   IconButton,
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-import "./authentication.css";
-import Loading from "components/layout/loading";
+import { LoadingMessage } from "components/layout";
 import TogglePasswordVis from "./toggle_password_vis";
 import { Info } from "@mui/icons-material";
 import FplIdModal from "./fpl_id_modal";
+import "./authentication.css";
 
 interface DetailsFormProps {
   registerPage: boolean;
@@ -134,7 +134,7 @@ export default function ReactHookFormTest({ registerPage }: DetailsFormProps): J
   return (
     <Box component="div">
       {!registerPage && !userFound ? (
-        <Loading message="Fetching user data.." />
+        <LoadingMessage message="Fetching user data.." />
       ) : (
         <>
           <form onSubmit={handleSubmit(onDetailsSave)}>

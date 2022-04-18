@@ -2,17 +2,15 @@ import React, { useContext, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "config/firebase";
-import AppLayout from "components/layout/app_layout";
+import { AppLayout, ComponentContainer, LoadingMessage } from "components/layout";
 import GameweekSummary from "components/gameweek_summary/gameweek_summary";
-import ComponentContainer from "components/layout/component_container";
 import { Grid } from "@mui/material";
 import DreamTeam from "components/dream_team/dream_team";
-import Loading from "components/layout/loading";
-import { AppDataContext } from "index";
 import { AppData, Gameweek } from "types";
 import { checkGameUpdatingStatus } from "helpers";
+import { AppDataContext } from "app_content";
 
-export default function GameweekLivePage(): JSX.Element {
+export function GameweekLivePage(): JSX.Element {
   const [user, userLoading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -30,17 +28,15 @@ export default function GameweekLivePage(): JSX.Element {
 
   const renderDreamTeam = (): JSX.Element => {
     if (gameIsUpdating) {
-      return <Loading message="Game is updating.." />;
+      return <LoadingMessage message="Game is updating.." />;
     } else {
-      return (
-        <DreamTeam />
-      );
+      return <DreamTeam />;
     }
   };
 
   const renderGameweekSummary = (): JSX.Element => {
     if (gameIsUpdating) {
-      return <Loading message="Game is updating.." />;
+      return <LoadingMessage message="Game is updating.." />;
     } else {
       return <GameweekSummary gameweek={currentGameweek} players={allPlayers} />;
     }

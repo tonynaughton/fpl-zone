@@ -1,9 +1,9 @@
 import React from "react";
 import { Container } from "@mui/material";
-import AppLayout from "components/layout/app_layout";
+import { AppLayout } from "components/layout";
 import DetailsForm from "../components/authentication/details_form";
 
-export default function AccountPage(): JSX.Element {
+export function AccountPage(): JSX.Element {
   return (
     <AppLayout activeLabel="account" direction="row">
       <Container component="main" maxWidth="sm">

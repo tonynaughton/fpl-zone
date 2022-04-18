@@ -2,21 +2,18 @@ import React, { useContext, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, getUserFplTeamId } from "config/firebase";
-import AppLayout from "components/layout/app_layout";
 import { useQuery } from "react-query";
 import { getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
 import { Gameweek, Player, TeamData, TeamPicks, AppData } from "types";
-import ComponentContainer from "components/layout/component_container";
 import { Box } from "@mui/material";
-import Loading from "components/layout/loading";
 import { checkGameUpdatingStatus, GetPlayerById } from "helpers";
 import Lineup from "components/lineup/lineup";
 import _ from "lodash";
-import Error from "components/layout/error";
-import { AppDataContext } from "index";
+import { ErrorMessage, AppLayout, ComponentContainer, LoadingMessage } from "components/layout";
+import { AppDataContext } from "app_content";
 
-export default function MyTeamPage(): JSX.Element {
+export function MyTeamPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -72,7 +69,7 @@ export default function MyTeamPage(): JSX.Element {
     if (!fplId) {
       return <EnterFPLID />;
     } else if (gameUpdatingStatus) {
-      return <Loading message="Game is updating" />;
+      return <LoadingMessage message="Game is updating" />;
     } else if (teamPicks && teamData) {
       // Function which returns an array of players divided into sub arrays by position
       const getSelectedPlayers = (): Player[][] => {
@@ -114,13 +111,13 @@ export default function MyTeamPage(): JSX.Element {
         />
       );
     } else if (fplIdFetchError) {
-      return <Error message="Error getting FPL ID" />;
+      return <ErrorMessage message="Error getting FPL ID" />;
     } else if (teamDataFetchError) {
-      return <Error message="Error getting your team data - is your FPL ID correct?" />;
+      return <ErrorMessage message="Error getting your team data - is your FPL ID correct?" />;
     } else if (teamPicksFetchError) {
-      return <Error message="Error getting your team picks - is your FPL ID correct?" />;
+      return <ErrorMessage message="Error getting your team picks - is your FPL ID correct?" />;
     } else {
-      return <Loading message="Fetching data.." />;
+      return <LoadingMessage message="Fetching data.." />;
     }
   };
 
@@ -142,13 +139,13 @@ export default function MyTeamPage(): JSX.Element {
         />
       );
     } else if (fplIdFetchError) {
-      return <Error message="Error getting FPL ID" />;
+      return <ErrorMessage message="Error getting FPL ID" />;
     } else if (teamDataFetchError) {
-      return <Error message="Error getting your team data - is your FPL ID correct?" />;
+      return <ErrorMessage message="Error getting your team data - is your FPL ID correct?" />;
     } else if (teamPicksFetchError) {
-      return <Error message="Error getting your team picks - is your FPL ID correct?" />;
+      return <ErrorMessage message="Error getting your team picks - is your FPL ID correct?" />;
     } else {
-      return <Loading message="Fetching data.." />;
+      return <LoadingMessage message="Fetching data.." />;
     }
   };
 

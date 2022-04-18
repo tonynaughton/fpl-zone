@@ -22,10 +22,10 @@ import {
 import { Close } from "@mui/icons-material";
 import { getPlayerData } from "api/fpl_api_provider";
 import { useQuery } from "react-query";
-import Loading from "components/layout/loading";
+import { LoadingMessage } from "components/layout";
 import { renderResult } from "components/results/results";
 import _ from "lodash";
-import { AppDataContext } from "index";
+import { AppDataContext } from "app_content";
 
 interface PlayerPerformanceModalProps {
   isPlayerPerformanceModalOpen: boolean;
@@ -160,7 +160,7 @@ export default function PlayerPerformanceModal({
           }}
         >
           {fetchingPlayerInfo ? (
-            <Loading message="Getting performance details.." />
+            <LoadingMessage message="Getting performance details.." />
           ) : (
             <Box
               sx={{

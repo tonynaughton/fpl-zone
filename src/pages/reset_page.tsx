@@ -1,4 +1,12 @@
-import { Box, Button, TextField, Link as MuiLink, Snackbar, Alert, AlertColor } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Link as MuiLink,
+  Snackbar,
+  Alert,
+  AlertColor,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
@@ -10,10 +18,10 @@ interface FormInput {
   email: string;
 }
 
-export default function ResetPage(): JSX.Element {
+export function ResetPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/dashboard");
@@ -42,7 +50,7 @@ export default function ResetPage(): JSX.Element {
   const onSendPasswordReset = async (data: FormInput): Promise<void> => {
     try {
       await sendPasswordReset(data.email);
-    } catch(err) {
+    } catch (err) {
       setSnackbar("Cannot send password reset email: " + err, "warning");
     }
   };
@@ -93,23 +101,23 @@ export default function ResetPage(): JSX.Element {
           Don&apos;t have an account? Click to register.
         </MuiLink>
         <Snackbar
-        autoHideDuration={6000}
-        open={snackbarOpen}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-      >
-        <Alert
+          autoHideDuration={6000}
+          open={snackbarOpen}
           onClose={handleSnackbarClose}
-          severity={snackbarSeverity as AlertColor}
-          elevation={6}
-          variant="filled"
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
         >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
+          <Alert
+            onClose={handleSnackbarClose}
+            severity={snackbarSeverity as AlertColor}
+            elevation={6}
+            variant="filled"
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
       </Box>
     </AuthLayout>
   );

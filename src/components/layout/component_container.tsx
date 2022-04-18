@@ -8,7 +8,7 @@ interface ComponentContainerProps {
   children: JSX.Element;
 }
 
-export default function ComponentContainer({
+export function ComponentContainer({
   title,
   isLoading,
   error,

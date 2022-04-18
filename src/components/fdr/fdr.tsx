@@ -14,7 +14,7 @@ import { Fixture, Gameweek, Player, Team } from "types";
 import _ from "lodash";
 import FixtureBox from "./fixture_box";
 import DifficultyLegend from "./difficulty_legend";
-import Loading from "components/layout/loading";
+import { LoadingMessage } from "components/layout";
 
 export type BaseItem = Player | Team;
 
@@ -153,7 +153,7 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
 
   public render(): JSX.Element {
     return _.isEmpty(this.state.nextFiveGameweekFixtures) ? (
-      <Loading message="Fetching fixture data.." />
+      <LoadingMessage message="Fetching fixture data.." />
     ) : (
       <Box
         display="flex"
