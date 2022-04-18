@@ -52,7 +52,7 @@ const customTheme = createTheme({
     },
     body2: {
       fontSize: "1.5vh",
-    }
+    },
   },
   palette: {
     primary: {
