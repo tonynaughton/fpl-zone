@@ -3,8 +3,8 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import Results from "components/results/results";
 import { mockAppData } from "test";
 import { Fixture, Gameweek } from "types";
-import "@testing-library/jest-dom/extend-expect";
 import { AppDataContext } from "app_content";
+import "@testing-library/jest-dom/extend-expect";
 
 describe("Results Tests", () => {
   const latestGameweek = mockAppData.gameData.events.find(

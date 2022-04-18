@@ -1,16 +1,14 @@
 import React from "react";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { Gameweek, Player } from "types";
 import FdrTable from "components/fdr/fdr";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { mockTeams, mockFixtures, mockPlayers, mockAppData } from "test";
-import "@testing-library/jest-dom/extend-expect";
 import { AppDataContext } from "app_content";
+import "@testing-library/jest-dom/extend-expect";
 
 describe("FDR Tests", () => {
-  let currentGameweek: Gameweek;
-
   const mockAdapter = new MockAdapter(axios);
 
   const mockReturnedFixtures = [mockFixtures.slice(0, 3)];

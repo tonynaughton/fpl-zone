@@ -4,8 +4,8 @@ import GameweekSummary from "./gameweek_summary";
 import { mockAppData, mockPlayers } from "test";
 import { GetPlayerById, numberWithCommas } from "helpers";
 import { AppDataContext } from "app_content";
-import "@testing-library/jest-dom/extend-expect";
 import { Gameweek } from "types";
+import "@testing-library/jest-dom/extend-expect";
 
 describe("Gameweek Summary Tests", () => {
   const createComponent = (): JSX.Element => {

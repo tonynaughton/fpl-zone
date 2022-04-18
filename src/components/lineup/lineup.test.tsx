@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { mockAppData, mockPlayers, mockPositions } from "test";
-import "@testing-library/jest-dom/extend-expect";
 import Lineup from "components/lineup/lineup";
 import { Player } from "types/player";
 import { AppDataContext } from "app_content";
