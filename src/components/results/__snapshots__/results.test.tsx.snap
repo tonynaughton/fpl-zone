@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Results Tests Snapshot test 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-7ghf53"
+    id="results-container"
+  >
+    <div
+      class="MuiBox-root css-gmuwbf"
+    >
+      <button
+        aria-label="prev-gameweek"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+        data-testid="prev-gameweek-btn"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          aria-label="Previous gameweek"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-mui-internal-clone-element="true"
+          data-testid="ArrowBackIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+      <h6
+        class="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+        data-testid="selected-gameweek-title"
+      >
+        GAMEWEEK 33
+      </h6>
+      <button
+        aria-label="prev-gameweek"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+        data-testid="next-gameweek-btn"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          aria-label="Next gameweek"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-mui-internal-clone-element="true"
+          data-testid="ArrowForwardIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+    <div
+      class="fixture-list-container MuiBox-root css-1oy3muc"
+    />
+  </div>
+</DocumentFragment>
+`;
