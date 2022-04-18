@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import NavDrawer from "../components/nav_drawer/nav_drawer";
+import NavDrawer from "./nav_drawer";
 import { MemoryRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { QueryClient, QueryClientProvider } from "react-query";

@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dream Team Tests Snapshot test 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-12kpaeh"
+  >
+    <div
+      class="MuiBox-root css-1bxf5j8"
+      data-testid="first-xi-players"
+    >
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+      <div
+        class="MuiBox-root css-geg32f"
+      />
+    </div>
+    <div
+      class="MuiBox-root css-1alt9xp"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
+      >
+        Bench
+      </h5>
+      <div
+        class="MuiBox-root css-1doxykz"
+        data-testid="bench-players"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

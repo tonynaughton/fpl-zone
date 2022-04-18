@@ -7,7 +7,7 @@ import {
   mockFixtures,
   mockPlayers,
   mockElementStats,
-} from "./fixture-data";
+} from "../../test/fixture-data";
 import { Fixture, Gameweek, Player, PlayerStat, Team } from "types";
 import "@testing-library/jest-dom/extend-expect";
 

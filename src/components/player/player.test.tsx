@@ -1,6 +1,6 @@
 import React from "react";
 import { cleanup, render, screen } from "@testing-library/react";
-import { mockPlayers } from "./fixture-data";
+import { mockPlayers } from "../../test/fixture-data";
 import Player from "components/player/player";
 import { Player as PlayerType } from "types";
 import "@testing-library/jest-dom/extend-expect";
@@ -11,7 +11,7 @@ describe("Player Tests", () => {
   let mockIsCaptain: boolean;
   let mockIsViceCaptain: boolean;
 
-  const mockHandlePlayerPerformanceClick = (): JSX.Element => <></>;
+  const mockHandlePlayerPerformanceClick = (): void => console.log("TEST");
 
   const createComponent = (): JSX.Element => {
     return (

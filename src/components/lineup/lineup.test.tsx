@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { mockElementStats, mockPlayers, mockPositions, mockTeams } from "./fixture-data";
+import { mockElementStats, mockPlayers, mockPositions, mockTeams } from "../../test/fixture-data";
 import "@testing-library/jest-dom/extend-expect";
 import Lineup from "components/lineup/lineup";
 import { Player } from "types/player";
