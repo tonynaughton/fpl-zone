@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gameweek Summary Tests Renders as expected 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-jdlf87"
+  >
+    <div
+      class="MuiBox-root css-1g4yje1"
+    >
+      <h3
+        class="MuiTypography-root MuiTypography-h3 css-1f5yx6w-MuiTypography-root"
+        data-testid="highest score-label"
+      >
+        HIGHEST SCORE
+      </h3>
+      <div
+        class="MuiBox-root css-jkw4gz"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1e4rbu-MuiTypography-root"
+          data-testid="highest score-player-name"
+        />
+      </div>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-19gyy9g-MuiTypography-root"
+        data-testid="highest score-stat-value"
+      >
+        104 pts
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-1g4yje1"
+    >
+      <h3
+        class="MuiTypography-root MuiTypography-h3 css-1f5yx6w-MuiTypography-root"
+        data-testid="average score-label"
+      >
+        AVERAGE SCORE
+      </h3>
+      <div
+        class="MuiBox-root css-jkw4gz"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1e4rbu-MuiTypography-root"
+          data-testid="average score-player-name"
+        />
+      </div>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-19gyy9g-MuiTypography-root"
+        data-testid="average score-stat-value"
+      >
+        18 pts
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-1g4yje1"
+    >
+      <h3
+        class="MuiTypography-root MuiTypography-h3 css-1f5yx6w-MuiTypography-root"
+        data-testid="star player-label"
+      >
+        STAR PLAYER
+      </h3>
+      <div
+        class="MuiBox-root css-jkw4gz"
+      >
+        <img
+          alt="star player-crest-img"
+          height="80%"
+          src="/assets/images/crests/3.png"
+        />
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1e4rbu-MuiTypography-root"
+          data-testid="star player-player-name"
+        >
+          Jankin
+        </p>
+      </div>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-19gyy9g-MuiTypography-root"
+        data-testid="star player-stat-value"
+      >
+        17 pts
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-1g4yje1"
+    >
+      <h3
+        class="MuiTypography-root MuiTypography-h3 css-1f5yx6w-MuiTypography-root"
+        data-testid="most captained-label"
+      >
+        MOST CAPTAINED
+      </h3>
+      <div
+        class="MuiBox-root css-jkw4gz"
+      >
+        <img
+          alt="most captained-crest-img"
+          height="80%"
+          src="/assets/images/crests/6.png"
+        />
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1e4rbu-MuiTypography-root"
+          data-testid="most captained-player-name"
+        >
+          Summerill
+        </p>
+      </div>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-19gyy9g-MuiTypography-root"
+        data-testid="most captained-stat-value"
+      />
+    </div>
+    <div
+      class="MuiBox-root css-1g4yje1"
+    >
+      <h3
+        class="MuiTypography-root MuiTypography-h3 css-1f5yx6w-MuiTypography-root"
+        data-testid="most vice-captained-label"
+      >
+        MOST VICE-CAPTAINED
+      </h3>
+      <div
+        class="MuiBox-root css-jkw4gz"
+      >
+        <img
+          alt="most vice-captained-crest-img"
+          height="80%"
+          src="/assets/images/crests/7.png"
+        />
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1e4rbu-MuiTypography-root"
+          data-testid="most vice-captained-player-name"
+        >
+          Bauldrey
+        </p>
+      </div>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-19gyy9g-MuiTypography-root"
+        data-testid="most vice-captained-stat-value"
+      />
+    </div>
+    <div
+      class="MuiBox-root css-1g4yje1"
+    >
+      <h3
+        class="MuiTypography-root MuiTypography-h3 css-1f5yx6w-MuiTypography-root"
+        data-testid="most transferred in-label"
+      >
+        MOST TRANSFERRED IN
+      </h3>
+      <div
+        class="MuiBox-root css-jkw4gz"
+      >
+        <img
+          alt="most transferred in-crest-img"
+          height="80%"
+          src="/assets/images/crests/7.png"
+        />
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-1e4rbu-MuiTypography-root"
+          data-testid="most transferred in-player-name"
+        >
+          Triner
+        </p>
+      </div>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-19gyy9g-MuiTypography-root"
+        data-testid="most transferred in-stat-value"
+      >
+        1,669 transfers in
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

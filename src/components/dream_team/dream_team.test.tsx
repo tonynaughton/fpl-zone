@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import DreamTeam from "./dream_team";
 import { AppDataContext } from "app_content";
-import { mockAppData } from "test/fixture_data";
+import { mockAppData } from "test/test_data";
 
 describe("Dream Team Tests", () => {
   const createComponent = (): JSX.Element => {

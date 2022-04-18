@@ -2564,16 +2564,16 @@ export const mockGameweeks: Gameweek[] = [
         num_played: 58689,
       },
     ],
-    most_selected: 233,
-    most_transferred_in: 212,
-    top_element: 579,
+    most_selected: 756,
+    most_transferred_in: 662,
+    top_element: 828,
     top_element_info: {
-      id: 579,
+      id: 828,
       points: 17,
     },
     transfers_made: 9395674,
-    most_captained: 233,
-    most_vice_captained: 233,
+    most_captained: 324,
+    most_vice_captained: 9,
   },
   {
     id: 34,
@@ -4590,5 +4590,5 @@ export const mockGameData: GameData = {
 
 export const mockAppData: AppData = {
   gameData: mockGameData,
-  fixtureData: mockFixtures
+  fixtureData: mockFixtures,
 };

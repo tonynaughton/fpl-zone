@@ -1,14 +1,24 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import GameweekSummary from "./gameweek_summary";
-import { mockGameweek, mockPlayers } from "../../test/fixture_data";
+import { mockAppData, mockPlayers } from "test";
 import { GetPlayerById, numberWithCommas } from "helpers";
+import { AppDataContext } from "app_content";
 import "@testing-library/jest-dom/extend-expect";
+import { Gameweek } from "types";
 
 describe("Gameweek Summary Tests", () => {
   const createComponent = (): JSX.Element => {
-    return <GameweekSummary gameweek={mockGameweek} players={mockPlayers} />;
+    return (
+      <AppDataContext.Provider value={mockAppData}>
+        <GameweekSummary />
+      </AppDataContext.Provider>
+    );
   };
+
+  const gameweek = mockAppData.gameData.events.find((gameweek) => {
+    return gameweek.is_current;
+  }) as Gameweek;
 
   it("Renders as expected", () => {
     const { asFragment } = render(createComponent());
@@ -22,7 +32,8 @@ describe("Gameweek Summary Tests", () => {
 
       expect(screen.getByTestId(`${label}-label`)).toHaveTextContent(label.toUpperCase());
       expect(screen.getByTestId(`${label}-stat-value`)).toHaveTextContent(
-        mockGameweek.highest_score.toString()
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        gameweek.highest_score!.toString()
       );
     });
 
@@ -32,62 +43,66 @@ describe("Gameweek Summary Tests", () => {
 
       expect(screen.getByTestId(`${label}-label`)).toHaveTextContent(label.toUpperCase());
       expect(screen.getByTestId(`${label}-stat-value`)).toHaveTextContent(
-        mockGameweek.average_entry_score.toString()
+        gameweek.average_entry_score.toString()
       );
     });
 
     it("Star player", () => {
       render(createComponent());
       const label = "star player";
-      const starPlayer = GetPlayerById(mockGameweek.top_element, mockPlayers);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const starPlayer = GetPlayerById(gameweek.top_element!, mockPlayers);
       const url = `${process.env.PUBLIC_URL}/assets/images/crests/${starPlayer.team_code}.png`;
 
       expect(screen.getByTestId(`${label}-label`)).toHaveTextContent(label.toUpperCase());
       expect(screen.getByAltText(`${label}-crest-img`)).toHaveAttribute("src", url);
       expect(screen.getByTestId(`${label}-player-name`)).toHaveTextContent(
-        `${starPlayer.first_name} ${starPlayer.second_name}`
+        `${starPlayer.web_name}`
       );
       expect(screen.getByTestId(`${label}-stat-value`)).toHaveTextContent(
-        starPlayer.event_points.toString()
+        `${gameweek.top_element_info?.points.toString()} pts`
       );
     });
 
     it("Most Captained", () => {
       render(createComponent());
       const label = "most captained";
-      const mostCaptainedPlayer = GetPlayerById(mockGameweek.most_captained, mockPlayers);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const mostCaptainedPlayer = GetPlayerById(gameweek.most_captained!, mockPlayers);
       const url = `${process.env.PUBLIC_URL}/assets/images/crests/${mostCaptainedPlayer.team_code}.png`;
 
       expect(screen.getByTestId(`${label}-label`)).toHaveTextContent(label.toUpperCase());
       expect(screen.getByAltText(`${label}-crest-img`)).toHaveAttribute("src", url);
       expect(screen.getByTestId(`${label}-player-name`)).toHaveTextContent(
-        `${mostCaptainedPlayer.first_name} ${mostCaptainedPlayer.second_name}`
+        `${mostCaptainedPlayer.web_name}`
       );
     });
 
     it("Most Vice-captained", () => {
       render(createComponent());
       const label = "most vice-captained";
-      const mostViceCaptainedPlayer = GetPlayerById(mockGameweek.most_vice_captained, mockPlayers);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const mostViceCaptainedPlayer = GetPlayerById(gameweek.most_vice_captained!, mockPlayers);
       const url = `${process.env.PUBLIC_URL}/assets/images/crests/${mostViceCaptainedPlayer.team_code}.png`;
 
       expect(screen.getByTestId(`${label}-label`)).toHaveTextContent(label.toUpperCase());
       expect(screen.getByAltText(`${label}-crest-img`)).toHaveAttribute("src", url);
       expect(screen.getByTestId(`${label}-player-name`)).toHaveTextContent(
-        `${mostViceCaptainedPlayer.first_name} ${mostViceCaptainedPlayer.second_name}`
+        `${mostViceCaptainedPlayer.web_name}`
       );
     });
 
     it("Most Transferred In", () => {
       render(createComponent());
       const label = "most transferred in";
-      const mostTransferredInPlayer = GetPlayerById(mockGameweek.most_transferred_in, mockPlayers);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const mostTransferredInPlayer = GetPlayerById(gameweek.most_transferred_in!, mockPlayers);
       const url = `${process.env.PUBLIC_URL}/assets/images/crests/${mostTransferredInPlayer.team_code}.png`;
 
       expect(screen.getByTestId(`${label}-label`)).toHaveTextContent(label.toUpperCase());
       expect(screen.getByAltText(`${label}-crest-img`)).toHaveAttribute("src", url);
       expect(screen.getByTestId(`${label}-player-name`)).toHaveTextContent(
-        `${mostTransferredInPlayer.first_name} ${mostTransferredInPlayer.second_name}`
+        `${mostTransferredInPlayer.web_name}`
       );
       expect(screen.getByTestId(`${label}-stat-value`)).toHaveTextContent(
         numberWithCommas(mostTransferredInPlayer.transfers_in_event)

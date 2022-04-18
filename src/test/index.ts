@@ -1,1 +1,1 @@
-export * from "./fixture_data";
+export * from "./test_data";
