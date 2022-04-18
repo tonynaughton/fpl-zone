@@ -1,7 +1,7 @@
 import React from "react";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
-import { Gameweek } from "types";
-import FdrTable, { BaseItem } from "components/fdr/fdr";
+import { Gameweek, Player } from "types";
+import FdrTable from "components/fdr/fdr";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { mockTeams, mockFixtures, mockPlayers } from "../../test/test_data";
@@ -9,7 +9,6 @@ import "@testing-library/jest-dom/extend-expect";
 
 describe("FDR Tests", () => {
   let currentGameweek: Gameweek;
-  let type: BaseItem[];
 
   const mockAdapter = new MockAdapter(axios);
 
@@ -17,17 +16,13 @@ describe("FDR Tests", () => {
 
   mockAdapter.onGet().reply(200, mockReturnedFixtures);
 
-  function createComponent(): JSX.Element {
-    return <FdrTable type={type} />;
+  function createComponent(players?: Player[]): JSX.Element {
+    return <FdrTable players={players} />;
   }
 
   afterEach(cleanup);
 
   describe("FDR table for teams", () => {
-    beforeEach(() => {
-      type = mockTeams;
-    });
-
     it("Snapshot test", () => {
       const { asFragment } = render(createComponent());
       expect(asFragment()).toMatchSnapshot();
@@ -67,10 +62,6 @@ describe("FDR Tests", () => {
 
   describe("FDR table for players", () => {
     const mockSquad = mockPlayers.slice(0, 14);
-
-    beforeEach(() => {
-      type = mockSquad;
-    });
 
     it("Snapshot test", () => {
       const { asFragment } = render(createComponent());

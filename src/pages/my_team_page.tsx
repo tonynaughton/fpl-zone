@@ -127,7 +127,7 @@ export function MyTeamPage(): JSX.Element {
         .map((pick) => GetPlayerById(pick.element, appData.gameData.elements))
         .sortBy("element_type")
         .value();
-      return <FdrTable type={fdrPlayers} />;
+      return <FdrTable players={fdrPlayers} />;
     } else if (fplIdFetchError) {
       return <ErrorMessage message="Error getting FPL ID" />;
     } else if (teamDataFetchError) {

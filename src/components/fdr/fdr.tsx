@@ -20,19 +20,17 @@ import { AppDataContext } from "app_content";
 export type BaseItem = Player | Team;
 
 interface FdrTableProps {
-  type: BaseItem[];
+  players?: Player[];
 }
 
-export default function FdrTable({ type }: FdrTableProps): JSX.Element {
+export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<Fixture[][]>([]);
   const appData = useContext(AppDataContext) as AppData;
-  const isPlayerTable = "web_name" in type[0];
-  const baseItem = isPlayerTable ? (type as Player[]) : (type as Team[]);
-  const nameColumnTitle = isPlayerTable ? "Player" : "Team";
   const teams = appData.gameData.teams;
+  const baseItem = players || teams;
+  const nameColumnTitle = players ? "Player" : "Team";
   const allGameweeks = appData.gameData.events;
   const currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const nextFiveGameweeks: number[] = [];
   // eslint-disable-next-line no-loops/no-loops
   for (let x = currentGameweek.id; x <= 38 && nextFiveGameweeks.length < 5; x++) {
@@ -52,11 +50,12 @@ export default function FdrTable({ type }: FdrTableProps): JSX.Element {
     };
 
     fetchNextFiveGameweekFixtures();
-  }, [nextFiveGameweeks]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const renderBaseItemName = (baseItem: BaseItem): JSX.Element => {
-    const name = isPlayerTable ? (baseItem as Player).web_name : (baseItem as Team).name;
-    const teamId = isPlayerTable ? (baseItem as Player).team_code : (baseItem as Team).code;
+    const name = players ? (baseItem as Player).web_name : (baseItem as Team).name;
+    const teamId = players ? (baseItem as Player).team_code : (baseItem as Team).code;
     const testId = `base-item-${name}`;
     return (
       <Box
@@ -97,7 +96,7 @@ export default function FdrTable({ type }: FdrTableProps): JSX.Element {
 
   const getNextFiveTeamFixtures = (baseItem: BaseItem, fixtures: Fixture[][]): Fixture[][] => {
     const fixturesByTeam: Fixture[][] = [];
-    const teamId = isPlayerTable ? (baseItem as Player).team : (baseItem as Team).id;
+    const teamId = players ? (baseItem as Player).team : (baseItem as Team).id;
     fixtures.forEach((gameweek) => {
       const teamFixtures = gameweek.filter((f) => f.team_h === teamId || f.team_a === teamId);
       fixturesByTeam.push([...teamFixtures]);
@@ -121,7 +120,7 @@ export default function FdrTable({ type }: FdrTableProps): JSX.Element {
           <FixtureBox
             fixtures={fixtures}
             baseItem={baseItem}
-            isPlayerTable={isPlayerTable}
+            isPlayerTable={!!players}
             key={key}
             getTeamById={getTeamById}
           />
