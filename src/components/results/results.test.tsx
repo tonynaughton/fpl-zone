@@ -1,13 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Results from "components/results/results";
-import {
-  mockGameweek,
-  mockTeams,
-  mockFixtures,
-  mockPlayers,
-  mockElementStats,
-} from "../../test/fixture-data";
+import { mockTeams, mockFixtures, mockPlayers, mockElementStats } from "../../test/fixture_data";
 import { Fixture, Gameweek, Player, PlayerStat, Team } from "types";
 import "@testing-library/jest-dom/extend-expect";
 

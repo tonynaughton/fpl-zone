@@ -11,55 +11,506 @@ exports[`Dream Team Tests Snapshot test 1`] = `
     >
       <div
         class="MuiBox-root css-geg32f"
-      />
+      >
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="662"
+        >
+          <div
+            class="MuiBox-root css-m3owix"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Triner
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  30
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div
         class="MuiBox-root css-geg32f"
-      />
+      >
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="828"
+        >
+          <div
+            class="MuiBox-root css-1hwhk2i"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Jankin
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  13
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="324"
+        >
+          <div
+            class="MuiBox-root css-ki4kbn"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Summerill
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  13
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="929"
+        >
+          <div
+            class="MuiBox-root css-ramzw9"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Malloy
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  13
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="156"
+        >
+          <div
+            class="MuiBox-root css-yvqdr8"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Turbefield
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  9
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div
         class="MuiBox-root css-geg32f"
-      />
+      >
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="505"
+        >
+          <div
+            class="MuiBox-root css-1w92tz0"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Muller
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  24
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="938"
+        >
+          <div
+            class="MuiBox-root css-ramzw9"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Perrington
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  16
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="137"
+        >
+          <div
+            class="MuiBox-root css-1b560z9"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Tingley
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  12
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div
         class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
-      <div
-        class="MuiBox-root css-geg32f"
-      />
+      >
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="466"
+        >
+          <div
+            class="MuiBox-root css-1b560z9"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Workes
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  22
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       class="MuiBox-root css-1alt9xp"
@@ -72,7 +523,224 @@ exports[`Dream Team Tests Snapshot test 1`] = `
       <div
         class="MuiBox-root css-1doxykz"
         data-testid="bench-players"
-      />
+      >
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="9"
+        >
+          <div
+            class="MuiBox-root css-m3owix"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Bauldrey
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  23
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="286"
+        >
+          <div
+            class="MuiBox-root css-1386e90"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  MacMenemy
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  7
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="428"
+        >
+          <div
+            class="MuiBox-root css-4x3s25"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Macek
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  7
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-hgxypz"
+          data-testid="756"
+        >
+          <div
+            class="MuiBox-root css-yvqdr8"
+            data-testid="kit-img-container"
+          />
+          <div
+            class="MuiBox-root css-9pa3st"
+          >
+            <div
+              class="MuiBox-root css-3e87oq"
+            >
+              <div
+                class="MuiBox-root css-2f68vp"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
+                  data-testid="player-name"
+                >
+                  Miettinen
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-13w0h3v"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  data-testid="player-score"
+                >
+                  6
+                </p>
+              </div>
+              <div
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
+                  data-testid="InfoIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </DocumentFragment>

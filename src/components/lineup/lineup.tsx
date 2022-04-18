@@ -1,30 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { Player as PlayerType, PlayerStat, Team, TeamData, TeamPicks } from "types";
+import { AppData, Player as PlayerType, TeamData, TeamPicks } from "types";
 import Player from "../player/player";
 import _ from "lodash";
 import { numberWithCommas } from "helpers";
 import PlayerPerformanceModal from "./player_performance_modal";
+import { AppDataContext } from "app_content";
 
 interface LineupProps {
   selected: PlayerType[][];
   bench: PlayerType[];
-  elementStats: PlayerStat[];
   compressed?: boolean;
   teamPicks?: TeamPicks;
   teamData?: TeamData;
-  teams: Team[];
 }
 
 export default function Lineup({
   selected,
   bench,
-  elementStats,
   teamPicks,
   teamData,
   compressed = false,
-  teams,
 }: LineupProps): JSX.Element {
+  const appData = useContext(AppDataContext) as AppData;
+
   const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
 
@@ -200,8 +199,8 @@ export default function Lineup({
           isPlayerPerformanceModalOpen={isPlayerPerformanceModalOpen}
           setPlayerPerformanceModalOpen={setPlayerPerformanceModalOpen}
           selectedPlayer={selectedPlayer}
-          elementStats={elementStats}
-          teams={teams}
+          elementStats={appData.gameData.element_stats}
+          teams={appData.gameData.teams}
         />
       )}
     </>

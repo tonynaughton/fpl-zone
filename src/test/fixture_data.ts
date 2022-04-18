@@ -1,4 +1,4 @@
-import { Fixture, GameData, Phase, PlayerStat, Team } from "types";
+import { AppData, Fixture, GameData, Phase, PlayerStat, Team } from "types";
 import { Gameweek } from "types/gameweek";
 import { GameSettings } from "types/game_settings";
 import { Player } from "types/player";
@@ -4586,4 +4586,9 @@ export const mockGameData: GameData = {
   elements: mockPlayers,
   element_stats: mockElementStats,
   element_types: mockElementTypes,
+};
+
+export const mockAppData: AppData = {
+  gameData: mockGameData,
+  fixtureData: mockFixtures
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { BaseItem } from "components/fdr/fdr";
 import { Fixture, Player, Team } from "types";
 import FixtureBox from "components/fdr/fixture_box";
-import { mockFixtures, mockPlayers, mockTeams } from "../../test/fixture-data";
+import { mockFixtures, mockPlayers, mockTeams } from "../../test/fixture_data";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { fdrColours } from "components/fdr/difficulty_legend";

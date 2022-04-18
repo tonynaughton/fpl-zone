@@ -4,7 +4,7 @@ import { Gameweek, Team } from "types";
 import FdrTable, { BaseItem } from "components/fdr/fdr";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { mockGameweek, mockTeams, mockFixtures, mockPlayers } from "../../test/fixture-data";
+import { mockGameweek, mockTeams, mockFixtures, mockPlayers } from "../../test/fixture_data";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("FDR Tests", () => {

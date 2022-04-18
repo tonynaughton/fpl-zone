@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import GameweekSummary from "./gameweek_summary";
-import { mockGameweek, mockPlayers } from "../../test/fixture-data";
+import { mockGameweek, mockPlayers } from "../../test/fixture_data";
 import { GetPlayerById, numberWithCommas } from "helpers";
 import "@testing-library/jest-dom/extend-expect";
 
