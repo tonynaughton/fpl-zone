@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Grid, IconButton, Typography } from "@mui/material";
-import { Fixture, StatValue, Player, PlayerStat, Team, CustomResult } from "types";
+import { Fixture, StatValue, Team, CustomResult, AppData } from "types";
 import { Close } from "@mui/icons-material";
 import { formatDate, GetPlayerById } from "helpers";
+import { AppDataContext } from "app_content";
 
 interface MatchDetailsModalProps {
   isResultsModalOpen: boolean;
   setResultsModalOpen: (value: boolean) => void;
   selectedResult: Fixture;
   renderResult: (result: CustomResult, matchStarted: boolean, teams: Team[]) => JSX.Element;
-  players: Player[];
-  elementStats: PlayerStat[];
-  allTeams: Team[];
 }
 
 export default function MatchDetailsModal({
@@ -19,10 +17,8 @@ export default function MatchDetailsModal({
   setResultsModalOpen,
   selectedResult,
   renderResult,
-  players,
-  elementStats,
-  allTeams,
 }: MatchDetailsModalProps): JSX.Element {
+  const appData = useContext(AppDataContext) as AppData;
   const statImageNames = {
     goals_scored: "football",
     assists: "boot",
@@ -50,7 +46,7 @@ export default function MatchDetailsModal({
                   display: "block",
                 }}
               >
-                {GetPlayerById(stat.element, players).web_name}
+                {GetPlayerById(stat.element, appData.gameData.elements).web_name}
                 {stat.value > 1 ? ` (${stat.value})` : ""}
               </Typography>
               &nbsp;&nbsp;
@@ -68,7 +64,7 @@ export default function MatchDetailsModal({
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const stats = selectedResult.stats.find((stat) => stat.identifier === identifier)!;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const statTitle = elementStats.find((stat) => stat.name === identifier)!;
+    const statTitle = appData.gameData.element_stats.find((stat) => stat.name === identifier)!;
     const statsExist = stats.h.length > 0 || stats.a.length > 0;
     return statsExist ? (
       <Box
@@ -156,7 +152,7 @@ export default function MatchDetailsModal({
           <Typography variant="h5">
             {selectedResult.kickoff_time && formatDate(new Date(selectedResult.kickoff_time))}
           </Typography>
-          {renderResult(customResult, true, allTeams)}
+          {renderResult(customResult, true, appData.gameData.teams)}
           {renderStat("goals_scored")}
           {renderStat("assists")}
           {renderStat("yellow_cards")}

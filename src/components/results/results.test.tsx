@@ -1,32 +1,21 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Results from "components/results/results";
-import {
-  mockGameweek,
-  mockTeams,
-  mockFixtures,
-  mockPlayers,
-  mockElementStats,
-} from "./fixture-data";
-import { Fixture, Gameweek, Player, PlayerStat, Team } from "types";
+import { mockAppData } from "test";
+import { Fixture, Gameweek } from "types";
+import { AppDataContext } from "app_content";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("Results Tests", () => {
-  let teams: Team[];
-  let fixtures: Fixture[];
-  let latestGameweek: Gameweek;
-  let players: Player[];
-  let elementStats: PlayerStat[];
+  const latestGameweek = mockAppData.gameData.events.find(
+    (gameweek) => gameweek.is_current
+  ) as Gameweek;
 
   function createComponent(): JSX.Element {
     return (
-      <Results
-        teams={teams}
-        fixtures={fixtures}
-        latestGameweek={latestGameweek}
-        players={players}
-        elementStats={elementStats}
-      />
+      <AppDataContext.Provider value={mockAppData}>
+        <Results />
+      </AppDataContext.Provider>
     );
   }
 
@@ -39,15 +28,6 @@ describe("Results Tests", () => {
     const nextGameweekBtn = screen.getByTestId("next-gameweek-btn");
     fireEvent.click(nextGameweekBtn);
   }
-
-  beforeEach(() => {
-    teams = mockTeams;
-    fixtures = mockFixtures;
-    latestGameweek = mockGameweek;
-    players = mockPlayers;
-    elementStats = mockElementStats;
-  });
-
   it("Snapshot test", () => {
     const { asFragment } = render(createComponent());
     expect(asFragment()).toMatchSnapshot();
@@ -57,13 +37,13 @@ describe("Results Tests", () => {
     render(createComponent());
 
     const gameweekTitle = screen.getByTestId("selected-gameweek-title");
-    expect(gameweekTitle).toHaveTextContent(mockGameweek.id.toString());
+    expect(gameweekTitle).toHaveTextContent(latestGameweek.id.toString());
   });
 
   it("Gameweek fixtures rendered as expected", () => {
     render(createComponent());
 
-    const gameweekResults: Fixture[] = fixtures.filter(
+    const gameweekResults: Fixture[] = mockAppData.fixtureData.filter(
       (fixture) => fixture.event === latestGameweek.id
     );
 
@@ -80,7 +60,7 @@ describe("Results Tests", () => {
       clickPrevGameweekBtn();
 
       const gameweekTitle = screen.getByTestId("selected-gameweek-title");
-      expect(gameweekTitle).toHaveTextContent((mockGameweek.id - 1).toString());
+      expect(gameweekTitle).toHaveTextContent((latestGameweek.id - 1).toString());
     });
 
     it("Clicking next gameweek button behaves as expected", () => {
@@ -89,7 +69,7 @@ describe("Results Tests", () => {
       clickNextGameweekBtn();
 
       const gameweekTitle = screen.getByTestId("selected-gameweek-title");
-      expect(gameweekTitle).toHaveTextContent((mockGameweek.id + 1).toString());
+      expect(gameweekTitle).toHaveTextContent((latestGameweek.id + 1).toString());
     });
 
     it("Prev gameweek button disabled when selected gameweek is 1", () => {

@@ -1,13 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Gameweek } from "types/gameweek";
 import { Box, Typography } from "@mui/material";
-import { Player } from "types/player";
 import { GetPlayerById, numberWithCommas } from "helpers";
-
-interface GameweekSummaryProps {
-  gameweek: Gameweek;
-  players: Player[];
-}
+import { AppDataContext } from "app_content";
+import { AppData } from "types";
 
 interface SummaryDataItem {
   label: string;
@@ -16,7 +12,12 @@ interface SummaryDataItem {
   statValue?: string | number;
 }
 
-export default function GameweekSummary({ gameweek, players }: GameweekSummaryProps): JSX.Element {
+export default function GameweekSummary(): JSX.Element {
+  const appData = useContext(AppDataContext) as AppData;
+  const allGameweeks = appData.gameData.events;
+  const gameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
+  const players = appData.gameData.elements;
+
   const topPlayerId = gameweek.top_element_info?.id;
   const starPlayer = topPlayerId ? GetPlayerById(topPlayerId, players) : undefined;
   const mostTransferredIn = gameweek.most_transferred_in

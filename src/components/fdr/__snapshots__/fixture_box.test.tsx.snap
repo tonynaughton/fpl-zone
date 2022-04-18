@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fixture Box Tests Player fixture box Snapshot test 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-1g0fcwx"
+    data-testid="fixture-box-container"
+  >
+    <div
+      aria-label="BRE (A)"
+      class="MuiBox-root css-32nkmy"
+      data-mui-internal-clone-element="true"
+      data-testid="fix-box-bg-1"
+    >
+      <div
+        class="MuiBox-root css-19jcvzm"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1k2fol-MuiTypography-root"
+        >
+          BRE (A)
+        </p>
+      </div>
+    </div>
+    <div
+      aria-label="LIV (A)"
+      class="MuiBox-root css-18be0zc"
+      data-mui-internal-clone-element="true"
+      data-testid="fix-box-bg-15"
+    >
+      <div
+        class="MuiBox-root css-19jcvzm"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1k2fol-MuiTypography-root"
+        >
+          LIV (A)
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Fixture Box Tests Team fixture box Snapshot test 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-1g0fcwx"
+    data-testid="fixture-box-container"
+  >
+    <div
+      aria-label="BRE (A)"
+      class="MuiBox-root css-32nkmy"
+      data-mui-internal-clone-element="true"
+      data-testid="fix-box-bg-1"
+    >
+      <div
+        class="MuiBox-root css-19jcvzm"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1k2fol-MuiTypography-root"
+        >
+          BRE (A)
+        </p>
+      </div>
+    </div>
+    <div
+      aria-label="LIV (A)"
+      class="MuiBox-root css-18be0zc"
+      data-mui-internal-clone-element="true"
+      data-testid="fix-box-bg-15"
+    >
+      <div
+        class="MuiBox-root css-19jcvzm"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1k2fol-MuiTypography-root"
+        >
+          LIV (A)
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

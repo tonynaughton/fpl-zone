@@ -29,7 +29,7 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
             class="MuiGrid-root MuiGrid-item css-yu75kd-MuiGrid-root"
           >
             <h1
-              class="MuiTypography-root MuiTypography-body1 css-1ncgoc1-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-h1 css-1wllbx1-MuiTypography-root"
             >
               FPL Zone
             </h1>
@@ -50,11 +50,11 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
             <div
               class="MuiListItemText-root css-tlelie-MuiListItemText-root"
             >
-              <span
-                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              <h2
+                class="MuiTypography-root MuiTypography-h2 MuiListItemText-primary css-18zs4ff-MuiTypography-root"
               >
                 GAMEWEEK LIVE
-              </span>
+              </h2>
             </div>
           </a>
           <a
@@ -65,11 +65,11 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
             <div
               class="MuiListItemText-root css-tlelie-MuiListItemText-root"
             >
-              <span
-                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              <h2
+                class="MuiTypography-root MuiTypography-h2 MuiListItemText-primary css-18zs4ff-MuiTypography-root"
               >
                 MY TEAM
-              </span>
+              </h2>
             </div>
           </a>
           <a
@@ -80,11 +80,11 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
             <div
               class="MuiListItemText-root css-tlelie-MuiListItemText-root"
             >
-              <span
-                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              <h2
+                class="MuiTypography-root MuiTypography-h2 MuiListItemText-primary css-18zs4ff-MuiTypography-root"
               >
                 FIXTURES & RESULTS
-              </span>
+              </h2>
             </div>
           </a>
           <a
@@ -95,26 +95,11 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
             <div
               class="MuiListItemText-root css-tlelie-MuiListItemText-root"
             >
-              <span
-                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              <h2
+                class="MuiTypography-root MuiTypography-h2 MuiListItemText-primary css-18zs4ff-MuiTypography-root"
               >
                 ANALYSIS
-              </span>
-            </div>
-          </a>
-          <a
-            class="MuiListItemButton-root MuiListItemButton-gutters MuiButtonBase-root css-om9qhu-MuiButtonBase-root-MuiListItemButton-root"
-            href="/social"
-            tabindex="0"
-          >
-            <div
-              class="MuiListItemText-root css-tlelie-MuiListItemText-root"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
-              >
-                SOCIAL
-              </span>
+              </h2>
             </div>
           </a>
         </ul>
@@ -129,11 +114,11 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
             <div
               class="MuiListItemText-root css-tlelie-MuiListItemText-root"
             >
-              <span
-                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              <h2
+                class="MuiTypography-root MuiTypography-h2 MuiListItemText-primary css-18zs4ff-MuiTypography-root"
               >
                 LOGOUT
-              </span>
+              </h2>
             </div>
           </a>
           <a
@@ -144,11 +129,11 @@ exports[`Nav Drawer Tests Renders as expected 1`] = `
             <div
               class="MuiListItemText-root css-tlelie-MuiListItemText-root"
             >
-              <span
-                class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-17gt2ew-MuiTypography-root"
+              <h2
+                class="MuiTypography-root MuiTypography-h2 MuiListItemText-primary css-18zs4ff-MuiTypography-root"
               >
                 ACCOUNT
-              </span>
+              </h2>
             </div>
           </a>
         </ul>

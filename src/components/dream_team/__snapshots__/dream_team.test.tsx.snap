@@ -30,28 +30,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  TRINER
+                  Triner
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   30
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -86,28 +88,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  JANKIN
+                  Jankin
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   13
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -138,28 +142,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  SUMMERILL
+                  Summerill
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   13
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -190,28 +196,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  MALLOY
+                  Malloy
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   13
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -242,28 +250,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  TURBEFIELD
+                  Turbefield
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   9
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -298,28 +308,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  MULLER
+                  Muller
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   24
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -350,28 +362,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  PERRINGTON
+                  Perrington
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   16
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -402,28 +416,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  TINGLEY
+                  Tingley
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   12
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -458,28 +474,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  WORKES
+                  Workes
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   22
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -497,11 +515,11 @@ exports[`Dream Team Tests Snapshot test 1`] = `
     <div
       class="MuiBox-root css-1alt9xp"
     >
-      <p
-        class="MuiTypography-root MuiTypography-body1 css-1gvvk8k-MuiTypography-root"
+      <h5
+        class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
       >
         Bench
-      </p>
+      </h5>
       <div
         class="MuiBox-root css-1doxykz"
         data-testid="bench-players"
@@ -524,28 +542,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  BAULDREY
+                  Bauldrey
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   23
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -576,28 +596,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  MACMENEMY
+                  MacMenemy
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   7
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -628,28 +650,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  MACEK
+                  Macek
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   7
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -680,28 +704,30 @@ exports[`Dream Team Tests Snapshot test 1`] = `
                 class="MuiBox-root css-2f68vp"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
                   data-testid="player-name"
                 >
-                  MIETTINEN
+                  Miettinen
                 </p>
               </div>
               <div
                 class="MuiBox-root css-13w0h3v"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   data-testid="player-score"
                 >
                   6
                 </p>
               </div>
               <div
-                class="MuiBox-root css-qrsfhp"
+                aria-label="Performance"
+                class="MuiBox-root css-1bii6vr"
+                data-mui-internal-clone-element="true"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
                   data-testid="InfoIcon"
                   focusable="false"
                   viewBox="0 0 24 24"

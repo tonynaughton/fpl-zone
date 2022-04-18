@@ -13,7 +13,7 @@ import {
   getPlayerData,
   getRegions,
   getBestLeagues,
-} from "../api/fpl_api_provider";
+} from "./fpl_api_provider";
 
 const mockGameweek = 20;
 const mockTeamId = 11458;

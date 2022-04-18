@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
-import { CustomResult, Fixture, Gameweek, Player, PlayerStat, Team } from "types";
+import { AppData, CustomResult, Fixture, Gameweek } from "types";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import MatchDetailsModal from "./match_details_modal";
 import { renderResult } from "./result";
+import { AppDataContext } from "app_content";
 
-interface ResultsProps {
-  teams: Team[];
-  fixtures: Fixture[];
-  latestGameweek: Gameweek;
-  players: Player[];
-  elementStats: PlayerStat[];
-}
+export default function Results(): JSX.Element {
+  const appData = useContext(AppDataContext) as AppData;
+  const latestGameweek = appData.gameData.events.find((gw) => gw.is_current) as Gameweek;
+  const fixtures = appData.fixtureData;
 
-export default function Results({
-  teams,
-  fixtures,
-  latestGameweek,
-  players,
-  elementStats,
-}: ResultsProps): JSX.Element {
   const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
   const [isResultsModalOpen, setResultsModalOpen] = useState<boolean>(false);
@@ -119,7 +110,7 @@ export default function Results({
                 },
               }}
             >
-              {renderResult(customResult, matchStarted, teams, key)}
+              {renderResult(customResult, matchStarted, appData.gameData.teams, key)}
             </Box>
           );
         })}
@@ -130,9 +121,6 @@ export default function Results({
           setResultsModalOpen={setResultsModalOpen}
           selectedResult={selectedResult}
           renderResult={renderResult}
-          players={players}
-          elementStats={elementStats}
-          allTeams={teams}
         />
       )}
     </Box>

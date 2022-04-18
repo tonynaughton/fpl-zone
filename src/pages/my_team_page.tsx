@@ -105,9 +105,7 @@ export function MyTeamPage(): JSX.Element {
           bench={getBenchPlayers()}
           teamPicks={teamPicks as TeamPicks}
           teamData={teamData as TeamData}
-          elementStats={appData.gameData.element_stats}
           compressed
-          teams={appData.gameData.teams}
         />
       );
     } else if (fplIdFetchError) {
@@ -129,13 +127,7 @@ export function MyTeamPage(): JSX.Element {
         .map((pick) => GetPlayerById(pick.element, appData.gameData.elements))
         .sortBy("element_type")
         .value();
-      return (
-        <FdrTable
-          currentGameweek={currentGameweek}
-          type={fdrPlayers}
-          teams={appData.gameData.teams}
-        />
-      );
+      return <FdrTable players={fdrPlayers} />;
     } else if (fplIdFetchError) {
       return <ErrorMessage message="Error getting FPL ID" />;
     } else if (teamDataFetchError) {

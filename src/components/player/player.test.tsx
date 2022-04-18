@@ -1,6 +1,6 @@
 import React from "react";
 import { cleanup, render, screen } from "@testing-library/react";
-import { mockPlayers } from "./fixture-data";
+import { mockPlayers } from "../../test/test_data";
 import Player from "components/player/player";
 import { Player as PlayerType } from "types";
 import "@testing-library/jest-dom/extend-expect";
@@ -11,7 +11,7 @@ describe("Player Tests", () => {
   let mockIsCaptain: boolean;
   let mockIsViceCaptain: boolean;
 
-  const mockHandlePlayerPerformanceClick = (): JSX.Element => <></>;
+  const mockHandlePlayerPerformanceClick = (): void => console.log("TEST");
 
   const createComponent = (): JSX.Element => {
     return (
@@ -44,7 +44,7 @@ describe("Player Tests", () => {
     render(createComponent());
 
     const playerNameText = screen.getByTestId("player-name");
-    expect(playerNameText).toHaveTextContent(mockPlayer.web_name.toUpperCase());
+    expect(playerNameText).toHaveTextContent(mockPlayer.web_name);
   });
 
   it("Renders player score as expected", () => {

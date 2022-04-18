@@ -20,28 +20,30 @@ exports[`Player Tests Snapshot test 1`] = `
           class="MuiBox-root css-2f68vp"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1jaadou-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-z1doim-MuiTypography-root"
             data-testid="player-name"
           >
-            JANKIN
+            Jankin
           </p>
         </div>
         <div
           class="MuiBox-root css-13w0h3v"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-1taaagb-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
             data-testid="player-score"
           >
             13
           </p>
         </div>
         <div
-          class="MuiBox-root css-qrsfhp"
+          aria-label="Performance"
+          class="MuiBox-root css-1bii6vr"
+          data-mui-internal-clone-element="true"
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1aec4f4-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1d159sf-MuiSvgIcon-root"
             data-testid="InfoIcon"
             focusable="false"
             viewBox="0 0 24 24"
