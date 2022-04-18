@@ -125,12 +125,10 @@ export function MyTeamPage(): JSX.Element {
     if (!fplId) {
       return <EnterFPLID />;
     } else if (teamPicks) {
-      const fdrPlayers =
-        teamPicks &&
-        _(teamPicks.picks)
-          .map((pick) => GetPlayerById(pick.element, appData.gameData.elements))
-          .sortBy("element_type")
-          .value();
+      const fdrPlayers = _(teamPicks.picks)
+        .map((pick) => GetPlayerById(pick.element, appData.gameData.elements))
+        .sortBy("element_type")
+        .value();
       return (
         <FdrTable
           currentGameweek={currentGameweek}
@@ -149,14 +147,16 @@ export function MyTeamPage(): JSX.Element {
     }
   };
 
-  const isLoading = fplIdFetchIsLoading || teamPicksFetchIsLoading || teamDataFetchIsLoading;
-  const error = fplIdFetchError || teamPicksFetchError || teamDataFetchError;
+  const isLoading = fplIdFetchIsLoading || teamDataFetchIsLoading || teamPicksFetchIsLoading;
+  const error = fplIdFetchError || teamDataFetchError || teamPicksFetchError;
+  const errorMessage = error instanceof Error ? error.message : undefined;
+
   return (
     <AppLayout activeLabel="my team" direction="row">
-      <ComponentContainer title="team" isLoading={isLoading} error={error}>
+      <ComponentContainer title="team" isLoading={isLoading} error={errorMessage}>
         {renderTeamComponent()}
       </ComponentContainer>
-      <ComponentContainer title="fdr" isLoading={isLoading} error={error}>
+      <ComponentContainer title="fdr" isLoading={isLoading} error={errorMessage}>
         {renderFdrTable()}
       </ComponentContainer>
     </AppLayout>

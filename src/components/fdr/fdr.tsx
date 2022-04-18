@@ -153,7 +153,9 @@ export default class FdrTable extends React.Component<FdrTableProps, FdrTableSta
 
   public render(): JSX.Element {
     return _.isEmpty(this.state.nextFiveGameweekFixtures) ? (
-      <LoadingMessage message="Fetching fixture data.." />
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+        <LoadingMessage message="Fetching fixture data.." />
+      </Box>
     ) : (
       <Box
         display="flex"

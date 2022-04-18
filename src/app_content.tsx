@@ -1,6 +1,5 @@
 import React from "react";
 import { Logout } from "@mui/icons-material";
-import { Box } from "@mui/material";
 import { LoadingMessage, ErrorMessage, Startup } from "components/layout";
 import PrivateRoute from "private_route";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";

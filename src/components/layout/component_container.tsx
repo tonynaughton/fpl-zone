@@ -1,42 +1,42 @@
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import React from "react";
+import { Box, Typography } from "@mui/material";
+import { LoadingMessage } from "./loading_message";
+import { ErrorMessage } from "./error_message";
 
 interface ComponentContainerProps {
   title: string;
   isLoading?: boolean;
-  error?: unknown;
+  error?: string;
   children: JSX.Element;
 }
 
 export function ComponentContainer({
   title,
+  children,
   isLoading,
   error,
-  children,
 }: ComponentContainerProps): JSX.Element {
   const renderChildren = (): JSX.Element => {
     if (isLoading) {
       return (
-        <Grid
-          container
-          display="flex"
-          alignItems="center"
-          direction="column"
-          justifyContent="center"
-          rowGap={2}
-          sx={{ height: "100%" }}
+        <Box
+          sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
         >
-          <Typography fontSize={20}>Fetching data..</Typography>
-          <CircularProgress />
-        </Grid>
+          <LoadingMessage message="Loading.." />
+        </Box>
       );
     } else if (error) {
-      return <Typography>Error fetching data: {error}</Typography>;
+      return (
+        <Box
+          sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
+        >
+          <ErrorMessage message={error} />
+        </Box>
+      );
     } else {
       return children;
     }
   };
-
   return (
     <Box
       width="100%"
