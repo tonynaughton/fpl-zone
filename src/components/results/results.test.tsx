@@ -37,7 +37,6 @@ describe("Results Tests", () => {
   beforeEach(() => {
     teams = mockTeams;
     fixtures = mockFixtures;
-    latestGameweek = mockGameweek;
     players = mockPlayers;
     elementStats = mockElementStats;
   });

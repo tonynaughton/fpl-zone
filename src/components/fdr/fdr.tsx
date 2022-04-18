@@ -23,7 +23,7 @@ interface FdrTableProps {
   type: BaseItem[];
 }
 
-export default function FdrTable({ type }: FdrTableProps) {
+export default function FdrTable({ type }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<Fixture[][]>([]);
   const appData = useContext(AppDataContext) as AppData;
   const isPlayerTable = "web_name" in type[0];
@@ -32,6 +32,7 @@ export default function FdrTable({ type }: FdrTableProps) {
   const teams = appData.gameData.teams;
   const allGameweeks = appData.gameData.events;
   const currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const nextFiveGameweeks: number[] = [];
   // eslint-disable-next-line no-loops/no-loops
   for (let x = currentGameweek.id; x <= 38 && nextFiveGameweeks.length < 5; x++) {
@@ -47,9 +48,9 @@ export default function FdrTable({ type }: FdrTableProps) {
           nextFiveGameweekFixtures.push(fixtures);
         });
       }
-    setNextFiveFixtures(nextFiveGameweekFixtures);
+      setNextFiveFixtures(nextFiveGameweekFixtures);
     };
-    
+
     fetchNextFiveGameweekFixtures();
   }, [nextFiveGameweeks]);
 

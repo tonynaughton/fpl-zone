@@ -55,12 +55,5 @@ export default function DreamTeam(): JSX.Element {
 
   const benchPlayers = addRemainingSelectedPlayers(remainingPlayers);
 
-  return (
-    <Lineup
-      selected={selectedPlayers}
-      bench={benchPlayers}
-      elementStats={appData.gameData.element_stats}
-      teams={appData.gameData.teams}
-    />
-  );
+  return <Lineup selected={selectedPlayers} bench={benchPlayers} />;
 }

@@ -1,16 +1,15 @@
 import React from "react";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
-import { Gameweek, Team } from "types";
+import { Gameweek } from "types";
 import FdrTable, { BaseItem } from "components/fdr/fdr";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { mockGameweek, mockTeams, mockFixtures, mockPlayers } from "../../test/test_data";
+import { mockTeams, mockFixtures, mockPlayers } from "../../test/test_data";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("FDR Tests", () => {
   let currentGameweek: Gameweek;
   let type: BaseItem[];
-  let teams: Team[];
 
   const mockAdapter = new MockAdapter(axios);
 
@@ -19,13 +18,8 @@ describe("FDR Tests", () => {
   mockAdapter.onGet().reply(200, mockReturnedFixtures);
 
   function createComponent(): JSX.Element {
-    return <FdrTable currentGameweek={currentGameweek} type={type} teams={teams} />;
+    return <FdrTable type={type} />;
   }
-
-  beforeEach(() => {
-    currentGameweek = mockGameweek;
-    teams = mockTeams;
-  });
 
   afterEach(cleanup);
 
