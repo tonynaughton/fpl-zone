@@ -10,7 +10,15 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { CustomResult, Gameweek, Player, PlayerPerformance, PlayerStat, Team } from "types";
+import {
+  CustomResult,
+  Gameweek,
+  Player,
+  PlayerPerformance,
+  PlayerStat,
+  Team,
+  AppData,
+} from "types";
 import { Close } from "@mui/icons-material";
 import { getPlayerData } from "api/fpl_api_provider";
 import { useQuery } from "react-query";
@@ -18,7 +26,6 @@ import Loading from "components/layout/loading";
 import { renderResult } from "components/results/results";
 import _ from "lodash";
 import { AppDataContext } from "index";
-import { AppData } from "types/app_data";
 
 interface PlayerPerformanceModalProps {
   isPlayerPerformanceModalOpen: boolean;

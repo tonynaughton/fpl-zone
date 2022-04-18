@@ -26,19 +26,23 @@ export default function FplIdModal({ modalVisible, setModalOpen }: FplIdModalPro
         <Typography>How to get your FPL ID:</Typography>
         <List>
           <ListItem>
-            1. Login in to&nbsp;
-            <Link
-              href="https://fantasy.premierleague.com/"
-              sx={{ display: "inline-block" }}
-              target="_blank"
-            >
-              fantasy.premierleague.com
-            </Link>
-            &nbsp;and navigate to the &apos;Points&apos; tab.
+            <Typography>
+              1. Login in to&nbsp;
+              <Link
+                href="https://fantasy.premierleague.com/"
+                sx={{ display: "inline-block" }}
+                target="_blank"
+              >
+                fantasy.premierleague.com
+              </Link>
+              &nbsp;and navigate to the &apos;Points&apos; tab.
+            </Typography>
           </ListItem>
           <ListItem>
-            2. Your FPL ID appears in the URL after &apos;entry&apos; and before &apos;event&apos;
-            as highlighted:
+            <Typography>
+              2. Your FPL ID appears in the URL after &apos;entry&apos; and before &apos;event&apos;
+              as highlighted:
+            </Typography>
           </ListItem>
           <ListItem>
             <img
@@ -48,8 +52,11 @@ export default function FplIdModal({ modalVisible, setModalOpen }: FplIdModalPro
             />
           </ListItem>
           <ListItem>
-            Note: Your FPL ID is publicly available. Inputting the ID into FPL Zone does not give
-            the app permission to make changes to your FPL team on your behalf.
+            <Typography>
+              Note: Your FPL ID is publicly available. Inputting the ID into FPL Zone{" "}
+              <b>does not</b>
+              &nbsp; give the app permission to make changes to your FPL team on your behalf.
+            </Typography>
           </ListItem>
         </List>
         <IconButton

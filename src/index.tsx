@@ -16,7 +16,7 @@ import FixturesAndResultsPage from "pages/fixtures_and_results_page";
 import AnalysisPage from "pages/analysis_page";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
 import Loading from "components/layout/loading";
-import { AppData } from "types/app_data";
+import { AppData } from "types";
 import "./global.css";
 
 const customTheme = createTheme({

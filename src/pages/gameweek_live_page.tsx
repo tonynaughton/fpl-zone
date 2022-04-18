@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "config/firebase";
 import AppLayout from "components/layout/app_layout";
 import GameweekSummary from "components/gameweek_summary/gameweek_summary";
-import { Gameweek } from "types/gameweek";
 import ComponentContainer from "components/layout/component_container";
 import { Grid } from "@mui/material";
 import DreamTeam from "components/dream_team/dream_team";
 import Loading from "components/layout/loading";
 import { AppDataContext } from "index";
-import { AppData } from "types/app_data";
+import { AppData, Gameweek } from "types";
 import { checkGameUpdatingStatus } from "helpers";
 
 export default function GameweekLivePage(): JSX.Element {
@@ -34,12 +33,7 @@ export default function GameweekLivePage(): JSX.Element {
       return <Loading message="Game is updating.." />;
     } else {
       return (
-        <DreamTeam
-          players={appData.gameData.elements}
-          positions={appData.gameData.element_types}
-          elementStats={appData.gameData.element_stats}
-          teams={appData.gameData.teams}
-        />
+        <DreamTeam />
       );
     }
   };

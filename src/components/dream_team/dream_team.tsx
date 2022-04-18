@@ -1,25 +1,16 @@
-import React from "react";
-import { Player } from "types/player";
+import React, { useContext } from "react";
 import { Position } from "types/position";
 import _ from "lodash";
 import Lineup from "components/lineup/lineup";
-import { PlayerStat, Team } from "types";
+import { AppDataContext } from "index";
+import { AppData, Player } from "types";
 
-interface DreamTeamProps {
-  players: Player[];
-  positions: Position[];
-  elementStats: PlayerStat[];
-  teams: Team[];
-}
+export default function DreamTeam(): JSX.Element {
+  const appData = useContext(AppDataContext) as AppData;
+  const positions: Position[] = appData.gameData.element_types;
 
-export default function DreamTeam({
-  players,
-  positions,
-  elementStats,
-  teams,
-}: DreamTeamProps): JSX.Element {
   const getTopPlayersByPosition = (positionId: number, max: number): Player[] => {
-    return _(players)
+    return _(appData.gameData.elements)
       .filter(["element_type", positionId])
       .orderBy(["event_points"], ["desc"])
       .slice(0, max)
@@ -68,8 +59,8 @@ export default function DreamTeam({
     <Lineup
       selected={selectedPlayers}
       bench={benchPlayers}
-      elementStats={elementStats}
-      teams={teams}
+      elementStats={appData.gameData.element_stats}
+      teams={appData.gameData.teams}
     />
   );
 }

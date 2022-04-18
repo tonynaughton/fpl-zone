@@ -7,7 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import PlayerComparison from "components/comparison/player_comparison";
 import { AppDataContext } from "index";
-import { AppData } from "types/app_data";
+import { AppData } from "types";
 
 export default function AnalysisPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);

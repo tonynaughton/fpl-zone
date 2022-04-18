@@ -6,7 +6,7 @@ import AppLayout from "components/layout/app_layout";
 import { useQuery } from "react-query";
 import { getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import FdrTable from "components/fdr/fdr";
-import { Gameweek, Player, TeamData, TeamPicks } from "types";
+import { Gameweek, Player, TeamData, TeamPicks, AppData } from "types";
 import ComponentContainer from "components/layout/component_container";
 import { Box } from "@mui/material";
 import Loading from "components/layout/loading";
@@ -15,7 +15,6 @@ import Lineup from "components/lineup/lineup";
 import _ from "lodash";
 import Error from "components/layout/error";
 import { AppDataContext } from "index";
-import { AppData } from "types/app_data";
 
 export default function MyTeamPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);

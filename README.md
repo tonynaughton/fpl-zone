@@ -32,7 +32,7 @@ The Premier League does not provide any official documentation for this API, but
 $ git clone https://github.com/TonyN96/fpl-zone.git
 
 # Go into the repository
-$ cd european-stadiums
+$ cd fpl-zone
 
 # Install dependencies
 $ npm install

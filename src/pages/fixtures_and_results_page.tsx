@@ -6,10 +6,9 @@ import ComponentContainer from "components/layout/component_container";
 import { auth } from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { Gameweek } from "types";
+import { Gameweek, AppData } from "types";
 import Results from "components/results/results";
 import { AppDataContext } from "index";
-import { AppData } from "types/app_data";
 
 export default function FixturesAndResultsPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);
