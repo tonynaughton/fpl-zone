@@ -12,7 +12,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
-Button,
+  Button,
   TextField,
   Link as MuiLink,
   Snackbar,
@@ -24,9 +24,8 @@ Button,
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { LoadingMessage } from "components/layout";
-import TogglePasswordVis from "./toggle_password_vis";
 import { Info } from "@mui/icons-material";
-import FplIdModal from "./fpl_id_modal";
+import { TogglePasswordVis, FplIdModal } from ".";
 import "./authentication.css";
 
 interface DetailsFormProps {
@@ -42,7 +41,7 @@ interface FormInput {
   fplId: string;
 }
 
-export default function ReactHookFormTest({ registerPage }: DetailsFormProps): JSX.Element {
+export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 

@@ -1,13 +1,13 @@
+import React from "react";
 import { Close } from "@mui/icons-material";
 import { Box, IconButton, Link, List, ListItem, Modal, Typography } from "@mui/material";
-import React from "react";
 
 interface FplIdModalProps {
   modalVisible: boolean;
   setModalOpen: (value: boolean) => void;
 }
 
-export default function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX.Element {
+export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX.Element {
   const modalStyle = {
     position: "absolute",
     top: "50%",

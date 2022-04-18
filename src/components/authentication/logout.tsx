@@ -1,11 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { logout } from "config/firebase";
 import { Navigate } from "react-router-dom";
+import { Box } from "@mui/material";
+import { LoadingMessage } from "components/layout";
 
-export default function Logout(): JSX.Element {
+export function Logout(): JSX.Element {
+  const [loggedOut, setLoggedOutStatus] = useState<boolean>(false);
+
   useEffect(() => {
-    logout();
+    logout().then(() => {
+      setLoggedOutStatus(true);
+    });
   }, []);
 
-  return <Navigate to="/login" />;
+  return !loggedOut ? (
+    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+      <LoadingMessage message="Loggout out.." />
+    </Box>
+  ) : (
+    <Navigate to="/login" />
+  );
 }

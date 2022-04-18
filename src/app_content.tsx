@@ -1,11 +1,11 @@
 import React from "react";
-import { Logout } from "@mui/icons-material";
 import { LoadingMessage, ErrorMessage, Startup } from "components/layout";
 import PrivateRoute from "private_route";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
 import { AppData } from "types";
+import { Logout } from "components/authentication";
 import {
   AccountPage,
   AnalysisPage,

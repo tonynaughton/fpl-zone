@@ -130,6 +130,6 @@ export const getUserFplTeamId = async (props) => {
   return userData.fplId;
 };
 
-export const logout = () => {
-  signOut(auth);
+export const logout = async () => {
+  await signOut(auth);
 };

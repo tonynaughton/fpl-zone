@@ -7,7 +7,7 @@ interface TogglePasswordVisProps {
   setShowPassword: (value: boolean) => void;
 }
 
-export default function TogglePasswordVis({
+export function TogglePasswordVis({
   showPassword,
   setShowPassword,
 }: TogglePasswordVisProps): JSX.Element {

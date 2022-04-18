@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -8,21 +9,19 @@ import {
   AlertColor,
   OutlinedInput,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "config/firebase";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useAuthState } from "react-firebase-hooks/auth";
-import AuthLayout from "./auth_layout";
+import { AuthLayout, TogglePasswordVis } from ".";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import TogglePasswordVis from "./toggle_password_vis";
 
 interface FormInput {
   email: string;
   password: string;
 }
 
-export default function LoginForm(): JSX.Element {
+export function LoginForm(): JSX.Element {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
