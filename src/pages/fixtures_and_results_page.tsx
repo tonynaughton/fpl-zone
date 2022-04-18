@@ -28,13 +28,7 @@ export function FixturesAndResultsPage(): JSX.Element {
       : (appData.gameData.events.find((gw) => gw.is_previous) as Gameweek);
 
   const renderFdrTable = (): JSX.Element => {
-    return (
-      <FdrTable
-        currentGameweek={currentGameweek}
-        type={appData.gameData.teams}
-        teams={appData.gameData.teams}
-      />
-    );
+    return <FdrTable type={appData.gameData.teams} />;
   };
 
   const renderResults = (): JSX.Element => {
