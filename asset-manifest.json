@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/fpl-zone/static/css/main.8eb20739.css",
-    "main.js": "/fpl-zone/static/js/main.0c09117f.js",
+    "main.js": "/fpl-zone/static/js/main.11c05bce.js",
     "index.html": "/fpl-zone/index.html",
     "main.8eb20739.css.map": "/fpl-zone/static/css/main.8eb20739.css.map",
-    "main.0c09117f.js.map": "/fpl-zone/static/js/main.0c09117f.js.map"
+    "main.11c05bce.js.map": "/fpl-zone/static/js/main.11c05bce.js.map"
   },
   "entrypoints": [
     "static/css/main.8eb20739.css",
-    "static/js/main.0c09117f.js"
+    "static/js/main.11c05bce.js"
   ]
 }
