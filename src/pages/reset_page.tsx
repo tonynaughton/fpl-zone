@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, sendPasswordReset } from "config/firebase";
 import { AuthLayout } from "../components/authentication";
 import { Controller, useForm } from "react-hook-form";
+import { delay } from "helpers";
 
 interface FormInput {
   email: string;
@@ -31,7 +32,7 @@ export function ResetPage(): JSX.Element {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState("info");
 
-  const setSnackbar = (message: string, severity = "info"): void => {
+  const setSnackbar = (message: string, severity = "success"): void => {
     setSnackbarMessage(message);
     setSnackbarOpen(true);
     setSnackbarSeverity(severity);
@@ -49,9 +50,15 @@ export function ResetPage(): JSX.Element {
 
   const onSendPasswordReset = async (data: FormInput): Promise<void> => {
     try {
-      await sendPasswordReset(data.email);
+      await sendPasswordReset(data.email).catch((err) => {
+        setSnackbar("Error: " + err);
+        return;
+      });
+      setSnackbar("Password reset email sent");
+      await delay(1500);
+      navigate("/login");
     } catch (err) {
-      setSnackbar("Cannot send password reset email: " + err, "warning");
+      setSnackbar("Cannot send password reset email: " + err, "error");
     }
   };
 

@@ -8,7 +8,7 @@ import {
 } from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -29,8 +29,8 @@ import { LoadingMessage } from "components/layout";
 import { Info } from "@mui/icons-material";
 import { FplIdModal } from ".";
 import "./authentication.css";
-import { FirebaseResponse } from "types/firebase";
 import { deleteUser } from "firebase/auth";
+import { delay } from "helpers";
 
 interface DetailsFormProps {
   registerPage: boolean;
@@ -67,7 +67,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
   const [showFplIdModal, setShowFplIdModal] = useState(false);
   const [deleteAccountModalOpen, setDeleteAccountModalOpen] = useState(false);
 
-  const setSnackbar = (message: string, severity = "info"): void => {
+  const setSnackbar = (message: string, severity = "success"): void => {
     setSnackbarMessage(message);
     setSnackbarOpen(true);
     setSnackbarSeverity(severity);
@@ -116,16 +116,16 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
     } else if (data.email)
       if (!user) {
         try {
-          const response = (await registerWithEmailAndPassword(
+          await registerWithEmailAndPassword(
             data.firstName,
             data.lastName,
             data.email,
             data.password,
             data.fplId
-          )) as FirebaseResponse;
-          setSnackbar("Registration failed: " + response.message, "error");
+          ).catch((err) => setSnackbar("Registration failed: " + err, "error"));
+          setSnackbar("Registration successful");
         } catch (err) {
-          setSnackbar("Registration failed: " + err, "warning");
+          setSnackbar("Registration failed: " + err, "error");
         }
       } else {
         try {
@@ -135,34 +135,24 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
             data.lastName,
             data.email,
             data.fplId
-          ).then(() => {
-            setSnackbar("Details updated successfully", "success");
+          ).catch((err) => {
+            setSnackbar("Error updating details: " + err, "error");
           });
+          setSnackbar("Details updated successfully");
+          await delay(1000);
+          navigate("/gameweek-live");
         } catch (err) {
-          setSnackbar("Registration failed: " + err, "warning");
+          setSnackbar("Error updating details: " + err, "error");
         }
       }
   };
 
   const handleDeleteAccountClick = async (): Promise<void> => {
     if (user) {
-      try {
-        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-        const userDoc = await getDocs(q);
-        const userId = userDoc.docs[0].id;
-        await deleteDoc(doc(db, "users", userId));
-        deleteUser(user)
-          .then(() => {
-            navigate("/login");
-          })
-          .catch((err) => {
-            setSnackbar("Error deleting user: " + err.message);
-          });
-      } catch (err) {
-        setSnackbar("Error deleting user: " + err);
-      }
-    } else {
-      setSnackbar("Error deleting user");
+      await deleteUser(user);
+      setSnackbar("Account deleted successfully");
+      await delay(1000);
+      navigate("/login");
     }
   };
 

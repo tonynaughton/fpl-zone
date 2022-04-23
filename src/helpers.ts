@@ -73,3 +73,7 @@ export function checkGameUpdatingStatus(gameweeks: Gameweek[]): boolean {
     return false;
   }
 }
+
+export async function delay(ms: number | undefined): Promise<void> {
+  await new Promise((res) => setTimeout(res, ms));
+}
