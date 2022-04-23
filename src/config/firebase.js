@@ -42,10 +42,12 @@ export const signInWithGoogle = async () => {
     const user = res.user;
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
+    const name = user.displayName.split(" ");
     if (docs.docs.length === 0) {
       await addDoc(collection(db, "users"), {
         uid: user.uid,
-        name: user.displayName,
+        firstName: name[0] || "",
+        lastName: name[1] || "",
         authProvider: "google",
         email: user.email,
         fplId: "",
@@ -60,7 +62,7 @@ export const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    alert(err.message);
+    return err;
   }
 };
 
@@ -83,7 +85,7 @@ export const registerWithEmailAndPassword = async (
       fplId,
     });
   } catch (err) {
-    alert(err.message);
+    return err;
   }
 };
 

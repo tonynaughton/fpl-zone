@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   auth,
   registerWithEmailAndPassword,
@@ -8,7 +8,7 @@ import {
 } from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -21,12 +21,16 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
+  Modal,
+  Typography,
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { LoadingMessage } from "components/layout";
 import { Info } from "@mui/icons-material";
-import { TogglePasswordVis, FplIdModal } from ".";
+import { FplIdModal } from ".";
 import "./authentication.css";
+import { FirebaseResponse } from "types/firebase";
+import { deleteUser } from "firebase/auth";
 
 interface DetailsFormProps {
   registerPage: boolean;
@@ -60,9 +64,8 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState("info");
   const [userFound, setUserFound] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const [showFplIdModal, setShowFplIdModal] = useState(false);
+  const [deleteAccountModalOpen, setDeleteAccountModalOpen] = useState(false);
 
   const setSnackbar = (message: string, severity = "info"): void => {
     setSnackbarMessage(message);
@@ -107,26 +110,59 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
   }, [reset, userData]);
 
   const onDetailsSave: SubmitHandler<FormInput> = async (data: FormInput) => {
-    if (!user) {
+    if (data.password !== data.repeatPassword) {
+      setSnackbar("Passwords don't match", "error");
+      return;
+    } else if (data.email)
+      if (!user) {
+        try {
+          const response = (await registerWithEmailAndPassword(
+            data.firstName,
+            data.lastName,
+            data.email,
+            data.password,
+            data.fplId
+          )) as FirebaseResponse;
+          setSnackbar("Registration failed: " + response.message, "error");
+        } catch (err) {
+          setSnackbar("Registration failed: " + err, "warning");
+        }
+      } else {
+        try {
+          await updateUserDetails(
+            user.uid,
+            data.firstName,
+            data.lastName,
+            data.email,
+            data.fplId
+          ).then(() => {
+            setSnackbar("Details updated successfully", "success");
+          });
+        } catch (err) {
+          setSnackbar("Registration failed: " + err, "warning");
+        }
+      }
+  };
+
+  const handleDeleteAccountClick = async (): Promise<void> => {
+    if (user) {
       try {
-        await registerWithEmailAndPassword(
-          data.firstName,
-          data.lastName,
-          data.email,
-          data.password,
-          data.fplId
-        ).then(() => {
-          setSnackbar("Registration successful", "success");
-        });
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const userDoc = await getDocs(q);
+        const userId = userDoc.docs[0].id;
+        await deleteDoc(doc(db, "users", userId));
+        deleteUser(user)
+          .then(() => {
+            navigate("/login");
+          })
+          .catch((err) => {
+            setSnackbar("Error deleting user: " + err.message);
+          });
       } catch (err) {
-        setSnackbar("Registration failed: " + err, "warning");
+        setSnackbar("Error deleting user: " + err);
       }
     } else {
-      await updateUserDetails(user.uid, data.firstName, data.lastName, data.email, data.fplId).then(
-        () => {
-          setSnackbar("Details updated successfully", "success");
-        }
-      );
+      setSnackbar("Error deleting user");
     }
   };
 
@@ -182,6 +218,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
                   required
                   value={value}
                   onChange={onChange}
+                  type="email"
                 />
               )}
             />
@@ -191,7 +228,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
                   name="password"
                   control={control}
                   render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                    <OutlinedInput
+                    <TextField
                       sx={{ mt: 2 }}
                       className="text-input"
                       placeholder="Password"
@@ -200,14 +237,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
                       required
                       value={value}
                       onChange={onChange}
-                      type={showPassword ? "text" : "password"}
-                      inputProps={{ form: { autoComplete: "off" } }}
-                      endAdornment={
-                        <TogglePasswordVis
-                          showPassword={showPassword}
-                          setShowPassword={setShowPassword}
-                        />
-                      }
+                      type="password"
                     />
                   )}
                 />
@@ -215,7 +245,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
                   name="repeatPassword"
                   control={control}
                   render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                    <OutlinedInput
+                    <TextField
                       sx={{ mt: 1 }}
                       className="text-input"
                       placeholder="Repeat password"
@@ -224,14 +254,8 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
                       required
                       value={value}
                       onChange={onChange}
-                      type={showRepeatPassword ? "text" : "password"}
+                      type="password"
                       inputProps={{ form: { autoComplete: "off" } }}
-                      endAdornment={
-                        <TogglePasswordVis
-                          showPassword={showRepeatPassword}
-                          setShowPassword={setShowRepeatPassword}
-                        />
-                      }
                     />
                   )}
                 />
@@ -274,6 +298,18 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
             >
               {registerPage ? "Register" : "Update"}
             </Button>
+            {!registerPage && (
+              <Button
+                sx={{ mt: 3 }}
+                className="action-button"
+                color="error"
+                fullWidth
+                variant="contained"
+                onClick={(): void => setDeleteAccountModalOpen(true)}
+              >
+                {"Delete Account"}
+              </Button>
+            )}
           </form>
           {registerPage && (
             <>
@@ -322,6 +358,35 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
           {snackbarMessage}
         </Alert>
       </Snackbar>
+      <Modal open={deleteAccountModalOpen} onClose={(): void => setDeleteAccountModalOpen(false)}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "50%",
+            bgcolor: "#F9F9F9",
+            border: "2px solid black",
+            boxShadow: 24,
+            p: 4,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography sx={{ fontSize: "1.2em" }}>
+            Are you sure you want to delete your account?
+          </Typography>
+          <Box sx={{ pt: 2, display: "flex", justifyContent: "flex-end", width: "100%" }}>
+            <Button onClick={handleDeleteAccountClick}>
+              <Typography sx={{ fontSize: "1.2em" }}>Confirm</Typography>
+            </Button>
+            <Button onClick={(): void => setDeleteAccountModalOpen(false)}>
+              <Typography sx={{ fontSize: "1.2em" }}>Cancel</Typography>
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
     </Box>
   );
 }
