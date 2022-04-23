@@ -29,6 +29,12 @@ export default function Lineup({
 
   const sortedBench = _.sortBy(bench, ["element_type"]);
   const activeChip = teamPicks?.active_chip ? teamPicks?.active_chip.toUpperCase() : "None";
+  const totalPoints = selected
+    .map((positionGroup) => {
+      return positionGroup.map((player) => player.event_points);
+    })
+    .flat()
+    .reduce((a, b) => a + b);
 
   const handlePlayerPerformanceClick = (player: PlayerType): void => {
     setPlayerPerformanceModalOpen(true);
@@ -82,7 +88,7 @@ export default function Lineup({
             <Typography sx={textStyling} variant="h6">
               GW Points:
               <br />
-              <Typography>{teamData.summary_event_points}</Typography>
+              <Typography>{totalPoints}</Typography>
             </Typography>
           )}
           {teamData && (
