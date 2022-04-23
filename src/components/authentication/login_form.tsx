@@ -14,7 +14,6 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { AuthLayout } from ".";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { FirebaseError } from "firebase/app";
 import { FirebaseResponse } from "types/firebase";
 
 interface FormInput {

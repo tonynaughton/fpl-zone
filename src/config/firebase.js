@@ -19,6 +19,7 @@ import {
   updateDoc,
   doc,
   getDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -92,9 +93,8 @@ export const registerWithEmailAndPassword = async (
 export const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
   } catch (err) {
-    alert(err.message);
+    return err;
   }
 };
 
@@ -118,6 +118,20 @@ export const updateUserDetails = async (uid, firstName, lastName, email, fplId =
   } catch (err) {
     alert(err.message);
     return;
+  }
+};
+
+export const deleteUser = async (user) => {
+  const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+  const userDoc = await getDocs(q);
+  const userId = userDoc.docs[0].id;
+  try {
+    deleteUser(user).catch((err) => {
+      return err;
+    });
+    await deleteDoc(doc(db, "users", userId));
+  } catch (err) {
+    return err;
   }
 };
 
