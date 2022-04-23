@@ -146,20 +146,22 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
 
   const handleDeleteAccountClick = async (): Promise<void> => {
     if (user) {
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const userDoc = await getDocs(q);
+      const userId = userDoc.docs[0].id;
       try {
-        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-        const userDoc = await getDocs(q);
-        const userId = userDoc.docs[0].id;
-        await deleteDoc(doc(db, "users", userId));
         deleteUser(user)
           .then(() => {
             navigate("/login");
           })
           .catch((err) => {
             setSnackbar("Error deleting user: " + err.message);
+            return;
           });
+        await deleteDoc(doc(db, "users", userId));
       } catch (err) {
         setSnackbar("Error deleting user: " + err);
+        return;
       }
     } else {
       setSnackbar("Error deleting user");
