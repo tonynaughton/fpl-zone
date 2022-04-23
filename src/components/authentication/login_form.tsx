@@ -7,14 +7,15 @@ import {
   Snackbar,
   Alert,
   AlertColor,
-  OutlinedInput,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "config/firebase";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { AuthLayout, TogglePasswordVis } from ".";
+import { AuthLayout } from ".";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { FirebaseError } from "firebase/app";
+import { FirebaseResponse } from "types/firebase";
 
 interface FormInput {
   email: string;
@@ -33,7 +34,6 @@ export function LoginForm(): JSX.Element {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState("info");
-  const [showPassword, setShowPassword] = useState(false);
 
   const setSnackbar = (message: string, severity = "info"): void => {
     setSnackbarMessage(message);
@@ -66,9 +66,11 @@ export function LoginForm(): JSX.Element {
 
   const onLoginClick: SubmitHandler<FormInput> = async (data: FormInput) => {
     try {
-      await logInWithEmailAndPassword(data.email, data.password).then(() => {
-        setSnackbar("Login successful", "success");
-      });
+      const response = (await logInWithEmailAndPassword(
+        data.email,
+        data.password
+      )) as FirebaseResponse;
+      setSnackbar("Registration failed: " + response.message, "error");
     } catch (err) {
       setSnackbar("Registration failed: " + err, "warning");
     }
@@ -92,6 +94,7 @@ export function LoginForm(): JSX.Element {
                 error={!!error}
                 value={value}
                 onChange={onChange}
+                type="email"
               />
             )}
           />
@@ -99,7 +102,7 @@ export function LoginForm(): JSX.Element {
             name="password"
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-              <OutlinedInput
+              <TextField
                 sx={{ mt: 2 }}
                 autoFocus
                 className="text-input"
@@ -109,13 +112,7 @@ export function LoginForm(): JSX.Element {
                 required
                 value={value}
                 onChange={onChange}
-                type={showPassword ? "text" : "password"}
-                endAdornment={
-                  <TogglePasswordVis
-                    showPassword={showPassword}
-                    setShowPassword={setShowPassword}
-                  />
-                }
+                type="password"
               />
             )}
           />
