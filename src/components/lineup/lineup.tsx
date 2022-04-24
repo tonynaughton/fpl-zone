@@ -205,8 +205,8 @@ export default function Lineup({
           isPlayerPerformanceModalOpen={isPlayerPerformanceModalOpen}
           setPlayerPerformanceModalOpen={setPlayerPerformanceModalOpen}
           selectedPlayer={selectedPlayer}
-          elementStats={appData.gameData.element_stats}
-          teams={appData.gameData.teams}
+          elementStats={appData.element_stats}
+          teams={appData.teams}
         />
       )}
     </>

@@ -14,9 +14,9 @@ interface SummaryDataItem {
 
 export default function GameweekSummary(): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;
-  const allGameweeks = appData.gameData.events;
+  const allGameweeks = appData.events;
   const gameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
-  const players = appData.gameData.elements;
+  const players = appData.elements;
 
   const topPlayerId = gameweek.top_element_info?.id;
   const starPlayer = topPlayerId ? GetPlayerById(topPlayerId, players) : undefined;

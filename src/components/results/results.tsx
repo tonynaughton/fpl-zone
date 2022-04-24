@@ -8,8 +8,8 @@ import { AppDataContext } from "app_content";
 
 export default function Results(): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;
-  const latestGameweek = appData.gameData.events.find((gw) => gw.is_current) as Gameweek;
-  const fixtures = appData.fixtureData;
+  const latestGameweek = appData.events.find((gw) => gw.is_current) as Gameweek;
+  const fixtures = appData.fixtures;
 
   const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
@@ -110,7 +110,7 @@ export default function Results(): JSX.Element {
                 },
               }}
             >
-              {renderResult(customResult, matchStarted, appData.gameData.teams, key)}
+              {renderResult(customResult, matchStarted, appData.teams, key)}
             </Box>
           );
         })}

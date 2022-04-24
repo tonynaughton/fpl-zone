@@ -4589,6 +4589,6 @@ export const mockGameData: GameData = {
 };
 
 export const mockAppData: AppData = {
-  gameData: mockGameData,
-  fixtureData: mockFixtures,
+  ...mockGameData,
+  fixtures: mockFixtures,
 };

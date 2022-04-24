@@ -7,9 +7,7 @@ import { AppDataContext } from "app_content";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("Results Tests", () => {
-  const latestGameweek = mockAppData.gameData.events.find(
-    (gameweek) => gameweek.is_current
-  ) as Gameweek;
+  const latestGameweek = mockAppData.events.find((gameweek) => gameweek.is_current) as Gameweek;
 
   function createComponent(): JSX.Element {
     return (
@@ -43,7 +41,7 @@ describe("Results Tests", () => {
   it("Gameweek fixtures rendered as expected", () => {
     render(createComponent());
 
-    const gameweekResults: Fixture[] = mockAppData.fixtureData.filter(
+    const gameweekResults: Fixture[] = mockAppData.fixtures.filter(
       (fixture) => fixture.event === latestGameweek.id
     );
 
