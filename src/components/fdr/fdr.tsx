@@ -39,13 +39,10 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
   useEffect(() => {
     const fetchNextFiveGameweekFixtures = async (): Promise<void> => {
-      const nextFiveGameweekFixtures: Fixture[][] = [];
-      // eslint-disable-next-line no-loops/no-loops
-      for (const gameweek of nextFiveGameweeks) {
-        await getGameweekFixtures(gameweek).then((fixtures) => {
-          nextFiveGameweekFixtures.push(fixtures);
-        });
-      }
+      const nextFiveGameweekFixtures: Fixture[][] = await Promise.all(
+        nextFiveGameweeks.map(async (gameweek) => await getGameweekFixtures(gameweek))
+      );
+
       setNextFiveFixtures(nextFiveGameweekFixtures);
     };
 
@@ -95,13 +92,10 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   };
 
   const getNextFiveTeamFixtures = (baseItem: BaseItem, fixtures: Fixture[][]): Fixture[][] => {
-    const fixturesByTeam: Fixture[][] = [];
     const teamId = players ? (baseItem as Player).team : (baseItem as Team).id;
-    fixtures.forEach((gameweek) => {
-      const teamFixtures = gameweek.filter((f) => f.team_h === teamId || f.team_a === teamId);
-      fixturesByTeam.push([...teamFixtures]);
+    return fixtures.map((gameweek) => {
+      return gameweek.filter((f) => f.team_h === teamId || f.team_a === teamId);
     });
-    return fixturesByTeam;
   };
 
   const renderRow = (baseItem: BaseItem, index: number): JSX.Element => {
