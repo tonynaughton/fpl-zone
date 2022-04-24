@@ -46,7 +46,7 @@ export default function MatchDetailsModal({
                   display: "block",
                 }}
               >
-                {GetPlayerById(stat.element, appData.gameData.elements).web_name}
+                {GetPlayerById(stat.element, appData.elements).web_name}
                 {stat.value > 1 ? ` (${stat.value})` : ""}
               </Typography>
               &nbsp;&nbsp;
@@ -64,7 +64,7 @@ export default function MatchDetailsModal({
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const stats = selectedResult.stats.find((stat) => stat.identifier === identifier)!;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const statTitle = appData.gameData.element_stats.find((stat) => stat.name === identifier)!;
+    const statTitle = appData.element_stats.find((stat) => stat.name === identifier)!;
     const statsExist = stats.h.length > 0 || stats.a.length > 0;
     return statsExist ? (
       <Box
@@ -152,7 +152,7 @@ export default function MatchDetailsModal({
           <Typography variant="h5">
             {selectedResult.kickoff_time && formatDate(new Date(selectedResult.kickoff_time))}
           </Typography>
-          {renderResult(customResult, true, appData.gameData.teams)}
+          {renderResult(customResult, true, appData.teams)}
           {renderStat("goals_scored")}
           {renderStat("assists")}
           {renderStat("yellow_cards")}

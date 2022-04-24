@@ -26,10 +26,10 @@ interface FdrTableProps {
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<Fixture[][]>([]);
   const appData = useContext(AppDataContext) as AppData;
-  const teams = appData.gameData.teams;
+  const teams = appData.teams;
   const baseItem = players || teams;
   const nameColumnTitle = players ? "Player" : "Team";
-  const allGameweeks = appData.gameData.events;
+  const allGameweeks = appData.events;
   const currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
   const nextFiveGameweeks: number[] = [];
   // eslint-disable-next-line no-loops/no-loops

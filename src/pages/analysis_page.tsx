@@ -22,10 +22,10 @@ export function AnalysisPage(): JSX.Element {
   const renderPlayerComparsion = (): JSX.Element => {
     return (
       <PlayerComparison
-        players={appData.gameData.elements}
-        elementStats={appData.gameData.element_stats}
-        teams={appData.gameData.teams}
-        positions={appData.gameData.element_types}
+        players={appData.elements}
+        elementStats={appData.element_stats}
+        teams={appData.teams}
+        positions={appData.element_types}
       />
     );
   };

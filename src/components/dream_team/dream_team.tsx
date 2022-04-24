@@ -7,10 +7,10 @@ import { AppDataContext } from "app_content";
 
 export default function DreamTeam(): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;
-  const positions: Position[] = appData.gameData.element_types;
+  const positions: Position[] = appData.element_types;
 
   const getTopPlayersByPosition = (positionId: number, max: number): Player[] => {
-    return _(appData.gameData.elements)
+    return _(appData.elements)
       .filter(["element_type", positionId])
       .orderBy(["event_points"], ["desc"])
       .slice(0, max)

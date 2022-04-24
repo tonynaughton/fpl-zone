@@ -16,7 +16,7 @@ describe("Gameweek Summary Tests", () => {
     );
   };
 
-  const gameweek = mockAppData.gameData.events.find((gameweek) => {
+  const gameweek = mockAppData.events.find((gameweek) => {
     return gameweek.is_current;
   }) as Gameweek;
 

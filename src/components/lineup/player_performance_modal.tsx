@@ -50,7 +50,7 @@ export default function PlayerPerformanceModal({
   );
 
   const appData = useContext(AppDataContext) as AppData;
-  const currentGameweek = appData.gameData.events.find((event) => event.is_current) as Gameweek;
+  const currentGameweek = appData.events.find((event) => event.is_current) as Gameweek;
   const playerPerformances = playerInfo?.history.filter(
     (fixture) => fixture.round === currentGameweek.id
   );

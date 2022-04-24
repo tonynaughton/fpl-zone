@@ -1,6 +1,5 @@
 import { Fixture, GameData } from "types";
 
-export interface AppData {
-  gameData: GameData;
-  fixtureData: Fixture[];
+export interface AppData extends GameData {
+  fixtures: Fixture[];
 }

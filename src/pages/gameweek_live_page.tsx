@@ -20,7 +20,7 @@ export function GameweekLivePage(): JSX.Element {
   });
 
   const appData = useContext(AppDataContext) as AppData;
-  const gameIsUpdating = checkGameUpdatingStatus(appData.gameData.events);
+  const gameIsUpdating = checkGameUpdatingStatus(appData.events);
 
   const renderDreamTeam = (): JSX.Element => {
     if (gameIsUpdating) {
