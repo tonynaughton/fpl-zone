@@ -1,7 +1,7 @@
 import React from "react";
+import { Info } from "@mui/icons-material";
 import { Box, Tooltip, Typography } from "@mui/material";
 import { Player as PlayerType } from "types/player";
-import { Info } from "@mui/icons-material";
 
 interface PlayerProps {
   player: PlayerType;

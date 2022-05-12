@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { AppData, Player as PlayerType, TeamData, TeamPicks } from "types";
-import Player from "../player/player";
-import _ from "lodash";
-import { numberWithCommas } from "helpers";
-import PlayerPerformanceModal from "./player_performance_modal";
 import { AppDataContext } from "app_content";
+import { numberWithCommas } from "helpers";
+import _ from "lodash";
+import { AppData, Player as PlayerType, TeamData, TeamPicks } from "types";
+
+import Player from "../player/player";
+
+import PlayerPerformanceModal from "./player_performance_modal";
 
 interface LineupProps {
   selected: PlayerType[][];

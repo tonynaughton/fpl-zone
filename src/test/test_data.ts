@@ -1,6 +1,6 @@
 import { AppData, Fixture, GameData, Phase, PlayerStat, Team } from "types";
-import { Gameweek } from "types/gameweek";
 import { GameSettings } from "types/game_settings";
+import { Gameweek } from "types/gameweek";
 import { Player } from "types/player";
 import { Position } from "types/position";
 

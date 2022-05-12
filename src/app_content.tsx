@@ -1,11 +1,7 @@
 import React from "react";
-import { LoadingMessage, ErrorMessage, Startup } from "components/layout";
-import PrivateRoute from "private_route";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { useQuery } from "react-query";
+import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
-import { AppData } from "types";
-import { Logout } from "components/authentication";
 import {
   AccountPage,
   AnalysisPage,
@@ -16,6 +12,11 @@ import {
   RegisterPage,
   ResetPage,
 } from "pages";
+import PrivateRoute from "private_route";
+import { AppData } from "types";
+
+import { Logout } from "components/authentication";
+import { ErrorMessage, LoadingMessage, Startup } from "components/layout";
 
 export const AppDataContext = React.createContext<AppData | null>(null);
 

@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { Grid } from "@mui/material";
-import FdrTable from "components/fdr/fdr";
-import { AppLayout, ComponentContainer } from "components/layout";
-import { auth } from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
+import { auth } from "config/firebase";
+
+import FdrTable from "components/fdr/fdr";
+import { AppLayout, ComponentContainer } from "components/layout";
 import Results from "components/results/results";
 
 export function FixturesAndResultsPage(): JSX.Element {

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, IconButton, Tooltip, Typography } from "@mui/material";
-import { AppData, CustomResult, Fixture, Gameweek } from "types";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { Box, IconButton, Tooltip, Typography } from "@mui/material";
+import { AppDataContext } from "app_content";
+import { AppData, CustomResult, Fixture, Gameweek } from "types";
+
 import MatchDetailsModal from "./match_details_modal";
 import { renderResult } from "./result";
-import { AppDataContext } from "app_content";
 
 export default function Results(): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
+
 import Logo from "components/logo/logo";
 
 export function Startup(props: { children: JSX.Element }): JSX.Element {

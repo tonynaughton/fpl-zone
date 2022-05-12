@@ -1,36 +1,39 @@
 import React, { Fragment, useEffect, useState } from "react";
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-  db,
-  updateUserDetails,
-} from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { Controller,SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { Info } from "@mui/icons-material";
+import GoogleIcon from "@mui/icons-material/Google";
 import {
-  Box,
-  Button,
-  TextField,
-  Link as MuiLink,
-  Snackbar,
   Alert,
   AlertColor,
-  OutlinedInput,
-  InputAdornment,
+  Box,
+  Button,
   IconButton,
+  InputAdornment,
+  Link as MuiLink,
   Modal,
+  OutlinedInput,
+  Snackbar,
+  TextField,
   Typography,
 } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
-import { LoadingMessage } from "components/layout";
-import { Info } from "@mui/icons-material";
-import { FplIdModal } from ".";
-import "./authentication.css";
+import {
+  auth,
+  db,
+  registerWithEmailAndPassword,
+  signInWithGoogle,
+  updateUserDetails,
+} from "config/firebase";
 import { deleteUser } from "firebase/auth";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { delay } from "helpers";
+
+import { LoadingMessage } from "components/layout";
+
+import { FplIdModal } from ".";
+
+import "./authentication.css";
 
 interface DetailsFormProps {
   registerPage: boolean;

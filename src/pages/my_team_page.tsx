@@ -1,17 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
-import { auth, getUserFplTeamId } from "config/firebase";
 import { useQuery } from "react-query";
-import { getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
-import FdrTable from "components/fdr/fdr";
-import { Gameweek, Player, TeamData, TeamPicks, AppData } from "types";
+import { Link, useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
-import { checkGameUpdatingStatus, GetPlayerById } from "helpers";
-import Lineup from "components/lineup/lineup";
-import _ from "lodash";
-import { ErrorMessage, AppLayout, ComponentContainer, LoadingMessage } from "components/layout";
+import { getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
+import { auth, getUserFplTeamId } from "config/firebase";
+import { checkGameUpdatingStatus, GetPlayerById } from "helpers";
+import _ from "lodash";
+import { AppData,Gameweek, Player, TeamData, TeamPicks } from "types";
+
+import FdrTable from "components/fdr/fdr";
+import { AppLayout, ComponentContainer, ErrorMessage, LoadingMessage } from "components/layout";
+import Lineup from "components/lineup/lineup";
 
 export function MyTeamPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);

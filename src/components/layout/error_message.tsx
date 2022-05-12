@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
 import { Warning } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
 
 interface ErrorProps {
   message: string;

@@ -1,21 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
+  Box,
   Table,
+  TableBody,
+  TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  TableCell,
-  TableBody,
-  Box,
   Typography,
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
-import { AppData, Fixture, Gameweek, Player, Team } from "types";
-import _ from "lodash";
-import FixtureBox from "./fixture_box";
-import DifficultyLegend from "./difficulty_legend";
-import { LoadingMessage } from "components/layout";
 import { AppDataContext } from "app_content";
+import _ from "lodash";
+import { AppData, Fixture, Gameweek, Player, Team } from "types";
+
+import { LoadingMessage } from "components/layout";
+
+import DifficultyLegend from "./difficulty_legend";
+import FixtureBox from "./fixture_box";
 
 export type BaseItem = Player | Team;
 

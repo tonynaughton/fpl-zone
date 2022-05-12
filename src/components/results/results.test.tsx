@@ -1,9 +1,11 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import Results from "components/results/results";
+import { AppDataContext } from "app_content";
 import { mockAppData } from "test";
 import { Fixture, Gameweek } from "types";
-import { AppDataContext } from "app_content";
+
+import Results from "components/results/results";
+
 import "@testing-library/jest-dom/extend-expect";
 
 describe("Results Tests", () => {

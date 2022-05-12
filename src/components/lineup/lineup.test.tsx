@@ -1,9 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { mockAppData, mockPlayers, mockPositions } from "test";
-import Lineup from "components/lineup/lineup";
-import { Player } from "types/player";
 import { AppDataContext } from "app_content";
+import { mockAppData, mockPlayers, mockPositions } from "test";
+import { Player } from "types/player";
+
+import Lineup from "components/lineup/lineup";
+
 import "@testing-library/jest-dom/extend-expect";
 
 describe("Lineup Tests", () => {

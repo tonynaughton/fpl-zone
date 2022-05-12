@@ -1,6 +1,7 @@
-import { List, ListItemButton, ListItemText } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import { List, ListItemButton, ListItemText } from "@mui/material";
+
 import { MenuItem } from "./types";
 
 interface MenuListProps {

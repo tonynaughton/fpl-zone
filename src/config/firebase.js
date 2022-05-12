@@ -1,25 +1,26 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { initializeApp } from "firebase/app";
 import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
   sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateEmail,
 } from "firebase/auth";
 import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
   addDoc,
-  updateDoc,
+  collection,
+  deleteDoc,
   doc,
   getDoc,
-  deleteDoc,
+  getDocs,
+  getFirestore,
+  query,
+  updateDoc,
+  where,
 } from "firebase/firestore";
 
 const firebaseConfig = {

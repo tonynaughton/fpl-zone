@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { getTeamById, formatDate } from "helpers";
+import { formatDate,getTeamById } from "helpers";
 import { CustomResult, Team } from "types";
 
 export const renderResult = (

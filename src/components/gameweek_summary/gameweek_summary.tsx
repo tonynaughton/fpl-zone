@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { Gameweek } from "types/gameweek";
 import { Box, Typography } from "@mui/material";
-import { GetPlayerById, numberWithCommas } from "helpers";
 import { AppDataContext } from "app_content";
+import { GetPlayerById, numberWithCommas } from "helpers";
 import { AppData } from "types";
+import { Gameweek } from "types/gameweek";
 
 interface SummaryDataItem {
   label: string;

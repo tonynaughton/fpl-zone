@@ -1,18 +1,19 @@
 import "@testing-library/jest-dom";
+
 import {
-  getGameData,
   getAllFixtures,
-  getGameweekFixtures,
+  getBestLeagues,
+  getGameData,
   getGameweekData,
-  getTeamData,
-  getTeamHistory,
-  getTeamTransfers,
-  getTeamPicksForGameweek,
+  getGameweekFixtures,
   getLeagueData,
   getLeagueDataWithPage,
   getPlayerData,
   getRegions,
-  getBestLeagues,
+  getTeamData,
+  getTeamHistory,
+  getTeamPicksForGameweek,
+  getTeamTransfers,
 } from "./fpl_api_provider";
 
 const mockGameweek = 20;

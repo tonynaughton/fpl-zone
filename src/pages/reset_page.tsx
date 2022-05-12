@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import {
-  Box,
-  Button,
-  TextField,
-  Link as MuiLink,
-  Snackbar,
   Alert,
   AlertColor,
+  Box,
+  Button,
+  Link as MuiLink,
+  Snackbar,
+  TextField,
 } from "@mui/material";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { auth, sendPasswordReset } from "config/firebase";
-import { AuthLayout } from "../components/authentication";
-import { Controller, useForm } from "react-hook-form";
 import { delay } from "helpers";
+
+import { AuthLayout } from "../components/authentication";
 
 interface FormInput {
   email: string;

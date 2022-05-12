@@ -1,17 +1,17 @@
 import axios from "axios";
 import {
+  BestLeague,
   Fixture,
+  GameData,
   Gameweek,
   GameweekPicks,
-  GameData,
-  BestLeague,
   LeagueData,
   LeagueDataWithPage,
   PlayerSummary,
   Region,
+  TeamData,
   TeamHistory,
   Transfer,
-  TeamData,
 } from "types";
 
 export const base_url = "http://localhost:8010/proxy";

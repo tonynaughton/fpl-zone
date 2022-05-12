@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import GoogleIcon from "@mui/icons-material/Google";
 import {
-  Box,
-  Button,
-  TextField,
-  Link as MuiLink,
-  Snackbar,
   Alert,
   AlertColor,
+  Box,
+  Button,
+  Link as MuiLink,
+  Snackbar,
+  TextField,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "config/firebase";
-import GoogleIcon from "@mui/icons-material/Google";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { AuthLayout } from ".";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { FirebaseResponse } from "types/firebase";
+
+import { AuthLayout } from ".";
 
 interface FormInput {
   email: string;

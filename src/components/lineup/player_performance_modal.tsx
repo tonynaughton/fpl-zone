@@ -1,4 +1,6 @@
 import React, { Fragment, useContext } from "react";
+import { useQuery } from "react-query";
+import { Close } from "@mui/icons-material";
 import {
   Box,
   IconButton,
@@ -10,21 +12,20 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import { getPlayerData } from "api/fpl_api_provider";
+import { AppDataContext } from "app_content";
+import _ from "lodash";
 import {
+  AppData,
   CustomResult,
   Gameweek,
   Player,
   PlayerPerformance,
   PlayerStat,
   Team,
-  AppData,
 } from "types";
-import { Close } from "@mui/icons-material";
-import { getPlayerData } from "api/fpl_api_provider";
-import { useQuery } from "react-query";
+
 import { LoadingMessage } from "components/layout";
-import _ from "lodash";
-import { AppDataContext } from "app_content";
 import { renderResult } from "components/results/result";
 
 interface PlayerPerformanceModalProps {
