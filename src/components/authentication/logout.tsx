@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { logout } from "config/firebase";
 import { Navigate } from "react-router-dom";
 import { Box } from "@mui/material";
+import { logout } from "config/firebase";
+
 import { LoadingMessage } from "components/layout";
 
 export function Logout(): JSX.Element {

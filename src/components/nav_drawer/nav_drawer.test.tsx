@@ -1,9 +1,11 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import NavDrawer from "./nav_drawer";
-import { MemoryRouter as Router } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { MemoryRouter as Router } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
+
 import "@testing-library/jest-dom";
+
+import NavDrawer from "./nav_drawer";
 
 describe("Nav Drawer Tests", () => {
   const mockQueryClient = new QueryClient();

@@ -1,5 +1,5 @@
-import { Gameweek } from "./gameweek";
 import { GameSettings } from "./game_settings";
+import { Gameweek } from "./gameweek";
 import { Phase } from "./phase";
 import { Player } from "./player";
 import { PlayerStat } from "./player_stat";

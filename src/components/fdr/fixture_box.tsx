@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, TableCell, Tooltip, Typography } from "@mui/material";
 import { Fixture, Player, Team } from "types";
+
 import { fdrColours } from "./difficulty_legend";
 import { BaseItem } from "./fdr";
 

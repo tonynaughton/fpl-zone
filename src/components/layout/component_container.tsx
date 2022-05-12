@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { LoadingMessage } from "./loading_message";
+
 import { ErrorMessage } from "./error_message";
+import { LoadingMessage } from "./loading_message";
 
 interface ComponentContainerProps {
   title: string;

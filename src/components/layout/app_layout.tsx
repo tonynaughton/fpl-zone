@@ -1,6 +1,7 @@
 import React from "react";
-import NavDrawer from "components/nav_drawer/nav_drawer";
 import { Box, Container, Typography } from "@mui/material";
+
+import NavDrawer from "components/nav_drawer/nav_drawer";
 
 interface LayoutProps {
   activeLabel: string;

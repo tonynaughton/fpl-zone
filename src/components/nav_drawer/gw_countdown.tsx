@@ -1,9 +1,9 @@
 import React from "react";
-import { getGameData } from "api/fpl_api_provider";
-import { useQuery } from "react-query";
-import { Gameweek } from "types/gameweek";
 import Countdown from "react-countdown";
+import { useQuery } from "react-query";
 import { Box, Typography } from "@mui/material";
+import { getGameData } from "api/fpl_api_provider";
+import { Gameweek } from "types/gameweek";
 
 export default function GameweekCountdown(): JSX.Element {
   const { data, isError } = useQuery("game-data", getGameData);

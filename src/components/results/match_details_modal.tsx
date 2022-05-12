@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { Box, Grid, IconButton, Typography } from "@mui/material";
-import { Fixture, StatValue, Team, CustomResult, AppData } from "types";
 import { Close } from "@mui/icons-material";
-import { formatDate, GetPlayerById } from "helpers";
+import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
+import { formatDate, GetPlayerById } from "helpers";
+import { AppData,CustomResult, Fixture, StatValue, Team } from "types";
 
 interface MatchDetailsModalProps {
   isResultsModalOpen: boolean;

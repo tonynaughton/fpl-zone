@@ -1,10 +1,13 @@
 import React from "react";
+import { Box } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
+
 import Logo from "components/logo/logo";
-import { Box, Typography } from "@mui/material";
-import { MenuItem } from "./types";
-import MenuList from "./menu_list";
+
 import GameweekCountdown from "./gw_countdown";
+import MenuList from "./menu_list";
+import { MenuItem } from "./types";
+
 import "./nav_drawer.css";
 
 const drawerWidth = 250;

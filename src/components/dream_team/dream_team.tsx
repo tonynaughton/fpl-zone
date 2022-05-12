@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Position } from "types/position";
-import _ from "lodash";
-import Lineup from "components/lineup/lineup";
-import { AppData, Player } from "types";
 import { AppDataContext } from "app_content";
+import _ from "lodash";
+import { AppData, Player } from "types";
+import { Position } from "types/position";
+
+import Lineup from "components/lineup/lineup";
 
 export default function DreamTeam(): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;

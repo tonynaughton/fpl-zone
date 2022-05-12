@@ -1,11 +1,14 @@
 import React from "react";
-import { BaseItem } from "components/fdr/fdr";
-import { Fixture, Player, Team } from "types";
-import FixtureBox from "components/fdr/fixture_box";
-import { mockFixtures, mockPlayers, mockTeams } from "../../test/test_data";
 import { render, screen } from "@testing-library/react";
+import { Fixture, Player, Team } from "types";
+
 import { fdrColours } from "components/fdr/difficulty_legend";
+import { BaseItem } from "components/fdr/fdr";
+import FixtureBox from "components/fdr/fixture_box";
+
 import "@testing-library/jest-dom/extend-expect";
+
+import { mockFixtures, mockPlayers, mockTeams } from "../../test/test_data";
 
 describe("Fixture Box Tests", () => {
   let fixtures: Fixture[];

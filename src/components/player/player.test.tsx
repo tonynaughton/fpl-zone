@@ -1,9 +1,12 @@
 import React from "react";
 import { cleanup, render, screen } from "@testing-library/react";
-import { mockPlayers } from "../../test/test_data";
-import Player from "components/player/player";
 import { Player as PlayerType } from "types";
+
+import Player from "components/player/player";
+
 import "@testing-library/jest-dom/extend-expect";
+
+import { mockPlayers } from "../../test/test_data";
 
 describe("Player Tests", () => {
   let mockPlayer: PlayerType;

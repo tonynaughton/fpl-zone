@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Autocomplete, Box, Chip, TextField, Typography, Snackbar } from "@mui/material";
-import { Player } from "types/player";
+import { ArrowUpward } from "@mui/icons-material";
+import { Alert, Autocomplete, Box, Chip, Snackbar,TextField, Typography } from "@mui/material";
 import { getTeamById } from "helpers";
 import { PlayerStat, Position, Team } from "types";
-import { ArrowUpward } from "@mui/icons-material";
+import { Player } from "types/player";
+
 import ComparisonTable from "./comparison_table";
 
 interface PlayerComparisonProps {

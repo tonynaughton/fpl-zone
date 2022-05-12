@@ -1,7 +1,7 @@
-import { Table, TableBody, TableRow, TableCell, Typography, Box } from "@mui/material";
-import { getTeamById } from "helpers";
-import { PlayerStat, Team, Player } from "types";
 import React from "react";
+import { Box,Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
+import { getTeamById } from "helpers";
+import { Player,PlayerStat, Team } from "types";
 
 interface ComparisonTableProps {
   selectedPlayers: Player[];

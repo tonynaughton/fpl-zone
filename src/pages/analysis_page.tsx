@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect } from "react";
-import { AppLayout, ComponentContainer } from "components/layout";
-import { auth } from "config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import PlayerComparison from "components/comparison/player_comparison";
-import { AppData } from "types";
 import { AppDataContext } from "app_content";
+import { auth } from "config/firebase";
+import { AppData } from "types";
+
+import PlayerComparison from "components/comparison/player_comparison";
+import { AppLayout, ComponentContainer } from "components/layout";
 
 export function AnalysisPage(): JSX.Element {
   const [user, loading] = useAuthState(auth);

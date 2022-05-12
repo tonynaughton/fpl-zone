@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { CssBaseline } from "@mui/material";
+import { createTheme,ThemeProvider } from "@mui/material/styles";
 import AppContent from "app_content";
+
 import "./global.css";
 
 const customTheme = createTheme({

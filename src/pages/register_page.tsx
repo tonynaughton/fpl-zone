@@ -1,4 +1,5 @@
 import React from "react";
+
 import { AuthLayout, DetailsForm } from "../components/authentication";
 
 export function RegisterPage(): JSX.Element {
