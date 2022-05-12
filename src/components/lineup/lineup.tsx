@@ -28,13 +28,8 @@ export default function Lineup({
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
 
   const sortedBench = _.sortBy(bench, ["element_type"]);
-  const activeChip = teamPicks?.active_chip ? teamPicks?.active_chip.toUpperCase() : "None";
-  const totalPoints = selected
-    .map((positionGroup) => {
-      return positionGroup.map((player) => player.event_points);
-    })
-    .flat()
-    .reduce((a, b) => a + b);
+  const activeChip = teamPicks?.active_chip ? teamPicks.active_chip.toUpperCase() : "None";
+  const totalPoints = teamData?.summary_event_points;
 
   const handlePlayerPerformanceClick = (player: PlayerType): void => {
     setPlayerPerformanceModalOpen(true);
@@ -142,8 +137,8 @@ export default function Lineup({
                     handlePlayerPerformanceClick={handlePlayerPerformanceClick}
                     key={key}
                     compressed={compressed}
-                    isCaptain={pick?.is_captain ? true : undefined}
-                    isViceCaptain={pick?.is_vice_captain ? true : undefined}
+                    isCaptain={pick?.is_captain}
+                    isViceCaptain={pick?.is_vice_captain}
                     multiplier={pick?.multiplier || 1}
                   />
                 );
