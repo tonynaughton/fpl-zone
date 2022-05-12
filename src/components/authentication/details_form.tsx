@@ -139,8 +139,6 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
             setSnackbar("Error updating details: " + err, "error");
           });
           setSnackbar("Details updated successfully");
-          await delay(1000);
-          navigate("/gameweek-live");
         } catch (err) {
           setSnackbar("Error updating details: " + err, "error");
         }

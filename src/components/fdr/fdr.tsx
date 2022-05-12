@@ -30,10 +30,10 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const baseItem = players || teams;
   const nameColumnTitle = players ? "Player" : "Team";
   const allGameweeks = appData.events;
-  const currentGameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
+  const nextGameweek = allGameweeks.find((gw) => gw.is_next) as Gameweek;
   const nextFiveGameweeks: number[] = [];
   // eslint-disable-next-line no-loops/no-loops
-  for (let x = currentGameweek.id; x <= 38 && nextFiveGameweeks.length < 5; x++) {
+  for (let x = nextGameweek.id; x <= 38 && nextFiveGameweeks.length < 5; x++) {
     nextFiveGameweeks.push(x);
   }
 
