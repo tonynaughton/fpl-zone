@@ -18,13 +18,13 @@ const renderArmband = (isVice = false): JSX.Element => {
       data-testid="armband-container"
       sx={{
         borderRadius: "50%",
-        padding: "5px",
         backgroundColor: "white",
+        border: "1px solid black",
         position: "absolute",
         top: 0,
         left: 0,
-        width: "2em",
-        height: "2em",
+        width: "1.5vw",
+        height: "1.5vw",
       }}
     >
       {isVice ? "V" : "C"}

@@ -61,7 +61,7 @@ export default function GameweekSummary(): JSX.Element {
       label: "most transferred in",
       teamCode: mostTransferredIn?.team_code,
       playerName: `${mostTransferredIn?.web_name || ""}`,
-      statValue: mostTransferredInCount || 0,
+      statValue: mostTransferredInCount,
     },
   ];
 
