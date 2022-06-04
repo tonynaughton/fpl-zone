@@ -14,7 +14,7 @@ export function LoadingMessage({ message }: LoadingMessageProps): JSX.Element {
       flexDirection="column"
       sx={{ rowGap: "2em" }}
     >
-      <Typography variant="body1">{message}</Typography>
+      <Typography variant="body1" textAlign="center">{message}</Typography>
       <CircularProgress sx={{ color: "black" }} />
     </Box>
   );
