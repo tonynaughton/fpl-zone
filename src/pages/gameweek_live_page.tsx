@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { auth } from "config/firebase";
-import { checkGameUpdatingStatus } from "helpers";
+import { checkGameStatus, gameStatusValues } from "helpers";
 import { AppData } from "types";
 
 import DreamTeam from "components/dream_team/dream_team";
@@ -21,21 +21,21 @@ export function GameweekLivePage(): JSX.Element {
   });
 
   const appData = useContext(AppDataContext) as AppData;
-  const gameIsUpdating = checkGameUpdatingStatus(appData.events);
+  const gameStatus = checkGameStatus(appData.events);
 
   const renderDreamTeam = (): JSX.Element => {
-    if (gameIsUpdating) {
-      return <LoadingMessage message="Game is updating.." />;
-    } else {
+    if (gameStatus === gameStatusValues.GAME_OK) {
       return <DreamTeam />;
+    } else {
+      return <LoadingMessage message={gameStatus} />;
     }
   };
 
   const renderGameweekSummary = (): JSX.Element => {
-    if (gameIsUpdating) {
-      return <LoadingMessage message="Game is updating.." />;
-    } else {
+    if (gameStatus === gameStatusValues.GAME_OK) {
       return <GameweekSummary />;
+    } else {
+      return <LoadingMessage message={gameStatus} />;
     }
   };
 

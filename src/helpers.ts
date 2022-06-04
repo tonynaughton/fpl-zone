@@ -1,6 +1,12 @@
 import { Gameweek, Team } from "types";
 import { Player } from "types/player";
 
+export const gameStatusValues = {
+  GAME_UPDATING: 'Game is updating..',
+  SEASON_FINISHED: 'The FPL season has finished, check back next season!',
+  GAME_OK: 'GAME_OK'
+};
+
 // Getting a player by their id
 export function GetPlayerById(playerId: number, players: Player[]): Player {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -28,25 +34,45 @@ export function formatDate(kickOffDateTime: Date): string {
   );
 }
 
-// FPL game gets temporarily suspended when it is updating (i.e. fetched data will be inaccurate).
-// This update takes place at the beginning of each gameweek just after the deadline
-// for approximately 1.5 hours.
-export function checkGameUpdatingStatus(gameweeks: Gameweek[]): boolean {
+/*
+  The following function is used to check two things:
+
+  1. If the the most recent gameweek deadline was was within the last 1.5 hours
+    (If so, FPL data is innacurate as the game is being updated for approx 1.5 hours after
+    each gameweek deadline)
+
+  2. If there is no current gameweek then the season is finished - this must be
+    relayed back to the user so they understand why data is unavailable
+*/
+export function checkGameStatus(gameweeks: Gameweek[]): string {
   const currentDateTime = new Date();
-  const currentGameweek = gameweeks.find((gameweek) => gameweek.is_current) as Gameweek;
-  const nextGameweek = gameweeks.find((gameweek) => gameweek.is_next) as Gameweek;
-  // Checking if next gamewek deadline has passed.
-  // There can sometimes be a delay in update of gameweek is_next status.
-  const relevantGameweek =
-    new Date(nextGameweek.deadline_time) < currentDateTime ? nextGameweek : currentGameweek;
-  const deadline = new Date(relevantGameweek.deadline_time);
-  const timeDifference = currentDateTime.getTime() - deadline.getTime();
+
+  const currentGameweek = gameweeks.find(gameweek => gameweek.is_current);
+  const nextGameweek = gameweeks.find(gameweek => gameweek.is_next);
+
+  if (!currentGameweek) {
+    return gameStatusValues.SEASON_FINISHED;
+  }
+  
+  // Manually checking if next gamewek deadline has passed as there
+  // can sometimes be a delay in update of gameweek 'is_next' status
+  let relevantGameweek: Gameweek;
+
+  if (!nextGameweek || new Date(nextGameweek.deadline_time) > currentDateTime) {
+    relevantGameweek = currentGameweek;
+  } else {
+    relevantGameweek = nextGameweek;
+  }
+
+  const gameweekDeadline = new Date(relevantGameweek.deadline_time);
+  const timeDifference = currentDateTime.getTime() - gameweekDeadline.getTime();
+
   // If current time is 1.5 hours (5400000 ms) since deadline, game will be updating
   if (timeDifference < 5400000) {
-    return true;
-  } else {
-    return false;
+    return gameStatusValues.GAME_UPDATING;
   }
+  
+  return gameStatusValues.GAME_OK;
 }
 
 // Adding delay before next function call

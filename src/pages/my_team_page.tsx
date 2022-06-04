@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import { getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import { auth, getUserFplTeamId } from "config/firebase";
-import { checkGameUpdatingStatus, GetPlayerById } from "helpers";
+import { checkGameStatus, GetPlayerById } from "helpers";
 import _ from "lodash";
 import { AppData,Gameweek, Player, TeamData, TeamPicks } from "types";
 
@@ -66,7 +66,7 @@ export function MyTeamPage(): JSX.Element {
   };
 
   const renderTeamComponent = (): JSX.Element => {
-    const gameUpdatingStatus = checkGameUpdatingStatus(appData.events);
+    const gameUpdatingStatus = checkGameStatus(appData.events);
     if (!fplId) {
       return <EnterFPLID />;
     } else if (gameUpdatingStatus) {
