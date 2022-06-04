@@ -27,16 +27,20 @@ interface FdrTableProps {
 
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<Fixture[][]>([]);
+  const [fdrStatus, setFdrStatus] = useState<string>('Fetching fixture data..');
   const appData = useContext(AppDataContext) as AppData;
   const teams = appData.teams;
   const baseItem = players || teams;
   const nameColumnTitle = players ? "Player" : "Team";
   const allGameweeks = appData.events;
-  const nextGameweek = allGameweeks.find((gw) => gw.is_next) as Gameweek;
+  const nextGameweek = allGameweeks.find((gw) => gw.is_next);
   const nextFiveGameweeks: number[] = [];
-  // eslint-disable-next-line no-loops/no-loops
-  for (let x = nextGameweek.id; x <= 38 && nextFiveGameweeks.length < 5; x++) {
-    nextFiveGameweeks.push(x);
+
+  if (nextGameweek) {
+    // eslint-disable-next-line no-loops/no-loops
+    for (let x = nextGameweek.id; x <= 38 && nextFiveGameweeks.length < 5; x++) {
+      nextFiveGameweeks.push(x);
+    }
   }
 
   useEffect(() => {
@@ -46,6 +50,10 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
       );
 
       setNextFiveFixtures(nextFiveGameweekFixtures);
+
+      if (_.isEmpty(nextFiveGameweekFixtures)) {
+        setFdrStatus("The FPL season is over, please check back next season!");
+      }
     };
 
     fetchNextFiveGameweekFixtures();
@@ -127,7 +135,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
   return _.isEmpty(nextFiveGameweekFixtures) ? (
     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-      <LoadingMessage message="Fetching fixture data.." />
+      <LoadingMessage message={fdrStatus} />
     </Box>
   ) : (
     <Box
