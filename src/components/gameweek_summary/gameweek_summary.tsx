@@ -40,12 +40,12 @@ export default function GameweekSummary(): JSX.Element {
       label: "highest score",
       statValue: `${gameweek?.highest_score || 0} pts`,
     },
-    { label: "average score", statValue: `${gameweek?.average_entry_score || 0} pts` },
+    { label: "average score", statValue: gameweek?.average_entry_score || 0 },
     {
       label: "star player",
       teamCode: starPlayer?.team_code,
       playerName: starPlayer?.web_name || "",
-      statValue: `${gameweek?.top_element_info?.points || 0} pts`,
+      statValue: gameweek?.top_element_info?.points || 0,
     },
     {
       label: "most captained",
@@ -61,7 +61,7 @@ export default function GameweekSummary(): JSX.Element {
       label: "most transferred in",
       teamCode: mostTransferredIn?.team_code,
       playerName: `${mostTransferredIn?.web_name || ""}`,
-      statValue: `${mostTransferredInCount || 0} transfers in`,
+      statValue: mostTransferredInCount || 0,
     },
   ];
 
@@ -86,7 +86,6 @@ export default function GameweekSummary(): JSX.Element {
           data-testid={`${item.label}-label`}
           variant="h3"
           sx={{
-            fontSize: "2.4vh",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
             textAlign: "center",
@@ -100,7 +99,7 @@ export default function GameweekSummary(): JSX.Element {
             display: "flex",
             columnGap: 1,
             alignItems: "center",
-            mt: 0.5,
+            pt: 0.5,
             justifyContent: "center",
             maxHeight: "2.5em",
           }}
@@ -108,30 +107,17 @@ export default function GameweekSummary(): JSX.Element {
           {img}
           <Typography
             data-testid={`${item.label}-player-name`}
+            variant="h6"
             sx={{
-              fontSize: "1.8vh",
               textOverflow: "ellipsis",
               textAlign: "center",
               whiteSpace: "nowrap",
               overflow: "hidden",
             }}
           >
-            {item.playerName || ""}
+            {item.playerName || ""} {item.statValue || ""}
           </Typography>
         </Box>
-        <Typography
-          data-testid={`${item.label}-stat-value`}
-          sx={{
-            mt: 0.5,
-            fontSize: "1.8vh",
-            textOverflow: "ellipsis",
-            textAlign: "center",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-          }}
-        >
-          {item.statValue || ""}
-        </Typography>
       </Box>
     );
   };
