@@ -71,9 +71,9 @@ export const LoginForm = (): JSX.Element => {
         data.email,
         data.password
       )) as FirebaseResponse;
-      setSnackbar(`Registration failed: ${ response.message}`, "error");
+      setSnackbar(`Registration failed: ${response.message}`, "error");
     } catch (err) {
-      setSnackbar(`Registration failed: ${ err}`, "warning");
+      setSnackbar(`Registration failed: ${err}`, "warning");
     }
   };
 

@@ -28,7 +28,7 @@ interface NavDrawerProps {
 }
 
 export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element {
-  const drawerWidth = '11vw';
+  const drawerWidth = "11vw";
 
   return (
     <Drawer
@@ -46,7 +46,7 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
       variant='permanent'
       anchor='left'
     >
-      <Box className='logo-container' sx={{ pt: '1.5vh', pb: '1.5vh' }}>
+      <Box className='logo-container' sx={{ pt: "1.5vh", pb: "1.5vh" }}>
         <Logo compactLogo />
         <GameweekCountdown />
       </Box>

@@ -10,17 +10,17 @@ interface LoadingMessageProps {
 const renderIcon = (type: string): JSX.Element => {
   const iconStyle = {
     fontSize: "3vw",
-    color: 'black'
+    color: "black"
   };
 
   switch (type) {
-  case 'loading':
+  case "loading":
     return <CircularProgress sx={iconStyle} />;
     break;
-  case 'error':
+  case "error":
     return <Warning sx={iconStyle} />;
     break;
-  case 'warning':
+  case "warning":
     return <Warning sx={iconStyle} />;
     break;
   default:
@@ -39,7 +39,7 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
       flexDirection='column'
       sx={{ rowGap: "3vh" }}
     >
-      {type ? renderIcon(type) : renderIcon('loading')}
+      {type ? renderIcon(type) : renderIcon("loading")}
       <Typography variant='body1' textAlign='center'>{message || "Loading.."}</Typography>
     </Box>
   );

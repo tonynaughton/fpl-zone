@@ -2,9 +2,9 @@ import { Gameweek, Team } from "types";
 import { Player } from "types/player";
 
 export const gameStatusValues = {
-  GAME_UPDATING: 'Game is updating..',
-  SEASON_FINISHED: 'The current FPL season has finished, check back next season!',
-  GAME_OK: 'GAME_OK'
+  GAME_UPDATING: "Game is updating..",
+  SEASON_FINISHED: "The current FPL season has finished, check back next season!",
+  GAME_OK: "GAME_OK"
 };
 
 // Getting a player by their id

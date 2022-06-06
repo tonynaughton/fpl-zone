@@ -28,7 +28,7 @@ interface FdrTableProps {
 
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<Fixture[][]>([]);
-  const [fdrStatus, setFdrStatus] = useState<string>('Fetching fixture data..');
+  const [fdrStatus, setFdrStatus] = useState<string>("Fetching fixture data..");
   const appData = useContext(AppDataContext) as AppData;
   const { teams } = appData;
   const baseItem = players || teams;

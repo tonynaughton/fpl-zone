@@ -48,7 +48,7 @@ export default function Lineup({
     };
 
     const statValueStyling = {
-      fontSize: '1.8vh',
+      fontSize: "1.8vh",
       fontWeight: 500
     };
 

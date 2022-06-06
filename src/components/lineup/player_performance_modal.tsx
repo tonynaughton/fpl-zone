@@ -70,7 +70,7 @@ export default function PlayerPerformanceModal({
     );
 
     const headerStyle = { backgroundColor: "rgb(224, 224, 224)" };
-    const cellTextStyle = { fontSize: '16px' };
+    const cellTextStyle = { fontSize: "16px" };
 
     return (
       <Fragment key={key}>

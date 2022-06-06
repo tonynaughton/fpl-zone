@@ -5,26 +5,26 @@
     "jest": true
   },
   "rules": {
+    // Possible Problems
+    "array-callback-return": "warn",
+    "no-duplicate-imports": "error",
+    "no-self-compare": "error",
+    "no-use-before-define": "error",
+
     // Suggestions
     "no-console": "warn",
     "capitalized-comments": "warn",
     "default-case": "error",
-    "default-case-last": "error",
-    "default-param-last": "error",
+    "default-case-last": "warn",
+    "default-param-last": "warn",
     "dot-notation": "error",
     "eqeqeq": "error",
     "func-style": ["error", "expression"],
-    "import/first": "error",
-    "react/prop-types": "error",
     "no-loops/no-loops": 2,
     "no-confusing-arrow": "error",
     "no-else-return": "error",
-    "semi": ["error", "always"],
     "no-unused-vars": "warn",
-    "no-duplicate-imports": "error",
-    "no-self-compare": "error",
     "no-template-curly-in-string": "error",
-    "no-use-before-define": "error",
     "no-floating-decimal": "error",
     "no-implicit-globals": "error",
     "no-inline-comments": "error",
@@ -46,7 +46,7 @@
     "require-await": "error",
     "sort-vars": "error",
     "spaced-comment": "error",
-
+    
     // Layout & Formatting
     "array-bracket-spacing": "warn",
     "arrow-spacing": "warn",
@@ -83,9 +83,30 @@
       { "blankLine": "always", "prev": "*", "next": "return" },
       { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
     ],
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "quotes": ["warn", "double", { "allowTemplateLiterals": true }],
+    "rest-spread-spacing": "warn",
+    "semi": "warn",
+    "semi-spacing": "warn",
+    "semi-style": "warn",
+    "space-before-blocks": "warn",
+    "space-before-function-paren": ["warn", {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "space-in-parens": "warn",
+    "space-infix-ops": "warn",
+    "space-unary-ops": "warn",
+    "switch-colon-spacing": "warn",
+    "template-curly-spacing": "warn",
+    
+    // React
+    "react/prop-types": "warn",
+
+    // Import
+    "import/first": "error",
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn"
   },
   "extends": [
     "react-app",

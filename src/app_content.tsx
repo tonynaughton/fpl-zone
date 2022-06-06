@@ -38,7 +38,7 @@ export default function AppContent(): JSX.Element {
     isLoading: fixtureDataIsLoading
   } = useQuery("all-fixtures", getAllFixtures);
 
-  const isCompact = useMediaQuery('(max-width:1500px)');
+  const isCompact = useMediaQuery("(max-width:1500px)");
 
   const isLoading = gameDataIsLoading || fixtureDataIsLoading;
   const isError = gameDataIsError || fixtureDataIsError;

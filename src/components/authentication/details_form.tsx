@@ -124,10 +124,10 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
           data.email,
           data.password,
           data.fplId
-        ).catch((err) => setSnackbar(`Registration failed: ${ err}`, "error"));
+        ).catch((err) => setSnackbar(`Registration failed: ${err}`, "error"));
         setSnackbar("Registration successful");
       } catch (err) {
-        setSnackbar(`Registration failed: ${ err}`, "error");
+        setSnackbar(`Registration failed: ${err}`, "error");
       }
     } else {
       try {
@@ -138,11 +138,11 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
           data.email,
           data.fplId
         ).catch((err) => {
-          setSnackbar(`Error updating details: ${ err}`, "error");
+          setSnackbar(`Error updating details: ${err}`, "error");
         });
         setSnackbar("Details updated successfully");
       } catch (err) {
-        setSnackbar(`Error updating details: ${ err}`, "error");
+        setSnackbar(`Error updating details: ${err}`, "error");
       }
     }
   };
