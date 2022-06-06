@@ -70,7 +70,10 @@ export default function PlayerPerformanceModal({
       performance,
       (value, key) => !!(elementStats.find((el) => el.name === key) && value > 0)
     );
-    const headerStyling = { backgroundColor: "rgb(224, 224, 224)" };
+
+    const headerStyle = { backgroundColor: "rgb(224, 224, 224)" };
+    const cellTextStyle = { fontSize: '16px' };
+
     return (
       <Fragment key={key}>
         <Box sx={{ display: "flex", alginItems: "center", width: "80%" }}>
@@ -78,30 +81,30 @@ export default function PlayerPerformanceModal({
         </Box>
         {matchStarted && (
           <TableContainer component={Box} key={key}>
-            <Table size="small">
+            <Table>
               <TableHead>
-                <TableRow sx={headerStyling}>
+                <TableRow sx={headerStyle}>
                   <TableCell>
-                    <Typography fontSize="1.2vw" sx={{ fontWeight: 700 }}>Statistic</Typography>
+                    <Typography sx={{ fontWeight: 700, ...cellTextStyle }}>Statistic</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography fontSize="1.2vw" sx={{ fontWeight: 700 }}>Value</Typography>
+                    <Typography sx={{ fontWeight: 700, ...cellTextStyle }}>Value</Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {Object.keys(stats).map((stat, key) => {
                   return (
-                    <TableRow key={key}>
-                      <TableCell>
-                        <Typography fontSize="1.2vw">
-                          {elementStats.find((el) => el.name === stat)?.label}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography fontSize="1.2vw">{stats[stat]}</Typography>
-                      </TableCell>
-                    </TableRow>
+                  <TableRow key={key}>
+                    <TableCell>
+                      <Typography sx={cellTextStyle}>
+                        {elementStats.find((el) => el.name === stat)?.label}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography sx={cellTextStyle}>{stats[stat]}</Typography>
+                    </TableCell>
+                  </TableRow>
                   );
                 })}
               </TableBody>
@@ -133,6 +136,7 @@ export default function PlayerPerformanceModal({
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: "90%",
+          maxHeight: "75%",
           bgcolor: "white",
           boxShadow: 24,
           p: 4,
@@ -140,6 +144,7 @@ export default function PlayerPerformanceModal({
           alignItems: "center",
           rowGap: "1em",
           zIndex: 2000,
+          overflow: "scroll"
         }}
         // https://stackoverflow.com/questions/49637047/prevent-onclick-from-firing-if-another-element-is-on-top
         onClick={(event): void => event.stopPropagation()}
