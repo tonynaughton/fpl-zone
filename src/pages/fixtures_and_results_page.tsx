@@ -8,7 +8,7 @@ import FdrTable from "components/fdr/fdr";
 import { AppLayout, ComponentContainer } from "components/layout";
 import Results from "components/results/results";
 
-export function FixturesAndResultsPage(): JSX.Element {
+export const FixturesAndResultsPage = (): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -33,4 +33,4 @@ export function FixturesAndResultsPage(): JSX.Element {
       </Grid>
     </AppLayout>
   );
-}
+};

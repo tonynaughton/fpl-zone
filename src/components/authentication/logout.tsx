@@ -5,7 +5,7 @@ import { logout } from "config/firebase";
 
 import { Notifier } from "components/layout";
 
-export function Logout(): JSX.Element {
+export const Logout = (): JSX.Element => {
   const [loggedOut, setLoggedOutStatus] = useState<boolean>(false);
 
   useEffect(() => {
@@ -21,4 +21,4 @@ export function Logout(): JSX.Element {
   ) : (
     <Navigate to='/login' />
   );
-}
+};

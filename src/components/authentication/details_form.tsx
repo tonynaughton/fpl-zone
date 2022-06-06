@@ -48,7 +48,7 @@ interface FormInput {
   fplId: string;
 }
 
-export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
+export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -380,4 +380,4 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
       </Modal>
     </Box>
   );
-}
+};

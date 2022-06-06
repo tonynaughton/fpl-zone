@@ -3,7 +3,7 @@ import { Box, Container } from "@mui/material";
 
 import Logo from "components/logo/logo";
 
-export function AuthLayout(props: { children: JSX.Element }): JSX.Element {
+export const AuthLayout = (props: { children: JSX.Element }): JSX.Element => {
   return (
     <Box
       className='auth-view'
@@ -19,4 +19,4 @@ export function AuthLayout(props: { children: JSX.Element }): JSX.Element {
       </Container>
     </Box>
   );
-}
+};

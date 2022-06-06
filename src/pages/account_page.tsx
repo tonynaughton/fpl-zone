@@ -5,7 +5,7 @@ import { AppLayout } from "components/layout";
 
 import { DetailsForm } from "../components/authentication";
 
-export function AccountPage(): JSX.Element {
+export const AccountPage = (): JSX.Element => {
   return (
     <AppLayout activeLabel='account' direction='row'>
       <Container component='main' maxWidth='sm'>
@@ -13,4 +13,4 @@ export function AccountPage(): JSX.Element {
       </Container>
     </AppLayout>
   );
-}
+};

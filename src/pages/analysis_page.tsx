@@ -9,7 +9,7 @@ import { AppData } from "types";
 import PlayerComparison from "components/comparison/player_comparison";
 import { AppLayout, ComponentContainer } from "components/layout";
 
-export function AnalysisPage(): JSX.Element {
+export const AnalysisPage = (): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -36,4 +36,4 @@ export function AnalysisPage(): JSX.Element {
       <ComponentContainer title='comparison'>{renderPlayerComparsion()}</ComponentContainer>
     </AppLayout>
   );
-}
+};

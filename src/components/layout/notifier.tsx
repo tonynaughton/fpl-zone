@@ -29,7 +29,7 @@ const renderIcon = (type: string): JSX.Element => {
   }
 };
 
-export function Notifier({ type, message }: LoadingMessageProps): JSX.Element {
+export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element => {
   return (
     <Box
       maxWidth='80%'
@@ -43,4 +43,4 @@ export function Notifier({ type, message }: LoadingMessageProps): JSX.Element {
       <Typography variant='body1' textAlign='center'>{message || "Loading.."}</Typography>
     </Box>
   );
-}
+};

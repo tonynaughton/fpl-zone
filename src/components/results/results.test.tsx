@@ -11,23 +11,23 @@ import "@testing-library/jest-dom/extend-expect";
 describe("Results Tests", () => {
   const latestGameweek = mockAppData.events.find((gameweek) => gameweek.is_current) as Gameweek;
 
-  function createComponent(): JSX.Element {
+  const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
         <Results />
       </AppDataContext.Provider>
     );
-  }
+  };
 
-  function clickPrevGameweekBtn(): void {
+  const clickPrevGameweekBtn = (): void => {
     const prevGameweekBtn = screen.getByTestId("prev-gameweek-btn");
     fireEvent.click(prevGameweekBtn);
-  }
+  };
 
-  function clickNextGameweekBtn(): void {
+  const clickNextGameweekBtn = (): void => {
     const nextGameweekBtn = screen.getByTestId("next-gameweek-btn");
     fireEvent.click(nextGameweekBtn);
-  }
+  };
   it("Snapshot test", () => {
     const { asFragment } = render(createComponent());
     expect(asFragment()).toMatchSnapshot();

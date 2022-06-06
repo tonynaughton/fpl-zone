@@ -8,7 +8,7 @@ interface LayoutProps {
   direction: string;
 }
 
-export function AppLayout(props: React.PropsWithChildren<LayoutProps>): JSX.Element {
+export const AppLayout = (props: React.PropsWithChildren<LayoutProps>): JSX.Element => {
   return (
     <Box component='div' sx={{ display: "flex" }}>
       <NavDrawer activeLabel={props.activeLabel} />
@@ -48,4 +48,4 @@ export function AppLayout(props: React.PropsWithChildren<LayoutProps>): JSX.Elem
       </Box>
     </Box>
   );
-}
+};

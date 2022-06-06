@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 
 import Logo from "components/logo/logo";
 
-export function Startup(props: { children: JSX.Element }): JSX.Element {
+export const Startup = (props: { children: JSX.Element }): JSX.Element => {
   return (
     <Box
       sx={{
@@ -29,4 +29,4 @@ export function Startup(props: { children: JSX.Element }): JSX.Element {
       </Box>
     </Box>
   );
-}
+};

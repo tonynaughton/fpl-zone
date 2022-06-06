@@ -11,7 +11,7 @@ import DreamTeam from "components/dream_team/dream_team";
 import GameweekSummary from "components/gameweek_summary/gameweek_summary";
 import { AppLayout, ComponentContainer, Notifier } from "components/layout";
 
-export function GameweekLivePage(): JSX.Element {
+export const GameweekLivePage = (): JSX.Element => {
   const [user, userLoading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -51,4 +51,4 @@ export function GameweekLivePage(): JSX.Element {
       </Grid>
     </AppLayout>
   );
-}
+};

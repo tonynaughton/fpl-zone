@@ -14,7 +14,7 @@ import FdrTable from "components/fdr/fdr";
 import { AppLayout, ComponentContainer, Notifier } from "components/layout";
 import Lineup from "components/lineup/lineup";
 
-export function MyTeamPage(): JSX.Element {
+export const MyTeamPage = (): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -152,4 +152,4 @@ export function MyTeamPage(): JSX.Element {
       </ComponentContainer>
     </AppLayout>
   );
-}
+};

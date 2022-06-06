@@ -21,7 +21,7 @@ describe("Fixture Box Tests", () => {
     return team?.short_name;
   };
 
-  function createComponent(): JSX.Element {
+  const createComponent = (): JSX.Element => {
     return (
       <FixtureBox
         fixtures={fixtures}
@@ -30,7 +30,7 @@ describe("Fixture Box Tests", () => {
         baseItem={baseItem}
       />
     );
-  }
+  };
 
   beforeEach(() => {
     fixtures = mockFixtures.slice(0, 2);

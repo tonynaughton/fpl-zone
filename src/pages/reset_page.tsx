@@ -20,7 +20,7 @@ interface FormInput {
   email: string;
 }
 
-export function ResetPage(): JSX.Element {
+export const ResetPage = (): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -129,4 +129,4 @@ export function ResetPage(): JSX.Element {
       </Box>
     </AuthLayout>
   );
-}
+};

@@ -4,12 +4,12 @@ import { AppDataContext } from "app_content";
 import { formatDate, getTeamById } from "helpers";
 import { AppData, CustomResult, Team } from "types";
 
-export function RenderResult (
+export const RenderResult = (
   result: CustomResult,
   matchStarted: boolean,
   teams: Team[],
   key?: number
-): JSX.Element {
+): JSX.Element => {
   const appData = useContext(AppDataContext) as AppData;
 
   const homeTeam = getTeamById(result.team_h, teams);

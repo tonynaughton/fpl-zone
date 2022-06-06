@@ -7,7 +7,7 @@ interface FplIdModalProps {
   setModalOpen: (value: boolean) => void;
 }
 
-export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX.Element {
+export const FplIdModal = ({ modalVisible, setModalOpen }: FplIdModalProps): JSX.Element => {
   const modalStyle = {
     position: "absolute",
     top: "50%",
@@ -69,4 +69,4 @@ export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX
       </Box>
     </Modal>
   );
-}
+};

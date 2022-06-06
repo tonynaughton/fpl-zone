@@ -22,7 +22,7 @@ interface FormInput {
   password: string;
 }
 
-export function LoginForm(): JSX.Element {
+export const LoginForm = (): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -179,4 +179,4 @@ export function LoginForm(): JSX.Element {
       </Box>
     </AuthLayout>
   );
-}
+};

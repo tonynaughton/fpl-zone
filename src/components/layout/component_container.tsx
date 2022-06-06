@@ -10,12 +10,12 @@ interface ComponentContainerProps {
   children: JSX.Element;
 }
 
-export function ComponentContainer({
+export const ComponentContainer = ({
   title,
   children,
   isLoading,
   error,
-}: ComponentContainerProps): JSX.Element {
+}: ComponentContainerProps): JSX.Element => {
   const renderChildren = (): JSX.Element => {
     if (isLoading) {
       return (
@@ -62,4 +62,4 @@ export function ComponentContainer({
       {renderChildren()}
     </Box>
   );
-}
+};
