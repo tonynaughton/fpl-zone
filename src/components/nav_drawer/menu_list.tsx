@@ -16,7 +16,7 @@ export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Ele
         <ListItemButton
           sx={{
             p: '1vw',
-            "&:hover": { backgroundColor: "inherit" },
+            "&:hover": { backgroundColor: "inherit" }
           }}
           disableRipple={true}
           key={index}
@@ -31,7 +31,7 @@ export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Ele
               fontWeight: '600',
               lineHeight: 1,
               ...(item.label === activeLabel ? { color: "black" } : { color: "white" }),
-              sx: { "&:hover": { color: "black" } },
+              sx: { "&:hover": { color: "black" } }
             }}
           />
         </ListItemButton>

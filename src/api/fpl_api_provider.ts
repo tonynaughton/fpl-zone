@@ -11,7 +11,7 @@ import {
   Region,
   TeamData,
   TeamHistory,
-  Transfer,
+  Transfer
 } from "types";
 
 export const base_url = "http://localhost:8010/proxy";

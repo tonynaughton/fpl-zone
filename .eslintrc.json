@@ -5,6 +5,7 @@
     "jest": true
   },
   "rules": {
+    // Suggestions
     "no-console": "warn",
     "capitalized-comments": "warn",
     "default-case": "error",
@@ -46,6 +47,14 @@
     "require-await": "error",
     "sort-vars": "error",
     "spaced-comment": "error",
+
+    // Layout & Formatting
+    "array-bracket-spacing": "warn",
+    "arrow-spacing": "error",
+    "block-spacing": "error",
+    "brace-style": "error",
+    "comma-dangle": "error",
+
     "@typescript-eslint/explicit-function-return-type": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",

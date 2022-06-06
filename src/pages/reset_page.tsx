@@ -9,7 +9,7 @@ import {
   Button,
   Link as MuiLink,
   Snackbar,
-  TextField,
+  TextField
 } from "@mui/material";
 import { auth, sendPasswordReset } from "config/firebase";
 import { delay } from "helpers";
@@ -44,7 +44,7 @@ export const ResetPage = (): JSX.Element => {
   };
 
   const defaultValues = {
-    email: "",
+    email: ""
   };
 
   const { control, handleSubmit } = useForm<FormInput>({ defaultValues });
@@ -114,7 +114,7 @@ export const ResetPage = (): JSX.Element => {
           onClose={handleSnackbarClose}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "right",
+            horizontal: "right"
           }}
         >
           <Alert

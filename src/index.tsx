@@ -13,105 +13,105 @@ const customTheme = createTheme({
     fontWeightRegular: 500,
     h1: {
       fontWeight: 600,
-      fontSize: 42,
+      fontSize: 42
     },
     h2: {
       fontWeight: 600,
-      fontSize: 32,
+      fontSize: 32
     },
     h3: {
       fontWeight: 600,
-      fontSize: "2.4vh",
+      fontSize: "2.4vh"
     },
     h4: {
       fontWeight: 600,
-      fontSize: 25,
+      fontSize: 25
     },
     h5: {
       fontWeight: 600,
-      fontSize: 18,
+      fontSize: 18
     },
     h6: {
       fontWeight: 600,
-      fontSize: "1.8vh",
+      fontSize: "1.8vh"
     },
     body1: {
-      fontSize: 16,
+      fontSize: 16
     },
     body2: {
-      fontSize: "1.6vh",
-    },
+      fontSize: "1.6vh"
+    }
   },
   palette: {
     primary: {
       main: "#16B7EA",
-      contrastText: "#F9F9F9",
+      contrastText: "#F9F9F9"
     },
     secondary: {
-      main: "#7EFF83",
+      main: "#7EFF83"
     },
     info: {
-      main: "#F9F9F9",
+      main: "#F9F9F9"
     },
     background: {
-      default: "#F9F9F9",
+      default: "#F9F9F9"
     },
     text: {
       primary: "#000000",
-      secondary: "#16B7EA",
-    },
+      secondary: "#16B7EA"
+    }
   },
   shape: {
-    borderRadius: 10,
+    borderRadius: 10
   },
   components: {
     MuiTooltip: {
       defaultProps: {
         arrow: true,
-        placement: "top",
+        placement: "top"
       },
       styleOverrides: {
         tooltip: {
           fontSize: "1.5vh",
           color: "white",
-          backgroundColor: "black",
+          backgroundColor: "black"
         },
         arrow: {
-          color: "black",
-        },
-      },
+          color: "black"
+        }
+      }
     },
     MuiTableCell: {
       styleOverrides: {
         root: {
-          padding: "0 0.5vw",
-        },
-      },
+          padding: "0 0.5vw"
+        }
+      }
     },
     MuiInputBase: {
       styleOverrides: {
         root: {
-          backgroundColor: "#F9F9F9",
+          backgroundColor: "#F9F9F9"
         },
         input: {
-          color: "black",
-        },
-      },
+          color: "black"
+        }
+      }
     },
     MuiTypography: {
       defaultProps: {
-        variant: "body2",
-      },
-    },
-  },
+        variant: "body2"
+      }
+    }
+  }
 });
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
+      refetchOnWindowFocus: false
+    }
+  }
 });
 
 const App = (): JSX.Element => {

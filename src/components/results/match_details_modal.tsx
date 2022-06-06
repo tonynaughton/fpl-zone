@@ -16,14 +16,14 @@ export default function MatchDetailsModal({
   isResultsModalOpen,
   setResultsModalOpen,
   selectedResult,
-  renderResult,
+  renderResult
 }: MatchDetailsModalProps): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;
   const statImageNames = {
     goals_scored: "football",
     assists: "boot",
     yellow_cards: "yellow_card",
-    red_cards: "red_card",
+    red_cards: "red_card"
   };
 
   const renderStat = (identifier: string): JSX.Element => {
@@ -43,7 +43,7 @@ export default function MatchDetailsModal({
                   whiteSpace: "nowrap",
                   textOverflow: "ellipsis",
                   overflow: "hidden",
-                  display: "block",
+                  display: "block"
                 }}
               >
                 {GetPlayerById(stat.element, appData.elements).web_name}
@@ -73,7 +73,7 @@ export default function MatchDetailsModal({
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
-          pt: 1.5,
+          pt: 1.5
         }}
       >
         <Typography component='h4' variant='h5' sx={{ pb: 1 }}>
@@ -98,7 +98,7 @@ export default function MatchDetailsModal({
     team_h_score: (selectedResult.team_h_score as number) || null,
     team_a: selectedResult.team_a,
     team_a_score: (selectedResult.team_a_score as number) || null,
-    kickoff_time: selectedResult.kickoff_time,
+    kickoff_time: selectedResult.kickoff_time
   };
 
   return (
@@ -110,7 +110,7 @@ export default function MatchDetailsModal({
         left: 0,
         height: "100%",
         width: "100%",
-        backgroundColor: "rgb(0, 0, 0, 0.5)",
+        backgroundColor: "rgb(0, 0, 0, 0.5)"
       }}
       onClick={(): void => setResultsModalOpen(false)}
     >
@@ -128,7 +128,7 @@ export default function MatchDetailsModal({
           flexDirection: "column",
           alignItems: "center",
           rowGap: 1,
-          zIndex: 2000,
+          zIndex: 2000
         }}
         // https://stackoverflow.com/questions/49637047/prevent-onclick-from-firing-if-another-element-is-on-top
         onClick={(event): void => event.stopPropagation()}
@@ -146,7 +146,7 @@ export default function MatchDetailsModal({
             width: "100%",
             flexDirection: "column",
             alignItems: "center",
-            rowGap: 2,
+            rowGap: 2
           }}
         >
           <Typography variant='h5'>

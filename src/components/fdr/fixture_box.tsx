@@ -16,7 +16,7 @@ export default function FixtureBox({
   fixtures,
   baseItem,
   isPlayerTable,
-  getTeamById,
+  getTeamById
 }: FixtureBoxProps): JSX.Element {
   const renderBox = (fixture: Fixture, key: number): JSX.Element => {
     const teamId = isPlayerTable ? (baseItem as Player).team : (baseItem as Team).id;
@@ -38,7 +38,7 @@ export default function FixtureBox({
             overflow: "hidden",
             justifyContent: "center",
             alignItems: "center",
-            flexBasis: 1,
+            flexBasis: 1
           }}
           key={key}
           data-testid={testId}
@@ -48,7 +48,7 @@ export default function FixtureBox({
               p: 0.2,
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
-              overflow: "hidden",
+              overflow: "hidden"
             }}
           >
             <Typography variant='body2' sx={{ textOverflow: "ellipsis", overflow: "hidden" }}>
@@ -67,7 +67,7 @@ export default function FixtureBox({
           display: "flex",
           height: "100%",
           alignItems: "center",
-          justifyContent: "space-evenly",
+          justifyContent: "space-evenly"
         }}
         data-testid='fixture-box-container'
       >

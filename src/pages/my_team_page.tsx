@@ -30,23 +30,23 @@ export const MyTeamPage = (): JSX.Element => {
   const {
     data: fplId,
     isLoading: fplIdFetchIsLoading,
-    error: fplIdFetchError,
+    error: fplIdFetchError
   } = useQuery([user?.uid], getUserFplTeamId);
 
   // Fetching users FPL team data
   const {
     data: teamData,
     error: teamDataFetchError,
-    isLoading: teamDataFetchIsLoading,
+    isLoading: teamDataFetchIsLoading
   } = useQuery([fplId], () => getTeamData(fplId), {
-    enabled: !!fplId,
+    enabled: !!fplId
   });
 
   // Fetching users selection picks for current gameweek
   const {
     data: teamPicks,
     error: teamPicksFetchError,
-    isLoading: teamPicksFetchIsLoading,
+    isLoading: teamPicksFetchIsLoading
   } = useQuery(
     [fplId, currentGameweek],
     () => getTeamPicksForGameweek(fplId, currentGameweek.id),

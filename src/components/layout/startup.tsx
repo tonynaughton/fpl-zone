@@ -9,7 +9,7 @@ export const Startup = (props: { children: JSX.Element }): JSX.Element => {
       sx={{
         height: "100vh",
         width: "100%",
-        backgroundColor: "#16B7EA",
+        backgroundColor: "#16B7EA"
       }}
     >
       <Box
@@ -21,7 +21,7 @@ export const Startup = (props: { children: JSX.Element }): JSX.Element => {
           height: "100%",
           margin: "auto",
           rowGap: "5%",
-          width: "50%",
+          width: "50%"
         }}
       >
         <Logo />

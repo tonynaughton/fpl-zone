@@ -11,7 +11,7 @@ import {
   LoginPage,
   MyTeamPage,
   RegisterPage,
-  ResetPage,
+  ResetPage
 } from "pages";
 import PrivateRoute from "private_route";
 import { AppData } from "types";
@@ -27,7 +27,7 @@ export default function AppContent(): JSX.Element {
     data: gameData,
     isError: gameDataIsError,
     error: gameDataError,
-    isLoading: gameDataIsLoading,
+    isLoading: gameDataIsLoading
   } = useQuery("game-data", getGameData);
 
   // Fetching fixture data which will be made available throughout the app via context provider
@@ -35,7 +35,7 @@ export default function AppContent(): JSX.Element {
     data: fixtureData,
     isError: fixtureDataIsError,
     error: fixtureDataError,
-    isLoading: fixtureDataIsLoading,
+    isLoading: fixtureDataIsLoading
   } = useQuery("all-fixtures", getAllFixtures);
 
   const isCompact = useMediaQuery('(max-width:1500px)');

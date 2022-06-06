@@ -14,7 +14,7 @@ export const ComponentContainer = ({
   title,
   children,
   isLoading,
-  error,
+  error
 }: ComponentContainerProps): JSX.Element => {
   const renderChildren = (): JSX.Element => {
     if (isLoading) {
@@ -54,7 +54,7 @@ export const ComponentContainer = ({
           left: 0,
           borderBottom: "2px solid black",
           borderRight: "2px solid black",
-          height: "auto",
+          height: "auto"
         }}
       >
         <Typography variant='h3'>{title.toUpperCase()}</Typography>

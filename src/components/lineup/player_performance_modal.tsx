@@ -10,7 +10,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
+  Typography
 } from "@mui/material";
 import { getPlayerData } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
@@ -22,7 +22,7 @@ import {
   Player,
   PlayerPerformance,
   PlayerStat,
-  Team,
+  Team
 } from "types";
 
 import { Notifier } from "components/layout";
@@ -41,7 +41,7 @@ export default function PlayerPerformanceModal({
   setPlayerPerformanceModalOpen: setPlayerInfoModalOpen,
   selectedPlayer,
   elementStats,
-  teams,
+  teams
 }: PlayerPerformanceModalProps): JSX.Element {
   const { data: playerInfo, isLoading: fetchingPlayerInfo } = useQuery(
     [selectedPlayer],
@@ -61,7 +61,7 @@ export default function PlayerPerformanceModal({
       team_a: performance.was_home ? performance.opponent_team : selectedPlayer.team,
       team_h_score: performance.team_h_score,
       team_a_score: performance.team_a_score,
-      kickoff_time: performance.kickoff_time,
+      kickoff_time: performance.kickoff_time
     };
     const matchStarted: boolean = new Date(performance.kickoff_time) < new Date();
     const stats = _.pickBy(
@@ -122,7 +122,7 @@ export default function PlayerPerformanceModal({
         left: 0,
         height: "100%",
         width: "100%",
-        backgroundColor: "rgb(0, 0, 0, 0.5)",
+        backgroundColor: "rgb(0, 0, 0, 0.5)"
       }}
       onClick={(): void => setPlayerInfoModalOpen(false)}
     >
@@ -160,7 +160,7 @@ export default function PlayerPerformanceModal({
             width: "100%",
             flexDirection: "column",
             alignItems: "center",
-            rowGap: 3,
+            rowGap: 3
           }}
         >
           {fetchingPlayerInfo ? (
@@ -173,7 +173,7 @@ export default function PlayerPerformanceModal({
                 alignItems: "center",
                 flexDirection: "column",
                 rowGap: 2,
-                width: "100%",
+                width: "100%"
               }}
             >
               <Typography variant='h4'>{playerName}</Typography>

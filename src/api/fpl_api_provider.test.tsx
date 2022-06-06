@@ -13,7 +13,7 @@ import {
   getTeamData,
   getTeamHistory,
   getTeamPicksForGameweek,
-  getTeamTransfers,
+  getTeamTransfers
 } from "./fpl_api_provider";
 
 const mockGameweek = 20;

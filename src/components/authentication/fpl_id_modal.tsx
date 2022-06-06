@@ -17,7 +17,7 @@ export const FplIdModal = ({ modalVisible, setModalOpen }: FplIdModalProps): JSX
     bgcolor: "#F9F9F9",
     border: "2px solid black",
     boxShadow: 24,
-    p: 4,
+    p: 4
   };
 
   return (

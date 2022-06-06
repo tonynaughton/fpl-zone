@@ -72,7 +72,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 39,
@@ -141,7 +141,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 59,
@@ -210,7 +210,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 35,
@@ -279,7 +279,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 17,
@@ -348,7 +348,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 78,
@@ -417,7 +417,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 88,
@@ -486,7 +486,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 74,
@@ -555,7 +555,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 71,
@@ -624,7 +624,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 3,
@@ -693,7 +693,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 69,
@@ -762,7 +762,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 87,
@@ -831,7 +831,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 34,
@@ -900,7 +900,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 76,
@@ -969,7 +969,7 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
+    penalties_text: ""
   },
   {
     chance_of_playing_next_round: 28,
@@ -1038,8 +1038,8 @@ export const mockPlayers: Player[] = [
     direct_freekicks_order: null,
     direct_freekicks_text: "",
     penalties_order: null,
-    penalties_text: "",
-  },
+    penalties_text: ""
+  }
 ];
 
 export const mockPositions: Position[] = [
@@ -1054,7 +1054,7 @@ export const mockPositions: Position[] = [
     squad_min_play: 1,
     squad_select: 2,
     sub_positions_locked: [12],
-    ui_shirt_specific: true,
+    ui_shirt_specific: true
   },
   {
     element_count: 239,
@@ -1067,7 +1067,7 @@ export const mockPositions: Position[] = [
     squad_min_play: 3,
     squad_select: 5,
     sub_positions_locked: [],
-    ui_shirt_specific: false,
+    ui_shirt_specific: false
   },
   {
     element_count: 291,
@@ -1080,7 +1080,7 @@ export const mockPositions: Position[] = [
     squad_min_play: 2,
     squad_select: 5,
     sub_positions_locked: [],
-    ui_shirt_specific: false,
+    ui_shirt_specific: false
   },
   {
     element_count: 93,
@@ -1093,8 +1093,8 @@ export const mockPositions: Position[] = [
     squad_min_play: 1,
     squad_select: 3,
     sub_positions_locked: [],
-    ui_shirt_specific: false,
-  },
+    ui_shirt_specific: false
+  }
 ];
 
 export const mockGameweeks: Gameweek[] = [
@@ -1117,23 +1117,23 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 145658,
+        num_played: 145658
       },
       {
         chip_name: "3xc",
-        num_played: 225749,
-      },
+        num_played: 225749
+      }
     ],
     most_selected: 275,
     most_transferred_in: 1,
     top_element: 277,
     top_element_info: {
       id: 277,
-      points: 20,
+      points: 20
     },
     transfers_made: 0,
     most_captained: 233,
-    most_vice_captained: 277,
+    most_vice_captained: 277
   },
   {
     id: 2,
@@ -1154,31 +1154,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 95038,
+        num_played: 95038
       },
       {
         chip_name: "freehit",
-        num_played: 102410,
+        num_played: 102410
       },
       {
         chip_name: "wildcard",
-        num_played: 277209,
+        num_played: 277209
       },
       {
         chip_name: "3xc",
-        num_played: 269514,
-      },
+        num_played: 269514
+      }
     ],
     most_selected: 277,
     most_transferred_in: 272,
     top_element: 142,
     top_element_info: {
       id: 142,
-      points: 18,
+      points: 18
     },
     transfers_made: 12038724,
     most_captained: 233,
-    most_vice_captained: 277,
+    most_vice_captained: 277
   },
   {
     id: 3,
@@ -1199,31 +1199,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 94049,
+        num_played: 94049
       },
       {
         chip_name: "freehit",
-        num_played: 117627,
+        num_played: 117627
       },
       {
         chip_name: "wildcard",
-        num_played: 372083,
+        num_played: 372083
       },
       {
         chip_name: "3xc",
-        num_played: 138714,
-      },
+        num_played: 138714
+      }
     ],
     most_selected: 277,
     most_transferred_in: 419,
     top_element: 268,
     top_element_info: {
       id: 268,
-      points: 18,
+      points: 18
     },
     transfers_made: 15553648,
     most_captained: 277,
-    most_vice_captained: 277,
+    most_vice_captained: 277
   },
   {
     id: 4,
@@ -1244,31 +1244,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 77204,
+        num_played: 77204
       },
       {
         chip_name: "freehit",
-        num_played: 168976,
+        num_played: 168976
       },
       {
         chip_name: "wildcard",
-        num_played: 1117718,
+        num_played: 1117718
       },
       {
         chip_name: "3xc",
-        num_played: 157121,
-      },
+        num_played: 157121
+      }
     ],
     most_selected: 233,
     most_transferred_in: 579,
     top_element: 432,
     top_element_info: {
       id: 432,
-      points: 13,
+      points: 13
     },
     transfers_made: 28985870,
     most_captained: 233,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 5,
@@ -1289,31 +1289,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 49533,
+        num_played: 49533
       },
       {
         chip_name: "freehit",
-        num_played: 127510,
+        num_played: 127510
       },
       {
         chip_name: "wildcard",
-        num_played: 708431,
+        num_played: 708431
       },
       {
         chip_name: "3xc",
-        num_played: 104192,
-      },
+        num_played: 104192
+      }
     ],
     most_selected: 233,
     most_transferred_in: 579,
     top_element: 44,
     top_element_info: {
       id: 44,
-      points: 15,
+      points: 15
     },
     transfers_made: 18706283,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 6,
@@ -1334,31 +1334,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 76495,
+        num_played: 76495
       },
       {
         chip_name: "freehit",
-        num_played: 98223,
+        num_played: 98223
       },
       {
         chip_name: "wildcard",
-        num_played: 308300,
+        num_played: 308300
       },
       {
         chip_name: "3xc",
-        num_played: 134785,
-      },
+        num_played: 134785
+      }
     ],
     most_selected: 233,
     most_transferred_in: 413,
     top_element: 36,
     top_element_info: {
       id: 36,
-      points: 15,
+      points: 15
     },
     transfers_made: 13021763,
     most_captained: 579,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 7,
@@ -1379,31 +1379,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 58931,
+        num_played: 58931
       },
       {
         chip_name: "freehit",
-        num_played: 89810,
+        num_played: 89810
       },
       {
         chip_name: "wildcard",
-        num_played: 292085,
+        num_played: 292085
       },
       {
         chip_name: "3xc",
-        num_played: 75135,
-      },
+        num_played: 75135
+      }
     ],
     most_selected: 233,
     most_transferred_in: 127,
     top_element: 190,
     top_element_info: {
       id: 190,
-      points: 15,
+      points: 15
     },
     transfers_made: 12625013,
     most_captained: 579,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 8,
@@ -1424,31 +1424,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 54764,
+        num_played: 54764
       },
       {
         chip_name: "freehit",
-        num_played: 74544,
+        num_played: 74544
       },
       {
         chip_name: "wildcard",
-        num_played: 274188,
+        num_played: 274188
       },
       {
         chip_name: "3xc",
-        num_played: 102108,
-      },
+        num_played: 102108
+      }
     ],
     most_selected: 233,
     most_transferred_in: 256,
     top_element: 228,
     top_element_info: {
       id: 228,
-      points: 20,
+      points: 20
     },
     transfers_made: 12142633,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 9,
@@ -1469,31 +1469,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 46614,
+        num_played: 46614
       },
       {
         chip_name: "freehit",
-        num_played: 85712,
+        num_played: 85712
       },
       {
         chip_name: "wildcard",
-        num_played: 167651,
+        num_played: 167651
       },
       {
         chip_name: "3xc",
-        num_played: 49975,
-      },
+        num_played: 49975
+      }
     ],
     most_selected: 233,
     most_transferred_in: 205,
     top_element: 138,
     top_element_info: {
       id: 138,
-      points: 24,
+      points: 24
     },
     transfers_made: 11147906,
     most_captained: 233,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 10,
@@ -1514,31 +1514,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 50931,
+        num_played: 50931
       },
       {
         chip_name: "freehit",
-        num_played: 96697,
+        num_played: 96697
       },
       {
         chip_name: "wildcard",
-        num_played: 189850,
+        num_played: 189850
       },
       {
         chip_name: "3xc",
-        num_played: 156449,
-      },
+        num_played: 156449
+      }
     ],
     most_selected: 233,
     most_transferred_in: 138,
     top_element: 142,
     top_element_info: {
       id: 142,
-      points: 21,
+      points: 21
     },
     transfers_made: 12690241,
     most_captained: 233,
-    most_vice_captained: 205,
+    most_vice_captained: 205
   },
   {
     id: 11,
@@ -1559,31 +1559,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 68950,
+        num_played: 68950
       },
       {
         chip_name: "freehit",
-        num_played: 58097,
+        num_played: 58097
       },
       {
         chip_name: "wildcard",
-        num_played: 96628,
+        num_played: 96628
       },
       {
         chip_name: "3xc",
-        num_played: 46698,
-      },
+        num_played: 46698
+      }
     ],
     most_selected: 233,
     most_transferred_in: 142,
     top_element: 256,
     top_element_info: {
       id: 256,
-      points: 14,
+      points: 14
     },
     transfers_made: 9011081,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 12,
@@ -1604,31 +1604,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 54467,
+        num_played: 54467
       },
       {
         chip_name: "freehit",
-        num_played: 53008,
+        num_played: 53008
       },
       {
         chip_name: "wildcard",
-        num_played: 118724,
+        num_played: 118724
       },
       {
         chip_name: "3xc",
-        num_played: 60239,
-      },
+        num_played: 60239
+      }
     ],
     most_selected: 233,
     most_transferred_in: 144,
     top_element: 38,
     top_element_info: {
       id: 38,
-      points: 15,
+      points: 15
     },
     transfers_made: 9746013,
     most_captained: 233,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 13,
@@ -1649,31 +1649,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 56266,
+        num_played: 56266
       },
       {
         chip_name: "freehit",
-        num_played: 50861,
+        num_played: 50861
       },
       {
         chip_name: "wildcard",
-        num_played: 90601,
+        num_played: 90601
       },
       {
         chip_name: "3xc",
-        num_played: 98808,
-      },
+        num_played: 98808
+      }
     ],
     most_selected: 233,
     most_transferred_in: 142,
     top_element: 212,
     top_element_info: {
       id: 212,
-      points: 16,
+      points: 16
     },
     transfers_made: 9284925,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 14,
@@ -1694,31 +1694,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 30119,
+        num_played: 30119
       },
       {
         chip_name: "freehit",
-        num_played: 30092,
+        num_played: 30092
       },
       {
         chip_name: "wildcard",
-        num_played: 48051,
+        num_played: 48051
       },
       {
         chip_name: "3xc",
-        num_played: 41810,
-      },
+        num_played: 41810
+      }
     ],
     most_selected: 233,
     most_transferred_in: 240,
     top_element: 233,
     top_element_info: {
       id: 233,
-      points: 15,
+      points: 15
     },
     transfers_made: 6239197,
     most_captained: 233,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 15,
@@ -1739,31 +1739,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 42048,
+        num_played: 42048
       },
       {
         chip_name: "freehit",
-        num_played: 34252,
+        num_played: 34252
       },
       {
         chip_name: "wildcard",
-        num_played: 55027,
+        num_played: 55027
       },
       {
         chip_name: "3xc",
-        num_played: 56527,
-      },
+        num_played: 56527
+      }
     ],
     most_selected: 233,
     most_transferred_in: 450,
     top_element: 45,
     top_element_info: {
       id: 45,
-      points: 17,
+      points: 17
     },
     transfers_made: 7556146,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 16,
@@ -1784,31 +1784,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 31385,
+        num_played: 31385
       },
       {
         chip_name: "freehit",
-        num_played: 114979,
+        num_played: 114979
       },
       {
         chip_name: "wildcard",
-        num_played: 113709,
+        num_played: 113709
       },
       {
         chip_name: "3xc",
-        num_played: 67059,
-      },
+        num_played: 67059
+      }
     ],
     most_selected: 233,
     most_transferred_in: 261,
     top_element: 210,
     top_element_info: {
       id: 210,
-      points: 16,
+      points: 16
     },
     transfers_made: 10664848,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 17,
@@ -1829,31 +1829,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 27449,
+        num_played: 27449
       },
       {
         chip_name: "freehit",
-        num_played: 95245,
+        num_played: 95245
       },
       {
         chip_name: "wildcard",
-        num_played: 70462,
+        num_played: 70462
       },
       {
         chip_name: "3xc",
-        num_played: 164689,
-      },
+        num_played: 164689
+      }
     ],
     most_selected: 233,
     most_transferred_in: 450,
     top_element: 251,
     top_element_info: {
       id: 251,
-      points: 16,
+      points: 16
     },
     transfers_made: 8595948,
     most_captained: 233,
-    most_vice_captained: 261,
+    most_vice_captained: 261
   },
   {
     id: 18,
@@ -1874,31 +1874,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 11265,
+        num_played: 11265
       },
       {
         chip_name: "freehit",
-        num_played: 387457,
+        num_played: 387457
       },
       {
         chip_name: "wildcard",
-        num_played: 75472,
+        num_played: 75472
       },
       {
         chip_name: "3xc",
-        num_played: 22698,
-      },
+        num_played: 22698
+      }
     ],
     most_selected: 233,
     most_transferred_in: 40,
     top_element: 256,
     top_element_info: {
       id: 256,
-      points: 18,
+      points: 18
     },
     transfers_made: 12347450,
     most_captained: 233,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 19,
@@ -1919,31 +1919,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 23155,
+        num_played: 23155
       },
       {
         chip_name: "freehit",
-        num_played: 704625,
+        num_played: 704625
       },
       {
         chip_name: "wildcard",
-        num_played: 89658,
+        num_played: 89658
       },
       {
         chip_name: "3xc",
-        num_played: 45125,
-      },
+        num_played: 45125
+      }
     ],
     most_selected: 233,
     most_transferred_in: 26,
     top_element: 362,
     top_element_info: {
       id: 362,
-      points: 17,
+      points: 17
     },
     transfers_made: 15207961,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 20,
@@ -1964,31 +1964,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 8301,
+        num_played: 8301
       },
       {
         chip_name: "freehit",
-        num_played: 347024,
+        num_played: 347024
       },
       {
         chip_name: "wildcard",
-        num_played: 72928,
+        num_played: 72928
       },
       {
         chip_name: "3xc",
-        num_played: 19132,
-      },
+        num_played: 19132
+      }
     ],
     most_selected: 233,
     most_transferred_in: 413,
     top_element: 200,
     top_element_info: {
       id: 200,
-      points: 15,
+      points: 15
     },
     transfers_made: 8682576,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 21,
@@ -2009,31 +2009,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 29973,
+        num_played: 29973
       },
       {
         chip_name: "freehit",
-        num_played: 330165,
+        num_played: 330165
       },
       {
         chip_name: "wildcard",
-        num_played: 299381,
+        num_played: 299381
       },
       {
         chip_name: "3xc",
-        num_played: 48107,
-      },
+        num_played: 48107
+      }
     ],
     most_selected: 233,
     most_transferred_in: 420,
     top_element: 420,
     top_element_info: {
       id: 420,
-      points: 21,
+      points: 21
     },
     transfers_made: 13412732,
     most_captained: 233,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 22,
@@ -2054,31 +2054,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 57393,
+        num_played: 57393
       },
       {
         chip_name: "freehit",
-        num_played: 677118,
+        num_played: 677118
       },
       {
         chip_name: "wildcard",
-        num_played: 585135,
+        num_played: 585135
       },
       {
         chip_name: "3xc",
-        num_played: 56338,
-      },
+        num_played: 56338
+      }
     ],
     most_selected: 237,
     most_transferred_in: 240,
     top_element: 277,
     top_element_info: {
       id: 277,
-      points: 23,
+      points: 23
     },
     transfers_made: 23424094,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 23,
@@ -2099,31 +2099,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 56752,
+        num_played: 56752
       },
       {
         chip_name: "freehit",
-        num_played: 78202,
+        num_played: 78202
       },
       {
         chip_name: "wildcard",
-        num_played: 259651,
+        num_played: 259651
       },
       {
         chip_name: "3xc",
-        num_played: 36867,
-      },
+        num_played: 36867
+      }
     ],
     most_selected: 237,
     most_transferred_in: 681,
     top_element: 112,
     top_element_info: {
       id: 112,
-      points: 19,
+      points: 19
     },
     transfers_made: 12666677,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 24,
@@ -2144,31 +2144,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 35256,
+        num_played: 35256
       },
       {
         chip_name: "freehit",
-        num_played: 65881,
+        num_played: 65881
       },
       {
         chip_name: "wildcard",
-        num_played: 230589,
+        num_played: 230589
       },
       {
         chip_name: "3xc",
-        num_played: 25846,
-      },
+        num_played: 25846
+      }
     ],
     most_selected: 237,
     most_transferred_in: 586,
     top_element: 681,
     top_element_info: {
       id: 681,
-      points: 16,
+      points: 16
     },
     transfers_made: 8710540,
     most_captained: 233,
-    most_vice_captained: 240,
+    most_vice_captained: 240
   },
   {
     id: 25,
@@ -2189,31 +2189,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 22431,
+        num_played: 22431
       },
       {
         chip_name: "freehit",
-        num_played: 90456,
+        num_played: 90456
       },
       {
         chip_name: "wildcard",
-        num_played: 218499,
+        num_played: 218499
       },
       {
         chip_name: "3xc",
-        num_played: 80474,
-      },
+        num_played: 80474
+      }
     ],
     most_selected: 237,
     most_transferred_in: 681,
     top_element: 255,
     top_element_info: {
       id: 255,
-      points: 18,
+      points: 18
     },
     transfers_made: 8374086,
     most_captained: 233,
-    most_vice_captained: 240,
+    most_vice_captained: 240
   },
   {
     id: 26,
@@ -2234,31 +2234,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 239806,
+        num_played: 239806
       },
       {
         chip_name: "freehit",
-        num_played: 345118,
+        num_played: 345118
       },
       {
         chip_name: "wildcard",
-        num_played: 263793,
+        num_played: 263793
       },
       {
         chip_name: "3xc",
-        num_played: 1138950,
-      },
+        num_played: 1138950
+      }
     ],
     most_selected: 233,
     most_transferred_in: 233,
     top_element: 233,
     top_element_info: {
       id: 233,
-      points: 28,
+      points: 28
     },
     transfers_made: 14147393,
     most_captained: 233,
-    most_vice_captained: 237,
+    most_vice_captained: 237
   },
   {
     id: 27,
@@ -2279,31 +2279,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 12063,
+        num_played: 12063
       },
       {
         chip_name: "freehit",
-        num_played: 600180,
+        num_played: 600180
       },
       {
         chip_name: "wildcard",
-        num_played: 144397,
+        num_played: 144397
       },
       {
         chip_name: "3xc",
-        num_played: 21861,
-      },
+        num_played: 21861
+      }
     ],
     most_selected: 233,
     most_transferred_in: 700,
     top_element: 360,
     top_element_info: {
       id: 360,
-      points: 18,
+      points: 18
     },
     transfers_made: 14541835,
     most_captained: 233,
-    most_vice_captained: 579,
+    most_vice_captained: 579
   },
   {
     id: 28,
@@ -2324,31 +2324,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 245918,
+        num_played: 245918
       },
       {
         chip_name: "freehit",
-        num_played: 199886,
+        num_played: 199886
       },
       {
         chip_name: "wildcard",
-        num_played: 300722,
+        num_played: 300722
       },
       {
         chip_name: "3xc",
-        num_played: 51262,
-      },
+        num_played: 51262
+      }
     ],
     most_selected: 233,
     most_transferred_in: 127,
     top_element: 44,
     top_element_info: {
       id: 44,
-      points: 29,
+      points: 29
     },
     transfers_made: 12705647,
     most_captained: 233,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 29,
@@ -2369,31 +2369,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 147057,
+        num_played: 147057
       },
       {
         chip_name: "freehit",
-        num_played: 156853,
+        num_played: 156853
       },
       {
         chip_name: "wildcard",
-        num_played: 212237,
+        num_played: 212237
       },
       {
         chip_name: "3xc",
-        num_played: 421523,
-      },
+        num_played: 421523
+      }
     ],
     most_selected: 233,
     most_transferred_in: 22,
     top_element: 224,
     top_element_info: {
       id: 224,
-      points: 19,
+      points: 19
     },
     transfers_made: 11296334,
     most_captained: 233,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 30,
@@ -2414,31 +2414,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 10295,
+        num_played: 10295
       },
       {
         chip_name: "freehit",
-        num_played: 838206,
+        num_played: 838206
       },
       {
         chip_name: "wildcard",
-        num_played: 103866,
+        num_played: 103866
       },
       {
         chip_name: "3xc",
-        num_played: 11789,
-      },
+        num_played: 11789
+      }
     ],
     most_selected: 233,
     most_transferred_in: 78,
     top_element: 359,
     top_element_info: {
       id: 359,
-      points: 15,
+      points: 15
     },
     transfers_made: 15679493,
     most_captained: 233,
-    most_vice_captained: 359,
+    most_vice_captained: 359
   },
   {
     id: 31,
@@ -2459,31 +2459,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 55086,
+        num_played: 55086
       },
       {
         chip_name: "freehit",
-        num_played: 31496,
+        num_played: 31496
       },
       {
         chip_name: "wildcard",
-        num_played: 113499,
+        num_played: 113499
       },
       {
         chip_name: "3xc",
-        num_played: 48795,
-      },
+        num_played: 48795
+      }
     ],
     most_selected: 233,
     most_transferred_in: 700,
     top_element: 180,
     top_element_info: {
       id: 180,
-      points: 17,
+      points: 17
     },
     transfers_made: 6472321,
     most_captained: 233,
-    most_vice_captained: 357,
+    most_vice_captained: 357
   },
   {
     id: 32,
@@ -2504,31 +2504,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 46319,
+        num_played: 46319
       },
       {
         chip_name: "freehit",
-        num_played: 25500,
+        num_played: 25500
       },
       {
         chip_name: "wildcard",
-        num_played: 62546,
+        num_played: 62546
       },
       {
         chip_name: "3xc",
-        num_played: 13959,
-      },
+        num_played: 13959
+      }
     ],
     most_selected: 233,
     most_transferred_in: 420,
     top_element: 359,
     top_element_info: {
       id: 359,
-      points: 21,
+      points: 21
     },
     transfers_made: 5190403,
     most_captained: 233,
-    most_vice_captained: 233,
+    most_vice_captained: 233
   },
   {
     id: 33,
@@ -2549,31 +2549,31 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 129961,
+        num_played: 129961
       },
       {
         chip_name: "freehit",
-        num_played: 190342,
+        num_played: 190342
       },
       {
         chip_name: "wildcard",
-        num_played: 100879,
+        num_played: 100879
       },
       {
         chip_name: "3xc",
-        num_played: 58689,
-      },
+        num_played: 58689
+      }
     ],
     most_selected: 756,
     most_transferred_in: 662,
     top_element: 828,
     top_element_info: {
       id: 828,
-      points: 17,
+      points: 17
     },
     transfers_made: 9395674,
     most_captained: 324,
-    most_vice_captained: 9,
+    most_vice_captained: 9
   },
   {
     id: 34,
@@ -2594,20 +2594,20 @@ export const mockGameweeks: Gameweek[] = [
     chip_plays: [
       {
         chip_name: "bboost",
-        num_played: 6404,
+        num_played: 6404
       },
       {
         chip_name: "freehit",
-        num_played: 3424,
+        num_played: 3424
       },
       {
         chip_name: "wildcard",
-        num_played: 11588,
+        num_played: 11588
       },
       {
         chip_name: "3xc",
-        num_played: 4380,
-      },
+        num_played: 4380
+      }
     ],
     most_selected: null,
     most_transferred_in: null,
@@ -2615,7 +2615,7 @@ export const mockGameweeks: Gameweek[] = [
     top_element_info: null,
     transfers_made: 578142,
     most_captained: null,
-    most_vice_captained: null,
+    most_vice_captained: null
   },
   {
     id: 35,
@@ -2640,7 +2640,7 @@ export const mockGameweeks: Gameweek[] = [
     top_element_info: null,
     transfers_made: 0,
     most_captained: null,
-    most_vice_captained: null,
+    most_vice_captained: null
   },
   {
     id: 36,
@@ -2665,7 +2665,7 @@ export const mockGameweeks: Gameweek[] = [
     top_element_info: null,
     transfers_made: 0,
     most_captained: null,
-    most_vice_captained: null,
+    most_vice_captained: null
   },
   {
     id: 37,
@@ -2690,7 +2690,7 @@ export const mockGameweeks: Gameweek[] = [
     top_element_info: null,
     transfers_made: 0,
     most_captained: null,
-    most_vice_captained: null,
+    most_vice_captained: null
   },
   {
     id: 38,
@@ -2715,8 +2715,8 @@ export const mockGameweeks: Gameweek[] = [
     top_element_info: null,
     transfers_made: 0,
     most_captained: null,
-    most_vice_captained: null,
-  },
+    most_vice_captained: null
+  }
 ];
 
 export const mockTeams: Team[] = [
@@ -2741,7 +2741,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1210,
     strength_defence_home: 1190,
     strength_defence_away: 1220,
-    pulse_id: 1,
+    pulse_id: 1
   },
   {
     code: 7,
@@ -2764,7 +2764,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1110,
     strength_defence_home: 1090,
     strength_defence_away: 1090,
-    pulse_id: 2,
+    pulse_id: 2
   },
   {
     code: 94,
@@ -2787,7 +2787,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1150,
     strength_defence_home: 1080,
     strength_defence_away: 1120,
-    pulse_id: 130,
+    pulse_id: 130
   },
   {
     code: 36,
@@ -2810,7 +2810,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1160,
     strength_defence_home: 1100,
     strength_defence_away: 1120,
-    pulse_id: 131,
+    pulse_id: 131
   },
   {
     code: 90,
@@ -2833,7 +2833,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1130,
     strength_defence_home: 1060,
     strength_defence_away: 1100,
-    pulse_id: 43,
+    pulse_id: 43
   },
   {
     code: 8,
@@ -2856,7 +2856,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1300,
     strength_defence_home: 1250,
     strength_defence_away: 1290,
-    pulse_id: 4,
+    pulse_id: 4
   },
   {
     code: 31,
@@ -2879,7 +2879,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1160,
     strength_defence_home: 1080,
     strength_defence_away: 1160,
-    pulse_id: 6,
+    pulse_id: 6
   },
   {
     code: 11,
@@ -2902,7 +2902,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1090,
     strength_defence_home: 1110,
     strength_defence_away: 1110,
-    pulse_id: 7,
+    pulse_id: 7
   },
   {
     code: 13,
@@ -2925,7 +2925,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1080,
     strength_defence_home: 1150,
     strength_defence_away: 1160,
-    pulse_id: 26,
+    pulse_id: 26
   },
   {
     code: 2,
@@ -2948,7 +2948,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1070,
     strength_defence_home: 1100,
     strength_defence_away: 1100,
-    pulse_id: 9,
+    pulse_id: 9
   },
   {
     code: 14,
@@ -2971,7 +2971,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1350,
     strength_defence_home: 1340,
     strength_defence_away: 1350,
-    pulse_id: 10,
+    pulse_id: 10
   },
   {
     code: 43,
@@ -2994,7 +2994,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1360,
     strength_defence_home: 1340,
     strength_defence_away: 1360,
-    pulse_id: 11,
+    pulse_id: 11
   },
   {
     code: 1,
@@ -3017,7 +3017,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1190,
     strength_defence_home: 1190,
     strength_defence_away: 1200,
-    pulse_id: 12,
+    pulse_id: 12
   },
   {
     code: 4,
@@ -3040,7 +3040,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1030,
     strength_defence_home: 1040,
     strength_defence_away: 1070,
-    pulse_id: 23,
+    pulse_id: 23
   },
   {
     code: 45,
@@ -3063,7 +3063,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1040,
     strength_defence_home: 1040,
     strength_defence_away: 1030,
-    pulse_id: 14,
+    pulse_id: 14
   },
   {
     code: 20,
@@ -3086,7 +3086,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1140,
     strength_defence_home: 1120,
     strength_defence_away: 1090,
-    pulse_id: 20,
+    pulse_id: 20
   },
   {
     code: 6,
@@ -3109,7 +3109,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1200,
     strength_defence_home: 1210,
     strength_defence_away: 1210,
-    pulse_id: 21,
+    pulse_id: 21
   },
   {
     code: 57,
@@ -3132,7 +3132,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1040,
     strength_defence_home: 1120,
     strength_defence_away: 1070,
-    pulse_id: 33,
+    pulse_id: 33
   },
   {
     code: 21,
@@ -3155,7 +3155,7 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1150,
     strength_defence_home: 1160,
     strength_defence_away: 1180,
-    pulse_id: 25,
+    pulse_id: 25
   },
   {
     code: 39,
@@ -3178,8 +3178,8 @@ export const mockTeams: Team[] = [
     strength_attack_away: 1160,
     strength_defence_home: 1080,
     strength_defence_away: 1100,
-    pulse_id: 38,
-  },
+    pulse_id: 38
+  }
 ];
 
 export const mockFixtures: Fixture[] = [
@@ -3204,13 +3204,13 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 1,
-            element: 77,
+            element: 77
           },
           {
             value: 1,
-            element: 81,
-          },
-        ],
+            element: 81
+          }
+        ]
       },
       {
         identifier: "assists",
@@ -3218,49 +3218,49 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 1,
-            element: 91,
-          },
-        ],
+            element: 91
+          }
+        ]
       },
       {
         identifier: "own_goals",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_saved",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_missed",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "yellow_cards",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "red_cards",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "saves",
         a: [
           {
             value: 1,
-            element: 1,
-          },
+            element: 1
+          }
         ],
         h: [
           {
             value: 4,
-            element: 80,
-          },
-        ],
+            element: 80
+          }
+        ]
       },
       {
         identifier: "bonus",
@@ -3268,137 +3268,137 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 3,
-            element: 81,
+            element: 81
           },
           {
             value: 2,
-            element: 91,
+            element: 91
           },
           {
             value: 1,
-            element: 80,
-          },
-        ],
+            element: 80
+          }
+        ]
       },
       {
         identifier: "bps",
         a: [
           {
             value: 17,
-            element: 16,
+            element: 16
           },
           {
             value: 14,
-            element: 8,
+            element: 8
           },
           {
             value: 14,
-            element: 10,
+            element: 10
           },
           {
             value: 13,
-            element: 7,
+            element: 7
           },
           {
             value: 13,
-            element: 21,
+            element: 21
           },
           {
             value: 13,
-            element: 478,
+            element: 478
           },
           {
             value: 12,
-            element: 67,
+            element: 67
           },
           {
             value: 11,
-            element: 1,
+            element: 1
           },
           {
             value: 9,
-            element: 17,
+            element: 17
           },
           {
             value: 7,
-            element: 26,
+            element: 26
           },
           {
             value: 4,
-            element: 22,
+            element: 22
           },
           {
             value: 4,
-            element: 531,
+            element: 531
           },
           {
             value: -2,
-            element: 530,
-          },
+            element: 530
+          }
         ],
         h: [
           {
             value: 33,
-            element: 81,
+            element: 81
           },
           {
             value: 32,
-            element: 91,
+            element: 91
           },
           {
             value: 30,
-            element: 80,
+            element: 80
           },
           {
             value: 25,
-            element: 77,
+            element: 77
           },
           {
             value: 23,
-            element: 483,
+            element: 483
           },
           {
             value: 22,
-            element: 76,
+            element: 76
           },
           {
             value: 22,
-            element: 83,
+            element: 83
           },
           {
             value: 9,
-            element: 479,
+            element: 479
           },
           {
             value: 6,
-            element: 84,
+            element: 84
           },
           {
             value: 4,
-            element: 78,
+            element: 78
           },
           {
             value: 4,
-            element: 96,
+            element: 96
           },
           {
             value: 4,
-            element: 97,
+            element: 97
           },
           {
             value: 3,
-            element: 90,
+            element: 90
           },
           {
             value: 1,
-            element: 88,
-          },
-        ],
-      },
+            element: 88
+          }
+        ]
+      }
     ],
     team_h_difficulty: 4,
     team_a_difficulty: 2,
-    pulse_id: 66342,
+    pulse_id: 66342
   },
   {
     code: 2210286,
@@ -3421,13 +3421,13 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 1,
-            element: 230,
+            element: 230
           },
           {
             value: 1,
-            element: 240,
-          },
-        ],
+            element: 240
+          }
+        ]
       },
       {
         identifier: "assists",
@@ -3435,53 +3435,53 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 1,
-            element: 237,
+            element: 237
           },
           {
             value: 1,
-            element: 245,
-          },
-        ],
+            element: 245
+          }
+        ]
       },
       {
         identifier: "own_goals",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_saved",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_missed",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "yellow_cards",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "red_cards",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "saves",
         a: [
           {
             value: 6,
-            element: 112,
-          },
+            element: 112
+          }
         ],
         h: [
           {
             value: 3,
-            element: 231,
-          },
-        ],
+            element: 231
+          }
+        ]
       },
       {
         identifier: "bonus",
@@ -3489,137 +3489,137 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 3,
-            element: 237,
+            element: 237
           },
           {
             value: 2,
-            element: 245,
+            element: 245
           },
           {
             value: 1,
-            element: 231,
-          },
-        ],
+            element: 231
+          }
+        ]
       },
       {
         identifier: "bps",
         a: [
           {
             value: 23,
-            element: 112,
+            element: 112
           },
           {
             value: 17,
-            element: 118,
+            element: 118
           },
           {
             value: 14,
-            element: 110,
+            element: 110
           },
           {
             value: 9,
-            element: 113,
+            element: 113
           },
           {
             value: 7,
-            element: 98,
+            element: 98
           },
           {
             value: 7,
-            element: 101,
+            element: 101
           },
           {
             value: 7,
-            element: 104,
+            element: 104
           },
           {
             value: 6,
-            element: 106,
+            element: 106
           },
           {
             value: 6,
-            element: 115,
+            element: 115
           },
           {
             value: 5,
-            element: 105,
+            element: 105
           },
           {
             value: 4,
-            element: 108,
+            element: 108
           },
           {
             value: 3,
-            element: 109,
+            element: 109
           },
           {
             value: 2,
-            element: 100,
-          },
+            element: 100
+          }
         ],
         h: [
           {
             value: 50,
-            element: 237,
+            element: 237
           },
           {
             value: 41,
-            element: 245,
+            element: 245
           },
           {
             value: 31,
-            element: 231,
+            element: 231
           },
           {
             value: 27,
-            element: 229,
+            element: 229
           },
           {
             value: 26,
-            element: 224,
+            element: 224
           },
           {
             value: 25,
-            element: 240,
+            element: 240
           },
           {
             value: 20,
-            element: 230,
+            element: 230
           },
           {
             value: 13,
-            element: 222,
+            element: 222
           },
           {
             value: 13,
-            element: 506,
+            element: 506
           },
           {
             value: 12,
-            element: 239,
+            element: 239
           },
           {
             value: 5,
-            element: 233,
+            element: 233
           },
           {
             value: 3,
-            element: 225,
+            element: 225
           },
           {
             value: 3,
-            element: 228,
+            element: 228
           },
           {
             value: 3,
-            element: 238,
-          },
-        ],
-      },
+            element: 238
+          }
+        ]
+      }
     ],
     team_h_difficulty: 2,
     team_a_difficulty: 5,
-    pulse_id: 66357,
+    pulse_id: 66357
   },
   {
     code: 2210295,
@@ -3642,21 +3642,21 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 2,
-            element: 268,
+            element: 268
           },
           {
             value: 1,
-            element: 250,
+            element: 250
           },
           {
             value: 1,
-            element: 263,
+            element: 263
           },
           {
             value: 1,
-            element: 266,
-          },
-        ],
+            element: 266
+          }
+        ]
       },
       {
         identifier: "assists",
@@ -3664,79 +3664,79 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 1,
-            element: 33,
+            element: 33
           },
           {
             value: 1,
-            element: 254,
+            element: 254
           },
           {
             value: 1,
-            element: 261,
+            element: 261
           },
           {
             value: 1,
-            element: 263,
+            element: 263
           },
           {
             value: 1,
-            element: 268,
-          },
-        ],
+            element: 268
+          }
+        ]
       },
       {
         identifier: "own_goals",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_saved",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_missed",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "yellow_cards",
         a: [
           {
             value: 1,
-            element: 5,
+            element: 5
           },
           {
             value: 1,
-            element: 11,
-          },
+            element: 11
+          }
         ],
         h: [
           {
             value: 1,
-            element: 266,
-          },
-        ],
+            element: 266
+          }
+        ]
       },
       {
         identifier: "red_cards",
         a: [
           {
             value: 1,
-            element: 7,
-          },
+            element: 7
+          }
         ],
-        h: [],
+        h: []
       },
       {
         identifier: "saves",
         a: [
           {
             value: 5,
-            element: 1,
-          },
+            element: 1
+          }
         ],
-        h: [],
+        h: []
       },
       {
         identifier: "bonus",
@@ -3744,133 +3744,133 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 3,
-            element: 263,
+            element: 263
           },
           {
             value: 2,
-            element: 268,
+            element: 268
           },
           {
             value: 1,
-            element: 250,
-          },
-        ],
+            element: 250
+          }
+        ]
       },
       {
         identifier: "bps",
         a: [
           {
             value: 20,
-            element: 1,
+            element: 1
           },
           {
             value: 17,
-            element: 14,
+            element: 14
           },
           {
             value: 14,
-            element: 16,
+            element: 16
           },
           {
             value: 13,
-            element: 10,
+            element: 10
           },
           {
             value: 8,
-            element: 21,
+            element: 21
           },
           {
             value: 5,
-            element: 558,
+            element: 558
           },
           {
             value: 3,
-            element: 11,
+            element: 11
           },
           {
             value: 3,
-            element: 13,
+            element: 13
           },
           {
             value: 2,
-            element: 12,
+            element: 12
           },
           {
             value: 1,
-            element: 5,
+            element: 5
           },
           {
             value: -1,
-            element: 6,
+            element: 6
           },
           {
             value: -5,
-            element: 7,
-          },
+            element: 7
+          }
         ],
         h: [
           {
             value: 53,
-            element: 263,
+            element: 263
           },
           {
             value: 51,
-            element: 268,
+            element: 268
           },
           {
             value: 42,
-            element: 250,
+            element: 250
           },
           {
             value: 36,
-            element: 266,
+            element: 266
           },
           {
             value: 30,
-            element: 262,
+            element: 262
           },
           {
             value: 29,
-            element: 254,
+            element: 254
           },
           {
             value: 28,
-            element: 33,
+            element: 33
           },
           {
             value: 28,
-            element: 256,
+            element: 256
           },
           {
             value: 24,
-            element: 257,
+            element: 257
           },
           {
             value: 23,
-            element: 259,
+            element: 259
           },
           {
             value: 14,
-            element: 261,
+            element: 261
           },
           {
             value: 9,
-            element: 264,
+            element: 264
           },
           {
             value: 5,
-            element: 249,
+            element: 249
           },
           {
             value: -1,
-            element: 255,
-          },
-        ],
-      },
+            element: 255
+          }
+        ]
+      }
     ],
     team_h_difficulty: 4,
     team_a_difficulty: 5,
-    pulse_id: 66366,
+    pulse_id: 66366
   },
   {
     code: 2210301,
@@ -3893,9 +3893,9 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 1,
-            element: 4,
-          },
-        ],
+            element: 4
+          }
+        ]
       },
       {
         identifier: "assists",
@@ -3903,67 +3903,67 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 1,
-            element: 17,
-          },
-        ],
+            element: 17
+          }
+        ]
       },
       {
         identifier: "own_goals",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_saved",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_missed",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "yellow_cards",
         a: [
           {
             value: 1,
-            element: 319,
+            element: 319
           },
           {
             value: 1,
-            element: 326,
-          },
+            element: 326
+          }
         ],
         h: [
           {
             value: 1,
-            element: 15,
+            element: 15
           },
           {
             value: 1,
-            element: 67,
-          },
-        ],
+            element: 67
+          }
+        ]
       },
       {
         identifier: "red_cards",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "saves",
         a: [
           {
             value: 5,
-            element: 314,
-          },
+            element: 314
+          }
         ],
         h: [
           {
             value: 1,
-            element: 559,
-          },
-        ],
+            element: 559
+          }
+        ]
       },
       {
         identifier: "bonus",
@@ -3971,137 +3971,137 @@ export const mockFixtures: Fixture[] = [
         h: [
           {
             value: 3,
-            element: 4,
+            element: 4
           },
           {
             value: 2,
-            element: 23,
+            element: 23
           },
           {
             value: 1,
-            element: 16,
-          },
-        ],
+            element: 16
+          }
+        ]
       },
       {
         identifier: "bps",
         a: [
           {
             value: 18,
-            element: 314,
+            element: 314
           },
           {
             value: 16,
-            element: 331,
+            element: 331
           },
           {
             value: 15,
-            element: 290,
+            element: 290
           },
           {
             value: 13,
-            element: 319,
+            element: 319
           },
           {
             value: 13,
-            element: 528,
+            element: 528
           },
           {
             value: 12,
-            element: 471,
+            element: 471
           },
           {
             value: 10,
-            element: 317,
+            element: 317
           },
           {
             value: 9,
-            element: 326,
+            element: 326
           },
           {
             value: 6,
-            element: 318,
+            element: 318
           },
           {
             value: 6,
-            element: 323,
+            element: 323
           },
           {
             value: 5,
-            element: 329,
+            element: 329
           },
           {
             value: 4,
-            element: 315,
+            element: 315
           },
           {
             value: 4,
-            element: 325,
+            element: 325
           },
           {
             value: 3,
-            element: 449,
-          },
+            element: 449
+          }
         ],
         h: [
           {
             value: 30,
-            element: 4,
+            element: 4
           },
           {
             value: 28,
-            element: 23,
+            element: 23
           },
           {
             value: 24,
-            element: 16,
+            element: 16
           },
           {
             value: 23,
-            element: 559,
+            element: 559
           },
           {
             value: 22,
-            element: 17,
+            element: 17
           },
           {
             value: 21,
-            element: 478,
+            element: 478
           },
           {
             value: 21,
-            element: 590,
+            element: 590
           },
           {
             value: 19,
-            element: 67,
+            element: 67
           },
           {
             value: 18,
-            element: 22,
+            element: 22
           },
           {
             value: 14,
-            element: 558,
+            element: 558
           },
           {
             value: 12,
-            element: 13,
+            element: 13
           },
           {
             value: 5,
-            element: 5,
+            element: 5
           },
           {
             value: 2,
-            element: 21,
-          },
-        ],
-      },
+            element: 21
+          }
+        ]
+      }
     ],
     team_h_difficulty: 2,
     team_a_difficulty: 4,
-    pulse_id: 66372,
+    pulse_id: 66372
   },
   {
     code: 2210316,
@@ -4123,303 +4123,303 @@ export const mockFixtures: Fixture[] = [
         a: [
           {
             value: 1,
-            element: 196,
-          },
+            element: 196
+          }
         ],
         h: [
           {
             value: 1,
-            element: 307,
-          },
-        ],
+            element: 307
+          }
+        ]
       },
       {
         identifier: "assists",
         a: [
           {
             value: 1,
-            element: 189,
-          },
+            element: 189
+          }
         ],
         h: [
           {
             value: 1,
-            element: 310,
-          },
-        ],
+            element: 310
+          }
+        ]
       },
       {
         identifier: "own_goals",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_saved",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "penalties_missed",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "yellow_cards",
         a: [
           {
             value: 1,
-            element: 187,
+            element: 187
           },
           {
             value: 1,
-            element: 463,
-          },
+            element: 463
+          }
         ],
         h: [
           {
             value: 1,
-            element: 292,
+            element: 292
           },
           {
             value: 1,
-            element: 308,
-          },
-        ],
+            element: 308
+          }
+        ]
       },
       {
         identifier: "red_cards",
         a: [],
-        h: [],
+        h: []
       },
       {
         identifier: "saves",
         a: [
           {
             value: 6,
-            element: 199,
-          },
+            element: 199
+          }
         ],
         h: [
           {
             value: 9,
-            element: 294,
-          },
-        ],
+            element: 294
+          }
+        ]
       },
       {
         identifier: "bonus",
         a: [
           {
             value: 1,
-            element: 196,
-          },
+            element: 196
+          }
         ],
         h: [
           {
             value: 3,
-            element: 294,
+            element: 294
           },
           {
             value: 2,
-            element: 307,
-          },
-        ],
+            element: 307
+          }
+        ]
       },
       {
         identifier: "bps",
         a: [
           {
             value: 26,
-            element: 196,
+            element: 196
           },
           {
             value: 25,
-            element: 199,
+            element: 199
           },
           {
             value: 19,
-            element: 184,
+            element: 184
           },
           {
             value: 15,
-            element: 191,
+            element: 191
           },
           {
             value: 12,
-            element: 185,
+            element: 185
           },
           {
             value: 12,
-            element: 189,
+            element: 189
           },
           {
             value: 11,
-            element: 186,
+            element: 186
           },
           {
             value: 11,
-            element: 188,
+            element: 188
           },
           {
             value: 9,
-            element: 463,
+            element: 463
           },
           {
             value: 7,
-            element: 187,
+            element: 187
           },
           {
             value: 4,
-            element: 193,
+            element: 193
           },
           {
             value: 4,
-            element: 551,
+            element: 551
           },
           {
             value: 3,
-            element: 197,
+            element: 197
           },
           {
             value: 2,
-            element: 287,
-          },
+            element: 287
+          }
         ],
         h: [
           {
             value: 29,
-            element: 294,
+            element: 294
           },
           {
             value: 28,
-            element: 307,
+            element: 307
           },
           {
             value: 15,
-            element: 302,
+            element: 302
           },
           {
             value: 13,
-            element: 310,
+            element: 310
           },
           {
             value: 12,
-            element: 292,
+            element: 292
           },
           {
             value: 11,
-            element: 306,
+            element: 306
           },
           {
             value: 10,
-            element: 299,
+            element: 299
           },
           {
             value: 9,
-            element: 293,
+            element: 293
           },
           {
             value: 9,
-            element: 308,
+            element: 308
           },
           {
             value: 8,
-            element: 309,
+            element: 309
           },
           {
             value: 4,
-            element: 19,
+            element: 19
           },
           {
             value: 3,
-            element: 303,
+            element: 303
           },
           {
             value: 3,
-            element: 304,
+            element: 304
           },
           {
             value: 2,
-            element: 298,
-          },
-        ],
-      },
+            element: 298
+          }
+        ]
+      }
     ],
     team_h_difficulty: 2,
     team_a_difficulty: 3,
-    pulse_id: 66387,
-  },
+    pulse_id: 66387
+  }
 ];
 
 export const mockElementStats: PlayerStat[] = [
   {
     label: "Minutes played",
-    name: "minutes",
+    name: "minutes"
   },
   {
     label: "Goals scored",
-    name: "goals_scored",
+    name: "goals_scored"
   },
   {
     label: "Assists",
-    name: "assists",
+    name: "assists"
   },
   {
     label: "Clean sheets",
-    name: "clean_sheets",
+    name: "clean_sheets"
   },
   {
     label: "Goals conceded",
-    name: "goals_conceded",
+    name: "goals_conceded"
   },
   {
     label: "Own goals",
-    name: "own_goals",
+    name: "own_goals"
   },
   {
     label: "Penalties saved",
-    name: "penalties_saved",
+    name: "penalties_saved"
   },
   {
     label: "Penalties missed",
-    name: "penalties_missed",
+    name: "penalties_missed"
   },
   {
     label: "Yellow cards",
-    name: "yellow_cards",
+    name: "yellow_cards"
   },
   {
     label: "Red cards",
-    name: "red_cards",
+    name: "red_cards"
   },
   {
     label: "Saves",
-    name: "saves",
+    name: "saves"
   },
   {
     label: "Bonus",
-    name: "bonus",
+    name: "bonus"
   },
   {
     label: "Bonus Points System",
-    name: "bps",
+    name: "bps"
   },
   {
     label: "Influence",
-    name: "influence",
+    name: "influence"
   },
   {
     label: "Creativity",
-    name: "creativity",
+    name: "creativity"
   },
   {
     label: "Threat",
-    name: "threat",
+    name: "threat"
   },
   {
     label: "ICT Index",
-    name: "ict_index",
-  },
+    name: "ict_index"
+  }
 ];
 
 export const mockGameSettings: GameSettings = {
@@ -4450,7 +4450,7 @@ export const mockGameSettings: GameSettings = {
   transfers_cap: 20,
   transfers_sell_on_fee: 0.5,
   league_h2h_tiebreak_stats: ["+goals_scored", "-goals_conceded"],
-  timezone: "UTC",
+  timezone: "UTC"
 };
 
 export const mockPhases: Phase[] = [
@@ -4458,68 +4458,68 @@ export const mockPhases: Phase[] = [
     id: 1,
     name: "Overall",
     start_event: 1,
-    stop_event: 38,
+    stop_event: 38
   },
   {
     id: 2,
     name: "August",
     start_event: 1,
-    stop_event: 3,
+    stop_event: 3
   },
   {
     id: 3,
     name: "September",
     start_event: 4,
-    stop_event: 6,
+    stop_event: 6
   },
   {
     id: 4,
     name: "October",
     start_event: 7,
-    stop_event: 10,
+    stop_event: 10
   },
   {
     id: 5,
     name: "November",
     start_event: 11,
-    stop_event: 14,
+    stop_event: 14
   },
   {
     id: 6,
     name: "December",
     start_event: 15,
-    stop_event: 20,
+    stop_event: 20
   },
   {
     id: 7,
     name: "January",
     start_event: 21,
-    stop_event: 23,
+    stop_event: 23
   },
   {
     id: 8,
     name: "February",
     start_event: 24,
-    stop_event: 27,
+    stop_event: 27
   },
   {
     id: 9,
     name: "March",
     start_event: 28,
-    stop_event: 30,
+    stop_event: 30
   },
   {
     id: 10,
     name: "April",
     start_event: 31,
-    stop_event: 35,
+    stop_event: 35
   },
   {
     id: 11,
     name: "May",
     start_event: 36,
-    stop_event: 38,
-  },
+    stop_event: 38
+  }
 ];
 
 export const mockElementTypes: Position[] = [
@@ -4534,7 +4534,7 @@ export const mockElementTypes: Position[] = [
     squad_max_play: 1,
     ui_shirt_specific: true,
     sub_positions_locked: [12],
-    element_count: 83,
+    element_count: 83
   },
   {
     id: 2,
@@ -4547,7 +4547,7 @@ export const mockElementTypes: Position[] = [
     squad_max_play: 5,
     ui_shirt_specific: false,
     sub_positions_locked: [],
-    element_count: 245,
+    element_count: 245
   },
   {
     id: 3,
@@ -4560,7 +4560,7 @@ export const mockElementTypes: Position[] = [
     squad_max_play: 5,
     ui_shirt_specific: false,
     sub_positions_locked: [],
-    element_count: 302,
+    element_count: 302
   },
   {
     id: 4,
@@ -4573,8 +4573,8 @@ export const mockElementTypes: Position[] = [
     squad_max_play: 3,
     ui_shirt_specific: false,
     sub_positions_locked: [],
-    element_count: 95,
-  },
+    element_count: 95
+  }
 ];
 
 export const mockGameData: GameData = {
@@ -4585,7 +4585,7 @@ export const mockGameData: GameData = {
   total_players: mockPlayers.length,
   elements: mockPlayers,
   element_stats: mockElementStats,
-  element_types: mockElementTypes,
+  element_types: mockElementTypes
 };
 
 export const mockAppData: AppData = {

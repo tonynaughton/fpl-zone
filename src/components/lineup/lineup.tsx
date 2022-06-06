@@ -22,7 +22,7 @@ export default function Lineup({
   bench,
   teamPicks,
   teamData,
-  compressed = false,
+  compressed = false
 }: LineupProps): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;
 
@@ -44,7 +44,7 @@ export default function Lineup({
       overflow: "hidden",
       textOverflow: "ellipsis",
       width: "50%",
-      textAlign: "center",
+      textAlign: "center"
     };
 
     const statValueStyling = {
@@ -60,7 +60,7 @@ export default function Lineup({
           rowGap: 1,
           width: "100%",
           maxWidth: "80%",
-          margin: "auto",
+          margin: "auto"
         }}
       >
         {teamData && (
@@ -77,7 +77,7 @@ export default function Lineup({
             mt: 2,
             mb: 2,
             overflow: "hidden",
-            width: "100%",
+            width: "100%"
           }}
         >
           {teamPicks && (
@@ -123,7 +123,7 @@ export default function Lineup({
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
-          width: "100%",
+          width: "100%"
         }}
       >
         {selected.map((positionGroup, key) => {
@@ -134,7 +134,7 @@ export default function Lineup({
                 display: "flex",
                 justifyContent: "space-around",
                 alignItems: "center",
-                width: "100%",
+                width: "100%"
               }}
             >
               {positionGroup.map((player, key) => {
@@ -164,7 +164,7 @@ export default function Lineup({
         sx={{
           display: "flex",
           alignItems: "center",
-          flexDirection: "column",
+          flexDirection: "column"
         }}
       >
         <Typography variant='h5'>Bench</Typography>

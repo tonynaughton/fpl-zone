@@ -10,7 +10,7 @@ import {
   Button,
   Link as MuiLink,
   Snackbar,
-  TextField,
+  TextField
 } from "@mui/material";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "config/firebase";
 import { FirebaseResponse } from "types/firebase";
@@ -28,7 +28,7 @@ export const LoginForm = (): JSX.Element => {
 
   const defaultValues = {
     email: "",
-    password: "",
+    password: ""
   };
 
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -164,7 +164,7 @@ export const LoginForm = (): JSX.Element => {
           onClose={handleSnackbarClose}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "right",
+            horizontal: "right"
           }}
         >
           <Alert

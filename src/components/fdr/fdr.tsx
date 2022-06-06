@@ -7,7 +7,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
+  Typography
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
@@ -72,7 +72,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
           alignItems: "center",
           columnGap: 1,
           ml: 0.5,
-          whiteSpace: "nowrap",
+          whiteSpace: "nowrap"
         }}
         data-testid={testId}
       >
@@ -86,7 +86,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
             display: "block",
             whiteSpace: "nowrap",
             overflow: "hidden",
-            textOverflow: "ellipsis",
+            textOverflow: "ellipsis"
           }}
         >
           <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
@@ -157,7 +157,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
             tableLayout: "fixed",
             height: "100%",
             flexGrow: "1",
-            "& .MuiTableCell-root": { padding: "2px 4px" },
+            "& .MuiTableCell-root": { padding: "2px 4px" }
           }}
         >
           <TableHead>

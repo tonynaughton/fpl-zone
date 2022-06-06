@@ -19,7 +19,7 @@ export const AppLayout = (props: React.PropsWithChildren<LayoutProps>): JSX.Elem
           height: "100vh",
           maxHeight: "100vh",
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "column"
         }}
       >
         <Typography
@@ -39,7 +39,7 @@ export const AppLayout = (props: React.PropsWithChildren<LayoutProps>): JSX.Elem
               flexDirection: props.direction,
               justifyContent: "space-between",
               columnGap: 3,
-              rowGap: 3,
+              rowGap: 3
             }}
           >
             {props.children}

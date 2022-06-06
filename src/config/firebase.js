@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateEmail,
+  updateEmail
 } from "firebase/auth";
 import {
   addDoc,
@@ -20,7 +20,7 @@ import {
   getFirestore,
   query,
   updateDoc,
-  where,
+  where
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -29,7 +29,7 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
@@ -52,7 +52,7 @@ export const signInWithGoogle = async () => {
         lastName: name[1] || "",
         authProvider: "google",
         email: user.email,
-        fplId: "",
+        fplId: ""
       });
     }
   } catch (err) {
@@ -84,7 +84,7 @@ export const registerWithEmailAndPassword = async (
       lastName,
       authProvider: "local",
       email,
-      fplId,
+      fplId
     });
   } catch (err) {
     return err;
@@ -114,7 +114,7 @@ export const updateUserDetails = async (uid, firstName, lastName, email, fplId =
       firstName,
       lastName,
       email,
-      fplId,
+      fplId
     });
   } catch (err) {
     alert(err.message);

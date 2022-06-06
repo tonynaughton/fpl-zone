@@ -14,13 +14,13 @@ const mainMenuItems: MenuItem[] = [
   { label: "gameweek live", href: "/gameweek-live" },
   { label: "my team", href: "/my-team" },
   { label: "fixtures & results", href: "/fixtures-and-results" },
-  { label: "analysis", href: "/analysis" },
+  { label: "analysis", href: "/analysis" }
   // { label: "social", href: "/social" },
 ];
 
 const endMenuItems: MenuItem[] = [
   { label: "logout", href: "/logout" },
-  { label: "account", href: "/account" },
+  { label: "account", href: "/account" }
 ];
 
 interface NavDrawerProps {
@@ -40,8 +40,8 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
           width: drawerWidth,
           boxSizing: "border-box",
           backgroundColor: "#16B7EA",
-          borderRight: "1px solid black",
-        },
+          borderRight: "1px solid black"
+        }
       }}
       variant='permanent'
       anchor='left'

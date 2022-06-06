@@ -16,14 +16,14 @@ import {
   OutlinedInput,
   Snackbar,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import {
   auth,
   db,
   registerWithEmailAndPassword,
   signInWithGoogle,
-  updateUserDetails,
+  updateUserDetails
 } from "config/firebase";
 import { deleteUser } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -58,7 +58,7 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
     email: "",
     password: "",
     repeatPassword: "",
-    fplId: "",
+    fplId: ""
   };
 
   const [userData, setUserData] = useState(defaultValues);
@@ -91,7 +91,7 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
         email: userData.email,
         password: "",
         repeatPassword: "",
-        fplId: userData.fplId,
+        fplId: userData.fplId
       });
       setUserFound(true);
     } catch (err) {
@@ -337,7 +337,7 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
         onClose={handleSnackbarClose}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "right",
+          horizontal: "right"
         }}
       >
         <Alert
@@ -362,7 +362,7 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
             boxShadow: 24,
             p: 4,
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "column"
           }}
         >
           <Typography sx={{ fontSize: "1.2em" }}>

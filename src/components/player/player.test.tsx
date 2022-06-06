@@ -30,7 +30,7 @@ describe("Player Tests", () => {
   };
 
   beforeEach(() => {
-    [ mockPlayer ] = mockPlayers;
+    [mockPlayer] = mockPlayers;
     mockMultiplier = 1;
     mockIsCaptain = false;
     mockIsViceCaptain = false;

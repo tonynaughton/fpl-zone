@@ -18,7 +18,7 @@ export default function PlayerComparison({
   players,
   teams,
   elementStats,
-  positions,
+  positions
 }: PlayerComparisonProps): JSX.Element {
   const MAX_PLAYER_COUNT = 10;
   const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
@@ -59,7 +59,7 @@ export default function PlayerComparison({
           JustifyContent: "center",
           columnGap: 2,
           p: 2,
-          pl: "10vw",
+          pl: "10vw"
         }}
       >
         <Typography sx={{ fontSize: 22, color: "black" }}>Players: </Typography>
@@ -106,7 +106,7 @@ export default function PlayerComparison({
           height: "100%",
           alignItems: "center",
           justifyContent: "center",
-          p: 2,
+          p: 2
         }}
       >
         <Box
@@ -121,9 +121,9 @@ export default function PlayerComparison({
             borderRadius: "10%",
             cursor: "pointer",
             "&:hover": {
-              backgroundColor: "rgb(224, 224, 224)",
+              backgroundColor: "rgb(224, 224, 224)"
             },
-            width: "20%",
+            width: "20%"
           }}
         >
           <ArrowUpward
@@ -141,7 +141,7 @@ export default function PlayerComparison({
         display: "flex",
         flexDirection: "column",
         alignItem: "center",
-        height: "100%",
+        height: "100%"
       }}
     >
       {renderComparisonOptions()}
@@ -160,7 +160,7 @@ export default function PlayerComparison({
         onClose={(): void => setSnackbarOpen(false)}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "right",
+          horizontal: "right"
         }}
       >
         <Alert

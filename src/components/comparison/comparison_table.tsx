@@ -12,19 +12,19 @@ interface ComparisonTableProps {
 export default function ComparisonTable({
   selectedPlayers,
   teams,
-  elementStats,
+  elementStats
 }: ComparisonTableProps): JSX.Element {
   const borderStyle = "1px solid rgb(196, 196, 196)";
   const customCellStyle = {
     border: borderStyle,
-    backgroundColor: "rgb(224, 224, 224)",
+    backgroundColor: "rgb(224, 224, 224)"
   };
   const renderPlayerImageRow = (): JSX.Element => {
     return (
       <TableRow
         sx={{
           height: "160px",
-          "& .MuiTableCell-root": { borderBottom: borderStyle },
+          "& .MuiTableCell-root": { borderBottom: borderStyle }
         }}
       >
         <TableCell></TableCell>
@@ -73,7 +73,7 @@ export default function ComparisonTable({
                   display: "flex",
                   alignItems: "center",
                   height: "100%",
-                  columnGap: 1,
+                  columnGap: 1
                 }}
               >
                 <img
@@ -95,7 +95,7 @@ export default function ComparisonTable({
       aria-label='player comparison table'
       sx={{
         tableLayout: "fixed",
-        flexGrow: "1",
+        flexGrow: "1"
       }}
     >
       <TableBody>

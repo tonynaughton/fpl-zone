@@ -83,7 +83,7 @@ export default function Results(): JSX.Element {
             team_a: result.team_a,
             team_h_score: (result.team_h_score as number) || null,
             team_a_score: (result.team_a_score as number) || null,
-            kickoff_time: result.kickoff_time,
+            kickoff_time: result.kickoff_time
           };
 
           return (
@@ -103,12 +103,12 @@ export default function Results(): JSX.Element {
                 padding: "0 0.5em",
                 borderBottom: "1px solid rgb(224, 224, 224)",
                 "&:last-child": {
-                  border: "none",
+                  border: "none"
                 },
                 "&:hover": {
                   backgroundColor: matchStarted ? "rgb(224, 224, 224)" : "inherit",
-                  cursor: matchStarted ? "pointer" : "default",
-                },
+                  cursor: matchStarted ? "pointer" : "default"
+                }
               }}
             >
               {RenderResult(customResult, matchStarted, appData.teams, key)}
