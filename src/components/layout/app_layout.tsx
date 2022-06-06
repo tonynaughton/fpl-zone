@@ -25,8 +25,8 @@ export function AppLayout(props: React.PropsWithChildren<LayoutProps>): JSX.Elem
         <Typography
           textAlign="center"
           component="h1"
-          variant="h1"
-          sx={{ mt: 3, mb: 2, height: "auto" }}
+          variant="h2"
+          sx={{ m: 1.5, height: "auto" }}
         >
           {props.activeLabel.toUpperCase()}
         </Typography>

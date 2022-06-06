@@ -6,8 +6,8 @@ interface LogoProps {
 }
 
 export default function Logo({ compact }: LogoProps): JSX.Element {
-  const logoDimens = compact ? "50px" : "100px";
-  const textVariant = compact ? "40px" : "100px";
+  const logoDimens = compact ? "40px" : "100px";
+  const textVariant = compact ? "2vw" : "100px";
   return (
     <Grid container sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
       <Grid item>

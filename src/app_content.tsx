@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
 import {
   AccountPage,
@@ -37,9 +38,11 @@ export default function AppContent(): JSX.Element {
     isLoading: fixtureDataIsLoading,
   } = useQuery("all-fixtures", getAllFixtures);
 
+  const isCompact = useMediaQuery('(min-width:1500px)');
+
   const isLoading = gameDataIsLoading || fixtureDataIsLoading;
   const isError = gameDataIsError || fixtureDataIsError;
-  const appData = gameData && fixtureData ? { ...gameData, fixtures: fixtureData } : null;
+  const appData = gameData && fixtureData ? { ...gameData, fixtures: fixtureData, isCompact } : null;
 
   if (isLoading) {
     // Display loading message if data is still being fetched

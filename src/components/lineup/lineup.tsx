@@ -39,13 +39,19 @@ export default function Lineup({
   };
 
   const renderLineupInfo = (): JSX.Element => {
-    const textStyling = {
+    const statKeyStyling = {
       display: "block",
       overflow: "hidden",
       textOverflow: "ellipsis",
       width: "50%",
       textAlign: "center",
     };
+
+    const statValueStyling = {
+      fontSize: '1.8vh',
+      fontWeight: 500
+    };
+
     return (
       <Box
         sx={{
@@ -58,7 +64,7 @@ export default function Lineup({
         }}
       >
         {teamData && (
-          <Typography variant="h2" textAlign="center">
+          <Typography component="h2" variant="h4" textAlign="center">
             {teamData.name}
           </Typography>
         )}
@@ -75,24 +81,24 @@ export default function Lineup({
           }}
         >
           {teamPicks && (
-            <Typography sx={textStyling} variant="h6">
+            <Typography sx={statKeyStyling} variant="h5">
               Active Chip:
               <br />
-              <Typography>{activeChip}</Typography>
+              <Typography sx={statValueStyling}>{activeChip}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={textStyling} variant="h6">
+            <Typography sx={statKeyStyling} variant="h5">
               GW Points:
               <br />
-              <Typography>{totalPoints}</Typography>
+              <Typography sx={statValueStyling}>{totalPoints}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={textStyling} variant="h6">
+            <Typography sx={statKeyStyling} variant="h5">
               Overall Rank:
               <br />
-              <Typography>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
+              <Typography sx={statValueStyling}>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
             </Typography>
           )}
         </Box>
@@ -159,19 +165,21 @@ export default function Lineup({
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
-          boxShadow: 4,
-          p: 1.5,
         }}
       >
         <Typography variant="h5">Bench</Typography>
         <Box
+          data-testid="bench-players"
           sx={{
             display: "flex",
             width: "100%",
+            mt: 1,
             justifyContent: "space-around",
             alignItems: "center",
+            "& > :first-child": {
+              mr: 3
+            }
           }}
-          data-testid="bench-players"
         >
           {sortedBench.map((player, key) => {
             const pick = teamPicks?.picks.find((pick) => pick.element === player.id);

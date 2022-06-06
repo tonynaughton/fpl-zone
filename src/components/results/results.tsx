@@ -5,7 +5,7 @@ import { AppDataContext } from "app_content";
 import { AppData, CustomResult, Fixture, Gameweek } from "types";
 
 import MatchDetailsModal from "./match_details_modal";
-import { renderResult } from "./result";
+import { RenderResult } from "./result";
 
 export default function Results(): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;
@@ -52,7 +52,7 @@ export default function Results(): JSX.Element {
             <ArrowBack />
           </Tooltip>
         </IconButton>
-        <Typography variant="h6" data-testid="selected-gameweek-title">
+        <Typography variant="h5" data-testid="selected-gameweek-title">
           GAMEWEEK {selectedGameweek}
         </Typography>
         <IconButton
@@ -111,7 +111,7 @@ export default function Results(): JSX.Element {
                 },
               }}
             >
-              {renderResult(customResult, matchStarted, appData.teams, key)}
+              {RenderResult(customResult, matchStarted, appData.teams, key)}
             </Box>
           );
         })}
@@ -121,7 +121,7 @@ export default function Results(): JSX.Element {
           isResultsModalOpen={isResultsModalOpen}
           setResultsModalOpen={setResultsModalOpen}
           selectedResult={selectedResult}
-          renderResult={renderResult}
+          renderResult={RenderResult}
         />
       )}
     </Box>

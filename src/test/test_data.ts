@@ -4591,4 +4591,5 @@ export const mockGameData: GameData = {
 export const mockAppData: AppData = {
   ...mockGameData,
   fixtures: mockFixtures,
+  isCompact: false
 };

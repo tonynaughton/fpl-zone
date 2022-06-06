@@ -12,7 +12,7 @@ import {
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import _ from "lodash";
-import { AppData, Fixture, Gameweek, Player, Team } from "types";
+import { AppData, Fixture, Player, Team } from "types";
 
 import { LoadingMessage } from "components/layout";
 

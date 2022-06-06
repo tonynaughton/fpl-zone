@@ -39,7 +39,7 @@ const customTheme = createTheme({
       fontSize: 16,
     },
     body2: {
-      fontSize: "1.5vh",
+      fontSize: "1.6vh",
     },
   },
   palette: {

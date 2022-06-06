@@ -26,7 +26,7 @@ import {
 } from "types";
 
 import { LoadingMessage } from "components/layout";
-import { renderResult } from "components/results/result";
+import { RenderResult } from "components/results/result";
 
 interface PlayerPerformanceModalProps {
   isPlayerPerformanceModalOpen: boolean;
@@ -74,7 +74,7 @@ export default function PlayerPerformanceModal({
     return (
       <Fragment key={key}>
         <Box sx={{ display: "flex", alginItems: "center", width: "80%" }}>
-          {renderResult(customResult, matchStarted, teams)}
+          {RenderResult(customResult, matchStarted, teams)}
         </Box>
         {matchStarted && (
           <TableContainer component={Box} key={key}>
@@ -82,10 +82,10 @@ export default function PlayerPerformanceModal({
               <TableHead>
                 <TableRow sx={headerStyling}>
                   <TableCell>
-                    <Typography sx={{ fontWeight: 700 }}>Statistic</Typography>
+                    <Typography fontSize="1.2vw" sx={{ fontWeight: 700 }}>Statistic</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography sx={{ fontWeight: 700 }}>Value</Typography>
+                    <Typography fontSize="1.2vw" sx={{ fontWeight: 700 }}>Value</Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -94,12 +94,12 @@ export default function PlayerPerformanceModal({
                   return (
                     <TableRow key={key}>
                       <TableCell>
-                        <Typography>
+                        <Typography fontSize="1.2vw">
                           {elementStats.find((el) => el.name === stat)?.label}
                         </Typography>
                       </TableCell>
                       <TableCell>
-                        <Typography>{stats[stat]}</Typography>
+                        <Typography fontSize="1.2vw">{stats[stat]}</Typography>
                       </TableCell>
                     </TableRow>
                   );

@@ -40,12 +40,12 @@ export default function GameweekSummary(): JSX.Element {
       label: "highest score",
       statValue: `${gameweek?.highest_score || 0} pts`,
     },
-    { label: "average score", statValue: gameweek?.average_entry_score || 0 },
+    { label: "average score", statValue: `${gameweek?.average_entry_score} pts` || 0 },
     {
       label: "star player",
       teamCode: starPlayer?.team_code,
       playerName: starPlayer?.web_name || "",
-      statValue: gameweek?.top_element_info?.points || 0,
+      statValue: `${gameweek?.top_element_info?.points} pts` || 0,
     },
     {
       label: "most captained",
@@ -60,7 +60,7 @@ export default function GameweekSummary(): JSX.Element {
     {
       label: "most transferred in",
       teamCode: mostTransferredIn?.team_code,
-      playerName: `${mostTransferredIn?.web_name || ""}`,
+      playerName: mostTransferredIn?.web_name || "",
       statValue: mostTransferredInCount,
     },
   ];
@@ -73,6 +73,13 @@ export default function GameweekSummary(): JSX.Element {
         height="80%"
       />
     ) : undefined;
+
+    const itemValue = `
+      ${item.playerName || ""}
+      ${item.playerName && item.statValue ? " - " : ""}
+      ${item.statValue || ""}
+    `;
+
     return (
       <Box
         key={key}
@@ -115,7 +122,7 @@ export default function GameweekSummary(): JSX.Element {
               overflow: "hidden",
             }}
           >
-            {item.playerName || ""} {item.statValue || ""}
+            {itemValue}
           </Typography>
         </Box>
       </Box>
@@ -125,7 +132,10 @@ export default function GameweekSummary(): JSX.Element {
   return (
     <Box
       sx={{
-        p: 8,
+        pl: 2,
+        pr: 2,
+        pt: 8,
+        pb: 8,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
