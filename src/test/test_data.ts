@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import { AppData, Fixture, GameData, Phase, PlayerStat, Team } from "types";
 import { GameSettings } from "types/game_settings";
 import { Gameweek } from "types/gameweek";

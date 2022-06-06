@@ -159,177 +159,179 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
 
   return (
     <Box component='div'>
-      {!registerPage && !userFound ? (
-        <Notifier message='Fetching user data..' />
-      ) : (
-        <>
-          <form onSubmit={handleSubmit(onDetailsSave)}>
-            <Controller
-              name='firstName'
-              control={control}
-              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <TextField
-                  className='text-input'
-                  margin='normal'
-                  placeholder='First name'
-                  fullWidth
-                  error={!!error}
-                  required
-                  value={value}
-                  onChange={onChange}
-                />
+      {!registerPage && !userFound
+        ? (
+          <Notifier message='Fetching user data..' />
+        )
+        : (
+          <>
+            <form onSubmit={handleSubmit(onDetailsSave)}>
+              <Controller
+                name='firstName'
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                  <TextField
+                    className='text-input'
+                    margin='normal'
+                    placeholder='First name'
+                    fullWidth
+                    error={!!error}
+                    required
+                    value={value}
+                    onChange={onChange}
+                  />
+                )}
+              />
+              <Controller
+                name='lastName'
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                  <TextField
+                    className='text-input'
+                    margin='normal'
+                    placeholder='Last name'
+                    fullWidth
+                    error={!!error}
+                    required
+                    value={value}
+                    onChange={onChange}
+                  />
+                )}
+              />
+              <Controller
+                name='email'
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                  <TextField
+                    className='text-input'
+                    margin='normal'
+                    placeholder='Email'
+                    fullWidth
+                    error={!!error}
+                    required
+                    value={value}
+                    onChange={onChange}
+                    type='email'
+                  />
+                )}
+              />
+              {registerPage && (
+                <>
+                  <Controller
+                    name='password'
+                    control={control}
+                    render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                      <TextField
+                        sx={{ mt: 2 }}
+                        className='text-input'
+                        placeholder='Password'
+                        fullWidth
+                        error={!!error}
+                        required
+                        value={value}
+                        onChange={onChange}
+                        type='password'
+                      />
+                    )}
+                  />
+                  <Controller
+                    name='repeatPassword'
+                    control={control}
+                    render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                      <TextField
+                        sx={{ mt: 1 }}
+                        className='text-input'
+                        placeholder='Repeat password'
+                        fullWidth
+                        error={!!error}
+                        required
+                        value={value}
+                        onChange={onChange}
+                        type='password'
+                        inputProps={{ form: { autoComplete: "off" } }}
+                      />
+                    )}
+                  />
+                </>
               )}
-            />
-            <Controller
-              name='lastName'
-              control={control}
-              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <TextField
-                  className='text-input'
-                  margin='normal'
-                  placeholder='Last name'
+              <Controller
+                name='fplId'
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                  <OutlinedInput
+                    sx={{ mt: 2 }}
+                    className='text-input'
+                    placeholder='FPL ID (optional)'
+                    fullWidth
+                    error={!!error}
+                    value={value}
+                    onChange={onChange}
+                    endAdornment={
+                      <InputAdornment position='end'>
+                        <IconButton
+                          aria-label='show fpl id modal'
+                          onClick={(): void => setShowFplIdModal(true)}
+                          onMouseDown={(event): void => event.preventDefault()}
+                          edge='end'
+                        >
+                          <Info />
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                )}
+              />
+              <Button
+                sx={{ mt: 5 }}
+                className='action-button'
+                color='secondary'
+                type='submit'
+                fullWidth
+                variant='contained'
+              >
+                {registerPage ? "Register" : "Update"}
+              </Button>
+              {!registerPage && (
+                <Button
+                  sx={{ mt: 3 }}
+                  className='action-button'
+                  color='error'
                   fullWidth
-                  error={!!error}
-                  required
-                  value={value}
-                  onChange={onChange}
-                />
+                  variant='contained'
+                  onClick={(): void => setDeleteAccountModalOpen(true)}
+                >
+                  {"Delete Account"}
+                </Button>
               )}
-            />
-            <Controller
-              name='email'
-              control={control}
-              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <TextField
-                  className='text-input'
-                  margin='normal'
-                  placeholder='Email'
-                  fullWidth
-                  error={!!error}
-                  required
-                  value={value}
-                  onChange={onChange}
-                  type='email'
-                />
-              )}
-            />
+            </form>
             {registerPage && (
               <>
-                <Controller
-                  name='password'
-                  control={control}
-                  render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                    <TextField
-                      sx={{ mt: 2 }}
-                      className='text-input'
-                      placeholder='Password'
-                      fullWidth
-                      error={!!error}
-                      required
-                      value={value}
-                      onChange={onChange}
-                      type='password'
-                    />
-                  )}
-                />
-                <Controller
-                  name='repeatPassword'
-                  control={control}
-                  render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                    <TextField
-                      sx={{ mt: 1 }}
-                      className='text-input'
-                      placeholder='Repeat password'
-                      fullWidth
-                      error={!!error}
-                      required
-                      value={value}
-                      onChange={onChange}
-                      type='password'
-                      inputProps={{ form: { autoComplete: "off" } }}
-                    />
-                  )}
-                />
+                <Button
+                  color='info'
+                  onClick={signInWithGoogle}
+                  sx={{ mt: 2 }}
+                  className='action-button google-login'
+                  fullWidth
+                  variant='contained'
+                >
+                  <GoogleIcon sx={{ mr: 2 }} />
+                Login with Google
+                </Button>
+                <MuiLink
+                  textAlign='center'
+                  color='black'
+                  component='a'
+                  underline='none'
+                  href='/login'
+                  display='block'
+                  className='auth-link'
+                >
+                Already have an account? Login now.
+                </MuiLink>
               </>
             )}
-            <Controller
-              name='fplId'
-              control={control}
-              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <OutlinedInput
-                  sx={{ mt: 2 }}
-                  className='text-input'
-                  placeholder='FPL ID (optional)'
-                  fullWidth
-                  error={!!error}
-                  value={value}
-                  onChange={onChange}
-                  endAdornment={
-                    <InputAdornment position='end'>
-                      <IconButton
-                        aria-label='show fpl id modal'
-                        onClick={(): void => setShowFplIdModal(true)}
-                        onMouseDown={(event): void => event.preventDefault()}
-                        edge='end'
-                      >
-                        <Info />
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              )}
-            />
-            <Button
-              sx={{ mt: 5 }}
-              className='action-button'
-              color='secondary'
-              type='submit'
-              fullWidth
-              variant='contained'
-            >
-              {registerPage ? "Register" : "Update"}
-            </Button>
-            {!registerPage && (
-              <Button
-                sx={{ mt: 3 }}
-                className='action-button'
-                color='error'
-                fullWidth
-                variant='contained'
-                onClick={(): void => setDeleteAccountModalOpen(true)}
-              >
-                {"Delete Account"}
-              </Button>
-            )}
-          </form>
-          {registerPage && (
-            <>
-              <Button
-                color='info'
-                onClick={signInWithGoogle}
-                sx={{ mt: 2 }}
-                className='action-button google-login'
-                fullWidth
-                variant='contained'
-              >
-                <GoogleIcon sx={{ mr: 2 }} />
-                Login with Google
-              </Button>
-              <MuiLink
-                textAlign='center'
-                color='black'
-                component='a'
-                underline='none'
-                href='/login'
-                display='block'
-                className='auth-link'
-              >
-                Already have an account? Login now.
-              </MuiLink>
-            </>
-          )}
-        </>
-      )}
+          </>
+        )}
       <FplIdModal modalVisible={showFplIdModal} setModalOpen={setShowFplIdModal} />
       <Snackbar
         autoHideDuration={6000}

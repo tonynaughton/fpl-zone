@@ -91,10 +91,8 @@ export const MyTeamPage = (): JSX.Element => {
       const getBenchPlayers = (): Player[] => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const benchPlayersPicks = teamPicks!.picks.slice(11, 15);
-        const benchPlayers = benchPlayersPicks.map((pick) =>
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          GetPlayerById(pick.element, appData!.elements)
-        );
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const benchPlayers = benchPlayersPicks.map((pick) => GetPlayerById(pick.element, appData!.elements));
         return benchPlayers;
       };
 
@@ -114,7 +112,7 @@ export const MyTeamPage = (): JSX.Element => {
     } else if (teamPicksFetchError) {
       return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
     } 
-      return <Notifier message='Fetching data..' />;
+    return <Notifier message='Fetching data..' />;
     
   };
 
@@ -134,7 +132,7 @@ export const MyTeamPage = (): JSX.Element => {
     } else if (teamPicksFetchError) {
       return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
     } 
-      return <Notifier message='Fetching data..' />;
+    return <Notifier message='Fetching data..' />;
     
   };
 

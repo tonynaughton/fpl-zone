@@ -30,7 +30,7 @@ export const formatDate = (kickOffDateTime: Date): string => {
   return (
     `${kickOffDateTime.toLocaleDateString(navigator.language, { day: "numeric", month: "short" }) 
     } ${ 
-    kickOffDateTime.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })}`
+      kickOffDateTime.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })}`
   );
 };
 

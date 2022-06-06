@@ -41,13 +41,13 @@ export default function GameweekCountdown(): JSX.Element {
         </Typography>
       );
     } 
-      return (
-        <Typography variant='h5'>
-          {gameweekName} DEADLINE:
-          <br />
-          {countdown.toUpperCase()}
-        </Typography>
-      );
+    return (
+      <Typography variant='h5'>
+        {gameweekName} DEADLINE:
+        <br />
+        {countdown.toUpperCase()}
+      </Typography>
+    );
     
   };
 

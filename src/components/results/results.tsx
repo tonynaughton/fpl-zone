@@ -96,8 +96,7 @@ export default function Results(): JSX.Element {
               justifyContent='center'
               height='10%'
               data-testid={`result-${result.id}`}
-              onClick={(): void =>
-                (kickOffTime < new Date() ? handleResultClick(result) : undefined)
+              onClick={(): void => (kickOffTime < new Date() ? handleResultClick(result) : undefined)
               }
               sx={{
                 padding: "0 0.5em",

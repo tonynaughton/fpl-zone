@@ -27,7 +27,7 @@ export const GameweekLivePage = (): JSX.Element => {
     if (gameStatus === gameStatusValues.GAME_OK) {
       return <DreamTeam />;
     } 
-      return <Notifier message={gameStatus} />;
+    return <Notifier message={gameStatus} />;
     
   };
 
@@ -35,7 +35,7 @@ export const GameweekLivePage = (): JSX.Element => {
     if (gameStatus === gameStatusValues.GAME_OK) {
       return <GameweekSummary />;
     } 
-      return <Notifier message={gameStatus} />;
+    return <Notifier message={gameStatus} />;
     
   };
 

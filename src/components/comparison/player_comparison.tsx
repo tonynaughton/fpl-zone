@@ -83,15 +83,14 @@ export default function PlayerComparison({
           clearOnBlur
           onBlur={(): void => setDropdownOpen(false)}
           disabled={selectedPlayers.length >= MAX_PLAYER_COUNT}
-          renderTags={(player: Player[], getTagProps): JSX.Element[] =>
-            player.map((player, index) => (
-              <Chip
-                {...getTagProps({ index })}
-                key={index}
-                label={<Typography variant='body2'>{player.web_name}</Typography>}
-                disabled={false}
-              />
-            ))
+          renderTags={(player: Player[], getTagProps): JSX.Element[] => player.map((player, index) => (
+            <Chip
+              {...getTagProps({ index })}
+              key={index}
+              label={<Typography variant='body2'>{player.web_name}</Typography>}
+              disabled={false}
+            />
+          ))
           }
         />
       </Box>
@@ -145,15 +144,17 @@ export default function PlayerComparison({
       }}
     >
       {renderComparisonOptions()}
-      {selectedPlayers.length > 0 ? (
-        <ComparisonTable
-          selectedPlayers={selectedPlayers}
-          teams={teams}
-          elementStats={elementStats}
-        />
-      ) : (
-        renderAddPlayersBtn()
-      )}
+      {selectedPlayers.length > 0
+        ? (
+          <ComparisonTable
+            selectedPlayers={selectedPlayers}
+            teams={teams}
+            elementStats={elementStats}
+          />
+        )
+        : (
+          renderAddPlayersBtn()
+        )}
       <Snackbar
         autoHideDuration={5000}
         open={snackbarOpen}

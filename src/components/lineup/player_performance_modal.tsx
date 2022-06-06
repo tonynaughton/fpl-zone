@@ -93,16 +93,16 @@ export default function PlayerPerformanceModal({
               <TableBody>
                 {Object.keys(stats).map((stat, key) => {
                   return (
-                  <TableRow key={key}>
-                    <TableCell>
-                      <Typography sx={cellTextStyle}>
-                        {elementStats.find((el) => el.name === stat)?.label}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography sx={cellTextStyle}>{stats[stat]}</Typography>
-                    </TableCell>
-                  </TableRow>
+                    <TableRow key={key}>
+                      <TableCell>
+                        <Typography sx={cellTextStyle}>
+                          {elementStats.find((el) => el.name === stat)?.label}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography sx={cellTextStyle}>{stats[stat]}</Typography>
+                      </TableCell>
+                    </TableRow>
                   );
                 })}
               </TableBody>
@@ -163,29 +163,32 @@ export default function PlayerPerformanceModal({
             rowGap: 3
           }}
         >
-          {fetchingPlayerInfo ? (
-            <Notifier message='Getting performance details..' />
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                rowGap: 2,
-                width: "100%"
-              }}
-            >
-              <Typography variant='h4'>{playerName}</Typography>
-              {playerPerformances && playerPerformances?.length > 0 ? (
-                playerPerformances.map((performance, key) =>
-                  renderPlayerPerformance(performance, key)
-                )
-              ) : (
-                <Typography>No fixtures</Typography>
-              )}
-            </Box>
-          )}
+          {fetchingPlayerInfo
+            ? (
+              <Notifier message='Getting performance details..' />
+            )
+            : (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  rowGap: 2,
+                  width: "100%"
+                }}
+              >
+                <Typography variant='h4'>{playerName}</Typography>
+                {playerPerformances && playerPerformances?.length > 0
+                  ? (
+                    playerPerformances.map((performance, key) => renderPlayerPerformance(performance, key)
+                    )
+                  )
+                  : (
+                    <Typography>No fixtures</Typography>
+                  )}
+              </Box>
+            )}
         </Box>
       </Box>
     </Box>

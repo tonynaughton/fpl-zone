@@ -34,7 +34,7 @@ export const ComponentContainer = ({
         </Box>
       );
     } 
-      return children;
+    return children;
     
   };
   return (

@@ -66,13 +66,15 @@ export default function GameweekSummary(): JSX.Element {
   ];
 
   const renderSummaryItem = (item: SummaryDataItem, key: number): JSX.Element => {
-    const img: JSX.Element | null = item.teamCode ? (
-      <img
-        src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
-        alt={`${item.label}-crest-img`}
-        height='80%'
-      />
-    ) : null;
+    const img: JSX.Element | null = item.teamCode
+      ? (
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
+          alt={`${item.label}-crest-img`}
+          height='80%'
+        />
+      )
+      : null;
 
     const itemValue = `
       ${item.playerName || ""}

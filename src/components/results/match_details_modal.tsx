@@ -66,31 +66,33 @@ export default function MatchDetailsModal({
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const statTitle = appData.element_stats.find((stat) => stat.name === identifier)!;
     const statsExist = stats.h.length > 0 || stats.a.length > 0;
-    return statsExist ? (
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          pt: 1.5
-        }}
-      >
-        <Typography component='h4' variant='h5' sx={{ pb: 1 }}>
-          {statTitle.label.toUpperCase()}
-        </Typography>
-        <Grid container columnSpacing={2}>
-          <Grid item xs={6}>
-            {renderStatColumn(stats.h)}
+    return statsExist
+      ? (
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            pt: 1.5
+          }}
+        >
+          <Typography component='h4' variant='h5' sx={{ pb: 1 }}>
+            {statTitle.label.toUpperCase()}
+          </Typography>
+          <Grid container columnSpacing={2}>
+            <Grid item xs={6}>
+              {renderStatColumn(stats.h)}
+            </Grid>
+            <Grid item xs={6}>
+              {renderStatColumn(stats.a, true)}
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            {renderStatColumn(stats.a, true)}
-          </Grid>
-        </Grid>
-      </Box>
-    ) : (
-      <></>
-    );
+        </Box>
+      )
+      : (
+        <></>
+      );
   };
 
   const customResult: CustomResult = {

@@ -134,47 +134,49 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     );
   };
 
-  return _.isEmpty(nextFiveGameweekFixtures) ? (
-    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-      <Notifier type={fdrStatus === gameStatusValues.SEASON_FINISHED ? "warning" : ""} message={fdrStatus} />
-    </Box>
-  ) : (
-    <Box
-      display='flex'
-      flexDirection='column'
-      justifyContent='center'
-      alignItems='center'
-      overflow='hidden'
-      height='100%'
-      sx={{ "& .MuiTableContainer-root": { height: "100%" } }}
-      data-testid='fdr-container'
-    >
-      <DifficultyLegend />
-      <TableContainer>
-        <Table
-          aria-label='fdr table'
-          sx={{
-            tableLayout: "fixed",
-            height: "100%",
-            flexGrow: "1",
-            "& .MuiTableCell-root": { padding: "2px 4px" }
-          }}
-        >
-          <TableHead>
-            <TableRow data-testid='table-head-column-title'>
-              <TableCell sx={{ textAlign: "center" }}>{nameColumnTitle}</TableCell>
-              {nextFiveGameweeks.map((gameweekNumber, index) => (
-                <TableCell sx={{ textAlign: "center" }} key={index}>
+  return _.isEmpty(nextFiveGameweekFixtures)
+    ? (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+        <Notifier type={fdrStatus === gameStatusValues.SEASON_FINISHED ? "warning" : ""} message={fdrStatus} />
+      </Box>
+    )
+    : (
+      <Box
+        display='flex'
+        flexDirection='column'
+        justifyContent='center'
+        alignItems='center'
+        overflow='hidden'
+        height='100%'
+        sx={{ "& .MuiTableContainer-root": { height: "100%" } }}
+        data-testid='fdr-container'
+      >
+        <DifficultyLegend />
+        <TableContainer>
+          <Table
+            aria-label='fdr table'
+            sx={{
+              tableLayout: "fixed",
+              height: "100%",
+              flexGrow: "1",
+              "& .MuiTableCell-root": { padding: "2px 4px" }
+            }}
+          >
+            <TableHead>
+              <TableRow data-testid='table-head-column-title'>
+                <TableCell sx={{ textAlign: "center" }}>{nameColumnTitle}</TableCell>
+                {nextFiveGameweeks.map((gameweekNumber, index) => (
+                  <TableCell sx={{ textAlign: "center" }} key={index}>
                   GW {gameweekNumber}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {baseItem.map((item: BaseItem, key: number) => renderRow(item, key))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
-  );
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {baseItem.map((item: BaseItem, key: number) => renderRow(item, key))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    );
 }

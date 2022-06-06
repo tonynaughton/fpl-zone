@@ -13,19 +13,19 @@ const renderIcon = (type: string): JSX.Element => {
     color: 'black'
   };
 
-  switch(type) {
-    case 'loading':
-      return <CircularProgress sx={iconStyle} />;
-      break;
-    case 'error':
-      return <Warning sx={iconStyle} />;
-      break;
-    case 'warning':
-      return <Warning sx={iconStyle} />;
-      break;
-    default:
-      return <Warning sx={iconStyle} />;
-      break;
+  switch (type) {
+  case 'loading':
+    return <CircularProgress sx={iconStyle} />;
+    break;
+  case 'error':
+    return <Warning sx={iconStyle} />;
+    break;
+  case 'warning':
+    return <Warning sx={iconStyle} />;
+    break;
+  default:
+    return <Warning sx={iconStyle} />;
+    break;
   }
 };
 
