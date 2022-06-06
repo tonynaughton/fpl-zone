@@ -27,7 +27,7 @@ export default function FixtureBox({
     const text = `${getTeamById(oppositionId)} (${isHome ? "H" : "A"})`;
 
     return (
-      <Tooltip title={text} placement="top" enterDelay={500} key={key} arrow>
+      <Tooltip title={text} placement='top' enterDelay={500} key={key} arrow>
         <Box
           sx={{
             p: 0.5,
@@ -51,7 +51,7 @@ export default function FixtureBox({
               overflow: "hidden",
             }}
           >
-            <Typography variant="body2" sx={{ textOverflow: "ellipsis", overflow: "hidden" }}>
+            <Typography variant='body2' sx={{ textOverflow: "ellipsis", overflow: "hidden" }}>
               {text}
             </Typography>
           </Box>
@@ -61,7 +61,7 @@ export default function FixtureBox({
   };
 
   return (
-    <TableCell scope="row">
+    <TableCell scope='row'>
       <Box
         sx={{
           display: "flex",
@@ -69,7 +69,7 @@ export default function FixtureBox({
           alignItems: "center",
           justifyContent: "space-evenly",
         }}
-        data-testid="fixture-box-container"
+        data-testid='fixture-box-container'
       >
         {fixtures.map((fixture, key) => renderBox(fixture, key))}
       </Box>

@@ -166,7 +166,7 @@ export default function PlayerPerformanceModal({
           }}
         >
           {fetchingPlayerInfo ? (
-            <Notifier message="Getting performance details.." />
+            <Notifier message='Getting performance details..' />
           ) : (
             <Box
               sx={{
@@ -178,7 +178,7 @@ export default function PlayerPerformanceModal({
                 width: "100%",
               }}
             >
-              <Typography variant="h4">{playerName}</Typography>
+              <Typography variant='h4'>{playerName}</Typography>
               {playerPerformances && playerPerformances?.length > 0 ? (
                 playerPerformances.map((performance, key) =>
                   renderPlayerPerformance(performance, key)

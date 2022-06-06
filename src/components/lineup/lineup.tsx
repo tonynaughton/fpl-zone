@@ -64,7 +64,7 @@ export default function Lineup({
         }}
       >
         {teamData && (
-          <Typography component="h2" variant="h4" textAlign="center">
+          <Typography component='h2' variant='h4' textAlign='center'>
             {teamData.name}
           </Typography>
         )}
@@ -81,21 +81,21 @@ export default function Lineup({
           }}
         >
           {teamPicks && (
-            <Typography sx={statKeyStyling} variant="h5">
+            <Typography sx={statKeyStyling} variant='h5'>
               Active Chip:
               <br />
               <Typography sx={statValueStyling}>{activeChip}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={statKeyStyling} variant="h5">
+            <Typography sx={statKeyStyling} variant='h5'>
               GW Points:
               <br />
               <Typography sx={statValueStyling}>{totalPoints}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={statKeyStyling} variant="h5">
+            <Typography sx={statKeyStyling} variant='h5'>
               Overall Rank:
               <br />
               <Typography sx={statValueStyling}>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
@@ -109,7 +109,7 @@ export default function Lineup({
   const renderSelected = (): JSX.Element => {
     return (
       <Box
-        data-testid="first-xi-players"
+        data-testid='first-xi-players'
         sx={{
           pl: "5%",
           pr: "5%",
@@ -167,9 +167,9 @@ export default function Lineup({
           flexDirection: "column",
         }}
       >
-        <Typography variant="h5">Bench</Typography>
+        <Typography variant='h5'>Bench</Typography>
         <Box
-          data-testid="bench-players"
+          data-testid='bench-players'
           sx={{
             display: "flex",
             width: "100%",

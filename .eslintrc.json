@@ -14,7 +14,8 @@
     "no-unused-vars":"warn",
     "@typescript-eslint/explicit-function-return-type": "off",
     "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/exports": "error",
+    "jsx-quotes": ["warn", "prefer-single"]
   },
   "extends": [
     "react-app",

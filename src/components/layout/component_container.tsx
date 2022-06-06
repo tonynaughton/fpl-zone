@@ -39,8 +39,8 @@ export function ComponentContainer({
   };
   return (
     <Box
-      width="100%"
-      border="2px solid black"
+      width='100%'
+      border='2px solid black'
       sx={{ boxShadow: 4, position: "relative", height: "100%" }}
     >
       <Box
@@ -57,7 +57,7 @@ export function ComponentContainer({
           height: "auto",
         }}
       >
-        <Typography variant="h3">{title.toUpperCase()}</Typography>
+        <Typography variant='h3'>{title.toUpperCase()}</Typography>
       </Box>
       {renderChildren()}
     </Box>

@@ -70,7 +70,7 @@ export default function GameweekSummary(): JSX.Element {
       <img
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
         alt={`${item.label}-crest-img`}
-        height="80%"
+        height='80%'
       />
     ) : undefined;
 
@@ -91,7 +91,7 @@ export default function GameweekSummary(): JSX.Element {
       >
         <Typography
           data-testid={`${item.label}-label`}
-          variant="h3"
+          variant='h3'
           sx={{
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
@@ -114,7 +114,7 @@ export default function GameweekSummary(): JSX.Element {
           {img}
           <Typography
             data-testid={`${item.label}-player-name`}
-            variant="h6"
+            variant='h6'
             sx={{
               textOverflow: "ellipsis",
               textAlign: "center",

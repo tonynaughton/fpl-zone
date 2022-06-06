@@ -35,7 +35,7 @@ export default function DifficultyLegend(): JSX.Element {
       {Object.keys(fdrColours).map((colour) => {
         return (
           <Box
-            component="div"
+            component='div'
             key={colour}
             sx={{ backgroundColor: fdrColours[colour], p: "0 10px" }}
           >

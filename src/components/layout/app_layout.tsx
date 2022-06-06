@@ -10,10 +10,10 @@ interface LayoutProps {
 
 export function AppLayout(props: React.PropsWithChildren<LayoutProps>): JSX.Element {
   return (
-    <Box component="div" sx={{ display: "flex" }}>
+    <Box component='div' sx={{ display: "flex" }}>
       <NavDrawer activeLabel={props.activeLabel} />
       <Box
-        component="main"
+        component='main'
         sx={{
           flexGrow: 1,
           height: "100vh",
@@ -23,9 +23,9 @@ export function AppLayout(props: React.PropsWithChildren<LayoutProps>): JSX.Elem
         }}
       >
         <Typography
-          textAlign="center"
-          component="h1"
-          variant="h2"
+          textAlign='center'
+          component='h1'
+          variant='h2'
           sx={{ m: 1.5, height: "auto" }}
         >
           {props.activeLabel.toUpperCase()}

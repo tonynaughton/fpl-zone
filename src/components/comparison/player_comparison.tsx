@@ -65,7 +65,7 @@ export default function PlayerComparison({
         <Typography sx={{ fontSize: 22, color: "black" }}>Players: </Typography>
         <Autocomplete
           multiple
-          id="player-select-options"
+          id='player-select-options'
           groupBy={(player: Player): string => getTeamById(player.team, teams).name}
           options={players}
           disableCloseOnSelect
@@ -78,7 +78,7 @@ export default function PlayerComparison({
           getOptionLabel={(player: Player): string => `${player.first_name} ${player.second_name}`}
           renderOption={renderDropdownOption}
           renderInput={(params): JSX.Element => <TextField {...params} />}
-          size="small"
+          size='small'
           onChange={handleAutocompleteChange}
           clearOnBlur
           onBlur={(): void => setDropdownOpen(false)}
@@ -88,7 +88,7 @@ export default function PlayerComparison({
               <Chip
                 {...getTagProps({ index })}
                 key={index}
-                label={<Typography variant="body2">{player.web_name}</Typography>}
+                label={<Typography variant='body2'>{player.web_name}</Typography>}
                 disabled={false}
               />
             ))
@@ -129,7 +129,7 @@ export default function PlayerComparison({
           <ArrowUpward
             sx={{ borderRadius: "50%", backgroundColor: "#16B7EA", color: "white", fontSize: 40 }}
           />
-          <Typography textAlign="center">Add a player from the drop down to get started</Typography>
+          <Typography textAlign='center'>Add a player from the drop down to get started</Typography>
         </Box>
       </Box>
     );
@@ -165,9 +165,9 @@ export default function PlayerComparison({
       >
         <Alert
           onClose={(): void => setSnackbarOpen(false)}
-          severity="error"
+          severity='error'
           elevation={6}
-          variant="filled"
+          variant='filled'
         >
           Maximum player count reached ({MAX_PLAYER_COUNT})
         </Alert>

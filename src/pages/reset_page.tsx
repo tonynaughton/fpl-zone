@@ -65,18 +65,18 @@ export function ResetPage(): JSX.Element {
 
   return (
     <AuthLayout>
-      <Box component="div">
+      <Box component='div'>
         <form onSubmit={handleSubmit(onSendPasswordReset)}>
           <Controller
-            name="email"
+            name='email'
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => {
               return (
                 <TextField
-                  className="text-input"
-                  margin="normal"
+                  className='text-input'
+                  margin='normal'
                   required
-                  placeholder="Email"
+                  placeholder='Email'
                   fullWidth
                   error={!!error}
                   autoFocus
@@ -88,23 +88,23 @@ export function ResetPage(): JSX.Element {
           />
           <Button
             sx={{ mt: 5 }}
-            className="action-button"
-            color="secondary"
-            type="submit"
+            className='action-button'
+            color='secondary'
+            type='submit'
             fullWidth
-            variant="contained"
+            variant='contained'
           >
             Send password reset email
           </Button>
         </form>
         <MuiLink
-          textAlign="center"
-          color="black"
-          component="a"
-          underline="none"
-          href="/register"
-          display="block"
-          className="auth-link"
+          textAlign='center'
+          color='black'
+          component='a'
+          underline='none'
+          href='/register'
+          display='block'
+          className='auth-link'
         >
           Don&apos;t have an account? Click to register.
         </MuiLink>
@@ -121,7 +121,7 @@ export function ResetPage(): JSX.Element {
             onClose={handleSnackbarClose}
             severity={snackbarSeverity as AlertColor}
             elevation={6}
-            variant="filled"
+            variant='filled'
           >
             {snackbarMessage}
           </Alert>

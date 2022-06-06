@@ -15,7 +15,7 @@ interface PlayerProps {
 const renderArmband = (isVice = false): JSX.Element => {
   return (
     <Box
-      data-testid="armband-container"
+      data-testid='armband-container'
       sx={{
         borderRadius: "50%",
         backgroundColor: "white",
@@ -55,7 +55,7 @@ export default function Player({
       data-testid={player.id}
     >
       <Box
-        data-testid="kit-img-container"
+        data-testid='kit-img-container'
         sx={{
           display: "block",
           width: compressed ? "3.5vw" : "5.5vw",
@@ -93,8 +93,8 @@ export default function Player({
             }}
           >
             <Typography
-              variant="body2"
-              data-testid="player-name"
+              variant='body2'
+              data-testid='player-name'
               sx={{
                 overflow: "hidden",
                 textOverflow: "ellipsis",
@@ -115,7 +115,7 @@ export default function Player({
               backgroundColor: "#5fdd6b",
             }}
           >
-            <Typography variant="body2" data-testid="player-score">
+            <Typography variant='body2' data-testid='player-score'>
               {player.event_points * multipler}
             </Typography>
           </Box>

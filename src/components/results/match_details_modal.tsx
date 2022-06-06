@@ -32,7 +32,7 @@ export default function MatchDetailsModal({
         <>
           {statValues.map((stat, key) => (
             <Box
-              display="flex"
+              display='flex'
               justifyContent={isAway ? "right" : "left"}
               flexDirection={isAway ? "row" : "row-reverse"}
               key={key}
@@ -76,7 +76,7 @@ export default function MatchDetailsModal({
           pt: 1.5,
         }}
       >
-        <Typography component="h4" variant="h5" sx={{ pb: 1 }}>
+        <Typography component='h4' variant='h5' sx={{ pb: 1 }}>
           {statTitle.label.toUpperCase()}
         </Typography>
         <Grid container columnSpacing={2}>
@@ -149,7 +149,7 @@ export default function MatchDetailsModal({
             rowGap: 2,
           }}
         >
-          <Typography variant="h5">
+          <Typography variant='h5'>
             {selectedResult.kickoff_time && formatDate(new Date(selectedResult.kickoff_time))}
           </Typography>
           {renderResult(customResult, true, appData.teams)}

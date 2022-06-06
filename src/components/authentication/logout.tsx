@@ -16,9 +16,9 @@ export function Logout(): JSX.Element {
 
   return !loggedOut ? (
     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-      <Notifier message="Logging out.." />
+      <Notifier message='Logging out..' />
     </Box>
   ) : (
-    <Navigate to="/login" />
+    <Navigate to='/login' />
   );
 }

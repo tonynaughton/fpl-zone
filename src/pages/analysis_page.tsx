@@ -32,8 +32,8 @@ export function AnalysisPage(): JSX.Element {
   };
 
   return (
-    <AppLayout activeLabel="analysis" direction="row">
-      <ComponentContainer title="comparison">{renderPlayerComparsion()}</ComponentContainer>
+    <AppLayout activeLabel='analysis' direction='row'>
+      <ComponentContainer title='comparison'>{renderPlayerComparsion()}</ComponentContainer>
     </AppLayout>
   );
 }

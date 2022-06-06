@@ -66,23 +66,23 @@ export default function AppContent(): JSX.Element {
       <AppDataContext.Provider value={appData}>
         <Router>
           <Routes>
-            <Route path="*" element={<LoginPage />} />
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/reset" element={<ResetPage />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/account" element={<PrivateRoute component={<AccountPage />} />} />
+            <Route path='*' element={<LoginPage />} />
+            <Route path='/' element={<LoginPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegisterPage />} />
+            <Route path='/reset' element={<ResetPage />} />
+            <Route path='/logout' element={<Logout />} />
+            <Route path='/account' element={<PrivateRoute component={<AccountPage />} />} />
             <Route
-              path="/gameweek-live"
+              path='/gameweek-live'
               element={<PrivateRoute component={<GameweekLivePage />} />}
             />
-            <Route path="/my-team" element={<PrivateRoute component={<MyTeamPage />} />} />
+            <Route path='/my-team' element={<PrivateRoute component={<MyTeamPage />} />} />
             <Route
-              path="/fixtures-and-results"
+              path='/fixtures-and-results'
               element={<PrivateRoute component={<FixturesAndResultsPage />} />}
             />
-            <Route path="/analysis" element={<PrivateRoute component={<AnalysisPage />} />} />
+            <Route path='/analysis' element={<PrivateRoute component={<AnalysisPage />} />} />
           </Routes>
         </Router>
       </AppDataContext.Provider>

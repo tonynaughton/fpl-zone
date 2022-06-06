@@ -78,83 +78,83 @@ export function LoginForm(): JSX.Element {
 
   return (
     <AuthLayout>
-      <Box component="div">
+      <Box component='div'>
         <form onSubmit={handleSubmit(onLoginClick)}>
           <Controller
-            name="email"
+            name='email'
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <TextField
                 autoFocus
-                className="text-input"
-                margin="normal"
-                placeholder="Email"
+                className='text-input'
+                margin='normal'
+                placeholder='Email'
                 required
                 fullWidth
                 error={!!error}
                 value={value}
                 onChange={onChange}
-                type="email"
+                type='email'
               />
             )}
           />
           <Controller
-            name="password"
+            name='password'
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <TextField
                 sx={{ mt: 2 }}
                 autoFocus
-                className="text-input"
-                placeholder="Password"
+                className='text-input'
+                placeholder='Password'
                 fullWidth
                 error={!!error}
                 required
                 value={value}
                 onChange={onChange}
-                type="password"
+                type='password'
               />
             )}
           />
           <Button
             sx={{ mt: 2, fontSize: "1.8em", textTransform: "none" }}
-            color="secondary"
+            color='secondary'
             fullWidth
-            variant="contained"
-            type="submit"
+            variant='contained'
+            type='submit'
           >
             Login
           </Button>
         </form>
         <Button
-          color="info"
+          color='info'
           onClick={signInWithGoogle}
           sx={{ mt: 2, fontSize: "1.8em", textTransform: "none" }}
           fullWidth
-          variant="contained"
+          variant='contained'
         >
           <GoogleIcon sx={{ mr: 2 }} />
           Login with Google
         </Button>
         <MuiLink
-          textAlign="center"
-          color="black"
-          component="a"
-          underline="none"
-          href="/reset"
-          display="block"
-          className="auth-link"
+          textAlign='center'
+          color='black'
+          component='a'
+          underline='none'
+          href='/reset'
+          display='block'
+          className='auth-link'
         >
           Forgot Password?
         </MuiLink>
         <MuiLink
-          textAlign="center"
-          color="black"
-          component="a"
-          underline="none"
-          href="/register"
-          display="block"
-          className="auth-link"
+          textAlign='center'
+          color='black'
+          component='a'
+          underline='none'
+          href='/register'
+          display='block'
+          className='auth-link'
         >
           Don&apos;t have an account? Click to register.
         </MuiLink>
@@ -171,7 +171,7 @@ export function LoginForm(): JSX.Element {
             onClose={handleSnackbarClose}
             severity={snackbarSeverity as AlertColor}
             elevation={6}
-            variant="filled"
+            variant='filled'
           >
             {snackbarMessage}
           </Alert>

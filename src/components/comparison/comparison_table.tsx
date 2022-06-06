@@ -33,7 +33,7 @@ export default function ComparisonTable({
           const playerImgUrl = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
           return (
             <TableCell key={key} sx={{ height: "160px" }}>
-              <img src={playerImgUrl} alt="player-img" height="160px" width="auto" />
+              <img src={playerImgUrl} alt='player-img' height='160px' width='auto' />
             </TableCell>
           );
         })}
@@ -50,7 +50,7 @@ export default function ComparisonTable({
             <TableCell key={key} sx={customCellStyle}>
               <Typography
                 sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
-                variant="body2"
+                variant='body2'
               >{`${player.first_name} ${player.second_name}`}</Typography>
             </TableCell>
           );
@@ -63,7 +63,7 @@ export default function ComparisonTable({
     return (
       <TableRow>
         <TableCell sx={customCellStyle}>
-          <Typography variant="body2">Team</Typography>
+          <Typography variant='body2'>Team</Typography>
         </TableCell>
         {selectedPlayers.map((player, key) => {
           return (
@@ -78,8 +78,8 @@ export default function ComparisonTable({
               >
                 <img
                   src={`${process.env.PUBLIC_URL}/assets/images/crests/${player.team_code}.png`}
-                  alt="team-crest"
-                  height="25px"
+                  alt='team-crest'
+                  height='25px'
                 />
                 {getTeamById(player.team, teams).name}
               </Box>
@@ -92,7 +92,7 @@ export default function ComparisonTable({
 
   return (
     <Table
-      aria-label="player comparison table"
+      aria-label='player comparison table'
       sx={{
         tableLayout: "fixed",
         flexGrow: "1",
@@ -108,7 +108,7 @@ export default function ComparisonTable({
               <TableCell sx={customCellStyle}>
                 <Typography
                   sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
-                  variant="body2"
+                  variant='body2'
                 >
                   {stat.label}
                 </Typography>
@@ -116,7 +116,7 @@ export default function ComparisonTable({
               {selectedPlayers.map((player, key) => {
                 return (
                   <TableCell key={key}>
-                    <Typography variant="body2">{player[stat.name]}</Typography>
+                    <Typography variant='body2'>{player[stat.name]}</Typography>
                   </TableCell>
                 );
               })}

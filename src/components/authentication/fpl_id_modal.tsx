@@ -29,9 +29,9 @@ export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX
             <Typography>
               1. Login in to&nbsp;
               <Link
-                href="https://fantasy.premierleague.com/"
+                href='https://fantasy.premierleague.com/'
                 sx={{ display: "inline-block" }}
-                target="_blank"
+                target='_blank'
               >
                 fantasy.premierleague.com
               </Link>
@@ -47,8 +47,8 @@ export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX
           <ListItem>
             <img
               src={`${process.env.PUBLIC_URL}/assets/images/fpl-id.png`}
-              alt="fpl-id-location"
-              width="100%"
+              alt='fpl-id-location'
+              width='100%'
             />
           </ListItem>
           <ListItem>
@@ -60,7 +60,7 @@ export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX
           </ListItem>
         </List>
         <IconButton
-          size="large"
+          size='large'
           sx={{ position: "absolute", top: 15, right: 15 }}
           onClick={(): void => setModalOpen(false)}
         >

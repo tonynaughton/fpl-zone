@@ -158,20 +158,20 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
   };
 
   return (
-    <Box component="div">
+    <Box component='div'>
       {!registerPage && !userFound ? (
-        <Notifier message="Fetching user data.." />
+        <Notifier message='Fetching user data..' />
       ) : (
         <>
           <form onSubmit={handleSubmit(onDetailsSave)}>
             <Controller
-              name="firstName"
+              name='firstName'
               control={control}
               render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                 <TextField
-                  className="text-input"
-                  margin="normal"
-                  placeholder="First name"
+                  className='text-input'
+                  margin='normal'
+                  placeholder='First name'
                   fullWidth
                   error={!!error}
                   required
@@ -181,13 +181,13 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
               )}
             />
             <Controller
-              name="lastName"
+              name='lastName'
               control={control}
               render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                 <TextField
-                  className="text-input"
-                  margin="normal"
-                  placeholder="Last name"
+                  className='text-input'
+                  margin='normal'
+                  placeholder='Last name'
                   fullWidth
                   error={!!error}
                   required
@@ -197,55 +197,55 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
               )}
             />
             <Controller
-              name="email"
+              name='email'
               control={control}
               render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                 <TextField
-                  className="text-input"
-                  margin="normal"
-                  placeholder="Email"
+                  className='text-input'
+                  margin='normal'
+                  placeholder='Email'
                   fullWidth
                   error={!!error}
                   required
                   value={value}
                   onChange={onChange}
-                  type="email"
+                  type='email'
                 />
               )}
             />
             {registerPage && (
               <>
                 <Controller
-                  name="password"
+                  name='password'
                   control={control}
                   render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                     <TextField
                       sx={{ mt: 2 }}
-                      className="text-input"
-                      placeholder="Password"
+                      className='text-input'
+                      placeholder='Password'
                       fullWidth
                       error={!!error}
                       required
                       value={value}
                       onChange={onChange}
-                      type="password"
+                      type='password'
                     />
                   )}
                 />
                 <Controller
-                  name="repeatPassword"
+                  name='repeatPassword'
                   control={control}
                   render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                     <TextField
                       sx={{ mt: 1 }}
-                      className="text-input"
-                      placeholder="Repeat password"
+                      className='text-input'
+                      placeholder='Repeat password'
                       fullWidth
                       error={!!error}
                       required
                       value={value}
                       onChange={onChange}
-                      type="password"
+                      type='password'
                       inputProps={{ form: { autoComplete: "off" } }}
                     />
                   )}
@@ -253,24 +253,24 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
               </>
             )}
             <Controller
-              name="fplId"
+              name='fplId'
               control={control}
               render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                 <OutlinedInput
                   sx={{ mt: 2 }}
-                  className="text-input"
-                  placeholder="FPL ID (optional)"
+                  className='text-input'
+                  placeholder='FPL ID (optional)'
                   fullWidth
                   error={!!error}
                   value={value}
                   onChange={onChange}
                   endAdornment={
-                    <InputAdornment position="end">
+                    <InputAdornment position='end'>
                       <IconButton
-                        aria-label="show fpl id modal"
+                        aria-label='show fpl id modal'
                         onClick={(): void => setShowFplIdModal(true)}
                         onMouseDown={(event): void => event.preventDefault()}
-                        edge="end"
+                        edge='end'
                       >
                         <Info />
                       </IconButton>
@@ -281,21 +281,21 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
             />
             <Button
               sx={{ mt: 5 }}
-              className="action-button"
-              color="secondary"
-              type="submit"
+              className='action-button'
+              color='secondary'
+              type='submit'
               fullWidth
-              variant="contained"
+              variant='contained'
             >
               {registerPage ? "Register" : "Update"}
             </Button>
             {!registerPage && (
               <Button
                 sx={{ mt: 3 }}
-                className="action-button"
-                color="error"
+                className='action-button'
+                color='error'
                 fullWidth
-                variant="contained"
+                variant='contained'
                 onClick={(): void => setDeleteAccountModalOpen(true)}
               >
                 {"Delete Account"}
@@ -305,24 +305,24 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
           {registerPage && (
             <>
               <Button
-                color="info"
+                color='info'
                 onClick={signInWithGoogle}
                 sx={{ mt: 2 }}
-                className="action-button google-login"
+                className='action-button google-login'
                 fullWidth
-                variant="contained"
+                variant='contained'
               >
                 <GoogleIcon sx={{ mr: 2 }} />
                 Login with Google
               </Button>
               <MuiLink
-                textAlign="center"
-                color="black"
-                component="a"
-                underline="none"
-                href="/login"
-                display="block"
-                className="auth-link"
+                textAlign='center'
+                color='black'
+                component='a'
+                underline='none'
+                href='/login'
+                display='block'
+                className='auth-link'
               >
                 Already have an account? Login now.
               </MuiLink>
@@ -344,7 +344,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
           onClose={handleSnackbarClose}
           severity={snackbarSeverity as AlertColor}
           elevation={6}
-          variant="filled"
+          variant='filled'
         >
           {snackbarMessage}
         </Alert>

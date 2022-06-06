@@ -12,6 +12,6 @@ export default function PrivateRoute({ component }: ProtectedRouteProps): JSX.El
   if (user) {
     return component;
   } else {
-    return <Navigate to="/login" />;
+    return <Navigate to='/login' />;
   }
 }

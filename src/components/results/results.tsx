@@ -31,49 +31,49 @@ export default function Results(): JSX.Element {
 
   return (
     <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
+      display='flex'
+      flexDirection='column'
+      alignItems='center'
+      justifyContent='center'
       sx={{ p: 2, pt: 3 }}
-      height="100%"
-      id="results-container"
-      position="relative"
+      height='100%'
+      id='results-container'
+      position='relative'
     >
-      <Box display="flex" alignItems="center" justifyContent="center">
+      <Box display='flex' alignItems='center' justifyContent='center'>
         <IconButton
-          aria-label="prev-gameweek"
-          size="medium"
+          aria-label='prev-gameweek'
+          size='medium'
           onClick={(): void => setSelectedGameweek(selectedGameweek - 1)}
           disabled={selectedGameweek <= 1}
-          data-testid="prev-gameweek-btn"
+          data-testid='prev-gameweek-btn'
         >
-          <Tooltip title="Previous gameweek">
+          <Tooltip title='Previous gameweek'>
             <ArrowBack />
           </Tooltip>
         </IconButton>
-        <Typography variant="h5" data-testid="selected-gameweek-title">
+        <Typography variant='h5' data-testid='selected-gameweek-title'>
           GAMEWEEK {selectedGameweek}
         </Typography>
         <IconButton
-          aria-label="prev-gameweek"
-          size="medium"
+          aria-label='prev-gameweek'
+          size='medium'
           onClick={(): void => setSelectedGameweek(selectedGameweek + 1)}
           disabled={selectedGameweek >= 38}
-          data-testid="next-gameweek-btn"
+          data-testid='next-gameweek-btn'
         >
-          <Tooltip title="Next gameweek">
+          <Tooltip title='Next gameweek'>
             <ArrowForward />
           </Tooltip>
         </IconButton>
       </Box>
       <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="flex-start"
-        alignItems="center"
+        display='flex'
+        flexDirection='column'
+        justifyContent='flex-start'
+        alignItems='center'
         sx={{ height: "100%", width: "100%" }}
-        className="fixture-list-container"
+        className='fixture-list-container'
       >
         {gameweekFixtures.map((result, key) => {
           const kickOffTime = new Date(result.kickoff_time || "");
@@ -89,12 +89,12 @@ export default function Results(): JSX.Element {
           return (
             <Box
               key={key}
-              width="100%"
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              justifyContent="center"
-              height="10%"
+              width='100%'
+              display='flex'
+              flexDirection='column'
+              alignItems='center'
+              justifyContent='center'
+              height='10%'
               data-testid={`result-${result.id}`}
               onClick={(): void =>
                 kickOffTime < new Date() ? handleResultClick(result) : undefined

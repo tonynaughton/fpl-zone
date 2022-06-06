@@ -78,8 +78,8 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
       >
         <img
           src={`${process.env.PUBLIC_URL}/assets/images/crests/${teamId}.png`}
-          alt="crest-img"
-          height="22px"
+          alt='crest-img'
+          height='22px'
         />
         <Box
           sx={{
@@ -118,7 +118,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
         data-testid={testId}
       >
-        <TableCell component="th" scope="row" key={index}>
+        <TableCell component='th' scope='row' key={index}>
           {renderBaseItemName(baseItem)}
         </TableCell>
         {_.map(teamFixtures, (fixtures, key) => (
@@ -140,19 +140,19 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     </Box>
   ) : (
     <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      overflow="hidden"
-      height="100%"
+      display='flex'
+      flexDirection='column'
+      justifyContent='center'
+      alignItems='center'
+      overflow='hidden'
+      height='100%'
       sx={{ "& .MuiTableContainer-root": { height: "100%" } }}
-      data-testid="fdr-container"
+      data-testid='fdr-container'
     >
       <DifficultyLegend />
       <TableContainer>
         <Table
-          aria-label="fdr table"
+          aria-label='fdr table'
           sx={{
             tableLayout: "fixed",
             height: "100%",
@@ -161,7 +161,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
           }}
         >
           <TableHead>
-            <TableRow data-testid="table-head-column-title">
+            <TableRow data-testid='table-head-column-title'>
               <TableCell sx={{ textAlign: "center" }}>{nameColumnTitle}</TableCell>
               {nextFiveGameweeks.map((gameweekNumber, index) => (
                 <TableCell sx={{ textAlign: "center" }} key={index}>
