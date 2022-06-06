@@ -31,6 +31,7 @@ export default function ComparisonTable({
         {selectedPlayers.map((player, key) => {
           const imgId = player.photo.replace(".jpg", "");
           const playerImgUrl = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
+
           return (
             <TableCell key={key} sx={{ height: "160px" }}>
               <img src={playerImgUrl} alt='player-img' height='160px' width='auto' />

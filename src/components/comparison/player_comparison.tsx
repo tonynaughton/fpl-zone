@@ -37,6 +37,7 @@ export default function PlayerComparison({
 
   const renderDropdownOption = (props, player: Player): JSX.Element => {
     const positionName = positions.find((pos) => pos.id === player.element_type);
+
     return (
       // eslint-disable-next-line react/prop-types
       <li {...props} key={props.id}>

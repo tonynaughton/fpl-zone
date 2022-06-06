@@ -33,10 +33,12 @@ export const ComponentContainer = ({
           <Notifier type='error' message={error} />
         </Box>
       );
-    } 
+    }
+
     return children;
-    
+
   };
+
   return (
     <Box
       width='100%'

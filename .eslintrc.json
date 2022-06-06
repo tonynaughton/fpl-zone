@@ -18,7 +18,6 @@
     "react/prop-types": "error",
     "no-loops/no-loops": 2,
     "no-confusing-arrow": "error",
-    "no-whitespace-before-property": "error",
     "no-else-return": "error",
     "semi": ["error", "always"],
     "no-unused-vars": "warn",
@@ -71,7 +70,19 @@
     "multiline-ternary": ["warn", "always-multiline"],
     "new-parens": "warn",
     "newline-per-chained-call": "warn",
-
+    "no-multi-spaces": "warn",
+    "no-multiple-empty-lines": "warn",
+    "no-trailing-spaces": "warn",
+    "no-whitespace-before-property": "warn",
+    "nonblock-statement-body-position": "warn",
+    "object-curly-spacing": ["warn", "always"],
+    "object-property-newline": ["warn", { "allowAllPropertiesOnSameLine": true }],
+    "operator-linebreak": "warn",
+    "padding-line-between-statements": [
+      "warn",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
+    ],
     "@typescript-eslint/explicit-function-return-type": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"

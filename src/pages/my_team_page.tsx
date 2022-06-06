@@ -79,11 +79,13 @@ export const MyTeamPage = (): JSX.Element => {
         appData.element_types.forEach((pos) => {
           const picks = firstXIPicks.filter((pick) => {
             const player = GetPlayerById(pick.element, appData.elements);
+
             return player.element_type === pos.id;
           });
           const players = picks.map((pick) => GetPlayerById(pick.element, appData.elements));
           selectedByPos.push(players);
         });
+
         return selectedByPos;
       };
 
@@ -93,6 +95,7 @@ export const MyTeamPage = (): JSX.Element => {
         const benchPlayersPicks = teamPicks!.picks.slice(11, 15);
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const benchPlayers = benchPlayersPicks.map((pick) => GetPlayerById(pick.element, appData!.elements));
+
         return benchPlayers;
       };
 
@@ -111,9 +114,10 @@ export const MyTeamPage = (): JSX.Element => {
       return <Notifier type='error' message='Error getting your team data - is your FPL ID correct?' />;
     } else if (teamPicksFetchError) {
       return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
-    } 
+    }
+
     return <Notifier message='Fetching data..' />;
-    
+
   };
 
   const renderFdrTable = (): JSX.Element => {
@@ -124,6 +128,7 @@ export const MyTeamPage = (): JSX.Element => {
         .map((pick) => GetPlayerById(pick.element, appData.elements))
         .sortBy("element_type")
         .value();
+
       return <FdrTable players={fdrPlayers} />;
     } else if (fplIdFetchError) {
       return <Notifier type='error' message='Error getting FPL ID' />;
@@ -131,9 +136,10 @@ export const MyTeamPage = (): JSX.Element => {
       return <Notifier type='error' message='Error getting your team data - is your FPL ID correct?' />;
     } else if (teamPicksFetchError) {
       return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
-    } 
+    }
+
     return <Notifier message='Fetching data..' />;
-    
+
   };
 
   const isLoading = fplIdFetchIsLoading || teamDataFetchIsLoading || teamPicksFetchIsLoading;

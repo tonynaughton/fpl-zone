@@ -11,7 +11,8 @@ export default function PrivateRoute({ component }: ProtectedRouteProps): JSX.El
   const user = useAuthState(auth);
   if (user) {
     return component;
-  } 
+  }
+
   return <Navigate to='/login' />;
-  
+
 }

@@ -139,6 +139,7 @@ export default function Lineup({
             >
               {positionGroup.map((player, key) => {
                 const pick = teamPicks?.picks.find((pick) => pick.element === player.id);
+
                 return (
                   <Player
                     player={player}
@@ -183,6 +184,7 @@ export default function Lineup({
         >
           {sortedBench.map((player, key) => {
             const pick = teamPicks?.picks.find((pick) => pick.element === player.id);
+
             return (
               <Player
                 player={player}

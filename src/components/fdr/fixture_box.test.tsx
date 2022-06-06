@@ -18,6 +18,7 @@ describe("Fixture Box Tests", () => {
 
   const getTeamById = (teamId: number): string | undefined => {
     const team = allTeams.find((t) => t.id === teamId);
+
     return team?.short_name;
   };
 

@@ -48,7 +48,7 @@ describe("Results Tests", () => {
     );
 
     gameweekResults.forEach((result) => {
-      const resultDetails = screen.getByTestId(`result-${  result.id}`);
+      const resultDetails = screen.getByTestId(`result-${ result.id}`);
       expect(resultDetails).toBeDefined();
     });
   });

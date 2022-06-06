@@ -28,8 +28,8 @@ export const numberWithCommas = (x: number): string => {
 // Formatting date to desired format
 export const formatDate = (kickOffDateTime: Date): string => {
   return (
-    `${kickOffDateTime.toLocaleDateString(navigator.language, { day: "numeric", month: "short" }) 
-    } ${ 
+    `${kickOffDateTime.toLocaleDateString(navigator.language, { day: "numeric", month: "short" })
+    } ${
       kickOffDateTime.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })}`
   );
 };
@@ -53,7 +53,7 @@ export const checkGameStatus = (gameweeks: Gameweek[]): string => {
   if (!currentGameweek) {
     return gameStatusValues.SEASON_FINISHED;
   }
-  
+
   /*
     Manually checking if next gamewek deadline has passed as there
     can sometimes be a delay in update of gameweek 'is_next' status
@@ -73,7 +73,7 @@ export const checkGameStatus = (gameweeks: Gameweek[]): string => {
   if (timeDifference < 5400000) {
     return gameStatusValues.GAME_UPDATING;
   }
-  
+
   return gameStatusValues.GAME_OK;
 };
 

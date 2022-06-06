@@ -26,17 +26,19 @@ export const GameweekLivePage = (): JSX.Element => {
   const renderDreamTeam = (): JSX.Element => {
     if (gameStatus === gameStatusValues.GAME_OK) {
       return <DreamTeam />;
-    } 
+    }
+
     return <Notifier message={gameStatus} />;
-    
+
   };
 
   const renderGameweekSummary = (): JSX.Element => {
     if (gameStatus === gameStatusValues.GAME_OK) {
       return <GameweekSummary />;
-    } 
+    }
+
     return <Notifier message={gameStatus} />;
-    
+
   };
 
   return (

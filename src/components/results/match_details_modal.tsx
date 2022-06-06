@@ -66,6 +66,7 @@ export default function MatchDetailsModal({
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const statTitle = appData.element_stats.find((stat) => stat.name === identifier)!;
     const statsExist = stats.h.length > 0 || stats.a.length > 0;
+
     return statsExist
       ? (
         <Box

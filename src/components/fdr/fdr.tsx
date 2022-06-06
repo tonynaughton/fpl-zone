@@ -30,7 +30,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<Fixture[][]>([]);
   const [fdrStatus, setFdrStatus] = useState<string>('Fetching fixture data..');
   const appData = useContext(AppDataContext) as AppData;
-  const {teams} = appData;
+  const { teams } = appData;
   const baseItem = players || teams;
   const nameColumnTitle = players ? "Player" : "Team";
   const allGameweeks = appData.events;
@@ -65,6 +65,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     const name = players ? (baseItem as Player).web_name : (baseItem as Team).name;
     const teamId = players ? (baseItem as Player).team_code : (baseItem as Team).code;
     const testId = `base-item-${name}`;
+
     return (
       <Box
         sx={{
@@ -99,11 +100,13 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
   const getTeamById = (teamId: number): string | undefined => {
     const team = teams.find((t) => t.id === teamId);
+
     return team?.short_name;
   };
 
   const getNextFiveTeamFixtures = (baseItem: BaseItem, fixtures: Fixture[][]): Fixture[][] => {
     const teamId = players ? (baseItem as Player).team : (baseItem as Team).id;
+
     return fixtures.map((gameweek) => {
       return gameweek.filter((f) => f.team_h === teamId || f.team_a === teamId);
     });
@@ -112,6 +115,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const renderRow = (baseItem: BaseItem, index: number): JSX.Element => {
     const teamFixtures = getNextFiveTeamFixtures(baseItem, nextFiveGameweekFixtures);
     const testId = `fixture-row-${baseItem.id}`;
+
     return (
       <TableRow
         key={index}

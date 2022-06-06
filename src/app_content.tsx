@@ -55,12 +55,14 @@ export default function AppContent(): JSX.Element {
     // Display error message if data fetch failed
     const error = gameDataError || fixtureDataError;
     const errorMessage = error instanceof Error ? `: ${error.message}` : ".";
+
     return (
       <Startup>
         <Notifier type='error' message={`An error has occured: ${errorMessage}`} />
       </Startup>
     );
-  } 
+  }
+
   // Otherwise, render the app
   return (
     <AppDataContext.Provider value={appData}>
@@ -87,5 +89,5 @@ export default function AppContent(): JSX.Element {
       </Router>
     </AppDataContext.Provider>
   );
-  
+
 }
