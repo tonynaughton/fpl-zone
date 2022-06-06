@@ -38,7 +38,7 @@ export const MyTeamPage = (): JSX.Element => {
     data: teamData,
     error: teamDataFetchError,
     isLoading: teamDataFetchIsLoading,
-  } = useQuery([fplId], async () => await getTeamData(fplId), {
+  } = useQuery([fplId], () => getTeamData(fplId), {
     enabled: !!fplId,
   });
 
@@ -49,7 +49,7 @@ export const MyTeamPage = (): JSX.Element => {
     isLoading: teamPicksFetchIsLoading,
   } = useQuery(
     [fplId, currentGameweek],
-    async () => await getTeamPicksForGameweek(fplId, currentGameweek.id),
+    () => getTeamPicksForGameweek(fplId, currentGameweek.id),
     { enabled: !!fplId }
   );
 
@@ -113,9 +113,9 @@ export const MyTeamPage = (): JSX.Element => {
       return <Notifier type='error' message='Error getting your team data - is your FPL ID correct?' />;
     } else if (teamPicksFetchError) {
       return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
-    } else {
+    } 
       return <Notifier message='Fetching data..' />;
-    }
+    
   };
 
   const renderFdrTable = (): JSX.Element => {
@@ -133,9 +133,9 @@ export const MyTeamPage = (): JSX.Element => {
       return <Notifier type='error' message='Error getting your team data - is your FPL ID correct?' />;
     } else if (teamPicksFetchError) {
       return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
-    } else {
+    } 
       return <Notifier message='Fetching data..' />;
-    }
+    
   };
 
   const isLoading = fplIdFetchIsLoading || teamDataFetchIsLoading || teamPicksFetchIsLoading;

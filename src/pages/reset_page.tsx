@@ -52,14 +52,14 @@ export const ResetPage = (): JSX.Element => {
   const onSendPasswordReset = async (data: FormInput): Promise<void> => {
     try {
       await sendPasswordReset(data.email).catch((err) => {
-        setSnackbar("Error: " + err);
-        return;
+        setSnackbar(`Error: ${  err}`);
+        
       });
       setSnackbar("Password reset email sent");
       await delay(1500);
       navigate("/login");
     } catch (err) {
-      setSnackbar("Cannot send password reset email: " + err, "error");
+      setSnackbar(`Cannot send password reset email: ${  err}`, "error");
     }
   };
 

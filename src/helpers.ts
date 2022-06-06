@@ -28,9 +28,9 @@ export const numberWithCommas = (x: number): string => {
 // Formatting date to desired format
 export const formatDate = (kickOffDateTime: Date): string => {
   return (
-    kickOffDateTime.toLocaleDateString(navigator.language, { day: "numeric", month: "short" }) +
-    " " +
-    kickOffDateTime.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })
+    `${kickOffDateTime.toLocaleDateString(navigator.language, { day: "numeric", month: "short" }) 
+    } ${ 
+    kickOffDateTime.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })}`
   );
 };
 

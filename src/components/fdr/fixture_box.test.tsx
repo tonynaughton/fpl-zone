@@ -39,7 +39,7 @@ describe("Fixture Box Tests", () => {
 
   describe("Player fixture box", () => {
     beforeEach(() => {
-      baseItem = mockPlayers[0];
+      [ baseItem ] = mockPlayers;
       isPlayerTable = true;
     });
 
@@ -73,7 +73,7 @@ describe("Fixture Box Tests", () => {
 
   describe("Team fixture box", () => {
     beforeEach(() => {
-      baseItem = mockTeams[0];
+      [ baseItem ] = mockTeams;
       isPlayerTable = false;
     });
 

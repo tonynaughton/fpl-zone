@@ -115,7 +115,7 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
   const onDetailsSave: SubmitHandler<FormInput> = async (data: FormInput) => {
     if (data.password !== data.repeatPassword) {
       setSnackbar("Passwords don't match", "error");
-      return;
+      
     } else if (data.email)
       if (!user) {
         try {
@@ -125,10 +125,10 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
             data.email,
             data.password,
             data.fplId
-          ).catch((err) => setSnackbar("Registration failed: " + err, "error"));
+          ).catch((err) => setSnackbar(`Registration failed: ${  err}`, "error"));
           setSnackbar("Registration successful");
         } catch (err) {
-          setSnackbar("Registration failed: " + err, "error");
+          setSnackbar(`Registration failed: ${  err}`, "error");
         }
       } else {
         try {
@@ -139,11 +139,11 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
             data.email,
             data.fplId
           ).catch((err) => {
-            setSnackbar("Error updating details: " + err, "error");
+            setSnackbar(`Error updating details: ${  err}`, "error");
           });
           setSnackbar("Details updated successfully");
         } catch (err) {
-          setSnackbar("Error updating details: " + err, "error");
+          setSnackbar(`Error updating details: ${  err}`, "error");
         }
       }
   };

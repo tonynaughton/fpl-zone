@@ -45,9 +45,7 @@ export default function PlayerPerformanceModal({
 }: PlayerPerformanceModalProps): JSX.Element {
   const { data: playerInfo, isLoading: fetchingPlayerInfo } = useQuery(
     [selectedPlayer],
-    async () => {
-      return getPlayerData(selectedPlayer.id);
-    }
+    () => getPlayerData(selectedPlayer.id)
   );
 
   const appData = useContext(AppDataContext) as AppData;

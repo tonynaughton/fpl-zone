@@ -19,16 +19,16 @@ export default function GameweekSummary(): JSX.Element {
   const players = appData.elements;
 
   const topPlayerId = gameweek.top_element_info?.id;
-  const starPlayer = topPlayerId ? GetPlayerById(topPlayerId, players) : undefined;
+  const starPlayer = topPlayerId ? GetPlayerById(topPlayerId, players) : null;
   const mostTransferredIn = gameweek.most_transferred_in
     ? GetPlayerById(gameweek.most_transferred_in, players)
-    : undefined;
+    : null;
   const mostCaptained = gameweek.most_captained
     ? GetPlayerById(gameweek?.most_captained, players)
-    : undefined;
+    : null;
   const mostViceCaptained = gameweek.most_vice_captained
     ? GetPlayerById(gameweek.most_vice_captained, players)
-    : undefined;
+    : null;
 
   let mostTransferredInCount = "";
   if (mostTransferredIn) {
@@ -66,13 +66,13 @@ export default function GameweekSummary(): JSX.Element {
   ];
 
   const renderSummaryItem = (item: SummaryDataItem, key: number): JSX.Element => {
-    const img: JSX.Element | undefined = item.teamCode ? (
+    const img: JSX.Element | null = item.teamCode ? (
       <img
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
         alt={`${item.label}-crest-img`}
         height='80%'
       />
-    ) : undefined;
+    ) : null;
 
     const itemValue = `
       ${item.playerName || ""}

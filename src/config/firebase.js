@@ -41,7 +41,7 @@ const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
-    const user = res.user;
+    const {user} = res;
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     const name = user.displayName.split(" ");
@@ -77,7 +77,7 @@ export const registerWithEmailAndPassword = async (
 ) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
+    const {user} = res;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       firstName,
@@ -118,7 +118,7 @@ export const updateUserDetails = async (uid, firstName, lastName, email, fplId =
     });
   } catch (err) {
     alert(err.message);
-    return;
+    
   }
 };
 

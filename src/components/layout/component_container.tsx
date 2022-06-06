@@ -33,9 +33,9 @@ export const ComponentContainer = ({
           <Notifier type='error' message={error} />
         </Box>
       );
-    } else {
+    } 
       return children;
-    }
+    
   };
   return (
     <Box

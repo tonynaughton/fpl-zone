@@ -14,7 +14,7 @@ describe("Player Tests", () => {
   let mockIsCaptain: boolean;
   let mockIsViceCaptain: boolean;
 
-  const mockHandlePlayerPerformanceClick = (): void => console.log("TEST");
+  const mockHandlePlayerPerformanceClick = jest.fn();
 
   const createComponent = (): JSX.Element => {
     return (
@@ -30,7 +30,7 @@ describe("Player Tests", () => {
   };
 
   beforeEach(() => {
-    mockPlayer = mockPlayers[0];
+    [ mockPlayer ] = mockPlayers;
     mockMultiplier = 1;
     mockIsCaptain = false;
     mockIsViceCaptain = false;

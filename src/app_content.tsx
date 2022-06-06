@@ -60,7 +60,7 @@ export default function AppContent(): JSX.Element {
         <Notifier type='error' message={`An error has occured: ${errorMessage}`} />
       </Startup>
     );
-  } else {
+  } 
     // Otherwise, render the app
     return (
       <AppDataContext.Provider value={appData}>
@@ -87,5 +87,5 @@ export default function AppContent(): JSX.Element {
         </Router>
       </AppDataContext.Provider>
     );
-  }
+  
 }

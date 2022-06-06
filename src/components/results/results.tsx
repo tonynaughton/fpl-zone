@@ -10,7 +10,7 @@ import { RenderResult } from "./result";
 export default function Results(): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;
   const latestGameweek = appData.events.find((gw) => gw.is_current) as Gameweek;
-  const fixtures = appData.fixtures;
+  const {fixtures} = appData;
 
   const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
@@ -97,7 +97,7 @@ export default function Results(): JSX.Element {
               height='10%'
               data-testid={`result-${result.id}`}
               onClick={(): void =>
-                kickOffTime < new Date() ? handleResultClick(result) : undefined
+                (kickOffTime < new Date() ? handleResultClick(result) : undefined)
               }
               sx={{
                 padding: "0 0.5em",

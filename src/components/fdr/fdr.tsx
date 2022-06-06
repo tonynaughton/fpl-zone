@@ -30,7 +30,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<Fixture[][]>([]);
   const [fdrStatus, setFdrStatus] = useState<string>('Fetching fixture data..');
   const appData = useContext(AppDataContext) as AppData;
-  const teams = appData.teams;
+  const {teams} = appData;
   const baseItem = players || teams;
   const nameColumnTitle = players ? "Player" : "Team";
   const allGameweeks = appData.events;
@@ -47,7 +47,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   useEffect(() => {
     const fetchNextFiveGameweekFixtures = async (): Promise<void> => {
       const nextFiveGameweekFixtures: Fixture[][] = await Promise.all(
-        nextFiveGameweeks.map(async (gameweek) => await getGameweekFixtures(gameweek))
+        nextFiveGameweeks.map((gameweek) => getGameweekFixtures(gameweek))
       );
 
       setNextFiveFixtures(nextFiveGameweekFixtures);
