@@ -29,7 +29,7 @@ import { deleteUser } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { delay } from "helpers";
 
-import { LoadingMessage } from "components/layout";
+import { Notifier } from "components/layout";
 
 import { FplIdModal } from ".";
 
@@ -160,7 +160,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
   return (
     <Box component="div">
       {!registerPage && !userFound ? (
-        <LoadingMessage message="Fetching user data.." />
+        <Notifier message="Fetching user data.." />
       ) : (
         <>
           <form onSubmit={handleSubmit(onDetailsSave)}>

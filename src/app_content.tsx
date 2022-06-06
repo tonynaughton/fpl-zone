@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
 import {
   AccountPage,
@@ -16,7 +17,7 @@ import PrivateRoute from "private_route";
 import { AppData } from "types";
 
 import { Logout } from "components/authentication";
-import { ErrorMessage, LoadingMessage, Startup } from "components/layout";
+import { Notifier, Startup } from "components/layout";
 
 export const AppDataContext = React.createContext<AppData | null>(null);
 
@@ -37,15 +38,17 @@ export default function AppContent(): JSX.Element {
     isLoading: fixtureDataIsLoading,
   } = useQuery("all-fixtures", getAllFixtures);
 
+  const isCompact = useMediaQuery('(max-width:1500px)');
+
   const isLoading = gameDataIsLoading || fixtureDataIsLoading;
   const isError = gameDataIsError || fixtureDataIsError;
-  const appData = gameData && fixtureData ? { ...gameData, fixtures: fixtureData } : null;
+  const appData = gameData && fixtureData ? { ...gameData, fixtures: fixtureData, isCompact } : null;
 
   if (isLoading) {
     // Display loading message if data is still being fetched
     return (
       <Startup>
-        <LoadingMessage message="Loading.." />
+        <Notifier />
       </Startup>
     );
   } else if (isError) {
@@ -54,7 +57,7 @@ export default function AppContent(): JSX.Element {
     const errorMessage = error instanceof Error ? `: ${error.message}` : ".";
     return (
       <Startup>
-        <ErrorMessage message={`An error has occured${errorMessage}`} />
+        <Notifier type='error' message={`An error has occured: ${errorMessage}`} />
       </Startup>
     );
   } else {

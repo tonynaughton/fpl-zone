@@ -11,10 +11,11 @@ import {
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
+import { gameStatusValues } from "helpers";
 import _ from "lodash";
-import { AppData, Fixture, Gameweek, Player, Team } from "types";
+import { AppData, Fixture, Player, Team } from "types";
 
-import { LoadingMessage } from "components/layout";
+import { Notifier } from "components/layout";
 
 import DifficultyLegend from "./difficulty_legend";
 import FixtureBox from "./fixture_box";
@@ -52,7 +53,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
       setNextFiveFixtures(nextFiveGameweekFixtures);
 
       if (_.isEmpty(nextFiveGameweekFixtures)) {
-        setFdrStatus("The FPL season is over, please check back next season!");
+        setFdrStatus(gameStatusValues.SEASON_FINISHED);
       }
     };
 
@@ -135,7 +136,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
   return _.isEmpty(nextFiveGameweekFixtures) ? (
     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-      <LoadingMessage message={fdrStatus} />
+      <Notifier type={fdrStatus === gameStatusValues.SEASON_FINISHED ? "warning" : ""} message={fdrStatus} />
     </Box>
   ) : (
     <Box

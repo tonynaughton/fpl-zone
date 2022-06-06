@@ -15,7 +15,7 @@ export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Ele
       {items.map((item: MenuItem, index: number) => (
         <ListItemButton
           sx={{
-            m: 2,
+            p: '1vw',
             "&:hover": { backgroundColor: "inherit" },
           }}
           disableRipple={true}
@@ -27,7 +27,9 @@ export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Ele
             primary={item.label.toUpperCase()}
             primaryTypographyProps={{
               component: "h2",
-              variant: "h2",
+              fontSize: '1.5vw',
+              fontWeight: '600',
+              lineHeight: 1,
               ...(item.label === activeLabel ? { color: "black" } : { color: "white" }),
               sx: { "&:hover": { color: "black" } },
             }}

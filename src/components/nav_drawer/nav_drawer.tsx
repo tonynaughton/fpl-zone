@@ -10,8 +10,6 @@ import { MenuItem } from "./types";
 
 import "./nav_drawer.css";
 
-const drawerWidth = 250;
-
 const mainMenuItems: MenuItem[] = [
   { label: "gameweek live", href: "/gameweek-live" },
   { label: "my team", href: "/my-team" },
@@ -30,6 +28,8 @@ interface NavDrawerProps {
 }
 
 export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element {
+  const drawerWidth = '11vw';
+
   return (
     <Drawer
       sx={{
@@ -46,8 +46,8 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
       variant="permanent"
       anchor="left"
     >
-      <Box className="logo-container">
-        <Logo compact={true} />
+      <Box className="logo-container" sx={{ pt: '1.5vh', pb: '1.5vh' }}>
+        <Logo compactLogo />
         <GameweekCountdown />
       </Box>
       <Box height="100%" display="flex" flexDirection="column" justifyContent="space-between">

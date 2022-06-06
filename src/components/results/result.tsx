@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
-import { formatDate,getTeamById } from "helpers";
-import { CustomResult, Team } from "types";
+import { AppDataContext } from "app_content";
+import { formatDate, getTeamById } from "helpers";
+import { AppData, CustomResult, Team } from "types";
 
-export const renderResult = (
+export function RenderResult (
   result: CustomResult,
   matchStarted: boolean,
   teams: Team[],
   key?: number
-): JSX.Element => {
+): JSX.Element {
+  const appData = useContext(AppDataContext) as AppData;
+
   const homeTeam = getTeamById(result.team_h, teams);
   const awayTeam = getTeamById(result.team_a, teams);
 
@@ -39,13 +42,14 @@ export const renderResult = (
         <Typography
           key={key}
           textAlign="left"
-          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}
+          variant="h5"
+          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", ml: 1 }}
         >
-          &nbsp;&nbsp;{getTeamById(result.team_h, teams).name}
+          {appData.isCompact ? homeTeam.short_name : homeTeam.name }
         </Typography>
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "center", flex: 0.7 }}>
-        <Typography key={key} sx={{ whiteSpace: "nowrap" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", flex: 0.3 }}>
+        <Typography variant="h5" key={key} sx={{ whiteSpace: "nowrap" }}>
           {matchStatus}
         </Typography>
       </Box>
@@ -60,9 +64,10 @@ export const renderResult = (
         <Typography
           key={key}
           textAlign="right"
-          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}
+          variant="h5"
+          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", mr: 1 }}
         >
-          {getTeamById(result.team_a, teams).name}&nbsp;&nbsp;
+          {appData.isCompact ? awayTeam.short_name : awayTeam.name }
         </Typography>
         <img
           src={`${process.env.PUBLIC_URL}/assets/images/crests/${awayTeam.code}.png`}

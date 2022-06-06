@@ -1,36 +1,32 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 interface LogoProps {
-  compact?: boolean;
+  compactLogo?: boolean;
 }
 
-export default function Logo({ compact }: LogoProps): JSX.Element {
-  const logoDimens = compact ? "50px" : "100px";
-  const textVariant = compact ? "40px" : "100px";
+export default function Logo({ compactLogo = false }: LogoProps): JSX.Element {
   return (
-    <Grid container sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1 }}>
-      <Grid item>
+    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1.5, columnGap: 1, width: "100%" }}>
+      <Box flexShrink="1" maxWidth="20%">
         <img
           className="football-icon"
           alt="logo"
           src={`${process.env.PUBLIC_URL}/assets/images/football.png`}
-          height={logoDimens}
-          width={logoDimens}
+          height="auto"
+          width="100%"
         />
-      </Grid>
-      <Grid item sx={{ ml: 1 }}>
-        <Typography
-          component="h1"
-          variant="h1"
-          fontSize={textVariant}
-          textAlign="center"
-          sx={{ userSelect: "none" }}
-          color="primary.contrastText"
-        >
-          FPL Zone
-        </Typography>
-      </Grid>
-    </Grid>
+      </Box>
+      <Typography
+        component="h1"
+        fontSize={ compactLogo ? "1.7vw" : "5vw"}
+        fontWeight="600"
+        sx={{ userSelect: "none" }}
+        color="primary.contrastText"
+        whiteSpace="nowrap"
+      >
+        FPL Zone
+      </Typography>
+    </Box>
   );
 }

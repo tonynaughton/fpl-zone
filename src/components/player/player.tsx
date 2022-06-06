@@ -1,6 +1,6 @@
 import React from "react";
 import { Info } from "@mui/icons-material";
-import { Box, Tooltip, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Player as PlayerType } from "types/player";
 
 interface PlayerProps {
@@ -25,6 +25,9 @@ const renderArmband = (isVice = false): JSX.Element => {
         left: 0,
         width: "1.5vw",
         height: "1.5vw",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
       }}
     >
       {isVice ? "V" : "C"}
@@ -35,7 +38,7 @@ const renderArmband = (isVice = false): JSX.Element => {
 export default function Player({
   player,
   handlePlayerPerformanceClick,
-  compressed,
+  compressed = false,
   multiplier: multipler,
   isCaptain = false,
   isViceCaptain = false,
@@ -67,7 +70,7 @@ export default function Player({
         sx={{
           color: "black",
           textAlign: "center",
-          width: compressed ? "6.5vw" : "9vw",
+          width: compressed ? "7.5vw" : "9.5vw",
           maxWidth: "180px",
         }}
       >
@@ -75,7 +78,7 @@ export default function Player({
           sx={{
             display: "flex",
             justifyContent: "center",
-            height: compressed ? "3vh" : "4vh",
+            height: "4vh",
           }}
         >
           <Box
@@ -116,23 +119,21 @@ export default function Player({
               {player.event_points * multipler}
             </Typography>
           </Box>
-          <Tooltip title="Performance">
-            <Box
-              onClick={(): void => handlePlayerPerformanceClick(player)}
-              sx={{
-                p: compressed ? 0.5 : 1,
-                display: "flex",
-                alignItems: "center",
-                backgroundColor: "black",
-                "& :hover": {
-                  cursor: "pointer",
-                },
-                justifyContent: "center",
-              }}
-            >
-              <Info sx={{ color: "white" }} />
-            </Box>
-          </Tooltip>
+          <Box
+            onClick={(): void => handlePlayerPerformanceClick(player)}
+            sx={{
+              p: compressed ? 0.5 : 1,
+              display: "flex",
+              alignItems: "center",
+              backgroundColor: "black",
+              "& :hover": {
+                cursor: "pointer",
+              },
+              justifyContent: "center",
+            }}
+          >
+            <Info sx={{ color: "white", fontSize: "1.2vw" }} />
+          </Box>
         </Box>
         {isCaptain && renderArmband()}
         {isViceCaptain && renderArmband(true)}

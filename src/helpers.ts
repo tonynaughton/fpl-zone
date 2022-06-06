@@ -3,7 +3,7 @@ import { Player } from "types/player";
 
 export const gameStatusValues = {
   GAME_UPDATING: 'Game is updating..',
-  SEASON_FINISHED: 'The FPL season has finished, check back next season!',
+  SEASON_FINISHED: 'The current FPL season has finished, check back next season!',
   GAME_OK: 'GAME_OK'
 };
 
