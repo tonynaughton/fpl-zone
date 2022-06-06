@@ -45,7 +45,7 @@ export function RenderResult (
           variant="h5"
           sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", ml: 1 }}
         >
-          {appData.isCompact ? homeTeam.name : homeTeam.short_name }
+          {appData.isCompact ? homeTeam.short_name : homeTeam.name }
         </Typography>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", flex: 0.3 }}>
@@ -67,7 +67,7 @@ export function RenderResult (
           variant="h5"
           sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", mr: 1 }}
         >
-          {appData.isCompact ? awayTeam.name : awayTeam.short_name }
+          {appData.isCompact ? awayTeam.short_name : awayTeam.name }
         </Typography>
         <img
           src={`${process.env.PUBLIC_URL}/assets/images/crests/${awayTeam.code}.png`}

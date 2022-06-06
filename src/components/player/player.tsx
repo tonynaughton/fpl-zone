@@ -25,6 +25,9 @@ const renderArmband = (isVice = false): JSX.Element => {
         left: 0,
         width: "1.5vw",
         height: "1.5vw",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
       }}
     >
       {isVice ? "V" : "C"}

@@ -11,7 +11,7 @@ import _ from "lodash";
 import { AppData,Gameweek, Player, TeamData, TeamPicks } from "types";
 
 import FdrTable from "components/fdr/fdr";
-import { AppLayout, ComponentContainer, ErrorMessage, LoadingMessage } from "components/layout";
+import { AppLayout, ComponentContainer, Notifier } from "components/layout";
 import Lineup from "components/lineup/lineup";
 
 export function MyTeamPage(): JSX.Element {
@@ -70,7 +70,7 @@ export function MyTeamPage(): JSX.Element {
     if (!fplId) {
       return <EnterFPLID />;
     } else if (gameUpdatingStatus === gameStatusValues.GAME_UPDATING) {
-      return <LoadingMessage message="Game is updating" />;
+      return <Notifier message="Game is updating" />;
     } else if (teamPicks && teamData) {
       // Function which returns an array of players divided into sub arrays by position
       const getSelectedPlayers = (): Player[][] => {
@@ -108,13 +108,13 @@ export function MyTeamPage(): JSX.Element {
         />
       );
     } else if (fplIdFetchError) {
-      return <ErrorMessage message="Error getting FPL ID" />;
+      return <Notifier type='error' message='Error getting FPL ID' />;
     } else if (teamDataFetchError) {
-      return <ErrorMessage message="Error getting your team data - is your FPL ID correct?" />;
+      return <Notifier type='error' message='Error getting your team data - is your FPL ID correct?' />;
     } else if (teamPicksFetchError) {
-      return <ErrorMessage message="Error getting your team picks - is your FPL ID correct?" />;
+      return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
     } else {
-      return <LoadingMessage message="Fetching data.." />;
+      return <Notifier message="Fetching data.." />;
     }
   };
 
@@ -128,13 +128,13 @@ export function MyTeamPage(): JSX.Element {
         .value();
       return <FdrTable players={fdrPlayers} />;
     } else if (fplIdFetchError) {
-      return <ErrorMessage message="Error getting FPL ID" />;
+      return <Notifier type='error' message='Error getting FPL ID' />;
     } else if (teamDataFetchError) {
-      return <ErrorMessage message="Error getting your team data - is your FPL ID correct?" />;
+      return <Notifier type='error' message='Error getting your team data - is your FPL ID correct?' />;
     } else if (teamPicksFetchError) {
-      return <ErrorMessage message="Error getting your team picks - is your FPL ID correct?" />;
+      return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
     } else {
-      return <LoadingMessage message="Fetching data.." />;
+      return <Notifier message="Fetching data.." />;
     }
   };
 

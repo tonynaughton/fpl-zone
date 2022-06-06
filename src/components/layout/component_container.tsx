@@ -1,8 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-import { ErrorMessage } from "./error_message";
-import { LoadingMessage } from "./loading_message";
+import { Notifier } from "./notifier";
 
 interface ComponentContainerProps {
   title: string;
@@ -23,7 +22,7 @@ export function ComponentContainer({
         <Box
           sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
         >
-          <LoadingMessage message="Loading.." />
+          <Notifier />
         </Box>
       );
     } else if (error) {
@@ -31,7 +30,7 @@ export function ComponentContainer({
         <Box
           sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
         >
-          <ErrorMessage message={error} />
+          <Notifier type='error' message={error} />
         </Box>
       );
     } else {

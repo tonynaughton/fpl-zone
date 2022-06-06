@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { logout } from "config/firebase";
 
-import { LoadingMessage } from "components/layout";
+import { Notifier } from "components/layout";
 
 export function Logout(): JSX.Element {
   const [loggedOut, setLoggedOutStatus] = useState<boolean>(false);
@@ -16,7 +16,7 @@ export function Logout(): JSX.Element {
 
   return !loggedOut ? (
     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-      <LoadingMessage message="Loggout out.." />
+      <Notifier message="Logging out.." />
     </Box>
   ) : (
     <Navigate to="/login" />

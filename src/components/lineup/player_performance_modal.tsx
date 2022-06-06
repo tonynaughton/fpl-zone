@@ -25,7 +25,7 @@ import {
   Team,
 } from "types";
 
-import { LoadingMessage } from "components/layout";
+import { Notifier } from "components/layout";
 import { RenderResult } from "components/results/result";
 
 interface PlayerPerformanceModalProps {
@@ -161,7 +161,7 @@ export default function PlayerPerformanceModal({
           }}
         >
           {fetchingPlayerInfo ? (
-            <LoadingMessage message="Getting performance details.." />
+            <Notifier message="Getting performance details.." />
           ) : (
             <Box
               sx={{

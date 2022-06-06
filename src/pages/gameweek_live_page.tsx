@@ -9,7 +9,7 @@ import { AppData } from "types";
 
 import DreamTeam from "components/dream_team/dream_team";
 import GameweekSummary from "components/gameweek_summary/gameweek_summary";
-import { AppLayout, ComponentContainer, LoadingMessage } from "components/layout";
+import { AppLayout, ComponentContainer, Notifier } from "components/layout";
 
 export function GameweekLivePage(): JSX.Element {
   const [user, userLoading] = useAuthState(auth);
@@ -27,7 +27,7 @@ export function GameweekLivePage(): JSX.Element {
     if (gameStatus === gameStatusValues.GAME_OK) {
       return <DreamTeam />;
     } else {
-      return <LoadingMessage message={gameStatus} />;
+      return <Notifier message={gameStatus} />;
     }
   };
 
@@ -35,7 +35,7 @@ export function GameweekLivePage(): JSX.Element {
     if (gameStatus === gameStatusValues.GAME_OK) {
       return <GameweekSummary />;
     } else {
-      return <LoadingMessage message={gameStatus} />;
+      return <Notifier message={gameStatus} />;
     }
   };
 

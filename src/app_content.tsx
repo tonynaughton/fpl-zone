@@ -17,7 +17,7 @@ import PrivateRoute from "private_route";
 import { AppData } from "types";
 
 import { Logout } from "components/authentication";
-import { ErrorMessage, LoadingMessage, Startup } from "components/layout";
+import { Notifier, Startup } from "components/layout";
 
 export const AppDataContext = React.createContext<AppData | null>(null);
 
@@ -38,7 +38,7 @@ export default function AppContent(): JSX.Element {
     isLoading: fixtureDataIsLoading,
   } = useQuery("all-fixtures", getAllFixtures);
 
-  const isCompact = useMediaQuery('(min-width:1500px)');
+  const isCompact = useMediaQuery('(max-width:1500px)');
 
   const isLoading = gameDataIsLoading || fixtureDataIsLoading;
   const isError = gameDataIsError || fixtureDataIsError;
@@ -48,7 +48,7 @@ export default function AppContent(): JSX.Element {
     // Display loading message if data is still being fetched
     return (
       <Startup>
-        <LoadingMessage message="Loading.." />
+        <Notifier />
       </Startup>
     );
   } else if (isError) {
@@ -57,7 +57,7 @@ export default function AppContent(): JSX.Element {
     const errorMessage = error instanceof Error ? `: ${error.message}` : ".";
     return (
       <Startup>
-        <ErrorMessage message={`An error has occured${errorMessage}`} />
+        <Notifier type='error' message={`An error has occured: ${errorMessage}`} />
       </Startup>
     );
   } else {

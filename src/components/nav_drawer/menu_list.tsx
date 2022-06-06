@@ -27,8 +27,9 @@ export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Ele
             primary={item.label.toUpperCase()}
             primaryTypographyProps={{
               component: "h2",
-              fontSize: '1.6vw',
+              fontSize: '1.5vw',
               fontWeight: '600',
+              lineHeight: 1,
               ...(item.label === activeLabel ? { color: "black" } : { color: "white" }),
               sx: { "&:hover": { color: "black" } },
             }}
