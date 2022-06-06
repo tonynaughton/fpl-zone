@@ -11,7 +11,7 @@ import {
   LoginPage,
   MyTeamPage,
   RegisterPage,
-  ResetPage,
+  ResetPage
 } from "pages";
 import PrivateRoute from "private_route";
 import { AppData } from "types";
@@ -27,7 +27,7 @@ export default function AppContent(): JSX.Element {
     data: gameData,
     isError: gameDataIsError,
     error: gameDataError,
-    isLoading: gameDataIsLoading,
+    isLoading: gameDataIsLoading
   } = useQuery("game-data", getGameData);
 
   // Fetching fixture data which will be made available throughout the app via context provider
@@ -35,10 +35,10 @@ export default function AppContent(): JSX.Element {
     data: fixtureData,
     isError: fixtureDataIsError,
     error: fixtureDataError,
-    isLoading: fixtureDataIsLoading,
+    isLoading: fixtureDataIsLoading
   } = useQuery("all-fixtures", getAllFixtures);
 
-  const isCompact = useMediaQuery('(max-width:1500px)');
+  const isCompact = useMediaQuery("(max-width:1500px)");
 
   const isLoading = gameDataIsLoading || fixtureDataIsLoading;
   const isError = gameDataIsError || fixtureDataIsError;
@@ -55,37 +55,39 @@ export default function AppContent(): JSX.Element {
     // Display error message if data fetch failed
     const error = gameDataError || fixtureDataError;
     const errorMessage = error instanceof Error ? `: ${error.message}` : ".";
+
     return (
       <Startup>
         <Notifier type='error' message={`An error has occured: ${errorMessage}`} />
       </Startup>
     );
-  } else {
-    // Otherwise, render the app
-    return (
-      <AppDataContext.Provider value={appData}>
-        <Router>
-          <Routes>
-            <Route path="*" element={<LoginPage />} />
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/reset" element={<ResetPage />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/account" element={<PrivateRoute component={<AccountPage />} />} />
-            <Route
-              path="/gameweek-live"
-              element={<PrivateRoute component={<GameweekLivePage />} />}
-            />
-            <Route path="/my-team" element={<PrivateRoute component={<MyTeamPage />} />} />
-            <Route
-              path="/fixtures-and-results"
-              element={<PrivateRoute component={<FixturesAndResultsPage />} />}
-            />
-            <Route path="/analysis" element={<PrivateRoute component={<AnalysisPage />} />} />
-          </Routes>
-        </Router>
-      </AppDataContext.Provider>
-    );
   }
+
+  // Otherwise, render the app
+  return (
+    <AppDataContext.Provider value={appData}>
+      <Router>
+        <Routes>
+          <Route path='*' element={<LoginPage />} />
+          <Route path='/' element={<LoginPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
+          <Route path='/reset' element={<ResetPage />} />
+          <Route path='/logout' element={<Logout />} />
+          <Route path='/account' element={<PrivateRoute component={<AccountPage />} />} />
+          <Route
+            path='/gameweek-live'
+            element={<PrivateRoute component={<GameweekLivePage />} />}
+          />
+          <Route path='/my-team' element={<PrivateRoute component={<MyTeamPage />} />} />
+          <Route
+            path='/fixtures-and-results'
+            element={<PrivateRoute component={<FixturesAndResultsPage />} />}
+          />
+          <Route path='/analysis' element={<PrivateRoute component={<AnalysisPage />} />} />
+        </Routes>
+      </Router>
+    </AppDataContext.Provider>
+  );
+
 }

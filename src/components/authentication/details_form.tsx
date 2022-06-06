@@ -16,14 +16,14 @@ import {
   OutlinedInput,
   Snackbar,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import {
   auth,
   db,
   registerWithEmailAndPassword,
   signInWithGoogle,
-  updateUserDetails,
+  updateUserDetails
 } from "config/firebase";
 import { deleteUser } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -48,7 +48,7 @@ interface FormInput {
   fplId: string;
 }
 
-export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
+export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
     email: "",
     password: "",
     repeatPassword: "",
-    fplId: "",
+    fplId: ""
   };
 
   const [userData, setUserData] = useState(defaultValues);
@@ -91,7 +91,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
         email: userData.email,
         password: "",
         repeatPassword: "",
-        fplId: userData.fplId,
+        fplId: userData.fplId
       });
       setUserFound(true);
     } catch (err) {
@@ -115,37 +115,36 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
   const onDetailsSave: SubmitHandler<FormInput> = async (data: FormInput) => {
     if (data.password !== data.repeatPassword) {
       setSnackbar("Passwords don't match", "error");
-      return;
-    } else if (data.email)
-      if (!user) {
-        try {
-          await registerWithEmailAndPassword(
-            data.firstName,
-            data.lastName,
-            data.email,
-            data.password,
-            data.fplId
-          ).catch((err) => setSnackbar("Registration failed: " + err, "error"));
-          setSnackbar("Registration successful");
-        } catch (err) {
-          setSnackbar("Registration failed: " + err, "error");
-        }
-      } else {
-        try {
-          await updateUserDetails(
-            user.uid,
-            data.firstName,
-            data.lastName,
-            data.email,
-            data.fplId
-          ).catch((err) => {
-            setSnackbar("Error updating details: " + err, "error");
-          });
-          setSnackbar("Details updated successfully");
-        } catch (err) {
-          setSnackbar("Error updating details: " + err, "error");
-        }
+
+    } else if (data.email) if (!user) {
+      try {
+        await registerWithEmailAndPassword(
+          data.firstName,
+          data.lastName,
+          data.email,
+          data.password,
+          data.fplId
+        ).catch((err) => setSnackbar(`Registration failed: ${err}`, "error"));
+        setSnackbar("Registration successful");
+      } catch (err) {
+        setSnackbar(`Registration failed: ${err}`, "error");
       }
+    } else {
+      try {
+        await updateUserDetails(
+          user.uid,
+          data.firstName,
+          data.lastName,
+          data.email,
+          data.fplId
+        ).catch((err) => {
+          setSnackbar(`Error updating details: ${err}`, "error");
+        });
+        setSnackbar("Details updated successfully");
+      } catch (err) {
+        setSnackbar(`Error updating details: ${err}`, "error");
+      }
+    }
   };
 
   const handleDeleteAccountClick = async (): Promise<void> => {
@@ -158,178 +157,180 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
   };
 
   return (
-    <Box component="div">
-      {!registerPage && !userFound ? (
-        <Notifier message="Fetching user data.." />
-      ) : (
-        <>
-          <form onSubmit={handleSubmit(onDetailsSave)}>
-            <Controller
-              name="firstName"
-              control={control}
-              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <TextField
-                  className="text-input"
-                  margin="normal"
-                  placeholder="First name"
-                  fullWidth
-                  error={!!error}
-                  required
-                  value={value}
-                  onChange={onChange}
-                />
+    <Box component='div'>
+      {!registerPage && !userFound
+        ? (
+          <Notifier message='Fetching user data..' />
+        )
+        : (
+          <>
+            <form onSubmit={handleSubmit(onDetailsSave)}>
+              <Controller
+                name='firstName'
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                  <TextField
+                    className='text-input'
+                    margin='normal'
+                    placeholder='First name'
+                    fullWidth
+                    error={!!error}
+                    required
+                    value={value}
+                    onChange={onChange}
+                  />
+                )}
+              />
+              <Controller
+                name='lastName'
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                  <TextField
+                    className='text-input'
+                    margin='normal'
+                    placeholder='Last name'
+                    fullWidth
+                    error={!!error}
+                    required
+                    value={value}
+                    onChange={onChange}
+                  />
+                )}
+              />
+              <Controller
+                name='email'
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                  <TextField
+                    className='text-input'
+                    margin='normal'
+                    placeholder='Email'
+                    fullWidth
+                    error={!!error}
+                    required
+                    value={value}
+                    onChange={onChange}
+                    type='email'
+                  />
+                )}
+              />
+              {registerPage && (
+                <>
+                  <Controller
+                    name='password'
+                    control={control}
+                    render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                      <TextField
+                        sx={{ mt: 2 }}
+                        className='text-input'
+                        placeholder='Password'
+                        fullWidth
+                        error={!!error}
+                        required
+                        value={value}
+                        onChange={onChange}
+                        type='password'
+                      />
+                    )}
+                  />
+                  <Controller
+                    name='repeatPassword'
+                    control={control}
+                    render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                      <TextField
+                        sx={{ mt: 1 }}
+                        className='text-input'
+                        placeholder='Repeat password'
+                        fullWidth
+                        error={!!error}
+                        required
+                        value={value}
+                        onChange={onChange}
+                        type='password'
+                        inputProps={{ form: { autoComplete: "off" } }}
+                      />
+                    )}
+                  />
+                </>
               )}
-            />
-            <Controller
-              name="lastName"
-              control={control}
-              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <TextField
-                  className="text-input"
-                  margin="normal"
-                  placeholder="Last name"
+              <Controller
+                name='fplId'
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
+                  <OutlinedInput
+                    sx={{ mt: 2 }}
+                    className='text-input'
+                    placeholder='FPL ID (optional)'
+                    fullWidth
+                    error={!!error}
+                    value={value}
+                    onChange={onChange}
+                    endAdornment={
+                      <InputAdornment position='end'>
+                        <IconButton
+                          aria-label='show fpl id modal'
+                          onClick={(): void => setShowFplIdModal(true)}
+                          onMouseDown={(event): void => event.preventDefault()}
+                          edge='end'
+                        >
+                          <Info />
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                )}
+              />
+              <Button
+                sx={{ mt: 5 }}
+                className='action-button'
+                color='secondary'
+                type='submit'
+                fullWidth
+                variant='contained'
+              >
+                {registerPage ? "Register" : "Update"}
+              </Button>
+              {!registerPage && (
+                <Button
+                  sx={{ mt: 3 }}
+                  className='action-button'
+                  color='error'
                   fullWidth
-                  error={!!error}
-                  required
-                  value={value}
-                  onChange={onChange}
-                />
+                  variant='contained'
+                  onClick={(): void => setDeleteAccountModalOpen(true)}
+                >
+                  {"Delete Account"}
+                </Button>
               )}
-            />
-            <Controller
-              name="email"
-              control={control}
-              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <TextField
-                  className="text-input"
-                  margin="normal"
-                  placeholder="Email"
-                  fullWidth
-                  error={!!error}
-                  required
-                  value={value}
-                  onChange={onChange}
-                  type="email"
-                />
-              )}
-            />
+            </form>
             {registerPage && (
               <>
-                <Controller
-                  name="password"
-                  control={control}
-                  render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                    <TextField
-                      sx={{ mt: 2 }}
-                      className="text-input"
-                      placeholder="Password"
-                      fullWidth
-                      error={!!error}
-                      required
-                      value={value}
-                      onChange={onChange}
-                      type="password"
-                    />
-                  )}
-                />
-                <Controller
-                  name="repeatPassword"
-                  control={control}
-                  render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                    <TextField
-                      sx={{ mt: 1 }}
-                      className="text-input"
-                      placeholder="Repeat password"
-                      fullWidth
-                      error={!!error}
-                      required
-                      value={value}
-                      onChange={onChange}
-                      type="password"
-                      inputProps={{ form: { autoComplete: "off" } }}
-                    />
-                  )}
-                />
+                <Button
+                  color='info'
+                  onClick={signInWithGoogle}
+                  sx={{ mt: 2 }}
+                  className='action-button google-login'
+                  fullWidth
+                  variant='contained'
+                >
+                  <GoogleIcon sx={{ mr: 2 }} />
+                Login with Google
+                </Button>
+                <MuiLink
+                  textAlign='center'
+                  color='black'
+                  component='a'
+                  underline='none'
+                  href='/login'
+                  display='block'
+                  className='auth-link'
+                >
+                Already have an account? Login now.
+                </MuiLink>
               </>
             )}
-            <Controller
-              name="fplId"
-              control={control}
-              render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
-                <OutlinedInput
-                  sx={{ mt: 2 }}
-                  className="text-input"
-                  placeholder="FPL ID (optional)"
-                  fullWidth
-                  error={!!error}
-                  value={value}
-                  onChange={onChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="show fpl id modal"
-                        onClick={(): void => setShowFplIdModal(true)}
-                        onMouseDown={(event): void => event.preventDefault()}
-                        edge="end"
-                      >
-                        <Info />
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              )}
-            />
-            <Button
-              sx={{ mt: 5 }}
-              className="action-button"
-              color="secondary"
-              type="submit"
-              fullWidth
-              variant="contained"
-            >
-              {registerPage ? "Register" : "Update"}
-            </Button>
-            {!registerPage && (
-              <Button
-                sx={{ mt: 3 }}
-                className="action-button"
-                color="error"
-                fullWidth
-                variant="contained"
-                onClick={(): void => setDeleteAccountModalOpen(true)}
-              >
-                {"Delete Account"}
-              </Button>
-            )}
-          </form>
-          {registerPage && (
-            <>
-              <Button
-                color="info"
-                onClick={signInWithGoogle}
-                sx={{ mt: 2 }}
-                className="action-button google-login"
-                fullWidth
-                variant="contained"
-              >
-                <GoogleIcon sx={{ mr: 2 }} />
-                Login with Google
-              </Button>
-              <MuiLink
-                textAlign="center"
-                color="black"
-                component="a"
-                underline="none"
-                href="/login"
-                display="block"
-                className="auth-link"
-              >
-                Already have an account? Login now.
-              </MuiLink>
-            </>
-          )}
-        </>
-      )}
+          </>
+        )}
       <FplIdModal modalVisible={showFplIdModal} setModalOpen={setShowFplIdModal} />
       <Snackbar
         autoHideDuration={6000}
@@ -337,14 +338,14 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
         onClose={handleSnackbarClose}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "right",
+          horizontal: "right"
         }}
       >
         <Alert
           onClose={handleSnackbarClose}
           severity={snackbarSeverity as AlertColor}
           elevation={6}
-          variant="filled"
+          variant='filled'
         >
           {snackbarMessage}
         </Alert>
@@ -362,7 +363,7 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
             boxShadow: 24,
             p: 4,
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "column"
           }}
         >
           <Typography sx={{ fontSize: "1.2em" }}>
@@ -380,4 +381,4 @@ export function DetailsForm({ registerPage }: DetailsFormProps): JSX.Element {
       </Modal>
     </Box>
   );
-}
+};

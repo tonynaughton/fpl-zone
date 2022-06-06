@@ -29,7 +29,9 @@ export default function DreamTeam(): JSX.Element {
   });
 
   // Flatten remaining players into one array
-  const remainingPlayers = _(squad).flatten().orderBy(["event_points"], ["desc"]).value();
+  const remainingPlayers = _(squad).flatten()
+    .orderBy(["event_points"], ["desc"])
+    .value();
 
   // Recursive function which adds remaining selected players
   const addRemainingSelectedPlayers = (playerGroup: Player[]): Player[] => {

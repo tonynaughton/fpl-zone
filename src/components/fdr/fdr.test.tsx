@@ -17,13 +17,13 @@ describe("FDR Tests", () => {
 
   mockAdapter.onGet().reply(200, mockReturnedFixtures);
 
-  function createComponent(players?: Player[]): JSX.Element {
+  const createComponent = (players?: Player[]): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
         <FdrTable players={players} />
       </AppDataContext.Provider>
     );
-  }
+  };
 
   afterEach(cleanup);
 

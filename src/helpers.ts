@@ -2,37 +2,37 @@ import { Gameweek, Team } from "types";
 import { Player } from "types/player";
 
 export const gameStatusValues = {
-  GAME_UPDATING: 'Game is updating..',
-  SEASON_FINISHED: 'The current FPL season has finished, check back next season!',
-  GAME_OK: 'GAME_OK'
+  GAME_UPDATING: "Game is updating..",
+  SEASON_FINISHED: "The current FPL season has finished, check back next season!",
+  GAME_OK: "GAME_OK"
 };
 
 // Getting a player by their id
-export function GetPlayerById(playerId: number, players: Player[]): Player {
+export const GetPlayerById = (playerId: number, players: Player[]): Player => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return players.find((player) => player.id === playerId)!;
-}
+};
 
 // Getting a team by their id
-export function getTeamById(teamId: number, teams: Team[]): Team {
+export const getTeamById = (teamId: number, teams: Team[]): Team => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return teams.find((team) => team.id === teamId)!;
-}
+};
 
 // Adding commas to large numbers
 // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-export function numberWithCommas(x: number): string {
+export const numberWithCommas = (x: number): string => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 
 // Formatting date to desired format
-export function formatDate(kickOffDateTime: Date): string {
+export const formatDate = (kickOffDateTime: Date): string => {
   return (
-    kickOffDateTime.toLocaleDateString(navigator.language, { day: "numeric", month: "short" }) +
-    " " +
-    kickOffDateTime.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })
+    `${kickOffDateTime.toLocaleDateString(navigator.language, { day: "numeric", month: "short" })
+    } ${
+      kickOffDateTime.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })}`
   );
-}
+};
 
 /*
   The following function is used to check two things:
@@ -44,7 +44,7 @@ export function formatDate(kickOffDateTime: Date): string {
   2. If there is no current gameweek then the season is finished - this must be
     relayed back to the user so they understand why data is unavailable
 */
-export function checkGameStatus(gameweeks: Gameweek[]): string {
+export const checkGameStatus = (gameweeks: Gameweek[]): string => {
   const currentDateTime = new Date();
 
   const currentGameweek = gameweeks.find(gameweek => gameweek.is_current);
@@ -53,9 +53,11 @@ export function checkGameStatus(gameweeks: Gameweek[]): string {
   if (!currentGameweek) {
     return gameStatusValues.SEASON_FINISHED;
   }
-  
-  // Manually checking if next gamewek deadline has passed as there
-  // can sometimes be a delay in update of gameweek 'is_next' status
+
+  /*
+    Manually checking if next gamewek deadline has passed as there
+    can sometimes be a delay in update of gameweek 'is_next' status
+  */
   let relevantGameweek: Gameweek;
 
   if (!nextGameweek || new Date(nextGameweek.deadline_time) > currentDateTime) {
@@ -71,11 +73,11 @@ export function checkGameStatus(gameweeks: Gameweek[]): string {
   if (timeDifference < 5400000) {
     return gameStatusValues.GAME_UPDATING;
   }
-  
+
   return gameStatusValues.GAME_OK;
-}
+};
 
 // Adding delay before next function call
-export async function delay(ms: number | undefined): Promise<void> {
+export const delay = async (ms: number | undefined): Promise<void> => {
   await new Promise((res) => setTimeout(res, ms));
-}
+};

@@ -8,7 +8,7 @@ import FdrTable from "components/fdr/fdr";
 import { AppLayout, ComponentContainer } from "components/layout";
 import Results from "components/results/results";
 
-export function FixturesAndResultsPage(): JSX.Element {
+export const FixturesAndResultsPage = (): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -18,19 +18,19 @@ export function FixturesAndResultsPage(): JSX.Element {
   });
 
   return (
-    <AppLayout activeLabel="fixtures & results" direction="row">
+    <AppLayout activeLabel='fixtures & results' direction='row'>
       <Grid container columnSpacing={4}>
         <Grid item xs={8}>
-          <ComponentContainer title="fdr">
+          <ComponentContainer title='fdr'>
             <FdrTable />
           </ComponentContainer>
         </Grid>
         <Grid item xs={4}>
-          <ComponentContainer title="results">
+          <ComponentContainer title='results'>
             <Results />
           </ComponentContainer>
         </Grid>
       </Grid>
     </AppLayout>
   );
-}
+};

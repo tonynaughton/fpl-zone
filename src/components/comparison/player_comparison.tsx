@@ -18,7 +18,7 @@ export default function PlayerComparison({
   players,
   teams,
   elementStats,
-  positions,
+  positions
 }: PlayerComparisonProps): JSX.Element {
   const MAX_PLAYER_COUNT = 10;
   const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
@@ -37,6 +37,7 @@ export default function PlayerComparison({
 
   const renderDropdownOption = (props, player: Player): JSX.Element => {
     const positionName = positions.find((pos) => pos.id === player.element_type);
+
     return (
       // eslint-disable-next-line react/prop-types
       <li {...props} key={props.id}>
@@ -59,13 +60,13 @@ export default function PlayerComparison({
           JustifyContent: "center",
           columnGap: 2,
           p: 2,
-          pl: "10vw",
+          pl: "10vw"
         }}
       >
         <Typography sx={{ fontSize: 22, color: "black" }}>Players: </Typography>
         <Autocomplete
           multiple
-          id="player-select-options"
+          id='player-select-options'
           groupBy={(player: Player): string => getTeamById(player.team, teams).name}
           options={players}
           disableCloseOnSelect
@@ -78,20 +79,19 @@ export default function PlayerComparison({
           getOptionLabel={(player: Player): string => `${player.first_name} ${player.second_name}`}
           renderOption={renderDropdownOption}
           renderInput={(params): JSX.Element => <TextField {...params} />}
-          size="small"
+          size='small'
           onChange={handleAutocompleteChange}
           clearOnBlur
           onBlur={(): void => setDropdownOpen(false)}
           disabled={selectedPlayers.length >= MAX_PLAYER_COUNT}
-          renderTags={(player: Player[], getTagProps): JSX.Element[] =>
-            player.map((player, index) => (
-              <Chip
-                {...getTagProps({ index })}
-                key={index}
-                label={<Typography variant="body2">{player.web_name}</Typography>}
-                disabled={false}
-              />
-            ))
+          renderTags={(player: Player[], getTagProps): JSX.Element[] => player.map((player, index) => (
+            <Chip
+              {...getTagProps({ index })}
+              key={index}
+              label={<Typography variant='body2'>{player.web_name}</Typography>}
+              disabled={false}
+            />
+          ))
           }
         />
       </Box>
@@ -106,7 +106,7 @@ export default function PlayerComparison({
           height: "100%",
           alignItems: "center",
           justifyContent: "center",
-          p: 2,
+          p: 2
         }}
       >
         <Box
@@ -121,15 +121,15 @@ export default function PlayerComparison({
             borderRadius: "10%",
             cursor: "pointer",
             "&:hover": {
-              backgroundColor: "rgb(224, 224, 224)",
+              backgroundColor: "rgb(224, 224, 224)"
             },
-            width: "20%",
+            width: "20%"
           }}
         >
           <ArrowUpward
             sx={{ borderRadius: "50%", backgroundColor: "#16B7EA", color: "white", fontSize: 40 }}
           />
-          <Typography textAlign="center">Add a player from the drop down to get started</Typography>
+          <Typography textAlign='center'>Add a player from the drop down to get started</Typography>
         </Box>
       </Box>
     );
@@ -141,33 +141,35 @@ export default function PlayerComparison({
         display: "flex",
         flexDirection: "column",
         alignItem: "center",
-        height: "100%",
+        height: "100%"
       }}
     >
       {renderComparisonOptions()}
-      {selectedPlayers.length > 0 ? (
-        <ComparisonTable
-          selectedPlayers={selectedPlayers}
-          teams={teams}
-          elementStats={elementStats}
-        />
-      ) : (
-        renderAddPlayersBtn()
-      )}
+      {selectedPlayers.length > 0
+        ? (
+          <ComparisonTable
+            selectedPlayers={selectedPlayers}
+            teams={teams}
+            elementStats={elementStats}
+          />
+        )
+        : (
+          renderAddPlayersBtn()
+        )}
       <Snackbar
         autoHideDuration={5000}
         open={snackbarOpen}
         onClose={(): void => setSnackbarOpen(false)}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "right",
+          horizontal: "right"
         }}
       >
         <Alert
           onClose={(): void => setSnackbarOpen(false)}
-          severity="error"
+          severity='error'
           elevation={6}
-          variant="filled"
+          variant='filled'
         >
           Maximum player count reached ({MAX_PLAYER_COUNT})
         </Alert>

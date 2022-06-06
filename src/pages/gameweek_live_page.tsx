@@ -11,7 +11,7 @@ import DreamTeam from "components/dream_team/dream_team";
 import GameweekSummary from "components/gameweek_summary/gameweek_summary";
 import { AppLayout, ComponentContainer, Notifier } from "components/layout";
 
-export function GameweekLivePage(): JSX.Element {
+export const GameweekLivePage = (): JSX.Element => {
   const [user, userLoading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -26,29 +26,31 @@ export function GameweekLivePage(): JSX.Element {
   const renderDreamTeam = (): JSX.Element => {
     if (gameStatus === gameStatusValues.GAME_OK) {
       return <DreamTeam />;
-    } else {
-      return <Notifier message={gameStatus} />;
     }
+
+    return <Notifier message={gameStatus} />;
+
   };
 
   const renderGameweekSummary = (): JSX.Element => {
     if (gameStatus === gameStatusValues.GAME_OK) {
       return <GameweekSummary />;
-    } else {
-      return <Notifier message={gameStatus} />;
     }
+
+    return <Notifier message={gameStatus} />;
+
   };
 
   return (
-    <AppLayout activeLabel="gameweek live" direction="row">
+    <AppLayout activeLabel='gameweek live' direction='row'>
       <Grid container columnSpacing={4}>
         <Grid item xs={9}>
-          <ComponentContainer title="dream team">{renderDreamTeam()}</ComponentContainer>
+          <ComponentContainer title='dream team'>{renderDreamTeam()}</ComponentContainer>
         </Grid>
         <Grid item xs={3}>
-          <ComponentContainer title="summary">{renderGameweekSummary()}</ComponentContainer>
+          <ComponentContainer title='summary'>{renderGameweekSummary()}</ComponentContainer>
         </Grid>
       </Grid>
     </AppLayout>
   );
-}
+};

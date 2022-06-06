@@ -6,7 +6,7 @@ export const fdrColours = {
   2: "#93E02D",
   3: "#F5CF38",
   4: "#DE7628",
-  5: "#FF193C",
+  5: "#FF193C"
 };
 
 export default function DifficultyLegend(): JSX.Element {
@@ -18,7 +18,7 @@ export default function DifficultyLegend(): JSX.Element {
         minHeight: "6vh",
         width: "60%",
         margin: "auto",
-        justifyContent: "center",
+        justifyContent: "center"
       }}
     >
       <Typography
@@ -27,7 +27,7 @@ export default function DifficultyLegend(): JSX.Element {
           textOverflow: "ellipsis",
           whiteSpace: "nowrap",
           flexShrink: 1,
-          overflow: "hidden",
+          overflow: "hidden"
         }}
       >
         Difficulty legend:
@@ -35,7 +35,7 @@ export default function DifficultyLegend(): JSX.Element {
       {Object.keys(fdrColours).map((colour) => {
         return (
           <Box
-            component="div"
+            component='div'
             key={colour}
             sx={{ backgroundColor: fdrColours[colour], p: "0 10px" }}
           >

@@ -5,7 +5,7 @@ import { logout } from "config/firebase";
 
 import { Notifier } from "components/layout";
 
-export function Logout(): JSX.Element {
+export const Logout = (): JSX.Element => {
   const [loggedOut, setLoggedOutStatus] = useState<boolean>(false);
 
   useEffect(() => {
@@ -14,11 +14,13 @@ export function Logout(): JSX.Element {
     });
   }, []);
 
-  return !loggedOut ? (
-    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-      <Notifier message="Logging out.." />
-    </Box>
-  ) : (
-    <Navigate to="/login" />
-  );
-}
+  return !loggedOut
+    ? (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+        <Notifier message='Logging out..' />
+      </Box>
+    )
+    : (
+      <Navigate to='/login' />
+    );
+};

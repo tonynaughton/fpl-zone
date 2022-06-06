@@ -18,10 +18,11 @@ describe("Fixture Box Tests", () => {
 
   const getTeamById = (teamId: number): string | undefined => {
     const team = allTeams.find((t) => t.id === teamId);
+
     return team?.short_name;
   };
 
-  function createComponent(): JSX.Element {
+  const createComponent = (): JSX.Element => {
     return (
       <FixtureBox
         fixtures={fixtures}
@@ -30,7 +31,7 @@ describe("Fixture Box Tests", () => {
         baseItem={baseItem}
       />
     );
-  }
+  };
 
   beforeEach(() => {
     fixtures = mockFixtures.slice(0, 2);
@@ -39,7 +40,7 @@ describe("Fixture Box Tests", () => {
 
   describe("Player fixture box", () => {
     beforeEach(() => {
-      baseItem = mockPlayers[0];
+      [baseItem] = mockPlayers;
       isPlayerTable = true;
     });
 
@@ -73,7 +74,7 @@ describe("Fixture Box Tests", () => {
 
   describe("Team fixture box", () => {
     beforeEach(() => {
-      baseItem = mockTeams[0];
+      [baseItem] = mockTeams;
       isPlayerTable = false;
     });
 

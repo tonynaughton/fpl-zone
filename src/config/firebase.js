@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateEmail,
+  updateEmail
 } from "firebase/auth";
 import {
   addDoc,
@@ -20,7 +20,7 @@ import {
   getFirestore,
   query,
   updateDoc,
-  where,
+  where
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -29,7 +29,7 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
@@ -41,7 +41,7 @@ const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
-    const user = res.user;
+    const { user } = res;
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     const name = user.displayName.split(" ");
@@ -52,7 +52,7 @@ export const signInWithGoogle = async () => {
         lastName: name[1] || "",
         authProvider: "google",
         email: user.email,
-        fplId: "",
+        fplId: ""
       });
     }
   } catch (err) {
@@ -77,14 +77,14 @@ export const registerWithEmailAndPassword = async (
 ) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
+    const { user } = res;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       firstName,
       lastName,
       authProvider: "local",
       email,
-      fplId,
+      fplId
     });
   } catch (err) {
     return err;
@@ -107,6 +107,7 @@ export const updateUserDetails = async (uid, firstName, lastName, email, fplId =
     updateEmail(auth.currentUser, email);
   } catch (err) {
     alert(err.message);
+
     return;
   }
   try {
@@ -114,11 +115,11 @@ export const updateUserDetails = async (uid, firstName, lastName, email, fplId =
       firstName,
       lastName,
       email,
-      fplId,
+      fplId
     });
   } catch (err) {
     alert(err.message);
-    return;
+
   }
 };
 
@@ -144,6 +145,7 @@ export const getUserFplTeamId = async (props) => {
   const userRef = doc(db, "users", docs.docs[0].id);
   const user = await getDoc(userRef);
   const userData = user.data();
+
   return userData.fplId;
 };
 

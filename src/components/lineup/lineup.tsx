@@ -22,7 +22,7 @@ export default function Lineup({
   bench,
   teamPicks,
   teamData,
-  compressed = false,
+  compressed = false
 }: LineupProps): JSX.Element {
   const appData = useContext(AppDataContext) as AppData;
 
@@ -44,11 +44,11 @@ export default function Lineup({
       overflow: "hidden",
       textOverflow: "ellipsis",
       width: "50%",
-      textAlign: "center",
+      textAlign: "center"
     };
 
     const statValueStyling = {
-      fontSize: '1.8vh',
+      fontSize: "1.8vh",
       fontWeight: 500
     };
 
@@ -60,11 +60,11 @@ export default function Lineup({
           rowGap: 1,
           width: "100%",
           maxWidth: "80%",
-          margin: "auto",
+          margin: "auto"
         }}
       >
         {teamData && (
-          <Typography component="h2" variant="h4" textAlign="center">
+          <Typography component='h2' variant='h4' textAlign='center'>
             {teamData.name}
           </Typography>
         )}
@@ -77,25 +77,25 @@ export default function Lineup({
             mt: 2,
             mb: 2,
             overflow: "hidden",
-            width: "100%",
+            width: "100%"
           }}
         >
           {teamPicks && (
-            <Typography sx={statKeyStyling} variant="h5">
+            <Typography sx={statKeyStyling} variant='h5'>
               Active Chip:
               <br />
               <Typography sx={statValueStyling}>{activeChip}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={statKeyStyling} variant="h5">
+            <Typography sx={statKeyStyling} variant='h5'>
               GW Points:
               <br />
               <Typography sx={statValueStyling}>{totalPoints}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={statKeyStyling} variant="h5">
+            <Typography sx={statKeyStyling} variant='h5'>
               Overall Rank:
               <br />
               <Typography sx={statValueStyling}>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
@@ -109,7 +109,7 @@ export default function Lineup({
   const renderSelected = (): JSX.Element => {
     return (
       <Box
-        data-testid="first-xi-players"
+        data-testid='first-xi-players'
         sx={{
           pl: "5%",
           pr: "5%",
@@ -123,7 +123,7 @@ export default function Lineup({
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
-          width: "100%",
+          width: "100%"
         }}
       >
         {selected.map((positionGroup, key) => {
@@ -134,11 +134,12 @@ export default function Lineup({
                 display: "flex",
                 justifyContent: "space-around",
                 alignItems: "center",
-                width: "100%",
+                width: "100%"
               }}
             >
               {positionGroup.map((player, key) => {
                 const pick = teamPicks?.picks.find((pick) => pick.element === player.id);
+
                 return (
                   <Player
                     player={player}
@@ -164,12 +165,12 @@ export default function Lineup({
         sx={{
           display: "flex",
           alignItems: "center",
-          flexDirection: "column",
+          flexDirection: "column"
         }}
       >
-        <Typography variant="h5">Bench</Typography>
+        <Typography variant='h5'>Bench</Typography>
         <Box
-          data-testid="bench-players"
+          data-testid='bench-players'
           sx={{
             display: "flex",
             width: "100%",
@@ -183,6 +184,7 @@ export default function Lineup({
         >
           {sortedBench.map((player, key) => {
             const pick = teamPicks?.picks.find((pick) => pick.element === player.id);
+
             return (
               <Player
                 player={player}

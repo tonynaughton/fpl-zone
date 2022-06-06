@@ -9,7 +9,7 @@ import {
   Button,
   Link as MuiLink,
   Snackbar,
-  TextField,
+  TextField
 } from "@mui/material";
 import { auth, sendPasswordReset } from "config/firebase";
 import { delay } from "helpers";
@@ -20,7 +20,7 @@ interface FormInput {
   email: string;
 }
 
-export function ResetPage(): JSX.Element {
+export const ResetPage = (): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ export function ResetPage(): JSX.Element {
   };
 
   const defaultValues = {
-    email: "",
+    email: ""
   };
 
   const { control, handleSubmit } = useForm<FormInput>({ defaultValues });
@@ -52,31 +52,31 @@ export function ResetPage(): JSX.Element {
   const onSendPasswordReset = async (data: FormInput): Promise<void> => {
     try {
       await sendPasswordReset(data.email).catch((err) => {
-        setSnackbar("Error: " + err);
-        return;
+        setSnackbar(`Error: ${err}`);
+
       });
       setSnackbar("Password reset email sent");
       await delay(1500);
       navigate("/login");
     } catch (err) {
-      setSnackbar("Cannot send password reset email: " + err, "error");
+      setSnackbar(`Cannot send password reset email: ${err}`, "error");
     }
   };
 
   return (
     <AuthLayout>
-      <Box component="div">
+      <Box component='div'>
         <form onSubmit={handleSubmit(onSendPasswordReset)}>
           <Controller
-            name="email"
+            name='email'
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => {
               return (
                 <TextField
-                  className="text-input"
-                  margin="normal"
+                  className='text-input'
+                  margin='normal'
                   required
-                  placeholder="Email"
+                  placeholder='Email'
                   fullWidth
                   error={!!error}
                   autoFocus
@@ -88,23 +88,23 @@ export function ResetPage(): JSX.Element {
           />
           <Button
             sx={{ mt: 5 }}
-            className="action-button"
-            color="secondary"
-            type="submit"
+            className='action-button'
+            color='secondary'
+            type='submit'
             fullWidth
-            variant="contained"
+            variant='contained'
           >
             Send password reset email
           </Button>
         </form>
         <MuiLink
-          textAlign="center"
-          color="black"
-          component="a"
-          underline="none"
-          href="/register"
-          display="block"
-          className="auth-link"
+          textAlign='center'
+          color='black'
+          component='a'
+          underline='none'
+          href='/register'
+          display='block'
+          className='auth-link'
         >
           Don&apos;t have an account? Click to register.
         </MuiLink>
@@ -114,14 +114,14 @@ export function ResetPage(): JSX.Element {
           onClose={handleSnackbarClose}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "right",
+            horizontal: "right"
           }}
         >
           <Alert
             onClose={handleSnackbarClose}
             severity={snackbarSeverity as AlertColor}
             elevation={6}
-            variant="filled"
+            variant='filled'
           >
             {snackbarMessage}
           </Alert>
@@ -129,4 +129,4 @@ export function ResetPage(): JSX.Element {
       </Box>
     </AuthLayout>
   );
-}
+};

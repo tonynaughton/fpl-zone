@@ -10,7 +10,7 @@ import {
   Button,
   Link as MuiLink,
   Snackbar,
-  TextField,
+  TextField
 } from "@mui/material";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "config/firebase";
 import { FirebaseResponse } from "types/firebase";
@@ -22,13 +22,13 @@ interface FormInput {
   password: string;
 }
 
-export function LoginForm(): JSX.Element {
+export const LoginForm = (): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
   const defaultValues = {
     email: "",
-    password: "",
+    password: ""
   };
 
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -58,6 +58,7 @@ export function LoginForm(): JSX.Element {
       }
     };
     document.addEventListener("keydown", listener);
+
     return () => {
       document.removeEventListener("keydown", listener);
     };
@@ -70,91 +71,91 @@ export function LoginForm(): JSX.Element {
         data.email,
         data.password
       )) as FirebaseResponse;
-      setSnackbar("Registration failed: " + response.message, "error");
+      setSnackbar(`Registration failed: ${response.message}`, "error");
     } catch (err) {
-      setSnackbar("Registration failed: " + err, "warning");
+      setSnackbar(`Registration failed: ${err}`, "warning");
     }
   };
 
   return (
     <AuthLayout>
-      <Box component="div">
+      <Box component='div'>
         <form onSubmit={handleSubmit(onLoginClick)}>
           <Controller
-            name="email"
+            name='email'
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <TextField
                 autoFocus
-                className="text-input"
-                margin="normal"
-                placeholder="Email"
+                className='text-input'
+                margin='normal'
+                placeholder='Email'
                 required
                 fullWidth
                 error={!!error}
                 value={value}
                 onChange={onChange}
-                type="email"
+                type='email'
               />
             )}
           />
           <Controller
-            name="password"
+            name='password'
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <TextField
                 sx={{ mt: 2 }}
                 autoFocus
-                className="text-input"
-                placeholder="Password"
+                className='text-input'
+                placeholder='Password'
                 fullWidth
                 error={!!error}
                 required
                 value={value}
                 onChange={onChange}
-                type="password"
+                type='password'
               />
             )}
           />
           <Button
             sx={{ mt: 2, fontSize: "1.8em", textTransform: "none" }}
-            color="secondary"
+            color='secondary'
             fullWidth
-            variant="contained"
-            type="submit"
+            variant='contained'
+            type='submit'
           >
             Login
           </Button>
         </form>
         <Button
-          color="info"
+          color='info'
           onClick={signInWithGoogle}
           sx={{ mt: 2, fontSize: "1.8em", textTransform: "none" }}
           fullWidth
-          variant="contained"
+          variant='contained'
         >
           <GoogleIcon sx={{ mr: 2 }} />
           Login with Google
         </Button>
         <MuiLink
-          textAlign="center"
-          color="black"
-          component="a"
-          underline="none"
-          href="/reset"
-          display="block"
-          className="auth-link"
+          textAlign='center'
+          color='black'
+          component='a'
+          underline='none'
+          href='/reset'
+          display='block'
+          className='auth-link'
         >
           Forgot Password?
         </MuiLink>
         <MuiLink
-          textAlign="center"
-          color="black"
-          component="a"
-          underline="none"
-          href="/register"
-          display="block"
-          className="auth-link"
+          textAlign='center'
+          color='black'
+          component='a'
+          underline='none'
+          href='/register'
+          display='block'
+          className='auth-link'
         >
           Don&apos;t have an account? Click to register.
         </MuiLink>
@@ -164,14 +165,14 @@ export function LoginForm(): JSX.Element {
           onClose={handleSnackbarClose}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "right",
+            horizontal: "right"
           }}
         >
           <Alert
             onClose={handleSnackbarClose}
             severity={snackbarSeverity as AlertColor}
             elevation={6}
-            variant="filled"
+            variant='filled'
           >
             {snackbarMessage}
           </Alert>
@@ -179,4 +180,4 @@ export function LoginForm(): JSX.Element {
       </Box>
     </AuthLayout>
   );
-}
+};

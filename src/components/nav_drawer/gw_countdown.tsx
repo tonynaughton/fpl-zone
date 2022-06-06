@@ -28,31 +28,32 @@ export default function GameweekCountdown(): JSX.Element {
 
   const renderer = ({ days, hours, minutes, completed }: CountdownRenderProps): JSX.Element => {
     const gameweekName = nextGameweek.name.toUpperCase();
-    const daysLabel = days ? days + " day" + (days > 1 ? "s" : "") : "";
-    const hoursLabel = hours ? hours + " hr" + (hours > 1 ? "s" : "") : "";
-    const minsLabel = minutes ? minutes + " min" + (minutes > 1 ? "s" : "") : "";
+    const daysLabel = days ? `${days} day${days > 1 ? "s" : ""}` : "";
+    const hoursLabel = hours ? `${hours} hr${hours > 1 ? "s" : ""}` : "";
+    const minsLabel = minutes ? `${minutes} min${minutes > 1 ? "s" : ""}` : "";
     const countdown = [daysLabel, hoursLabel, minsLabel].join(" ");
     if (completed) {
       return (
-        <Typography variant="h5">
+        <Typography variant='h5'>
           {gameweekName.toUpperCase()}
           <br />
           in progress
         </Typography>
       );
-    } else {
-      return (
-        <Typography variant="h5">
-          {gameweekName} DEADLINE:
-          <br />
-          {countdown.toUpperCase()}
-        </Typography>
-      );
     }
+
+    return (
+      <Typography variant='h5'>
+        {gameweekName} DEADLINE:
+        <br />
+        {countdown.toUpperCase()}
+      </Typography>
+    );
+
   };
 
   return (
-    <Box textAlign="center" sx={{ pb: 2 }}>
+    <Box textAlign='center' sx={{ pb: 2 }}>
       <Countdown date={deadline} renderer={renderer} />
     </Box>
   );

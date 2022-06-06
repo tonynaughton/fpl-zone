@@ -15,7 +15,7 @@ interface PlayerProps {
 const renderArmband = (isVice = false): JSX.Element => {
   return (
     <Box
-      data-testid="armband-container"
+      data-testid='armband-container'
       sx={{
         borderRadius: "50%",
         backgroundColor: "white",
@@ -41,7 +41,7 @@ export default function Player({
   compressed = false,
   multiplier: multipler,
   isCaptain = false,
-  isViceCaptain = false,
+  isViceCaptain = false
 }: PlayerProps): JSX.Element {
   return (
     <Box
@@ -50,12 +50,12 @@ export default function Player({
         flexDirection: "column",
         alginItems: "center",
         justifyContent: "center",
-        position: "relative",
+        position: "relative"
       }}
       data-testid={player.id}
     >
       <Box
-        data-testid="kit-img-container"
+        data-testid='kit-img-container'
         sx={{
           display: "block",
           width: compressed ? "3.5vw" : "5.5vw",
@@ -63,7 +63,7 @@ export default function Player({
           margin: "auto",
           backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/kits/${player.team_code}.png)`,
           backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
+          backgroundRepeat: "no-repeat"
         }}
       />
       <Box
@@ -71,14 +71,14 @@ export default function Player({
           color: "black",
           textAlign: "center",
           width: compressed ? "7.5vw" : "9.5vw",
-          maxWidth: "180px",
+          maxWidth: "180px"
         }}
       >
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
-            height: "4vh",
+            height: "4vh"
           }}
         >
           <Box
@@ -89,16 +89,16 @@ export default function Player({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              p: compressed ? 0.5 : 1,
+              p: compressed ? 0.5 : 1
             }}
           >
             <Typography
-              variant="body2"
-              data-testid="player-name"
+              variant='body2'
+              data-testid='player-name'
               sx={{
                 overflow: "hidden",
                 textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
+                whiteSpace: "nowrap"
               }}
             >
               {player.web_name}
@@ -112,10 +112,10 @@ export default function Player({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "#5fdd6b",
+              backgroundColor: "#5fdd6b"
             }}
           >
-            <Typography variant="body2" data-testid="player-score">
+            <Typography variant='body2' data-testid='player-score'>
               {player.event_points * multipler}
             </Typography>
           </Box>
@@ -127,9 +127,9 @@ export default function Player({
               alignItems: "center",
               backgroundColor: "black",
               "& :hover": {
-                cursor: "pointer",
+                cursor: "pointer"
               },
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <Info sx={{ color: "white", fontSize: "1.2vw" }} />

@@ -7,7 +7,7 @@ interface FplIdModalProps {
   setModalOpen: (value: boolean) => void;
 }
 
-export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX.Element {
+export const FplIdModal = ({ modalVisible, setModalOpen }: FplIdModalProps): JSX.Element => {
   const modalStyle = {
     position: "absolute",
     top: "50%",
@@ -17,7 +17,7 @@ export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX
     bgcolor: "#F9F9F9",
     border: "2px solid black",
     boxShadow: 24,
-    p: 4,
+    p: 4
   };
 
   return (
@@ -29,9 +29,9 @@ export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX
             <Typography>
               1. Login in to&nbsp;
               <Link
-                href="https://fantasy.premierleague.com/"
+                href='https://fantasy.premierleague.com/'
                 sx={{ display: "inline-block" }}
-                target="_blank"
+                target='_blank'
               >
                 fantasy.premierleague.com
               </Link>
@@ -47,8 +47,8 @@ export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX
           <ListItem>
             <img
               src={`${process.env.PUBLIC_URL}/assets/images/fpl-id.png`}
-              alt="fpl-id-location"
-              width="100%"
+              alt='fpl-id-location'
+              width='100%'
             />
           </ListItem>
           <ListItem>
@@ -60,7 +60,7 @@ export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX
           </ListItem>
         </List>
         <IconButton
-          size="large"
+          size='large'
           sx={{ position: "absolute", top: 15, right: 15 }}
           onClick={(): void => setModalOpen(false)}
         >
@@ -69,4 +69,4 @@ export function FplIdModal({ modalVisible, setModalOpen }: FplIdModalProps): JSX
       </Box>
     </Modal>
   );
-}
+};

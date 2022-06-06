@@ -10,12 +10,12 @@ interface ComponentContainerProps {
   children: JSX.Element;
 }
 
-export function ComponentContainer({
+export const ComponentContainer = ({
   title,
   children,
   isLoading,
-  error,
-}: ComponentContainerProps): JSX.Element {
+  error
+}: ComponentContainerProps): JSX.Element => {
   const renderChildren = (): JSX.Element => {
     if (isLoading) {
       return (
@@ -33,14 +33,16 @@ export function ComponentContainer({
           <Notifier type='error' message={error} />
         </Box>
       );
-    } else {
-      return children;
     }
+
+    return children;
+
   };
+
   return (
     <Box
-      width="100%"
-      border="2px solid black"
+      width='100%'
+      border='2px solid black'
       sx={{ boxShadow: 4, position: "relative", height: "100%" }}
     >
       <Box
@@ -54,12 +56,12 @@ export function ComponentContainer({
           left: 0,
           borderBottom: "2px solid black",
           borderRight: "2px solid black",
-          height: "auto",
+          height: "auto"
         }}
       >
-        <Typography variant="h3">{title.toUpperCase()}</Typography>
+        <Typography variant='h3'>{title.toUpperCase()}</Typography>
       </Box>
       {renderChildren()}
     </Box>
   );
-}
+};
