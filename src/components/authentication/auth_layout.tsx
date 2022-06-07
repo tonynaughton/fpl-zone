@@ -12,7 +12,7 @@ export const AuthLayout = (props: { children: JSX.Element }): JSX.Element => {
       sx={{ backgroundColor: "#16B7EA" }}
     >
       <Container component='main' maxWidth='sm'>
-        <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt="fpl-zone-logo" width='100%' />
+        <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt='fpl-zone-logo' width='100%' />
         {props.children}
       </Container>
     </Box>

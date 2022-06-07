@@ -31,13 +31,13 @@ export const AppLayout = (props: React.PropsWithChildren<LayoutProps>): JSX.Elem
         <Container sx={{ flexGrow: "1" }}>
           <Box
             sx={{
-              height: "90vh",
-              maxHeight: "90vh",
+              height: "100%",
               display: "flex",
               flexDirection: props.direction,
               justifyContent: "space-between",
               columnGap: 3,
-              rowGap: 3
+              rowGap: 3,
+              pb: 2.5
             }}
           >
             {props.children}

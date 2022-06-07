@@ -40,7 +40,7 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
       sx={{ rowGap: "3vh" }}
     >
       {type ? renderIcon(type) : renderIcon("loading")}
-      <Typography variant='body1' textAlign='center'>{message || "Loading.."}</Typography>
+      <Typography textAlign='center'>{message || "Loading.."}</Typography>
     </Box>
   );
 };

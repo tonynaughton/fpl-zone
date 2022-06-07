@@ -44,7 +44,7 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
       anchor='left'
     >
       <Box className='logo-container' sx={{ p: "1vh" }}>
-        <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt="fpl-zone-logo" width='100%' />
+        <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt='fpl-zone-logo' width='100%' />
         <GameweekCountdown />
       </Box>
       <Box height='100%' display='flex' flexDirection='column' justifyContent='space-between'>

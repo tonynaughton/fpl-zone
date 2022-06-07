@@ -51,7 +51,7 @@ export default function FixtureBox({
               overflow: "hidden"
             }}
           >
-            <Typography variant='body2' sx={{ textOverflow: "ellipsis", overflow: "hidden" }}>
+            <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden" }}>
               {text}
             </Typography>
           </Box>
