@@ -366,15 +366,15 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
             flexDirection: "column"
           }}
         >
-          <Typography sx={{ fontSize: "1.2em" }}>
+          <Typography>
             Are you sure you want to delete your account?
           </Typography>
           <Box sx={{ pt: 2, display: "flex", justifyContent: "flex-end", width: "100%" }}>
             <Button onClick={handleDeleteAccountClick}>
-              <Typography sx={{ fontSize: "1.2em" }}>Confirm</Typography>
+              <Typography>Confirm</Typography>
             </Button>
             <Button onClick={(): void => setDeleteAccountModalOpen(false)}>
-              <Typography sx={{ fontSize: "1.2em" }}>Cancel</Typography>
+              <Typography>Cancel</Typography>
             </Button>
           </Box>
         </Box>

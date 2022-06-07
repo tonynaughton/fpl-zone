@@ -47,11 +47,6 @@ export default function Lineup({
       textAlign: "center"
     };
 
-    const statValueStyling = {
-      fontSize: "1.8vh",
-      fontWeight: 500
-    };
-
     return (
       <Box
         sx={{
@@ -64,7 +59,7 @@ export default function Lineup({
         }}
       >
         {teamData && (
-          <Typography component='h2' variant='h4' textAlign='center'>
+          <Typography variant='h2' textAlign='center'>
             {teamData.name}
           </Typography>
         )}
@@ -81,24 +76,24 @@ export default function Lineup({
           }}
         >
           {teamPicks && (
-            <Typography sx={statKeyStyling} variant='h5'>
+            <Typography sx={statKeyStyling} variant='h3'>
               Active Chip:
               <br />
-              <Typography sx={statValueStyling}>{activeChip}</Typography>
+              <Typography>{activeChip}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={statKeyStyling} variant='h5'>
+            <Typography sx={statKeyStyling} variant='h3'>
               GW Points:
               <br />
-              <Typography sx={statValueStyling}>{totalPoints}</Typography>
+              <Typography>{totalPoints}</Typography>
             </Typography>
           )}
           {teamData && (
-            <Typography sx={statKeyStyling} variant='h5'>
+            <Typography sx={statKeyStyling} variant='h3'>
               Overall Rank:
               <br />
-              <Typography sx={statValueStyling}>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
+              <Typography>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
             </Typography>
           )}
         </Box>
@@ -168,7 +163,7 @@ export default function Lineup({
           flexDirection: "column"
         }}
       >
-        <Typography variant='h5'>Bench</Typography>
+        <Typography variant='h4'>Bench</Typography>
         <Box
           data-testid='bench-players'
           sx={{
@@ -202,7 +197,7 @@ export default function Lineup({
 
   return (
     <>
-      <Box sx={{ height: "100%", p: 3, display: "flex", flexDirection: "column", rowGap: 1.5 }}>
+      <Box sx={{ height: "100%", p: 3, display: "flex", flexDirection: "column", rowGap: "2%" }}>
         {!!teamData && !!teamPicks && renderLineupInfo()}
         {renderSelected()}
         {renderBench()}

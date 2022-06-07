@@ -93,7 +93,6 @@ export default function Player({
             }}
           >
             <Typography
-              variant='body2'
               data-testid='player-name'
               sx={{
                 overflow: "hidden",
@@ -115,7 +114,7 @@ export default function Player({
               backgroundColor: "#5fdd6b"
             }}
           >
-            <Typography variant='body2' data-testid='player-score'>
+            <Typography data-testid='player-score'>
               {player.event_points * multipler}
             </Typography>
           </Box>

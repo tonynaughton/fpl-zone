@@ -2,8 +2,6 @@ import React from "react";
 import { Box } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 
-import Logo from "components/logo/logo";
-
 import GameweekCountdown from "./gw_countdown";
 import MenuList from "./menu_list";
 import { MenuItem } from "./types";
@@ -15,7 +13,6 @@ const mainMenuItems: MenuItem[] = [
   { label: "my team", href: "/my-team" },
   { label: "fixtures & results", href: "/fixtures-and-results" },
   { label: "analysis", href: "/analysis" }
-  // { label: "social", href: "/social" },
 ];
 
 const endMenuItems: MenuItem[] = [
@@ -46,8 +43,8 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
       variant='permanent'
       anchor='left'
     >
-      <Box className='logo-container' sx={{ pt: "1.5vh", pb: "1.5vh" }}>
-        <Logo compactLogo />
+      <Box className='logo-container' sx={{ p: "1vh" }}>
+        <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt="fpl-zone-logo" width='100%' />
         <GameweekCountdown />
       </Box>
       <Box height='100%' display='flex' flexDirection='column' justifyContent='space-between'>

@@ -69,9 +69,6 @@ export default function PlayerPerformanceModal({
       (value, key) => !!(elementStats.find((el) => el.name === key) && value > 0)
     );
 
-    const headerStyle = { backgroundColor: "rgb(224, 224, 224)" };
-    const cellTextStyle = { fontSize: "16px" };
-
     return (
       <Fragment key={key}>
         <Box sx={{ display: "flex", alginItems: "center", width: "80%" }}>
@@ -81,12 +78,12 @@ export default function PlayerPerformanceModal({
           <TableContainer component={Box} key={key}>
             <Table>
               <TableHead>
-                <TableRow sx={headerStyle}>
+                <TableRow sx={{ backgroundColor: "rgb(224, 224, 224)" }}>
                   <TableCell>
-                    <Typography sx={{ fontWeight: 700, ...cellTextStyle }}>Statistic</Typography>
+                    <Typography>Statistic</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography sx={{ fontWeight: 700, ...cellTextStyle }}>Value</Typography>
+                    <Typography>Value</Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -95,12 +92,12 @@ export default function PlayerPerformanceModal({
                   return (
                     <TableRow key={key}>
                       <TableCell>
-                        <Typography sx={cellTextStyle}>
+                        <Typography>
                           {elementStats.find((el) => el.name === stat)?.label}
                         </Typography>
                       </TableCell>
                       <TableCell>
-                        <Typography sx={cellTextStyle}>{stats[stat]}</Typography>
+                        <Typography>{stats[stat]}</Typography>
                       </TableCell>
                     </TableRow>
                   );
@@ -144,7 +141,6 @@ export default function PlayerPerformanceModal({
           zIndex: 2000,
           overflow: "scroll"
         }}
-        // https://stackoverflow.com/questions/49637047/prevent-onclick-from-firing-if-another-element-is-on-top
         onClick={(event): void => event.stopPropagation()}
       >
         <IconButton
@@ -178,11 +174,10 @@ export default function PlayerPerformanceModal({
                   width: "100%"
                 }}
               >
-                <Typography variant='h4'>{playerName}</Typography>
+                <Typography variant='h3'>{playerName}</Typography>
                 {playerPerformances && playerPerformances?.length > 0
                   ? (
-                    playerPerformances.map((performance, key) => renderPlayerPerformance(performance, key)
-                    )
+                    playerPerformances.map((performance, key) => renderPlayerPerformance(performance, key))
                   )
                   : (
                     <Typography>No fixtures</Typography>

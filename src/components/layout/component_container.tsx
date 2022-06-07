@@ -59,7 +59,7 @@ export const ComponentContainer = ({
           height: "auto"
         }}
       >
-        <Typography variant='h3'>{title.toUpperCase()}</Typography>
+        <Typography variant='h2'>{title.toUpperCase()}</Typography>
       </Box>
       {renderChildren()}
     </Box>

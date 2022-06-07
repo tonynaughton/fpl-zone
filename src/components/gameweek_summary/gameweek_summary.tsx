@@ -116,7 +116,6 @@ export default function GameweekSummary(): JSX.Element {
           {img}
           <Typography
             data-testid={`${item.label}-player-name`}
-            variant='h6'
             sx={{
               textOverflow: "ellipsis",
               textAlign: "center",

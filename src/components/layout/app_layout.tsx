@@ -17,24 +17,22 @@ export const AppLayout = (props: React.PropsWithChildren<LayoutProps>): JSX.Elem
         sx={{
           flexGrow: 1,
           height: "100vh",
-          maxHeight: "100vh",
           display: "flex",
           flexDirection: "column"
         }}
       >
         <Typography
           textAlign='center'
-          component='h1'
-          variant='h2'
-          sx={{ m: 1.5, height: "auto" }}
+          variant='h1'
+          sx={{ p: 1.5 }}
         >
           {props.activeLabel.toUpperCase()}
         </Typography>
-        <Container sx={{ flexGrow: "1", mb: 3 }} maxWidth={false}>
+        <Container sx={{ flexGrow: "1" }}>
           <Box
             sx={{
-              height: "100%",
-              maxHeight: "100vh",
+              height: "90vh",
+              maxHeight: "90vh",
               display: "flex",
               flexDirection: props.direction,
               justifyContent: "space-between",
