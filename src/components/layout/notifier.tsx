@@ -32,11 +32,11 @@ const renderIcon = (type: string): JSX.Element => {
 export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element => {
   return (
     <Box
-      maxWidth='80%'
-      display='flex'
-      justifyContent='center'
       alignItems='center'
+      display='flex'
       flexDirection='column'
+      justifyContent='center'
+      maxWidth='80%'
       sx={{ rowGap: "3vh" }}
     >
       {type ? renderIcon(type) : renderIcon("loading")}

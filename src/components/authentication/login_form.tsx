@@ -83,63 +83,68 @@ export const LoginForm = (): JSX.Element => {
       <Box component='div'>
         <form onSubmit={handleSubmit(onLoginClick)}>
           <Controller
-            name='email'
             control={control}
+            name='email'
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <TextField
-                size='small'
-                margin='normal'
                 autoFocus
                 className='text-input'
+                error={!!error}
+                fullWidth
+                margin='normal'
+                onChange={onChange}
                 placeholder='Email'
                 required
-                fullWidth
-                error={!!error}
-                value={value}
-                onChange={onChange}
+                size='small'
                 type='email'
+                value={value}
               />
             )}
           />
           <Controller
-            name='password'
             control={control}
+            name='password'
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <TextField
-                size='small'
                 autoFocus
                 className='text-input'
-                placeholder='Password'
-                fullWidth
                 error={!!error}
-                required
-                value={value}
+                fullWidth
                 onChange={onChange}
+                placeholder='Password'
+                required
+                size='small'
                 type='password'
+                value={value}
               />
             )}
           />
           <Button
-            sx={{ mt: 2 }}
             color='secondary'
             fullWidth
-            variant='contained'
+            sx={{ mt: 2 }}
             type='submit'
+            variant='contained'
           >
-            <Typography variant='h3' textTransform='none'>Login</Typography>
+            <Typography textTransform='none' variant='h3'>Login</Typography>
           </Button>
         </form>
         <Button
           color='info'
+          fullWidth
           onClick={signInWithGoogle}
           sx={{ mt: 2, fontSize: "1.8em", textTransform: "none" }}
-          fullWidth
           variant='contained'
         >
           <GoogleIcon sx={{ mr: 2 }} />
-          <Typography variant='h3' textTransform='none'>Login with Google</Typography>
+          <Typography textTransform='none' variant='h3'>Login with Google</Typography>
         </Button>
         <MuiLink
+          className='auth-link'
+          color='black'
+          component='a'
+          display='block'
+          href='/reset'
           sx={{
             mt: 2,
             "&:hover": {
@@ -147,16 +152,16 @@ export const LoginForm = (): JSX.Element => {
             }
           }}
           textAlign='center'
-          color='black'
-          component='a'
           underline='none'
-          href='/reset'
-          display='block'
-          className='auth-link'
         >
           Forgot Password?
         </MuiLink>
         <MuiLink
+          className='auth-link'
+          color='black'
+          component='a'
+          display='block'
+          href='/register'
           sx={{
             mt: 2,
             "&:hover": {
@@ -164,28 +169,23 @@ export const LoginForm = (): JSX.Element => {
             }
           }}
           textAlign='center'
-          color='black'
-          component='a'
           underline='none'
-          href='/register'
-          display='block'
-          className='auth-link'
         >
           Don&apos;t have an account? Click to register.
         </MuiLink>
         <Snackbar
-          autoHideDuration={6000}
-          open={snackbarOpen}
-          onClose={handleSnackbarClose}
           anchorOrigin={{
             vertical: "bottom",
             horizontal: "right"
           }}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+          open={snackbarOpen}
         >
           <Alert
+            elevation={6}
             onClose={handleSnackbarClose}
             severity={snackbarSeverity as AlertColor}
-            elevation={6}
             variant='filled'
           >
             {snackbarMessage}

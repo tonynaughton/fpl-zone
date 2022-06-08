@@ -29,14 +29,14 @@ export default function ComparisonTable({
           "& .MuiTableCell-root": { borderBottom: borderStyle }
         }}
       >
-        <TableCell sx={{ height: "inherit" }}></TableCell>
+        <TableCell sx={{ height: "inherit" }} />
         {selectedPlayers.map((player, key) => {
           const imgId = player.photo.replace(".jpg", "");
           const playerImgUrl = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
 
           return (
             <TableCell key={key} sx={{ height: "inherit" }}>
-              <img src={playerImgUrl} alt='player-img' height='100%' width='auto' />
+              <img alt='player-img' height='100%' src={playerImgUrl} width='auto' />
             </TableCell>
           );
         })}
@@ -47,13 +47,14 @@ export default function ComparisonTable({
   const renderPlayerNameRow = (): JSX.Element => {
     return (
       <TableRow sx={{ "& .MuiTableCell-root:last-child": { borderRight: "none" } }}>
-        <TableCell sx={customCellStyle}></TableCell>
+        <TableCell sx={customCellStyle} />
         {selectedPlayers.map((player, key) => {
           return (
             <TableCell key={key} sx={customCellStyle}>
               <Typography
                 sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
-              >{`${player.first_name} ${player.second_name}`}</Typography>
+              >{`${player.first_name} ${player.second_name}`}
+              </Typography>
             </TableCell>
           );
         })}
@@ -79,9 +80,9 @@ export default function ComparisonTable({
                 }}
               >
                 <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/crests/${player.team_code}.png`}
                   alt='team-crest'
                   height='25px'
+                  src={`${process.env.PUBLIC_URL}/assets/images/crests/${player.team_code}.png`}
                 />
                 {getTeamById(player.team, teams).name}
               </Box>

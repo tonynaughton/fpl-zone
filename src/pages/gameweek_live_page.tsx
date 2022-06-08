@@ -43,7 +43,7 @@ export const GameweekLivePage = (): JSX.Element => {
 
   return (
     <AppLayout activeLabel='gameweek live' direction='row'>
-      <Grid container columnSpacing={4}>
+      <Grid columnSpacing={4} container>
         <Grid item xs={9}>
           <ComponentContainer title='dream team'>{renderDreamTeam()}</ComponentContainer>
         </Grid>

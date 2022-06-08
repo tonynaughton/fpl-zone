@@ -58,7 +58,7 @@ export default function AppContent(): JSX.Element {
 
     return (
       <Startup>
-        <Notifier type='error' message={`An error has occured: ${errorMessage}`} />
+        <Notifier message={`An error has occured: ${errorMessage}`} type='error' />
       </Startup>
     );
   }
@@ -68,23 +68,23 @@ export default function AppContent(): JSX.Element {
     <AppDataContext.Provider value={appData}>
       <Router>
         <Routes>
-          <Route path='*' element={<LoginPage />} />
-          <Route path='/' element={<LoginPage />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/register' element={<RegisterPage />} />
-          <Route path='/reset' element={<ResetPage />} />
-          <Route path='/logout' element={<Logout />} />
-          <Route path='/account' element={<PrivateRoute component={<AccountPage />} />} />
+          <Route element={<LoginPage />} path='*' />
+          <Route element={<LoginPage />} path='/' />
+          <Route element={<LoginPage />} path='/login' />
+          <Route element={<RegisterPage />} path='/register' />
+          <Route element={<ResetPage />} path='/reset' />
+          <Route element={<Logout />} path='/logout' />
+          <Route element={<PrivateRoute component={<AccountPage />} />} path='/account' />
           <Route
-            path='/gameweek-live'
             element={<PrivateRoute component={<GameweekLivePage />} />}
+            path='/gameweek-live'
           />
-          <Route path='/my-team' element={<PrivateRoute component={<MyTeamPage />} />} />
+          <Route element={<PrivateRoute component={<MyTeamPage />} />} path='/my-team' />
           <Route
-            path='/fixtures-and-results'
             element={<PrivateRoute component={<FixturesAndResultsPage />} />}
+            path='/fixtures-and-results'
           />
-          <Route path='/analysis' element={<PrivateRoute component={<AnalysisPage />} />} />
+          <Route element={<PrivateRoute component={<AnalysisPage />} />} path='/analysis' />
         </Routes>
       </Router>
     </AppDataContext.Provider>

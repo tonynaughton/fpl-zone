@@ -56,9 +56,9 @@ export const MyTeamPage = (): JSX.Element => {
   // Component which renders if user has no FPL ID stored
   const EnterFPLID = (): JSX.Element => {
     return (
-      <Box display='flex' alignItems='center' justifyContent='center' sx={{ height: "100%" }}>
+      <Box alignItems='center' display='flex' justifyContent='center' sx={{ height: "100%" }}>
         Please add your FPL ID in&nbsp;
-        <Link to='/account' style={{ textDecoration: "none", color: "#16B7EA" }}>
+        <Link style={{ textDecoration: "none", color: "#16B7EA" }} to='/account'>
           Account
         </Link>
       </Box>
@@ -101,19 +101,19 @@ export const MyTeamPage = (): JSX.Element => {
 
       return (
         <Lineup
-          selected={getSelectedPlayers()}
           bench={getBenchPlayers()}
-          teamPicks={teamPicks as TeamPicks}
-          teamData={teamData as TeamData}
           compressed
+          selected={getSelectedPlayers()}
+          teamData={teamData as TeamData}
+          teamPicks={teamPicks as TeamPicks}
         />
       );
     } else if (fplIdFetchError) {
-      return <Notifier type='error' message='Error getting FPL ID' />;
+      return <Notifier message='Error getting FPL ID' type='error' />;
     } else if (teamDataFetchError) {
-      return <Notifier type='error' message='Error getting your team data - is your FPL ID correct?' />;
+      return <Notifier message='Error getting your team data - is your FPL ID correct?' type='error' />;
     } else if (teamPicksFetchError) {
-      return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
+      return <Notifier message='Error getting your team picks - is your FPL ID correct?' type='error' />;
     }
 
     return <Notifier message='Fetching data..' />;
@@ -131,11 +131,11 @@ export const MyTeamPage = (): JSX.Element => {
 
       return <FdrTable players={fdrPlayers} />;
     } else if (fplIdFetchError) {
-      return <Notifier type='error' message='Error getting FPL ID' />;
+      return <Notifier message='Error getting FPL ID' type='error' />;
     } else if (teamDataFetchError) {
-      return <Notifier type='error' message='Error getting your team data - is your FPL ID correct?' />;
+      return <Notifier message='Error getting your team data - is your FPL ID correct?' type='error' />;
     } else if (teamPicksFetchError) {
-      return <Notifier type='error' message='Error getting your team picks - is your FPL ID correct?' />;
+      return <Notifier message='Error getting your team picks - is your FPL ID correct?' type='error' />;
     }
 
     return <Notifier message='Fetching data..' />;
@@ -148,10 +148,10 @@ export const MyTeamPage = (): JSX.Element => {
 
   return (
     <AppLayout activeLabel='my team' direction='row'>
-      <ComponentContainer title='team' isLoading={isLoading} error={errorMessage}>
+      <ComponentContainer error={errorMessage} isLoading={isLoading} title='team'>
         {renderTeamComponent()}
       </ComponentContainer>
-      <ComponentContainer title='fdr' isLoading={isLoading} error={errorMessage}>
+      <ComponentContainer error={errorMessage} isLoading={isLoading} title='fdr'>
         {renderFdrTable()}
       </ComponentContainer>
     </AppLayout>

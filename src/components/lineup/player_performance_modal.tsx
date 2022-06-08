@@ -112,6 +112,7 @@ export default function PlayerPerformanceModal({
 
   return (
     <Box
+      onClick={(): void => setPlayerInfoModalOpen(false)}
       sx={{
         display: isPlayerInfoModalOpen ? "block" : "none",
         position: "absolute",
@@ -121,9 +122,9 @@ export default function PlayerPerformanceModal({
         width: "100%",
         backgroundColor: "rgb(0, 0, 0, 0.5)"
       }}
-      onClick={(): void => setPlayerInfoModalOpen(false)}
     >
       <Box
+        onClick={(event): void => event.stopPropagation()}
         sx={{
           display: isPlayerInfoModalOpen ? "flex" : "none",
           position: "absolute",
@@ -141,7 +142,6 @@ export default function PlayerPerformanceModal({
           zIndex: 2000,
           overflow: "scroll"
         }}
-        onClick={(event): void => event.stopPropagation()}
       >
         <IconButton
           onClick={(): void => setPlayerInfoModalOpen(false)}

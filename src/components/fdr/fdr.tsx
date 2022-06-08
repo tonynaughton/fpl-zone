@@ -68,6 +68,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
     return (
       <Box
+        data-testid={testId}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -75,12 +76,11 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
           ml: 0.5,
           whiteSpace: "nowrap"
         }}
-        data-testid={testId}
       >
         <img
-          src={`${process.env.PUBLIC_URL}/assets/images/crests/${teamId}.png`}
           alt='crest-img'
           height='22px'
+          src={`${process.env.PUBLIC_URL}/assets/images/crests/${teamId}.png`}
         />
         <Box
           sx={{
@@ -118,20 +118,20 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
     return (
       <TableRow
+        data-testid={testId}
         key={index}
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-        data-testid={testId}
       >
-        <TableCell component='th' scope='row' key={index}>
+        <TableCell component='th' key={index} scope='row'>
           {renderBaseItemName(baseItem)}
         </TableCell>
         {_.map(teamFixtures, (fixtures, key) => (
           <FixtureBox
-            fixtures={fixtures}
             baseItem={baseItem}
+            fixtures={fixtures}
+            getTeamById={getTeamById}
             isPlayerTable={!!players}
             key={key}
-            getTeamById={getTeamById}
           />
         ))}
       </TableRow>
@@ -141,19 +141,19 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   return _.isEmpty(nextFiveGameweekFixtures)
     ? (
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-        <Notifier type={fdrStatus === gameStatusValues.SEASON_FINISHED ? "warning" : ""} message={fdrStatus} />
+        <Notifier message={fdrStatus} type={fdrStatus === gameStatusValues.SEASON_FINISHED ? "warning" : ""} />
       </Box>
     )
     : (
       <Box
+        alignItems='center'
+        data-testid='fdr-container'
         display='flex'
         flexDirection='column'
-        justifyContent='center'
-        alignItems='center'
-        overflow='hidden'
         height='100%'
+        justifyContent='center'
+        overflow='hidden'
         sx={{ "& .MuiTableContainer-root": { height: "100%" } }}
-        data-testid='fdr-container'
       >
         <DifficultyLegend />
         <TableContainer>
@@ -170,7 +170,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
               <TableRow data-testid='table-head-column-title'>
                 <TableCell sx={{ textAlign: "center" }}>{nameColumnTitle}</TableCell>
                 {nextFiveGameweeks.map((gameweekNumber, index) => (
-                  <TableCell sx={{ textAlign: "center" }} key={index}>
+                  <TableCell key={index} sx={{ textAlign: "center" }}>
                   GW {gameweekNumber}
                   </TableCell>
                 ))}

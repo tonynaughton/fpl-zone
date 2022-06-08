@@ -14,13 +14,13 @@ export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Ele
     <List>
       {items.map((item: MenuItem, index: number) => (
         <ListItemButton
+          component={Link}
+          disableRipple
+          key={index}
           sx={{
             p: "1vw",
             "&:hover": { backgroundColor: "inherit" }
           }}
-          disableRipple={true}
-          key={index}
-          component={Link}
           to={item.href}
         >
           <ListItemText

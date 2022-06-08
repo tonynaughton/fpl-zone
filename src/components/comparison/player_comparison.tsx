@@ -65,34 +65,33 @@ export default function PlayerComparison({
       >
         <Typography sx={{ fontSize: 22, color: "black" }}>Players: </Typography>
         <Autocomplete
-          multiple
-          id='player-select-options'
-          groupBy={(player: Player): string => getTeamById(player.team, teams).name}
-          options={players}
+          clearOnBlur
           disableCloseOnSelect
           disableListWrap
-          fullWidth
-          open={dropdownOpen}
-          onOpen={(): void => setDropdownOpen(true)}
-          onClose={(): void => setDropdownOpen(false)}
-          limitTags={MAX_PLAYER_COUNT}
-          getOptionLabel={(player: Player): string => `${player.first_name} ${player.second_name}`}
-          renderOption={renderDropdownOption}
-          renderInput={(params): JSX.Element => <TextField {...params} />}
-          size='small'
-          onChange={handleAutocompleteChange}
-          clearOnBlur
-          onBlur={(): void => setDropdownOpen(false)}
           disabled={selectedPlayers.length >= MAX_PLAYER_COUNT}
+          fullWidth
+          getOptionLabel={(player: Player): string => `${player.first_name} ${player.second_name}`}
+          groupBy={(player: Player): string => getTeamById(player.team, teams).name}
+          id='player-select-options'
+          limitTags={MAX_PLAYER_COUNT}
+          multiple
+          onBlur={(): void => setDropdownOpen(false)}
+          onChange={handleAutocompleteChange}
+          onClose={(): void => setDropdownOpen(false)}
+          onOpen={(): void => setDropdownOpen(true)}
+          open={dropdownOpen}
+          options={players}
+          renderInput={(params): JSX.Element => <TextField {...params} />}
+          renderOption={renderDropdownOption}
           renderTags={(player: Player[], getTagProps): JSX.Element[] => player.map((player, index) => (
             <Chip
               {...getTagProps({ index })}
+              disabled={false}
               key={index}
               label={<Typography>{player.web_name}</Typography>}
-              disabled={false}
             />
-          ))
-          }
+          ))}
+          size='small'
         />
       </Box>
     );
@@ -148,27 +147,27 @@ export default function PlayerComparison({
       {selectedPlayers.length > 0
         ? (
           <ComparisonTable
+            elementStats={elementStats}
             selectedPlayers={selectedPlayers}
             teams={teams}
-            elementStats={elementStats}
           />
         )
         : (
           renderAddPlayersBtn()
         )}
       <Snackbar
-        autoHideDuration={5000}
-        open={snackbarOpen}
-        onClose={(): void => setSnackbarOpen(false)}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "right"
         }}
+        autoHideDuration={5000}
+        onClose={(): void => setSnackbarOpen(false)}
+        open={snackbarOpen}
       >
         <Alert
+          elevation={6}
           onClose={(): void => setSnackbarOpen(false)}
           severity='error'
-          elevation={6}
           variant='filled'
         >
           Maximum player count reached ({MAX_PLAYER_COUNT})

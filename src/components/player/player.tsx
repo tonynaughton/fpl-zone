@@ -45,6 +45,7 @@ export default function Player({
 }: PlayerProps): JSX.Element {
   return (
     <Box
+      data-testid={player.id}
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -52,7 +53,6 @@ export default function Player({
         justifyContent: "center",
         position: "relative"
       }}
-      data-testid={player.id}
     >
       <Box
         data-testid='kit-img-container'

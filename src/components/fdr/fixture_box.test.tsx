@@ -25,10 +25,10 @@ describe("Fixture Box Tests", () => {
   const createComponent = (): JSX.Element => {
     return (
       <FixtureBox
-        fixtures={fixtures}
-        isPlayerTable={isPlayerTable}
-        getTeamById={getTeamById}
         baseItem={baseItem}
+        fixtures={fixtures}
+        getTeamById={getTeamById}
+        isPlayerTable={isPlayerTable}
       />
     );
   };

@@ -23,7 +23,7 @@ export const Startup = (props: { children: JSX.Element }): JSX.Element => {
           maxWidth: "30rem"
         }}
       >
-        <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt='fpl-zone-logo' width='100%' />
+        <img alt='fpl-zone-logo' src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} width='100%' />
         {props.children}
       </Box>
     </Box>

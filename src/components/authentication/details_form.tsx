@@ -164,131 +164,131 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
           <>
             <form onSubmit={handleSubmit(onDetailsSave)}>
               <Controller
+                control={control}
                 name='firstName'
-                control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <TextField
-                    sx={{ mt: 2 }}
+                    error={!!error}
+                    fullWidth
                     margin='dense'
-                    size='small'
+                    onChange={onChange}
                     placeholder='First name'
-                    fullWidth
-                    error={!!error}
                     required
+                    size='small'
+                    sx={{ mt: 2 }}
                     value={value}
-                    onChange={onChange}
                   />
                 )}
               />
               <Controller
+                control={control}
                 name='lastName'
-                control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <TextField
-                    size='small'
-                    margin='dense'
-                    placeholder='Last name'
-                    fullWidth
                     error={!!error}
-                    required
-                    value={value}
+                    fullWidth
+                    margin='dense'
                     onChange={onChange}
+                    placeholder='Last name'
+                    required
+                    size='small'
+                    value={value}
                   />
                 )}
               />
               <Controller
-                name='email'
                 control={control}
+                name='email'
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <TextField
-                    size='small'
-                    margin='dense'
                     className='text-input'
-                    placeholder='Email'
-                    fullWidth
                     error={!!error}
-                    required
-                    value={value}
+                    fullWidth
+                    margin='dense'
                     onChange={onChange}
+                    placeholder='Email'
+                    required
+                    size='small'
                     type='email'
+                    value={value}
                   />
                 )}
               />
               {registerPage && (
                 <>
                   <Controller
-                    name='password'
                     control={control}
+                    name='password'
                     render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                       <TextField
-                        size='small'
-                        margin='dense'
-                        placeholder='Password'
-                        fullWidth
                         error={!!error}
-                        required
-                        value={value}
+                        fullWidth
+                        margin='dense'
                         onChange={onChange}
+                        placeholder='Password'
+                        required
+                        size='small'
                         type='password'
+                        value={value}
                       />
                     )}
                   />
                   <Controller
-                    name='repeatPassword'
                     control={control}
+                    name='repeatPassword'
                     render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                       <TextField
-                        size='small'
-                        margin='dense'
-                        placeholder='Repeat password'
-                        fullWidth
                         error={!!error}
-                        required
-                        value={value}
-                        onChange={onChange}
-                        type='password'
+                        fullWidth
                         inputProps={{ form: { autoComplete: "off" } }}
+                        margin='dense'
+                        onChange={onChange}
+                        placeholder='Repeat password'
+                        required
+                        size='small'
+                        type='password'
+                        value={value}
                       />
                     )}
                   />
                 </>
               )}
               <Controller
-                name='fplId'
                 control={control}
+                name='fplId'
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <OutlinedInput
-                    sx={{ mt: 1 }}
-                    size='small'
-                    placeholder='FPL ID (optional)'
-                    fullWidth
-                    error={!!error}
-                    value={value}
-                    onChange={onChange}
                     endAdornment={
                       <InputAdornment position='end'>
                         <IconButton
                           aria-label='show fpl id modal'
+                          edge='end'
                           onClick={(): void => setShowFplIdModal(true)}
                           onMouseDown={(event): void => event.preventDefault()}
-                          edge='end'
                         >
                           <Info />
                         </IconButton>
                       </InputAdornment>
                     }
+                    error={!!error}
+                    fullWidth
+                    onChange={onChange}
+                    placeholder='FPL ID (optional)'
+                    size='small'
+                    sx={{ mt: 1 }}
+                    value={value}
                   />
                 )}
               />
               <Button
-                sx={{ mt: 2 }}
                 className='action-button'
                 color='secondary'
-                type='submit'
                 fullWidth
+                sx={{ mt: 2 }}
+                type='submit'
                 variant='contained'
               >
-                <Typography variant='h3' textTransform='none'>
+                <Typography textTransform='none' variant='h3'>
                   {registerPage ? "Register" : "Update"}
                 </Typography>
               </Button>
@@ -297,27 +297,32 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                   className='action-button'
                   color='error'
                   fullWidth
-                  variant='contained'
                   onClick={(): void => setDeleteAccountModalOpen(true)}
+                  variant='contained'
                 >
-                  {"Delete Account"}
+                  Delete Account
                 </Button>
               )}
             </form>
             {registerPage && (
               <>
                 <Button
+                  className='action-button google-login'
                   color='info'
+                  fullWidth
                   onClick={signInWithGoogle}
                   sx={{ mt: 2 }}
-                  className='action-button google-login'
-                  fullWidth
                   variant='contained'
                 >
                   <GoogleIcon sx={{ mr: 2 }} />
-                  <Typography variant='h3' textTransform='none'>Login with Google</Typography>
+                  <Typography textTransform='none' variant='h3'>Login with Google</Typography>
                 </Button>
                 <MuiLink
+                  className='auth-link'
+                  color='black'
+                  component='a'
+                  display='block'
+                  href='/login'
                   sx={{
                     mt: 2,
                     "&:hover": {
@@ -325,12 +330,7 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                     }
                   }}
                   textAlign='center'
-                  color='black'
-                  component='a'
                   underline='none'
-                  href='/login'
-                  display='block'
-                  className='auth-link'
                   variant='body1'
                 >
                 Already have an account? Login now.
@@ -341,24 +341,24 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
         )}
       <FplIdModal modalVisible={showFplIdModal} setModalOpen={setShowFplIdModal} />
       <Snackbar
-        autoHideDuration={6000}
-        open={snackbarOpen}
-        onClose={handleSnackbarClose}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "right"
         }}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        open={snackbarOpen}
       >
         <Alert
+          elevation={6}
           onClose={handleSnackbarClose}
           severity={snackbarSeverity as AlertColor}
-          elevation={6}
           variant='filled'
         >
           {snackbarMessage}
         </Alert>
       </Snackbar>
-      <Modal open={deleteAccountModalOpen} onClose={(): void => setDeleteAccountModalOpen(false)}>
+      <Modal onClose={(): void => setDeleteAccountModalOpen(false)} open={deleteAccountModalOpen}>
         <Box
           sx={{
             position: "absolute",

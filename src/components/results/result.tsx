@@ -26,53 +26,53 @@ export const RenderResult = (
   return (
     <Box sx={{ display: "flex", alignItems: "center", width: "100%", columnGap: 4 }}>
       <Box
-        display='flex'
         alignItems='center'
-        overflow='hidden'
-        marginRight='auto'
+        display='flex'
         flex='1'
         justifyContent='left'
+        marginRight='auto'
+        overflow='hidden'
       >
         <img
-          src={`${process.env.PUBLIC_URL}/assets/images/crests/${homeTeam.code}.png`}
           alt='team-crest'
           height={30}
+          src={`${process.env.PUBLIC_URL}/assets/images/crests/${homeTeam.code}.png`}
           width={30}
         />
         <Typography
           key={key}
+          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", ml: 1 }}
           textAlign='left'
           variant='h5'
-          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", ml: 1 }}
         >
           {appData.isCompact ? homeTeam.short_name : homeTeam.name }
         </Typography>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", flex: 0.3 }}>
-        <Typography variant='h5' key={key} sx={{ whiteSpace: "nowrap" }}>
+        <Typography key={key} sx={{ whiteSpace: "nowrap" }} variant='h5'>
           {matchStatus}
         </Typography>
       </Box>
       <Box
-        display='flex'
         alignItems='center'
-        overflow='hidden'
-        marginLeft='auto'
+        display='flex'
         flex='1'
         justifyContent='right'
+        marginLeft='auto'
+        overflow='hidden'
       >
         <Typography
           key={key}
+          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", mr: 1 }}
           textAlign='right'
           variant='h5'
-          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", mr: 1 }}
         >
           {appData.isCompact ? awayTeam.short_name : awayTeam.name }
         </Typography>
         <img
-          src={`${process.env.PUBLIC_URL}/assets/images/crests/${awayTeam.code}.png`}
           alt='team-crest'
           height={30}
+          src={`${process.env.PUBLIC_URL}/assets/images/crests/${awayTeam.code}.png`}
           width={30}
         />
       </Box>

@@ -19,7 +19,7 @@ export const FixturesAndResultsPage = (): JSX.Element => {
 
   return (
     <AppLayout activeLabel='fixtures & results' direction='row'>
-      <Grid container columnSpacing={4}>
+      <Grid columnSpacing={4} container>
         <Grid item xs={8}>
           <ComponentContainer title='fdr'>
             <FdrTable />

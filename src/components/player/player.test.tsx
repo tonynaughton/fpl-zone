@@ -19,12 +19,12 @@ describe("Player Tests", () => {
   const createComponent = (): JSX.Element => {
     return (
       <Player
-        player={mockPlayer}
-        handlePlayerPerformanceClick={mockHandlePlayerPerformanceClick}
         compressed={false}
-        multiplier={mockMultiplier}
+        handlePlayerPerformanceClick={mockHandlePlayerPerformanceClick}
         isCaptain={mockIsCaptain}
         isViceCaptain={mockIsViceCaptain}
+        multiplier={mockMultiplier}
+        player={mockPlayer}
       />
     );
   };
