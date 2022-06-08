@@ -60,7 +60,7 @@ export default function PlayerComparison({
           JustifyContent: "center",
           columnGap: 2,
           p: 2,
-          pl: "10vw"
+          pl: "170px"
         }}
       >
         <Typography sx={{ fontSize: 22, color: "black" }}>Players: </Typography>
@@ -88,7 +88,7 @@ export default function PlayerComparison({
             <Chip
               {...getTagProps({ index })}
               key={index}
-              label={<Typography variant='body2'>{player.web_name}</Typography>}
+              label={<Typography>{player.web_name}</Typography>}
               disabled={false}
             />
           ))

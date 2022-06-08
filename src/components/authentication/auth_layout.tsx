@@ -1,8 +1,6 @@
 import React from "react";
 import { Box, Container } from "@mui/material";
 
-import Logo from "components/logo/logo";
-
 export const AuthLayout = (props: { children: JSX.Element }): JSX.Element => {
   return (
     <Box
@@ -14,7 +12,7 @@ export const AuthLayout = (props: { children: JSX.Element }): JSX.Element => {
       sx={{ backgroundColor: "#16B7EA" }}
     >
       <Container component='main' maxWidth='sm'>
-        <Logo />
+        <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt='fpl-zone-logo' width='100%' />
         {props.children}
       </Container>
     </Box>

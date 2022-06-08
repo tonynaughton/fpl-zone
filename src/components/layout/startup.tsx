@@ -1,8 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
 
-import Logo from "components/logo/logo";
-
 export const Startup = (props: { children: JSX.Element }): JSX.Element => {
   return (
     <Box
@@ -21,10 +19,11 @@ export const Startup = (props: { children: JSX.Element }): JSX.Element => {
           height: "100%",
           margin: "auto",
           rowGap: "5%",
-          width: "50%"
+          width: "50%",
+          maxWidth: "30rem"
         }}
       >
-        <Logo />
+        <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt='fpl-zone-logo' width='100%' />
         {props.children}
       </Box>
     </Box>

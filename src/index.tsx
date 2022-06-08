@@ -2,44 +2,47 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CssBaseline } from "@mui/material";
-import { createTheme,ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AppContent from "app_content";
 
 import "./global.css";
 
+const breakpoints = {
+  values: {
+    xs: 400,
+    sm: 576,
+    md: 768,
+    lg: 1500,
+    xl: 2000
+  }
+};
+
 const customTheme = createTheme({
+  breakpoints,
   typography: {
     fontFamily: ["Grandstander"].join(","),
-    fontWeightRegular: 500,
     h1: {
       fontWeight: 600,
-      fontSize: 42
+      fontSize: "2rem"
     },
     h2: {
       fontWeight: 600,
-      fontSize: 32
+      fontSize: "1.4rem"
     },
     h3: {
       fontWeight: 600,
-      fontSize: "2.4vh"
+      fontSize: "1.2rem"
     },
     h4: {
       fontWeight: 600,
-      fontSize: 25
+      fontSize: "1rem"
     },
     h5: {
       fontWeight: 600,
-      fontSize: 18
-    },
-    h6: {
-      fontWeight: 600,
-      fontSize: "1.8vh"
+      fontSize: "0.8rem"
     },
     body1: {
-      fontSize: 16
-    },
-    body2: {
-      fontSize: "1.6vh"
+      fontSize: "0.9rem"
     }
   },
   palette: {
@@ -96,11 +99,6 @@ const customTheme = createTheme({
         input: {
           color: "black"
         }
-      }
-    },
-    MuiTypography: {
-      defaultProps: {
-        variant: "body2"
       }
     }
   }

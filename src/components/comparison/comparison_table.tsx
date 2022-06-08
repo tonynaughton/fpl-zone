@@ -14,27 +14,29 @@ export default function ComparisonTable({
   teams,
   elementStats
 }: ComparisonTableProps): JSX.Element {
+
   const borderStyle = "1px solid rgb(196, 196, 196)";
   const customCellStyle = {
     border: borderStyle,
     backgroundColor: "rgb(224, 224, 224)"
   };
+
   const renderPlayerImageRow = (): JSX.Element => {
     return (
       <TableRow
         sx={{
-          height: "160px",
+          height: "12vh",
           "& .MuiTableCell-root": { borderBottom: borderStyle }
         }}
       >
-        <TableCell></TableCell>
+        <TableCell sx={{ height: "inherit" }}></TableCell>
         {selectedPlayers.map((player, key) => {
           const imgId = player.photo.replace(".jpg", "");
           const playerImgUrl = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
 
           return (
-            <TableCell key={key} sx={{ height: "160px" }}>
-              <img src={playerImgUrl} alt='player-img' height='160px' width='auto' />
+            <TableCell key={key} sx={{ height: "inherit" }}>
+              <img src={playerImgUrl} alt='player-img' height='100%' width='auto' />
             </TableCell>
           );
         })}
@@ -51,7 +53,6 @@ export default function ComparisonTable({
             <TableCell key={key} sx={customCellStyle}>
               <Typography
                 sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
-                variant='body2'
               >{`${player.first_name} ${player.second_name}`}</Typography>
             </TableCell>
           );
@@ -64,7 +65,7 @@ export default function ComparisonTable({
     return (
       <TableRow>
         <TableCell sx={customCellStyle}>
-          <Typography variant='body2'>Team</Typography>
+          <Typography>Team</Typography>
         </TableCell>
         {selectedPlayers.map((player, key) => {
           return (
@@ -96,7 +97,8 @@ export default function ComparisonTable({
       aria-label='player comparison table'
       sx={{
         tableLayout: "fixed",
-        flexGrow: "1"
+        flexGrow: "1",
+        height: "100%"
       }}
     >
       <TableBody>
@@ -109,7 +111,6 @@ export default function ComparisonTable({
               <TableCell sx={customCellStyle}>
                 <Typography
                   sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
-                  variant='body2'
                 >
                   {stat.label}
                 </Typography>
@@ -117,7 +118,7 @@ export default function ComparisonTable({
               {selectedPlayers.map((player, key) => {
                 return (
                   <TableCell key={key}>
-                    <Typography variant='body2'>{player[stat.name]}</Typography>
+                    <Typography>{player[stat.name]}</Typography>
                   </TableCell>
                 );
               })}
