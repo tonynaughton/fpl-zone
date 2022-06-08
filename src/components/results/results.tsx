@@ -31,36 +31,36 @@ export default function Results(): JSX.Element {
 
   return (
     <Box
+      alignItems='center'
       display='flex'
       flexDirection='column'
-      alignItems='center'
-      justifyContent='center'
-      sx={{ p: 2, pt: 3 }}
       height='100%'
       id='results-container'
+      justifyContent='center'
       position='relative'
+      sx={{ p: 2, pt: 3 }}
     >
-      <Box display='flex' alignItems='center' justifyContent='center'>
+      <Box alignItems='center' display='flex' justifyContent='center'>
         <IconButton
           aria-label='prev-gameweek'
-          size='medium'
-          onClick={(): void => setSelectedGameweek(selectedGameweek - 1)}
-          disabled={selectedGameweek <= 1}
           data-testid='prev-gameweek-btn'
+          disabled={selectedGameweek <= 1}
+          onClick={(): void => setSelectedGameweek(selectedGameweek - 1)}
+          size='medium'
         >
           <Tooltip title='Previous gameweek'>
             <ArrowBack />
           </Tooltip>
         </IconButton>
-        <Typography variant='h5' data-testid='selected-gameweek-title'>
+        <Typography data-testid='selected-gameweek-title' variant='h5'>
           GAMEWEEK {selectedGameweek}
         </Typography>
         <IconButton
           aria-label='prev-gameweek'
-          size='medium'
-          onClick={(): void => setSelectedGameweek(selectedGameweek + 1)}
-          disabled={selectedGameweek >= 38}
           data-testid='next-gameweek-btn'
+          disabled={selectedGameweek >= 38}
+          onClick={(): void => setSelectedGameweek(selectedGameweek + 1)}
+          size='medium'
         >
           <Tooltip title='Next gameweek'>
             <ArrowForward />
@@ -68,12 +68,12 @@ export default function Results(): JSX.Element {
         </IconButton>
       </Box>
       <Box
+        alignItems='center'
+        className='fixture-list-container'
         display='flex'
         flexDirection='column'
         justifyContent='flex-start'
-        alignItems='center'
         sx={{ height: "100%", width: "100%" }}
-        className='fixture-list-container'
       >
         {gameweekFixtures.map((result, key) => {
           const kickOffTime = new Date(result.kickoff_time || "");
@@ -88,16 +88,14 @@ export default function Results(): JSX.Element {
 
           return (
             <Box
-              key={key}
-              width='100%'
+              alignItems='center'
+              data-testid={`result-${result.id}`}
               display='flex'
               flexDirection='column'
-              alignItems='center'
-              justifyContent='center'
               height='10%'
-              data-testid={`result-${result.id}`}
-              onClick={(): void => (kickOffTime < new Date() ? handleResultClick(result) : undefined)
-              }
+              justifyContent='center'
+              key={key}
+              onClick={(): void => (kickOffTime < new Date() ? handleResultClick(result) : undefined)}
               sx={{
                 padding: "0 0.5em",
                 borderBottom: "1px solid rgb(224, 224, 224)",
@@ -109,6 +107,7 @@ export default function Results(): JSX.Element {
                   cursor: matchStarted ? "pointer" : "default"
                 }
               }}
+              width='100%'
             >
               {RenderResult(customResult, matchStarted, appData.teams, key)}
             </Box>
@@ -118,9 +117,9 @@ export default function Results(): JSX.Element {
       {selectedResult && (
         <MatchDetailsModal
           isResultsModalOpen={isResultsModalOpen}
-          setResultsModalOpen={setResultsModalOpen}
-          selectedResult={selectedResult}
           renderResult={RenderResult}
+          selectedResult={selectedResult}
+          setResultsModalOpen={setResultsModalOpen}
         />
       )}
     </Box>

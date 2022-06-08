@@ -21,7 +21,7 @@ export const FplIdModal = ({ modalVisible, setModalOpen }: FplIdModalProps): JSX
   };
 
   return (
-    <Modal open={modalVisible} onClose={(): void => setModalOpen(false)}>
+    <Modal onClose={(): void => setModalOpen(false)} open={modalVisible}>
       <Box sx={modalStyle}>
         <Typography>How to get your FPL ID:</Typography>
         <List>
@@ -46,8 +46,8 @@ export const FplIdModal = ({ modalVisible, setModalOpen }: FplIdModalProps): JSX
           </ListItem>
           <ListItem>
             <img
-              src={`${process.env.PUBLIC_URL}/assets/images/fpl-id.png`}
               alt='fpl-id-location'
+              src={`${process.env.PUBLIC_URL}/assets/images/fpl-id.png`}
               width='100%'
             />
           </ListItem>
@@ -60,9 +60,9 @@ export const FplIdModal = ({ modalVisible, setModalOpen }: FplIdModalProps): JSX
           </ListItem>
         </List>
         <IconButton
+          onClick={(): void => setModalOpen(false)}
           size='large'
           sx={{ position: "absolute", top: 15, right: 15 }}
-          onClick={(): void => setModalOpen(false)}
         >
           <Close />
         </IconButton>

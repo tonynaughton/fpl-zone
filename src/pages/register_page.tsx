@@ -5,7 +5,7 @@ import { AuthLayout, DetailsForm } from "../components/authentication";
 export const RegisterPage = (): JSX.Element => {
   return (
     <AuthLayout>
-      <DetailsForm registerPage={true} />
+      <DetailsForm registerPage />
     </AuthLayout>
   );
 };

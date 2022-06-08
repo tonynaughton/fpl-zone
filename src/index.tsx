@@ -78,6 +78,7 @@ const theme = createTheme({
   }
 });
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const getTypographyProps = (fontSize: number, fontWeight?: number) => {
   return {
     fontFamily: ["Grandstander"].join(","),

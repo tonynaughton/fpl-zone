@@ -23,7 +23,7 @@ describe("Lineup Tests", () => {
   const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
-        <Lineup selected={mockSelected} bench={mockBench} />
+        <Lineup bench={mockBench} selected={mockSelected} />
       </AppDataContext.Provider>
     );
   };

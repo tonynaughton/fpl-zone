@@ -69,21 +69,21 @@ export const ResetPage = (): JSX.Element => {
       <Box component='div'>
         <form onSubmit={handleSubmit(onSendPasswordReset)}>
           <Controller
-            name='email'
             control={control}
+            name='email'
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => {
               return (
                 <TextField
-                  size='small'
-                  margin='dense'
-                  className='text-input'
-                  required
-                  placeholder='Email'
-                  fullWidth
-                  error={!!error}
                   autoFocus
-                  value={value}
+                  className='text-input'
+                  error={!!error}
+                  fullWidth
+                  margin='dense'
                   onChange={onChange}
+                  placeholder='Email'
+                  required
+                  size='small'
+                  value={value}
                 />
               );
             }}
@@ -91,14 +91,19 @@ export const ResetPage = (): JSX.Element => {
           <Button
             className='action-button'
             color='secondary'
-            type='submit'
             fullWidth
+            type='submit'
             variant='contained'
           >
-            <Typography variant='h3' textTransform='none'>Send password reset email</Typography>
+            <Typography textTransform='none' variant='h3'>Send password reset email</Typography>
           </Button>
         </form>
         <MuiLink
+          className='auth-link'
+          color='black'
+          component='a'
+          display='block'
+          href='/register'
           sx={{
             mt: 2,
             "&:hover": {
@@ -106,28 +111,23 @@ export const ResetPage = (): JSX.Element => {
             }
           }}
           textAlign='center'
-          color='black'
-          component='a'
           underline='none'
-          href='/register'
-          display='block'
-          className='auth-link'
         >
           Don&apos;t have an account? Click to register.
         </MuiLink>
         <Snackbar
-          autoHideDuration={6000}
-          open={snackbarOpen}
-          onClose={handleSnackbarClose}
           anchorOrigin={{
             vertical: "bottom",
             horizontal: "right"
           }}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+          open={snackbarOpen}
         >
           <Alert
+            elevation={6}
             onClose={handleSnackbarClose}
             severity={snackbarSeverity as AlertColor}
-            elevation={6}
             variant='filled'
           >
             {snackbarMessage}

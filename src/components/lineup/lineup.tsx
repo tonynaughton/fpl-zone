@@ -51,7 +51,7 @@ export default function Lineup({
         }}
       >
         {teamData && (
-          <Typography variant='h2' textAlign='center'>
+          <Typography textAlign='center' variant='h2'>
             {teamData.name}
           </Typography>
         )}
@@ -70,19 +70,19 @@ export default function Lineup({
         >
           {teamPicks && (
             <Box>
-              <Typography variant='h4' sx={{ mb: 1 }}>Active Chip:</Typography>
+              <Typography sx={{ mb: 1 }} variant='h4'>Active Chip:</Typography>
               <Typography>{activeChip}</Typography>
             </Box>
           )}
           {teamData && (
             <Box>
-              <Typography variant='h4' sx={{ mb: 1 }}>GW Points:</Typography>
+              <Typography sx={{ mb: 1 }} variant='h4'>GW Points:</Typography>
               <Typography>{totalPoints}</Typography>
             </Box>
           )}
           {teamData && (
             <Box>
-              <Typography variant='h4' sx={{ mb: 1 }}>Overall Rank:</Typography>
+              <Typography sx={{ mb: 1 }} variant='h4'>Overall Rank:</Typography>
               <Typography>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
             </Box>
           )}
@@ -127,13 +127,13 @@ export default function Lineup({
 
                 return (
                   <Player
-                    player={player}
-                    handlePlayerPerformanceClick={handlePlayerPerformanceClick}
-                    key={key}
                     compressed={compressed}
+                    handlePlayerPerformanceClick={handlePlayerPerformanceClick}
                     isCaptain={pick?.is_captain}
                     isViceCaptain={pick?.is_vice_captain}
+                    key={key}
                     multiplier={pick?.multiplier || 1}
+                    player={player}
                   />
                 );
               })}
@@ -172,11 +172,11 @@ export default function Lineup({
 
             return (
               <Player
-                player={player}
+                compressed={compressed}
                 handlePlayerPerformanceClick={handlePlayerPerformanceClick}
                 key={key}
-                compressed={compressed}
                 multiplier={pick?.multiplier || 1}
+                player={player}
               />
             );
           })}
@@ -194,10 +194,10 @@ export default function Lineup({
       </Box>
       {selectedPlayer && (
         <PlayerPerformanceModal
-          isPlayerPerformanceModalOpen={isPlayerPerformanceModalOpen}
-          setPlayerPerformanceModalOpen={setPlayerPerformanceModalOpen}
-          selectedPlayer={selectedPlayer}
           elementStats={appData.element_stats}
+          isPlayerPerformanceModalOpen={isPlayerPerformanceModalOpen}
+          selectedPlayer={selectedPlayer}
+          setPlayerPerformanceModalOpen={setPlayerPerformanceModalOpen}
           teams={appData.teams}
         />
       )}

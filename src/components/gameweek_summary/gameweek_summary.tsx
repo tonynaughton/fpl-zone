@@ -69,9 +69,9 @@ export default function GameweekSummary(): JSX.Element {
     const img: JSX.Element | null = item.teamCode
       ? (
         <img
-          src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
           alt={`${item.label}-crest-img`}
           height='80%'
+          src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
         />
       )
       : null;
@@ -93,13 +93,13 @@ export default function GameweekSummary(): JSX.Element {
       >
         <Typography
           data-testid={`${item.label}-label`}
-          variant='h3'
           sx={{
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
             textAlign: "center",
             overflow: "hidden"
           }}
+          variant='h3'
         >
           {item.label.toUpperCase()}
         </Typography>

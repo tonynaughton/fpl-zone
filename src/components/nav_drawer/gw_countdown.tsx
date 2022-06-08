@@ -53,7 +53,7 @@ export default function GameweekCountdown(): JSX.Element {
   };
 
   return (
-    <Box textAlign='center' sx={{ pb: 2 }}>
+    <Box sx={{ pb: 2 }} textAlign='center'>
       <Countdown date={deadline} renderer={renderer} />
     </Box>
   );

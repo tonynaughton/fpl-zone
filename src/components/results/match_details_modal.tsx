@@ -33,8 +33,8 @@ export default function MatchDetailsModal({
           {statValues.map((stat, key) => (
             <Box
               display='flex'
-              justifyContent={isAway ? "right" : "left"}
               flexDirection={isAway ? "row" : "row-reverse"}
+              justifyContent={isAway ? "right" : "left"}
               key={key}
               sx={{ whiteSpace: "nowrap", textOverflow: "hidden" }}
             >
@@ -51,9 +51,9 @@ export default function MatchDetailsModal({
               </Typography>
               &nbsp;&nbsp;
               <img
-                src={`${process.env.PUBLIC_URL}/assets/images/${statImageNames[identifier]}.png`}
                 alt={statImageNames[identifier]}
                 height={20}
+                src={`${process.env.PUBLIC_URL}/assets/images/${statImageNames[identifier]}.png`}
               />
             </Box>
           ))}
@@ -78,10 +78,10 @@ export default function MatchDetailsModal({
             pt: 1.5
           }}
         >
-          <Typography component='h4' variant='h5' sx={{ pb: 1 }}>
+          <Typography component='h4' sx={{ pb: 1 }} variant='h5'>
             {statTitle.label.toUpperCase()}
           </Typography>
-          <Grid container columnSpacing={2}>
+          <Grid columnSpacing={2} container>
             <Grid item xs={6}>
               {renderStatColumn(stats.h)}
             </Grid>
@@ -106,6 +106,7 @@ export default function MatchDetailsModal({
 
   return (
     <Box
+      onClick={(): void => setResultsModalOpen(false)}
       sx={{
         display: isResultsModalOpen ? "block" : "none",
         position: "absolute",
@@ -115,9 +116,10 @@ export default function MatchDetailsModal({
         width: "100%",
         backgroundColor: "rgb(0, 0, 0, 0.5)"
       }}
-      onClick={(): void => setResultsModalOpen(false)}
     >
       <Box
+        onClick={(event): void => event.stopPropagation()}
+        // https://stackoverflow.com/questions/49637047/prevent-onclick-from-firing-if-another-element-is-on-top
         sx={{
           display: isResultsModalOpen ? "flex" : "none",
           position: "absolute",
@@ -133,8 +135,6 @@ export default function MatchDetailsModal({
           rowGap: 1,
           zIndex: 2000
         }}
-        // https://stackoverflow.com/questions/49637047/prevent-onclick-from-firing-if-another-element-is-on-top
-        onClick={(event): void => event.stopPropagation()}
       >
         <IconButton
           onClick={(): void => setResultsModalOpen(false)}

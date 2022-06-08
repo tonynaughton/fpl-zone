@@ -30,7 +30,7 @@ export const ComponentContainer = ({
         <Box
           sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
         >
-          <Notifier type='error' message={error} />
+          <Notifier message={error} type='error' />
         </Box>
       );
     }
@@ -41,9 +41,9 @@ export const ComponentContainer = ({
 
   return (
     <Box
-      width='100%'
       border='2px solid black'
       sx={{ boxShadow: 4, position: "relative", height: "100%" }}
+      width='100%'
     >
       <Box
         sx={{

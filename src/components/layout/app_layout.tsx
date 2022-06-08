@@ -22,13 +22,13 @@ export const AppLayout = (props: React.PropsWithChildren<LayoutProps>): JSX.Elem
         }}
       >
         <Typography
+          sx={{ p: 1.5 }}
           textAlign='center'
           variant='h1'
-          sx={{ p: 1.5 }}
         >
           {props.activeLabel.toUpperCase()}
         </Typography>
-        <Container sx={{ flexGrow: "1" }} maxWidth='xl'>
+        <Container maxWidth='xl' sx={{ flexGrow: "1" }}>
           <Box
             sx={{
               height: "100%",
