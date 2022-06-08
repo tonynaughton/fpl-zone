@@ -33,8 +33,6 @@ import { Notifier } from "components/layout";
 
 import { FplIdModal } from ".";
 
-import "./authentication.css";
-
 interface DetailsFormProps {
   registerPage: boolean;
 }
@@ -170,8 +168,9 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                 control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <TextField
-                    className='text-input'
-                    margin='normal'
+                    sx={{ mt: 2 }}
+                    margin='dense'
+                    size='small'
                     placeholder='First name'
                     fullWidth
                     error={!!error}
@@ -186,8 +185,8 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                 control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <TextField
-                    className='text-input'
-                    margin='normal'
+                    size='small'
+                    margin='dense'
                     placeholder='Last name'
                     fullWidth
                     error={!!error}
@@ -202,8 +201,9 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                 control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <TextField
+                    size='small'
+                    margin='dense'
                     className='text-input'
-                    margin='normal'
                     placeholder='Email'
                     fullWidth
                     error={!!error}
@@ -221,8 +221,8 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                     control={control}
                     render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                       <TextField
-                        sx={{ mt: 2 }}
-                        className='text-input'
+                        size='small'
+                        margin='dense'
                         placeholder='Password'
                         fullWidth
                         error={!!error}
@@ -238,8 +238,8 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                     control={control}
                     render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                       <TextField
-                        sx={{ mt: 1 }}
-                        className='text-input'
+                        size='small'
+                        margin='dense'
                         placeholder='Repeat password'
                         fullWidth
                         error={!!error}
@@ -258,8 +258,8 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                 control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <OutlinedInput
-                    sx={{ mt: 2 }}
-                    className='text-input'
+                    sx={{ mt: 1 }}
+                    size='small'
                     placeholder='FPL ID (optional)'
                     fullWidth
                     error={!!error}
@@ -281,18 +281,19 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                 )}
               />
               <Button
-                sx={{ mt: 5 }}
+                sx={{ mt: 2 }}
                 className='action-button'
                 color='secondary'
                 type='submit'
                 fullWidth
                 variant='contained'
               >
-                {registerPage ? "Register" : "Update"}
+                <Typography variant='h3' textTransform='none'>
+                  {registerPage ? "Register" : "Update"}
+                </Typography>
               </Button>
               {!registerPage && (
                 <Button
-                  sx={{ mt: 3 }}
                   className='action-button'
                   color='error'
                   fullWidth
@@ -314,9 +315,15 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                   variant='contained'
                 >
                   <GoogleIcon sx={{ mr: 2 }} />
-                Login with Google
+                  <Typography variant='h3' textTransform='none'>Login with Google</Typography>
                 </Button>
                 <MuiLink
+                  sx={{
+                    mt: 2,
+                    "&:hover": {
+                      color: "white"
+                    }
+                  }}
                   textAlign='center'
                   color='black'
                   component='a'
@@ -324,6 +331,7 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                   href='/login'
                   display='block'
                   className='auth-link'
+                  variant='body1'
                 >
                 Already have an account? Login now.
                 </MuiLink>

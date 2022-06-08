@@ -12,39 +12,13 @@ const breakpoints = {
     xs: 400,
     sm: 576,
     md: 768,
-    lg: 1500,
-    xl: 2000
+    lg: 1024,
+    xl: 1440
   }
 };
 
-const customTheme = createTheme({
+const theme = createTheme({
   breakpoints,
-  typography: {
-    fontFamily: ["Grandstander"].join(","),
-    h1: {
-      fontWeight: 600,
-      fontSize: "2rem"
-    },
-    h2: {
-      fontWeight: 600,
-      fontSize: "1.4rem"
-    },
-    h3: {
-      fontWeight: 600,
-      fontSize: "1.2rem"
-    },
-    h4: {
-      fontWeight: 600,
-      fontSize: "1rem"
-    },
-    h5: {
-      fontWeight: 600,
-      fontSize: "0.8rem"
-    },
-    body1: {
-      fontSize: "0.9rem"
-    }
-  },
   palette: {
     primary: {
       main: "#16B7EA",
@@ -104,6 +78,36 @@ const customTheme = createTheme({
   }
 });
 
+const getTypographyProps = (fontSize: number, fontWeight?: number) => {
+  return {
+    fontFamily: ["Grandstander"].join(","),
+    fontWeight,
+    fontSize: `${fontSize}rem`,
+    [theme.breakpoints.up("xs")]: {
+      fontSize: `${fontSize * 0.7}rem`
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: `${fontSize * 0.8}rem`
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: `${fontSize * 0.9}rem`
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: `${fontSize}rem`
+    },
+    [theme.breakpoints.up("xl")]: {
+      fontSize: `${fontSize * 1.1}rem`
+    }
+  };
+};
+
+theme.typography.h1 = getTypographyProps(2, 600);
+theme.typography.h2 = getTypographyProps(1.4, 600);
+theme.typography.h3 = getTypographyProps(1.2, 600);
+theme.typography.h4 = getTypographyProps(1, 600);
+theme.typography.h5 = getTypographyProps(0.8, 600);
+theme.typography.body1 = getTypographyProps(0.9);
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -115,7 +119,7 @@ const queryClient = new QueryClient({
 const App = (): JSX.Element => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={customTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <AppContent />
       </ThemeProvider>

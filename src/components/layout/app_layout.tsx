@@ -28,7 +28,7 @@ export const AppLayout = (props: React.PropsWithChildren<LayoutProps>): JSX.Elem
         >
           {props.activeLabel.toUpperCase()}
         </Typography>
-        <Container sx={{ flexGrow: "1" }}>
+        <Container sx={{ flexGrow: "1" }} maxWidth='xl'>
           <Box
             sx={{
               height: "100%",

@@ -10,7 +10,8 @@ import {
   Button,
   Link as MuiLink,
   Snackbar,
-  TextField
+  TextField,
+  Typography
 } from "@mui/material";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "config/firebase";
 import { FirebaseResponse } from "types/firebase";
@@ -86,9 +87,10 @@ export const LoginForm = (): JSX.Element => {
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <TextField
+                size='small'
+                margin='normal'
                 autoFocus
                 className='text-input'
-                margin='normal'
                 placeholder='Email'
                 required
                 fullWidth
@@ -104,7 +106,7 @@ export const LoginForm = (): JSX.Element => {
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
               <TextField
-                sx={{ mt: 2 }}
+                size='small'
                 autoFocus
                 className='text-input'
                 placeholder='Password'
@@ -118,13 +120,13 @@ export const LoginForm = (): JSX.Element => {
             )}
           />
           <Button
-            sx={{ mt: 2, fontSize: "1.8em", textTransform: "none" }}
+            sx={{ mt: 2 }}
             color='secondary'
             fullWidth
             variant='contained'
             type='submit'
           >
-            Login
+            <Typography variant='h3' textTransform='none'>Login</Typography>
           </Button>
         </form>
         <Button
@@ -135,9 +137,15 @@ export const LoginForm = (): JSX.Element => {
           variant='contained'
         >
           <GoogleIcon sx={{ mr: 2 }} />
-          Login with Google
+          <Typography variant='h3' textTransform='none'>Login with Google</Typography>
         </Button>
         <MuiLink
+          sx={{
+            mt: 2,
+            "&:hover": {
+              color: "white"
+            }
+          }}
           textAlign='center'
           color='black'
           component='a'
@@ -149,6 +157,12 @@ export const LoginForm = (): JSX.Element => {
           Forgot Password?
         </MuiLink>
         <MuiLink
+          sx={{
+            mt: 2,
+            "&:hover": {
+              color: "white"
+            }
+          }}
           textAlign='center'
           color='black'
           component='a'

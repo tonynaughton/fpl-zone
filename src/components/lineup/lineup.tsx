@@ -39,14 +39,6 @@ export default function Lineup({
   };
 
   const renderLineupInfo = (): JSX.Element => {
-    const statKeyStyling = {
-      display: "block",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      width: "50%",
-      textAlign: "center"
-    };
-
     return (
       <Box
         sx={{
@@ -68,33 +60,31 @@ export default function Lineup({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            columnGap: 1,
+            columnGap: 3,
             mt: 2,
             mb: 2,
             overflow: "hidden",
-            width: "100%"
+            width: "100%",
+            textAlign: "center"
           }}
         >
           {teamPicks && (
-            <Typography sx={statKeyStyling} variant='h3'>
-              Active Chip:
-              <br />
+            <Box>
+              <Typography variant='h4' sx={{ mb: 1 }}>Active Chip:</Typography>
               <Typography>{activeChip}</Typography>
-            </Typography>
+            </Box>
           )}
           {teamData && (
-            <Typography sx={statKeyStyling} variant='h3'>
-              GW Points:
-              <br />
+            <Box>
+              <Typography variant='h4' sx={{ mb: 1 }}>GW Points:</Typography>
               <Typography>{totalPoints}</Typography>
-            </Typography>
+            </Box>
           )}
           {teamData && (
-            <Typography sx={statKeyStyling} variant='h3'>
-              Overall Rank:
-              <br />
+            <Box>
+              <Typography variant='h4' sx={{ mb: 1 }}>Overall Rank:</Typography>
               <Typography>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
-            </Typography>
+            </Box>
           )}
         </Box>
       </Box>

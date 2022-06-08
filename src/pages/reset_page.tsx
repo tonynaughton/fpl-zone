@@ -9,7 +9,8 @@ import {
   Button,
   Link as MuiLink,
   Snackbar,
-  TextField
+  TextField,
+  Typography
 } from "@mui/material";
 import { auth, sendPasswordReset } from "config/firebase";
 import { delay } from "helpers";
@@ -73,8 +74,9 @@ export const ResetPage = (): JSX.Element => {
             render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => {
               return (
                 <TextField
+                  size='small'
+                  margin='dense'
                   className='text-input'
-                  margin='normal'
                   required
                   placeholder='Email'
                   fullWidth
@@ -87,17 +89,22 @@ export const ResetPage = (): JSX.Element => {
             }}
           />
           <Button
-            sx={{ mt: 5 }}
             className='action-button'
             color='secondary'
             type='submit'
             fullWidth
             variant='contained'
           >
-            Send password reset email
+            <Typography variant='h3' textTransform='none'>Send password reset email</Typography>
           </Button>
         </form>
         <MuiLink
+          sx={{
+            mt: 2,
+            "&:hover": {
+              color: "white"
+            }
+          }}
           textAlign='center'
           color='black'
           component='a'
