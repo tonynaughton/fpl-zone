@@ -1,7 +1,11 @@
-import React from "react";
-import { Box,Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
-import { getTeamById } from "helpers";
+import React, { useState } from "react";
+import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
 import { Player,PlayerStat, Team } from "types";
+
+import { AddPlayersButton } from "./add_players_button";
+import { ImageRow } from "./player_image_row";
+import { NameRow } from "./player_name_row";
+import { TeamRow } from "./team_row";
 
 interface ComparisonTableProps {
   selectedPlayers: Player[];
@@ -9,93 +13,21 @@ interface ComparisonTableProps {
   playerStats: PlayerStat[];
 }
 
+export const customBorderStyle = "1px solid rgb(196, 196, 196)";
+export const customCellStyle = {
+  border: customBorderStyle,
+  backgroundColor: "rgb(224, 224, 224)"
+};
+
 export default function ComparisonTable({
   selectedPlayers,
   teams,
   playerStats
 }: ComparisonTableProps): JSX.Element {
+  const [ isAddPlayerModalOpen, setIsAddPlayerModalOpen ] = useState<boolean>(false);
 
-  const borderStyle = "1px solid rgb(196, 196, 196)";
-  const customCellStyle = {
-    border: borderStyle,
-    backgroundColor: "rgb(224, 224, 224)"
-  };
-
-  const renderPlayerImageRow = (): JSX.Element => {
-    return (
-      <TableRow
-        sx={{
-          height: "12vh",
-          "& .MuiTableCell-root": { borderBottom: borderStyle }
-        }}
-      >
-        <TableCell sx={{ height: "inherit" }} />
-        {selectedPlayers.map((player, key) => {
-          const imgId = player.photo.replace(".jpg", "");
-          const playerImgUrl = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
-
-          return (
-            <TableCell key={key} sx={{ height: "inherit" }}>
-              <img
-                alt='player-img'
-                height='100%'
-                src={playerImgUrl}
-                width='auto'
-              />
-            </TableCell>
-          );
-        })}
-      </TableRow>
-    );
-  };
-
-  const renderPlayerNameRow = (): JSX.Element => {
-    return (
-      <TableRow sx={{ "& .MuiTableCell-root:last-child": { borderRight: "none" } }}>
-        <TableCell sx={customCellStyle} />
-        {selectedPlayers.map((player, key) => {
-          return (
-            <TableCell key={key} sx={customCellStyle}>
-              <Typography
-                sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
-              >{`${player.first_name} ${player.second_name}`}
-              </Typography>
-            </TableCell>
-          );
-        })}
-      </TableRow>
-    );
-  };
-
-  const renderPlayerTeamRow = (): JSX.Element => {
-    return (
-      <TableRow>
-        <TableCell sx={customCellStyle}>
-          <Typography>Team</Typography>
-        </TableCell>
-        {selectedPlayers.map((player, key) => {
-          return (
-            <TableCell key={key}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "100%",
-                  columnGap: 1
-                }}
-              >
-                <img
-                  alt='team-crest'
-                  height='25px'
-                  src={`${process.env.PUBLIC_URL}/assets/images/crests/${player.team_code}.png`}
-                />
-                {getTeamById(player.team, teams).name}
-              </Box>
-            </TableCell>
-          );
-        })}
-      </TableRow>
-    );
+  const onAddPlayerClick = (): void => {
+    setIsAddPlayerModalOpen(true);
   };
 
   return (
@@ -108,9 +40,9 @@ export default function ComparisonTable({
       }}
     >
       <TableBody>
-        {renderPlayerImageRow()}
-        {renderPlayerNameRow()}
-        {renderPlayerTeamRow()}
+        <ImageRow players={selectedPlayers} onAddPlayerClick={onAddPlayerClick} />
+        <NameRow players={selectedPlayers} />
+        <TeamRow players={selectedPlayers} teams={teams} />
         {playerStats.map((stat, key) => {
           return (
             <TableRow key={key}>
