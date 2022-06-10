@@ -3,22 +3,22 @@ import { Box,TableCell, TableRow, Typography } from "@mui/material";
 import { getTeamById } from "helpers";
 import { Player, Team } from "types";
 
-import { customCellStyle } from "./comparison_table";
+import "./comparison.css";
 
-interface TeamRowProps {
+interface TeamNameTableRowProps {
   players: Player[];
   teams: Team[];
 }
 
-export const TeamRow = ({ players, teams }: TeamRowProps): JSX.Element => {
+export const TeamNameTableRow = ({ players, teams }: TeamNameTableRowProps): JSX.Element => {
   return (
     <TableRow>
-      <TableCell sx={customCellStyle}>
+      <TableCell className='first-table-cell'>
         <Typography>Team</Typography>
       </TableCell>
       {players.map((player, key) => {
         return (
-          <TableCell key={key}>
+          <TableCell className='standard-table-cell' key={key}>
             <Box
               sx={{
                 display: "flex",

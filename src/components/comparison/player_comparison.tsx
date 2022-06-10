@@ -4,14 +4,20 @@ import { AppDataContext } from "app_content";
 import { AppData } from "types";
 import { Player } from "types/player";
 
-import ComparisonTable from "./comparison_table";
+import { AddPlayersToComparisonModal } from "./add_players_to_comparison_modal";
+import ComparisonTable from "./player_comparison_table";
+
+import "./comparison.css";
 
 export default function PlayerComparison(): JSX.Element {
   const { playerStats, players, positions, teams } = useContext(AppDataContext) as AppData;
 
-  const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
+  const [isAddPlayersModalOpen, setIsAddPlayerModalOpen] = useState<boolean>(false);
+  const [selectedComparisonPlayers, setSelectedComparisonPlayers] = useState<Player[]>([]);
 
-  const MAX_PLAYER_COUNT = 5;
+  const onAddPlayerClick = (): void => {
+    setIsAddPlayerModalOpen(true);
+  };
 
   return (
     <Box
@@ -23,9 +29,15 @@ export default function PlayerComparison(): JSX.Element {
       }}
     >
       <ComparisonTable
+        onAddPlayerClick={onAddPlayerClick}
         playerStats={playerStats}
-        selectedPlayers={selectedPlayers}
+        selectedPlayers={selectedComparisonPlayers}
         teams={teams}
+      />
+      <AddPlayersToComparisonModal
+        isAddPlayersModalOpen={isAddPlayersModalOpen}
+        setAddPlayersModalOpen={setIsAddPlayerModalOpen}
+        setSelectedComparisonPlayers={setSelectedComparisonPlayers}
       />
     </Box>
   );

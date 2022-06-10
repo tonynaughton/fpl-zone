@@ -2,33 +2,21 @@ import React, { useState } from "react";
 import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
 import { Player,PlayerStat, Team } from "types";
 
-import { AddPlayersButton } from "./add_players_button";
-import { ImageRow } from "./player_image_row";
-import { NameRow } from "./player_name_row";
-import { TeamRow } from "./team_row";
+import { PlayerImageTableRow, PlayerNameTableRow, TeamNameTableRow } from ".";
 
 interface ComparisonTableProps {
   selectedPlayers: Player[];
   teams: Team[];
   playerStats: PlayerStat[];
+  onAddPlayerClick: () => void;
 }
-
-export const customBorderStyle = "1px solid rgb(196, 196, 196)";
-export const customCellStyle = {
-  border: customBorderStyle,
-  backgroundColor: "rgb(224, 224, 224)"
-};
 
 export default function ComparisonTable({
   selectedPlayers,
   teams,
-  playerStats
+  playerStats,
+  onAddPlayerClick
 }: ComparisonTableProps): JSX.Element {
-  const [ isAddPlayerModalOpen, setIsAddPlayerModalOpen ] = useState<boolean>(false);
-
-  const onAddPlayerClick = (): void => {
-    setIsAddPlayerModalOpen(true);
-  };
 
   return (
     <Table
@@ -40,13 +28,13 @@ export default function ComparisonTable({
       }}
     >
       <TableBody>
-        <ImageRow players={selectedPlayers} onAddPlayerClick={onAddPlayerClick} />
-        <NameRow players={selectedPlayers} />
-        <TeamRow players={selectedPlayers} teams={teams} />
+        <PlayerImageTableRow onAddPlayerClick={onAddPlayerClick} players={selectedPlayers} />
+        <PlayerNameTableRow players={selectedPlayers} />
+        <TeamNameTableRow players={selectedPlayers} teams={teams} />
         {playerStats.map((stat, key) => {
           return (
             <TableRow key={key}>
-              <TableCell sx={customCellStyle}>
+              <TableCell className='first-table-cell'>
                 <Typography
                   sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
                 >
@@ -55,7 +43,7 @@ export default function ComparisonTable({
               </TableCell>
               {selectedPlayers.map((player, key) => {
                 return (
-                  <TableCell key={key}>
+                  <TableCell className='standard-table-cell' key={key}>
                     <Typography>{player[stat.name]}</Typography>
                   </TableCell>
                 );

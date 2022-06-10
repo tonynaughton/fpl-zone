@@ -1,16 +1,14 @@
 import React, { Fragment } from "react";
+import { Add } from "@mui/icons-material";
 import { Box, IconButton, TableCell, TableRow } from "@mui/material";
 import { Player } from "types";
 
-import { customBorderStyle, customCellStyle } from "./comparison_table";
-import { Add } from "@mui/icons-material";
-
-interface PlayerImageRowProps {
+interface PlayerImageTableRowProps {
   players: Player[];
   onAddPlayerClick: () => void;
 }
 
-export const ImageRow = ({ players, onAddPlayerClick }: PlayerImageRowProps): JSX.Element => {
+export const PlayerImageTableRow = ({ players, onAddPlayerClick }: PlayerImageTableRowProps): JSX.Element => {
   const renderPlayerImage = (url: string): JSX.Element => {
     return (
       <TableCell align='center' sx={{ height: "inherit" }}>
@@ -30,7 +28,7 @@ export const ImageRow = ({ players, onAddPlayerClick }: PlayerImageRowProps): JS
             borderRadius: "50%"
           }}
         >
-          { !players.length && 
+          { players.length === 0 &&
             <Box
               sx={{
                 display: "flex",
@@ -40,23 +38,18 @@ export const ImageRow = ({ players, onAddPlayerClick }: PlayerImageRowProps): JS
                 borderRadius: "50%"
               }}
             >
-              <IconButton aria-label="add player button">
+              <IconButton aria-label='add player button'>
                 <Add />
               </IconButton>
-            </Box>
-          }
+            </Box>}
         </Box>
       </TableCell>
     );
   };
 
   return (
-    <TableRow
-      sx={{
-        "& .MuiTableCell-root": { customBorderStyle }
-      }}
-    >
-      <TableCell sx={customCellStyle} />
+    <TableRow>
+      <TableCell className='first-table-cell' />
       { players.length > 0
         ? (
           players.map((player, key) => {
