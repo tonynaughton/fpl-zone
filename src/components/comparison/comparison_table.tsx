@@ -6,13 +6,13 @@ import { Player,PlayerStat, Team } from "types";
 interface ComparisonTableProps {
   selectedPlayers: Player[];
   teams: Team[];
-  elementStats: PlayerStat[];
+  playerStats: PlayerStat[];
 }
 
 export default function ComparisonTable({
   selectedPlayers,
   teams,
-  elementStats
+  playerStats
 }: ComparisonTableProps): JSX.Element {
 
   const borderStyle = "1px solid rgb(196, 196, 196)";
@@ -111,7 +111,7 @@ export default function ComparisonTable({
         {renderPlayerImageRow()}
         {renderPlayerNameRow()}
         {renderPlayerTeamRow()}
-        {elementStats.map((stat, key) => {
+        {playerStats.map((stat, key) => {
           return (
             <TableRow key={key}>
               <TableCell sx={customCellStyle}>

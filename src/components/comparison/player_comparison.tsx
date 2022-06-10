@@ -10,14 +10,14 @@ import ComparisonTable from "./comparison_table";
 interface PlayerComparisonProps {
   players: Player[];
   teams: Team[];
-  elementStats: PlayerStat[];
+  playerStats: PlayerStat[];
   positions: Position[];
 }
 
 export default function PlayerComparison({
   players,
   teams,
-  elementStats,
+  playerStats,
   positions
 }: PlayerComparisonProps): JSX.Element {
   const MAX_PLAYER_COUNT = 10;
@@ -147,7 +147,7 @@ export default function PlayerComparison({
       {selectedPlayers.length > 0
         ? (
           <ComparisonTable
-            elementStats={elementStats}
+            playerStats={playerStats}
             selectedPlayers={selectedPlayers}
             teams={teams}
           />

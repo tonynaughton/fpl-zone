@@ -9,7 +9,7 @@ import Results from "components/results/results";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("Results Tests", () => {
-  const latestGameweek = mockAppData.events.find((gameweek) => gameweek.is_current) as Gameweek;
+  const latestGameweek = mockAppData.gameweeks.find((gameweek) => gameweek.is_current) as Gameweek;
 
   const createComponent = (): JSX.Element => {
     return (

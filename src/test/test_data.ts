@@ -4353,7 +4353,7 @@ export const mockFixtures: Fixture[] = [
   }
 ];
 
-export const mockElementStats: PlayerStat[] = [
+export const mockPlayerStats: PlayerStat[] = [
   {
     label: "Minutes played",
     name: "minutes"
@@ -4524,61 +4524,6 @@ export const mockPhases: Phase[] = [
   }
 ];
 
-export const mockElementTypes: Position[] = [
-  {
-    id: 1,
-    plural_name: "Goalkeepers",
-    plural_name_short: "GKP",
-    singular_name: "Goalkeeper",
-    singular_name_short: "GKP",
-    squad_select: 2,
-    squad_min_play: 1,
-    squad_max_play: 1,
-    ui_shirt_specific: true,
-    sub_positions_locked: [12],
-    element_count: 83
-  },
-  {
-    id: 2,
-    plural_name: "Defenders",
-    plural_name_short: "DEF",
-    singular_name: "Defender",
-    singular_name_short: "DEF",
-    squad_select: 5,
-    squad_min_play: 3,
-    squad_max_play: 5,
-    ui_shirt_specific: false,
-    sub_positions_locked: [],
-    element_count: 245
-  },
-  {
-    id: 3,
-    plural_name: "Midfielders",
-    plural_name_short: "MID",
-    singular_name: "Midfielder",
-    singular_name_short: "MID",
-    squad_select: 5,
-    squad_min_play: 2,
-    squad_max_play: 5,
-    ui_shirt_specific: false,
-    sub_positions_locked: [],
-    element_count: 302
-  },
-  {
-    id: 4,
-    plural_name: "Forwards",
-    plural_name_short: "FWD",
-    singular_name: "Forward",
-    singular_name_short: "FWD",
-    squad_select: 3,
-    squad_min_play: 1,
-    squad_max_play: 3,
-    ui_shirt_specific: false,
-    sub_positions_locked: [],
-    element_count: 95
-  }
-];
-
 export const mockGameData: GameData = {
   events: mockGameweeks,
   game_settings: mockGameSettings,
@@ -4586,12 +4531,19 @@ export const mockGameData: GameData = {
   teams: mockTeams,
   total_players: mockPlayers.length,
   elements: mockPlayers,
-  element_stats: mockElementStats,
-  element_types: mockElementTypes
+  element_stats: mockPlayerStats,
+  element_types: mockPositions
 };
 
 export const mockAppData: AppData = {
-  ...mockGameData,
+  gameweeks: mockGameweeks,
+  gameSettings: mockGameSettings,
+  phases: mockPhases,
+  teams: mockTeams,
+  playerCount: mockPlayers.length,
+  players: mockPlayers,
+  playerStats: mockPlayerStats,
+  positions: mockPositions,
   fixtures: mockFixtures,
   isCompact: false
 };

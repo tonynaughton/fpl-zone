@@ -1,10 +1,4 @@
-import { GameSettings } from "./game_settings";
-import { Gameweek } from "./gameweek";
-import { Phase } from "./phase";
-import { Player } from "./player";
-import { PlayerStat } from "./player_stat";
-import { Position } from "./position";
-import { Team } from "./team";
+import { GameSettings, Gameweek, Phase, Player, PlayerStat, Position,Team } from "types";
 
 export interface GameData {
   events: Gameweek[];

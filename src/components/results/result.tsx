@@ -10,7 +10,7 @@ export const RenderResult = (
   teams: Team[],
   key?: number
 ): JSX.Element => {
-  const appData = useContext(AppDataContext) as AppData;
+  const { isCompact } = useContext(AppDataContext) as AppData;
 
   const homeTeam = getTeamById(result.team_h, teams);
   const awayTeam = getTeamById(result.team_a, teams);
@@ -45,7 +45,7 @@ export const RenderResult = (
           textAlign='left'
           variant='h5'
         >
-          {appData.isCompact ? homeTeam.short_name : homeTeam.name }
+          {isCompact ? homeTeam.short_name : homeTeam.name }
         </Typography>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", flex: 0.3 }}>
@@ -67,7 +67,7 @@ export const RenderResult = (
           textAlign='right'
           variant='h5'
         >
-          {appData.isCompact ? awayTeam.short_name : awayTeam.name }
+          {isCompact ? awayTeam.short_name : awayTeam.name }
         </Typography>
         <img
           alt='team-crest'

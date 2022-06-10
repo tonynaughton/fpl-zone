@@ -43,7 +43,20 @@ export default function AppContent(): JSX.Element {
 
   const isLoading = gameDataIsLoading || fixtureDataIsLoading;
   const isError = gameDataIsError || fixtureDataIsError;
-  const appData = gameData && fixtureData ? { ...gameData, fixtures: fixtureData, isCompact } : null;
+  const appData: AppData | null = gameData && fixtureData
+    ? {
+      gameweeks: gameData.events,
+      gameSettings: gameData.game_settings,
+      phases: gameData.phases,
+      teams: gameData.teams,
+      playerCount: gameData.total_players,
+      players: gameData.elements,
+      playerStats: gameData.element_stats,
+      positions: gameData.element_types,
+      fixtures: fixtureData,
+      isCompact
+    }
+    : null;
 
   if (isLoading) {
     // Display loading message if data is still being fetched

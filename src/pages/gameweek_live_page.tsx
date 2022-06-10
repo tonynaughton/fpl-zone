@@ -20,8 +20,8 @@ export const GameweekLivePage = (): JSX.Element => {
     if (!user) return navigate("/login");
   });
 
-  const appData = useContext(AppDataContext) as AppData;
-  const gameStatus = checkGameStatus(appData.events);
+  const { gameweeks } = useContext(AppDataContext) as AppData;
+  const gameStatus = checkGameStatus(gameweeks);
 
   const renderDreamTeam = (): JSX.Element => {
     if (gameStatus === gameStatusValues.GAME_OK) {

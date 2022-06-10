@@ -18,15 +18,15 @@ export const AnalysisPage = (): JSX.Element => {
     if (!user) return navigate("/login");
   });
 
-  const appData = useContext(AppDataContext) as AppData;
+  const { playerStats, players, positions, teams } = useContext(AppDataContext) as AppData;
 
   const renderPlayerComparsion = (): JSX.Element => {
     return (
       <PlayerComparison
-        elementStats={appData.element_stats}
-        players={appData.elements}
-        positions={appData.element_types}
-        teams={appData.teams}
+        playerStats={playerStats}
+        players={players}
+        positions={positions}
+        teams={teams}
       />
     );
   };

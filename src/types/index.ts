@@ -1,6 +1,7 @@
 export * from "./app_data";
 export * from "./fixture";
 export * from "./game_data";
+export * from "./game_settings";
 export * from "./gameweek";
 export * from "./gameweek_picks";
 export * from "./league";
