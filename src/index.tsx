@@ -61,7 +61,7 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          padding: "0 0.5vw"
+          padding: "0.6vh"
         }
       }
     },
@@ -108,6 +108,7 @@ theme.typography.h3 = getTypographyProps(1.2, 600);
 theme.typography.h4 = getTypographyProps(1, 600);
 theme.typography.h5 = getTypographyProps(0.8, 600);
 theme.typography.body1 = getTypographyProps(0.9);
+theme.typography.body2 = getTypographyProps(0.7);
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -15,14 +15,14 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
     };
 
     switch (type) {
-    case "loading":
-      return <CircularProgress sx={iconStyle} />;
     case "error":
       return <Warning sx={iconStyle} />;
     case "warning":
       return <Warning sx={iconStyle} />;
+    case "loading":
+      return <CircularProgress sx={iconStyle} />;
     default:
-      return <Warning sx={iconStyle} />;
+      return <CircularProgress sx={iconStyle} />;
     }
   };
 
@@ -31,9 +31,11 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
       alignItems='center'
       display='flex'
       flexDirection='column'
+      height='100%'
       justifyContent='center'
-      maxWidth='80%'
+      margin='auto'
       sx={{ rowGap: "3vh" }}
+      width='80%'
     >
       {renderIcon()}
       <Typography textAlign='center'>{message || "Loading.."}</Typography>

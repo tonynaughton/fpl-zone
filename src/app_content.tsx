@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
-import { useMediaQuery } from "@mui/material";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
 import _ from "lodash";
 import {
@@ -39,8 +38,6 @@ export default function AppContent(): JSX.Element {
     isLoading: fixtureDataIsLoading
   } = useQuery("all-fixtures", getAllFixtures);
 
-  const isCompact = useMediaQuery("(max-width:1500px)");
-
   const isLoading = gameDataIsLoading || fixtureDataIsLoading;
   const isError = gameDataIsError || fixtureDataIsError;
   const appData: AppData | null = gameData && fixtureData
@@ -53,13 +50,11 @@ export default function AppContent(): JSX.Element {
       players: gameData.elements,
       playerStats: gameData.element_stats,
       positions: gameData.element_types,
-      fixtures: fixtureData,
-      isCompact
+      fixtures: fixtureData
     }
     : null;
 
   if (isLoading) {
-    // Display loading message if data is still being fetched
     return (
       <Startup>
         <Notifier />

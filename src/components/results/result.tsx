@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box, Typography } from "@mui/material";
-import { AppDataContext } from "app_content";
 import { formatDate, getTeamById } from "helpers";
-import { AppData, CustomResult, Team } from "types";
+import { CustomResult, Team } from "types";
 
 export const RenderResult = (
   result: CustomResult,
@@ -10,8 +9,6 @@ export const RenderResult = (
   teams: Team[],
   key?: number
 ): JSX.Element => {
-  const { isCompact } = useContext(AppDataContext) as AppData;
-
   const homeTeam = getTeamById(result.team_h, teams);
   const awayTeam = getTeamById(result.team_a, teams);
 
@@ -43,9 +40,8 @@ export const RenderResult = (
           key={key}
           sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", ml: 1 }}
           textAlign='left'
-          variant='h5'
         >
-          {isCompact ? homeTeam.short_name : homeTeam.name }
+          {homeTeam.name.toUpperCase()}
         </Typography>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center", flex: 0.3 }}>
@@ -65,9 +61,8 @@ export const RenderResult = (
           key={key}
           sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", mr: 1 }}
           textAlign='right'
-          variant='h5'
         >
-          {isCompact ? awayTeam.short_name : awayTeam.name }
+          {awayTeam.name.toUpperCase()}
         </Typography>
         <img
           alt='team-crest'

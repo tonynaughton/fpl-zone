@@ -11,20 +11,24 @@ export const Startup = (props: { children: JSX.Element }): JSX.Element => {
       }}
     >
       <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          height: "100%",
-          margin: "auto",
-          rowGap: "5%",
-          width: "50%",
-          maxWidth: "30rem"
-        }}
+        alignItems='center'
+        display='flex'
+        height='100%'
+        justifyContent='center'
+        margin='auto'
+        width='50%'
       >
-        <img alt='fpl-zone-logo' src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} width='100%' />
-        {props.children}
+        <Box
+          alignItems='center'
+          display='flex'
+          flexDirection='column'
+          gap='5vh'
+          height='50%'
+          width='100%'
+        >
+          <img alt='fpl-zone-logo' src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} width='100%' />
+          {props.children}
+        </Box>
       </Box>
     </Box>
   );

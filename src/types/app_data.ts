@@ -10,5 +10,4 @@ export interface AppData {
   playerStats: PlayerStat[];
   positions: Position[];
   fixtures: Fixture[];
-  isCompact: boolean;
 }
