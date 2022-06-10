@@ -4,13 +4,13 @@ import {
   Fixture,
   GameData,
   Gameweek,
-  GameweekPicks,
   LeagueData,
   LeagueDataWithPage,
   PlayerSummary,
   Region,
   TeamData,
   TeamHistory,
+  TeamPicks,
   Transfer
 } from "types";
 
@@ -61,7 +61,7 @@ export const getTeamTransfers = async (teamId: number): Promise<Transfer[]> => {
 export const getTeamPicksForGameweek = async (
   teamId: number,
   gameweek: number
-): Promise<GameweekPicks> => {
+): Promise<TeamPicks> => {
   const response = await axios.get(`${base_url}/entry/${teamId}/event/${gameweek}/picks/`);
 
   return response.data;

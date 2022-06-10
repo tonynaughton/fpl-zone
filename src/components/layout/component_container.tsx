@@ -1,8 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-import { Notifier } from "./notifier";
-
 interface ComponentContainerProps {
   title: string;
   isLoading?: boolean;
@@ -12,32 +10,8 @@ interface ComponentContainerProps {
 
 export const ComponentContainer = ({
   title,
-  children,
-  isLoading,
-  error
+  children
 }: ComponentContainerProps): JSX.Element => {
-  const renderChildren = (): JSX.Element => {
-    if (isLoading) {
-      return (
-        <Box
-          sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
-        >
-          <Notifier />
-        </Box>
-      );
-    } else if (error) {
-      return (
-        <Box
-          sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
-        >
-          <Notifier message={error} type='error' />
-        </Box>
-      );
-    }
-
-    return children;
-
-  };
 
   return (
     <Box
@@ -47,21 +21,31 @@ export const ComponentContainer = ({
     >
       <Box
         sx={{
-          zIndex: "tooltip",
+          zIndex: "fab",
           backgroundColor: "#16B7EA",
           color: "#F9F9F9",
-          p: 1,
+          p: 0.8,
           position: "absolute",
           top: 0,
           left: 0,
           borderBottom: "2px solid black",
           borderRight: "2px solid black",
-          height: "auto"
+          maxWidth: "15vw",
+          width: "auto"
         }}
       >
-        <Typography variant='h2'>{title.toUpperCase()}</Typography>
+        <Typography
+          sx={{
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            width: "100%",
+            whiteSpace: "nowrap"
+          }}
+          variant='h3'
+        >{title.toUpperCase()}
+        </Typography>
       </Box>
-      {renderChildren()}
+      {children}
     </Box>
   );
 };

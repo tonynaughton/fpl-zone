@@ -19,7 +19,8 @@ export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Ele
           key={index}
           sx={{
             p: "1vw",
-            "&:hover": { backgroundColor: "inherit" }
+            "&:hover": { backgroundColor: "inherit" },
+            width: "100%"
           }}
           to={item.href}
         >
@@ -27,6 +28,9 @@ export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Ele
             primary={item.label.toUpperCase()}
             primaryTypographyProps={{
               variant: "h2",
+              width: "100%",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
               ...(item.label === activeLabel ? { color: "black" } : { color: "white" }),
               sx: { "&:hover": { color: "black" } }
             }}

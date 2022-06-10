@@ -7,25 +7,25 @@ interface LoadingMessageProps {
   message?: string;
 }
 
-const renderIcon = (type: string): JSX.Element => {
-  const iconStyle = {
-    fontSize: "3vw",
-    color: "black"
+export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element => {
+  const renderIcon = (): JSX.Element => {
+    const iconStyle = {
+      fontSize: "3vw",
+      color: "black"
+    };
+
+    switch (type) {
+    case "loading":
+      return <CircularProgress sx={iconStyle} />;
+    case "error":
+      return <Warning sx={iconStyle} />;
+    case "warning":
+      return <Warning sx={iconStyle} />;
+    default:
+      return <Warning sx={iconStyle} />;
+    }
   };
 
-  switch (type) {
-  case "loading":
-    return <CircularProgress sx={iconStyle} />;
-  case "error":
-    return <Warning sx={iconStyle} />;
-  case "warning":
-    return <Warning sx={iconStyle} />;
-  default:
-    return <Warning sx={iconStyle} />;
-  }
-};
-
-export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element => {
   return (
     <Box
       alignItems='center'
@@ -35,7 +35,7 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
       maxWidth='80%'
       sx={{ rowGap: "3vh" }}
     >
-      {type ? renderIcon(type) : renderIcon("loading")}
+      {renderIcon()}
       <Typography textAlign='center'>{message || "Loading.."}</Typography>
     </Box>
   );

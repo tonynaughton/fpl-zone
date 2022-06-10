@@ -37,7 +37,7 @@ export default function Results(): JSX.Element {
       id='results-container'
       justifyContent='center'
       position='relative'
-      sx={{ p: 2, pt: 3 }}
+      sx={{ pl: 3, pr: 3, pb: 2, pt: 5 }}
     >
       <Box alignItems='center' display='flex' justifyContent='center'>
         <IconButton
