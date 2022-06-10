@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
+import _ from "lodash";
 import {
   AccountPage,
   AnalysisPage,
@@ -54,7 +55,7 @@ export default function AppContent(): JSX.Element {
   } else if (isError) {
     // Display error message if data fetch failed
     const error = gameDataError || fixtureDataError;
-    const errorMessage = error instanceof Error ? `: ${error.message}` : ".";
+    const errorMessage = _.isError(error) ? `: ${error.message}` : ".";
 
     return (
       <Startup>

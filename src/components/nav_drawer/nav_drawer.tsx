@@ -47,7 +47,12 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
         <img alt='fpl-zone-logo' src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} width='100%' />
         <GameweekCountdown />
       </Box>
-      <Box display='flex' flexDirection='column' height='100%' justifyContent='space-between'>
+      <Box
+        display='flex'
+        flexDirection='column'
+        height='100%'
+        justifyContent='space-between'
+      >
         <MenuList activeLabel={activeLabel} items={mainMenuItems} />
         <MenuList activeLabel={activeLabel} items={endMenuItems} />
       </Box>
