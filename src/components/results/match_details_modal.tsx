@@ -119,7 +119,6 @@ export default function MatchDetailsModal({
     >
       <Box
         onClick={(event): void => event.stopPropagation()}
-        // https://stackoverflow.com/questions/49637047/prevent-onclick-from-firing-if-another-element-is-on-top
         sx={{
           display: isResultsModalOpen ? "flex" : "none",
           position: "absolute",
@@ -133,7 +132,9 @@ export default function MatchDetailsModal({
           flexDirection: "column",
           alignItems: "center",
           rowGap: 1,
-          zIndex: 2000
+          zIndex: 2000,
+          maxHeight: "75%",
+          overflow: "auto"
         }}
       >
         <IconButton

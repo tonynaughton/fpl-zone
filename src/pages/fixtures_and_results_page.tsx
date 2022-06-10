@@ -29,7 +29,7 @@ export const FixturesAndResultsPage = (): JSX.Element => {
         <Box flexGrow={1} height='100%' >
           <ComponentContainer title='fdr'><FdrTable /></ComponentContainer>
         </Box>
-        <Box flexBasis={1} height='100%' >
+        <Box flexBasis='38%' height='100%' >
           <ComponentContainer title='results'><Results /></ComponentContainer>
         </Box>
       </Box>

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { numberWithCommas } from "helpers";
 import _ from "lodash";
 import { AppData, Player as PlayerType, TeamData, TeamPicks } from "types";
 
 import Player from "../player/player";
 
-import PlayerPerformanceModal from "./player_performance_modal";
+import PlayerPerformanceModal from "./player_performance_modal/player_performance_modal";
+import { LineupDetails } from "./lineup_details";
 
 interface LineupProps {
   selected: PlayerType[][];
@@ -30,65 +30,10 @@ export default function Lineup({
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
 
   const sortedBench = _.sortBy(bench, ["element_type"]);
-  const activeChip = teamPicks?.active_chip ? teamPicks.active_chip.toUpperCase() : "None";
-  const totalPoints = teamData?.summary_event_points;
 
   const handlePlayerPerformanceClick = (player: PlayerType): void => {
     setPlayerPerformanceModalOpen(true);
     setSelectedPlayer(player);
-  };
-
-  const renderLineupInfo = (): JSX.Element => {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          rowGap: 1,
-          width: "100%",
-          maxWidth: "80%",
-          margin: "auto"
-        }}
-      >
-        {teamData && (
-          <Typography textAlign='center' variant='h2'>
-            {teamData.name}
-          </Typography>
-        )}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            columnGap: 3,
-            mt: 2,
-            mb: 2,
-            overflow: "hidden",
-            width: "100%",
-            textAlign: "center"
-          }}
-        >
-          {teamPicks && (
-            <Box>
-              <Typography sx={{ mb: 1 }} variant='h4'>Active Chip:</Typography>
-              <Typography>{activeChip}</Typography>
-            </Box>
-          )}
-          {teamData && (
-            <Box>
-              <Typography sx={{ mb: 1 }} variant='h4'>GW Points:</Typography>
-              <Typography>{totalPoints}</Typography>
-            </Box>
-          )}
-          {teamData && (
-            <Box>
-              <Typography sx={{ mb: 1 }} variant='h4'>Overall Rank:</Typography>
-              <Typography>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
-            </Box>
-          )}
-        </Box>
-      </Box>
-    );
   };
 
   const renderSelected = (): JSX.Element => {
@@ -187,8 +132,20 @@ export default function Lineup({
 
   return (
     <>
-      <Box sx={{ height: "100%", p: 3, display: "flex", flexDirection: "column", rowGap: "2%" }}>
-        {!!teamData && !!teamPicks && renderLineupInfo()}
+      <Box
+        sx={{
+          p: 3,
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          rowGap: "2%"
+        }}
+      >
+        {teamData && teamPicks &&
+          <LineupDetails
+            teamData={teamData}
+            teamPicks={teamPicks}
+          />}
         {renderSelected()}
         {renderBench()}
       </Box>

@@ -53,7 +53,7 @@ export const GameweekLivePage = (): JSX.Element => {
         <Box flexGrow={1} height='100%' >
           <ComponentContainer title='dream team'>{renderDreamTeam()}</ComponentContainer>
         </Box>
-        <Box flexBasis={1} height='100%' >
+        <Box flexBasis='20%' height='100%' >
           <ComponentContainer title='summary'>{renderGameweekSummary()}</ComponentContainer>
         </Box>
       </Box>

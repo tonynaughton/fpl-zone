@@ -3,6 +3,8 @@ import { Info } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
 import { Player as PlayerType } from "types/player";
 
+import { Armband } from "./armband";
+
 interface PlayerProps {
   player: PlayerType;
   handlePlayerPerformanceClick: (player: PlayerType) => void;
@@ -12,29 +14,6 @@ interface PlayerProps {
   isViceCaptain?: boolean;
 }
 
-const renderArmband = (isVice = false): JSX.Element => {
-  return (
-    <Box
-      data-testid='armband-container'
-      sx={{
-        borderRadius: "50%",
-        backgroundColor: "white",
-        border: "1px solid black",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "1.5vw",
-        height: "1.5vw",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-      }}
-    >
-      {isVice ? "V" : "C"}
-    </Box>
-  );
-};
-
 export default function Player({
   player,
   handlePlayerPerformanceClick,
@@ -43,6 +22,13 @@ export default function Player({
   isCaptain = false,
   isViceCaptain = false
 }: PlayerProps): JSX.Element {
+
+  const textStyle = {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap"
+  };
+
   return (
     <Box
       data-testid={player.id}
@@ -94,11 +80,8 @@ export default function Player({
           >
             <Typography
               data-testid='player-name'
-              sx={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap"
-              }}
+              sx={textStyle}
+              variant={compressed ? "body2" : "body1"}
             >
               {player.web_name}
             </Typography>
@@ -114,7 +97,11 @@ export default function Player({
               backgroundColor: "#5fdd6b"
             }}
           >
-            <Typography data-testid='player-score'>
+            <Typography
+              data-testid='player-score'
+              sx={textStyle}
+              variant={compressed ? "body2" : "body1"}
+            >
               {player.event_points * multipler}
             </Typography>
           </Box>
@@ -134,8 +121,8 @@ export default function Player({
             <Info sx={{ color: "white", fontSize: "1.2vw" }} />
           </Box>
         </Box>
-        {isCaptain && renderArmband()}
-        {isViceCaptain && renderArmband(true)}
+        {isCaptain && <Armband />}
+        {isViceCaptain && <Armband isVice />}
       </Box>
     </Box>
   );
