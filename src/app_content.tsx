@@ -10,7 +10,7 @@ import {
   FixturesAndResultsPage,
   GameweekLivePage,
   LoginPage,
-  MyTeamPage,
+  MyFPLPage,
   RegisterPage,
   ResetPage
 } from "pages";
@@ -93,7 +93,7 @@ export default function AppContent(): JSX.Element {
             element={<PrivateRoute component={<GameweekLivePage />} />}
             path='/gameweek-live'
           />
-          <Route element={<PrivateRoute component={<MyTeamPage />} />} path='/my-team' />
+          <Route element={<PrivateRoute component={<MyFPLPage />} />} path='/my-fpl' />
           <Route
             element={<PrivateRoute component={<FixturesAndResultsPage />} />}
             path='/fixtures-and-results'

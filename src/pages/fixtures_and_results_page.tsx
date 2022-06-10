@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import { auth } from "config/firebase";
 
 import FdrTable from "components/fdr/fdr";
@@ -19,18 +19,20 @@ export const FixturesAndResultsPage = (): JSX.Element => {
 
   return (
     <AppLayout activeLabel='fixtures & results' direction='row'>
-      <Grid columnSpacing={4} container>
-        <Grid item xs={8}>
-          <ComponentContainer title='fdr'>
-            <FdrTable />
-          </ComponentContainer>
-        </Grid>
-        <Grid item xs={4}>
-          <ComponentContainer title='results'>
-            <Results />
-          </ComponentContainer>
-        </Grid>
-      </Grid>
+      <Box
+        alignItems='center'
+        display='flex'
+        gap={3}
+        justifyContent='center'
+        width='100%'
+      >
+        <Box flexGrow={1} height='100%' >
+          <ComponentContainer title='fdr'><FdrTable /></ComponentContainer>
+        </Box>
+        <Box flexBasis={1} height='100%' >
+          <ComponentContainer title='results'><Results /></ComponentContainer>
+        </Box>
+      </Box>
     </AppLayout>
   );
 };

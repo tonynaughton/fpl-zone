@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { auth } from "config/firebase";
 import { checkGameStatus, gameStatusValues } from "helpers";
@@ -43,14 +43,20 @@ export const GameweekLivePage = (): JSX.Element => {
 
   return (
     <AppLayout activeLabel='gameweek live' direction='row'>
-      <Grid columnSpacing={4} container>
-        <Grid item xs={9}>
+      <Box
+        alignItems='center'
+        display='flex'
+        gap={3}
+        justifyContent='center'
+        width='100%'
+      >
+        <Box flexGrow={1} height='100%' >
           <ComponentContainer title='dream team'>{renderDreamTeam()}</ComponentContainer>
-        </Grid>
-        <Grid item xs={3}>
+        </Box>
+        <Box flexBasis={1} height='100%' >
           <ComponentContainer title='summary'>{renderGameweekSummary()}</ComponentContainer>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </AppLayout>
   );
 };

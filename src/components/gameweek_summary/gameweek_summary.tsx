@@ -1,16 +1,12 @@
-import React, { useContext } from "react";
-import { Box, Typography } from "@mui/material";
+import React, { Fragment, useContext } from "react";
+import { Box } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { GetPlayerById, numberWithCommas } from "helpers";
 import { AppData } from "types";
 import { Gameweek } from "types/gameweek";
 
-interface SummaryDataItem {
-  label: string;
-  teamCode?: number;
-  playerName?: string;
-  statValue?: string | number;
-}
+import { SummaryItem } from "./summary_item";
+import { SummaryItemType } from "./types";
 
 export default function GameweekSummary(): JSX.Element {
   const { gameweeks, players } = useContext(AppDataContext) as AppData;
@@ -33,7 +29,7 @@ export default function GameweekSummary(): JSX.Element {
     mostTransferredInCount = numberWithCommas(mostTransferredIn?.transfers_in_event);
   }
 
-  const summaryData: SummaryDataItem[] = [
+  const summaryData: SummaryItemType[] = [
     {
       label: "highest score",
       statValue: `${gameweek?.highest_score || 0} pts`
@@ -63,86 +59,26 @@ export default function GameweekSummary(): JSX.Element {
     }
   ];
 
-  const renderSummaryItem = (item: SummaryDataItem, key: number): JSX.Element => {
-    const img: JSX.Element | null = item.teamCode
-      ? (
-        <img
-          alt={`${item.label}-crest-img`}
-          height='80%'
-          src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
-        />
-      )
-      : null;
-
-    const itemValue = `
-      ${item.playerName || ""}
-      ${item.playerName && item.statValue ? " - " : ""}
-      ${item.statValue || ""}
-    `;
-
-    return (
-      <Box
-        key={key}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100%"
-        }}
-      >
-        <Typography
-          data-testid={`${item.label}-label`}
-          sx={{
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-            textAlign: "center",
-            overflow: "hidden"
-          }}
-          variant='h3'
-        >
-          {item.label.toUpperCase()}
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            columnGap: 1,
-            alignItems: "center",
-            pt: 0.5,
-            justifyContent: "center",
-            maxHeight: "2.5em"
-          }}
-        >
-          {img}
-          <Typography
-            data-testid={`${item.label}-player-name`}
-            sx={{
-              textOverflow: "ellipsis",
-              textAlign: "center",
-              whiteSpace: "nowrap",
-              overflow: "hidden"
-            }}
-          >
-            {itemValue}
-          </Typography>
-        </Box>
-      </Box>
-    );
-  };
-
   return (
     <Box
       sx={{
-        pl: 2,
-        pr: 2,
+        pl: 4,
+        pr: 4,
         pt: 8,
         pb: 8,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        rowGap: 3,
         height: "100%"
       }}
     >
-      {summaryData.map((stat, index): JSX.Element => renderSummaryItem(stat, index))}
+      {summaryData.map((stat, index): JSX.Element => {
+        return (
+          <Fragment key={index}>
+            <SummaryItem item={stat} />
+          </Fragment>
+        );
+      })}
     </Box>
   );
 }

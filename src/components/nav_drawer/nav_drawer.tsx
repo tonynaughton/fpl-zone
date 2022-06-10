@@ -6,11 +6,9 @@ import GameweekCountdown from "./gw_countdown";
 import MenuList from "./menu_list";
 import { MenuItem } from "./types";
 
-import "./nav_drawer.css";
-
 const mainMenuItems: MenuItem[] = [
   { label: "gameweek live", href: "/gameweek-live" },
-  { label: "my team", href: "/my-team" },
+  { label: "my fpl", href: "/my-fpl" },
   { label: "fixtures & results", href: "/fixtures-and-results" },
   { label: "analysis", href: "/analysis" }
 ];
@@ -25,7 +23,7 @@ interface NavDrawerProps {
 }
 
 export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element {
-  const drawerWidth = "11vw";
+  const drawerWidth = "12vw";
 
   return (
     <Drawer
@@ -43,7 +41,17 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
       }}
       variant='permanent'
     >
-      <Box className='logo-container' sx={{ p: "1vh" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          rowGap: 1,
+          p: "1vh",
+          backgroundColor: "#5fdd6b",
+          borderBottom: "1px solid black"
+        }}
+      >
         <img alt='fpl-zone-logo' src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} width='100%' />
         <GameweekCountdown />
       </Box>
@@ -52,6 +60,7 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
         flexDirection='column'
         height='100%'
         justifyContent='space-between'
+        width='100%'
       >
         <MenuList activeLabel={activeLabel} items={mainMenuItems} />
         <MenuList activeLabel={activeLabel} items={endMenuItems} />

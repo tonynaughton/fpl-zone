@@ -162,7 +162,7 @@ export default function Lineup({
             mt: 1,
             justifyContent: "space-around",
             alignItems: "center",
-            "& > :first-child": {
+            "& > div:nth-of-type(1)": {
               mr: 3
             }
           }}
