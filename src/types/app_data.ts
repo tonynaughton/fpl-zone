@@ -1,6 +1,14 @@
-import { Fixture, GameData } from "types";
+import { Fixture, GameSettings, Gameweek, Phase, Player, PlayerStat, Position,Team } from "types";
 
-export interface AppData extends GameData {
+export interface AppData {
+  gameweeks: Gameweek[];
+  gameSettings: GameSettings;
+  phases: Phase[];
+  teams: Team[];
+  playerCount: number;
+  players: Player[];
+  playerStats: PlayerStat[];
+  positions: Position[];
   fixtures: Fixture[];
   isCompact: boolean;
 }

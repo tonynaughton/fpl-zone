@@ -39,7 +39,7 @@ describe("FDR Tests", () => {
       await screen.findByTestId("fdr-container").then(() => {
         const columnTitlesRow = screen.getByTestId("table-head-column-title");
 
-        const currentGameweek = mockAppData.events.find(
+        const currentGameweek = mockAppData.gameweeks.find(
           (gameweek) => gameweek.is_current
         ) as Gameweek;
         const nextFiveGameweeks: number[] = [];

@@ -32,7 +32,7 @@ interface PlayerPerformanceModalProps {
   isPlayerPerformanceModalOpen: boolean;
   setPlayerPerformanceModalOpen: (value: boolean) => void;
   selectedPlayer: Player;
-  elementStats: PlayerStat[];
+  playerStats: PlayerStat[];
   teams: Team[];
 }
 
@@ -40,7 +40,7 @@ export default function PlayerPerformanceModal({
   isPlayerPerformanceModalOpen: isPlayerInfoModalOpen,
   setPlayerPerformanceModalOpen: setPlayerInfoModalOpen,
   selectedPlayer,
-  elementStats,
+  playerStats,
   teams
 }: PlayerPerformanceModalProps): JSX.Element {
   const { data: playerInfo, isLoading: fetchingPlayerInfo } = useQuery(
@@ -48,8 +48,9 @@ export default function PlayerPerformanceModal({
     () => getPlayerData(selectedPlayer.id)
   );
 
-  const appData = useContext(AppDataContext) as AppData;
-  const currentGameweek = appData.events.find((event) => event.is_current) as Gameweek;
+  const { gameweeks } = useContext(AppDataContext) as AppData;
+
+  const currentGameweek = gameweeks.find((event) => event.is_current) as Gameweek;
   const playerPerformances = playerInfo?.history.filter(
     (fixture) => fixture.round === currentGameweek.id
   );
@@ -66,7 +67,7 @@ export default function PlayerPerformanceModal({
     const matchStarted: boolean = new Date(performance.kickoff_time) < new Date();
     const stats = _.pickBy(
       performance,
-      (value, key) => !!(elementStats.find((el) => el.name === key) && value > 0)
+      (value, key) => !!(playerStats.find((el) => el.name === key) && value > 0)
     );
 
     return (
@@ -93,7 +94,7 @@ export default function PlayerPerformanceModal({
                     <TableRow key={key}>
                       <TableCell>
                         <Typography>
-                          {elementStats.find((el) => el.name === stat)?.label}
+                          {playerStats.find((el) => el.name === stat)?.label}
                         </Typography>
                       </TableCell>
                       <TableCell>

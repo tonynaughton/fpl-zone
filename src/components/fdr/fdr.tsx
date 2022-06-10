@@ -29,11 +29,12 @@ interface FdrTableProps {
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<Fixture[][]>([]);
   const [fdrStatus, setFdrStatus] = useState<string>("Fetching fixture data..");
-  const appData = useContext(AppDataContext) as AppData;
-  const { teams, events } = appData;
+
+  const { teams, gameweeks } = useContext(AppDataContext) as AppData;
+
   const baseItem = players || teams;
   const nameColumnTitle = players ? "Player" : "Team";
-  const nextGameweek = events.find((gw) => gw.is_next);
+  const nextGameweek = gameweeks.find((gw) => gw.is_next);
   const nextFiveGameweeks: number[] = [];
 
   if (nextGameweek) {

@@ -23,8 +23,8 @@ export const MyTeamPage = (): JSX.Element => {
     if (!user) return navigate("/login");
   });
 
-  const appData = useContext(AppDataContext) as AppData;
-  const currentGameweek = appData.events.find((gw) => gw.is_current) as Gameweek;
+  const { gameweeks, positions, players } = useContext(AppDataContext) as AppData;
+  const currentGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
 
   // Fetching users stored FPL ID (if exists)
   const {
@@ -71,7 +71,7 @@ export const MyTeamPage = (): JSX.Element => {
   };
 
   const renderTeamComponent = (): JSX.Element => {
-    const gameUpdatingStatus = checkGameStatus(appData.events);
+    const gameUpdatingStatus = checkGameStatus(gameweeks);
     if (!fplId) {
       return <EnterFPLID />;
     } else if (gameUpdatingStatus === gameStatusValues.GAME_UPDATING) {
@@ -81,13 +81,13 @@ export const MyTeamPage = (): JSX.Element => {
       const getSelectedPlayers = (): Player[][] => {
         const selectedByPos: Player[][] = [];
         const firstXIPicks = _.slice(teamPicks?.picks, 0, 11);
-        appData.element_types.forEach((pos) => {
+        positions.forEach((pos) => {
           const picks = firstXIPicks.filter((pick) => {
-            const player = GetPlayerById(pick.element, appData.elements);
+            const player = GetPlayerById(pick.element, players);
 
             return player.element_type === pos.id;
           });
-          const players = picks.map((pick) => GetPlayerById(pick.element, appData.elements));
+          const players = picks.map((pick) => GetPlayerById(pick.element, players));
           selectedByPos.push(players);
         });
 
@@ -99,7 +99,7 @@ export const MyTeamPage = (): JSX.Element => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const benchPlayersPicks = teamPicks!.picks.slice(11, 15);
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const benchPlayers = benchPlayersPicks.map((pick) => GetPlayerById(pick.element, appData!.elements));
+        const benchPlayers = benchPlayersPicks.map((pick) => GetPlayerById(pick.element, players));
 
         return benchPlayers;
       };
@@ -130,7 +130,7 @@ export const MyTeamPage = (): JSX.Element => {
       return <EnterFPLID />;
     } else if (teamPicks) {
       const fdrPlayers = _(teamPicks.picks)
-        .map((pick) => GetPlayerById(pick.element, appData.elements))
+        .map((pick) => GetPlayerById(pick.element, players))
         .sortBy("element_type")
         .value();
 

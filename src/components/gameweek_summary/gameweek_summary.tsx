@@ -13,11 +13,9 @@ interface SummaryDataItem {
 }
 
 export default function GameweekSummary(): JSX.Element {
-  const appData = useContext(AppDataContext) as AppData;
-  const allGameweeks = appData.events;
-  const gameweek = allGameweeks.find((gw) => gw.is_current) as Gameweek;
-  const players = appData.elements;
+  const { gameweeks, players } = useContext(AppDataContext) as AppData;
 
+  const gameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
   const topPlayerId = gameweek.top_element_info?.id;
   const starPlayer = topPlayerId ? GetPlayerById(topPlayerId, players) : null;
   const mostTransferredIn = gameweek.most_transferred_in

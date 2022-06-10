@@ -24,7 +24,7 @@ export default function Lineup({
   teamData,
   compressed = false
 }: LineupProps): JSX.Element {
-  const appData = useContext(AppDataContext) as AppData;
+  const { teams, playerStats } = useContext(AppDataContext) as AppData;
 
   const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
@@ -194,11 +194,11 @@ export default function Lineup({
       </Box>
       {selectedPlayer && (
         <PlayerPerformanceModal
-          elementStats={appData.element_stats}
           isPlayerPerformanceModalOpen={isPlayerPerformanceModalOpen}
+          playerStats={playerStats}
           selectedPlayer={selectedPlayer}
           setPlayerPerformanceModalOpen={setPlayerPerformanceModalOpen}
-          teams={appData.teams}
+          teams={teams}
         />
       )}
     </>

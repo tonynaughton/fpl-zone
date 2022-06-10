@@ -8,9 +8,8 @@ import MatchDetailsModal from "./match_details_modal";
 import { RenderResult } from "./result";
 
 export default function Results(): JSX.Element {
-  const appData = useContext(AppDataContext) as AppData;
-  const latestGameweek = appData.events.find((gw) => gw.is_current) as Gameweek;
-  const { fixtures, teams } = appData;
+  const { gameweeks, fixtures, teams } = useContext(AppDataContext) as AppData;
+  const latestGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
 
   const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
