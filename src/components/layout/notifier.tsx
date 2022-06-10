@@ -16,16 +16,12 @@ const renderIcon = (type: string): JSX.Element => {
   switch (type) {
   case "loading":
     return <CircularProgress sx={iconStyle} />;
-    break;
   case "error":
     return <Warning sx={iconStyle} />;
-    break;
   case "warning":
     return <Warning sx={iconStyle} />;
-    break;
   default:
     return <Warning sx={iconStyle} />;
-    break;
   }
 };
 

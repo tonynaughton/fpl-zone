@@ -58,13 +58,9 @@ export const checkGameStatus = (gameweeks: Gameweek[]): string => {
     Manually checking if next gamewek deadline has passed as there
     can sometimes be a delay in update of gameweek 'is_next' status
   */
-  let relevantGameweek: Gameweek;
-
-  if (!nextGameweek || new Date(nextGameweek.deadline_time) > currentDateTime) {
-    relevantGameweek = currentGameweek;
-  } else {
-    relevantGameweek = nextGameweek;
-  }
+  const relevantGameweek = !nextGameweek || new Date(nextGameweek.deadline_time) > currentDateTime
+    ? currentGameweek
+    : nextGameweek;
 
   const gameweekDeadline = new Date(relevantGameweek.deadline_time);
   const timeDifference = currentDateTime.getTime() - gameweekDeadline.getTime();

@@ -36,7 +36,12 @@ export default function ComparisonTable({
 
           return (
             <TableCell key={key} sx={{ height: "inherit" }}>
-              <img alt='player-img' height='100%' src={playerImgUrl} width='auto' />
+              <img
+                alt='player-img'
+                height='100%'
+                src={playerImgUrl}
+                width='auto'
+              />
             </TableCell>
           );
         })}

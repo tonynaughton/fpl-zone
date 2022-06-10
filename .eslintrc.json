@@ -106,6 +106,7 @@
     "react/self-closing-comp": "warn",
     "react/jsx-boolean-value": "warn",
     "react/jsx-closing-tag-location": "warn",
+    "react/jsx-closing-bracket-location": "warn",
     "react/jsx-curly-brace-presence": "warn",
     "react/jsx-curly-newline": "warn",
     "react/jsx-curly-spacing": "warn",
@@ -116,21 +117,57 @@
     "react/jsx-sort-props": "warn",
     "react/jsx-tag-spacing": "warn",
     "react/jsx-wrap-multilines": "warn",
+    "react/jsx-first-prop-new-line": ["warn", "multiline"],
+    "react/jsx-max-props-per-line": ["warn", { "maximum": { "single": 3, "multi": 1, "when": "always" } }],
+
+    // Typescript
+    "@typescript-eslint/consistent-type-exports": "warn",
+    "@typescript-eslint/member-delimiter-style": "warn",
+    "@typescript-eslint/method-signature-style": "warn",
+    "@typescript-eslint/type-annotation-spacing": "warn",
 
     // Import
     "import/first": "error",
     "simple-import-sort/imports": "warn",
-    "simple-import-sort/exports": "warn"
+    "simple-import-sort/exports": "warn",
+
+    // Unicorn
+    "unicorn/better-regex": "warn",
+    "unicorn/catch-error-name": ["warn", { "name": "err" }],
+    "unicorn/consistent-destructuring": "warn",
+    "unicorn/empty-brace-spaces": "warn",
+    "unicorn/explicit-length-check": "warn",
+    "unicorn/filename-case": ["warn", { "case": "snakeCase" }],
+    "unicorn/new-for-builtins": "warn",
+    "unicorn/no-hex-escape": "warn",
+    "unicorn/no-instanceof-array": "warn",
+    "unicorn/no-unreadable-array-destructuring": "warn",
+    "unicorn/no-useless-length-check": "warn",
+    "unicorn/no-useless-spread": "warn",
+    "unicorn/no-useless-undefined": "warn",
+    "unicorn/prefer-array-find": "warn",
+    "unicorn/prefer-array-index-of": "warn",
+    "unicorn/prefer-default-parameters": "warn",
+    "unicorn/prefer-modern-dom-apis": "warn",
+    "unicorn/prefer-modern-math-apis": "warn",
+    "unicorn/prefer-negative-index": "warn",
+    "unicorn/prefer-query-selector": "warn",
+    "unicorn/prefer-string-slice": "warn",
+    "unicorn/prefer-switch": "warn",
+    "unicorn/prefer-ternary": "warn",
+    
+    "unicorn/escape-case": "warn"
   },
   "extends": [
     "react-app",
     "react-app/jest",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
-    "prettier"
+    "prettier",
+    "react-app",
+    "plugin:json/recommended"
   ],
   "overrides": [
     {
@@ -161,7 +198,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "root": true,
-  "plugins": ["react", "@typescript-eslint", "no-loops", "simple-import-sort"],
+  "plugins": ["react", "@typescript-eslint", "no-loops", "simple-import-sort", "unicorn", "json"],
   "parserOptions": {
     "ecmaVersion": 11,
     "ecmaFeatures": {

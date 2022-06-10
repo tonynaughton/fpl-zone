@@ -56,7 +56,12 @@ export const MyTeamPage = (): JSX.Element => {
   // Component which renders if user has no FPL ID stored
   const EnterFPLID = (): JSX.Element => {
     return (
-      <Box alignItems='center' display='flex' justifyContent='center' sx={{ height: "100%" }}>
+      <Box
+        alignItems='center'
+        display='flex'
+        justifyContent='center'
+        sx={{ height: "100%" }}
+      >
         Please add your FPL ID in&nbsp;
         <Link style={{ textDecoration: "none", color: "#16B7EA" }} to='/account'>
           Account
