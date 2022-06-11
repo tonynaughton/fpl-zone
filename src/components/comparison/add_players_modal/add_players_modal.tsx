@@ -33,6 +33,14 @@ export const AddPlayersToComparisonModal = ({
   useEffect(() => {
     setTempSelectedPlayers(selectedComparisonPlayers);
 
+    const close = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setAddPlayersModalOpen(false);
+      }
+    }
+
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
   }, [selectedComparisonPlayers]);
 
   const onPlayerToggle = (player: Player, value: boolean): void => {
