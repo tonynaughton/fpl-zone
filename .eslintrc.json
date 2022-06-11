@@ -127,7 +127,7 @@
     "@typescript-eslint/type-annotation-spacing": "warn",
 
     // Import
-    "import/first": "error",
+    "import/first": "warn",
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
 
@@ -175,7 +175,7 @@
         "rules":{
           "@typescript-eslint/explicit-function-return-type": "warn",
           "simple-import-sort/imports": [
-            "error",
+            "warn",
             {
               "groups": [
                 // Packages `react` related packages come first.

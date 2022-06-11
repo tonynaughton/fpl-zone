@@ -36,6 +36,9 @@ const theme = createTheme({
     text: {
       primary: "#000000",
       secondary: "#16B7EA"
+    },
+    warning: {
+      main: "#c30000"
     }
   },
   shape: {
@@ -61,7 +64,7 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          padding: "0.6vh"
+          padding: "1vh"
         }
       }
     },
