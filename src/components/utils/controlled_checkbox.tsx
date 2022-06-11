@@ -1,14 +1,22 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import Checkbox from "@mui/material/Checkbox";
 
 interface ControlledCheckboxProps {
   onPlayerSelect: (value: boolean) => void;
+  checkedValue: boolean;
 }
 
-export default function ControlledCheckbox({ onPlayerSelect }: ControlledCheckboxProps) {
+export default function ControlledCheckbox({
+  onPlayerSelect,
+  checkedValue
+}: ControlledCheckboxProps): JSX.Element {
   const [checked, setChecked] = React.useState(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    setChecked(checkedValue);
+  }, [checkedValue]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setChecked(event.target.checked);
     onPlayerSelect(event.target.checked);
   };

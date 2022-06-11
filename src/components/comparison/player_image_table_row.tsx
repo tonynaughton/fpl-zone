@@ -1,19 +1,22 @@
 import React, { Fragment } from "react";
-import { Add } from "@mui/icons-material";
+import { Add, Close } from "@mui/icons-material";
 import { Box, IconButton, TableCell, TableRow } from "@mui/material";
 import { Player } from "types";
 
 interface PlayerImageTableRowProps {
   players: Player[];
   onAddPlayerClick: () => void;
+  onRemovePlayerClick: (player: Player) => void;
 }
 
-export const PlayerImageTableRow = ({ players, onAddPlayerClick }: PlayerImageTableRowProps): JSX.Element => {
-  const renderPlayerImage = (url: string): JSX.Element => {
+export const PlayerImageTableRow = ({ players, onAddPlayerClick, onRemovePlayerClick }: PlayerImageTableRowProps): JSX.Element => {
+  const isPlaceholder = players.length === 0;
+
+  const renderPlayerImage = (url: string, player?: Player): JSX.Element => {
     return (
-      <TableCell align='center' sx={{ height: "inherit" }}>
+      <TableCell align='center'>
         <Box
-          onClick={onAddPlayerClick}
+          onClick={isPlaceholder ? onAddPlayerClick : undefined}
           sx={{
             height: "20vh",
             width: "20vh",
@@ -24,24 +27,49 @@ export const PlayerImageTableRow = ({ players, onAddPlayerClick }: PlayerImageTa
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            cursor: "pointer",
-            borderRadius: "50%"
+            cursor: isPlaceholder ? "pointer" : "auto",
+            borderRadius: isPlaceholder ? "50%" : "auto",
+            position: "relative"
           }}
         >
-          { players.length === 0 &&
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#5fdd6b",
-                borderRadius: "50%"
-              }}
-            >
-              <IconButton aria-label='add player button'>
-                <Add />
-              </IconButton>
-            </Box>}
+          { isPlaceholder
+            ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#5fdd6b",
+                  borderRadius: "50%"
+                }}
+              >
+                <IconButton aria-label='add player button'>
+                  <Add />
+                </IconButton>
+              </Box>
+            )
+            : (
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  right: 0
+                }}
+              >
+                <IconButton
+                  onClick={player ? (): void => onRemovePlayerClick(player) : undefined}
+                  size='small'
+                  sx={{
+                    backgroundColor: "#c30000",
+                    "&:hover": {
+                      backgroundColor: "#e00d0d"
+                    }
+                  }}
+                >
+                  <Close color='info' />
+                </IconButton>
+              </Box>
+            )}
         </Box>
       </TableCell>
     );
@@ -50,7 +78,7 @@ export const PlayerImageTableRow = ({ players, onAddPlayerClick }: PlayerImageTa
   return (
     <TableRow>
       <TableCell className='first-table-cell' />
-      { players.length > 0
+      { !isPlaceholder
         ? (
           players.map((player, key) => {
             const imgId = player.photo.replace(".jpg", "");
@@ -58,7 +86,7 @@ export const PlayerImageTableRow = ({ players, onAddPlayerClick }: PlayerImageTa
 
             return (
               <Fragment key={key}>
-                {renderPlayerImage(url)}
+                {renderPlayerImage(url, player)}
               </Fragment>
             );
           })

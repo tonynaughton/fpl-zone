@@ -1,4 +1,4 @@
-import { Gameweek, Team } from "types";
+import { Gameweek, Position, Team } from "types";
 import { Player } from "types/player";
 
 export const gameStatusValues = {
@@ -17,6 +17,11 @@ export const GetPlayerById = (playerId: number, players: Player[]): Player => {
 export const getTeamById = (teamId: number, teams: Team[]): Team => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return teams.find((team) => team.id === teamId)!;
+};
+
+export const getPositionById = (positionId: number, positions: Position[]): Position => {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return positions.find((position) => position.id === positionId)!;
 };
 
 // Adding commas to large numbers

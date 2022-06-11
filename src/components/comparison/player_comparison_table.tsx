@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
 import { Player,PlayerStat, Team } from "types";
 
@@ -9,13 +9,15 @@ interface ComparisonTableProps {
   teams: Team[];
   playerStats: PlayerStat[];
   onAddPlayerClick: () => void;
+  onRemovePlayerClick: (player: Player) => void;
 }
 
 export default function ComparisonTable({
   selectedPlayers,
   teams,
   playerStats,
-  onAddPlayerClick
+  onAddPlayerClick,
+  onRemovePlayerClick
 }: ComparisonTableProps): JSX.Element {
 
   return (
@@ -28,7 +30,7 @@ export default function ComparisonTable({
       }}
     >
       <TableBody>
-        <PlayerImageTableRow onAddPlayerClick={onAddPlayerClick} players={selectedPlayers} />
+        <PlayerImageTableRow onAddPlayerClick={onAddPlayerClick} onRemovePlayerClick={onRemovePlayerClick} players={selectedPlayers} />
         <PlayerNameTableRow players={selectedPlayers} />
         <TeamNameTableRow players={selectedPlayers} teams={teams} />
         {playerStats.map((stat, key) => {

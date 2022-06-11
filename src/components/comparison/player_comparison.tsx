@@ -1,22 +1,30 @@
 import React, { useContext, useState } from "react";
 import { Box } from "@mui/material";
 import { AppDataContext } from "app_content";
+import _ from "lodash";
 import { AppData } from "types";
 import { Player } from "types/player";
 
-import { AddPlayersToComparisonModal } from "./add_players_to_comparison_modal";
 import ComparisonTable from "./player_comparison_table";
+import { AddPlayersToComparisonModal } from ".";
 
 import "./comparison.css";
 
 export default function PlayerComparison(): JSX.Element {
-  const { playerStats, players, positions, teams } = useContext(AppDataContext) as AppData;
+  const { playerStats, teams } = useContext(AppDataContext) as AppData;
 
   const [isAddPlayersModalOpen, setIsAddPlayerModalOpen] = useState<boolean>(false);
   const [selectedComparisonPlayers, setSelectedComparisonPlayers] = useState<Player[]>([]);
 
   const onAddPlayerClick = (): void => {
     setIsAddPlayerModalOpen(true);
+  };
+
+  const onRemovePlayerClick = (player: Player): void => {
+    const clonedSelectedPlayers = _.clone(selectedComparisonPlayers);
+    const index = clonedSelectedPlayers.indexOf(player);
+    clonedSelectedPlayers.splice(index, 1);
+    setSelectedComparisonPlayers(clonedSelectedPlayers);
   };
 
   return (
@@ -30,12 +38,14 @@ export default function PlayerComparison(): JSX.Element {
     >
       <ComparisonTable
         onAddPlayerClick={onAddPlayerClick}
+        onRemovePlayerClick={onRemovePlayerClick}
         playerStats={playerStats}
         selectedPlayers={selectedComparisonPlayers}
         teams={teams}
       />
       <AddPlayersToComparisonModal
         isAddPlayersModalOpen={isAddPlayersModalOpen}
+        selectedComparisonPlayers={selectedComparisonPlayers}
         setAddPlayersModalOpen={setIsAddPlayerModalOpen}
         setSelectedComparisonPlayers={setSelectedComparisonPlayers}
       />
