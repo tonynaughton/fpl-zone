@@ -64,7 +64,7 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          padding: "0.6vh"
+          padding: "1vh"
         }
       }
     },

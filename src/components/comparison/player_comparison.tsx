@@ -13,8 +13,10 @@ import "./comparison.css";
 export default function PlayerComparison(): JSX.Element {
   const { playerStats, teams } = useContext(AppDataContext) as AppData;
 
-  const [isAddPlayersModalOpen, setIsAddPlayerModalOpen] = useState<boolean>(false);
+  const [isAddPlayersModalOpen, setIsAddPlayerModalOpen] = useState<boolean>(true);
   const [selectedComparisonPlayers, setSelectedComparisonPlayers] = useState<Player[]>([]);
+
+  const maxPlayerCount = 5;
 
   const onAddPlayerClick = (): void => {
     setIsAddPlayerModalOpen(true);
@@ -33,10 +35,12 @@ export default function PlayerComparison(): JSX.Element {
         display: "flex",
         flexDirection: "column",
         alignItem: "center",
-        height: "100%"
+        height: "100%",
+        overflow: "auto"
       }}
     >
       <ComparisonTable
+        maxPlayerCount={maxPlayerCount}
         onAddPlayerClick={onAddPlayerClick}
         onRemovePlayerClick={onRemovePlayerClick}
         playerStats={playerStats}
@@ -45,6 +49,7 @@ export default function PlayerComparison(): JSX.Element {
       />
       <AddPlayersToComparisonModal
         isAddPlayersModalOpen={isAddPlayersModalOpen}
+        maxPlayerCount={maxPlayerCount}
         selectedComparisonPlayers={selectedComparisonPlayers}
         setAddPlayersModalOpen={setIsAddPlayerModalOpen}
         setSelectedComparisonPlayers={setSelectedComparisonPlayers}

@@ -10,6 +10,7 @@ interface ComparisonTableProps {
   playerStats: PlayerStat[];
   onAddPlayerClick: () => void;
   onRemovePlayerClick: (player: Player) => void;
+  maxPlayerCount: number;
 }
 
 export default function ComparisonTable({
@@ -17,7 +18,8 @@ export default function ComparisonTable({
   teams,
   playerStats,
   onAddPlayerClick,
-  onRemovePlayerClick
+  onRemovePlayerClick,
+  maxPlayerCount
 }: ComparisonTableProps): JSX.Element {
 
   return (
@@ -30,9 +32,14 @@ export default function ComparisonTable({
       }}
     >
       <TableBody>
-        <PlayerImageTableRow onAddPlayerClick={onAddPlayerClick} onRemovePlayerClick={onRemovePlayerClick} players={selectedPlayers} />
-        <PlayerNameTableRow players={selectedPlayers} />
-        <TeamNameTableRow players={selectedPlayers} teams={teams} />
+        <PlayerImageTableRow
+          maxPlayerCount={maxPlayerCount}
+          onAddPlayerClick={onAddPlayerClick}
+          onRemovePlayerClick={onRemovePlayerClick}
+          players={selectedPlayers}
+        />
+        <PlayerNameTableRow maxPlayerCount={maxPlayerCount} players={selectedPlayers} />
+        <TeamNameTableRow maxPlayerCount={maxPlayerCount} players={selectedPlayers} teams={teams} />
         {playerStats.map((stat, key) => {
           return (
             <TableRow key={key}>
@@ -50,6 +57,7 @@ export default function ComparisonTable({
                   </TableCell>
                 );
               })}
+              {selectedPlayers.length < maxPlayerCount && <TableCell className='standard-table-cell' />}
             </TableRow>
           );
         })}

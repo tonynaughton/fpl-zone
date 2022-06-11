@@ -8,9 +8,10 @@ import "./comparison.css";
 interface TeamNameTableRowProps {
   players: Player[];
   teams: Team[];
+  maxPlayerCount: number;
 }
 
-export const TeamNameTableRow = ({ players, teams }: TeamNameTableRowProps): JSX.Element => {
+export const TeamNameTableRow = ({ players, teams, maxPlayerCount }: TeamNameTableRowProps): JSX.Element => {
   return (
     <TableRow>
       <TableCell className='first-table-cell'>
@@ -19,24 +20,11 @@ export const TeamNameTableRow = ({ players, teams }: TeamNameTableRowProps): JSX
       {players.map((player, key) => {
         return (
           <TableCell className='standard-table-cell' key={key}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                height: "100%",
-                columnGap: 1
-              }}
-            >
-              <img
-                alt='team-crest'
-                height='25px'
-                src={`${process.env.PUBLIC_URL}/assets/images/crests/${player.team_code}.png`}
-              />
-              {getTeamById(player.team, teams).name}
-            </Box>
+            <Typography>{getTeamById(player.team, teams).name}</Typography>
           </TableCell>
         );
       })}
+      {players.length < maxPlayerCount && <TableCell className='standard-table-cell' />}
     </TableRow>
   );
 };

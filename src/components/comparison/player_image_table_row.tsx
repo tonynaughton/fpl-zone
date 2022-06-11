@@ -1,25 +1,32 @@
 import React, { Fragment } from "react";
 import { Add, Close } from "@mui/icons-material";
-import { Box, IconButton, TableCell, TableRow } from "@mui/material";
+import { Box, IconButton, TableCell, TableRow, Typography } from "@mui/material";
 import { Player } from "types";
+
+import { AddButton } from "./add_button";
 
 interface PlayerImageTableRowProps {
   players: Player[];
   onAddPlayerClick: () => void;
   onRemovePlayerClick: (player: Player) => void;
+  maxPlayerCount: number;
 }
 
-export const PlayerImageTableRow = ({ players, onAddPlayerClick, onRemovePlayerClick }: PlayerImageTableRowProps): JSX.Element => {
-  const isPlaceholder = players.length === 0;
-
+export const PlayerImageTableRow = ({
+  players,
+  onAddPlayerClick,
+  onRemovePlayerClick,
+  maxPlayerCount
+}: PlayerImageTableRowProps): JSX.Element => {
   const renderPlayerImage = (url: string, player?: Player): JSX.Element => {
+
     return (
-      <TableCell align='center'>
+      <TableCell align='center' className='standard-table-cell'>
         <Box
-          onClick={isPlaceholder ? onAddPlayerClick : undefined}
+          onClick={!player ? onAddPlayerClick : undefined}
           sx={{
-            height: "20vh",
-            width: "20vh",
+            height: "18vh",
+            width: "18vh",
             margin: "auto",
             backgroundImage: `url(${url})`,
             backgroundSize: "cover",
@@ -27,26 +34,14 @@ export const PlayerImageTableRow = ({ players, onAddPlayerClick, onRemovePlayerC
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            cursor: isPlaceholder ? "pointer" : "auto",
-            borderRadius: isPlaceholder ? "50%" : "auto",
+            cursor: !player ? "pointer" : "auto",
+            borderRadius: !player ? "50%" : "auto",
             position: "relative"
           }}
         >
-          { isPlaceholder
+          { !player
             ? (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#5fdd6b",
-                  borderRadius: "50%"
-                }}
-              >
-                <IconButton aria-label='add player button'>
-                  <Add />
-                </IconButton>
-              </Box>
+              <AddButton />
             )
             : (
               <Box
@@ -78,22 +73,17 @@ export const PlayerImageTableRow = ({ players, onAddPlayerClick, onRemovePlayerC
   return (
     <TableRow>
       <TableCell className='first-table-cell' />
-      { !isPlaceholder
-        ? (
-          players.map((player, key) => {
-            const imgId = player.photo.replace(".jpg", "");
-            const url = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
+      {players.map((player, key) => {
+        const imgId = player.photo.replace(".jpg", "");
+        const url = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
 
-            return (
-              <Fragment key={key}>
-                {renderPlayerImage(url, player)}
-              </Fragment>
-            );
-          })
-        )
-        : (
-          renderPlayerImage(`${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`)
-        )}
+        return (
+          <Fragment key={key}>
+            {renderPlayerImage(url, player)}
+          </Fragment>
+        );
+      })}
+      {players.length < maxPlayerCount && renderPlayerImage(`${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`)}
     </TableRow>
   );
 };

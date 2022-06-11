@@ -4,15 +4,16 @@ import { Player } from "types";
 
 interface PlayerNameTableRowProps {
   players: Player[];
+  maxPlayerCount: number;
 }
 
-export const PlayerNameTableRow = ({ players }: PlayerNameTableRowProps): JSX.Element => {
+export const PlayerNameTableRow = ({ players, maxPlayerCount }: PlayerNameTableRowProps): JSX.Element => {
   return (
     <TableRow>
       <TableCell className='first-table-cell'>
         <Typography>Name</Typography>
       </TableCell>
-      {players.map((player, key) => {
+      { players.map((player, key) => {
         return (
           <TableCell className='standard-table-cell' key={key}>
             <Typography
@@ -22,6 +23,7 @@ export const PlayerNameTableRow = ({ players }: PlayerNameTableRowProps): JSX.El
           </TableCell>
         );
       })}
+      {players.length < maxPlayerCount && <TableCell className='standard-table-cell' />}
     </TableRow>
   );
 };

@@ -14,13 +14,15 @@ interface AddPlayersToComparisonModalProps {
   setAddPlayersModalOpen: (value: boolean) => void;
   selectedComparisonPlayers: Player[];
   setSelectedComparisonPlayers: (players: Player[]) => void;
+  maxPlayerCount: number;
 }
 
 export const AddPlayersToComparisonModal = ({
   isAddPlayersModalOpen,
   setAddPlayersModalOpen,
   selectedComparisonPlayers,
-  setSelectedComparisonPlayers
+  setSelectedComparisonPlayers,
+  maxPlayerCount
 }: AddPlayersToComparisonModalProps): JSX.Element => {
   const { players } = useContext(AppDataContext) as AppData;
 
@@ -46,15 +48,19 @@ export const AddPlayersToComparisonModal = ({
   const performSearch = (value: string): void => {
     const filtered = players.filter((player) => {
       const input = value.toUpperCase();
-      const propsToSearch = ["first_name", "second_name", "web_name"];
 
       let searchResult = false;
 
-      propsToSearch.forEach((prop): boolean | void => {
-        if (player[prop].toUpperCase().includes(input)) {
-          searchResult = true;
-        }
-      });
+      // Searching player web name i.e. 'known as'
+      if (player.web_name.toUpperCase().includes(input)) {
+        searchResult = true;
+      }
+
+      // Searching player full name
+      const fullName = `${player.first_name} ${player.second_name}`;
+      if (fullName.toUpperCase().includes(input)) {
+        searchResult = true;
+      }
 
       return searchResult;
     });
@@ -103,7 +109,7 @@ export const AddPlayersToComparisonModal = ({
           alignItems: "center",
           rowGap: 1,
           zIndex: 2000,
-          maxHeight: "90%"
+          height: "90%"
         }}
       >
         <IconButton
@@ -132,6 +138,7 @@ export const AddPlayersToComparisonModal = ({
           }}
         >
           <AddPlayersTable
+            maxPlayerCount={maxPlayerCount}
             onPlayerToggle={onPlayerToggle}
             players={displayedPlayers}
             selectedComparisonPlayers={selectedComparisonPlayers}

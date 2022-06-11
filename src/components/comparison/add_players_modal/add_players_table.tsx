@@ -11,13 +11,15 @@ interface AddPlayersTableProps {
   onPlayerToggle: (player: Player, value: boolean) => void;
   selectedComparisonPlayers: Player[];
   tempSelectedPlayers: Player[];
+  maxPlayerCount: number;
 }
 
 export const AddPlayersTable = ({
   players,
   onPlayerToggle,
   selectedComparisonPlayers,
-  tempSelectedPlayers
+  tempSelectedPlayers,
+  maxPlayerCount
 }: AddPlayersTableProps): JSX.Element => {
   const { teams, positions } = useContext(AppDataContext) as AppData;
 
@@ -25,7 +27,16 @@ export const AddPlayersTable = ({
     <Table stickyHeader sx={{ tableLayout: "fixed" }}>
       <TableHead>
         <TableRow>
-          <TableCell sx={{ pl: 2 }}><Typography>{tempSelectedPlayers.length}/5 selected</Typography></TableCell>
+          <TableCell sx={{ pl: 2 }}>
+            <Typography
+              fontWeight='600'
+              sx={{
+                color: tempSelectedPlayers.length >= maxPlayerCount ? "red" : "black"
+              }}
+            >
+              {tempSelectedPlayers.length}/{maxPlayerCount}
+            </Typography>
+          </TableCell>
           <TableCell><Typography>Name</Typography></TableCell>
           <TableCell><Typography>Team</Typography></TableCell>
           <TableCell><Typography>Position</Typography></TableCell>
@@ -42,6 +53,7 @@ export const AddPlayersTable = ({
               <TableCell>
                 <ControlledCheckbox
                   checkedValue={checkedValue}
+                  isDisabled={tempSelectedPlayers.length === maxPlayerCount}
                   onPlayerSelect={(value: boolean): void => onPlayerToggle(player, value)}
                 />
               </TableCell>
