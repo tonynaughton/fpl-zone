@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box,Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
-import { AppDataContext } from "app_content";
 import { getPositionById,getTeamById } from "helpers";
-import { AppData, Player } from "types";
+import { Player, Position, Team } from "types";
 
 import ControlledCheckbox from "components/utils/controlled_checkbox";
 
@@ -12,17 +11,18 @@ interface AddPlayersTableProps {
   selectedComparisonPlayers: Player[];
   tempSelectedPlayers: Player[];
   maxPlayerCount: number;
+  teams: Team[];
+  positions: Position[];
 }
 
 export const AddPlayersTable = ({
   players,
   onPlayerToggle,
-  selectedComparisonPlayers,
   tempSelectedPlayers,
-  maxPlayerCount
+  maxPlayerCount,
+  teams,
+  positions
 }: AddPlayersTableProps): JSX.Element => {
-  const { teams, positions } = useContext(AppDataContext) as AppData;
-
   return (
     <Table stickyHeader sx={{ tableLayout: "fixed" }}>
       <TableHead>
@@ -46,7 +46,7 @@ export const AddPlayersTable = ({
         {players.map((player, index) => {
           const team = getTeamById(player.team, teams);
           const position = getPositionById(player.element_type, positions);
-          const checkedValue = selectedComparisonPlayers.includes(player);
+          const checkedValue = tempSelectedPlayers.includes(player);
 
           return (
             <TableRow key={index}>

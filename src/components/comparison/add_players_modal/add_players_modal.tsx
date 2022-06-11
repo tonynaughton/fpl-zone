@@ -1,14 +1,14 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Close } from "@mui/icons-material";
 import { Box, IconButton, TextField, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import _ from "lodash";
+import { getNormalizedString } from "helpers";
+import { clone, debounce } from "lodash";
 import { AppData, Player } from "types";
 
 import { AddPlayersTable } from "..";
 
 import { ModalFooter } from "./modal_footer";
-import { getNormalizedString } from "helpers";
 
 interface AddPlayersToComparisonModalProps {
   isAddPlayersModalOpen: boolean;
@@ -25,39 +25,53 @@ export const AddPlayersToComparisonModal = ({
   setSelectedComparisonPlayers,
   maxPlayerCount
 }: AddPlayersToComparisonModalProps): JSX.Element => {
-  const { players } = useContext(AppDataContext) as AppData;
+  const { players, teams, positions } = useContext(AppDataContext) as AppData;
 
   const [tempSelectedPlayers, setTempSelectedPlayers] = useState<Player[]>([]);
   const [displayedPlayers, setDisplayedPlayers] = useState<Player[]>(players);
+  const [searchInput, setSearchInput] = useState<string>("");
 
   useEffect(() => {
     setTempSelectedPlayers(selectedComparisonPlayers);
 
-    const close = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+    const close = (event: KeyboardEvent): void => {
+      if (event.key === "Escape") {
         setAddPlayersModalOpen(false);
       }
-    }
+    };
 
-    window.addEventListener('keydown', close);
-    return () => window.removeEventListener('keydown', close);
+    window.addEventListener("keydown", close);
+
+    return () => window.removeEventListener("keydown", close);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedComparisonPlayers]);
 
   const onPlayerToggle = (player: Player, value: boolean): void => {
     if (value) {
       setTempSelectedPlayers([...tempSelectedPlayers, player]);
     } else {
-      const clonedTempPlayers = _.clone(tempSelectedPlayers);
+      const clonedTempPlayers = clone(tempSelectedPlayers);
       const index = clonedTempPlayers.indexOf(player);
       clonedTempPlayers.splice(index, 1);
       setTempSelectedPlayers(clonedTempPlayers);
     }
   };
 
+  const memoizedTable = useMemo(() => AddPlayersTable({
+    maxPlayerCount,
+    onPlayerToggle,
+    players: displayedPlayers,
+    selectedComparisonPlayers,
+    tempSelectedPlayers,
+    teams,
+    positions
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), [displayedPlayers, tempSelectedPlayers, selectedComparisonPlayers]);
+
   const performSearch = (input: string): void => {
     const normalizedInput = getNormalizedString(input);
 
-    const filtered = players.filter((player) => {  
+    const filtered = players.filter((player) => {
 
       let searchResult = false;
 
@@ -80,7 +94,8 @@ export const AddPlayersToComparisonModal = ({
     setDisplayedPlayers(filtered);
   };
 
-  const debounceSearch = useCallback(_.debounce(performSearch, 1000), []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debounceSearch = useCallback(debounce(performSearch, 1000), []);
 
   const onCancelClick = (): void => {
     setTempSelectedPlayers([]);
@@ -89,6 +104,9 @@ export const AddPlayersToComparisonModal = ({
 
   const onConfirmClick = (): void => {
     setSelectedComparisonPlayers(tempSelectedPlayers);
+    setTempSelectedPlayers([]);
+    setDisplayedPlayers(players);
+    setSearchInput("");
     setAddPlayersModalOpen(false);
   };
 
@@ -134,10 +152,14 @@ export const AddPlayersToComparisonModal = ({
         <TextField
           fullWidth
           margin='normal'
-          onChange={(event): void => debounceSearch(event.target.value)}
+          onChange={(event): void => {
+            debounceSearch(event.target.value);
+            setSearchInput(event.target.value);
+          }}
           placeholder='Search by name..'
           size='small'
           type='search'
+          value={searchInput}
         />
         <Box
           flexGrow={1}
@@ -149,13 +171,7 @@ export const AddPlayersToComparisonModal = ({
             mb: 1
           }}
         >
-          <AddPlayersTable
-            maxPlayerCount={maxPlayerCount}
-            onPlayerToggle={onPlayerToggle}
-            players={displayedPlayers}
-            selectedComparisonPlayers={selectedComparisonPlayers}
-            tempSelectedPlayers={tempSelectedPlayers}
-          />
+          {memoizedTable}
         </Box>
         <ModalFooter onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} />
       </Box>

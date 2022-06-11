@@ -26,8 +26,8 @@ export const getPositionById = (positionId: number, positions: Position[]): Posi
 
 export const getNormalizedString = (input: string): string => {
   return input
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036F]/g, "")
     .toUpperCase();
 };
 

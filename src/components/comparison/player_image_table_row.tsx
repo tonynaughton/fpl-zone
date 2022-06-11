@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { Add, Close } from "@mui/icons-material";
-import { Box, IconButton, TableCell, TableRow, Typography } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import { Box, IconButton, TableCell, TableRow } from "@mui/material";
 import { Player } from "types";
 
 import { AddButton } from "./add_button";

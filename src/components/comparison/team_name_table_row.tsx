@@ -1,5 +1,5 @@
 import React from "react";
-import { Box,TableCell, TableRow, Typography } from "@mui/material";
+import { TableCell, TableRow, Typography } from "@mui/material";
 import { getTeamById } from "helpers";
 import { Player, Team } from "types";
 
