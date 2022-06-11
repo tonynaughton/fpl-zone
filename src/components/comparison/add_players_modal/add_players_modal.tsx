@@ -8,6 +8,7 @@ import { AppData, Player } from "types";
 import { AddPlayersTable } from "..";
 
 import { ModalFooter } from "./modal_footer";
+import { getNormalizedString } from "helpers";
 
 interface AddPlayersToComparisonModalProps {
   isAddPlayersModalOpen: boolean;
@@ -45,20 +46,23 @@ export const AddPlayersToComparisonModal = ({
     }
   };
 
-  const performSearch = (value: string): void => {
-    const filtered = players.filter((player) => {
-      const input = value.toUpperCase();
+  const performSearch = (input: string): void => {
+    const normalizedInput = getNormalizedString(input);
+
+    const filtered = players.filter((player) => {  
 
       let searchResult = false;
 
       // Searching player web name i.e. 'known as'
-      if (player.web_name.toUpperCase().includes(input)) {
+      const normalizedWebName = getNormalizedString(player.web_name);
+      if (normalizedWebName.includes(normalizedInput)) {
         searchResult = true;
       }
 
       // Searching player full name
       const fullName = `${player.first_name} ${player.second_name}`;
-      if (fullName.toUpperCase().includes(input)) {
+      const normalizedFullName = getNormalizedString(fullName);
+      if (normalizedFullName.includes(normalizedInput)) {
         searchResult = true;
       }
 

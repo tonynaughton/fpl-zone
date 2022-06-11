@@ -24,6 +24,13 @@ export const getPositionById = (positionId: number, positions: Position[]): Posi
   return positions.find((position) => position.id === positionId)!;
 };
 
+export const getNormalizedString = (input: string): string => {
+  return input
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase();
+};
+
 // Adding commas to large numbers
 // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 export const numberWithCommas = (x: number): string => {
