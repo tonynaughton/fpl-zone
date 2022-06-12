@@ -2,7 +2,7 @@ import React from "react";
 import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
 import { Player,PlayerStat, Team } from "types";
 
-import { PlayerImageTableRow, PlayerNameTableRow, TeamNameTableRow } from ".";
+import { MAX_PLAYER_COUNT, PlayerImageTableRow, PlayerNameTableRow, TeamNameTableRow } from ".";
 
 interface ComparisonTableProps {
   selectedPlayers: Player[];
@@ -10,17 +10,15 @@ interface ComparisonTableProps {
   playerStats: PlayerStat[];
   onAddPlayerClick: () => void;
   onRemovePlayerClick: (player: Player) => void;
-  maxPlayerCount: number;
 }
 
-export default function ComparisonTable({
+export const ComparisonTable = ({
   selectedPlayers,
   teams,
   playerStats,
   onAddPlayerClick,
-  onRemovePlayerClick,
-  maxPlayerCount
-}: ComparisonTableProps): JSX.Element {
+  onRemovePlayerClick
+}: ComparisonTableProps): JSX.Element => {
 
   return (
     <Table
@@ -33,13 +31,12 @@ export default function ComparisonTable({
     >
       <TableBody>
         <PlayerImageTableRow
-          maxPlayerCount={maxPlayerCount}
           onAddPlayerClick={onAddPlayerClick}
           onRemovePlayerClick={onRemovePlayerClick}
           players={selectedPlayers}
         />
-        <PlayerNameTableRow maxPlayerCount={maxPlayerCount} players={selectedPlayers} />
-        <TeamNameTableRow maxPlayerCount={maxPlayerCount} players={selectedPlayers} teams={teams} />
+        <PlayerNameTableRow players={selectedPlayers} />
+        <TeamNameTableRow players={selectedPlayers} teams={teams} />
         {playerStats.map((stat, key) => {
           return (
             <TableRow key={key}>
@@ -57,11 +54,11 @@ export default function ComparisonTable({
                   </TableCell>
                 );
               })}
-              {selectedPlayers.length < maxPlayerCount && <TableCell className='standard-table-cell' />}
+              {selectedPlayers.length < MAX_PLAYER_COUNT && <TableCell className='standard-table-cell' />}
             </TableRow>
           );
         })}
       </TableBody>
     </Table>
   );
-}
+};

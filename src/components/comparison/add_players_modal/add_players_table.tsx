@@ -5,12 +5,13 @@ import { Player, Position, Team } from "types";
 
 import ControlledCheckbox from "components/utils/controlled_checkbox";
 
+import { MAX_PLAYER_COUNT } from "..";
+
 interface AddPlayersTableProps {
   players: Player[];
   onPlayerToggle: (player: Player, value: boolean) => void;
   selectedComparisonPlayers: Player[];
   tempSelectedPlayers: Player[];
-  maxPlayerCount: number;
   teams: Team[];
   positions: Position[];
 }
@@ -19,7 +20,6 @@ export const AddPlayersTable = ({
   players,
   onPlayerToggle,
   tempSelectedPlayers,
-  maxPlayerCount,
   teams,
   positions
 }: AddPlayersTableProps): JSX.Element => {
@@ -31,10 +31,10 @@ export const AddPlayersTable = ({
             <Typography
               fontWeight='600'
               sx={{
-                color: tempSelectedPlayers.length >= maxPlayerCount ? "red" : "black"
+                color: tempSelectedPlayers.length >= MAX_PLAYER_COUNT ? "red" : "black"
               }}
             >
-              {tempSelectedPlayers.length}/{maxPlayerCount}
+              {tempSelectedPlayers.length}/{MAX_PLAYER_COUNT}
             </Typography>
           </TableCell>
           <TableCell><Typography>Name</Typography></TableCell>
@@ -53,7 +53,7 @@ export const AddPlayersTable = ({
               <TableCell>
                 <ControlledCheckbox
                   checkedValue={checkedValue}
-                  isDisabled={tempSelectedPlayers.length === maxPlayerCount}
+                  isDisabled={tempSelectedPlayers.length === MAX_PLAYER_COUNT}
                   onPlayerSelect={(value: boolean): void => onPlayerToggle(player, value)}
                 />
               </TableCell>

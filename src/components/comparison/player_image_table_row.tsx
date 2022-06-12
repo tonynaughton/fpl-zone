@@ -3,20 +3,18 @@ import { Close } from "@mui/icons-material";
 import { Box, IconButton, TableCell, TableRow } from "@mui/material";
 import { Player } from "types";
 
-import { AddButton } from "./add_button";
+import { AddButton,MAX_PLAYER_COUNT } from ".";
 
 interface PlayerImageTableRowProps {
   players: Player[];
   onAddPlayerClick: () => void;
   onRemovePlayerClick: (player: Player) => void;
-  maxPlayerCount: number;
 }
 
 export const PlayerImageTableRow = ({
   players,
   onAddPlayerClick,
-  onRemovePlayerClick,
-  maxPlayerCount
+  onRemovePlayerClick
 }: PlayerImageTableRowProps): JSX.Element => {
   const renderPlayerImage = (url: string, player?: Player): JSX.Element => {
 
@@ -83,7 +81,7 @@ export const PlayerImageTableRow = ({
           </Fragment>
         );
       })}
-      {players.length < maxPlayerCount && renderPlayerImage(`${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`)}
+      {players.length < MAX_PLAYER_COUNT && renderPlayerImage(`${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`)}
     </TableRow>
   );
 };

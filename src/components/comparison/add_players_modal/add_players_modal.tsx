@@ -15,15 +15,13 @@ interface AddPlayersToComparisonModalProps {
   setAddPlayersModalOpen: (value: boolean) => void;
   selectedComparisonPlayers: Player[];
   setSelectedComparisonPlayers: (players: Player[]) => void;
-  maxPlayerCount: number;
 }
 
 export const AddPlayersToComparisonModal = ({
   isAddPlayersModalOpen,
   setAddPlayersModalOpen,
   selectedComparisonPlayers,
-  setSelectedComparisonPlayers,
-  maxPlayerCount
+  setSelectedComparisonPlayers
 }: AddPlayersToComparisonModalProps): JSX.Element => {
   const { players, teams, positions } = useContext(AppDataContext) as AppData;
 
@@ -58,7 +56,6 @@ export const AddPlayersToComparisonModal = ({
   };
 
   const memoizedTable = useMemo(() => AddPlayersTable({
-    maxPlayerCount,
     onPlayerToggle,
     players: displayedPlayers,
     selectedComparisonPlayers,
