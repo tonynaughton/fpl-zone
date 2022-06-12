@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "config/firebase";
 
-import PlayerComparison from "components/comparison/player_comparison";
+import { PlayerComparison } from "components/comparison";
 import { AppLayout, ComponentContainer } from "components/layout";
 
 export const AnalysisPage = (): JSX.Element => {

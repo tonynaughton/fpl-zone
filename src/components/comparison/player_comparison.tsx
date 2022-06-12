@@ -5,18 +5,17 @@ import _ from "lodash";
 import { AppData } from "types";
 import { Player } from "types/player";
 
-import ComparisonTable from "./player_comparison_table";
-import { AddPlayersToComparisonModal } from ".";
+import { AddPlayersToComparisonModal, ComparisonTable } from ".";
 
 import "./comparison.css";
 
-export default function PlayerComparison(): JSX.Element {
+export const MAX_PLAYER_COUNT = 5;
+
+export const PlayerComparison = (): JSX.Element => {
   const { playerStats, teams } = useContext(AppDataContext) as AppData;
 
   const [isAddPlayersModalOpen, setIsAddPlayerModalOpen] = useState<boolean>(true);
   const [selectedComparisonPlayers, setSelectedComparisonPlayers] = useState<Player[]>([]);
-
-  const maxPlayerCount = 5;
 
   const onAddPlayerClick = (): void => {
     setIsAddPlayerModalOpen(true);
@@ -40,7 +39,6 @@ export default function PlayerComparison(): JSX.Element {
       }}
     >
       <ComparisonTable
-        maxPlayerCount={maxPlayerCount}
         onAddPlayerClick={onAddPlayerClick}
         onRemovePlayerClick={onRemovePlayerClick}
         playerStats={playerStats}
@@ -49,11 +47,10 @@ export default function PlayerComparison(): JSX.Element {
       />
       <AddPlayersToComparisonModal
         isAddPlayersModalOpen={isAddPlayersModalOpen}
-        maxPlayerCount={maxPlayerCount}
         selectedComparisonPlayers={selectedComparisonPlayers}
         setAddPlayersModalOpen={setIsAddPlayerModalOpen}
         setSelectedComparisonPlayers={setSelectedComparisonPlayers}
       />
     </Box>
   );
-}
+};

@@ -2,12 +2,13 @@ import React from "react";
 import { TableCell, TableRow, Typography } from "@mui/material";
 import { Player } from "types";
 
+import { MAX_PLAYER_COUNT } from ".";
+
 interface PlayerNameTableRowProps {
   players: Player[];
-  maxPlayerCount: number;
 }
 
-export const PlayerNameTableRow = ({ players, maxPlayerCount }: PlayerNameTableRowProps): JSX.Element => {
+export const PlayerNameTableRow = ({ players }: PlayerNameTableRowProps): JSX.Element => {
   return (
     <TableRow>
       <TableCell className='first-table-cell'>
@@ -23,7 +24,7 @@ export const PlayerNameTableRow = ({ players, maxPlayerCount }: PlayerNameTableR
           </TableCell>
         );
       })}
-      {players.length < maxPlayerCount && <TableCell className='standard-table-cell' />}
+      {players.length < MAX_PLAYER_COUNT && <TableCell className='standard-table-cell' />}
     </TableRow>
   );
 };

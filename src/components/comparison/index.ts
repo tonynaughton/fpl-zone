@@ -1,5 +1,7 @@
+export * from "./add_button";
 export * from "./add_players_modal/add_players_modal";
 export * from "./add_players_modal/add_players_table";
+export * from "./add_players_modal/modal_footer";
 export * from "./player_comparison";
 export * from "./player_comparison_table";
 export * from "./player_image_table_row";
