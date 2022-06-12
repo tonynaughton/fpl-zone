@@ -1,7 +1,7 @@
 import { Gameweek, Position, Team } from "types";
 import { Player } from "types/player";
 
-export const gameStatusValues = {
+export const GAME_STATUS_VALUES = {
   GAME_UPDATING: "Game is updating..",
   SEASON_FINISHED: "The current FPL season has finished, check back next season!",
   GAME_OK: "GAME_OK"
@@ -63,7 +63,7 @@ export const checkGameStatus = (gameweeks: Gameweek[]): string => {
   const nextGameweek = gameweeks.find(gameweek => gameweek.is_next);
 
   if (!currentGameweek) {
-    return gameStatusValues.SEASON_FINISHED;
+    return GAME_STATUS_VALUES.SEASON_FINISHED;
   }
 
   /*
@@ -79,10 +79,10 @@ export const checkGameStatus = (gameweeks: Gameweek[]): string => {
 
   // If current time is 1.5 hours (5400000 ms) since deadline, game will be updating
   if (timeDifference < 5400000) {
-    return gameStatusValues.GAME_UPDATING;
+    return GAME_STATUS_VALUES.GAME_UPDATING;
   }
 
-  return gameStatusValues.GAME_OK;
+  return GAME_STATUS_VALUES.GAME_OK;
 };
 
 // Adding delay before next function call

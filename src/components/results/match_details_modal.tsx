@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Close } from "@mui/icons-material";
-import { Box, Grid, IconButton, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { formatDate, GetPlayerById } from "helpers";
 import { AppData,CustomResult, Fixture, StatValue, Team } from "types";
+
+import { CustomModal } from "components/utils/modal";
 
 interface MatchDetailsModalProps {
   isResultsModalOpen: boolean;
@@ -104,65 +105,30 @@ export default function MatchDetailsModal({
     kickoff_time: selectedResult.kickoff_time
   };
 
+  const kickOffTime = selectedResult.kickoff_time && formatDate(new Date(selectedResult.kickoff_time));
+
   return (
-    <Box
-      onClick={(): void => setResultsModalOpen(false)}
-      sx={{
-        display: isResultsModalOpen ? "block" : "none",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        height: "100%",
-        width: "100%",
-        backgroundColor: "rgb(0, 0, 0, 0.5)"
-      }}
+    <CustomModal
+      isModalOpen={isResultsModalOpen}
+      setModalOpen={setResultsModalOpen}
     >
       <Box
-        onClick={(event): void => event.stopPropagation()}
         sx={{
-          display: isResultsModalOpen ? "flex" : "none",
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "90%",
-          bgcolor: "white",
-          boxShadow: 24,
-          p: 4,
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
           flexDirection: "column",
           alignItems: "center",
-          rowGap: 1,
-          zIndex: 2000,
-          maxHeight: "75%",
-          overflow: "auto"
+          rowGap: 2
         }}
       >
-        <IconButton
-          onClick={(): void => setResultsModalOpen(false)}
-          sx={{ position: "absolute", top: "12px", right: "12px" }}
-        >
-          <Close />
-        </IconButton>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            flexDirection: "column",
-            alignItems: "center",
-            rowGap: 2
-          }}
-        >
-          <Typography variant='h5'>
-            {selectedResult.kickoff_time && formatDate(new Date(selectedResult.kickoff_time))}
-          </Typography>
-          {renderResult(customResult, true, teams)}
-          {renderStat("goals_scored")}
-          {renderStat("assists")}
-          {renderStat("yellow_cards")}
-          {renderStat("red_cards")}
-        </Box>
+        {kickOffTime && <Typography variant='h5'>{kickOffTime}</Typography>}
+        {renderResult(customResult, true, teams)}
+        {renderStat("goals_scored")}
+        {renderStat("assists")}
+        {renderStat("yellow_cards")}
+        {renderStat("red_cards")}
       </Box>
-    </Box>
+    </CustomModal>
   );
 }

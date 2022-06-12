@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { auth } from "config/firebase";
-import { checkGameStatus, gameStatusValues } from "helpers";
+import { checkGameStatus, GAME_STATUS_VALUES } from "helpers";
 import { AppData } from "types";
 
 import DreamTeam from "components/dream_team/dream_team";
@@ -24,7 +24,7 @@ export const GameweekLivePage = (): JSX.Element => {
   const gameStatus = checkGameStatus(gameweeks);
 
   const renderDreamTeam = (): JSX.Element => {
-    if (gameStatus === gameStatusValues.GAME_OK) {
+    if (gameStatus === GAME_STATUS_VALUES.GAME_OK) {
       return <DreamTeam />;
     }
 
@@ -33,7 +33,7 @@ export const GameweekLivePage = (): JSX.Element => {
   };
 
   const renderGameweekSummary = (): JSX.Element => {
-    if (gameStatus === gameStatusValues.GAME_OK) {
+    if (gameStatus === GAME_STATUS_VALUES.GAME_OK) {
       return <GameweekSummary />;
     }
 
