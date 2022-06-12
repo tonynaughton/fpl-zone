@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
-import { gameStatusValues } from "helpers";
+import { GAME_STATUS_VALUES } from "helpers";
 import _ from "lodash";
 import { AppData, Fixture, Player, Team } from "types";
 
@@ -53,7 +53,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
       setNextFiveFixtures(nextFiveGameweekFixtures);
 
       if (_.isEmpty(nextFiveGameweekFixtures)) {
-        setFdrStatus(gameStatusValues.SEASON_FINISHED);
+        setFdrStatus(GAME_STATUS_VALUES.SEASON_FINISHED);
       }
     };
 
@@ -141,7 +141,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   return _.isEmpty(nextFiveGameweekFixtures)
     ? (
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-        <Notifier message={fdrStatus} type={fdrStatus === gameStatusValues.SEASON_FINISHED ? "warning" : ""} />
+        <Notifier message={fdrStatus} type={fdrStatus === GAME_STATUS_VALUES.SEASON_FINISHED ? "warning" : ""} />
       </Box>
     )
     : (

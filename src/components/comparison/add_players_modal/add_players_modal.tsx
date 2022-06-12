@@ -1,14 +1,13 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { Close } from "@mui/icons-material";
-import { Box, IconButton, TextField, Typography } from "@mui/material";
+import React, { Fragment, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { Box, TextField } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getNormalizedString } from "helpers";
 import { clone, debounce } from "lodash";
 import { AppData, Player } from "types";
 
-import { AddPlayersTable } from "..";
+import { CustomModal } from "components/utils/modal";
 
-import { ModalFooter } from "./modal_footer";
+import { AddPlayersTable } from "..";
 
 interface AddPlayersToComparisonModalProps {
   isAddPlayersModalOpen: boolean;
@@ -108,44 +107,14 @@ export const AddPlayersToComparisonModal = ({
   };
 
   return (
-    <Box
-      onClick={(): void => setAddPlayersModalOpen(false)}
-      sx={{
-        display: isAddPlayersModalOpen ? "block" : "none",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        height: "100%",
-        width: "100%",
-        backgroundColor: "rgb(0, 0, 0, 0.5)"
-      }}
+    <CustomModal
+      isModalOpen={isAddPlayersModalOpen}
+      onCancelClick={onCancelClick}
+      onConfirmClick={onConfirmClick}
+      setModalOpen={setAddPlayersModalOpen}
+      title='Add players to compare'
     >
-      <Box
-        onClick={(event): void => event.stopPropagation()}
-        sx={{
-          display: isAddPlayersModalOpen ? "flex" : "none",
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "90%",
-          bgcolor: "white",
-          boxShadow: 24,
-          p: 4,
-          flexDirection: "column",
-          alignItems: "center",
-          rowGap: 1,
-          zIndex: 2000,
-          height: "90%"
-        }}
-      >
-        <IconButton
-          onClick={(): void => setAddPlayersModalOpen(false)}
-          sx={{ position: "absolute", top: 15, right: 25 }}
-        >
-          <Close />
-        </IconButton>
-        <Typography variant='h3'>Add players to compare</Typography>
+      <>
         <TextField
           fullWidth
           margin='normal'
@@ -170,8 +139,7 @@ export const AddPlayersToComparisonModal = ({
         >
           {memoizedTable}
         </Box>
-        <ModalFooter onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} />
-      </Box>
-    </Box>
+      </>
+    </CustomModal>
   );
 };
