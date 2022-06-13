@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Player name table row tests Snapshot test 1`] = `
+<DocumentFragment>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+  >
+    Name
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-16rr9ae-MuiTypography-root"
+  >
+    Gerome Done
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-16rr9ae-MuiTypography-root"
+  >
+    Ingmar Carwithan
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-16rr9ae-MuiTypography-root"
+  >
+    Aharon Raccio
+  </p>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-16rr9ae-MuiTypography-root"
+  >
+    Mick Poyzer
+  </p>
+</DocumentFragment>
+`;

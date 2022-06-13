@@ -11,6 +11,7 @@ export const AddButton = ({ compact }: AddButtonProps): JSX.Element => {
 
   return (
     <Box
+      data-testid='add-button'
       sx={{
         display: "flex",
         alignItems: "center",

@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Player image table row tests Snapshot test 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-1bxscn6"
+    data-testid="player-image-container-828"
+  >
+    <div
+      class="MuiBox-root css-s16q1a"
+    >
+      <button
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-akrvbn-MuiButtonBase-root-MuiIconButton-root"
+        data-testid="remove-button"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-colorInfo MuiSvgIcon-fontSizeMedium css-1yq1soz-MuiSvgIcon-root"
+          data-testid="CloseIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    class="MuiBox-root css-10izg3s"
+    data-testid="player-image-container-662"
+  >
+    <div
+      class="MuiBox-root css-s16q1a"
+    >
+      <button
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-akrvbn-MuiButtonBase-root-MuiIconButton-root"
+        data-testid="remove-button"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-colorInfo MuiSvgIcon-fontSizeMedium css-1yq1soz-MuiSvgIcon-root"
+          data-testid="CloseIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    class="MuiBox-root css-1kuydbx"
+    data-testid="player-image-container-756"
+  >
+    <div
+      class="MuiBox-root css-s16q1a"
+    >
+      <button
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-akrvbn-MuiButtonBase-root-MuiIconButton-root"
+        data-testid="remove-button"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-colorInfo MuiSvgIcon-fontSizeMedium css-1yq1soz-MuiSvgIcon-root"
+          data-testid="CloseIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    class="MuiBox-root css-cscpxd"
+    data-testid="player-image-container-placeholder"
+  >
+    <div
+      class="MuiBox-root css-1v6v5j6"
+      data-testid="add-button"
+    >
+      <button
+        aria-label="add player button"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

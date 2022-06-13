@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Close } from "@mui/icons-material";
 import { Box, IconButton, TableCell, TableRow } from "@mui/material";
+import { getPlayerImageUrl } from "helpers";
 import { Player } from "types";
 
 import { AddButton,MAX_PLAYER_COUNT } from ".";
@@ -21,6 +22,7 @@ export const PlayerImageTableRow = ({
     return (
       <TableCell align='center' className='standard-table-cell'>
         <Box
+          data-testid={`player-image-container-${player ? player.id : "placeholder"}`}
           onClick={!player ? onAddPlayerClick : undefined}
           sx={{
             height: "18vh",
@@ -50,7 +52,8 @@ export const PlayerImageTableRow = ({
                 }}
               >
                 <IconButton
-                  onClick={player ? (): void => onRemovePlayerClick(player) : undefined}
+                  data-testid='remove-button'
+                  onClick={(): void => onRemovePlayerClick(player)}
                   size='small'
                   sx={{
                     backgroundColor: "#c30000",
@@ -72,8 +75,7 @@ export const PlayerImageTableRow = ({
     <TableRow>
       <TableCell className='first-table-cell' />
       {players.map((player, key) => {
-        const imgId = player.photo.replace(".jpg", "");
-        const url = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
+        const url = getPlayerImageUrl(player);
 
         return (
           <Fragment key={key}>

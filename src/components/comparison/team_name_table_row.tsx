@@ -20,12 +20,20 @@ export const TeamNameTableRow = ({ players, teams }: TeamNameTableRowProps): JSX
       </TableCell>
       {players.map((player, key) => {
         return (
-          <TableCell className='standard-table-cell' key={key}>
+          <TableCell
+            className='standard-table-cell'
+            data-testid={`team-name-row-${player.id}`}
+            key={key}
+          >
             <Typography>{getTeamById(player.team, teams).name}</Typography>
           </TableCell>
         );
       })}
-      {players.length < MAX_PLAYER_COUNT && <TableCell className='standard-table-cell' />}
+      {players.length < MAX_PLAYER_COUNT &&
+        <TableCell
+          className='standard-table-cell'
+          data-testid='empty-table-cell'
+        />}
     </TableRow>
   );
 };
