@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Countdown from "react-countdown";
-import { useQuery } from "react-query";
 import { Box, Typography } from "@mui/material";
-import { getGameData } from "api/fpl_api_provider";
+import { AppDataContext } from "app_content";
+import { AppData } from "types";
 import { Gameweek } from "types/gameweek";
 
-export default function GameweekCountdown(): JSX.Element {
-  const { data, isError } = useQuery("game-data", getGameData);
+export const GameweekCountdown = (): JSX.Element => {
+  const { gameweeks } = useContext(AppDataContext) as AppData;
 
-  if (isError || !data) return <></>;
-
-  const gameweeks: Gameweek[] = data.events;
   const nextGameweek: Gameweek | undefined = gameweeks.find((gw) => {
     return gw.is_next;
   });
@@ -34,7 +31,7 @@ export default function GameweekCountdown(): JSX.Element {
     const countdown = [daysLabel, hoursLabel, minsLabel].join(" ");
     if (completed) {
       return (
-        <Typography variant='h5'>
+        <Typography data-testid='gameweek-in-progress' variant='h5'>
           {gameweekName.toUpperCase()}
           <br />
           in progress
@@ -43,7 +40,7 @@ export default function GameweekCountdown(): JSX.Element {
     }
 
     return (
-      <Typography variant='h5'>
+      <Typography data-testid='gameweek-deadline-time' variant='h5'>
         {gameweekName} DEADLINE:
         <br />
         {countdown.toUpperCase()}
@@ -57,4 +54,4 @@ export default function GameweekCountdown(): JSX.Element {
       <Countdown date={deadline} renderer={renderer} />
     </Box>
   );
-}
+};
