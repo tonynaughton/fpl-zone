@@ -15,7 +15,7 @@ import {
 } from "types";
 
 import { Notifier } from "components/layout";
-import { CustomModal } from "components/utils/modal";
+import { CustomModal } from "components/utils";
 
 import { PlayerPerformance } from "./player_performance";
 

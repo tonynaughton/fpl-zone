@@ -6,21 +6,21 @@ import { Player } from "types";
 
 import "@testing-library/jest-dom/extend-expect";
 
-import { PlayerNameTableRow } from ".";
+import { MAX_PLAYER_COUNT, PlayerNameTableRow } from ".";
 
 describe("Player name table row tests", () => {
-  let players: Player[];
+  let mockSelectedPlayers: Player[];
 
   const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
-        <PlayerNameTableRow players={players} />
+        <PlayerNameTableRow selectedPlayers={mockSelectedPlayers} />
       </AppDataContext.Provider>
     );
   };
 
   it("Snapshot test", () => {
-    players = mockPlayers.slice(0, 4);
+    mockSelectedPlayers = mockPlayers.slice(0, 2);
 
     const { asFragment } = render(createComponent());
     expect(asFragment()).toMatchSnapshot();
@@ -29,23 +29,21 @@ describe("Player name table row tests", () => {
   it("Player's name displayed correctly", () => {
     render(createComponent());
 
-    players.forEach((player) => {
+    mockSelectedPlayers.forEach((player) => {
       const playerNameContainer = screen.getByTestId(`player-name-row-${player.id}`);
       expect(playerNameContainer).toHaveTextContent(`${player.first_name} ${player.second_name}`);
     });
   });
 
   describe("Empty table cell", () => {
-    it("displayed when less than 5 five players are selected", () => {
-      players = mockPlayers.slice(0, 2);
-
+    it(`displayed when less than ${MAX_PLAYER_COUNT} players are selected`, () => {
       render(createComponent());
 
       expect(screen.getByTestId("empty-table-cell")).toBeInTheDocument();
     });
 
-    it("not displayed when 5 five players are selected", () => {
-      players = mockPlayers.slice(0, 5);
+    it(`not displayed when ${MAX_PLAYER_COUNT} players are selected`, () => {
+      mockSelectedPlayers = mockPlayers.slice(0, MAX_PLAYER_COUNT);
 
       render(createComponent());
 

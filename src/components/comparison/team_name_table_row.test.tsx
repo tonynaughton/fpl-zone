@@ -7,16 +7,16 @@ import { Player } from "types";
 
 import "@testing-library/jest-dom/extend-expect";
 
-import { TeamNameTableRow } from ".";
+import { MAX_PLAYER_COUNT, TeamNameTableRow } from ".";
 
 describe("Team name table row tests", () => {
-  let players: Player[];
+  let mockSelectedPlayers: Player[];
 
   const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
         <TeamNameTableRow
-          players={players}
+          selectedPlayers={mockSelectedPlayers}
           teams={mockTeams}
         />
       </AppDataContext.Provider>
@@ -24,7 +24,7 @@ describe("Team name table row tests", () => {
   };
 
   it("Snapshot test", () => {
-    players = mockPlayers.slice(0, 4);
+    mockSelectedPlayers = mockPlayers.slice(0, 4);
 
     const { asFragment } = render(createComponent());
     expect(asFragment()).toMatchSnapshot();
@@ -33,7 +33,7 @@ describe("Team name table row tests", () => {
   it("Player's team name displayed correctly", () => {
     render(createComponent());
 
-    players.forEach((player) => {
+    mockSelectedPlayers.forEach((player) => {
       const row = screen.getByTestId(`team-name-row-${player.id}`);
       const team = getTeamById(player.team, mockTeams);
       expect(row).toHaveTextContent(team.name);
@@ -41,16 +41,14 @@ describe("Team name table row tests", () => {
   });
 
   describe("Empty table cell", () => {
-    it("displayed when less than 5 five players are selected", () => {
-      players = mockPlayers.slice(0, 2);
-
+    it(`displayed when less than ${MAX_PLAYER_COUNT} players are selected`, () => {
       render(createComponent());
 
       expect(screen.getByTestId("empty-table-cell")).toBeInTheDocument();
     });
 
-    it("not displayed when 5 five players are selected", () => {
-      players = mockPlayers.slice(0, 5);
+    it(`not displayed when ${MAX_PLAYER_COUNT} players are selected`, () => {
+      mockSelectedPlayers = mockPlayers.slice(0, MAX_PLAYER_COUNT);
 
       render(createComponent());
 

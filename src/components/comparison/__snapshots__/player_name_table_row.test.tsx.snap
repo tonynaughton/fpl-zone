@@ -17,15 +17,5 @@ exports[`Player name table row tests Snapshot test 1`] = `
   >
     Ingmar Carwithan
   </p>
-  <p
-    class="MuiTypography-root MuiTypography-body1 css-16rr9ae-MuiTypography-root"
-  >
-    Aharon Raccio
-  </p>
-  <p
-    class="MuiTypography-root MuiTypography-body1 css-16rr9ae-MuiTypography-root"
-  >
-    Mick Poyzer
-  </p>
 </DocumentFragment>
 `;

@@ -1,19 +1,21 @@
 import React, { Fragment } from "react";
 import { Close } from "@mui/icons-material";
-import { Box, IconButton, TableCell, TableRow } from "@mui/material";
+import { Box, IconButton, TableCell } from "@mui/material";
 import { getPlayerImageUrl } from "helpers";
 import { Player } from "types";
 
-import { AddButton,MAX_PLAYER_COUNT } from ".";
+import { AddButton } from "components/utils";
+
+import { MAX_PLAYER_COUNT } from ".";
 
 interface PlayerImageTableRowProps {
-  players: Player[];
+  selectedPlayers: Player[];
   onAddPlayerClick: () => void;
   onRemovePlayerClick: (player: Player) => void;
 }
 
 export const PlayerImageTableRow = ({
-  players,
+  selectedPlayers,
   onAddPlayerClick,
   onRemovePlayerClick
 }: PlayerImageTableRowProps): JSX.Element => {
@@ -72,9 +74,9 @@ export const PlayerImageTableRow = ({
   };
 
   return (
-    <TableRow>
+    <>
       <TableCell className='first-table-cell' />
-      {players.map((player, key) => {
+      {selectedPlayers.map((player, key) => {
         const url = getPlayerImageUrl(player);
 
         return (
@@ -83,7 +85,7 @@ export const PlayerImageTableRow = ({
           </Fragment>
         );
       })}
-      {players.length < MAX_PLAYER_COUNT && renderPlayerImage(`${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`)}
-    </TableRow>
+      {selectedPlayers.length < MAX_PLAYER_COUNT && renderPlayerImage(`${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`)}
+    </>
   );
 };

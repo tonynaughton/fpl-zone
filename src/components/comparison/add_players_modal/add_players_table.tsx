@@ -3,7 +3,7 @@ import { Box,Table, TableBody, TableCell, TableHead, TableRow, Typography } from
 import { getPositionById,getTeamById } from "helpers";
 import { Player, Position, Team } from "types";
 
-import ControlledCheckbox from "components/utils/controlled_checkbox";
+import { ControlledCheckbox } from "components/utils";
 
 import { MAX_PLAYER_COUNT } from "..";
 

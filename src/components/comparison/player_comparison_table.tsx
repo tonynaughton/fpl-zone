@@ -4,7 +4,7 @@ import { Player,PlayerStat, Team } from "types";
 
 import { MAX_PLAYER_COUNT, PlayerImageTableRow, PlayerNameTableRow, TeamNameTableRow } from ".";
 
-interface ComparisonTableProps {
+interface PlayerComparisonTableProps {
   selectedPlayers: Player[];
   teams: Team[];
   playerStats: PlayerStat[];
@@ -12,35 +12,48 @@ interface ComparisonTableProps {
   onRemovePlayerClick: (player: Player) => void;
 }
 
-export const ComparisonTable = ({
+export const PlayerComparisonTable = ({
   selectedPlayers,
   teams,
   playerStats,
   onAddPlayerClick,
   onRemovePlayerClick
-}: ComparisonTableProps): JSX.Element => {
+}: PlayerComparisonTableProps): JSX.Element => {
 
   return (
     <Table
       aria-label='player comparison table'
+      component='table'
       sx={{
         tableLayout: "fixed",
         flexGrow: "1",
         height: "100%"
       }}
     >
-      <TableBody>
-        <PlayerImageTableRow
-          onAddPlayerClick={onAddPlayerClick}
-          onRemovePlayerClick={onRemovePlayerClick}
-          players={selectedPlayers}
-        />
-        <PlayerNameTableRow players={selectedPlayers} />
-        <TeamNameTableRow players={selectedPlayers} teams={teams} />
+      <TableBody component='tbody'>
+        <TableRow component='tr'>
+          <PlayerImageTableRow
+            onAddPlayerClick={onAddPlayerClick}
+            onRemovePlayerClick={onRemovePlayerClick}
+            selectedPlayers={selectedPlayers}
+          />
+        </TableRow>
+        <TableRow component='tr'>
+          <PlayerNameTableRow selectedPlayers={selectedPlayers} />
+        </TableRow>
+        <TableRow component='tr'>
+          <TeamNameTableRow selectedPlayers={selectedPlayers} teams={teams} />
+        </TableRow>
         {playerStats.map((stat, key) => {
           return (
-            <TableRow key={key}>
-              <TableCell className='first-table-cell'>
+            <TableRow
+              data-testid={`stat-row-${stat.name}`}
+              key={key}
+            >
+              <TableCell
+                className='first-table-cell'
+                data-testid={`stat-label-cell-${stat.name}`}
+              >
                 <Typography
                   sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
                 >
@@ -49,12 +62,20 @@ export const ComparisonTable = ({
               </TableCell>
               {selectedPlayers.map((player, key) => {
                 return (
-                  <TableCell className='standard-table-cell' key={key}>
+                  <TableCell
+                    className='standard-table-cell'
+                    data-testid={`stat-value-cell-${stat.name}-${player.id}`}
+                    key={key}
+                  >
                     <Typography>{player[stat.name]}</Typography>
                   </TableCell>
                 );
               })}
-              {selectedPlayers.length < MAX_PLAYER_COUNT && <TableCell className='standard-table-cell' />}
+              {selectedPlayers.length < MAX_PLAYER_COUNT &&
+                <TableCell
+                  className='standard-table-cell'
+                  data-testid={`empty-table-cell=${stat.name}`}
+                />}
             </TableRow>
           );
         })}

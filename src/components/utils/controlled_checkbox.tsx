@@ -7,11 +7,11 @@ interface ControlledCheckboxProps {
   isDisabled: boolean;
 }
 
-export default function ControlledCheckbox({
+export const ControlledCheckbox = ({
   onPlayerSelect,
   checkedValue,
   isDisabled
-}: ControlledCheckboxProps): JSX.Element {
+}: ControlledCheckboxProps): JSX.Element => {
   const [checked, setChecked] = React.useState(false);
 
   useEffect(() => {
@@ -31,4 +31,4 @@ export default function ControlledCheckbox({
       onChange={handleChange}
     />
   );
-}
+};

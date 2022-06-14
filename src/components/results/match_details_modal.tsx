@@ -4,7 +4,7 @@ import { AppDataContext } from "app_content";
 import { formatDate, GetPlayerById } from "helpers";
 import { AppData,CustomResult, Fixture, StatValue, Team } from "types";
 
-import { CustomModal } from "components/utils/modal";
+import { CustomModal } from "components/utils";
 
 interface MatchDetailsModalProps {
   isResultsModalOpen: boolean;

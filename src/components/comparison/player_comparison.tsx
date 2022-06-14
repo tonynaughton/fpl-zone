@@ -5,7 +5,7 @@ import _ from "lodash";
 import { AppData } from "types";
 import { Player } from "types/player";
 
-import { AddPlayersToComparisonModal, ComparisonTable } from ".";
+import { AddPlayersToComparisonModal, PlayerComparisonTable } from ".";
 
 import "./comparison.css";
 
@@ -38,7 +38,7 @@ export const PlayerComparison = (): JSX.Element => {
         overflow: "auto"
       }}
     >
-      <ComparisonTable
+      <PlayerComparisonTable
         onAddPlayerClick={onAddPlayerClick}
         onRemovePlayerClick={onRemovePlayerClick}
         playerStats={playerStats}

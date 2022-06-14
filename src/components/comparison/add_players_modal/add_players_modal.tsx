@@ -5,7 +5,7 @@ import { getNormalizedString } from "helpers";
 import { clone, debounce } from "lodash";
 import { AppData, Player } from "types";
 
-import { CustomModal } from "components/utils/modal";
+import { CustomModal } from "components/utils";
 
 import { AddPlayersTable } from "..";
 
