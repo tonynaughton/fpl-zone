@@ -8,16 +8,15 @@ import { ControlledCheckbox } from "components/utils";
 import { MAX_PLAYER_COUNT } from "..";
 
 interface AddPlayersTableProps {
-  players: Player[];
+  displayedPlayers: Player[];
   onPlayerToggle: (player: Player, value: boolean) => void;
-  selectedComparisonPlayers: Player[];
   tempSelectedPlayers: Player[];
   teams: Team[];
   positions: Position[];
 }
 
 export const AddPlayersTable = ({
-  players,
+  displayedPlayers,
   onPlayerToggle,
   tempSelectedPlayers,
   teams,
@@ -29,10 +28,9 @@ export const AddPlayersTable = ({
         <TableRow>
           <TableCell sx={{ pl: 2 }}>
             <Typography
+              color={tempSelectedPlayers.length >= MAX_PLAYER_COUNT ? "red" : "black"}
+              data-testid='selected-player-count'
               fontWeight='600'
-              sx={{
-                color: tempSelectedPlayers.length >= MAX_PLAYER_COUNT ? "red" : "black"
-              }}
             >
               {tempSelectedPlayers.length}/{MAX_PLAYER_COUNT}
             </Typography>
@@ -43,21 +41,22 @@ export const AddPlayersTable = ({
         </TableRow>
       </TableHead>
       <TableBody>
-        {players.map((player, index) => {
+        {displayedPlayers.map((player, index) => {
           const team = getTeamById(player.team, teams);
           const position = getPositionById(player.element_type, positions);
           const checkedValue = tempSelectedPlayers.includes(player);
+          const checkboxDisabled = tempSelectedPlayers.length >= MAX_PLAYER_COUNT;
 
           return (
-            <TableRow key={index}>
-              <TableCell>
+            <TableRow data-testid={`player-table-row-${player.id}`} key={index}>
+              <TableCell data-testid={`checkbox-table-cell-${player.id}`}>
                 <ControlledCheckbox
                   checkedValue={checkedValue}
-                  isDisabled={tempSelectedPlayers.length === MAX_PLAYER_COUNT}
+                  isDisabled={checkboxDisabled}
                   onPlayerSelect={(value: boolean): void => onPlayerToggle(player, value)}
                 />
               </TableCell>
-              <TableCell>
+              <TableCell data-testid={`player-name-table-cell-${player.id}`}>
                 <Typography>{player.first_name} {player.second_name}</Typography>
               </TableCell>
               <TableCell>
@@ -70,15 +69,25 @@ export const AddPlayersTable = ({
                 >
                   <img
                     alt='team-crest'
+                    data-testid={`player-team-crest-${player.id}`}
                     height='25vh'
                     src={`${process.env.PUBLIC_URL}/assets/images/crests/${team.code}.png`}
                     width='auto'
                   />
-                  <Typography display='inline'>{team.name}</Typography>
+                  <Typography
+                    data-testid={`player-team-name-${player.id}`}
+                    display='inline'
+                  >
+                    {team.name}
+                  </Typography>
                 </Box>
               </TableCell>
               <TableCell>
-                <Typography>{position.singular_name_short}</Typography>
+                <Typography
+                  data-testid={`player-position-text-${player.id}`}
+                >
+                  {position.singular_name_short}
+                </Typography>
               </TableCell>
             </TableRow>
           );

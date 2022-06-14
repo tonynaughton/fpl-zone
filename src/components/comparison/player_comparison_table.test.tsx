@@ -10,15 +10,12 @@ import { MAX_PLAYER_COUNT, PlayerComparisonTable } from ".";
 describe("Player comparison table tests", () => {
   let mockSelectedPlayers = mockPlayers.slice(0, 2);
 
-  const mockOnAddPlayerClick = jest.fn();
-  const mockOnRemovePlayerClick = jest.fn();
-
   const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
         <PlayerComparisonTable
-          onAddPlayerClick={mockOnAddPlayerClick}
-          onRemovePlayerClick={mockOnRemovePlayerClick}
+          onAddPlayerClick={jest.fn()}
+          onRemovePlayerClick={jest.fn()}
           playerStats={mockPlayerStats}
           selectedPlayers={mockSelectedPlayers}
           teams={mockTeams}

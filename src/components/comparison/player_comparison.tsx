@@ -5,7 +5,7 @@ import _ from "lodash";
 import { AppData } from "types";
 import { Player } from "types/player";
 
-import { AddPlayersToComparisonModal, PlayerComparisonTable } from ".";
+import { AddPlayersModal, PlayerComparisonTable } from ".";
 
 import "./comparison.css";
 
@@ -45,9 +45,9 @@ export const PlayerComparison = (): JSX.Element => {
         selectedPlayers={selectedComparisonPlayers}
         teams={teams}
       />
-      <AddPlayersToComparisonModal
+      <AddPlayersModal
         isAddPlayersModalOpen={isAddPlayersModalOpen}
-        selectedComparisonPlayers={selectedComparisonPlayers}
+        selectedPlayers={selectedComparisonPlayers}
         setAddPlayersModalOpen={setIsAddPlayerModalOpen}
         setSelectedComparisonPlayers={setSelectedComparisonPlayers}
       />

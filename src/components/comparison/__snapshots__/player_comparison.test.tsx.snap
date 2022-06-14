@@ -415,6 +415,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
     </table>
     <div
       class="MuiBox-root css-11e4ssy"
+      data-testid="add-players-modal"
     >
       <div
         class="MuiBox-root css-1ov5mmh"
@@ -446,6 +447,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
         </button>
         <div
           class="MuiFormControl-root MuiFormControl-marginNormal MuiFormControl-fullWidth MuiTextField-root css-17vbkzs-MuiFormControl-root-MuiTextField-root"
+          data-testid="player-search-input"
         >
           <div
             class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall css-md26zr-MuiInputBase-root-MuiOutlinedInput-root"
@@ -491,7 +493,8 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   scope="col"
                 >
                   <p
-                    class="MuiTypography-root MuiTypography-body1 css-gfun6h-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 css-1vpz6so-MuiTypography-root"
+                    data-testid="selected-player-count"
                   >
                     0/5
                   </p>
@@ -533,15 +536,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
             >
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-828"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-828"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -564,6 +569,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-828"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -579,12 +585,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-828"
                       height="25vh"
                       src="/assets/images/crests/7.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-828"
                     >
                       Aston Villa
                     </p>
@@ -595,6 +603,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-828"
                   >
                     DEF
                   </p>
@@ -602,15 +611,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-662"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-662"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -633,6 +644,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-662"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -648,12 +660,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-662"
                       height="25vh"
                       src="/assets/images/crests/31.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-662"
                     >
                       Crystal Palace
                     </p>
@@ -664,6 +678,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-662"
                   >
                     GKP
                   </p>
@@ -671,15 +686,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-756"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-756"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -702,6 +719,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-756"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -717,12 +735,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-756"
                       height="25vh"
                       src="/assets/images/crests/3.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-756"
                     >
                       Arsenal
                     </p>
@@ -733,6 +753,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-756"
                   >
                     MID
                   </p>
@@ -740,15 +761,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-324"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-324"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -771,6 +794,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-324"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -786,12 +810,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-324"
                       height="25vh"
                       src="/assets/images/crests/13.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-324"
                     >
                       Leicester
                     </p>
@@ -802,6 +828,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-324"
                   >
                     DEF
                   </p>
@@ -809,15 +836,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-9"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-9"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -840,6 +869,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-9"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -855,12 +885,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-9"
                       height="25vh"
                       src="/assets/images/crests/21.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-9"
                     >
                       West Ham
                     </p>
@@ -871,6 +903,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-9"
                   >
                     GKP
                   </p>
@@ -878,15 +911,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-428"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-428"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -909,6 +944,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-428"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -924,12 +960,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-428"
                       height="25vh"
                       src="/assets/images/crests/43.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-428"
                     >
                       Man City
                     </p>
@@ -940,6 +978,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-428"
                   >
                     MID
                   </p>
@@ -947,15 +986,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-938"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-938"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -978,6 +1019,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-938"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -993,12 +1035,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-938"
                       height="25vh"
                       src="/assets/images/crests/43.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-938"
                     >
                       Man City
                     </p>
@@ -1009,6 +1053,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-938"
                   >
                     MID
                   </p>
@@ -1016,15 +1061,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-929"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-929"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -1047,6 +1094,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-929"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -1062,12 +1110,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-929"
                       height="25vh"
                       src="/assets/images/crests/20.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-929"
                     >
                       Southampton
                     </p>
@@ -1078,6 +1128,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-929"
                   >
                     DEF
                   </p>
@@ -1085,15 +1136,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-550"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-550"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -1116,6 +1169,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-550"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -1131,12 +1185,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-550"
                       height="25vh"
                       src="/assets/images/crests/39.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-550"
                     >
                       Wolves
                     </p>
@@ -1147,6 +1203,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-550"
                   >
                     GKP
                   </p>
@@ -1154,15 +1211,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-505"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-505"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -1185,6 +1244,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-505"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -1200,12 +1260,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-505"
                       height="25vh"
                       src="/assets/images/crests/45.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-505"
                     >
                       Norwich
                     </p>
@@ -1216,6 +1278,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-505"
                   >
                     MID
                   </p>
@@ -1223,15 +1286,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-156"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-156"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -1254,6 +1319,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-156"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -1269,12 +1335,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-156"
                       height="25vh"
                       src="/assets/images/crests/1.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-156"
                     >
                       Man Utd
                     </p>
@@ -1285,6 +1353,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-156"
                   >
                     DEF
                   </p>
@@ -1292,15 +1361,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-286"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-286"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -1323,6 +1394,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-286"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -1338,12 +1410,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-286"
                       height="25vh"
                       src="/assets/images/crests/14.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-286"
                     >
                       Liverpool
                     </p>
@@ -1354,6 +1428,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-286"
                   >
                     DEF
                   </p>
@@ -1361,15 +1436,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-137"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-137"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -1392,6 +1469,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-137"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -1407,12 +1485,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-137"
                       height="25vh"
                       src="/assets/images/crests/1.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-137"
                     >
                       Man Utd
                     </p>
@@ -1423,6 +1503,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-137"
                   >
                     MID
                   </p>
@@ -1430,15 +1511,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-304"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-304"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -1461,6 +1544,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-304"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -1476,12 +1560,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-304"
                       height="25vh"
                       src="/assets/images/crests/21.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-304"
                     >
                       West Ham
                     </p>
@@ -1492,6 +1578,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-304"
                   >
                     DEF
                   </p>
@@ -1499,15 +1586,17 @@ exports[`Player comparison tests Snapshot test 1`] = `
               </tr>
               <tr
                 class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                data-testid="player-table-row-466"
               >
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="checkbox-table-cell-466"
                 >
                   <span
                     class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                    data-testid="controlled-checkbox"
                   >
                     <input
-                      aria-label="controlled"
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       data-indeterminate="false"
                       type="checkbox"
@@ -1530,6 +1619,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 </td>
                 <td
                   class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                  data-testid="player-name-table-cell-466"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -1545,12 +1635,14 @@ exports[`Player comparison tests Snapshot test 1`] = `
                   >
                     <img
                       alt="team-crest"
+                      data-testid="player-team-crest-466"
                       height="25vh"
                       src="/assets/images/crests/94.png"
                       width="auto"
                     />
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1sx1eu0-MuiTypography-root"
+                      data-testid="player-team-name-466"
                     >
                       Brentford
                     </p>
@@ -1561,6 +1653,7 @@ exports[`Player comparison tests Snapshot test 1`] = `
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    data-testid="player-position-text-466"
                   >
                     FWD
                   </p>

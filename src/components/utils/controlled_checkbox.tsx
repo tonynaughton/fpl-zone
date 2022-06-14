@@ -26,8 +26,8 @@ export const ControlledCheckbox = ({
   return (
     <Checkbox
       checked={checked}
+      data-testid='controlled-checkbox'
       disabled={!checked && isDisabled}
-      inputProps={{ "aria-label": "controlled" }}
       onChange={handleChange}
     />
   );

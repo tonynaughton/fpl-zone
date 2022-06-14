@@ -9,6 +9,7 @@ interface CustomModalProps {
   onCancelClick?: () => void;
   onConfirmClick?: () => void;
   children: JSX.Element;
+  testId?: string;
 }
 
 export const CustomModal = ({
@@ -17,10 +18,12 @@ export const CustomModal = ({
   title,
   onCancelClick,
   onConfirmClick,
+  testId,
   children
 }: CustomModalProps): JSX.Element => {
   return (
     <Box
+      data-testid={testId}
       onClick={(): void => setModalOpen(false)}
       sx={{
         display: isModalOpen ? "block" : "none",
