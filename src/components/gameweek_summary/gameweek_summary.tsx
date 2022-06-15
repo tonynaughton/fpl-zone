@@ -5,8 +5,8 @@ import { GetPlayerById, numberWithCommas } from "helpers";
 import { AppData } from "types";
 import { Gameweek } from "types/gameweek";
 
-import { SummaryItem } from "./summary_item";
-import { SummaryItemType } from "./types";
+import { SummaryStat } from "./summary_stat";
+import { SummaryStatType } from "./types";
 
 export default function GameweekSummary(): JSX.Element {
   const { gameweeks, players } = useContext(AppDataContext) as AppData;
@@ -29,17 +29,17 @@ export default function GameweekSummary(): JSX.Element {
     mostTransferredInCount = numberWithCommas(mostTransferredIn?.transfers_in_event);
   }
 
-  const summaryData: SummaryItemType[] = [
+  const summaryData: SummaryStatType[] = [
     {
       label: "highest score",
-      statValue: `${gameweek?.highest_score || 0} pts`
+      value: `${gameweek?.highest_score || 0} pts`
     },
-    { label: "average score", statValue: `${gameweek?.average_entry_score} pts` || 0 },
+    { label: "average score", value: `${gameweek?.average_entry_score} pts` || 0 },
     {
       label: "star player",
       teamCode: starPlayer?.team_code,
       playerName: starPlayer?.web_name || "",
-      statValue: `${gameweek?.top_element_info?.points} pts` || 0
+      value: `${gameweek?.top_element_info?.points} pts` || 0
     },
     {
       label: "most captained",
@@ -55,7 +55,7 @@ export default function GameweekSummary(): JSX.Element {
       label: "most transferred in",
       teamCode: mostTransferredIn?.team_code,
       playerName: mostTransferredIn?.web_name || "",
-      statValue: mostTransferredInCount
+      value: mostTransferredInCount
     }
   ];
 
@@ -75,7 +75,7 @@ export default function GameweekSummary(): JSX.Element {
       {summaryData.map((stat, index): JSX.Element => {
         return (
           <Fragment key={index}>
-            <SummaryItem item={stat} />
+            <SummaryStat stat={stat} />
           </Fragment>
         );
       })}

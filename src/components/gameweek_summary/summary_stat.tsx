@@ -1,28 +1,29 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-import { SummaryItemType } from "./types";
+import { SummaryStatType } from "./types";
 
-interface SummaryItemProps {
-  item: SummaryItemType;
+interface SummaryStatProps {
+  stat: SummaryStatType;
 }
 
-export const SummaryItem = ({ item }: SummaryItemProps): JSX.Element => {
-  const img: JSX.Element | null = item.teamCode
+export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
+  const img: JSX.Element | null = stat.teamCode
     ? (
       <img
-        alt={`${item.label}-crest-img`}
+        alt='team-crest-img'
+        data-testid='team-crest-img'
         height='auto'
-        src={`${process.env.PUBLIC_URL}/assets/images/crests/${item.teamCode}.png`}
+        src={`${process.env.PUBLIC_URL}/assets/images/crests/${stat.teamCode}.png`}
         width='15%'
       />
     )
     : null;
 
-  const itemValue = `
-    ${item.playerName || ""}
-    ${item.playerName && item.statValue ? " - " : ""}
-    ${item.statValue || ""}
+  const statValue = `
+    ${stat.playerName || ""}
+    ${stat.playerName && stat.value ? " - " : ""}
+    ${stat.value || ""}
   `;
 
   return (
@@ -36,7 +37,7 @@ export const SummaryItem = ({ item }: SummaryItemProps): JSX.Element => {
       }}
     >
       <Typography
-        data-testid={`${item.label}-label`}
+        data-testid='stat-label-text'
         sx={{
           width: "100%",
           textOverflow: "ellipsis",
@@ -46,7 +47,7 @@ export const SummaryItem = ({ item }: SummaryItemProps): JSX.Element => {
         }}
         variant='h3'
       >
-        {item.label.toUpperCase()}
+        {stat.label.toUpperCase()}
       </Typography>
       <Box
         sx={{
@@ -59,7 +60,7 @@ export const SummaryItem = ({ item }: SummaryItemProps): JSX.Element => {
       >
         {img}
         <Typography
-          data-testid={`${item.label}-player-name`}
+          data-testid='stat-value-text'
           sx={{
             textOverflow: "ellipsis",
             textAlign: "center",
@@ -67,7 +68,7 @@ export const SummaryItem = ({ item }: SummaryItemProps): JSX.Element => {
             overflow: "hidden"
           }}
         >
-          {itemValue}
+          {statValue}
         </Typography>
       </Box>
     </Box>

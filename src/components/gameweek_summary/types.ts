@@ -1,6 +1,6 @@
-export interface SummaryItemType {
+export interface SummaryStatType {
   label: string;
   teamCode?: number;
   playerName?: string;
-  statValue?: string | number;
+  value?: string | number;
 }
