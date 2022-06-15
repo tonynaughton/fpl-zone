@@ -4,14 +4,14 @@ exports[`Gameweek countdown tests Snapshot test 1`] = `
 <DocumentFragment>
   <div
     class="MuiBox-root css-oevum5"
+    data-testid="gameweek-deadline-container"
   >
     <h5
       class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
-      data-testid="gameweek-in-progress"
     >
       GAMEWEEK 34
       <br />
-      in progress
+      IN PROGRESS
     </h5>
   </div>
 </DocumentFragment>

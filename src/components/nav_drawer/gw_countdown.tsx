@@ -31,16 +31,16 @@ export const GameweekCountdown = (): JSX.Element => {
     const countdown = [daysLabel, hoursLabel, minsLabel].join(" ");
     if (completed) {
       return (
-        <Typography data-testid='gameweek-in-progress' variant='h5'>
+        <Typography variant='h5'>
           {gameweekName.toUpperCase()}
           <br />
-          in progress
+          IN PROGRESS
         </Typography>
       );
     }
 
     return (
-      <Typography data-testid='gameweek-deadline-time' variant='h5'>
+      <Typography variant='h5'>
         {gameweekName} DEADLINE:
         <br />
         {countdown.toUpperCase()}
@@ -50,7 +50,7 @@ export const GameweekCountdown = (): JSX.Element => {
   };
 
   return (
-    <Box sx={{ pb: 2 }} textAlign='center'>
+    <Box data-testid='gameweek-deadline-container' sx={{ pb: 2 }} textAlign='center'>
       <Countdown date={deadline} renderer={renderer} />
     </Box>
   );
