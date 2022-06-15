@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-import { SummaryStatType } from "./types";
+import { SummaryStatType } from "./gameweek_summary";
+
 
 interface SummaryStatProps {
   stat: SummaryStatType;
@@ -12,7 +13,7 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
     ? (
       <img
         alt='team-crest-img'
-        data-testid='team-crest-img'
+        data-testid={`team-crest-img-${stat.label}`}
         height='auto'
         src={`${process.env.PUBLIC_URL}/assets/images/crests/${stat.teamCode}.png`}
         width='15%'
@@ -37,7 +38,7 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
       }}
     >
       <Typography
-        data-testid='stat-label-text'
+        data-testid={`stat-label-text-${stat.label}`}
         sx={{
           width: "100%",
           textOverflow: "ellipsis",
@@ -60,7 +61,7 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
       >
         {img}
         <Typography
-          data-testid='stat-value-text'
+          data-testid={`stat-value-text-${stat.label}`}
           sx={{
             textOverflow: "ellipsis",
             textAlign: "center",
