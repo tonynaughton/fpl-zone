@@ -12,14 +12,16 @@ import {
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import { GAME_STATUS_VALUES } from "helpers";
-import _ from "lodash";
-import { AppData, Fixture, Player, Team } from "types";
+import { useNextFiveGameweekIds } from "hooks/useNextFiveGameweekIds";
+import { isEmpty, map } from "lodash";
+import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
 import { Notifier } from "components/layout";
 
 import DifficultyLegend from "./difficulty_legend";
-import FixtureBox from "./fixture_box";
+import { Fixture } from "./fixture";
 
+// FDR can display fixtures for players or teams
 export type BaseItem = Player | Team;
 
 interface FdrTableProps {
@@ -27,34 +29,27 @@ interface FdrTableProps {
 }
 
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
-  const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<Fixture[][]>([]);
+  const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<FixtureType[][]>([]);
   const [fdrStatus, setFdrStatus] = useState<string>("Fetching fixture data..");
 
-  const { teams, gameweeks } = useContext(AppDataContext) as AppData;
+  const { teams } = useContext(AppDataContext) as AppData;
 
   const baseItem = players || teams;
   const nameColumnTitle = players ? "Player" : "Team";
-  const nextGameweek = gameweeks.find((gw) => gw.is_next);
-  const nextFiveGameweeks: number[] = [];
 
-  if (nextGameweek) {
-    // eslint-disable-next-line no-loops/no-loops
-    for (let x = nextGameweek.id; x <= 38 && nextFiveGameweeks.length < 5; x++) {
-      nextFiveGameweeks.push(x);
-    }
-  }
+  const nextFiveGameweekIds = useNextFiveGameweekIds();
 
   useEffect(() => {
     const fetchNextFiveGameweekFixtures = async (): Promise<void> => {
-      const nextFiveGameweekFixtures: Fixture[][] = await Promise.all(
-        nextFiveGameweeks.map((gameweek) => getGameweekFixtures(gameweek))
+      const nextFiveGameweekFixtures: FixtureType[][] = await Promise.all(
+        nextFiveGameweekIds.map((gameweek) => getGameweekFixtures(gameweek))
       );
 
-      setNextFiveFixtures(nextFiveGameweekFixtures);
-
-      if (_.isEmpty(nextFiveGameweekFixtures)) {
+      if (isEmpty(nextFiveGameweekFixtures)) {
         setFdrStatus(GAME_STATUS_VALUES.SEASON_FINISHED);
       }
+
+      setNextFiveFixtures(nextFiveGameweekFixtures);
     };
 
     fetchNextFiveGameweekFixtures();
@@ -64,11 +59,10 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const renderBaseItemName = (baseItem: BaseItem): JSX.Element => {
     const name = players ? (baseItem as Player).web_name : (baseItem as Team).name;
     const teamId = players ? (baseItem as Player).team_code : (baseItem as Team).code;
-    const testId = `base-item-${name}`;
 
     return (
       <Box
-        data-testid={testId}
+        data-testid={`base-item-${name}`}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -79,6 +73,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
       >
         <img
           alt='crest-img'
+          data-testid={`team-crest-img-${name}`}
           height='22px'
           src={`${process.env.PUBLIC_URL}/assets/images/crests/${teamId}.png`}
         />
@@ -98,13 +93,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     );
   };
 
-  const getTeamById = (teamId: number): string | undefined => {
-    const team = teams.find((t) => t.id === teamId);
-
-    return team?.short_name;
-  };
-
-  const getNextFiveTeamFixtures = (baseItem: BaseItem, fixtures: Fixture[][]): Fixture[][] => {
+  const getNextFiveTeamFixtures = (baseItem: BaseItem, fixtures: FixtureType[][]): FixtureType[][] => {
     const teamId = players ? (baseItem as Player).team : (baseItem as Team).id;
 
     return fixtures.map((gameweek) => {
@@ -114,22 +103,20 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
   const renderRow = (baseItem: BaseItem, index: number): JSX.Element => {
     const teamFixtures = getNextFiveTeamFixtures(baseItem, nextFiveGameweekFixtures);
-    const testId = `fixture-row-${baseItem.id}`;
 
     return (
       <TableRow
-        data-testid={testId}
+        data-testid={`fixture-row-${baseItem.id}`}
         key={index}
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
         <TableCell component='th' key={index} scope='row'>
           {renderBaseItemName(baseItem)}
         </TableCell>
-        {_.map(teamFixtures, (fixtures, key) => (
-          <FixtureBox
+        {map(teamFixtures, (fixtures, key) => (
+          <Fixture
             baseItem={baseItem}
             fixtures={fixtures}
-            getTeamById={getTeamById}
             isPlayerTable={!!players}
             key={key}
           />
@@ -138,10 +125,13 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     );
   };
 
-  return _.isEmpty(nextFiveGameweekFixtures)
+  return isEmpty(nextFiveGameweekFixtures)
     ? (
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
-        <Notifier message={fdrStatus} type={fdrStatus === GAME_STATUS_VALUES.SEASON_FINISHED ? "warning" : ""} />
+      <Box
+        data-testid='notifier-container'
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
+      >
+        <Notifier message={fdrStatus} type={fdrStatus === GAME_STATUS_VALUES.SEASON_FINISHED ? "warning" : "loading"} />
       </Box>
     )
     : (
@@ -169,7 +159,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
             <TableHead>
               <TableRow data-testid='table-head-column-title'>
                 <TableCell sx={{ textAlign: "center" }}>{nameColumnTitle}</TableCell>
-                {nextFiveGameweeks.map((gameweekNumber, index) => (
+                {nextFiveGameweekIds.map((gameweekNumber, index) => (
                   <TableCell key={index} sx={{ textAlign: "center" }}>
                   GW {gameweekNumber}
                   </TableCell>
