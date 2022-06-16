@@ -23,13 +23,6 @@ describe("Team name table row tests", () => {
     );
   };
 
-  it("Snapshot test", () => {
-    mockSelectedPlayers = mockPlayers.slice(0, 4);
-
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   it("Player's team name displayed correctly", () => {
     render(createComponent());
 

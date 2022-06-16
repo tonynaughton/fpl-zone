@@ -16,11 +16,6 @@ describe("Armband tests", () => {
     );
   };
 
-  it("Snapshot test", () => {
-    const { asFragment } = render(createComponent(false));
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   describe("Text content displays as expected", () => {
     it("when captain", () => {
       render(createComponent(false));

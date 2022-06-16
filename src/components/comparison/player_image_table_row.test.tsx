@@ -26,10 +26,6 @@ describe("Player image table row tests", () => {
     );
   };
 
-  it("Snapshot test", () => {
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
 
   describe("Player image container", () => {
     describe("if no player prop is present", () => {

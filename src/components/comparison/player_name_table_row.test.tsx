@@ -19,13 +19,6 @@ describe("Player name table row tests", () => {
     );
   };
 
-  it("Snapshot test", () => {
-    mockSelectedPlayers = mockPlayers.slice(0, 2);
-
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   it("Player's name displayed correctly", () => {
     render(createComponent());
 

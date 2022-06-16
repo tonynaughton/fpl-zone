@@ -44,11 +44,6 @@ describe("Fixture Box Tests", () => {
       isPlayerTable = true;
     });
 
-    it("Snapshot test", () => {
-      const { asFragment } = render(createComponent());
-      expect(asFragment()).toMatchSnapshot();
-    });
-
     it("Opposition team abbreviations displayed as expected", () => {
       render(createComponent());
 
@@ -76,11 +71,6 @@ describe("Fixture Box Tests", () => {
     beforeEach(() => {
       [baseItem] = mockTeams;
       isPlayerTable = false;
-    });
-
-    it("Snapshot test", () => {
-      const { asFragment } = render(createComponent());
-      expect(asFragment()).toMatchSnapshot();
     });
 
     it("Opposition team abbreviations displayed as expected", () => {

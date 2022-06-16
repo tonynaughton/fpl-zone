@@ -14,8 +14,5 @@ describe("Dream Team Tests", () => {
     );
   };
 
-  it("Snapshot test", () => {
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
+
 });

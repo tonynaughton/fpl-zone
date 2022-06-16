@@ -24,11 +24,6 @@ describe("Player comparison table tests", () => {
     );
   };
 
-  it("Snapshot test", () => {
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   describe("Player stats", () => {
     it("Stat row rendered as expected", () => {
       render(createComponent());

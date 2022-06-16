@@ -28,11 +28,6 @@ describe("FDR Tests", () => {
   afterEach(cleanup);
 
   describe("FDR table for teams", () => {
-    it("Snapshot test", () => {
-      const { asFragment } = render(createComponent());
-      expect(asFragment()).toMatchSnapshot();
-    });
-
     it("Displays correct gameweek titles", async () => {
       render(createComponent());
 
@@ -68,11 +63,6 @@ describe("FDR Tests", () => {
 
   describe("FDR table for players", () => {
     const mockSquad = mockPlayers.slice(0, 14);
-
-    it("Snapshot test", () => {
-      const { asFragment } = render(createComponent());
-      expect(asFragment()).toMatchSnapshot();
-    });
 
     it("Displays player names correctly", async () => {
       render(createComponent(mockPlayers));

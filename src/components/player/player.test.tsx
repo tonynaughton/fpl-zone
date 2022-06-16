@@ -38,10 +38,6 @@ describe("Player Tests", () => {
 
   afterEach(cleanup);
 
-  it("Snapshot test", () => {
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
 
   it("Renders player name as expected", () => {
     render(createComponent());

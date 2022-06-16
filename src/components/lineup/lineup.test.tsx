@@ -28,10 +28,7 @@ describe("Lineup Tests", () => {
     );
   };
 
-  it("Snapshot test", () => {
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
+
   describe("Renders lineup as expected", () => {
     it("First XI", () => {
       render(createComponent());

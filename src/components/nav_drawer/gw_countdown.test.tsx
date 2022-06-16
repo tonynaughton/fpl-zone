@@ -17,10 +17,6 @@ describe("Gameweek countdown tests", () => {
     );
   };
 
-  it("Snapshot test", () => {
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
 
   const setGameweekDeadline = (days = 0, hours = 0, minutes = 0): void => {
     const currentDate = moment();

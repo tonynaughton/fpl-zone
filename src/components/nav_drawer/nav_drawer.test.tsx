@@ -20,11 +20,6 @@ describe("Nav Drawer Tests", () => {
     );
   };
 
-  it("Renders as expected", () => {
-    const { asFragment } = render(templateRenderFunction("gameweek-live"));
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   describe("Active label has expected styling", () => {
     it("When 'gameweek live' is active", () => {
       render(templateRenderFunction("gameweek live"));

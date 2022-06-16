@@ -8,7 +8,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { AddPlayersModal } from "..";
 
 describe("Add players modal tests", () => {
-  let mockSelectedPlayers = mockPlayers.splice(0, 2);
+  const mockSelectedPlayers = mockPlayers.splice(0, 2);
   let mockIsAddPlayersModalOpen = true;
 
   const mockSetAddPlayersModalOpen = jest.fn();
@@ -26,13 +26,6 @@ describe("Add players modal tests", () => {
       </AppDataContext.Provider>
     );
   };
-
-  it("Snapshot test", () => {
-    mockSelectedPlayers = mockPlayers.slice(0, 2);
-
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
 
   describe("Modal visibility", () => {
     it("Visible if isAddPlayersModalOpen is true", () => {

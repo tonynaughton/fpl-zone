@@ -30,13 +30,6 @@ describe("Add players table tests", () => {
     );
   };
 
-  it("Snapshot test", () => {
-    mockTempSelectedPlayers = mockPlayers.slice(0, 2);
-
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   describe("Player selected count", () => {
     it(`When player count has not reached ${MAX_PLAYER_COUNT}`, () => {
       mockTempSelectedPlayers = mockPlayers.slice(0, 2);
