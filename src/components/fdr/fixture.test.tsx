@@ -39,7 +39,7 @@ describe("Fixture Tests", () => {
     const homeOrAwayText = isHome ? "(H)" : "(A)";
 
     expect(fixtureContainer).toHaveTextContent(`${oppositionAbbreviation} ${homeOrAwayText}`);
-  }
+  };
 
   const testContainerBackground = (fixture: FixtureType, teamId: number): void => {
     const isHome = fixture.team_h === teamId;
@@ -48,7 +48,7 @@ describe("Fixture Tests", () => {
     const singleFixtureBox = screen.getByTestId(`fixture-container-bg-${fixture.id}`);
 
     expect(singleFixtureBox).toHaveStyle(`background-color: ${difficultyColour}`);
-  }
+  };
 
   it("Player FDR displays correctly", () => {
     mockBaseItem = mockPlayers[0];

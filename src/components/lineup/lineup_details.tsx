@@ -25,7 +25,7 @@ export const LineupDetails = ({
       }}
     >
       {teamData && (
-        <Typography textAlign='center' variant='h2'>
+        <Typography data-testid='team-name' textAlign='center' variant='h2'>
           {teamData.name}
         </Typography>
       )}
@@ -43,15 +43,15 @@ export const LineupDetails = ({
       >
         <Box>
           <Typography sx={{ mb: 1 }} variant='h4'>Active Chip:</Typography>
-          <Typography>{activeChip}</Typography>
+          <Typography data-testid='active-chip'>{activeChip}</Typography>
         </Box>
         <Box>
           <Typography sx={{ mb: 1 }} variant='h4'>GW Points:</Typography>
-          <Typography>{totalPoints}</Typography>
+          <Typography data-testid='total-points'>{totalPoints}</Typography>
         </Box>
         <Box>
           <Typography sx={{ mb: 1 }} variant='h4'>Overall Rank:</Typography>
-          <Typography>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
+          <Typography data-testid='overall-rank'>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
         </Box>
       </Box>
     </Box>
