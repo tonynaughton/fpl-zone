@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 
-import GameweekCountdown from "./gw_countdown";
+import { GameweekCountdown } from "./gw_countdown";
 import MenuList from "./menu_list";
 import { MenuItem } from "./types";
 

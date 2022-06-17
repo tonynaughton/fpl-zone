@@ -2,10 +2,14 @@ import React from "react";
 import { Warning } from "@mui/icons-material";
 import { Box, CircularProgress, Typography } from "@mui/material";
 
+import "@testing-library/jest-dom/extend-expect";
+
 interface LoadingMessageProps {
   type?: string;
   message?: string;
 }
+
+export const DEFAULT_NOTIFIER_MESSAGE = "Loading..";
 
 export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element => {
   const renderIcon = (): JSX.Element => {
@@ -16,19 +20,20 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
 
     switch (type) {
     case "error":
-      return <Warning sx={iconStyle} />;
+      return <Warning data-testid='error-icon' sx={iconStyle} />;
     case "warning":
-      return <Warning sx={iconStyle} />;
+      return <Warning data-testid='warning-icon' sx={iconStyle} />;
     case "loading":
-      return <CircularProgress sx={iconStyle} />;
+      return <CircularProgress data-testid='loading-icon' sx={iconStyle} />;
     default:
-      return <CircularProgress sx={iconStyle} />;
+      return <CircularProgress data-testid='default-icon' sx={iconStyle} />;
     }
   };
 
   return (
     <Box
       alignItems='center'
+      data-testid='notifier'
       display='flex'
       flexDirection='column'
       height='100%'
@@ -38,7 +43,7 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
       width='80%'
     >
       {renderIcon()}
-      <Typography textAlign='center'>{message || "Loading.."}</Typography>
+      <Typography textAlign='center'>{message || DEFAULT_NOTIFIER_MESSAGE}</Typography>
     </Box>
   );
 };

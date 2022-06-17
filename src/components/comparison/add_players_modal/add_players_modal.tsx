@@ -5,23 +5,23 @@ import { getNormalizedString } from "helpers";
 import { clone, debounce } from "lodash";
 import { AppData, Player } from "types";
 
-import { CustomModal } from "components/utils/modal";
+import { CustomModal } from "components/utils";
 
 import { AddPlayersTable } from "..";
 
-interface AddPlayersToComparisonModalProps {
+interface AddPlayersModalProps {
   isAddPlayersModalOpen: boolean;
   setAddPlayersModalOpen: (value: boolean) => void;
-  selectedComparisonPlayers: Player[];
+  selectedPlayers: Player[];
   setSelectedComparisonPlayers: (players: Player[]) => void;
 }
 
-export const AddPlayersToComparisonModal = ({
+export const AddPlayersModal = ({
   isAddPlayersModalOpen,
   setAddPlayersModalOpen,
-  selectedComparisonPlayers,
+  selectedPlayers,
   setSelectedComparisonPlayers
-}: AddPlayersToComparisonModalProps): JSX.Element => {
+}: AddPlayersModalProps): JSX.Element => {
   const { players, teams, positions } = useContext(AppDataContext) as AppData;
 
   const [tempSelectedPlayers, setTempSelectedPlayers] = useState<Player[]>([]);
@@ -29,7 +29,7 @@ export const AddPlayersToComparisonModal = ({
   const [searchInput, setSearchInput] = useState<string>("");
 
   useEffect(() => {
-    setTempSelectedPlayers(selectedComparisonPlayers);
+    setTempSelectedPlayers(selectedPlayers);
 
     const close = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
@@ -41,7 +41,7 @@ export const AddPlayersToComparisonModal = ({
 
     return () => window.removeEventListener("keydown", close);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedComparisonPlayers]);
+  }, [selectedPlayers]);
 
   const onPlayerToggle = (player: Player, value: boolean): void => {
     if (value) {
@@ -56,13 +56,12 @@ export const AddPlayersToComparisonModal = ({
 
   const memoizedTable = useMemo(() => AddPlayersTable({
     onPlayerToggle,
-    players: displayedPlayers,
-    selectedComparisonPlayers,
+    displayedPlayers,
     tempSelectedPlayers,
     teams,
     positions
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [displayedPlayers, tempSelectedPlayers, selectedComparisonPlayers]);
+  }), [displayedPlayers, tempSelectedPlayers]);
 
   const performSearch = (input: string): void => {
     const normalizedInput = getNormalizedString(input);
@@ -112,10 +111,12 @@ export const AddPlayersToComparisonModal = ({
       onCancelClick={onCancelClick}
       onConfirmClick={onConfirmClick}
       setModalOpen={setAddPlayersModalOpen}
+      testId='add-players-modal'
       title='Add players to compare'
     >
       <>
         <TextField
+          data-testid='player-search-input'
           fullWidth
           margin='normal'
           onChange={(event): void => {

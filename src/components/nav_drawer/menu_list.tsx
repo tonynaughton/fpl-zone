@@ -25,6 +25,7 @@ export default function MenuList({ items, activeLabel }: MenuListProps): JSX.Ele
           to={item.href}
         >
           <ListItemText
+            data-testid='menu-list-item-text'
             primary={item.label.toUpperCase()}
             primaryTypographyProps={{
               variant: "h2",

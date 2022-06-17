@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Countdown from "react-countdown";
-import { useQuery } from "react-query";
 import { Box, Typography } from "@mui/material";
-import { getGameData } from "api/fpl_api_provider";
+import { AppDataContext } from "app_content";
+import { AppData } from "types";
 import { Gameweek } from "types/gameweek";
 
-export default function GameweekCountdown(): JSX.Element {
-  const { data, isError } = useQuery("game-data", getGameData);
+export const GameweekCountdown = (): JSX.Element => {
+  const { gameweeks } = useContext(AppDataContext) as AppData;
 
-  if (isError || !data) return <></>;
-
-  const gameweeks: Gameweek[] = data.events;
   const nextGameweek: Gameweek | undefined = gameweeks.find((gw) => {
     return gw.is_next;
   });
@@ -37,7 +34,7 @@ export default function GameweekCountdown(): JSX.Element {
         <Typography variant='h5'>
           {gameweekName.toUpperCase()}
           <br />
-          in progress
+          IN PROGRESS
         </Typography>
       );
     }
@@ -53,8 +50,8 @@ export default function GameweekCountdown(): JSX.Element {
   };
 
   return (
-    <Box sx={{ pb: 2 }} textAlign='center'>
+    <Box data-testid='gameweek-deadline-container' sx={{ pb: 2 }} textAlign='center'>
       <Countdown date={deadline} renderer={renderer} />
     </Box>
   );
-}
+};

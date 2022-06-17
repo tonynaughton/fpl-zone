@@ -28,10 +28,7 @@ describe("Results Tests", () => {
     const nextGameweekBtn = screen.getByTestId("next-gameweek-btn");
     fireEvent.click(nextGameweekBtn);
   };
-  it("Snapshot test", () => {
-    const { asFragment } = render(createComponent());
-    expect(asFragment()).toMatchSnapshot();
-  });
+
 
   it("Gameweek title displays as expected", () => {
     render(createComponent());

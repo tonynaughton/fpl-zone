@@ -1,30 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, TableCell, Tooltip, Typography } from "@mui/material";
-import { Fixture, Player, Team } from "types";
+import { AppDataContext } from "app_content";
+import { getTeamById } from "helpers";
+import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
 import { fdrColours } from "./difficulty_legend";
 import { BaseItem } from "./fdr";
 
-interface FixtureBoxProps {
-  fixtures: Fixture[];
+interface FixtureProps {
+  fixtures: FixtureType[];
   baseItem: BaseItem;
   isPlayerTable: boolean;
-  getTeamById: (teamId: number) => string | undefined;
 }
 
-export default function FixtureBox({
+export const Fixture = ({
   fixtures,
   baseItem,
-  isPlayerTable,
-  getTeamById
-}: FixtureBoxProps): JSX.Element {
-  const renderBox = (fixture: Fixture, key: number): JSX.Element => {
+  isPlayerTable
+}: FixtureProps): JSX.Element => {
+  const { teams } = useContext(AppDataContext) as AppData;
+
+  const renderFixture = (fixture: FixtureType, key: number): JSX.Element => {
     const teamId = isPlayerTable ? (baseItem as Player).team : (baseItem as Team).id;
     const isHome = fixture.team_h === teamId;
     const oppositionId = isHome ? fixture.team_a : fixture.team_h;
     const difficulty = isHome ? fixture.team_h_difficulty : fixture.team_a_difficulty;
-    const testId = `fix-box-bg-${fixture.id}`;
-    const text = `${getTeamById(oppositionId)} (${isHome ? "H" : "A"})`;
+    const text = `${getTeamById(oppositionId, teams).short_name} (${isHome ? "H" : "A"})`;
 
     return (
       <Tooltip
@@ -35,7 +36,7 @@ export default function FixtureBox({
         title={text}
       >
         <Box
-          data-testid={testId}
+          data-testid={`fixture-container-bg-${fixture.id}`}
           key={key}
           sx={{
             p: 0.5,
@@ -69,7 +70,7 @@ export default function FixtureBox({
   return (
     <TableCell scope='row'>
       <Box
-        data-testid='fixture-box-container'
+        data-testid='fixture-container'
         sx={{
           display: "flex",
           height: "100%",
@@ -77,8 +78,8 @@ export default function FixtureBox({
           justifyContent: "space-evenly"
         }}
       >
-        {fixtures.map((fixture, key) => renderBox(fixture, key))}
+        {fixtures.map((fixture, key) => renderFixture(fixture, key))}
       </Box>
     </TableCell>
   );
-}
+};

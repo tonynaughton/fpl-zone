@@ -5,7 +5,7 @@ import _ from "lodash";
 import { AppData } from "types";
 import { Player } from "types/player";
 
-import { AddPlayersToComparisonModal, ComparisonTable } from ".";
+import { AddPlayersModal, PlayerComparisonTable } from ".";
 
 import "./comparison.css";
 
@@ -38,16 +38,16 @@ export const PlayerComparison = (): JSX.Element => {
         overflow: "auto"
       }}
     >
-      <ComparisonTable
+      <PlayerComparisonTable
         onAddPlayerClick={onAddPlayerClick}
         onRemovePlayerClick={onRemovePlayerClick}
         playerStats={playerStats}
         selectedPlayers={selectedComparisonPlayers}
         teams={teams}
       />
-      <AddPlayersToComparisonModal
+      <AddPlayersModal
         isAddPlayersModalOpen={isAddPlayersModalOpen}
-        selectedComparisonPlayers={selectedComparisonPlayers}
+        selectedPlayers={selectedComparisonPlayers}
         setAddPlayersModalOpen={setIsAddPlayerModalOpen}
         setSelectedComparisonPlayers={setSelectedComparisonPlayers}
       />

@@ -24,6 +24,12 @@ export const getPositionById = (positionId: number, positions: Position[]): Posi
   return positions.find((position) => position.id === positionId)!;
 };
 
+export const getPlayerImageUrl = (player: Player): string => {
+  const imgId = player.photo.replace(".jpg", "");
+
+  return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
+};
+
 export const getNormalizedString = (input: string): string => {
   return input
     .normalize("NFD")

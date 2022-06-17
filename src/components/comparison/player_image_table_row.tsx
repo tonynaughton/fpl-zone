@@ -1,18 +1,21 @@
 import React, { Fragment } from "react";
 import { Close } from "@mui/icons-material";
-import { Box, IconButton, TableCell, TableRow } from "@mui/material";
+import { Box, IconButton, TableCell } from "@mui/material";
+import { getPlayerImageUrl } from "helpers";
 import { Player } from "types";
 
-import { AddButton,MAX_PLAYER_COUNT } from ".";
+import { AddButton } from "components/utils";
+
+import { MAX_PLAYER_COUNT } from ".";
 
 interface PlayerImageTableRowProps {
-  players: Player[];
+  selectedPlayers: Player[];
   onAddPlayerClick: () => void;
   onRemovePlayerClick: (player: Player) => void;
 }
 
 export const PlayerImageTableRow = ({
-  players,
+  selectedPlayers,
   onAddPlayerClick,
   onRemovePlayerClick
 }: PlayerImageTableRowProps): JSX.Element => {
@@ -21,6 +24,7 @@ export const PlayerImageTableRow = ({
     return (
       <TableCell align='center' className='standard-table-cell'>
         <Box
+          data-testid={`player-image-container-${player ? player.id : "placeholder"}`}
           onClick={!player ? onAddPlayerClick : undefined}
           sx={{
             height: "18vh",
@@ -50,7 +54,8 @@ export const PlayerImageTableRow = ({
                 }}
               >
                 <IconButton
-                  onClick={player ? (): void => onRemovePlayerClick(player) : undefined}
+                  data-testid='remove-button'
+                  onClick={(): void => onRemovePlayerClick(player)}
                   size='small'
                   sx={{
                     backgroundColor: "#c30000",
@@ -69,11 +74,10 @@ export const PlayerImageTableRow = ({
   };
 
   return (
-    <TableRow>
+    <>
       <TableCell className='first-table-cell' />
-      {players.map((player, key) => {
-        const imgId = player.photo.replace(".jpg", "");
-        const url = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
+      {selectedPlayers.map((player, key) => {
+        const url = getPlayerImageUrl(player);
 
         return (
           <Fragment key={key}>
@@ -81,7 +85,7 @@ export const PlayerImageTableRow = ({
           </Fragment>
         );
       })}
-      {players.length < MAX_PLAYER_COUNT && renderPlayerImage(`${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`)}
-    </TableRow>
+      {selectedPlayers.length < MAX_PLAYER_COUNT && renderPlayerImage(`${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`)}
+    </>
   );
 };
