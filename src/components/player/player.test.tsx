@@ -56,7 +56,7 @@ describe("Player Tests", () => {
   it("Renders player kit image as expected", () => {
     render(createComponent());
 
-    const kitImageContainer = screen.getByTestId("kit-img-container") as HTMLImageElement;
+    const kitImageContainer = screen.getByTestId(`kit-img-container-${mockPlayer.id}`) as HTMLImageElement;
     const url = `${process.env.PUBLIC_URL}/assets/images/kits/${mockPlayer.team_code}.png`;
     expect(kitImageContainer).toHaveStyle(`background-image: url(${url})`);
   });

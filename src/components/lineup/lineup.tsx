@@ -39,7 +39,7 @@ export default function Lineup({
   const renderSelected = (): JSX.Element => {
     return (
       <Box
-        data-testid='first-xi-players'
+        data-testid='selected-players'
         sx={{
           pl: "5%",
           pr: "5%",

@@ -31,7 +31,7 @@ export default function Player({
 
   return (
     <Box
-      data-testid={player.id}
+      data-testid={`player-container-${player.id}`}
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -41,7 +41,7 @@ export default function Player({
       }}
     >
       <Box
-        data-testid='kit-img-container'
+        data-testid={`kit-img-container-${player.id}`}
         sx={{
           display: "block",
           width: compressed ? "3.5vw" : "5.5vw",
