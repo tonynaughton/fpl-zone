@@ -2,14 +2,13 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { AppDataContext } from "app_content";
 import { mockAppData, mockPlayers } from "test/test_data";
-import { Player } from "types";
 
 import "@testing-library/jest-dom/extend-expect";
 
 import { MAX_PLAYER_COUNT, PlayerNameTableRow } from ".";
 
 describe("Player name table row tests", () => {
-  let mockSelectedPlayers: Player[];
+  let mockSelectedPlayers = mockPlayers.splice(0, 3);
 
   const createComponent = (): JSX.Element => {
     return (

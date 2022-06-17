@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { TableCell, Typography } from "@mui/material";
 import { getTeamById } from "helpers";
 import { Player, Team } from "types";

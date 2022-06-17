@@ -3,14 +3,13 @@ import { render, screen } from "@testing-library/react";
 import { AppDataContext } from "app_content";
 import { getTeamById } from "helpers";
 import { mockAppData, mockPlayers, mockTeams } from "test/test_data";
-import { Player } from "types";
 
 import "@testing-library/jest-dom/extend-expect";
 
 import { MAX_PLAYER_COUNT, TeamNameTableRow } from ".";
 
 describe("Team name table row tests", () => {
-  let mockSelectedPlayers: Player[];
+  let mockSelectedPlayers = mockPlayers.splice(0, 3);
 
   const createComponent = (): JSX.Element => {
     return (
