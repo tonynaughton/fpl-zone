@@ -1,16 +1,16 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { formatDate, getTeamById } from "helpers";
-import { CustomResult, Team } from "types";
+import { formatDate } from "helpers";
+import { useTeamById } from "hooks";
+import { CustomResult } from "types";
 
 export const RenderResult = (
   result: CustomResult,
   matchStarted: boolean,
-  teams: Team[],
   key?: number
 ): JSX.Element => {
-  const homeTeam = getTeamById(result.team_h, teams);
-  const awayTeam = getTeamById(result.team_a, teams);
+  const homeTeam = useTeamById(result.team_h);
+  const awayTeam = useTeamById(result.team_a);
 
   let matchStatus = "";
   if (matchStarted) {

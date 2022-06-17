@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box, TableCell, Tooltip, Typography } from "@mui/material";
-import { AppDataContext } from "app_content";
-import { getTeamById } from "helpers";
-import { AppData, Fixture as FixtureType, Player, Team } from "types";
+import { useTeamById } from "hooks";
+import { Fixture as FixtureType, Player, Team } from "types";
 
 import { fdrColours } from "./difficulty_legend";
 import { BaseItem } from "./fdr";
@@ -18,14 +17,12 @@ export const Fixture = ({
   baseItem,
   isPlayerTable
 }: FixtureProps): JSX.Element => {
-  const { teams } = useContext(AppDataContext) as AppData;
-
-  const renderFixture = (fixture: FixtureType, key: number): JSX.Element => {
+  const RenderFixture = (fixture: FixtureType, key: number): JSX.Element => {
     const teamId = isPlayerTable ? (baseItem as Player).team : (baseItem as Team).id;
     const isHome = fixture.team_h === teamId;
     const oppositionId = isHome ? fixture.team_a : fixture.team_h;
     const difficulty = isHome ? fixture.team_h_difficulty : fixture.team_a_difficulty;
-    const text = `${getTeamById(oppositionId, teams).short_name} (${isHome ? "H" : "A"})`;
+    const text = `${useTeamById(oppositionId).short_name} (${isHome ? "H" : "A"})`;
 
     return (
       <Tooltip
@@ -78,7 +75,7 @@ export const Fixture = ({
           justifyContent: "space-evenly"
         }}
       >
-        {fixtures.map((fixture, key) => renderFixture(fixture, key))}
+        {fixtures.map((fixture, key) => RenderFixture(fixture, key))}
       </Box>
     </TableCell>
   );

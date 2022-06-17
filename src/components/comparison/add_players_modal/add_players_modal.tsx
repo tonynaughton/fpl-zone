@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Box, TextField } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getNormalizedString } from "helpers";
@@ -22,7 +22,7 @@ export const AddPlayersModal = ({
   selectedPlayers,
   setSelectedComparisonPlayers
 }: AddPlayersModalProps): JSX.Element => {
-  const { players, teams, positions } = useContext(AppDataContext) as AppData;
+  const { players } = useContext(AppDataContext) as AppData;
 
   const [tempSelectedPlayers, setTempSelectedPlayers] = useState<Player[]>([]);
   const [displayedPlayers, setDisplayedPlayers] = useState<Player[]>(players);
@@ -57,9 +57,7 @@ export const AddPlayersModal = ({
   const memoizedTable = useMemo(() => AddPlayersTable({
     onPlayerToggle,
     displayedPlayers,
-    tempSelectedPlayers,
-    teams,
-    positions
+    tempSelectedPlayers
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [displayedPlayers, tempSelectedPlayers]);
 

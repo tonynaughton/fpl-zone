@@ -1,8 +1,9 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import { AppDataContext } from "app_content";
-import { getPositionById, getTeamById } from "helpers";
-import { mockAppData, mockPlayers, mockPositions, mockTeams } from "test/test_data";
+import { usePositionById } from "hooks";
+import { useTeamById } from "hooks/use_team_by_id";
+import { mockAppData, mockPlayers } from "test/test_data";
 import { Player } from "types";
 
 import "@testing-library/jest-dom/extend-expect";
@@ -22,8 +23,6 @@ describe("Add players table tests", () => {
         <AddPlayersTable
           displayedPlayers={mockAllPlayers}
           onPlayerToggle={mockOnPlayerToggle}
-          positions={mockPositions}
-          teams={mockTeams}
           tempSelectedPlayers={mockTempSelectedPlayers}
         />
       </AppDataContext.Provider>
@@ -68,7 +67,7 @@ describe("Add players table tests", () => {
 
       mockAllPlayers.forEach((player) => {
         const playerTeamCrestImg = screen.getByTestId(`player-team-crest-${player.id}`);
-        const team = getTeamById(player.team, mockTeams);
+        const team = useTeamById(player.team);
         const imgUrl = `${process.env.PUBLIC_URL}/assets/images/crests/${team.code}.png`;
 
         expect(playerTeamCrestImg).toHaveAttribute("src", imgUrl);
@@ -83,7 +82,7 @@ describe("Add players table tests", () => {
       render(createComponent());
 
       mockAllPlayers.forEach((player) => {
-        const playerPosition = getPositionById(player.element_type, mockPositions);
+        const playerPosition = usePositionById(player.element_type);
         const playerPositionText = screen.getByTestId(`player-position-text-${player.id}`);
 
         expect(playerPositionText).toHaveTextContent(playerPosition.singular_name_short);

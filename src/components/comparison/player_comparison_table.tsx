@@ -14,7 +14,6 @@ interface PlayerComparisonTableProps {
 
 export const PlayerComparisonTable = ({
   selectedPlayers,
-  teams,
   playerStats,
   onAddPlayerClick,
   onRemovePlayerClick
@@ -42,7 +41,7 @@ export const PlayerComparisonTable = ({
           <PlayerNameTableRow selectedPlayers={selectedPlayers} />
         </TableRow>
         <TableRow component='tr'>
-          <TeamNameTableRow selectedPlayers={selectedPlayers} teams={teams} />
+          <TeamNameTableRow selectedPlayers={selectedPlayers} />
         </TableRow>
         {playerStats.map((stat, key) => {
           return (
