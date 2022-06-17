@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box,TableCell, TableRow, Typography } from "@mui/material";
-import { usePositionById, useTeamById } from "hooks";
-import { Player } from "types";
+import { AppDataContext } from "app_content";
+import { getPositionById, getTeamById } from "helpers";
+import { AppData, Player } from "types";
 
 import { ControlledCheckbox } from "components/utils";
 
@@ -20,8 +21,10 @@ export const AddPlayersTableRow = ({
   player,
   key
 }: AddPlayersTableRowProps): JSX.Element => {
-  const team = useTeamById(player.team);
-  const position = usePositionById(player.element_type);
+  const { positions, teams } = useContext(AppDataContext) as AppData;
+
+  const team = getTeamById(player.team, teams);
+  const position = getPositionById(player.element_type, positions);
   const checkedValue = tempSelectedPlayers.includes(player);
   const checkboxDisabled = tempSelectedPlayers.length >= MAX_PLAYER_COUNT;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useMyTeamLineup } from "hooks/use_my_team_lineup";
+import { useMyTeamLineup } from "hooks";
 import { TeamData, TeamPicks } from "types";
 
 import Lineup from "components/lineup/lineup";

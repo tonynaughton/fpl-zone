@@ -9,7 +9,7 @@ import GameweekSummary, { SummaryStatType } from "./gameweek_summary";
 
 let mockSummaryStats: SummaryStatType[];
 
-jest.mock("./helpers/use_summary_stats", () => ({
+jest.mock("hooks/use_summary_stats", () => ({
   useSummaryStats: (): SummaryStatType[] => mockSummaryStats
 }));
 

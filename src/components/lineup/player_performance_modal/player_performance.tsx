@@ -12,7 +12,7 @@ interface PlayerPerformanceProps {
 }
 
 export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProps): JSX.Element => {
-  const { playerStats } = useContext(AppDataContext) as AppData;
+  const { playerStats, teams } = useContext(AppDataContext) as AppData;
 
   const customResult: CustomResult = {
     team_h: performance.was_home ? player.team : performance.opponent_team,
@@ -30,7 +30,7 @@ export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProp
   return (
     <>
       <Box sx={{ display: "flex", alginItems: "center", width: "80%" }}>
-        {RenderResult(customResult, matchStarted)}
+        {RenderResult(customResult, matchStarted, teams)}
       </Box>
       {matchStarted && (
         <TableContainer component={Box}>

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TableCell, Typography } from "@mui/material";
-import { useTeamById } from "hooks/use_team_by_id";
-import { Player } from "types";
+import { AppDataContext } from "app_content";
+import { getTeamById } from "helpers";
+import { AppData, Player } from "types";
 
 import { MAX_PLAYER_COUNT } from ".";
 
@@ -11,15 +12,19 @@ interface TeamNameTableRowProps {
   selectedPlayers: Player[];
 }
 
-const RenderRow = (player: Player, key: number): JSX.Element => (
-  <TableCell
-    className='standard-table-cell'
-    data-testid={`team-name-row-${player.id}`}
-    key={key}
-  >
-    <Typography>{useTeamById(player.team).name}</Typography>
-  </TableCell>
-);
+const RenderRow = (player: Player, key: number): JSX.Element => {
+  const { teams } = useContext(AppDataContext) as AppData;
+
+  return (
+    <TableCell
+      className='standard-table-cell'
+      data-testid={`team-name-row-${player.id}`}
+      key={key}
+    >
+      <Typography>{getTeamById(player.team, teams).name}</Typography>
+    </TableCell>
+  );
+};
 
 export const TeamNameTableRow = ({ selectedPlayers }: TeamNameTableRowProps): JSX.Element => {
   return (

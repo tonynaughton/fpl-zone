@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
+import { AppDataContext } from "app_content";
 import { formatDate } from "helpers";
-import { CustomResult, Fixture } from "types";
+import { AppData, CustomResult, Fixture, Team } from "types";
 
 import { CustomModal } from "components/utils";
 
@@ -11,7 +12,7 @@ interface MatchDetailsModalProps {
   isResultsModalOpen: boolean;
   setResultsModalOpen: (value: boolean) => void;
   selectedResult: Fixture;
-  renderResult: (result: CustomResult, matchStarted: boolean) => JSX.Element;
+  renderResult: (result: CustomResult, matchStarted: boolean, teams: Team[]) => JSX.Element;
 }
 
 export default function MatchDetailsModal({
@@ -20,6 +21,7 @@ export default function MatchDetailsModal({
   selectedResult,
   renderResult
 }: MatchDetailsModalProps): JSX.Element {
+  const { teams } = useContext(AppDataContext) as AppData; ;
 
   const customResult: CustomResult = {
     team_h: selectedResult.team_h,
@@ -54,7 +56,7 @@ export default function MatchDetailsModal({
         }}
       >
         {kickOffTime && <Typography variant='h5'>{kickOffTime}</Typography>}
-        {renderResult(customResult, true)}
+        {renderResult(customResult, true, teams)}
         {statsToRender.map((stat, key) => <MatchStat key={key} selectedResult={selectedResult} statName={stat} />)}
       </Box>
     </CustomModal>

@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Box, Grid,Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { usePlayerById } from "hooks";
+import { GetPlayerById } from "helpers";
 import { AppData, Fixture, StatValue } from "types";
 
 export const STAT_IMAGE_NAMES = {
-  GOALS_SCORED: "football",
-  ASSISTS: "boot",
-  YELLOW_CARDS: "yellow_card",
-  RED_CARDS: "red_card"
+  goals_scored: "football",
+  assists: "boot",
+  yellow_cards: "yellow_card",
+  red_cards: "red_card"
 };
 
 interface MatchStatProps {
@@ -16,9 +16,10 @@ interface MatchStatProps {
   selectedResult: Fixture;
 }
 
-const StatColumn = (stat: StatValue, key: number, isAway = false): JSX.Element => {
-  const player = usePlayerById(stat.element);
-  const statName = stat.value;
+const StatColumn = (stat: StatValue, key: number, name: string, isAway = false): JSX.Element => {
+  const { players } = useContext(AppDataContext) as AppData;
+
+  const player = GetPlayerById(stat.element, players);
 
   return (
     <Box
@@ -41,9 +42,9 @@ const StatColumn = (stat: StatValue, key: number, isAway = false): JSX.Element =
       </Typography>
       &nbsp;&nbsp;
       <img
-        alt={STAT_IMAGE_NAMES[statName]}
+        alt={STAT_IMAGE_NAMES[name]}
         height={20}
-        src={`${process.env.PUBLIC_URL}/assets/images/${STAT_IMAGE_NAMES[statName]}.png`}
+        src={`${process.env.PUBLIC_URL}/assets/images/${STAT_IMAGE_NAMES[name]}.png`}
       />
     </Box>
   );
@@ -74,10 +75,10 @@ export const MatchStat = ({ statName, selectedResult }: MatchStatProps): JSX.Ele
         </Typography>
         <Grid columnSpacing={2} container>
           <Grid item xs={6}>
-            {stats.h.map((stat, key) => StatColumn(stat, key))}
+            {stats.h.map((stat, key) => StatColumn(stat, key, statName))}
           </Grid>
           <Grid item xs={6}>
-            {stats.a.map((stat, key) => StatColumn(stat, key, true))}
+            {stats.a.map((stat, key) => StatColumn(stat, key, statName, true))}
           </Grid>
         </Grid>
       </Box>

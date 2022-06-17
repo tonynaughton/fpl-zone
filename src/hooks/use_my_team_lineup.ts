@@ -3,7 +3,12 @@ import { AppDataContext } from "app_content";
 import { chunk } from "lodash";
 import { AppData, Player, TeamPicks } from "types";
 
-export const useMyTeamLineup = (teamPicks: TeamPicks): Record<string, unknown> => {
+interface Lineup {
+  selected: Player[][];
+  bench: Player[];
+}
+
+export const useMyTeamLineup = (teamPicks: TeamPicks): Lineup => {
   const { positions, players } = useContext(AppDataContext) as AppData;
   const [selectedPicks, benchPicks] = chunk(teamPicks.picks, 11);
 

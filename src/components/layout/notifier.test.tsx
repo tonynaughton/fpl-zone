@@ -3,6 +3,8 @@ import { render, screen } from "@testing-library/react";
 import { AppDataContext } from "app_content";
 import { mockAppData } from "test";
 
+import "@testing-library/jest-dom/extend-expect";
+
 import { DEFAULT_NOTIFIER_MESSAGE, Notifier } from "./notifier";
 
 describe("Notifier tests", () => {

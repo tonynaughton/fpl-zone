@@ -8,7 +8,7 @@ import MatchDetailsModal from "./match_details_modal/match_details_modal";
 import { RenderResult } from "./result";
 
 export default function Results(): JSX.Element {
-  const { gameweeks, fixtures } = useContext(AppDataContext) as AppData;
+  const { gameweeks, fixtures, teams } = useContext(AppDataContext) as AppData;
   const latestGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
 
   const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
@@ -108,7 +108,7 @@ export default function Results(): JSX.Element {
               }}
               width='100%'
             >
-              {RenderResult(customResult, matchStarted, key)}
+              {RenderResult(customResult, matchStarted, teams, key)}
             </Box>
           );
         })}

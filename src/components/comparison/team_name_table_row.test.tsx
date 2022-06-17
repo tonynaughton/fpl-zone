@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { AppDataContext } from "app_content";
-import { useTeamById } from "hooks/use_team_by_id";
-import { mockAppData, mockPlayers } from "test/test_data";
+import { getTeamById } from "helpers";
+import { mockAppData, mockPlayers, mockTeams } from "test/test_data";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -26,7 +26,7 @@ describe("Team name table row tests", () => {
 
     mockSelectedPlayers.forEach((player) => {
       const row = screen.getByTestId(`team-name-row-${player.id}`);
-      const team = useTeamById(player.team);
+      const team = getTeamById(player.team, mockTeams);
       expect(row).toHaveTextContent(team.name);
     });
   });
