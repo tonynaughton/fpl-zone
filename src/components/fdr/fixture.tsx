@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, TableCell, Tooltip, Typography } from "@mui/material";
+import { Box, Tooltip, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getTeamById } from "helpers";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
@@ -13,12 +13,16 @@ interface FixtureProps {
   isPlayerTable: boolean;
 }
 
+interface SingleFixtureProps {
+  fixture: FixtureType;
+}
+
 export const Fixture = ({
   fixtures,
   baseItem,
   isPlayerTable
 }: FixtureProps): JSX.Element => {
-  const RenderFixture = (fixture: FixtureType, key: number): JSX.Element => {
+  const SingleFixture = ({ fixture }: SingleFixtureProps): JSX.Element => {
     const { teams } = useContext(AppDataContext) as AppData;
 
     const teamId = isPlayerTable ? (baseItem as Player).team : (baseItem as Team).id;
@@ -31,13 +35,11 @@ export const Fixture = ({
       <Tooltip
         arrow
         enterDelay={500}
-        key={key}
         placement='top'
         title={text}
       >
         <Box
           data-testid={`fixture-container-bg-${fixture.id}`}
-          key={key}
           sx={{
             p: 0.5,
             display: "flex",
@@ -68,18 +70,16 @@ export const Fixture = ({
   };
 
   return (
-    <TableCell scope='row'>
-      <Box
-        data-testid='fixture-container'
-        sx={{
-          display: "flex",
-          height: "100%",
-          alignItems: "center",
-          justifyContent: "space-evenly"
-        }}
-      >
-        {fixtures.map((fixture, key) => RenderFixture(fixture, key))}
-      </Box>
-    </TableCell>
+    <Box
+      data-testid='fixture-container'
+      sx={{
+        display: "flex",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "space-evenly"
+      }}
+    >
+      {fixtures.map((fixture, key) => <SingleFixture fixture={fixture} key={key} />)}
+    </Box>
   );
 };

@@ -12,14 +12,12 @@ interface AddPlayersTableRowProps {
   tempSelectedPlayers: Player[];
   onPlayerToggle: (player: Player, value: boolean) => void;
   player: Player;
-  key: number;
 }
 
 export const AddPlayersTableRow = ({
   tempSelectedPlayers,
   onPlayerToggle,
-  player,
-  key
+  player
 }: AddPlayersTableRowProps): JSX.Element => {
   const { positions, teams } = useContext(AppDataContext) as AppData;
 
@@ -29,7 +27,7 @@ export const AddPlayersTableRow = ({
   const checkboxDisabled = tempSelectedPlayers.length >= MAX_PLAYER_COUNT;
 
   return (
-    <TableRow data-testid={`player-table-row-${player.id}`} key={key}>
+    <TableRow data-testid={`player-table-row-${player.id}`}>
       <TableCell data-testid={`checkbox-table-cell-${player.id}`}>
         <ControlledCheckbox
           checkedValue={checkedValue}

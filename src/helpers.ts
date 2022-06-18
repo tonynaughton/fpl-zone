@@ -25,7 +25,11 @@ export const getPositionById = (positionId: number, positions: Position[]): Posi
   return positions.find((pos) => pos.id === positionId)!;
 };
 
-export const getPlayerImageUrl = (player: Player): string => {
+export const getPlayerImageUrl = (player?: Player): string => {
+  if (!player) {
+    return `${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`;
+  }
+
   const imgId = player.photo.replace(".jpg", "");
 
   return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;

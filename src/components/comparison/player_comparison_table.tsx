@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
-import { Player,PlayerStat, Team } from "types";
+import { AppDataContext } from "app_content";
+import { getTeamById } from "helpers";
+import { AppData, Player,PlayerStat, Team } from "types";
 
-import { MAX_PLAYER_COUNT, PlayerImageTableRow, PlayerNameTableRow, TeamNameTableRow } from ".";
+import { MAX_PLAYER_COUNT, PlayerImageCell } from ".";
 
 interface PlayerComparisonTableProps {
   selectedPlayers: Player[];
@@ -18,6 +20,7 @@ export const PlayerComparisonTable = ({
   onAddPlayerClick,
   onRemovePlayerClick
 }: PlayerComparisonTableProps): JSX.Element => {
+  const { teams } = useContext(AppDataContext) as AppData;
 
   return (
     <Table
@@ -31,26 +34,71 @@ export const PlayerComparisonTable = ({
     >
       <TableBody component='tbody'>
         <TableRow component='tr'>
-          <PlayerImageTableRow
-            onAddPlayerClick={onAddPlayerClick}
-            onRemovePlayerClick={onRemovePlayerClick}
-            selectedPlayers={selectedPlayers}
-          />
+          <TableCell className='first-table-cell' component='td' />
+          {selectedPlayers.map((player, key) => (
+            <TableCell className='standard-table-cell' component='td' key={key}>
+              <PlayerImageCell onRemovePlayerClick={onRemovePlayerClick} player={player} />
+            </TableCell>
+          ))}
+          {selectedPlayers.length < MAX_PLAYER_COUNT &&
+            <TableCell className='standard-table-cell' component='td'>
+              <PlayerImageCell onAddPlayerClick={onAddPlayerClick} />
+            </TableCell>}
         </TableRow>
         <TableRow component='tr'>
-          <PlayerNameTableRow selectedPlayers={selectedPlayers} />
+          <TableCell className='first-table-cell' component='td'>
+            <Typography>Name</Typography>
+          </TableCell>
+          { selectedPlayers.map((player, key) => (
+            <TableCell
+              className='standard-table-cell'
+              component='td'
+              data-testid={`player-name-row-${player.id}`}
+              key={key}
+            >
+              <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>
+                {`${player.first_name} ${player.second_name}`}
+              </Typography>
+            </TableCell>
+          ))}
+          {selectedPlayers.length < MAX_PLAYER_COUNT &&
+            <TableCell
+              className='standard-table-cell'
+              component='td'
+              data-testid='empty-table-cell'
+            />}
         </TableRow>
         <TableRow component='tr'>
-          <TeamNameTableRow selectedPlayers={selectedPlayers} />
+          <TableCell className='first-table-cell' component='td'>
+            <Typography>Team</Typography>
+          </TableCell>
+          {selectedPlayers.map((player, key) => (
+            <TableCell
+              className='standard-table-cell'
+              component='td'
+              data-testid={`team-name-row-${player.id}`}
+              key={key}
+            >
+              <Typography>{getTeamById(player.team, teams).name}</Typography>
+            </TableCell>
+          ))}
+          {selectedPlayers.length < MAX_PLAYER_COUNT &&
+            <TableCell
+              className='standard-table-cell'
+              component='td'
+              data-testid='empty-table-cell'
+            />}
         </TableRow>
         {playerStats.map((stat, key) => {
           return (
             <TableRow
+              component='tr'
               data-testid={`stat-row-${stat.name}`}
               key={key}
             >
               <TableCell
                 className='first-table-cell'
+                component='td'
                 data-testid={`stat-label-cell-${stat.name}`}
               >
                 <Typography
@@ -63,6 +111,7 @@ export const PlayerComparisonTable = ({
                 return (
                   <TableCell
                     className='standard-table-cell'
+                    component='td'
                     data-testid={`stat-value-cell-${stat.name}-${player.id}`}
                     key={key}
                   >
@@ -73,6 +122,7 @@ export const PlayerComparisonTable = ({
               {selectedPlayers.length < MAX_PLAYER_COUNT &&
                 <TableCell
                   className='standard-table-cell'
+                  component='td'
                   data-testid={`empty-table-cell=${stat.name}`}
                 />}
             </TableRow>

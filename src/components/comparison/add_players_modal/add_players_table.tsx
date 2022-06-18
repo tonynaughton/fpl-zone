@@ -37,7 +37,12 @@ export const AddPlayersTable = ({
       </TableHead>
       <TableBody>
         {displayedPlayers.map((player, key) => (
-          AddPlayersTableRow({ tempSelectedPlayers, onPlayerToggle, player, key })
+          <AddPlayersTableRow
+            key={key}
+            onPlayerToggle={onPlayerToggle}
+            player={player}
+            tempSelectedPlayers={tempSelectedPlayers}
+          />
         ))}
       </TableBody>
     </Table>

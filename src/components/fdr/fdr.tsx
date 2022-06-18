@@ -114,12 +114,13 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
           {renderBaseItemName(baseItem)}
         </TableCell>
         {map(teamFixtures, (fixtures, key) => (
-          <Fixture
-            baseItem={baseItem}
-            fixtures={fixtures}
-            isPlayerTable={!!players}
-            key={key}
-          />
+          <TableCell component='td' key={key}>
+            <Fixture
+              baseItem={baseItem}
+              fixtures={fixtures}
+              isPlayerTable={!!players}
+            />
+          </TableCell>
         ))}
       </TableRow>
     );
