@@ -2,11 +2,7 @@ import { useContext } from "react";
 import { AppDataContext } from "app_content";
 import { chunk } from "lodash";
 import { AppData, Player, TeamPicks } from "types";
-
-interface Lineup {
-  selected: Player[][];
-  bench: Player[];
-}
+import { Lineup } from "types/lineup";
 
 export const useMyTeamLineup = (teamPicks: TeamPicks): Lineup => {
   const { positions, players } = useContext(AppDataContext) as AppData;
