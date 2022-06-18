@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Table, TableBody,TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import _ from "lodash";
+import { pickBy } from "lodash";
 import { AppData, CustomResult, Player,PlayerPerformance as PlayerPerformanceType } from "types";
 
 import { RenderResult } from "components/results/result";
@@ -22,7 +22,7 @@ export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProp
     kickoff_time: performance.kickoff_time
   };
   const matchStarted: boolean = new Date(performance.kickoff_time) < new Date();
-  const stats = _.pickBy(
+  const stats = pickBy(
     performance,
     (value, key) => !!(playerStats.find((el) => el.name === key) && value > 0)
   );

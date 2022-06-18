@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Box } from "@mui/material";
 import { AppDataContext } from "app_content";
-import _ from "lodash";
+import { clone } from "lodash";
 import { AppData } from "types";
 import { Player } from "types/player";
 
@@ -22,7 +22,7 @@ export const PlayerComparison = (): JSX.Element => {
   };
 
   const onRemovePlayerClick = (player: Player): void => {
-    const clonedSelectedPlayers = _.clone(selectedComparisonPlayers);
+    const clonedSelectedPlayers = clone(selectedComparisonPlayers);
     const index = clonedSelectedPlayers.indexOf(player);
     clonedSelectedPlayers.splice(index, 1);
     setSelectedComparisonPlayers(clonedSelectedPlayers);

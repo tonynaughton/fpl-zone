@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import _ from "lodash";
+import { sortBy } from "lodash";
 import { AppData, Player as PlayerType, TeamData, TeamPicks } from "types";
 
 import Player from "../player/player";
@@ -29,7 +29,7 @@ export default function Lineup({
   const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
 
-  const sortedBench = _.sortBy(bench, ["element_type"]);
+  const sortedBench = sortBy(bench, ["element_type"]);
 
   const handlePlayerPerformanceClick = (player: PlayerType): void => {
     setPlayerPerformanceModalOpen(true);

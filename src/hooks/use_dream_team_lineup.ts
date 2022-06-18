@@ -17,7 +17,8 @@ export const useDreamTeamLineup = (): Lineup => {
   const selected = squad.map((playersByPos, index) => playersByPos.splice(0, positions[index].squad_min_play));
   const bench: Player[] = [];
 
-  const remainingPlayers = _(squad).flatten()
+  const remainingPlayers = _(squad)
+    .flatten()
     .orderBy(["event_points"], ["desc"])
     .value();
 
