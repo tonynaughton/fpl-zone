@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
-import { GAME_STATUS_VALUES } from "helpers";
+import { GAME_STATUS_VALUES, getLocalImage } from "helpers";
 import { useNextFiveGameweekIds } from "hooks/use_next_five_gameweek_ids";
 import { isEmpty, map } from "lodash";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
@@ -75,7 +75,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
           alt='crest-img'
           data-testid={`team-crest-img-${name}`}
           height='22px'
-          src={`${process.env.PUBLIC_URL}/assets/images/crests/${teamId}.png`}
+          src={getLocalImage(`crests/${teamId}.png`)}
         />
         <Box
           sx={{

@@ -1,5 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
+import { getLocalImage } from "helpers";
 
 export const Startup = (props: { children: JSX.Element }): JSX.Element => {
   return (
@@ -26,7 +27,7 @@ export const Startup = (props: { children: JSX.Element }): JSX.Element => {
           height='50%'
           width='100%'
         >
-          <img alt='fpl-zone-logo' src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} width='100%' />
+          <img alt='fpl-zone-logo' src={getLocalImage(`logo.png`)} width='100%' />
           {props.children}
         </Box>
       </Box>

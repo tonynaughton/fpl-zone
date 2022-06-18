@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { getLocalImage } from "helpers";
 
 import { SummaryStatType } from "./gameweek_summary";
 
@@ -15,7 +16,7 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
         alt='team-crest-img'
         data-testid={`team-crest-img-${stat.label}`}
         height='auto'
-        src={`${process.env.PUBLIC_URL}/assets/images/crests/${stat.teamCode}.png`}
+        src={getLocalImage(`crests/${stat.teamCode}.png`)}
         width='15%'
       />
     )

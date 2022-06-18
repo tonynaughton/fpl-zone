@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
+import { getLocalImage } from "helpers";
 import { sortBy } from "lodash";
 import { AppData, Player as PlayerType, TeamData, TeamPicks } from "types";
 
@@ -44,7 +45,7 @@ export default function Lineup({
           pl: "5%",
           pr: "5%",
           pb: "5%",
-          backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/pitch.png)`,
+          backgroundImage: `url(${getLocalImage("pitch.png")})`,
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
           height: "100%",

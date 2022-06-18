@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import { AppDataContext } from "app_content";
-import { getPositionById, getTeamById } from "helpers";
+import { getLocalImage, getPositionById, getTeamById } from "helpers";
 import { mockAppData, mockPlayers, mockPositions, mockTeams } from "test/test_data";
 import { Player } from "types";
 
@@ -67,7 +67,7 @@ describe("Add players table tests", () => {
       mockAllPlayers.forEach((player) => {
         const playerTeamCrestImg = screen.getByTestId(`player-team-crest-${player.id}`);
         const team = getTeamById(player.team, mockTeams);
-        const imgUrl = `${process.env.PUBLIC_URL}/assets/images/crests/${team.code}.png`;
+        const imgUrl = getLocalImage(`crests/${team.code}.png`);
 
         expect(playerTeamCrestImg).toHaveAttribute("src", imgUrl);
 

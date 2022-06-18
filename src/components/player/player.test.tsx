@@ -1,5 +1,6 @@
 import React from "react";
 import { cleanup, render, screen } from "@testing-library/react";
+import { getLocalImage } from "helpers";
 import { Player as PlayerType } from "types";
 
 import Player from "components/player/player";
@@ -57,8 +58,8 @@ describe("Player Tests", () => {
     render(createComponent());
 
     const kitImageContainer = screen.getByTestId(`kit-img-container-${mockPlayer.id}`) as HTMLImageElement;
-    const url = `${process.env.PUBLIC_URL}/assets/images/kits/${mockPlayer.team_code}.png`;
-    expect(kitImageContainer).toHaveStyle(`background-image: url(${url})`);
+    const imgUrl = getLocalImage(`kits/${mockPlayer.team_code}.png`);
+    expect(kitImageContainer).toHaveStyle(`background-image: url(${imgUrl})`);
   });
 
   it("Multipler works as expected", () => {

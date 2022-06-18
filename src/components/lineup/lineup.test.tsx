@@ -53,9 +53,9 @@ describe("Lineup Tests", () => {
         expect(container).toHaveTextContent(player.event_points.toString());
 
         const imgContainer = selectedContainer.getByTestId(`kit-img-container-${player.id}`);
-        const url = `${process.env.PUBLIC_URL}/assets/images/kits/${player.team_code}.png`;
+        const imgUrl = `kits/${player.team_code}.png`;
 
-        expect(imgContainer).toHaveStyle(`background-image: url(${url})`);
+        expect(imgContainer).toHaveStyle(`background-image: url(${imgUrl})`);
       });
     });
   });
@@ -72,9 +72,9 @@ describe("Lineup Tests", () => {
       expect(container).toHaveTextContent(player.event_points.toString());
 
       const imgContainer = screen.getByTestId(`kit-img-container-${player.id}`);
-      const url = `${process.env.PUBLIC_URL}/assets/images/kits/${player.team_code}.png`;
+      const imgUrl = `kits/${player.team_code}.png`;
 
-      expect(imgContainer).toHaveStyle(`background-image: url(${url})`);
+      expect(imgContainer).toHaveStyle(`background-image: url(${imgUrl})`);
     });
   });
 });

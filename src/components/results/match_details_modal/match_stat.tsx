@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Grid,Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { GetPlayerById } from "helpers";
+import { getLocalImage, GetPlayerById } from "helpers";
 import { AppData, Fixture, StatValue } from "types";
 
 export const STAT_IMAGE_NAMES = {
@@ -44,7 +44,7 @@ const StatColumn = (stat: StatValue, key: number, name: string, isAway = false):
       <img
         alt={STAT_IMAGE_NAMES[name]}
         height={20}
-        src={`${process.env.PUBLIC_URL}/assets/images/${STAT_IMAGE_NAMES[name]}.png`}
+        src={getLocalImage(`${STAT_IMAGE_NAMES[name]}.png`)}
       />
     </Box>
   );
