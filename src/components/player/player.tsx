@@ -1,6 +1,7 @@
 import React from "react";
 import { Info } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
+import { getLocalImage } from "helpers";
 import { Player as PlayerType } from "types/player";
 
 import { Armband } from "./armband";
@@ -29,6 +30,8 @@ export default function Player({
     whiteSpace: "nowrap"
   };
 
+  const url = `kits/${player.team_code}.png`;
+
   return (
     <Box
       data-testid={`player-container-${player.id}`}
@@ -47,7 +50,7 @@ export default function Player({
           width: compressed ? "3.5vw" : "5.5vw",
           height: compressed ? "5.5vh" : "7.5vh",
           margin: "auto",
-          backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/kits/${player.team_code}.png)`,
+          backgroundImage: `url(${getLocalImage(url)})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat"
         }}

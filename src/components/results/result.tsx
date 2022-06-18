@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { formatDate, getTeamById } from "helpers";
+import { formatDate, getLocalImage, getTeamById } from "helpers";
 import { CustomResult, Team } from "types";
 
 export const RenderResult = (
@@ -33,7 +33,7 @@ export const RenderResult = (
         <img
           alt='team-crest'
           height={30}
-          src={`${process.env.PUBLIC_URL}/assets/images/crests/${homeTeam.code}.png`}
+          src={getLocalImage(`crests/${homeTeam.code}.png`)}
           width={30}
         />
         <Typography
@@ -67,7 +67,7 @@ export const RenderResult = (
         <img
           alt='team-crest'
           height={30}
-          src={`${process.env.PUBLIC_URL}/assets/images/crests/${awayTeam.code}.png`}
+          src={getLocalImage(`crests/${awayTeam.code}.png`)}
           width={30}
         />
       </Box>

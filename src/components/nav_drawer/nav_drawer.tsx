@@ -1,6 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
+import { getLocalImage } from "helpers";
 
 import { GameweekCountdown } from "./gw_countdown";
 import MenuList from "./menu_list";
@@ -52,7 +53,7 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
           borderBottom: "1px solid black"
         }}
       >
-        <img alt='fpl-zone-logo' src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} width='100%' />
+        <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         <GameweekCountdown />
       </Box>
       <Box

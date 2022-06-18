@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Container } from "@mui/material";
+import { getLocalImage } from "helpers";
 
 export const AuthLayout = (props: { children: JSX.Element }): JSX.Element => {
   return (
@@ -12,7 +13,7 @@ export const AuthLayout = (props: { children: JSX.Element }): JSX.Element => {
       sx={{ backgroundColor: "#16B7EA" }}
     >
       <Container component='main' maxWidth='sm'>
-        <img alt='fpl-zone-logo' src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} width='100%' />
+        <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         {props.children}
       </Container>
     </Box>

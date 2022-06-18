@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import _ from "lodash";
+import { getLocalImage } from "helpers";
+import { sortBy } from "lodash";
 import { AppData, Player as PlayerType, TeamData, TeamPicks } from "types";
 
 import Player from "../player/player";
@@ -29,7 +30,7 @@ export default function Lineup({
   const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
 
-  const sortedBench = _.sortBy(bench, ["element_type"]);
+  const sortedBench = sortBy(bench, ["element_type"]);
 
   const handlePlayerPerformanceClick = (player: PlayerType): void => {
     setPlayerPerformanceModalOpen(true);
@@ -44,7 +45,7 @@ export default function Lineup({
           pl: "5%",
           pr: "5%",
           pb: "5%",
-          backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/pitch.png)`,
+          backgroundImage: `url(${getLocalImage("pitch.png")})`,
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
           height: "100%",

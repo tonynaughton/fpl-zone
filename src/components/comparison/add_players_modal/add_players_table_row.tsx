@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box,TableCell, TableRow, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { getPositionById, getTeamById } from "helpers";
+import { getLocalImage, getPositionById, getTeamById } from "helpers";
 import { AppData, Player } from "types";
 
 import { ControlledCheckbox } from "components/utils";
@@ -50,7 +50,7 @@ export const AddPlayersTableRow = ({
             alt='team-crest'
             data-testid={`player-team-crest-${player.id}`}
             height='25vh'
-            src={`${process.env.PUBLIC_URL}/assets/images/crests/${team.code}.png`}
+            src={getLocalImage(`crests/${team.code}.png`)}
             width='auto'
           />
           <Typography

@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
-import _ from "lodash";
+import { isError } from "lodash";
 import {
   AccountPage,
   AnalysisPage,
@@ -39,7 +39,7 @@ export default function AppContent(): JSX.Element {
   } = useQuery("all-fixtures", getAllFixtures);
 
   const isLoading = gameDataIsLoading || fixtureDataIsLoading;
-  const isError = gameDataIsError || fixtureDataIsError;
+  const error = gameDataIsError || fixtureDataIsError;
   const appData: AppData | null = gameData && fixtureData
     ? {
       gameweeks: gameData.events,
@@ -60,10 +60,10 @@ export default function AppContent(): JSX.Element {
         <Notifier />
       </Startup>
     );
-  } else if (isError) {
+  } else if (error) {
     // Display error message if data fetch failed
     const error = gameDataError || fixtureDataError;
-    const errorMessage = _.isError(error) ? `: ${error.message}` : ".";
+    const errorMessage = isError(error) ? `: ${error.message}` : ".";
 
     return (
       <Startup>

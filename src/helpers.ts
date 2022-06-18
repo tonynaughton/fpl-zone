@@ -35,6 +35,10 @@ export const getPlayerImageUrl = (player?: Player): string => {
   return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
 };
 
+export const getLocalImage = (url: string): string => {
+  return `${process.env.PUBLIC_URL}/assets/images/${url}`;
+};
+
 export const getNormalizedString = (input: string): string => {
   return input
     .normalize("NFD")

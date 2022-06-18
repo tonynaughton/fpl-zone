@@ -1,6 +1,7 @@
 import React from "react";
 import { Close } from "@mui/icons-material";
 import { Box, IconButton, Link, List, ListItem, Modal, Typography } from "@mui/material";
+import { getLocalImage } from "helpers";
 
 interface FplIdModalProps {
   modalVisible: boolean;
@@ -47,7 +48,7 @@ export const FplIdModal = ({ modalVisible, setModalOpen }: FplIdModalProps): JSX
           <ListItem>
             <img
               alt='fpl-id-location'
-              src={`${process.env.PUBLIC_URL}/assets/images/fpl-id.png`}
+              src={getLocalImage("fpl-id.png")}
               width='100%'
             />
           </ListItem>

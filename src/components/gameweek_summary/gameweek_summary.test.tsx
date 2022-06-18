@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { AppDataContext } from "app_content";
+import { getLocalImage } from "helpers";
 import { mockAppData } from "test";
 
 import "@testing-library/jest-dom/extend-expect";
@@ -98,9 +99,9 @@ describe("Gameweek Summary Tests", () => {
     statsWithTeamCode.forEach((stat) => {
       const img = screen.getByTestId(`team-crest-img-${stat.label}`);
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const url = `${process.env.PUBLIC_URL}/assets/images/crests/${stat.teamCode!}.png`;
+      const imgUrl = getLocalImage(`crests/${stat.teamCode!}.png`);
 
-      expect(img).toHaveAttribute("src", url);
+      expect(img).toHaveAttribute("src", imgUrl);
     });
   });
 });
