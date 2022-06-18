@@ -4,7 +4,7 @@ import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { AppData, CustomResult, Fixture, Gameweek } from "types";
 
-import MatchDetailsModal from "./match_details_modal";
+import MatchDetailsModal from "./match_details_modal/match_details_modal";
 import { RenderResult } from "./result";
 
 export default function Results(): JSX.Element {

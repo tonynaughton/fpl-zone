@@ -12,7 +12,7 @@ import {
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import { GAME_STATUS_VALUES } from "helpers";
-import { useNextFiveGameweekIds } from "hooks/useNextFiveGameweekIds";
+import { useNextFiveGameweekIds } from "hooks/use_next_five_gameweek_ids";
 import { isEmpty, map } from "lodash";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
@@ -114,12 +114,13 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
           {renderBaseItemName(baseItem)}
         </TableCell>
         {map(teamFixtures, (fixtures, key) => (
-          <Fixture
-            baseItem={baseItem}
-            fixtures={fixtures}
-            isPlayerTable={!!players}
-            key={key}
-          />
+          <TableCell component='td' key={key}>
+            <Fixture
+              baseItem={baseItem}
+              fixtures={fixtures}
+              isPlayerTable={!!players}
+            />
+          </TableCell>
         ))}
       </TableRow>
     );

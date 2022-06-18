@@ -1,29 +1,32 @@
 import { useContext } from "react";
 import { AppDataContext } from "app_content";
-import { GetPlayerById, numberWithCommas } from "helpers";
-import { AppData } from "types";
+import { numberWithCommas } from "helpers";
+import { AppData, Player } from "types";
 
-import { SummaryStatType } from "../gameweek_summary";
+import { SummaryStatType } from "../components/gameweek_summary/gameweek_summary";
 
 export const useSummaryStats = (): SummaryStatType[] => {
   const { gameweeks, players } = useContext(AppDataContext) as AppData;
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const getPlayerById = (id: number): Player => players.find((player) => player.id === id)!;
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const currentGameweek = gameweeks.find((gw) => gw.is_current)!;
 
   const starPlayerId = currentGameweek.top_element_info?.id;
-  const starPlayer = starPlayerId ? GetPlayerById(starPlayerId, players) : null;
+  const starPlayer = starPlayerId ? getPlayerById(starPlayerId) : null;
 
   const mostTransferredIn = currentGameweek.most_transferred_in
-    ? GetPlayerById(currentGameweek.most_transferred_in, players)
+    ? getPlayerById(currentGameweek.most_transferred_in)
     : null;
 
   const mostCaptained = currentGameweek.most_captained
-    ? GetPlayerById(currentGameweek?.most_captained, players)
+    ? getPlayerById(currentGameweek?.most_captained)
     : null;
 
   const mostViceCaptained = currentGameweek.most_vice_captained
-    ? GetPlayerById(currentGameweek.most_vice_captained, players)
+    ? getPlayerById(currentGameweek.most_vice_captained)
     : null;
 
   const mostTransferredInCount = mostTransferredIn

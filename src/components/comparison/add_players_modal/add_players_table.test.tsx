@@ -22,8 +22,6 @@ describe("Add players table tests", () => {
         <AddPlayersTable
           displayedPlayers={mockAllPlayers}
           onPlayerToggle={mockOnPlayerToggle}
-          positions={mockPositions}
-          teams={mockTeams}
           tempSelectedPlayers={mockTempSelectedPlayers}
         />
       </AppDataContext.Provider>

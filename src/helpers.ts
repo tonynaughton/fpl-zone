@@ -19,12 +19,17 @@ export const getTeamById = (teamId: number, teams: Team[]): Team => {
   return teams.find((team) => team.id === teamId)!;
 };
 
+// Getting a player by their id
 export const getPositionById = (positionId: number, positions: Position[]): Position => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  return positions.find((position) => position.id === positionId)!;
+  return positions.find((pos) => pos.id === positionId)!;
 };
 
-export const getPlayerImageUrl = (player: Player): string => {
+export const getPlayerImageUrl = (player?: Player): string => {
+  if (!player) {
+    return `${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`;
+  }
+
   const imgId = player.photo.replace(".jpg", "");
 
   return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;

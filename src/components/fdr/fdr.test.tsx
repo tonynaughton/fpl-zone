@@ -13,7 +13,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 let mockGameweekIds = [11, 12, 13, 14, 15];
 
-jest.mock("hooks/useNextFiveGameweekIds", () => ({
+jest.mock("hooks/use_next_five_gameweek_ids", () => ({
   useNextFiveGameweekIds: (): number[] => mockGameweekIds
 }));
 

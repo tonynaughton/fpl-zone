@@ -23,7 +23,6 @@
     "no-loops/no-loops": 2,
     "no-confusing-arrow": "error",
     "no-else-return": "error",
-    "no-unused-vars": "warn",
     "no-template-curly-in-string": "error",
     "no-floating-decimal": "error",
     "no-implicit-globals": "error",
@@ -155,8 +154,14 @@
     "unicorn/prefer-string-slice": "warn",
     "unicorn/prefer-switch": "warn",
     "unicorn/prefer-ternary": "warn",
-    
-    "unicorn/escape-case": "warn"
+    "unicorn/escape-case": "warn",
+
+    // No unused imports
+    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-vars": [
+			"warn",
+			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+		]
   },
   "extends": [
     "react-app",
@@ -198,7 +203,15 @@
   ],
   "parser": "@typescript-eslint/parser",
   "root": true,
-  "plugins": ["react", "@typescript-eslint", "no-loops", "simple-import-sort", "unicorn", "json"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "no-loops",
+    "simple-import-sort",
+    "unicorn",
+    "json",
+    "unused-imports"
+  ],
   "parserOptions": {
     "ecmaVersion": 11,
     "ecmaFeatures": {

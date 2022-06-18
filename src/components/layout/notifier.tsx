@@ -2,8 +2,6 @@ import React from "react";
 import { Warning } from "@mui/icons-material";
 import { Box, CircularProgress, Typography } from "@mui/material";
 
-import "@testing-library/jest-dom/extend-expect";
-
 interface LoadingMessageProps {
   type?: string;
   message?: string;

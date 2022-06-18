@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import { Box } from "@mui/material";
 
-import { useSummaryStats } from "./helpers/use_summary_stats";
+import { useSummaryStats } from "../../hooks/use_summary_stats";
+
 import { SummaryStat } from "./summary_stat";
 
 export interface SummaryStatType {
