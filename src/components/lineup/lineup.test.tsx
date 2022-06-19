@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import { AppDataContext } from "app_content";
+import { getLocalImage } from "helpers";
 import _ from "lodash";
 import { mockAppData, mockPlayers } from "test";
 import { TeamData, TeamPicks } from "types";
@@ -53,7 +54,7 @@ describe("Lineup Tests", () => {
         expect(container).toHaveTextContent(player.event_points.toString());
 
         const imgContainer = selectedContainer.getByTestId(`kit-img-container-${player.id}`);
-        const imgUrl = `kits/${player.team_code}.png`;
+        const imgUrl = getLocalImage(`kits/${player.team_code}.png`);
 
         expect(imgContainer).toHaveStyle(`background-image: url(${imgUrl})`);
       });
@@ -72,7 +73,7 @@ describe("Lineup Tests", () => {
       expect(container).toHaveTextContent(player.event_points.toString());
 
       const imgContainer = screen.getByTestId(`kit-img-container-${player.id}`);
-      const imgUrl = `kits/${player.team_code}.png`;
+      const imgUrl = getLocalImage(`kits/${player.team_code}.png`);
 
       expect(imgContainer).toHaveStyle(`background-image: url(${imgUrl})`);
     });

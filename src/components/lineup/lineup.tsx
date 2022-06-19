@@ -76,7 +76,12 @@ export default function Lineup({
             />
           ))}
         </Box>
-        <Box className='flex-center' flexDirection='column' height='25%'>
+        <Box
+          className='flex-center'
+          data-testid='bench-players'
+          flexDirection='column'
+          height='25%'
+        >
           <Typography variant='h4'>Bench</Typography>
           <LineupRow
             compressed={compressed}
