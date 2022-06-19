@@ -5,8 +5,7 @@ import { getTeamById } from "helpers";
 import { mockAppData, mockFixtures, mockPlayers, mockTeams } from "test/test_data";
 import { Fixture as FixtureType, Player, Team } from "types";
 
-import { fdrColours } from "components/fdr/difficulty_legend";
-import { BaseItem } from "components/fdr/fdr";
+import { BaseItem, FDR_COLOURS } from "components/fdr/fdr";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -44,7 +43,7 @@ describe("Fixture Tests", () => {
   const testContainerBackground = (fixture: FixtureType, teamId: number): void => {
     const isHome = fixture.team_h === teamId;
     const difficulty = isHome ? fixture.team_h_difficulty : fixture.team_a_difficulty;
-    const difficultyColour = fdrColours[difficulty];
+    const difficultyColour = FDR_COLOURS[difficulty];
     const singleFixtureBox = screen.getByTestId(`fixture-container-bg-${fixture.id}`);
 
     expect(singleFixtureBox).toHaveStyle(`background-color: ${difficultyColour}`);

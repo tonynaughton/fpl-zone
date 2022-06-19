@@ -44,16 +44,15 @@ export const GameweekLivePage = (): JSX.Element => {
   return (
     <AppLayout activeLabel='gameweek live' direction='row'>
       <Box
-        alignItems='center'
-        display='flex'
+        className='flex-center'
         gap={3}
-        justifyContent='center'
+        minWidth={0}
         width='100%'
       >
-        <Box flexGrow={1} height='100%' >
+        <Box flexBasis='70%' height='100%' minWidth={0}>
           <ComponentContainer title='dream team'>{renderDreamTeam()}</ComponentContainer>
         </Box>
-        <Box flexBasis='20%' height='100%' >
+        <Box flexBasis='30%' height='100%' minWidth={0}>
           <ComponentContainer title='summary'>{renderGameweekSummary()}</ComponentContainer>
         </Box>
       </Box>

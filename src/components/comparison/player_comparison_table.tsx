@@ -29,7 +29,10 @@ export const PlayerComparisonTable = ({
       sx={{
         tableLayout: "fixed",
         flexGrow: "1",
-        height: "100%"
+        height: "100%",
+        "& .MuiTableCell-root": {
+          pl: "0.8vw", pr: "0.8vw", pt: "1vh", pb: "1vh"
+        }
       }}
     >
       <TableBody component='tbody'>
@@ -56,7 +59,7 @@ export const PlayerComparisonTable = ({
               data-testid={`player-name-row-${player.id}`}
               key={key}
             >
-              <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>
+              <Typography className='text-ellipsis'>
                 {`${player.first_name} ${player.second_name}`}
               </Typography>
             </TableCell>
@@ -101,9 +104,7 @@ export const PlayerComparisonTable = ({
                 component='td'
                 data-testid={`stat-label-cell-${stat.name}`}
               >
-                <Typography
-                  sx={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
-                >
+                <Typography className='text-ellipsis'>
                   {stat.label}
                 </Typography>
               </TableCell>

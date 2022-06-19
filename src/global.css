@@ -2,3 +2,15 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px #ffffff inset;
   box-shadow: 0 0 0 30px #ffffff inset;
 }
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

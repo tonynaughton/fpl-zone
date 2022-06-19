@@ -24,104 +24,78 @@ export default function Player({
   isViceCaptain = false
 }: PlayerProps): JSX.Element {
 
-  const textStyle = {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap"
-  };
-
   const url = `kits/${player.team_code}.png`;
 
   return (
     <Box
+      className='flex-center'
       data-testid={`player-container-${player.id}`}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alginItems: "center",
-        justifyContent: "center",
-        position: "relative"
-      }}
+      flexDirection='column'
+      height='100%'
+      minWidth={0}
+      position='relative'
+      width='auto'
     >
       <Box
         data-testid={`kit-img-container-${player.id}`}
+        height='100%'
+        overflow='hidden'
         sx={{
-          display: "block",
-          width: compressed ? "3.5vw" : "5.5vw",
-          height: compressed ? "5.5vh" : "7.5vh",
-          margin: "auto",
           backgroundImage: `url(${getLocalImage(url)})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat"
         }}
+        width={compressed ? "4em" : "6em"}
       />
       <Box
-        sx={{
-          color: "black",
-          textAlign: "center",
-          width: compressed ? "7.5vw" : "9.5vw",
-          maxWidth: "180px"
-        }}
+        height='auto'
+        maxWidth='12vw'
+        width={compressed ? "7.5vw" : "9.5vw"}
       >
         <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            height: "4vh"
-          }}
+          display='flex'
+          justifyContent='center'
+          minWidth={0}
+          width='100%'
         >
           <Box
-            sx={{
-              backgroundColor: "#16B7EA",
-              width: "75%",
-              overflow: "hidden",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              p: compressed ? 0.5 : 1
-            }}
+            className='flex-center'
+            flexGrow={1}
+            overflow='hidden'
+            paddingLeft='0.5vw'
+            paddingRight='0.5vw'
+            sx={{ backgroundColor: "#16B7EA" }}
           >
             <Typography
+              className='text-ellipsis'
               data-testid='player-name'
-              sx={textStyle}
               variant={compressed ? "body2" : "body1"}
             >
               {player.web_name}
             </Typography>
           </Box>
           <Box
-            sx={{
-              width: "25%",
-              minWidth: compressed ? "20px" : "30px",
-              overflow: "hidden",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "#5fdd6b"
-            }}
+            className='flex-center'
+            overflow='hidden'
+            sx={{ backgroundColor: "#5fdd6b" }}
           >
             <Typography
               data-testid='player-score'
-              sx={textStyle}
+              paddingLeft='0.5vw'
+              paddingRight='0.5vw'
               variant={compressed ? "body2" : "body1"}
             >
               {player.event_points * multipler}
             </Typography>
           </Box>
           <Box
+            className='flex-center'
+            minWidth='10px'
             onClick={(): void => handlePlayerPerformanceClick(player)}
-            sx={{
-              p: compressed ? 0.5 : 1,
-              display: "flex",
-              alignItems: "center",
-              backgroundColor: "black",
-              "& :hover": {
-                cursor: "pointer"
-              },
-              justifyContent: "center"
-            }}
+            padding={compressed ? 0.5 : 1}
+            sx={{ backgroundColor: "black", "& :hover": { cursor: "pointer" } }}
           >
-            <Info sx={{ color: "white", fontSize: "1.2vw" }} />
+            <Info sx={{ color: "white", fontSize: "2vh" }} />
           </Box>
         </Box>
         {isCaptain && <Armband />}

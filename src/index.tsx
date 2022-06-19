@@ -52,19 +52,13 @@ const theme = createTheme({
       },
       styleOverrides: {
         tooltip: {
-          fontSize: "1.5vh",
+          fontSize: "0.9rem",
           color: "white",
-          backgroundColor: "black"
+          backgroundColor: "black",
+          fontFamily: ["Grandstander"].join(",")
         },
         arrow: {
           color: "black"
-        }
-      }
-    },
-    MuiTableCell: {
-      styleOverrides: {
-        root: {
-          padding: "1vh"
         }
       }
     },
@@ -82,7 +76,7 @@ const theme = createTheme({
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const getTypographyProps = (fontSize: number, fontWeight?: number) => {
+const getTypographyProps = (fontSize: number, fontWeight = 500) => {
   return {
     fontFamily: ["Grandstander"].join(","),
     fontWeight,

@@ -39,13 +39,7 @@ export const AddPlayersTableRow = ({
         <Typography>{player.first_name} {player.second_name}</Typography>
       </TableCell>
       <TableCell>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1
-          }}
-        >
+        <Box alignItems='center' display='flex' gap={1}>
           <img
             alt='team-crest'
             data-testid={`player-team-crest-${player.id}`}

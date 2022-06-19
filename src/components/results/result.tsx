@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
+import { AppDataContext } from "app_content";
 import { formatDate, getLocalImage, getTeamById } from "helpers";
-import { CustomResult, Team } from "types";
+import { AppData, CustomResult } from "types";
 
-export const RenderResult = (
-  result: CustomResult,
-  matchStarted: boolean,
-  teams: Team[],
-  key?: number
-): JSX.Element => {
+interface ResultProps {
+  result: CustomResult;
+  started: boolean;
+}
+
+export const Result = ({ result, started }: ResultProps): JSX.Element => {
+  const { teams } = useContext(AppDataContext) as AppData;
+
   const homeTeam = getTeamById(result.team_h, teams);
   const awayTeam = getTeamById(result.team_a, teams);
 
   let matchStatus = "";
-  if (matchStarted) {
+  if (started) {
     matchStatus = `${result.team_h_score || 0} - ${result.team_a_score || 0}`;
   } else if (result.kickoff_time) {
     const kickOffTime = new Date(result.kickoff_time);
@@ -21,11 +24,12 @@ export const RenderResult = (
   }
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", width: "100%", columnGap: 4 }}>
+    <Box className='flex-center' width='100%'>
       <Box
         alignItems='center'
         display='flex'
-        flex='1'
+        flexBasis='40%'
+        gap={1}
         justifyContent='left'
         marginRight='auto'
         overflow='hidden'
@@ -36,30 +40,24 @@ export const RenderResult = (
           src={getLocalImage(`crests/${homeTeam.code}.png`)}
           width={30}
         />
-        <Typography
-          key={key}
-          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", ml: 1 }}
-          textAlign='left'
-        >
+        <Typography className='text-ellipsis' textAlign='left'>
           {homeTeam.name.toUpperCase()}
         </Typography>
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "center", flex: 0.3 }}>
-        <Typography key={key} sx={{ whiteSpace: "nowrap" }} variant='h5'>
-          {matchStatus}
-        </Typography>
+      <Box className='flex-center' flexBasis='20%' overflow='hidden'>
+        <Typography variant='h5' whiteSpace='nowrap'>{matchStatus}</Typography>
       </Box>
       <Box
         alignItems='center'
         display='flex'
-        flex='1'
+        flexBasis='40%'
+        gap={1}
         justifyContent='right'
         marginLeft='auto'
         overflow='hidden'
       >
         <Typography
-          key={key}
-          sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", mr: 1 }}
+          className='text-ellipsis'
           textAlign='right'
         >
           {awayTeam.name.toUpperCase()}

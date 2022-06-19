@@ -30,13 +30,11 @@ export const PlayerComparison = (): JSX.Element => {
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItem: "center",
-        height: "100%",
-        overflow: "auto"
-      }}
+      alignItems='center'
+      display='flex'
+      flexDirection='column'
+      height='100%'
+      overflow='auto'
     >
       <PlayerComparisonTable
         onAddPlayerClick={onAddPlayerClick}

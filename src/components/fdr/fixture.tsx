@@ -4,8 +4,7 @@ import { AppDataContext } from "app_content";
 import { getTeamById } from "helpers";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
-import { fdrColours } from "./difficulty_legend";
-import { BaseItem } from "./fdr";
+import { BaseItem, FDR_COLOURS } from "./fdr";
 
 interface FixtureProps {
   fixtures: FixtureType[];
@@ -33,36 +32,21 @@ export const Fixture = ({
 
     return (
       <Tooltip
-        arrow
-        enterDelay={500}
+        enterDelay={300}
         placement='top'
         title={text}
       >
         <Box
+          className='flex-center'
           data-testid={`fixture-container-bg-${fixture.id}`}
-          sx={{
-            p: 0.5,
-            display: "flex",
-            backgroundColor: `${fdrColours[difficulty]}`,
-            height: "100%",
-            flexGrow: 1,
-            overflow: "hidden",
-            justifyContent: "center",
-            alignItems: "center",
-            flexBasis: 1
-          }}
+          flexBasis={1}
+          flexGrow={1}
+          height='100%'
+          overflow='hidden'
+          sx={{ backgroundColor: `${FDR_COLOURS[difficulty]}` }}
         >
-          <Box
-            sx={{
-              p: 0.2,
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              overflow: "hidden"
-            }}
-          >
-            <Typography sx={{ textOverflow: "ellipsis", overflow: "hidden" }}>
-              {text}
-            </Typography>
+          <Box overflow='hidden' padding={0.5}>
+            <Typography className='text-ellipsis'>{text}</Typography>
           </Box>
         </Box>
       </Tooltip>
@@ -71,13 +55,11 @@ export const Fixture = ({
 
   return (
     <Box
+      alignItems='center'
       data-testid='fixture-container'
-      sx={{
-        display: "flex",
-        height: "100%",
-        alignItems: "center",
-        justifyContent: "space-evenly"
-      }}
+      display='flex'
+      height='100%'
+      justifyContent='space-evenly'
     >
       {fixtures.map((fixture, key) => <SingleFixture fixture={fixture} key={key} />)}
     </Box>

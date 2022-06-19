@@ -18,10 +18,18 @@ export const AddPlayersTable = ({
   tempSelectedPlayers
 }: AddPlayersTableProps): JSX.Element => {
   return (
-    <Table stickyHeader sx={{ tableLayout: "fixed" }}>
+    <Table
+      stickyHeader
+      sx={{
+        tableLayout: "fixed",
+        "& .MuiTableCell-root": {
+          pl: "0.8vw", pr: "0.8vw", pt: "1vh", pb: "1vh"
+        }
+      }}
+    >
       <TableHead>
         <TableRow>
-          <TableCell sx={{ pl: 2 }}>
+          <TableCell>
             <Typography
               color={tempSelectedPlayers.length >= MAX_PLAYER_COUNT ? "red" : "black"}
               data-testid='selected-player-count'

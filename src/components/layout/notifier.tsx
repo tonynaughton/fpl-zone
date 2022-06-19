@@ -34,10 +34,10 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
       data-testid='notifier'
       display='flex'
       flexDirection='column'
+      gap='3vh'
       height='100%'
       justifyContent='center'
       margin='auto'
-      sx={{ rowGap: "3vh" }}
       width='80%'
     >
       {renderIcon()}

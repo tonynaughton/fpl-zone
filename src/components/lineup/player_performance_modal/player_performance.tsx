@@ -4,7 +4,7 @@ import { AppDataContext } from "app_content";
 import { pickBy } from "lodash";
 import { AppData, CustomResult, Player,PlayerPerformance as PlayerPerformanceType } from "types";
 
-import { RenderResult } from "components/results/result";
+import { Result } from "components/results/result";
 
 interface PlayerPerformanceProps {
   player: Player;
@@ -12,7 +12,7 @@ interface PlayerPerformanceProps {
 }
 
 export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProps): JSX.Element => {
-  const { playerStats, teams } = useContext(AppDataContext) as AppData;
+  const { playerStats } = useContext(AppDataContext) as AppData;
 
   const customResult: CustomResult = {
     team_h: performance.was_home ? player.team : performance.opponent_team,
@@ -29,12 +29,18 @@ export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProp
 
   return (
     <>
-      <Box sx={{ display: "flex", alginItems: "center", width: "80%" }}>
-        {RenderResult(customResult, matchStarted, teams)}
+      <Box className='flex-center' width='90%'>
+        <Result result={customResult} started={matchStarted} />
       </Box>
       {matchStarted && (
         <TableContainer component={Box}>
-          <Table>
+          <Table
+            sx={{
+              "& .MuiTableCell-root": {
+                pl: "0.8vw", pr: "0.8vw", pt: "1vh", pb: "1vh"
+              }
+            }}
+          >
             <TableHead>
               <TableRow sx={{ backgroundColor: "rgb(224, 224, 224)" }}>
                 <TableCell>
