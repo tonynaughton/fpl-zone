@@ -104,12 +104,8 @@ export const ResetPage = (): JSX.Element => {
           component='a'
           display='block'
           href='/register'
-          sx={{
-            mt: 2,
-            "&:hover": {
-              color: "white"
-            }
-          }}
+          marginTop={2}
+          sx={{ "&:hover": { color: "white" } }}
           textAlign='center'
           underline='none'
         >

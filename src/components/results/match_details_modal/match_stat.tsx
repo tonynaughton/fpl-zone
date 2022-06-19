@@ -27,16 +27,9 @@ const StatColumn = (stat: StatValue, key: number, name: string, isAway = false):
       flexDirection={isAway ? "row" : "row-reverse"}
       justifyContent={isAway ? "right" : "left"}
       key={key}
-      sx={{ whiteSpace: "nowrap", textOverflow: "hidden" }}
+      overflow='hidden'
     >
-      <Typography
-        sx={{
-          whiteSpace: "nowrap",
-          textOverflow: "ellipsis",
-          overflow: "hidden",
-          display: "block"
-        }}
-      >
+      <Typography className='text-ellipsis'>
         {player.web_name}
         {stat.value > 1 ? ` (${stat.value})` : ""}
       </Typography>
@@ -62,15 +55,13 @@ export const MatchStat = ({ statName, selectedResult }: MatchStatProps): JSX.Ele
   return statsExist
     ? (
       <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          pt: 1.5
-        }}
+        alignItems='center'
+        display='flex'
+        flexDirection='column'
+        paddingTop={1.5}
+        width='100%'
       >
-        <Typography component='h4' sx={{ pb: 1 }} variant='h5'>
+        <Typography component='h4' paddingBottom={1} variant='h5'>
           {statTitle.label.toUpperCase()}
         </Typography>
         <Grid columnSpacing={2} container>

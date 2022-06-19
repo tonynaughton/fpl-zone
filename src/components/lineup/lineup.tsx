@@ -5,10 +5,9 @@ import { getLocalImage } from "helpers";
 import { sortBy } from "lodash";
 import { AppData, Player as PlayerType, TeamData, TeamPicks } from "types";
 
-import Player from "../player/player";
-
 import PlayerPerformanceModal from "./player_performance_modal/player_performance_modal";
 import { LineupDetails } from "./lineup_details";
+import { LineupRow } from "./lineup_row";
 
 interface LineupProps {
   selected: PlayerType[][];
@@ -37,118 +36,60 @@ export default function Lineup({
     setSelectedPlayer(player);
   };
 
-  const renderSelected = (): JSX.Element => {
-    return (
-      <Box
-        data-testid='selected-players'
-        sx={{
-          pl: "5%",
-          pr: "5%",
-          pb: "5%",
-          backgroundImage: `url(${getLocalImage("pitch.png")})`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-          height: "100%",
-          margin: "auto",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%"
-        }}
-      >
-        {selected.map((positionGroup, key) => {
-          return (
-            <Box
-              key={key}
-              sx={{
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-                width: "100%"
-              }}
-            >
-              {positionGroup.map((player, key) => {
-                const pick = teamPicks?.picks.find((pick) => pick.element === player.id);
-
-                return (
-                  <Player
-                    compressed={compressed}
-                    handlePlayerPerformanceClick={handlePlayerPerformanceClick}
-                    isCaptain={pick?.is_captain}
-                    isViceCaptain={pick?.is_vice_captain}
-                    key={key}
-                    multiplier={pick?.multiplier || 1}
-                    player={player}
-                  />
-                );
-              })}
-            </Box>
-          );
-        })}
-      </Box>
-    );
-  };
-
-  const renderBench = (): JSX.Element => {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column"
-        }}
-      >
-        <Typography variant='h4'>Bench</Typography>
-        <Box
-          data-testid='bench-players'
-          sx={{
-            display: "flex",
-            width: "100%",
-            mt: 1,
-            justifyContent: "space-around",
-            alignItems: "center",
-            "& > div:nth-of-type(1)": {
-              mr: 3
-            }
-          }}
-        >
-          {sortedBench.map((player, key) => {
-            const pick = teamPicks?.picks.find((pick) => pick.element === player.id);
-
-            return (
-              <Player
-                compressed={compressed}
-                handlePlayerPerformanceClick={handlePlayerPerformanceClick}
-                key={key}
-                multiplier={pick?.multiplier || 1}
-                player={player}
-              />
-            );
-          })}
-        </Box>
-      </Box>
-    );
-  };
-
   return (
     <>
       <Box
-        sx={{
-          p: 3,
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          rowGap: "2%"
-        }}
+        display='flex'
+        flexDirection='column'
+        gap={2}
+        height='100%'
+        overflow='hidden'
+        padding={3}
       >
         {teamData && teamPicks &&
           <LineupDetails
             teamData={teamData}
             teamPicks={teamPicks}
           />}
-        {renderSelected()}
-        {renderBench()}
+        <Box
+          data-testid='selected-players'
+          display='flex'
+          flexDirection='column'
+          gap={3}
+          height='100%'
+          paddingBottom='5%'
+          paddingLeft='5%'
+          paddingRight='5%'
+          sx={{
+            backgroundImage: `url(${getLocalImage("pitch.png")})`,
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "no-repeat"
+          }}
+        >
+          {selected.map((players, key) => (
+            <LineupRow
+              compressed={compressed}
+              handlePlayerPerformanceClick={handlePlayerPerformanceClick}
+              key={key}
+              players={players}
+              teamPicks={teamPicks}
+            />
+          ))}
+        </Box>
+        <Box
+          className='flex-center'
+          data-testid='bench-players'
+          flexDirection='column'
+          height='25%'
+        >
+          <Typography variant='h4'>Bench</Typography>
+          <LineupRow
+            compressed={compressed}
+            handlePlayerPerformanceClick={handlePlayerPerformanceClick}
+            players={sortedBench}
+            teamPicks={teamPicks}
+          />
+        </Box>
       </Box>
       {selectedPlayer && (
         <PlayerPerformanceModal

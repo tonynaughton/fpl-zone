@@ -14,35 +14,26 @@ interface PlayerImageCellProps {
 
 export const PlayerImageCell = ({ player, onAddPlayerClick, onRemovePlayerClick }: PlayerImageCellProps): JSX.Element => (
   <Box
+    borderRadius={!player ? "50%" : "auto"}
     data-testid={`player-image-container-${player ? player.id : "placeholder"}`}
+    height='18vh'
+    margin='auto'
     onClick={!player ? onAddPlayerClick : undefined}
+    position='relative'
     sx={{
-      height: "18vh",
-      width: "18vh",
-      margin: "auto",
       backgroundImage: `url(${(getPlayerImageUrl(player))})`,
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      cursor: !player ? "pointer" : "auto",
-      borderRadius: !player ? "50%" : "auto",
-      position: "relative"
+      cursor: !player ? "pointer" : "auto"
     }}
+    width='18vh'
   >
-    { !player
-      ? (
-        <AddButton />
-      )
-      : (
-        <Box
-          sx={{
-            position: "absolute",
-            top: 0,
-            right: 0
-          }}
-        >
+    <Box position='absolute' right={0} top={0}>
+      {!player
+        ? (
+          <AddButton />
+        )
+        : (
           <IconButton
             data-testid='remove-button'
             onClick={onRemovePlayerClick ? (): void => onRemovePlayerClick(player) : undefined}
@@ -56,7 +47,7 @@ export const PlayerImageCell = ({ player, onAddPlayerClick, onRemovePlayerClick 
           >
             <Close color='info' />
           </IconButton>
-        </Box>
-      )}
+        )}
+    </Box>
   </Box>
 );

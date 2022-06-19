@@ -17,16 +17,13 @@ export default function GameweekSummary(): JSX.Element {
 
   return (
     <Box
-      sx={{
-        pl: 4,
-        pr: 4,
-        pt: 8,
-        pb: 8,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: "100%"
-      }}
+      display='flex'
+      flexDirection='column'
+      height='100%'
+      justifyContent='space-between'
+      minWidth={0}
+      sx={{ pl: 4, pr: 4, pt: 8, pb: 8 }}
+      width='100%'
     >
       {summaryData.map((stat, index): JSX.Element => {
         return (

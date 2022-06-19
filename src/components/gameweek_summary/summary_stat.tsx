@@ -30,46 +30,32 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        rowGap: 1
-      }}
+      className='flex-center'
+      flexDirection='column'
+      gap={1}
+      minWidth={0}
+      overflow='hidden'
+      width='100%'
     >
       <Typography
+        className='text-ellipsis'
         data-testid={`stat-label-text-${stat.label}`}
-        sx={{
-          width: "100%",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textAlign: "center"
-        }}
+        minWidth={0}
+        textAlign='center'
         variant='h3'
+        width='100%'
       >
         {stat.label.toUpperCase()}
       </Typography>
       <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          columnGap: 1,
-          maxWidth: "100%"
-        }}
+        className='flex-center'
+        gap={1}
+        minWidth={0}
+        overflow='hidden'
+        width='100%'
       >
         {img}
-        <Typography
-          data-testid={`stat-value-text-${stat.label}`}
-          sx={{
-            textOverflow: "ellipsis",
-            textAlign: "center",
-            whiteSpace: "nowrap",
-            overflow: "hidden"
-          }}
-        >
+        <Typography className='text-ellipsis' data-testid={`stat-value-text-${stat.label}`} textAlign='center'>
           {statValue}
         </Typography>
       </Box>

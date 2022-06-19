@@ -18,7 +18,6 @@ import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
 import { Notifier } from "components/layout";
 
-import DifficultyLegend from "./difficulty_legend";
 import { Fixture } from "./fixture";
 
 // FDR can display fixtures for players or teams
@@ -28,6 +27,14 @@ interface FdrTableProps {
   players?: Player[];
 }
 
+export const FDR_COLOURS = {
+  1: "#09BA59",
+  2: "#93E02D",
+  3: "#F5CF38",
+  4: "#DE7628",
+  5: "#FF193C"
+};
+
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<FixtureType[][]>([]);
   const [fdrStatus, setFdrStatus] = useState<string>("Fetching fixture data..");
@@ -35,7 +42,8 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const { teams } = useContext(AppDataContext) as AppData;
 
   const baseItem = players || teams;
-  const nameColumnTitle = players ? "Player" : "Team";
+
+  const baseItemCellWidth = "20%";
 
   const nextFiveGameweekIds = useNextFiveGameweekIds();
 
@@ -62,14 +70,12 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
     return (
       <Box
+        alignItems='center'
         data-testid={`base-item-${name}`}
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          columnGap: 1,
-          ml: 0.5,
-          whiteSpace: "nowrap"
-        }}
+        display='flex'
+        gap={1}
+        marginLeft={0.5}
+        whiteSpace='nowrap'
       >
         <img
           alt='crest-img'
@@ -77,16 +83,9 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
           height='22px'
           src={getLocalImage(`crests/${teamId}.png`)}
         />
-        <Box
-          sx={{
-            display: "block",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis"
-          }}
-        >
-          <Typography sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-            {name}
+        <Box overflow='hidden'>
+          <Typography className='text-ellipsis' fontWeight={500} variant='body1'>
+            {name.toUpperCase()}
           </Typography>
         </Box>
       </Box>
@@ -105,16 +104,27 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     const teamFixtures = getNextFiveTeamFixtures(baseItem, nextFiveGameweekFixtures);
 
     return (
-      <TableRow
-        data-testid={`fixture-row-${baseItem.id}`}
-        key={index}
-        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-      >
-        <TableCell component='th' key={index} scope='row'>
+      <TableRow data-testid={`fixture-row-${baseItem.id}`} key={index}>
+        <TableCell
+          key={index}
+          scope='row'
+          sx={{
+            p: 0,
+            backgroundColor: "rgba(240, 240, 240, 1)",
+            border: "1px solid rgba(200, 200, 200, 1)"
+          }}
+          width={baseItemCellWidth}
+        >
           {renderBaseItemName(baseItem)}
         </TableCell>
         {map(teamFixtures, (fixtures, key) => (
-          <TableCell component='td' key={key}>
+          <TableCell
+            key={key}
+            sx={{
+              p: 0,
+              border: "0.2px solid #4d4d4d"
+            }}
+          >
             <Fixture
               baseItem={baseItem}
               fixtures={fixtures}
@@ -128,41 +138,49 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
   return isEmpty(nextFiveGameweekFixtures)
     ? (
-      <Box
-        data-testid='notifier-container'
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
-      >
+      <Box className='flex-center' data-testid='notifier-container' height='100%'>
         <Notifier message={fdrStatus} type={fdrStatus === GAME_STATUS_VALUES.SEASON_FINISHED ? "warning" : "loading"} />
       </Box>
     )
     : (
       <Box
-        alignItems='center'
+        className='flex-center'
         data-testid='fdr-container'
-        display='flex'
         flexDirection='column'
         height='100%'
-        justifyContent='center'
         overflow='hidden'
         sx={{ "& .MuiTableContainer-root": { height: "100%" } }}
       >
-        <DifficultyLegend />
         <TableContainer>
           <Table
-            aria-label='fdr table'
             sx={{
               tableLayout: "fixed",
               height: "100%",
-              flexGrow: "1",
-              "& .MuiTableCell-root": { padding: "2px 4px" }
+              flexGrow: "1"
             }}
           >
             <TableHead>
               <TableRow data-testid='table-head-column-title'>
-                <TableCell sx={{ textAlign: "center" }}>{nameColumnTitle}</TableCell>
+                <TableCell
+                  sx={{
+                    height: "5vh",
+                    p: 0,
+                    backgroundColor: "rgba(240, 240, 240, 1)",
+                    border: "1px solid rgba(200, 200, 200, 1)"
+                  }}
+                  width={baseItemCellWidth}
+                />
                 {nextFiveGameweekIds.map((gameweekNumber, index) => (
-                  <TableCell key={index} sx={{ textAlign: "center" }}>
-                  GW {gameweekNumber}
+                  <TableCell
+                    key={index}
+                    sx={{
+                      height: "5vh",
+                      p: 0,
+                      backgroundColor: "rgba(240, 240, 240, 1)",
+                      border: "1px solid rgba(200, 200, 200, 1)"
+                    }}
+                  >
+                    <Typography textAlign='center'>GW {gameweekNumber}</Typography>
                   </TableCell>
                 ))}
               </TableRow>

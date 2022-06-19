@@ -17,12 +17,10 @@ export const LineupDetails = ({
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        rowGap: 1,
-        width: "100%"
-      }}
+      display='flex'
+      flexDirection='column'
+      gap={1}
+      width='100%'
     >
       {teamData && (
         <Typography data-testid='team-name' textAlign='center' variant='h2'>
@@ -30,27 +28,25 @@ export const LineupDetails = ({
         </Typography>
       )}
       <Box
-        sx={{
-          p: 2,
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          columnGap: 3,
-          overflow: "hidden",
-          width: "100%",
-          textAlign: "center"
-        }}
+        alignItems='center'
+        display='flex'
+        gap={3}
+        justifyContent='space-evenly'
+        overflow='hidden'
+        padding={2}
+        textAlign='center'
+        width='100%'
       >
         <Box>
-          <Typography sx={{ mb: 1 }} variant='h4'>Active Chip:</Typography>
+          <Typography marginBottom={1} variant='h4'>Active Chip:</Typography>
           <Typography data-testid='active-chip'>{activeChip}</Typography>
         </Box>
         <Box>
-          <Typography sx={{ mb: 1 }} variant='h4'>GW Points:</Typography>
+          <Typography marginBottom={1} variant='h4'>GW Points:</Typography>
           <Typography data-testid='total-points'>{totalPoints}</Typography>
         </Box>
         <Box>
-          <Typography sx={{ mb: 1 }} variant='h4'>Overall Rank:</Typography>
+          <Typography marginBottom={1} variant='h4'>Overall Rank:</Typography>
           <Typography data-testid='overall-rank'>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
         </Box>
       </Box>

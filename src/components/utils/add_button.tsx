@@ -11,16 +11,12 @@ export const AddButton = ({ compact }: AddButtonProps): JSX.Element => {
 
   return (
     <Box
+      borderRadius='50%'
+      className='flex-center'
       data-testid='add-button'
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#5fdd6b",
-        borderRadius: "50%",
-        height: dimen,
-        width: dimen
-      }}
+      height={dimen}
+      sx={{ backgroundColor: "#5fdd6b" }}
+      width={dimen}
     >
       <IconButton aria-label='add player button' size='small'>
         <Add fontSize={compact ? "small" : "medium"} />

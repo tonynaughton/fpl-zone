@@ -127,14 +127,13 @@ export const AddPlayersModal = ({
           value={searchInput}
         />
         <Box
+          border='1px solid gray'
+          borderRadius={1}
           flexGrow={1}
-          sx={{
-            width: "100%",
-            border: "1px solid gray",
-            borderRadius: 1,
-            overflow: "auto",
-            mb: 1
-          }}
+          marginBottom={1}
+          minHeight='50vh'
+          overflow='auto'
+          width='100%'
         >
           {memoizedTable}
         </Box>

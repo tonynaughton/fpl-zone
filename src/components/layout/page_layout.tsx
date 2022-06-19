@@ -10,7 +10,7 @@ interface LayoutProps {
 
 export const AppLayout = ({ activeLabel, direction, children }: React.PropsWithChildren<LayoutProps>): JSX.Element => {
   return (
-    <Box component='div' sx={{ display: "flex" }}>
+    <Box component='div' display='flex'>
       <NavDrawer activeLabel={activeLabel} />
       <Container
         component='main'

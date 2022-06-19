@@ -58,7 +58,7 @@ describe("FDR Tests", () => {
         mockTeams.forEach((team) => {
           const teamName = screen.getByTestId(`base-item-${team.name}`);
 
-          expect(teamName).toHaveTextContent(team.name);
+          expect(teamName).toHaveTextContent(team.name.toUpperCase());
         });
       });
     });
@@ -87,7 +87,7 @@ describe("FDR Tests", () => {
         mockFdrPlayers.forEach((player) => {
           const playerName = screen.getByTestId(`base-item-${player.web_name}`);
 
-          expect(playerName).toHaveTextContent(player.web_name);
+          expect(playerName).toHaveTextContent(player.web_name.toUpperCase());
         });
       });
     });

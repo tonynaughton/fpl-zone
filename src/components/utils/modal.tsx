@@ -24,36 +24,31 @@ export const CustomModal = ({
   return (
     <Box
       data-testid={testId}
+      display={isModalOpen ? "block" : "none"}
+      height='100%'
+      left={0}
       onClick={(): void => setModalOpen(false)}
-      sx={{
-        display: isModalOpen ? "block" : "none",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        height: "100%",
-        width: "100%",
-        backgroundColor: "rgb(0, 0, 0, 0.5)"
-      }}
+      position='absolute'
+      sx={{ backgroundColor: "rgb(0, 0, 0, 0.5)" }}
+      top={0}
+      width='100%'
     >
       <Box
+        alignItems='center'
+        boxShadow={24}
+        display={isModalOpen ? "flex" : "none"}
+        flexDirection='column'
+        gap={2}
+        left='50%'
+        maxHeight='90%'
         onClick={(event): void => event.stopPropagation()}
-        sx={{
-          display: isModalOpen ? "flex" : "none",
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "90%",
-          maxHeight: "90%",
-          bgcolor: "white",
-          boxShadow: 24,
-          p: 4,
-          gap: 2,
-          flexDirection: "column",
-          alignItems: "center",
-          zIndex: 2000,
-          overflow: "auto"
-        }}
+        overflow='auto'
+        padding={4}
+        position='absolute'
+        sx={{ transform: "translate(-50%, -50%)", bgcolor: "white" }}
+        top='50%'
+        width='90%'
+        zIndex={2000}
       >
         {title && <Typography variant='h3'>{title}</Typography>}
         <IconButton
@@ -65,13 +60,11 @@ export const CustomModal = ({
         {children}
         {(onCancelClick || onConfirmClick) && (
           <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              width: "100%",
-              justifyContent: "flex-end",
-              gap: 4
-            }}
+            alignItems='center'
+            display='flex'
+            gap={4}
+            justifyContent='flex-end'
+            width='100%'
           >
             { onCancelClick &&
               <Button

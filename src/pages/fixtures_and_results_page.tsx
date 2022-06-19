@@ -19,17 +19,11 @@ export const FixturesAndResultsPage = (): JSX.Element => {
 
   return (
     <AppLayout activeLabel='fixtures & results' direction='row'>
-      <Box
-        alignItems='center'
-        display='flex'
-        gap={3}
-        justifyContent='center'
-        width='100%'
-      >
-        <Box flexGrow={1} height='100%' >
+      <Box className='flex-center' gap={3} width='100%'>
+        <Box flexBasis='70%' height='100%' minWidth={0}>
           <ComponentContainer title='fdr'><FdrTable /></ComponentContainer>
         </Box>
-        <Box flexBasis='38%' height='100%' >
+        <Box flexBasis='30%' height='100%' minWidth={0}>
           <ComponentContainer title='results'><Results /></ComponentContainer>
         </Box>
       </Box>

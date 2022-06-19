@@ -5,10 +5,7 @@ import { getLocalImage } from "helpers";
 export const AuthLayout = (props: { children: JSX.Element }): JSX.Element => {
   return (
     <Box
-      alignItems='center'
-      className='auth-view'
-      display='flex'
-      justifyContent='center'
+      className='auth-view flex-center'
       minHeight='100vh'
       sx={{ backgroundColor: "#16B7EA" }}
     >

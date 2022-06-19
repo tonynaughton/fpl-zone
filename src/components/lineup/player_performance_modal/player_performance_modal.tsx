@@ -52,14 +52,10 @@ export default function PlayerPerformanceModal({
       title={playerName}
     >
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-          flexDirection: "column",
-          alignItems: "center",
-          rowGap: 3
-        }}
+        className='flex-center'
+        flexDirection='column'
+        gap={3}
+        width='100%'
       >
         {fetchingPlayerInfo
           ? (

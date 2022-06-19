@@ -50,7 +50,7 @@ export const GameweekCountdown = (): JSX.Element => {
   };
 
   return (
-    <Box data-testid='gameweek-deadline-container' sx={{ pb: 2 }} textAlign='center'>
+    <Box data-testid='gameweek-deadline-container' paddingBottom={2} textAlign='center'>
       <Countdown date={deadline} renderer={renderer} />
     </Box>
   );

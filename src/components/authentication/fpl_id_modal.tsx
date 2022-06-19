@@ -30,8 +30,8 @@ export const FplIdModal = ({ modalVisible, setModalOpen }: FplIdModalProps): JSX
             <Typography>
               1. Login in to&nbsp;
               <Link
+                display='inline-block'
                 href='https://fantasy.premierleague.com/'
-                sx={{ display: "inline-block" }}
                 target='_blank'
               >
                 fantasy.premierleague.com

@@ -43,15 +43,11 @@ export default function NavDrawer({ activeLabel }: NavDrawerProps): JSX.Element 
       variant='permanent'
     >
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          rowGap: 1,
-          p: "1vh",
-          backgroundColor: "#5fdd6b",
-          borderBottom: "1px solid black"
-        }}
+        borderBottom='1px solid black'
+        className='flex-center'
+        gap={1}
+        padding='1vh'
+        sx={{ backgroundColor: "#5fdd6b" }}
       >
         <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         <GameweekCountdown />

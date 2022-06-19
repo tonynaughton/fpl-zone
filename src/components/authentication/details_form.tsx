@@ -323,12 +323,8 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                   component='a'
                   display='block'
                   href='/login'
-                  sx={{
-                    mt: 2,
-                    "&:hover": {
-                      color: "white"
-                    }
-                  }}
+                  marginTop={2}
+                  sx={{ "&:hover": { color: "white" } }}
                   textAlign='center'
                   underline='none'
                   variant='body1'
@@ -360,24 +356,29 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
       </Snackbar>
       <Modal onClose={(): void => setDeleteAccountModalOpen(false)} open={deleteAccountModalOpen}>
         <Box
+          border='1px solid black'
+          boxShadow={24}
+          display='flex'
+          flexDirection='column'
+          left='50%'
+          padding={4}
+          position='absolute'
           sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
             transform: "translate(-50%, -50%)",
-            width: "50%",
-            bgcolor: "#F9F9F9",
-            border: "2px solid black",
-            boxShadow: 24,
-            p: 4,
-            display: "flex",
-            flexDirection: "column"
+            bgcolor: "#F9F9F9"
           }}
+          top='50%'
+          width='50%'
         >
           <Typography>
             Are you sure you want to delete your account?
           </Typography>
-          <Box sx={{ pt: 2, display: "flex", justifyContent: "flex-end", width: "100%" }}>
+          <Box
+            display='flex'
+            justifyContent='flex-end'
+            paddingTop={2}
+            width='100%'
+          >
             <Button onClick={handleDeleteAccountClick}>
               <Typography>Confirm</Typography>
             </Button>

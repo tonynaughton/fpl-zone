@@ -5,10 +5,10 @@ import { AppDataContext } from "app_content";
 import { AppData, CustomResult, Fixture, Gameweek } from "types";
 
 import MatchDetailsModal from "./match_details_modal/match_details_modal";
-import { RenderResult } from "./result";
+import { Result } from "./result";
 
 export default function Results(): JSX.Element {
-  const { gameweeks, fixtures, teams } = useContext(AppDataContext) as AppData;
+  const { gameweeks, fixtures } = useContext(AppDataContext) as AppData;
   const latestGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
 
   const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
@@ -30,18 +30,14 @@ export default function Results(): JSX.Element {
 
   return (
     <Box
-      alignItems='center'
-      display='flex'
+      className='flex-center'
       flexDirection='column'
       height='100%'
-      id='results-container'
-      justifyContent='center'
       position='relative'
       sx={{ pl: 3, pr: 3, pb: 2, pt: 4 }}
     >
-      <Box alignItems='center' display='flex' justifyContent='center'>
+      <Box className='flex-center' overflow='hidden' width='100%'>
         <IconButton
-          aria-label='prev-gameweek'
           data-testid='prev-gameweek-btn'
           disabled={selectedGameweek <= 1}
           onClick={(): void => setSelectedGameweek(selectedGameweek - 1)}
@@ -51,11 +47,10 @@ export default function Results(): JSX.Element {
             <ArrowBack />
           </Tooltip>
         </IconButton>
-        <Typography data-testid='selected-gameweek-title' variant='h4'>
+        <Typography className='text-ellipsis' data-testid='selected-gameweek-title' variant='h4'>
           GAMEWEEK {selectedGameweek}
         </Typography>
         <IconButton
-          aria-label='prev-gameweek'
           data-testid='next-gameweek-btn'
           disabled={selectedGameweek >= 38}
           onClick={(): void => setSelectedGameweek(selectedGameweek + 1)}
@@ -68,11 +63,10 @@ export default function Results(): JSX.Element {
       </Box>
       <Box
         alignItems='center'
-        className='fixture-list-container'
         display='flex'
         flexDirection='column'
-        justifyContent='flex-start'
-        sx={{ height: "100%", width: "100%" }}
+        flexGrow={1}
+        width='100%'
       >
         {gameweekFixtures.map((result, key) => {
           const kickOffTime = new Date(result.kickoff_time || "");
@@ -87,20 +81,16 @@ export default function Results(): JSX.Element {
 
           return (
             <Box
-              alignItems='center'
+              borderBottom='1px solid rgb(224, 224, 224)'
+              className='flex-center'
               data-testid={`result-${result.id}`}
-              display='flex'
-              flexDirection='column'
-              height='10%'
-              justifyContent='center'
+              flexGrow={1}
               key={key}
               onClick={(): void => (kickOffTime < new Date() ? handleResultClick(result) : undefined)}
+              paddingLeft='0.5em'
+              paddingRight='0.5em'
               sx={{
-                padding: "0 0.5em",
-                borderBottom: "1px solid rgb(224, 224, 224)",
-                "&:last-child": {
-                  border: "none"
-                },
+                "&:last-child": { border: "none" },
                 "&:hover": {
                   backgroundColor: matchStarted ? "rgb(224, 224, 224)" : "inherit",
                   cursor: matchStarted ? "pointer" : "default"
@@ -108,7 +98,7 @@ export default function Results(): JSX.Element {
               }}
               width='100%'
             >
-              {RenderResult(customResult, matchStarted, teams, key)}
+              <Result result={customResult} started={matchStarted} />
             </Box>
           );
         })}
@@ -116,7 +106,6 @@ export default function Results(): JSX.Element {
       {selectedResult && (
         <MatchDetailsModal
           isResultsModalOpen={isResultsModalOpen}
-          renderResult={RenderResult}
           selectedResult={selectedResult}
           setResultsModalOpen={setResultsModalOpen}
         />

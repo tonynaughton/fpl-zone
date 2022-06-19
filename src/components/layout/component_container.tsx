@@ -16,33 +16,27 @@ export const ComponentContainer = ({
   return (
     <Box
       border='2px solid black'
-      sx={{ boxShadow: 4, position: "relative", height: "100%" }}
+      boxShadow={4}
+      height='100%'
+      position='relative'
       width='100%'
     >
       <Box
-        sx={{
-          zIndex: "fab",
-          backgroundColor: "#16B7EA",
-          color: "#F9F9F9",
-          p: 0.8,
-          position: "absolute",
-          top: 0,
-          left: 0,
-          borderBottom: "2px solid black",
-          borderRight: "2px solid black",
-          maxWidth: "15vw",
-          width: "auto"
-        }}
+        borderBottom='2px solid black'
+        borderRight='2px solid black'
+        color='#F9F9F9'
+        height='5vh'
+        left={0}
+        maxWidth='15vw'
+        padding={0.8}
+        position='absolute'
+        sx={{ backgroundColor: "#16B7EA" }}
+        top={0}
+        width='auto'
+        zIndex='fab'
       >
-        <Typography
-          sx={{
-            textOverflow: "ellipsis",
-            overflow: "hidden",
-            width: "100%",
-            whiteSpace: "nowrap"
-          }}
-          variant='h3'
-        >{title.toUpperCase()}
+        <Typography className='text-ellipsis' variant='h3' width='100%'>
+          {title.toUpperCase()}
         </Typography>
       </Box>
       {children}

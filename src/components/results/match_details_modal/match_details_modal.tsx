@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box, Typography } from "@mui/material";
-import { AppDataContext } from "app_content";
 import { formatDate } from "helpers";
-import { AppData, CustomResult, Fixture, Team } from "types";
+import { CustomResult, Fixture } from "types";
 
 import { CustomModal } from "components/utils";
+
+import { Result } from "../result";
 
 import { MatchStat } from "./match_stat";
 
@@ -12,17 +13,13 @@ interface MatchDetailsModalProps {
   isResultsModalOpen: boolean;
   setResultsModalOpen: (value: boolean) => void;
   selectedResult: Fixture;
-  renderResult: (result: CustomResult, matchStarted: boolean, teams: Team[]) => JSX.Element;
 }
 
 export default function MatchDetailsModal({
   isResultsModalOpen,
   setResultsModalOpen,
-  selectedResult,
-  renderResult
+  selectedResult
 }: MatchDetailsModalProps): JSX.Element {
-  const { teams } = useContext(AppDataContext) as AppData; ;
-
   const customResult: CustomResult = {
     team_h: selectedResult.team_h,
     team_h_score: (selectedResult.team_h_score as number) || null,
@@ -46,17 +43,13 @@ export default function MatchDetailsModal({
       setModalOpen={setResultsModalOpen}
     >
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-          flexDirection: "column",
-          alignItems: "center",
-          rowGap: 2
-        }}
+        className='flex-center'
+        flexDirection='column'
+        gap={2}
+        width='100%'
       >
         {kickOffTime && <Typography variant='h5'>{kickOffTime}</Typography>}
-        {renderResult(customResult, true, teams)}
+        <Result result={customResult} started />
         {statsToRender.map((stat, key) => <MatchStat key={key} selectedResult={selectedResult} statName={stat} />)}
       </Box>
     </CustomModal>

@@ -5,17 +5,13 @@ import { getLocalImage } from "helpers";
 export const Startup = (props: { children: JSX.Element }): JSX.Element => {
   return (
     <Box
-      sx={{
-        height: "100vh",
-        width: "100%",
-        backgroundColor: "#16B7EA"
-      }}
+      height='100vh'
+      sx={{ backgroundColor: "#16B7EA" }}
+      width='100%'
     >
       <Box
-        alignItems='center'
-        display='flex'
+        className='flex-center'
         height='100%'
-        justifyContent='center'
         margin='auto'
         width='50%'
       >
