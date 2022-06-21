@@ -8,21 +8,22 @@ interface LineupRowProps {
   players: PlayerType[];
   handlePlayerPerformanceClick: (player: PlayerType) => void;
   teamPicks?: TeamPicks;
-  compressed?: boolean;
 }
 
 export const LineupRow = ({
   players,
   handlePlayerPerformanceClick,
-  teamPicks,
-  compressed = false
+  teamPicks
 }: LineupRowProps): JSX.Element => {
   return (
     <Box
       alignItems='center'
+      data-testid='lineup-row-container'
       display='flex'
+      gap={1}
       height='100%'
       justifyContent='space-around'
+      minHeight={0}
       width='100%'
     >
       {players.map((player, key) => {
@@ -30,7 +31,6 @@ export const LineupRow = ({
 
         return (
           <Player
-            compressed={compressed}
             handlePlayerPerformanceClick={handlePlayerPerformanceClick}
             isCaptain={pick?.is_captain}
             isViceCaptain={pick?.is_vice_captain}

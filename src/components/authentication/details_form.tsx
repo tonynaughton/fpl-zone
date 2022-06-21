@@ -298,9 +298,12 @@ export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => 
                   color='error'
                   fullWidth
                   onClick={(): void => setDeleteAccountModalOpen(true)}
+                  sx={{ mt: 3 }}
                   variant='contained'
                 >
+                  <Typography textTransform='none' variant='h3'>
                   Delete Account
+                  </Typography>
                 </Button>
               )}
             </form>

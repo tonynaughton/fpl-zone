@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 interface ArmbandProps {
   isVice?: boolean;
@@ -12,14 +12,14 @@ export const Armband = ({ isVice = false }: ArmbandProps): JSX.Element => {
       borderRadius='50%'
       className='flex-center'
       data-testid='armband-container'
-      height='1.5vw'
+      height='1.8vw'
       left={0}
       position='absolute'
-      sx={{ backgroundColor: "white" }}
+      sx={{ backgroundColor: "rgb(240, 240, 240, 1)" }}
       top={0}
-      width='1.5vw'
+      width='1.8vw'
     >
-      {isVice ? "V" : "C"}
+      <Typography>{isVice ? "V" : "C"}</Typography>
     </Box>
   );
 };

@@ -4,6 +4,7 @@ import { getLocalImage } from "helpers";
 
 import { SummaryStatType } from "./gameweek_summary";
 
+import "./summary_stat.css";
 
 interface SummaryStatProps {
   stat: SummaryStatType;
@@ -14,10 +15,9 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
     ? (
       <img
         alt='team-crest-img'
+        className='team-crest-img'
         data-testid={`team-crest-img-${stat.label}`}
-        height='auto'
         src={getLocalImage(`crests/${stat.teamCode}.png`)}
-        width='15%'
       />
     )
     : null;
@@ -32,15 +32,12 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
     <Box
       className='flex-center'
       flexDirection='column'
-      gap={1}
-      minWidth={0}
-      overflow='hidden'
-      width='100%'
+      height='100%'
+      minHeight={0}
     >
       <Typography
         className='text-ellipsis'
         data-testid={`stat-label-text-${stat.label}`}
-        minWidth={0}
         textAlign='center'
         variant='h3'
         width='100%'
@@ -50,7 +47,7 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
       <Box
         className='flex-center'
         gap={1}
-        minWidth={0}
+        height='100%'
         overflow='hidden'
         width='100%'
       >

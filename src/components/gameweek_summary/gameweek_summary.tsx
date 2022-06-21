@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Box } from "@mui/material";
 
 import { useSummaryStats } from "../../hooks/use_summary_stats";
@@ -19,19 +19,14 @@ export default function GameweekSummary(): JSX.Element {
     <Box
       display='flex'
       flexDirection='column'
+      gap={5}
       height='100%'
-      justifyContent='space-between'
-      minWidth={0}
-      sx={{ pl: 4, pr: 4, pt: 8, pb: 8 }}
-      width='100%'
+      paddingBottom={8}
+      paddingLeft={4}
+      paddingRight={4}
+      paddingTop={8}
     >
-      {summaryData.map((stat, index): JSX.Element => {
-        return (
-          <Fragment key={index}>
-            <SummaryStat stat={stat} />
-          </Fragment>
-        );
-      })}
+      {summaryData.map((stat, key): JSX.Element => <SummaryStat key={key} stat={stat} />)}
     </Box>
   );
 }

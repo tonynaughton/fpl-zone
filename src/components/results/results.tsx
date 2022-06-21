@@ -87,8 +87,7 @@ export default function Results(): JSX.Element {
               flexGrow={1}
               key={key}
               onClick={(): void => (kickOffTime < new Date() ? handleResultClick(result) : undefined)}
-              paddingLeft='0.5em'
-              paddingRight='0.5em'
+              padding='0.5vw'
               sx={{
                 "&:last-child": { border: "none" },
                 "&:hover": {

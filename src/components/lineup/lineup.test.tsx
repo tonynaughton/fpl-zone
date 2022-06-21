@@ -5,25 +5,27 @@ import { getLocalImage } from "helpers";
 import _ from "lodash";
 import { mockAppData, mockPlayers } from "test";
 import { TeamData, TeamPicks } from "types";
-import { Player } from "types/player";
 
 import Lineup from "components/lineup/lineup";
 
 import "@testing-library/jest-dom/extend-expect";
 
 describe("Lineup Tests", () => {
-  let mockCompressed: boolean;
-  let mockSelected: Player[][];
-  let mockBench: Player[];
   let mockTeamPicks: TeamPicks;
   let mockTeamData: TeamData;
+
+  const mockSelected = _(mockPlayers)
+    .partition("element_type")
+    .value()
+    .map(pos => pos.splice(0, 3));
+
+  const mockBench = mockPlayers.filter((p => !(mockSelected.flat()).includes(p))).splice(0, 4);
 
   const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
         <Lineup
           bench={mockBench}
-          compressed={mockCompressed}
           selected={mockSelected}
           teamData={mockTeamData}
           teamPicks={mockTeamPicks}
@@ -31,15 +33,6 @@ describe("Lineup Tests", () => {
       </AppDataContext.Provider>
     );
   };
-
-  beforeEach(() => {
-    mockSelected = _(mockPlayers)
-      .partition("element_type")
-      .value()
-      .map(pos => pos.splice(0, 3));
-
-    mockBench = mockPlayers.filter((p => !(mockSelected.flat()).includes(p))).splice(0, 4);
-  });
 
   it("Selected players displayed correctly", () => {
     render(createComponent());
@@ -53,10 +46,10 @@ describe("Lineup Tests", () => {
         expect(container).toHaveTextContent(player.web_name);
         expect(container).toHaveTextContent(player.event_points.toString());
 
-        const imgContainer = selectedContainer.getByTestId(`kit-img-container-${player.id}`);
+        const kitImg = selectedContainer.getByTestId(`kit-img-player-${player.id}`);
         const imgUrl = getLocalImage(`kits/${player.team_code}.png`);
 
-        expect(imgContainer).toHaveStyle(`background-image: url(${imgUrl})`);
+        expect(kitImg).toHaveAttribute("src", imgUrl);
       });
     });
   });
@@ -72,10 +65,56 @@ describe("Lineup Tests", () => {
       expect(container).toHaveTextContent(player.web_name);
       expect(container).toHaveTextContent(player.event_points.toString());
 
-      const imgContainer = screen.getByTestId(`kit-img-container-${player.id}`);
+      const kitImg = screen.getByTestId(`kit-img-player-${player.id}`);
       const imgUrl = getLocalImage(`kits/${player.team_code}.png`);
 
-      expect(imgContainer).toHaveStyle(`background-image: url(${imgUrl})`);
+      expect(kitImg).toHaveAttribute("src", imgUrl);
+    });
+  });
+
+  describe("Team picks prop", () => {
+    const mockCaptainId = mockSelected[0][0].id;
+    const mockViceCaptainId = mockSelected[0][1].id;
+
+    mockTeamPicks = {
+      picks: [
+        {
+          element: mockCaptainId,
+          is_captain: true
+        },
+        {
+          element: mockViceCaptainId,
+          is_vice_captain: true
+        }
+      ]
+    } as unknown as TeamPicks;
+
+    it("renders Armband component with \"C\" if player is vice-captain", () => {
+      render(createComponent());
+
+      const playerOneContainer = within(screen.getByTestId(`player-container-${mockCaptainId}`));
+
+      expect(playerOneContainer.getByTestId("armband-container")).toHaveTextContent("C");
+      expect(playerOneContainer.getByTestId("armband-container")).not.toHaveTextContent("VC");
+
+    });
+    it("renders Armband component with \"V\" if player is vice-captain", () => {
+      render(createComponent());
+
+      const playerTwoContainer = within(screen.getByTestId(`player-container-${mockViceCaptainId}`));
+
+      expect(playerTwoContainer.getByTestId("armband-container")).not.toHaveTextContent("C");
+      expect(playerTwoContainer.getByTestId("armband-container")).toHaveTextContent("V");
+
+    });
+    it("does not display render Armband component when player is not captain or vice-captain", () => {
+      render(createComponent());
+
+      const playerWithNoArmbandId = mockSelected[0][2].id;
+
+      const playerThreeContainer = within(screen.getByTestId(`player-container-${playerWithNoArmbandId}`));
+
+      expect(playerThreeContainer.queryByTestId("armband-container")).toBeNull();
     });
   });
 });

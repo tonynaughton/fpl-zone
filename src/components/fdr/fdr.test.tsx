@@ -56,7 +56,7 @@ describe("FDR Tests", () => {
 
       await screen.findByTestId("fdr-container").then(() => {
         mockTeams.forEach((team) => {
-          const teamName = screen.getByTestId(`base-item-${team.name}`);
+          const teamName = screen.getByTestId(`base-item-text-${team.id}`);
 
           expect(teamName).toHaveTextContent(team.name.toUpperCase());
         });
@@ -68,7 +68,7 @@ describe("FDR Tests", () => {
 
       await screen.findByTestId("fdr-container").then(() => {
         mockTeams.forEach((team) => {
-          const img = screen.getByTestId(`team-crest-img-${team.name}`);
+          const img = screen.getByTestId(`base-item-crest-img-${team.id}`);
           const imgUrl = getLocalImage(`crests/${team.code}.png`);
 
           expect(img).toHaveAttribute("src", imgUrl);
@@ -85,7 +85,7 @@ describe("FDR Tests", () => {
 
       await screen.findByTestId("fdr-container").then(() => {
         mockFdrPlayers.forEach((player) => {
-          const playerName = screen.getByTestId(`base-item-${player.web_name}`);
+          const playerName = screen.getByTestId(`base-item-${player.id}`);
 
           expect(playerName).toHaveTextContent(player.web_name.toUpperCase());
         });
@@ -97,7 +97,7 @@ describe("FDR Tests", () => {
 
       await screen.findByTestId("fdr-container").then(() => {
         mockFdrPlayers.forEach((player) => {
-          const img = screen.getByTestId(`team-crest-img-${player.web_name}`);
+          const img = screen.getByTestId(`base-item-crest-img-${player.id}`);
           const imgUrl = getLocalImage(`crests/${player.team_code}.png`);
 
           expect(img).toHaveAttribute("src", imgUrl);
