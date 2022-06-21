@@ -60,6 +60,7 @@ export const Fixture = ({
       display='flex'
       height='100%'
       justifyContent='space-evenly'
+      sx={{ "& div:nth-of-type(n+2)": { borderLeft: "0.5px solid black" } }}
     >
       {fixtures.map((fixture, key) => <SingleFixture fixture={fixture} key={key} />)}
     </Box>

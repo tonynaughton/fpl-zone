@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { getLocalImage } from "helpers";
 import { Player as PlayerType } from "types";
 
@@ -20,7 +20,6 @@ describe("Player Tests", () => {
   const createComponent = (): JSX.Element => {
     return (
       <Player
-        compressed={false}
         handlePlayerPerformanceClick={mockHandlePlayerPerformanceClick}
         isCaptain={mockIsCaptain}
         isViceCaptain={mockIsViceCaptain}
@@ -57,9 +56,9 @@ describe("Player Tests", () => {
   it("Renders player kit image as expected", () => {
     render(createComponent());
 
-    const kitImageContainer = screen.getByTestId(`kit-img-container-${mockPlayer.id}`) as HTMLImageElement;
+    const kitImg = screen.getByTestId(`kit-img-player-${mockPlayer.id}`) as HTMLImageElement;
     const imgUrl = getLocalImage(`kits/${mockPlayer.team_code}.png`);
-    expect(kitImageContainer).toHaveStyle(`background-image: url(${imgUrl})`);
+    expect(kitImg).toHaveAttribute("src", imgUrl);
   });
 
   it("Multipler works as expected", () => {
@@ -94,6 +93,20 @@ describe("Player Tests", () => {
       render(createComponent());
 
       expect(screen.getByTestId("armband-container")).toHaveTextContent("V");
+    });
+  });
+
+  describe("Player performance button", () => {
+    it("calls onClick prop as expected", () => {
+      render(createComponent());
+
+      const button = screen.getByTestId(`player-performance-button-${mockPlayer.id}`);
+
+      expect(mockHandlePlayerPerformanceClick).toHaveBeenCalledTimes(0);
+
+      fireEvent.click(button);
+
+      expect(mockHandlePlayerPerformanceClick).toHaveBeenCalledTimes(1);
     });
   });
 });

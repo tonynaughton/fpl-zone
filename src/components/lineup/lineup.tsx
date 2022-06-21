@@ -12,7 +12,6 @@ import { LineupRow } from "./lineup_row";
 interface LineupProps {
   selected: PlayerType[][];
   bench: PlayerType[];
-  compressed?: boolean;
   teamPicks?: TeamPicks;
   teamData?: TeamData;
 }
@@ -21,8 +20,7 @@ export default function Lineup({
   selected,
   bench,
   teamPicks,
-  teamData,
-  compressed = false
+  teamData
 }: LineupProps): JSX.Element {
   const { teams, playerStats } = useContext(AppDataContext) as AppData;
 
@@ -43,6 +41,7 @@ export default function Lineup({
         flexDirection='column'
         gap={2}
         height='100%'
+        minHeight={0}
         overflow='hidden'
         padding={3}
       >
@@ -55,8 +54,9 @@ export default function Lineup({
           data-testid='selected-players'
           display='flex'
           flexDirection='column'
-          gap={3}
+          gap='5vh'
           height='100%'
+          minHeight={0}
           paddingBottom='5%'
           paddingLeft='5%'
           paddingRight='5%'
@@ -68,7 +68,6 @@ export default function Lineup({
         >
           {selected.map((players, key) => (
             <LineupRow
-              compressed={compressed}
               handlePlayerPerformanceClick={handlePlayerPerformanceClick}
               key={key}
               players={players}
@@ -80,11 +79,10 @@ export default function Lineup({
           className='flex-center'
           data-testid='bench-players'
           flexDirection='column'
-          height='25%'
+          minHeight={0}
         >
           <Typography variant='h4'>Bench</Typography>
           <LineupRow
-            compressed={compressed}
             handlePlayerPerformanceClick={handlePlayerPerformanceClick}
             players={sortedBench}
             teamPicks={teamPicks}

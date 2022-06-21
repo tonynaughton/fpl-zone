@@ -6,10 +6,11 @@ import { Player as PlayerType } from "types/player";
 
 import { Armband } from "./armband";
 
+import "./player.css";
+
 interface PlayerProps {
   player: PlayerType;
   handlePlayerPerformanceClick: (player: PlayerType) => void;
-  compressed: boolean;
   multiplier: number;
   isCaptain?: boolean;
   isViceCaptain?: boolean;
@@ -18,8 +19,7 @@ interface PlayerProps {
 export default function Player({
   player,
   handlePlayerPerformanceClick,
-  compressed = false,
-  multiplier: multipler,
+  multiplier,
   isCaptain = false,
   isViceCaptain = false
 }: PlayerProps): JSX.Element {
@@ -32,74 +32,67 @@ export default function Player({
       data-testid={`player-container-${player.id}`}
       flexDirection='column'
       height='100%'
+      maxHeight='100%'
+      minHeight={0}
       minWidth={0}
+      overflow='hidden'
       position='relative'
-      width='auto'
+      width='8vw'
     >
-      <Box
-        data-testid={`kit-img-container-${player.id}`}
-        height='100%'
-        overflow='hidden'
-        sx={{
-          backgroundImage: `url(${getLocalImage(url)})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat"
-        }}
-        width={compressed ? "4em" : "6em"}
+      {isCaptain && <Armband />}
+      {isViceCaptain && <Armband isVice />}
+      <img
+        alt='team-kit'
+        className='kit-img'
+        data-testid={`kit-img-player-${player.id}`}
+        src={getLocalImage(url)}
       />
       <Box
-        height='auto'
-        maxWidth='12vw'
-        width={compressed ? "7.5vw" : "9.5vw"}
+        bottom={0}
+        display='flex'
+        height='3.5vh'
+        justifyContent='center'
+        position='absolute'
+        width='100%'
       >
         <Box
-          display='flex'
-          justifyContent='center'
-          minWidth={0}
-          width='100%'
+          className='flex-center'
+          flexGrow={1}
+          overflow='hidden'
+          paddingLeft='0.5vw'
+          paddingRight='0.5vw'
+          sx={{ backgroundColor: "#16B7EA" }}
         >
-          <Box
-            className='flex-center'
-            flexGrow={1}
-            overflow='hidden'
+          <Typography
+            className='text-ellipsis'
+            data-testid='player-name'
+          >
+            {player.web_name}
+          </Typography>
+        </Box>
+        <Box
+          className='flex-center'
+          overflow='hidden'
+          sx={{ backgroundColor: "#5fdd6b" }}
+        >
+          <Typography
+            data-testid='player-score'
             paddingLeft='0.5vw'
             paddingRight='0.5vw'
-            sx={{ backgroundColor: "#16B7EA" }}
           >
-            <Typography
-              className='text-ellipsis'
-              data-testid='player-name'
-              variant={compressed ? "body2" : "body1"}
-            >
-              {player.web_name}
-            </Typography>
-          </Box>
-          <Box
-            className='flex-center'
-            overflow='hidden'
-            sx={{ backgroundColor: "#5fdd6b" }}
-          >
-            <Typography
-              data-testid='player-score'
-              paddingLeft='0.5vw'
-              paddingRight='0.5vw'
-              variant={compressed ? "body2" : "body1"}
-            >
-              {player.event_points * multipler}
-            </Typography>
-          </Box>
-          <Box
-            className='flex-center'
-            minWidth='10px'
-            onClick={(): void => handlePlayerPerformanceClick(player)}
-            padding={compressed ? 0.5 : 1}
-            sx={{ backgroundColor: "black", "& :hover": { cursor: "pointer" } }}
-          >
-            <Info sx={{ color: "white", fontSize: "2vh" }} />
-          </Box>
+            {player.event_points * multiplier}
+          </Typography>
         </Box>
-        {isCaptain && <Armband />}
-        {isViceCaptain && <Armband isVice />}
+        <Box
+          className='flex-center'
+          data-testid={`player-performance-button-${player.id}`}
+          minWidth='10px'
+          onClick={(): void => handlePlayerPerformanceClick(player)}
+          padding={0.5}
+          sx={{ backgroundColor: "black", "& :hover": { cursor: "pointer" } }}
+        >
+          <Info sx={{ color: "white", fontSize: "2vh" }} />
+        </Box>
       </Box>
     </Box>
   );

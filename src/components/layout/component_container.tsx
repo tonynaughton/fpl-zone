@@ -18,6 +18,7 @@ export const ComponentContainer = ({
       border='2px solid black'
       boxShadow={4}
       height='100%'
+      minWidth={0}
       position='relative'
       width='100%'
     >
@@ -25,7 +26,7 @@ export const ComponentContainer = ({
         borderBottom='2px solid black'
         borderRight='2px solid black'
         color='#F9F9F9'
-        height='5vh'
+        height='auto'
         left={0}
         maxWidth='15vw'
         padding={0.8}

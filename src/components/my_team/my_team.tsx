@@ -15,7 +15,6 @@ export const MyTeam = ({ teamPicks, teamData }: MyTeamProps): JSX.Element => {
   return (
     <Lineup
       bench={bench}
-      compressed
       selected={selected}
       teamData={teamData}
       teamPicks={teamPicks}
