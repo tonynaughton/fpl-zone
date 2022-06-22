@@ -34,7 +34,7 @@ import { Notifier } from "components/layout";
 import { FplIdModal } from ".";
 
 interface DetailsFormProps {
-  registerPage: boolean;
+  registerPage?: boolean;
 }
 
 interface FormInput {
@@ -46,7 +46,7 @@ interface FormInput {
   fplId: string;
 }
 
-export const DetailsForm = ({ registerPage }: DetailsFormProps): JSX.Element => {
+export const DetailsForm = ({ registerPage = false }: DetailsFormProps): JSX.Element => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 

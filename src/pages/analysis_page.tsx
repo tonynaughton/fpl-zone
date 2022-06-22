@@ -17,7 +17,7 @@ export const AnalysisPage = (): JSX.Element => {
   });
 
   return (
-    <AppLayout activeLabel='analysis' direction='row'>
+    <AppLayout active='analysis' direction='row'>
       <ComponentContainer title='comparison'><PlayerComparison /></ComponentContainer>
     </AppLayout>
   );

@@ -47,7 +47,7 @@ export const MyFPLPage = (): JSX.Element => {
     isLoading: teamPicksFetchIsLoading
   } = useQuery(
     [fplId, currentGameweek],
-    () => getTeamPicksForGameweek(fplId, currentGameweek.id),
+    () => getTeamPicksForGameweek(currentGameweek.id, fplId),
     { enabled: !!fplId }
   );
 
@@ -85,7 +85,7 @@ export const MyFPLPage = (): JSX.Element => {
   };
 
   return (
-    <AppLayout activeLabel='my fpl' direction='row'>
+    <AppLayout active='my fpl' direction='row'>
       <ComponentContainer title='my team'>{renderTeamComponent()}</ComponentContainer>
       <ComponentContainer title='fdr'>{renderFdrTable()}</ComponentContainer>
     </AppLayout>

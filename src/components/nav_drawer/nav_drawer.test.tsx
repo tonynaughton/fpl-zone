@@ -5,12 +5,15 @@ import { render, screen } from "@testing-library/react";
 import { AppDataContext } from "app_content";
 import { mockAppData } from "test";
 
+import { AuthModalView } from "components/layout";
+
 import "@testing-library/jest-dom";
 
 import NavDrawer from "./nav_drawer";
 
 describe("Nav Drawer Tests", () => {
   let mockLabel: string;
+  let mockOpenAuthModal: (value: AuthModalView) => void;
 
   const mockQueryClient = new QueryClient();
 
@@ -19,7 +22,7 @@ describe("Nav Drawer Tests", () => {
       <QueryClientProvider client={mockQueryClient}>
         <Router>
           <AppDataContext.Provider value={mockAppData}>
-            <NavDrawer activeLabel={mockLabel} />
+            <NavDrawer active={mockLabel} openAuthModal={mockOpenAuthModal} />
           </AppDataContext.Provider>
         </Router>
       </QueryClientProvider>
