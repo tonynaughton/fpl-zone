@@ -59,9 +59,11 @@ export const getTeamTransfers = async (teamId: number): Promise<Transfer[]> => {
 };
 
 export const getTeamPicksForGameweek = async (
-  teamId: number,
-  gameweek: number
+  gameweek: number,
+  teamId?: number
 ): Promise<TeamPicks> => {
+  if (!teamId) throw new Error("No FPL ID received");
+
   const response = await axios.get(`${base_url}/entry/${teamId}/event/${gameweek}/picks/`);
 
   return response.data;

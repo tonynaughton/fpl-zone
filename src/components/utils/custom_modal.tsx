@@ -5,16 +5,18 @@ import { Box, Button, IconButton, Typography } from "@mui/material";
 interface CustomModalProps {
   isModalOpen: boolean;
   setModalOpen: (value: boolean) => void;
+  compact?: boolean;
   title?: string;
   onCancelClick?: () => void;
   onConfirmClick?: () => void;
-  children: JSX.Element;
   testId?: string;
+  children: JSX.Element;
 }
 
 export const CustomModal = ({
   isModalOpen,
   setModalOpen,
+  compact = false,
   title,
   onCancelClick,
   onConfirmClick,
@@ -32,6 +34,7 @@ export const CustomModal = ({
       sx={{ backgroundColor: "rgb(0, 0, 0, 0.5)" }}
       top={0}
       width='100%'
+      zIndex='modal'
     >
       <Box
         alignItems='center'
@@ -41,14 +44,15 @@ export const CustomModal = ({
         gap={2}
         left='50%'
         maxHeight='90%'
+        maxWidth={compact ? "50rem" : "70rem"}
         onClick={(event): void => event.stopPropagation()}
         overflow='auto'
         padding={4}
         position='absolute'
-        sx={{ transform: "translate(-50%, -50%)", bgcolor: "white" }}
+        sx={{ transform: "translate(-50%, -50%)", bgcolor: "#F9F9F9" }}
         top='50%'
-        width='90%'
-        zIndex={2000}
+        width={compact ? "50%" : "90%"}
+        zIndex='modal'
       >
         {title && <Typography variant='h3'>{title}</Typography>}
         <IconButton
