@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Box } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
-import { auth, logout } from "config/firebase";
+import { FplIdContext } from "app_content";
+import { auth, logout } from "config";
 import { getLocalImage } from "helpers";
 
 import { AuthModalView } from "components/layout";
@@ -21,9 +22,19 @@ export interface MenuItems {
 }
 
 export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JSX.Element {
+  const { fplId, setFplId } = useContext(FplIdContext);
   const [user, loading] = useAuthState(auth);
 
   if (loading) return <></>;
+
+  const onLogoutClick = (): void => {
+    if (fplId) {
+      setFplId();
+
+      return;
+    }
+    logout();
+  };
 
   const menuItems: MenuItems = {
     nav: [
@@ -32,10 +43,10 @@ export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JS
       { label: "fixtures & results", href: "/fixtures-and-results" },
       { label: "analysis", href: "/analysis" }
     ],
-    auth: user
+    auth: fplId || user
       ? [
-        { label: "logout", onItemClick: () => logout() },
-        { label: "account", onItemClick: () => openAuthModal(AuthModalView.Account) }
+        { label: "logout", onItemClick: () => onLogoutClick() },
+        ...user ? [{ label: "account", onItemClick: () => openAuthModal(AuthModalView.Account) }] : []
       ]
       : [
         { label: "login", onItemClick: () => openAuthModal(AuthModalView.Login) },
@@ -58,7 +69,6 @@ export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JS
           backgroundColor: "#16B7EA",
           borderRight: "1px solid black"
         }
-        // ZIndex: 0
       }}
       variant='permanent'
     >

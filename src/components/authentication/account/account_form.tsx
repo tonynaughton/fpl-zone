@@ -1,14 +1,11 @@
 
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Controller,SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Info } from "@mui/icons-material";
 import {
   Box,
   Button,
-  IconButton,
-  InputAdornment,
   OutlinedInput,
   TextField,
   Typography
@@ -17,12 +14,12 @@ import {
   auth,
   getUserDetails,
   updateUserDetails
-} from "config/firebase";
-import { deleteUser } from "firebase/auth";
-import { delay } from "helpers";
+} from "config";
 import { isError } from "lodash";
 
 import { Notifier } from "components/layout";
+
+import { FplIdPopover } from "../fpl_id_popover";
 
 interface AccountFormProps {
   closeAuthModal: () => void;
@@ -38,6 +35,8 @@ interface FormInput {
 }
 
 export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element => {
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [notifierMessage, setNotifierMessage] = useState<string>("Fetching user data..");
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -45,35 +44,30 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
-    repeatPassword: "",
     fplId: ""
   };
 
   const [userData, setUserData] = useState(defaultValues);
 
   const [userFound, setUserFound] = useState(false);
-  const [showFplIdModal, setShowFplIdModal] = useState(false);
-  const [deleteAccountModalOpen, setDeleteAccountModalOpen] = useState(false);
 
   const setDefaultValues = async (): Promise<void> => {
     if (!user) return;
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const response = await getUserDetails(user!);
+    const response = await getUserDetails(user);
 
     if (isError(response)) {
-      // TODO Get user details error message
+      setErrorMessage(response.message);
+      setNotifierMessage(response.message);
+
       return;
     }
 
     setUserData({
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      email: userData.email,
-      password: "",
-      repeatPassword: "",
-      fplId: userData.fplId
+      firstName: response.firstName,
+      lastName: response.lastName,
+      email: response.email,
+      fplId: response.fplId.toString()
     });
     setUserFound(true);
   };
@@ -96,7 +90,8 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
     }
 
     if (!user) {
-      // TODO You are not logged in message
+      setErrorMessage("You are not currently logged in");
+
       return;
     }
 
@@ -109,42 +104,41 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
     );
 
     if (isError(response)) {
-      // TODO could not update user details
+      setErrorMessage(response.message);
+
       return;
     }
 
     closeAuthModal();
   };
 
-  const handleDeleteAccountClick = async (): Promise<void> => {
-    if (user) {
-      await deleteUser(user);
-      await delay(1000);
-    }
-  };
-
   return (
-    <Box component='div'>
+    <Box
+      className='flex-center'
+      flexDirection='column'
+      paddingLeft={15}
+      paddingRight={15}
+      width='100%'
+    >
       {!userFound
         ? (
-          <Notifier message='Fetching user data..' />
+          <Notifier message={notifierMessage} type={errorMessage ? "error" : "loading"} />
         )
         : (
           <>
-            <form onSubmit={handleSubmit(onDetailsSave)}>
+            <form className='auth-form' onSubmit={handleSubmit(onDetailsSave)}>
               <Controller
                 control={control}
                 name='firstName'
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <TextField
+                    autoFocus
                     error={!!error}
                     fullWidth
                     margin='dense'
                     onChange={onChange}
                     placeholder='First name'
                     required
-                    size='small'
-                    sx={{ mt: 2 }}
                     value={value}
                   />
                 )}
@@ -160,7 +154,6 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
                     onChange={onChange}
                     placeholder='Last name'
                     required
-                    size='small'
                     value={value}
                   />
                 )}
@@ -177,7 +170,6 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
                     onChange={onChange}
                     placeholder='Email'
                     required
-                    size='small'
                     type='email'
                     value={value}
                   />
@@ -188,28 +180,41 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
                 name='fplId'
                 render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
                   <OutlinedInput
-                    endAdornment={
-                      <InputAdornment position='end'>
-                        <IconButton
-                          aria-label='show fpl id modal'
-                          edge='end'
-                          onClick={(): void => setShowFplIdModal(true)}
-                          onMouseDown={(event): void => event.preventDefault()}
-                        >
-                          <Info />
-                        </IconButton>
-                      </InputAdornment>
-                    }
+                    autoFocus
+                    endAdornment={<FplIdPopover />}
                     error={!!error}
                     fullWidth
+                    margin='dense'
                     onChange={onChange}
-                    placeholder='FPL ID (optional)'
-                    size='small'
-                    sx={{ mt: 1 }}
+                    placeholder='FPL ID'
+                    required
+                    sx={{
+                      mt: 1,
+                      "& input[type=number]": {
+                        MozAppearance: "textfield"
+                      },
+                      "& input[type=number]::-webkit-outer-spin-button": {
+                        WebkitAppearance: "none",
+                        margin: 0
+                      },
+                      "& input[type=number]::-webkit-inner-spin-button": {
+                        WebkitAppearance: "none",
+                        margin: 0
+                      }
+                    }}
+                    type='number'
                     value={value}
                   />
                 )}
               />
+              { errorMessage &&
+              <Typography
+                className='text-ellipsis'
+                color='red'
+                marginTop={2}
+                textAlign='center'
+              >{errorMessage}
+              </Typography>}
               <Button
                 className='action-button'
                 color='secondary'
@@ -219,18 +224,6 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
                 variant='contained'
               >
                 <Typography textTransform='none' variant='h3'>Update</Typography>
-              </Button>
-              <Button
-                className='action-button'
-                color='error'
-                fullWidth
-                onClick={(): void => setDeleteAccountModalOpen(true)}
-                sx={{ mt: 3 }}
-                variant='contained'
-              >
-                <Typography textTransform='none' variant='h3'>
-                Delete Account
-                </Typography>
               </Button>
             </form>
           </>

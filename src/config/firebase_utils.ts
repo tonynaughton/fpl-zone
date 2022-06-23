@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { FirebaseError, initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
@@ -20,10 +19,12 @@ import {
   getDocs,
   getFirestore,
   query,
+  setLogLevel,
   updateDoc,
-  where
-} from "firebase/firestore";
+  where } from "firebase/firestore";
 import { UserData } from "types/firebase";
+
+import { firebaseErrorMap } from "./firebase_error_map";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -34,13 +35,16 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
+setLogLevel("silent");
+
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
+
 const googleProvider = new GoogleAuthProvider();
 
-export const signInWithGoogle = async (): Promise<void | FirebaseError> => {
+export const signInWithGoogle = async (): Promise<void | Error> => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const { user } = res;
@@ -58,15 +62,19 @@ export const signInWithGoogle = async (): Promise<void | FirebaseError> => {
       });
     }
   } catch (err) {
-    return err as FirebaseError;
+    const message = firebaseErrorMap((err as FirebaseError).code);
+
+    return new Error(message);
   }
 };
 
 export const logInWithEmailAndPassword = async (email: string, password: string): Promise<Error | void> => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password).catch();
   } catch (err) {
-    return new Error((err as FirebaseError).message);
+    const message = firebaseErrorMap((err as FirebaseError).code);
+
+    return new Error(message);
   }
 };
 
@@ -89,7 +97,9 @@ export const registerWithEmailAndPassword = async (
       fplId
     });
   } catch (err) {
-    return new Error((err as FirebaseError).message);
+    const message = firebaseErrorMap((err as FirebaseError).code);
+
+    return new Error(message);
   }
 };
 
@@ -97,7 +107,9 @@ export const sendPasswordReset = async (email: string): Promise<Error | void> =>
   try {
     await sendPasswordResetEmail(auth, email);
   } catch (err) {
-    return new Error((err as FirebaseError).message);
+    const message = firebaseErrorMap((err as FirebaseError).code);
+
+    return new Error(message);
   }
 };
 
@@ -125,7 +137,9 @@ export const updateUserDetails = async (
       fplId
     });
   } catch (err) {
-    return new Error((err as FirebaseError).message);
+    const message = firebaseErrorMap((err as FirebaseError).code);
+
+    return new Error(message);
   }
 };
 
@@ -138,7 +152,9 @@ export const deleteUser = async (user: User): Promise<Error | void> => {
     await deleteAuthUser(user);
     await deleteDoc(doc(db, "users", userId));
   } catch (err) {
-    return new Error((err as FirebaseError).message);
+    const message = firebaseErrorMap((err as FirebaseError).code);
+
+    return new Error(message);
   }
 };
 
@@ -150,12 +166,13 @@ export const getUserDetails = async (user: User): Promise<Error | UserData> => {
 
     return userData;
   } catch (err) {
-    return new Error((err as FirebaseError).message);
+    const message = firebaseErrorMap((err as FirebaseError).code);
+
+    return new Error(message);
   }
 };
 
-export const getUserFplTeamId = async ({ queryKey }): Promise<number> => {
-  const uid = queryKey[0];
+export const getUserFplTeamId = async (uid: string): Promise<number> => {
   if (!uid) throw new Error("No user ID received");
 
   try {
@@ -178,6 +195,8 @@ export const logout = async (): Promise<Error | void> => {
   try {
     await signOut(auth);
   } catch (err) {
-    return new Error((err as FirebaseError).message);
+    const message = firebaseErrorMap((err as FirebaseError).code);
+
+    return new Error(message);
   }
 };

@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { Controller,SubmitHandler, useForm } from "react-hook-form";
-import { Info } from "@mui/icons-material";
 import {
   Box,
   Button,
-  IconButton,
-  InputAdornment,
   Link,
   OutlinedInput,
   TextField,
@@ -13,10 +10,12 @@ import {
 } from "@mui/material";
 import {
   registerWithEmailAndPassword
-} from "config/firebase";
+} from "config";
 import { isError } from "lodash";
 
 import { AuthModalView } from "components/layout";
+
+import { FplIdPopover } from "../fpl_id_popover";
 
 import "../auth.css";
 
@@ -35,6 +34,8 @@ interface FormInput {
 }
 
 export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProps): JSX.Element => {
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
   const defaultValues = {
     firstName: "",
     lastName: "",
@@ -43,8 +44,6 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
     repeatPassword: "",
     fplId: ""
   };
-
-  const [showFplIdDrawer, setShowFplIdDrawer] = useState(false);
 
   const { control, handleSubmit } = useForm<FormInput>({ defaultValues });
 
@@ -61,7 +60,7 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
       data.fplId
     );
     if (isError(response)) {
-      // TODO Display error message
+      setErrorMessage(response.message);
     } else {
       closeAuthModal();
     }
@@ -84,7 +83,7 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
               autoFocus
               error={!!error}
               fullWidth
-              margin='normal'
+              margin='dense'
               onChange={onChange}
               placeholder='First name'
               required
@@ -99,7 +98,7 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
             <TextField
               error={!!error}
               fullWidth
-              margin='normal'
+              margin='dense'
               onChange={onChange}
               placeholder='Last name'
               required
@@ -115,7 +114,7 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
               className='text-input'
               error={!!error}
               fullWidth
-              margin='normal'
+              margin='dense'
               onChange={onChange}
               placeholder='Email'
               required
@@ -129,9 +128,9 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
           name='password'
           render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
             <TextField
-              autoFocus
               error={!!error}
               fullWidth
+              margin='dense'
               onChange={onChange}
               placeholder='Password'
               required
@@ -148,7 +147,7 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
               error={!!error}
               fullWidth
               inputProps={{ form: { autoComplete: "off" } }}
-              margin='normal'
+              margin='dense'
               onChange={onChange}
               placeholder='Repeat password'
               required
@@ -162,27 +161,38 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
           name='fplId'
           render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
             <OutlinedInput
-              endAdornment={
-                <InputAdornment position='end'>
-                  <IconButton
-                    aria-label='show fpl id modal'
-                    edge='end'
-                    onClick={(): void => setShowFplIdDrawer(true)}
-                    onMouseDown={(event): void => event.preventDefault()}
-                  >
-                    <Info />
-                  </IconButton>
-                </InputAdornment>
-              }
+              endAdornment={<FplIdPopover />}
               error={!!error}
               fullWidth
               onChange={onChange}
-              placeholder='FPL ID (optional)'
-              sx={{ mt: 1 }}
+              placeholder='FPL ID'
+              sx={{
+                mt: 1,
+                "& input[type=number]": {
+                  MozAppearance: "textfield"
+                },
+                "& input[type=number]::-webkit-outer-spin-button": {
+                  WebkitAppearance: "none",
+                  margin: 0
+                },
+                "& input[type=number]::-webkit-inner-spin-button": {
+                  WebkitAppearance: "none",
+                  margin: 0
+                }
+              }}
+              type='number'
               value={value}
             />
           )}
         />
+        { errorMessage &&
+          <Typography
+            className='text-ellipsis'
+            color='red'
+            marginTop={2}
+            textAlign='center'
+          >{errorMessage}
+          </Typography>}
         <Button
           color='secondary'
           fullWidth

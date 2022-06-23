@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import {
   Box,
@@ -8,7 +8,7 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import { logInWithEmailAndPassword } from "config/firebase";
+import { logInWithEmailAndPassword } from "config";
 import { isError } from "lodash";
 
 import { AuthModalView } from "components/layout";
@@ -29,6 +29,8 @@ interface FormInput {
 }
 
 export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JSX.Element => {
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
   const defaultValues = {
     email: "",
     password: ""
@@ -54,7 +56,7 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
   const onLoginClick: SubmitHandler<FormInput> = async (data: FormInput) => {
     const response = await logInWithEmailAndPassword(data.email, data.password);
     if (isError(response)) {
-      // TODO display error message
+      setErrorMessage(response.message);
     } else {
       closeAuthModal();
     }
@@ -77,7 +79,7 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
               autoFocus
               error={!!error}
               fullWidth
-              margin='normal'
+              margin='dense'
               onChange={onChange}
               placeholder='Email'
               required
@@ -91,9 +93,9 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
           name='password'
           render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
             <TextField
-              autoFocus
               error={!!error}
               fullWidth
+              margin='dense'
               onChange={onChange}
               placeholder='Password'
               required
@@ -102,6 +104,14 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
             />
           )}
         />
+        { errorMessage &&
+          <Typography
+            className='text-ellipsis'
+            color='red'
+            marginTop={2}
+            textAlign='center'
+          >{errorMessage}
+          </Typography>}
         <Button
           color='secondary'
           fullWidth
@@ -117,7 +127,7 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
         sx={{ cursor: "pointer" }}
         underline='none'
       >
-        <Typography color='black' sx={{ mt: 2 }} textAlign='center'>Forgotten password?</Typography>
+        <Typography color='black' sx={{ mt: 2 }}>Forgotten password?</Typography>
       </Link>
       <Divider sx={{ p: 3, width: "100%" }}><Typography variant='h4'>OR</Typography></Divider>
       <Box
@@ -129,11 +139,11 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
         <GoogleLoginButton />
         <FplIdLoginButton openAuthModal={openAuthModal} />
         <Link
-          onClick={() => openAuthModal(AuthModalView.Register)}
+          onClick={(): void => openAuthModal(AuthModalView.Register)}
           sx={{ cursor: "pointer" }}
           underline='none'
         >
-          <Typography color='black' textAlign='center'>Don&apos;t have an account? Click to register.</Typography>
+          <Typography color='black'>Don&apos;t have an account? Click to register.</Typography>
         </Link>
       </Box>
     </Box>

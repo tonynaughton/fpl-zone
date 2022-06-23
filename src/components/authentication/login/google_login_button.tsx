@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Button, Typography } from "@mui/material";
-import { signInWithGoogle } from "config/firebase";
+import { signInWithGoogle } from "config";
 
 export const GoogleLoginButton = (): JSX.Element => (
   <Button

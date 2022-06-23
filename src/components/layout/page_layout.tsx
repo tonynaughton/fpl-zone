@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Container } from "@mui/material";
 
-import { AccountForm, FplIdlogin, LoginForm, RegisterForm, ResetForm } from "components/authentication";
+import { AccountForm, FplIdloginForm, LoginForm, RegisterForm, ResetForm } from "components/authentication";
 import NavDrawer from "components/nav_drawer/nav_drawer";
 import { CustomModal } from "components/utils";
 
@@ -25,6 +25,7 @@ export const AppLayout = ({ active, direction, children }: React.PropsWithChildr
 
   const closeAuthModal = (): void => {
     setIsAuthModalOpen(false);
+    setAuthModalContent(<></>);
   };
 
   const openAuthModal = (view: AuthModalView): void => {
@@ -49,7 +50,7 @@ export const AppLayout = ({ active, direction, children }: React.PropsWithChildr
       break;
     case AuthModalView.FplIdLogin:
       setAuthModalTitle("FPL ID Login");
-      setAuthModalContent(<FplIdlogin />);
+      setAuthModalContent(<FplIdloginForm closeAuthModal={closeAuthModal} openAuthModal={openAuthModal} />);
       break;
     default:
       setAuthModalTitle("Login");

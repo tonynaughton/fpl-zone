@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { isError } from "react-query";
 import { Box, Button, Link,TextField, Typography } from "@mui/material";
-import { sendPasswordReset } from "config/firebase";
+import { sendPasswordReset } from "config";
 
 import { AuthModalView } from "components/layout";
 
@@ -18,13 +18,15 @@ interface FormInput {
 
 
 export const ResetForm = ({ openAuthModal }: ResetFormProps): JSX.Element => {
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
   const defaultValues = { email: "" };
 
   const onResetClick: SubmitHandler<FormInput> = async (data: FormInput) => {
     const response = await sendPasswordReset(data.email);
 
     if (isError(response)) {
-      // TODO Display error message
+      setErrorMessage(response.message);
     } else {
       openAuthModal(AuthModalView.Login);
     }
@@ -59,6 +61,14 @@ export const ResetForm = ({ openAuthModal }: ResetFormProps): JSX.Element => {
             />
           )}
         />
+        { errorMessage &&
+          <Typography
+            className='text-ellipsis'
+            color='red'
+            marginTop={2}
+            textAlign='center'
+          >{errorMessage}
+          </Typography>}
         <Button
           color='secondary'
           fullWidth

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
@@ -13,9 +13,19 @@ import { AppData } from "types";
 
 import { Notifier, Startup } from "components/layout";
 
+interface FplIdContextType {
+  fplId: number | undefined;
+  setFplId: (value?: number | undefined) => void;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export const FplIdContext = React.createContext<FplIdContextType>({ fplId: undefined, setFplId: () => {} });
 export const AppDataContext = React.createContext<AppData | null>(null);
 
 export default function AppContent(): JSX.Element {
+  const [fplId, setFplId] = useState<number | undefined>();
+  const fplIdContextValue = { fplId, setFplId };
+
   // Fetching game data which will be made available throughout the app via context provider
   const {
     data: gameData,
@@ -34,7 +44,7 @@ export default function AppContent(): JSX.Element {
 
   const isLoading = gameDataIsLoading || fixtureDataIsLoading;
   const error = gameDataIsError || fixtureDataIsError;
-  const appData: AppData | null = gameData && fixtureData
+  const appDataContextValue: AppData | null = gameData && fixtureData
     ? {
       gameweeks: gameData.events,
       gameSettings: gameData.game_settings,
@@ -67,18 +77,20 @@ export default function AppContent(): JSX.Element {
   }
 
   return (
-    <AppDataContext.Provider value={appData}>
-      <Router>
-        <Routes>
-          <Route element={<GameweekLivePage />} path='*' />
-          <Route element={<GameweekLivePage />} path='/' />
-          <Route element={<GameweekLivePage />} path='gameweek-live' />
-          <Route element={<MyFPLPage />} path='/my-fpl' />
-          <Route element={<FixturesAndResultsPage />} path='/fixtures-and-results' />
-          <Route element={<AnalysisPage />} path='/analysis' />
-        </Routes>
-      </Router>
-    </AppDataContext.Provider>
+    <FplIdContext.Provider value={fplIdContextValue}>
+      <AppDataContext.Provider value={appDataContextValue}>
+        <Router>
+          <Routes>
+            <Route element={<GameweekLivePage />} path='*' />
+            <Route element={<GameweekLivePage />} path='/' />
+            <Route element={<GameweekLivePage />} path='gameweek-live' />
+            <Route element={<MyFPLPage />} path='/my-fpl' />
+            <Route element={<FixturesAndResultsPage />} path='/fixtures-and-results' />
+            <Route element={<AnalysisPage />} path='/analysis' />
+          </Routes>
+        </Router>
+      </AppDataContext.Provider>
+    </FplIdContext.Provider>
   );
 
 }
