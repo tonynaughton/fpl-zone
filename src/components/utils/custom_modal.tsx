@@ -31,7 +31,7 @@ export const CustomModal = ({
       left={0}
       onClick={(): void => setModalOpen(false)}
       position='absolute'
-      sx={{ backgroundColor: "rgb(0, 0, 0, 0.5)" }}
+      bgcolor='rgb(0, 0, 0, 0.5)'
       top={0}
       width='100%'
       zIndex='modal'
@@ -49,10 +49,12 @@ export const CustomModal = ({
         overflow='auto'
         padding={4}
         position='absolute'
-        sx={{ transform: "translate(-50%, -50%)", bgcolor: "#F9F9F9" }}
+        bgcolor='#F9F9F9'
+        sx={{ transform: "translate(-50%, -50%)" }}
         top='50%'
         width={compact ? "50%" : "90%"}
         zIndex='modal'
+        border='2px solid black'
       >
         {title && <Typography variant='h3'>{title}</Typography>}
         <IconButton

@@ -61,7 +61,7 @@ export default function Player({
           overflow='hidden'
           paddingLeft='0.5vw'
           paddingRight='0.5vw'
-          sx={{ backgroundColor: "#16B7EA" }}
+          bgcolor='#16B7EA'
         >
           <Typography
             className='text-ellipsis'
@@ -73,7 +73,7 @@ export default function Player({
         <Box
           className='flex-center'
           overflow='hidden'
-          sx={{ backgroundColor: "#5fdd6b" }}
+          bgcolor='#5fdd6b'
         >
           <Typography
             data-testid='player-score'
@@ -89,7 +89,8 @@ export default function Player({
           minWidth='10px'
           onClick={(): void => handlePlayerPerformanceClick(player)}
           padding={0.5}
-          sx={{ backgroundColor: "black", "& :hover": { cursor: "pointer" } }}
+          bgcolor='black'
+          sx={{ "& :hover": { cursor: "pointer" } }}
         >
           <Info sx={{ color: "white", fontSize: "2vh" }} />
         </Box>

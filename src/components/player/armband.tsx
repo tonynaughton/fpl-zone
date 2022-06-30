@@ -15,7 +15,7 @@ export const Armband = ({ isVice = false }: ArmbandProps): JSX.Element => {
       height='1.8vw'
       left={0}
       position='absolute'
-      sx={{ backgroundColor: "rgb(240, 240, 240, 1)" }}
+      bgcolor='rgb(240, 240, 240, 1)'
       top={0}
       width='1.8vw'
     >

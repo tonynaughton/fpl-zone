@@ -91,7 +91,7 @@ export default function Results(): JSX.Element {
               sx={{
                 "&:last-child": { border: "none" },
                 "&:hover": {
-                  backgroundColor: matchStarted ? "rgb(224, 224, 224)" : "inherit",
+                  bgcolor: matchStarted ? "rgb(224, 224, 224)" : "inherit",
                   cursor: matchStarted ? "pointer" : "default"
                 }
               }}

@@ -74,7 +74,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const baseItemCellWidth = "20%";
   const customCellStyle = {
     p: 0,
-    backgroundColor: "rgba(240, 240, 240, 1)",
+    bgcolor: "rgba(240, 240, 240, 1)",
     border: "1px solid rgba(200, 200, 200, 1)"
   };
 

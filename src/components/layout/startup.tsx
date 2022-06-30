@@ -6,7 +6,7 @@ export const Startup = (props: { children: JSX.Element }): JSX.Element => {
   return (
     <Box
       height='100vh'
-      sx={{ backgroundColor: "#16B7EA" }}
+      bgcolor='#16B7EA'
       width='100%'
     >
       <Box

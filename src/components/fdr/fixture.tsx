@@ -43,7 +43,7 @@ export const Fixture = ({
           flexGrow={1}
           height='100%'
           overflow='hidden'
-          sx={{ backgroundColor: `${FDR_COLOURS[difficulty]}` }}
+          bgcolor={FDR_COLOURS[difficulty]}
         >
           <Box overflow='hidden' padding={0.5}>
             <Typography className='text-ellipsis'>{text}</Typography>
