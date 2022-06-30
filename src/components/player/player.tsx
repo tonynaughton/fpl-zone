@@ -56,12 +56,12 @@ export default function Player({
         width='100%'
       >
         <Box
+          bgcolor='#16B7EA'
           className='flex-center'
           flexGrow={1}
           overflow='hidden'
           paddingLeft='0.5vw'
           paddingRight='0.5vw'
-          sx={{ backgroundColor: "#16B7EA" }}
         >
           <Typography
             className='text-ellipsis'
@@ -71,9 +71,9 @@ export default function Player({
           </Typography>
         </Box>
         <Box
+          bgcolor='#5fdd6b'
           className='flex-center'
           overflow='hidden'
-          sx={{ backgroundColor: "#5fdd6b" }}
         >
           <Typography
             data-testid='player-score'
@@ -84,12 +84,13 @@ export default function Player({
           </Typography>
         </Box>
         <Box
+          bgcolor='black'
           className='flex-center'
           data-testid={`player-performance-button-${player.id}`}
           minWidth='10px'
           onClick={(): void => handlePlayerPerformanceClick(player)}
           padding={0.5}
-          sx={{ backgroundColor: "black", "& :hover": { cursor: "pointer" } }}
+          sx={{ "& :hover": { cursor: "pointer" } }}
         >
           <Info sx={{ color: "white", fontSize: "2vh" }} />
         </Box>

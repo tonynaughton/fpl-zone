@@ -26,7 +26,7 @@ export const MenuList = ({ items, active }: MenuListProps): JSX.Element => (
             key={key}
             sx={{
               p: "1vw",
-              "&:hover": { backgroundColor: "inherit" },
+              "&:hover": { bgcolor: "inherit" },
               width: "100%"
             }}
             to={item.href}
@@ -56,7 +56,7 @@ export const MenuList = ({ items, active }: MenuListProps): JSX.Element => (
             onClick={item.onItemClick}
             sx={{
               p: "1vw",
-              "&:hover": { backgroundColor: "inherit" },
+              "&:hover": { bgcolor: "inherit" },
               width: "100%"
             }}
           >

@@ -66,18 +66,18 @@ export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JS
         "& .MuiDrawer-paper": {
           width: drawerWidth,
           boxSizing: "border-box",
-          backgroundColor: "#16B7EA",
+          bgcolor: "#16B7EA",
           borderRight: "1px solid black"
         }
       }}
       variant='permanent'
     >
       <Box
+        bgcolor='#5fdd6b'
         borderBottom='1px solid black'
         className='flex-center'
         gap={1}
         padding='1vh'
-        sx={{ backgroundColor: "#5fdd6b" }}
       >
         <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         <GameweekCountdown />

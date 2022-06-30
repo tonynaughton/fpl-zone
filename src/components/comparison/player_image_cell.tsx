@@ -39,7 +39,7 @@ export const PlayerImageCell = ({ player, onAddPlayerClick, onRemovePlayerClick 
             onClick={onRemovePlayerClick ? (): void => onRemovePlayerClick(player) : undefined}
             size='small'
             sx={{
-              backgroundColor: "#c30000",
+              bgcolor: "#c30000",
               "&:hover": {
                 backgroundColor: "#e00d0d"
               }

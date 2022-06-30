@@ -33,8 +33,9 @@ export const MyFPLPage = (): JSX.Element => {
     data: teamData,
     error: teamDataFetchError,
     isLoading: teamDataFetchIsLoading
-  } = useQuery([fplId], () => getTeamData(fplId), { enabled: !!fplId }
-  );
+  } = useQuery([fplId], () => getTeamData(fplId), {
+    enabled: !!fplId
+  });
 
   // Fetching users selection picks for current gameweek
   const {

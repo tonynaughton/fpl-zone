@@ -11,11 +11,11 @@ export const AddButton = ({ compact }: AddButtonProps): JSX.Element => {
 
   return (
     <Box
+      bgcolor='#5fdd6b'
       borderRadius='50%'
       className='flex-center'
       data-testid='add-button'
       height={dimen}
-      sx={{ backgroundColor: "#5fdd6b" }}
       width={dimen}
     >
       <IconButton aria-label='add player button' size='small'>

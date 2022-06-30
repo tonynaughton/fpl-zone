@@ -8,6 +8,7 @@ interface ArmbandProps {
 export const Armband = ({ isVice = false }: ArmbandProps): JSX.Element => {
   return (
     <Box
+      bgcolor='rgb(240, 240, 240, 1)'
       border='1px solid black'
       borderRadius='50%'
       className='flex-center'
@@ -15,7 +16,6 @@ export const Armband = ({ isVice = false }: ArmbandProps): JSX.Element => {
       height='1.8vw'
       left={0}
       position='absolute'
-      sx={{ backgroundColor: "rgb(240, 240, 240, 1)" }}
       top={0}
       width='1.8vw'
     >
