@@ -25,19 +25,21 @@ export const CustomModal = ({
 }: CustomModalProps): JSX.Element => {
   return (
     <Box
+      bgcolor='rgb(0, 0, 0, 0.5)'
       data-testid={testId}
       display={isModalOpen ? "block" : "none"}
       height='100%'
       left={0}
       onClick={(): void => setModalOpen(false)}
       position='absolute'
-      bgcolor='rgb(0, 0, 0, 0.5)'
       top={0}
       width='100%'
       zIndex='modal'
     >
       <Box
         alignItems='center'
+        bgcolor='#F9F9F9'
+        border='2px solid black'
         boxShadow={24}
         display={isModalOpen ? "flex" : "none"}
         flexDirection='column'
@@ -49,12 +51,10 @@ export const CustomModal = ({
         overflow='auto'
         padding={4}
         position='absolute'
-        bgcolor='#F9F9F9'
         sx={{ transform: "translate(-50%, -50%)" }}
         top='50%'
         width={compact ? "50%" : "90%"}
         zIndex='modal'
-        border='2px solid black'
       >
         {title && <Typography variant='h3'>{title}</Typography>}
         <IconButton

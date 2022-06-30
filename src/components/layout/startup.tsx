@@ -5,8 +5,8 @@ import { getLocalImage } from "helpers";
 export const Startup = (props: { children: JSX.Element }): JSX.Element => {
   return (
     <Box
-      height='100vh'
       bgcolor='#16B7EA'
+      height='100vh'
       width='100%'
     >
       <Box

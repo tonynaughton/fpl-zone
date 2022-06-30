@@ -5,15 +5,15 @@ import { mockAppData, mockPlayers, mockPlayerStats, mockTeams } from "test/test_
 
 import "@testing-library/jest-dom/extend-expect";
 
-import { MAX_PLAYER_COUNT, PlayerComparisonTable } from ".";
+import { ComparisonTable,MAX_PLAYER_COUNT } from ".";
 
-describe("Player comparison table tests", () => {
+describe("Comparison table tests", () => {
   let mockSelectedPlayers = mockPlayers.slice(0, 2);
 
   const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
-        <PlayerComparisonTable
+        <ComparisonTable
           onAddPlayerClick={jest.fn()}
           onRemovePlayerClick={jest.fn()}
           playerStats={mockPlayerStats}

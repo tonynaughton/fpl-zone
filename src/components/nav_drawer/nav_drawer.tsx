@@ -73,11 +73,11 @@ export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JS
       variant='permanent'
     >
       <Box
+        bgcolor='#5fdd6b'
         borderBottom='1px solid black'
         className='flex-center'
         gap={1}
         padding='1vh'
-        bgcolor='#5fdd6b'
       >
         <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         <GameweekCountdown />

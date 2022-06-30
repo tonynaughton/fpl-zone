@@ -6,7 +6,7 @@ import { AppData, Player,PlayerStat, Team } from "types";
 
 import { MAX_PLAYER_COUNT, PlayerImageCell } from ".";
 
-interface PlayerComparisonTableProps {
+interface ComparisonTableProps {
   selectedPlayers: Player[];
   teams: Team[];
   playerStats: PlayerStat[];
@@ -14,12 +14,12 @@ interface PlayerComparisonTableProps {
   onRemovePlayerClick: (player: Player) => void;
 }
 
-export const PlayerComparisonTable = ({
+export const ComparisonTable = ({
   selectedPlayers,
   playerStats,
   onAddPlayerClick,
   onRemovePlayerClick
-}: PlayerComparisonTableProps): JSX.Element => {
+}: ComparisonTableProps): JSX.Element => {
   const { teams } = useContext(AppDataContext) as AppData;
 
   return (

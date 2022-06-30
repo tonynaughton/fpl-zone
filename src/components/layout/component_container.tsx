@@ -23,6 +23,7 @@ export const ComponentContainer = ({
       width='100%'
     >
       <Box
+        bgcolor='#16B7EA'
         borderBottom='2px solid black'
         borderRight='2px solid black'
         color='#F9F9F9'
@@ -31,7 +32,6 @@ export const ComponentContainer = ({
         maxWidth='15vw'
         padding={0.8}
         position='absolute'
-        bgcolor='#16B7EA'
         top={0}
         width='auto'
         zIndex='fab'

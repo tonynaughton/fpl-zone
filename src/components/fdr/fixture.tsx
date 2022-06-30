@@ -37,13 +37,13 @@ export const Fixture = ({
         title={text}
       >
         <Box
+          bgcolor={FDR_COLOURS[difficulty]}
           className='flex-center'
           data-testid={`fixture-container-bg-${fixture.id}`}
           flexBasis={1}
           flexGrow={1}
           height='100%'
           overflow='hidden'
-          bgcolor={FDR_COLOURS[difficulty]}
         >
           <Box overflow='hidden' padding={0.5}>
             <Typography className='text-ellipsis'>{text}</Typography>
