@@ -1,11 +1,13 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { getLocalImage } from "helpers";
 
 export const Startup = (props: { children: JSX.Element }): JSX.Element => {
+  const theme = useTheme();
+
   return (
     <Box
-      bgcolor='#16B7EA'
+      bgcolor={theme.palette.primary.main}
       height='100vh'
       width='100%'
     >

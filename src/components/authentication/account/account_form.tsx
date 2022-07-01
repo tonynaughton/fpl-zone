@@ -8,7 +8,8 @@ import {
   Button,
   OutlinedInput,
   TextField,
-  Typography
+  Typography,
+  useTheme
 } from "@mui/material";
 import {
   auth,
@@ -39,6 +40,7 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
   const [notifierMessage, setNotifierMessage] = useState<string>("Fetching user data..");
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const defaultValues = {
     firstName: "",
@@ -210,7 +212,7 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
               { errorMessage &&
               <Typography
                 className='text-ellipsis'
-                color='red'
+                color={theme.palette.warning.main}
                 marginTop={2}
                 textAlign='center'
               >{errorMessage}

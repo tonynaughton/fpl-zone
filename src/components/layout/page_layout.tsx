@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 
 import { AccountForm, FplIdloginForm, LoginForm, RegisterForm, ResetForm } from "components/authentication";
 import NavDrawer from "components/nav_drawer/nav_drawer";
@@ -7,7 +7,6 @@ import { CustomModal } from "components/utils";
 
 interface LayoutProps {
   active: string;
-  direction: string;
 }
 
 export enum AuthModalView {
@@ -18,7 +17,7 @@ export enum AuthModalView {
   FplIdLogin
 };
 
-export const AppLayout = ({ active, direction, children }: React.PropsWithChildren<LayoutProps>): JSX.Element => {
+export const AppLayout = ({ active, children }: React.PropsWithChildren<LayoutProps>): JSX.Element => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
   const [authModalContent, setAuthModalContent] = useState<JSX.Element>(<></>);
   const [authModalTitle, setAuthModalTitle] = useState<string>("");
@@ -63,23 +62,17 @@ export const AppLayout = ({ active, direction, children }: React.PropsWithChildr
     <>
       <Box component='div' display='flex'>
         <NavDrawer active={active} openAuthModal={openAuthModal} />
-        <Container
+        <Box
           component='main'
-          disableGutters
-          maxWidth={false}
-          sx={{
-            p: 3,
-            flexGrow: 1,
-            height: "100vh",
-            display: "flex",
-            flexDirection: direction,
-            justifyContent: "space-between",
-            columnGap: 3,
-            rowGap: 3
-          }}
+          display='flex'
+          flexGrow={1}
+          gap={3}
+          height='100vh'
+          justifyContent='center'
+          padding={3}
         >
           {children}
-        </Container>
+        </Box>
       </Box>
       <CustomModal
         compact

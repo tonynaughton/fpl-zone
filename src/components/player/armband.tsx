@@ -1,14 +1,16 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 interface ArmbandProps {
   isVice?: boolean;
 }
 
 export const Armband = ({ isVice = false }: ArmbandProps): JSX.Element => {
+  const theme = useTheme();
+
   return (
     <Box
-      bgcolor='rgb(240, 240, 240, 1)'
+      bgcolor={theme.palette.info.main}
       border='1px solid black'
       borderRadius='50%'
       className='flex-center'

@@ -40,12 +40,12 @@ export const ComparisonTable = ({
           <TableCell className='first-table-cell' component='td' />
           {selectedPlayers.map((player, key) => (
             <TableCell className='standard-table-cell' component='td' key={key}>
-              <PlayerImageCell onRemovePlayerClick={onRemovePlayerClick} player={player} />
+              <PlayerImageCell onButtonClick={(): void => onRemovePlayerClick(player)} player={player} />
             </TableCell>
           ))}
           {selectedPlayers.length < MAX_PLAYER_COUNT &&
             <TableCell className='standard-table-cell' component='td'>
-              <PlayerImageCell onAddPlayerClick={onAddPlayerClick} />
+              <PlayerImageCell onButtonClick={onAddPlayerClick} />
             </TableCell>}
         </TableRow>
         <TableRow component='tr'>

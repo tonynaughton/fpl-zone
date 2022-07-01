@@ -1,6 +1,6 @@
 import React from "react";
 import { Info } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { getLocalImage } from "helpers";
 import { Player as PlayerType } from "types/player";
 
@@ -23,6 +23,7 @@ export default function Player({
   isCaptain = false,
   isViceCaptain = false
 }: PlayerProps): JSX.Element {
+  const theme = useTheme();
 
   const url = `kits/${player.team_code}.png`;
 
@@ -56,7 +57,7 @@ export default function Player({
         width='100%'
       >
         <Box
-          bgcolor='#16B7EA'
+          bgcolor={theme.palette.primary.main}
           className='flex-center'
           flexGrow={1}
           overflow='hidden'
@@ -65,13 +66,14 @@ export default function Player({
         >
           <Typography
             className='text-ellipsis'
+            color={theme.palette.info.main}
             data-testid='player-name'
           >
-            {player.web_name}
+            {player.web_name.toUpperCase()}
           </Typography>
         </Box>
         <Box
-          bgcolor='#5fdd6b'
+          bgcolor={theme.palette.secondary.main}
           className='flex-center'
           overflow='hidden'
         >
@@ -92,7 +94,7 @@ export default function Player({
           padding={0.5}
           sx={{ "& :hover": { cursor: "pointer" } }}
         >
-          <Info sx={{ color: "white", fontSize: "2vh" }} />
+          <Info color='info' sx={{ fontSize: "2vh" }} />
         </Box>
       </Box>
     </Box>

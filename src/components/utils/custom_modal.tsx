@@ -1,6 +1,6 @@
 import React from "react";
 import { Close } from "@mui/icons-material";
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 
 interface CustomModalProps {
   isModalOpen: boolean;
@@ -23,6 +23,8 @@ export const CustomModal = ({
   testId,
   children
 }: CustomModalProps): JSX.Element => {
+  const theme = useTheme();
+
   return (
     <Box
       bgcolor='rgb(0, 0, 0, 0.5)'
@@ -38,7 +40,7 @@ export const CustomModal = ({
     >
       <Box
         alignItems='center'
-        bgcolor='#F9F9F9'
+        bgcolor={theme.palette.info.main}
         border='2px solid black'
         boxShadow={24}
         display={isModalOpen ? "flex" : "none"}
@@ -46,14 +48,14 @@ export const CustomModal = ({
         gap={2}
         left='50%'
         maxHeight='90%'
-        maxWidth={compact ? "50rem" : "70rem"}
+        maxWidth={compact ? "30rem" : "70rem"}
         onClick={(event): void => event.stopPropagation()}
         overflow='auto'
-        padding={4}
+        padding={5}
         position='absolute'
         sx={{ transform: "translate(-50%, -50%)" }}
         top='50%'
-        width={compact ? "50%" : "90%"}
+        width='90%'
         zIndex='modal'
       >
         {title && <Typography variant='h3'>{title}</Typography>}
@@ -91,7 +93,7 @@ export const CustomModal = ({
                 <Typography>Confirm</Typography>
               </Button>}
           </Box>
-        ) }
+        )}
       </Box>
     </Box>
   );

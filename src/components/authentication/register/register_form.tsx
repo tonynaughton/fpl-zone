@@ -49,6 +49,8 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
 
   const onRegisterClick: SubmitHandler<FormInput> = async (data: FormInput) => {
     if (data.password !== data.repeatPassword) {
+      setErrorMessage("Passwords do not match");
+
       return;
     }
 
@@ -70,8 +72,6 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
     <Box
       className='flex-center'
       flexDirection='column'
-      paddingLeft={15}
-      paddingRight={15}
       width='100%'
     >
       <form className='auth-form' onSubmit={handleSubmit(onRegisterClick)}>
@@ -203,12 +203,8 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
           <Typography textTransform='none' variant='h3'>Register</Typography>
         </Button>
       </form>
-      <Link
-        onClick={(): void => openAuthModal(AuthModalView.Login)}
-        sx={{ cursor: "pointer" }}
-        underline='none'
-      >
-        <Typography color='black' sx={{ mt: 2 }} textAlign='center'>Already have an account? Login now.</Typography>
+      <Link onClick={(): void => openAuthModal(AuthModalView.Login)}>
+        <Typography sx={{ mt: 2 }} textAlign='center'>Already have an account? Login now.</Typography>
       </Link>
     </Box>
   );

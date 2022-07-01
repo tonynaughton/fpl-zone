@@ -131,6 +131,7 @@ export const AddPlayersModal = ({
           borderRadius={1}
           flexGrow={1}
           marginBottom={1}
+          maxHeight='100%'
           minHeight='50vh'
           overflow='auto'
           width='100%'

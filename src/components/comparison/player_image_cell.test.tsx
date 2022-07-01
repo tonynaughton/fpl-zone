@@ -10,17 +10,12 @@ import "@testing-library/jest-dom/extend-expect";
 import { PlayerImageCell } from ".";
 
 describe("Player image cell tests", () => {
-  const mockOnAddPlayerClick = jest.fn();
-  const mockOnRemovePlayerClick = jest.fn();
+  const mockOnButtonClick = jest.fn();
 
   const createComponent = (player?: Player): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
-        <PlayerImageCell
-          onAddPlayerClick={mockOnAddPlayerClick}
-          onRemovePlayerClick={mockOnRemovePlayerClick}
-          player={player}
-        />
+        <PlayerImageCell onButtonClick={mockOnButtonClick} player={player} />
       </AppDataContext.Provider>
     );
   };
@@ -43,7 +38,7 @@ describe("Player image cell tests", () => {
       const container = screen.getByTestId("player-image-container-placeholder");
       fireEvent.click(container);
 
-      expect(mockOnAddPlayerClick).toHaveBeenCalledTimes(1);
+      expect(mockOnButtonClick).toHaveBeenCalledTimes(1);
     });
 
     it("add button present", () => {
@@ -83,7 +78,7 @@ describe("Player image cell tests", () => {
       const container = screen.getByTestId(`player-image-container-${mockPlayer.id}`);
       fireEvent.click(container);
 
-      expect(mockOnAddPlayerClick).toHaveBeenCalledTimes(0);
+      expect(mockOnButtonClick).toHaveBeenCalledTimes(0);
     });
 
     it("add button not present", () => {
@@ -104,7 +99,7 @@ describe("Player image cell tests", () => {
 
       fireEvent.click(removeButton);
 
-      expect(mockOnRemovePlayerClick).toHaveBeenCalledTimes(1);
+      expect(mockOnButtonClick).toHaveBeenCalledTimes(1);
     });
   });
 });

@@ -6,7 +6,8 @@ import {
   Divider,
   Link,
   TextField,
-  Typography
+  Typography,
+  useTheme
 } from "@mui/material";
 import { logInWithEmailAndPassword } from "config";
 import { isError } from "lodash";
@@ -30,6 +31,7 @@ interface FormInput {
 
 export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const theme = useTheme();
 
   const defaultValues = {
     email: "",
@@ -66,8 +68,6 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
     <Box
       className='flex-center'
       flexDirection='column'
-      paddingLeft={15}
-      paddingRight={15}
       width='100%'
     >
       <form className='auth-form' onSubmit={handleSubmit(onLoginClick)}>
@@ -107,7 +107,7 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
         { errorMessage &&
           <Typography
             className='text-ellipsis'
-            color='red'
+            color={theme.palette.warning.main}
             marginTop={2}
             textAlign='center'
           >{errorMessage}
@@ -122,12 +122,8 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
           <Typography textTransform='none' variant='h3'>Login</Typography>
         </Button>
       </form>
-      <Link
-        onClick={(): void => openAuthModal(AuthModalView.Reset)}
-        sx={{ cursor: "pointer" }}
-        underline='none'
-      >
-        <Typography color='black' sx={{ mt: 2 }}>Forgotten password?</Typography>
+      <Link onClick={(): void => openAuthModal(AuthModalView.Reset)}>
+        <Typography sx={{ mt: 2 }}>Forgotten password?</Typography>
       </Link>
       <Divider sx={{ p: 3, width: "100%" }}><Typography variant='h4'>OR</Typography></Divider>
       <Box
@@ -138,12 +134,8 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
       >
         <GoogleLoginButton />
         <FplIdLoginButton openAuthModal={openAuthModal} />
-        <Link
-          onClick={(): void => openAuthModal(AuthModalView.Register)}
-          sx={{ cursor: "pointer" }}
-          underline='none'
-        >
-          <Typography color='black'>Don&apos;t have an account? Click to register.</Typography>
+        <Link onClick={(): void => openAuthModal(AuthModalView.Register)} >
+          <Typography>Don&apos;t have an account? Click to register.</Typography>
         </Link>
       </Box>
     </Box>

@@ -38,8 +38,6 @@ export const ResetForm = ({ openAuthModal }: ResetFormProps): JSX.Element => {
     <Box
       className='flex-center'
       flexDirection='column'
-      paddingLeft={15}
-      paddingRight={15}
       width='100%'
     >
       <form className='auth-form' onSubmit={handleSubmit(onResetClick)}>
@@ -79,12 +77,8 @@ export const ResetForm = ({ openAuthModal }: ResetFormProps): JSX.Element => {
           <Typography textTransform='none' variant='h3'>Reset</Typography>
         </Button>
       </form>
-      <Link
-        onClick={(): void => openAuthModal(AuthModalView.Login)}
-        sx={{ cursor: "pointer" }}
-        underline='none'
-      >
-        <Typography color='black' sx={{ mt: 2 }} textAlign='center'>Return to Login</Typography>
+      <Link onClick={(): void => openAuthModal(AuthModalView.Login)}>
+        <Typography sx={{ mt: 2 }} textAlign='center'>Return to Login</Typography>
       </Link>
     </Box>
   );

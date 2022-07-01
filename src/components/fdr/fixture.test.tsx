@@ -1,17 +1,20 @@
 import React from "react";
+import { useTheme } from "@mui/material";
 import { render, screen } from "@testing-library/react";
 import { AppDataContext } from "app_content";
 import { getTeamById } from "helpers";
 import { mockAppData, mockFixtures, mockPlayers, mockTeams } from "test/test_data";
 import { Fixture as FixtureType, Player, Team } from "types";
 
-import { BaseItem, FDR_COLOURS } from "components/fdr/fdr";
+import { BaseItem } from "components/fdr/fdr";
 
 import "@testing-library/jest-dom/extend-expect";
 
 import { Fixture } from "./fixture";
 
 describe("Fixture Tests", () => {
+  const theme = useTheme();
+
   let mockFixturesProp: FixtureType[];
   let mockBaseItem: BaseItem;
   let mockIsPlayerTable: boolean;
@@ -43,7 +46,7 @@ describe("Fixture Tests", () => {
   const testContainerBackground = (fixture: FixtureType, teamId: number): void => {
     const isHome = fixture.team_h === teamId;
     const difficulty = isHome ? fixture.team_h_difficulty : fixture.team_a_difficulty;
-    const difficultyColour = FDR_COLOURS[difficulty];
+    const difficultyColour = theme.palette.fdr[difficulty];
     const singleFixtureBox = screen.getByTestId(`fixture-container-bg-${fixture.id}`);
 
     expect(singleFixtureBox).toHaveStyle(`background-color: ${difficultyColour}`);

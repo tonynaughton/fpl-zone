@@ -2,10 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CssBaseline } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme,ThemeProvider } from "@mui/material/styles";
 import AppContent from "app_content";
 
 import "./global.css";
+
+declare module "@mui/material/styles" {
+  export interface PaletteOptions {
+    fdr: Record<string, string>;
+    highlight: Record<string, string>;
+  }
+
+  export interface Palette {
+    fdr: Record<string, string>;
+    highlight: Record<string, string>;
+  }
+}
 
 const breakpoints = {
   values: {
@@ -21,11 +33,12 @@ const theme = createTheme({
   breakpoints,
   palette: {
     primary: {
-      main: "#16B7EA",
+      main: "#167BFF",
       contrastText: "#F9F9F9"
     },
     secondary: {
-      main: "#7EFF83"
+      main: "#72F15F",
+      contrastText: "#000000"
     },
     info: {
       main: "#F9F9F9"
@@ -38,7 +51,25 @@ const theme = createTheme({
       secondary: "#16B7EA"
     },
     warning: {
-      main: "#c30000"
+      main: "#DF2935",
+      contrastText: "#F9F9F9"
+    },
+    error: {
+      main: "#FF686B"
+    },
+    success: {
+      main: "#64F58D",
+      contrastText: "#000000"
+    },
+    highlight: {
+      main: "#E0E0E0"
+    },
+    fdr: {
+      1: "#09BA59",
+      2: "#93E02D",
+      3: "#F5CF38",
+      4: "#DE7628",
+      5: "#FF193C"
     }
   },
   shape: {
@@ -62,14 +93,18 @@ const theme = createTheme({
         }
       }
     },
-    MuiInputBase: {
+    MuiLink: {
       styleOverrides: {
         root: {
-          backgroundColor: "#F9F9F9"
-        },
-        input: {
-          color: "black"
+          color: "black",
+          cursor: "pointer",
+          "&:hover": {
+            color: "#167BFF"
+          }
         }
+      },
+      defaultProps: {
+        underline: "none"
       }
     }
   }
