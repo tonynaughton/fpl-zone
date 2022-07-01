@@ -55,11 +55,9 @@ export const AddPlayersModal = ({
   };
 
   const memoizedTable = useMemo(() => AddPlayersTable({
-    onPlayerToggle,
-    displayedPlayers,
-    tempSelectedPlayers
+    displayedPlayers
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [displayedPlayers, tempSelectedPlayers]);
+  }), [displayedPlayers]);
 
   const performSearch = (input: string): void => {
     const normalizedInput = getNormalizedString(input);
@@ -130,6 +128,7 @@ export const AddPlayersModal = ({
           border='1px solid gray'
           borderRadius={1}
           flexGrow={1}
+          height='100%'
           marginBottom={1}
           maxHeight='100%'
           minHeight='50vh'
