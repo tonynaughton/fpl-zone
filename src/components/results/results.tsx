@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
-import { Box, IconButton, Tooltip, Typography } from "@mui/material";
+import { Box, IconButton, Tooltip, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { AppData, CustomResult, Fixture, Gameweek } from "types";
 
@@ -9,6 +9,8 @@ import { Result } from "./result";
 
 export default function Results(): JSX.Element {
   const { gameweeks, fixtures } = useContext(AppDataContext) as AppData;
+  const theme = useTheme();
+
   const latestGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
 
   const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
@@ -91,7 +93,7 @@ export default function Results(): JSX.Element {
               sx={{
                 "&:last-child": { border: "none" },
                 "&:hover": {
-                  bgcolor: matchStarted ? "rgb(224, 224, 224)" : "inherit",
+                  bgcolor: matchStarted ? theme.palette.highlight.main : "inherit",
                   cursor: matchStarted ? "pointer" : "default"
                 }
               }}

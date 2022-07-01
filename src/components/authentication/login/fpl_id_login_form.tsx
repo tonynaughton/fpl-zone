@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Controller,SubmitHandler, useForm } from "react-hook-form";
-import { Box, Button, Link,OutlinedInput, Typography } from "@mui/material";
+import { Box, Button, Link,OutlinedInput, Typography, useTheme } from "@mui/material";
 import { getTeamData } from "api/fpl_api_provider";
 import { FplIdContext } from "app_content";
 
@@ -20,6 +20,7 @@ interface FormInput {
 export const FplIdloginForm = ({ openAuthModal, closeAuthModal }: FplIdLoginFormProps): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const { setFplId } = useContext(FplIdContext);
+  const theme = useTheme();
 
   const defaultValues = { fplId: "" };
 
@@ -59,8 +60,6 @@ export const FplIdloginForm = ({ openAuthModal, closeAuthModal }: FplIdLoginForm
     <Box
       className='flex-center'
       flexDirection='column'
-      paddingLeft={15}
-      paddingRight={15}
       width='100%'
     >
       <form className='auth-form' onSubmit={handleSubmit(onLoginClick)}>
@@ -98,7 +97,7 @@ export const FplIdloginForm = ({ openAuthModal, closeAuthModal }: FplIdLoginForm
         { errorMessage &&
           <Typography
             className='text-ellipsis'
-            color='red'
+            color={theme.palette.warning.main}
             marginTop={2}
             textAlign='center'
           >{errorMessage}
@@ -113,12 +112,8 @@ export const FplIdloginForm = ({ openAuthModal, closeAuthModal }: FplIdLoginForm
           <Typography textTransform='none' variant='h3'>Login with FPL ID</Typography>
         </Button>
       </form>
-      <Link
-        onClick={(): void => openAuthModal(AuthModalView.Login)}
-        sx={{ cursor: "pointer" }}
-        underline='none'
-      >
-        <Typography color='black' sx={{ mt: 2 }} textAlign='center'>Return to Login</Typography>
+      <Link onClick={(): void => openAuthModal(AuthModalView.Login)}>
+        <Typography sx={{ mt: 2 }} textAlign='center'>Return to Login</Typography>
       </Link>
     </Box>
   );

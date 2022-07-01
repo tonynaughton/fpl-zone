@@ -31,7 +31,7 @@ export const GameweekLivePage = (): JSX.Element => {
   };
 
   return (
-    <AppLayout active='gameweek live' direction='row'>
+    <AppLayout active='gameweek live'>
       <Box
         className='flex-center'
         gap={3}

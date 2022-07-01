@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import { FplIdContext } from "app_content";
 import { auth, logout } from "config";
@@ -16,16 +16,21 @@ interface NavDrawerProps {
   openAuthModal: (value: AuthModalView) => void;
 }
 
+export interface MenuItemType {
+  label: string;
+  href?: string;
+  onItemClick?: () => void;
+}
+
 export interface MenuItems {
-  nav: { label: string; href: string }[];
-  auth: { label: string; onItemClick: () => void }[];
+  nav: MenuItemType[];
+  auth: MenuItemType[];
 }
 
 export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JSX.Element {
   const { fplId, setFplId } = useContext(FplIdContext);
-  const [user, loading] = useAuthState(auth);
-
-  if (loading) return <></>;
+  const [user] = useAuthState(auth);
+  const theme = useTheme();
 
   const onLogoutClick = (): void => {
     if (fplId) {
@@ -54,30 +59,28 @@ export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JS
       ]
   };
 
-  const drawerWidth = "12vw";
-
   return (
     <Drawer
       anchor='left'
       sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        borderRight: "5px solid black",
+        p: 0,
+        width: "12vw",
+        maxWidth: "15em",
         "& .MuiDrawer-paper": {
-          width: drawerWidth,
-          boxSizing: "border-box",
-          bgcolor: "#16B7EA",
-          borderRight: "1px solid black"
+          width: "inherit",
+          maxWidth: "inherit",
+          bgcolor: theme.palette.primary.main,
+          borderRight: "2px solid black"
         }
       }}
       variant='permanent'
     >
       <Box
-        bgcolor='#5fdd6b'
-        borderBottom='1px solid black'
+        bgcolor={theme.palette.secondary.main}
+        borderBottom='2px solid black'
         className='flex-center'
         gap={1}
-        padding='1vh'
+        padding={1}
       >
         <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         <GameweekCountdown />

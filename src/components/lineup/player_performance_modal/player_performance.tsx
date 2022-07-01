@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Table, TableBody,TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Table, TableBody,TableCell, TableContainer, TableHead, TableRow, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { pickBy } from "lodash";
 import { AppData, CustomResult, Player,PlayerPerformance as PlayerPerformanceType } from "types";
@@ -13,6 +13,7 @@ interface PlayerPerformanceProps {
 
 export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProps): JSX.Element => {
   const { playerStats } = useContext(AppDataContext) as AppData;
+  const theme = useTheme();
 
   const customResult: CustomResult = {
     team_h: performance.was_home ? player.team : performance.opponent_team,
@@ -42,7 +43,7 @@ export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProp
             }}
           >
             <TableHead>
-              <TableRow sx={{ backgroundColor: "rgb(224, 224, 224)" }}>
+              <TableRow sx={{ backgroundColor: theme.palette.highlight.main }}>
                 <TableCell>
                   <Typography>Statistic</Typography>
                 </TableCell>

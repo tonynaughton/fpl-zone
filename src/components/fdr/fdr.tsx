@@ -12,6 +12,7 @@ import {
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import { GAME_STATUS_VALUES } from "helpers";
+import { useNextFiveTeamFixtures } from "hooks";
 import { useNextFiveGameweekIds } from "hooks/use_next_five_gameweek_ids";
 import { isEmpty, map } from "lodash";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
@@ -28,22 +29,15 @@ interface FdrTableProps {
   players?: Player[];
 }
 
-export const FDR_COLOURS = {
-  1: "#09BA59",
-  2: "#93E02D",
-  3: "#F5CF38",
-  4: "#DE7628",
-  5: "#FF193C"
-};
+interface NextFiveTeamFixturesProps {
+  item: BaseItem;
+}
 
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<FixtureType[][]>([]);
   const [fdrStatus, setFdrStatus] = useState<string>("Fetching fixture data..");
-
   const { teams } = useContext(AppDataContext) as AppData;
-
   const baseItem = players || teams;
-
   const nextFiveGameweekIds = useNextFiveGameweekIds();
 
   useEffect(() => {
@@ -63,20 +57,28 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getNextFiveTeamFixtures = (baseItem: BaseItem, fixtures: FixtureType[][]): FixtureType[][] => {
-    const teamId = players ? (baseItem as Player).team : (baseItem as Team).id;
+  const TeamFixturesRow = ({ item }: NextFiveTeamFixturesProps): JSX.Element => {
+    const teamFixtures = useNextFiveTeamFixtures(item, nextFiveGameweekFixtures);
 
-    return fixtures.map((gameweek) => {
-      return gameweek.filter((f) => f.team_h === teamId || f.team_a === teamId);
-    });
+    return (
+      <TableRow data-testid={`fixture-row-${item.id}`}>
+        <TableCell width={baseItemCellWidth}>
+          <BaseItemName baseItem={item} />
+        </TableCell>
+        {map(teamFixtures, (fixtures, key) => (
+          <TableCell key={key}>
+            <Fixture
+              baseItem={item}
+              fixtures={fixtures}
+              isPlayerTable={!!players}
+            />
+          </TableCell>
+        ))}
+      </TableRow>
+    );
   };
 
   const baseItemCellWidth = "20%";
-  const customCellStyle = {
-    p: 0,
-    bgcolor: "rgba(240, 240, 240, 1)",
-    border: "1px solid rgba(200, 200, 200, 1)"
-  };
 
   return isEmpty(nextFiveGameweekFixtures)
     ? (
@@ -98,49 +100,27 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
             sx={{
               tableLayout: "fixed",
               height: "100%",
-              flexGrow: "1",
-              borderCollapse: "collapse"
+              "& .MuiTableCell-root": {
+                p: 0,
+                border: "0.5px solid black"
+              }
             }}
           >
             <TableHead>
-              <TableRow data-testid='table-head-column-title'>
-                <TableCell
-                  sx={{ height: "5vh", ...customCellStyle }}
-                  width={baseItemCellWidth}
-                />
+              <TableRow
+                data-testid='table-head-column-title'
+                sx={{ "& .MuiTableCell-root": { height: "5vh" } }}
+              >
+                <TableCell width={baseItemCellWidth} />
                 {nextFiveGameweekIds.map((gameweekNumber, index) => (
-                  <TableCell key={index} sx={{ height: "5vh", ...customCellStyle }}>
+                  <TableCell key={index}>
                     <Typography textAlign='center'>GW {gameweekNumber}</Typography>
                   </TableCell>
                 ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {baseItem.map((item: BaseItem, key: number) => {
-                const teamFixtures = getNextFiveTeamFixtures(item, nextFiveGameweekFixtures);
-
-                return (
-                  <TableRow data-testid={`fixture-row-${item.id}`} key={key}>
-                    <TableCell
-                      key={key}
-                      scope='row'
-                      sx={customCellStyle}
-                      width={baseItemCellWidth}
-                    >
-                      <BaseItemName baseItem={item} />
-                    </TableCell>
-                    {map(teamFixtures, (fixtures, key) => (
-                      <TableCell key={key} sx={{ p: 0, border: "0.5px solid black" }}>
-                        <Fixture
-                          baseItem={item}
-                          fixtures={fixtures}
-                          isPlayerTable={!!players}
-                        />
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                );
-              })}
+              {baseItem.map((item: BaseItem, key: number) => <TeamFixturesRow item={item} key={key} />)}
             </TableBody>
           </Table>
         </TableContainer>

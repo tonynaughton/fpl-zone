@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Box, List, ListItemButton, ListItemText } from "@mui/material";
+import { Box, List } from "@mui/material";
 
+import { MenuItem } from "./menu_item";
 import { MenuItems } from "./nav_drawer";
 
 interface MenuListProps {
@@ -18,63 +18,14 @@ export const MenuList = ({ items, active }: MenuListProps): JSX.Element => (
     width='100%'
   >
     <List>
-      {items.nav.map((item, key: number) => {
-        return (
-          <ListItemButton
-            component={Link}
-            disableRipple
-            key={key}
-            sx={{
-              p: "1vw",
-              "&:hover": { bgcolor: "inherit" },
-              width: "100%"
-            }}
-            to={item.href}
-          >
-            <ListItemText
-              data-testid='menu-list-item-text'
-              primary={item.label.toUpperCase()}
-              primaryTypographyProps={{
-                variant: "h2",
-                width: "100%",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                ...(item.label === active ? { color: "black" } : { color: "white" }),
-                sx: { "&:hover": { color: "black" } }
-              }}
-            />
-          </ListItemButton>
-        );
-      })}
+      {items.nav.map((item, key: number) => (
+        <MenuItem active={active === item.label} item={item} key={key} />
+      ))}
     </List>
     <List>
-      {items.auth.map((item, key: number) => {
-        return (
-          <ListItemButton
-            disableRipple
-            key={key}
-            onClick={item.onItemClick}
-            sx={{
-              p: "1vw",
-              "&:hover": { bgcolor: "inherit" },
-              width: "100%"
-            }}
-          >
-            <ListItemText
-              data-testid='menu-list-item-text'
-              primary={item.label.toUpperCase()}
-              primaryTypographyProps={{
-                variant: "h2",
-                width: "100%",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                ...(item.label === active ? { color: "black" } : { color: "white" }),
-                sx: { "&:hover": { color: "black" } }
-              }}
-            />
-          </ListItemButton>
-        );
-      })}
+      {items.auth.map((item, key: number) => (
+        <MenuItem item={item} key={key} />
+      ))}
     </List>
   </Box>
 );

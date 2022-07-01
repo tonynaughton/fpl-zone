@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { Box, Tooltip, Typography } from "@mui/material";
+import { Box, Tooltip, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getTeamById } from "helpers";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
-import { BaseItem, FDR_COLOURS } from "./fdr";
+import { BaseItem } from "./fdr";
 
 interface FixtureProps {
   fixtures: FixtureType[];
@@ -23,6 +23,7 @@ export const Fixture = ({
 }: FixtureProps): JSX.Element => {
   const SingleFixture = ({ fixture }: SingleFixtureProps): JSX.Element => {
     const { teams } = useContext(AppDataContext) as AppData;
+    const theme = useTheme();
 
     const teamId = isPlayerTable ? (baseItem as Player).team : (baseItem as Team).id;
     const isHome = fixture.team_h === teamId;
@@ -37,7 +38,7 @@ export const Fixture = ({
         title={text}
       >
         <Box
-          bgcolor={FDR_COLOURS[difficulty]}
+          bgcolor={theme.palette.fdr[difficulty]}
           className='flex-center'
           data-testid={`fixture-container-bg-${fixture.id}`}
           flexBasis={1}

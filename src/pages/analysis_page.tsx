@@ -5,7 +5,7 @@ import { AppLayout, ComponentContainer } from "components/layout";
 
 export const AnalysisPage = (): JSX.Element => {
   return (
-    <AppLayout active='analysis' direction='row'>
+    <AppLayout active='analysis'>
       <ComponentContainer title='comparison'><PlayerComparison /></ComponentContainer>
     </AppLayout>
   );

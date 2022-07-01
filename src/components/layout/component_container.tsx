@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 interface ComponentContainerProps {
   title: string;
@@ -12,6 +12,7 @@ export const ComponentContainer = ({
   title,
   children
 }: ComponentContainerProps): JSX.Element => {
+  const theme = useTheme();
 
   return (
     <Box
@@ -23,10 +24,10 @@ export const ComponentContainer = ({
       width='100%'
     >
       <Box
-        bgcolor='#16B7EA'
+        bgcolor={theme.palette.primary.main}
         borderBottom='2px solid black'
         borderRight='2px solid black'
-        color='#F9F9F9'
+        color={theme.palette.primary.contrastText}
         height='auto'
         left={0}
         maxWidth='15vw'
