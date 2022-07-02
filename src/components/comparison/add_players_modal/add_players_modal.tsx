@@ -54,11 +54,6 @@ export const AddPlayersModal = ({
     }
   };
 
-  const memoizedTable = useMemo(() => AddPlayersTable({
-    displayedPlayers
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [displayedPlayers]);
-
   const performSearch = (input: string): void => {
     const normalizedInput = getNormalizedString(input);
 
@@ -135,7 +130,11 @@ export const AddPlayersModal = ({
           overflow='auto'
           width='100%'
         >
-          {memoizedTable}
+          <AddPlayersTable
+            displayedPlayers={displayedPlayers}
+            tempSelectedPlayers={selectedPlayers}
+            setTempSelectedPlayers={setTempSelectedPlayers}
+          />
         </Box>
       </>
     </CustomModal>

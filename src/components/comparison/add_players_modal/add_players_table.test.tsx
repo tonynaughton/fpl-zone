@@ -13,14 +13,15 @@ import { AddPlayersTable } from "..";
 describe("Add players table tests", () => {
   const mockAllPlayers = mockPlayers;
   let mockTempSelectedPlayers: Player[];
-
-  const mockOnPlayerToggle = jest.fn();
+  const mocksetTempSelectedPlayers = jest.fn();
 
   const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
         <AddPlayersTable
           displayedPlayers={mockAllPlayers}
+          tempSelectedPlayers={mockTempSelectedPlayers}
+          setTempSelectedPlayers={mocksetTempSelectedPlayers}
         />
       </AppDataContext.Provider>
     );
