@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { Box, IconButton, Tooltip, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { AppData, CustomResult, Fixture, Gameweek } from "types";
+import { AppData, CustomResult, Fixture } from "types";
 
 import MatchDetailsModal from "./match_details_modal/match_details_modal";
 import { Result } from "./result";
@@ -11,9 +11,9 @@ export default function Results(): JSX.Element {
   const { gameweeks, fixtures } = useContext(AppDataContext) as AppData;
   const theme = useTheme();
 
-  const latestGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
+  const currentGameweek = gameweeks.find((gw) => gw.is_current);
 
-  const [selectedGameweek, setSelectedGameweek] = useState<number>(latestGameweek.id);
+  const [selectedGameweek, setSelectedGameweek] = useState<number>(currentGameweek?.id || 1);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
   const [isResultsModalOpen, setResultsModalOpen] = useState<boolean>(false);
   const [selectedResult, setSelectedResult] = useState<Fixture | null>(null);
