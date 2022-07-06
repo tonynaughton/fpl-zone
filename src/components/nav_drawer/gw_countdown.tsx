@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Countdown from "react-countdown";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { AppData } from "types";
 import { Gameweek } from "types/gameweek";
@@ -31,7 +31,13 @@ export const GameweekCountdown = (): JSX.Element => {
     const countdown = [daysLabel, hoursLabel, minsLabel].join(" ");
     if (completed) {
       return (
-        <Typography className='text-ellipsis' variant='h5'>
+        <Typography
+          className='text-ellipsis'
+          p={1}
+          textAlign='center'
+          variant='h4'
+          width='100%'
+        >
           {gameweekName.toUpperCase()}
           <br />
           IN PROGRESS
@@ -40,7 +46,13 @@ export const GameweekCountdown = (): JSX.Element => {
     }
 
     return (
-      <Typography className='text-ellipsis' variant='h5'>
+      <Typography
+        className='text-ellipsis'
+        p={1}
+        textAlign='center'
+        variant='h5'
+        width='100%'
+      >
         {gameweekName} DEADLINE:
         <br />
         {countdown.toUpperCase()}
@@ -50,8 +62,6 @@ export const GameweekCountdown = (): JSX.Element => {
   };
 
   return (
-    <Box data-testid='gameweek-deadline-container' textAlign='center'>
-      <Countdown date={deadline} renderer={renderer} />
-    </Box>
+    <Countdown date={deadline} renderer={renderer} />
   );
 };

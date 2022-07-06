@@ -58,7 +58,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
 
     fetchNextFiveGameweekFixtures();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nextFiveGameweekIds]);
+  }, []);
 
   const TeamFixturesRow = ({ item }: NextFiveTeamFixturesProps): JSX.Element => {
     const teamFixtures = useNextFiveTeamFixtures(item, nextFiveGameweekFixtures);
