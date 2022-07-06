@@ -2,26 +2,31 @@ import React from "react";
 import { Warning } from "@mui/icons-material";
 import { Box, CircularProgress, Typography } from "@mui/material";
 
+export enum NotifierType {
+  Error,
+  Warning,
+  Loading,
+}
 interface LoadingMessageProps {
-  type?: string;
+  type?: NotifierType;
   message?: string;
 }
 
 export const DEFAULT_NOTIFIER_MESSAGE = "Loading..";
 
 export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element => {
-  const renderIcon = (): JSX.Element => {
+  const NotifierIcon = (): JSX.Element => {
     const iconStyle = {
       fontSize: "3vw",
       color: "black"
     };
 
     switch (type) {
-    case "error":
+    case NotifierType.Error:
       return <Warning data-testid='error-icon' sx={iconStyle} />;
-    case "warning":
+    case NotifierType.Warning:
       return <Warning data-testid='warning-icon' sx={iconStyle} />;
-    case "loading":
+    case NotifierType.Loading:
       return <CircularProgress data-testid='loading-icon' sx={iconStyle} />;
     default:
       return <CircularProgress data-testid='default-icon' sx={iconStyle} />;
@@ -40,7 +45,7 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
       margin='auto'
       width='80%'
     >
-      {renderIcon()}
+      <NotifierIcon />
       <Typography textAlign='center'>{message || DEFAULT_NOTIFIER_MESSAGE}</Typography>
     </Box>
   );

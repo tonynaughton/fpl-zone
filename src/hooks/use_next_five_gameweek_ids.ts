@@ -11,9 +11,7 @@ export const useNextFiveGameweekIds = (): number[] => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const lastGwId = maxBy(gameweeks, "id")!.id;
 
-  const nextFiveGameweekIds = nextGwId
+  return nextGwId
     ? range(nextGwId, ((nextGwId + 5) >= (lastGwId + 1) ? (lastGwId + 1) : nextGwId + 5))
     : [];
-
-  return nextFiveGameweekIds;
 };

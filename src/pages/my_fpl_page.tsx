@@ -9,7 +9,7 @@ import _ from "lodash";
 import { AppData,Gameweek } from "types";
 
 import FdrTable from "components/fdr/fdr";
-import { AppLayout, ComponentContainer, Notifier } from "components/layout";
+import { AppLayout, ComponentContainer, Notifier, NotifierType } from "components/layout";
 import { MyTeam } from "components/my_team/my_team";
 
 export const MyFPLPage = (): JSX.Element => {
@@ -49,16 +49,16 @@ export const MyFPLPage = (): JSX.Element => {
   );
 
   const checkConditions = (): JSX.Element | void => {
-    if (teamDataFetchError) return <Notifier message='Error getting your team data - is your FPL ID correct?' type='error' />;
-    if (teamPicksFetchError) return <Notifier message='Error getting your team picks - is your FPL ID correct?' type='error' />;
+    if (teamDataFetchError) return <Notifier message='Error getting your team data - is your FPL ID correct?' type={NotifierType.Error} />;
+    if (teamPicksFetchError) return <Notifier message='Error getting your team picks - is your FPL ID correct?' type={NotifierType.Error} />;
     if (teamDataFetchIsLoading || teamPicksFetchIsLoading) return <Notifier message='Fetching data..' />;
   };
 
   const renderTeamComponent = (): JSX.Element => {
     if (!fplId) {
-      if (!user) return <Notifier message='You must login with an FPL ID to view this data' type='error' />;
+      if (!user) return <Notifier message='You must login with an FPL ID to view this data' type={NotifierType.Error} />;
 
-      return <Notifier message='You must add an FPL ID to your account to view this data' type='error' />;
+      return <Notifier message='You must add an FPL ID to your account to view this data' type={NotifierType.Error} />;
     }
 
     checkConditions();
@@ -72,9 +72,9 @@ export const MyFPLPage = (): JSX.Element => {
 
   const renderFdrTable = (): JSX.Element => {
     if (!fplId) {
-      if (!user) return <Notifier message='You must login with an FPL ID to view this data' type='error' />;
+      if (!user) return <Notifier message='You must login with an FPL ID to view this data' type={NotifierType.Error} />;
 
-      return <Notifier message='You must add an FPL ID to your account to view this data' type='error' />;
+      return <Notifier message='You must add an FPL ID to your account to view this data' type={NotifierType.Error} />;
     }
 
     if (teamPicks) {

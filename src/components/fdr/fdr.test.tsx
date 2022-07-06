@@ -3,7 +3,8 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { AppDataContext } from "app_content";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { GAME_STATUS_VALUES, getTeamCrestImageUrl } from "helpers";
+import { getTeamCrestImageUrl } from "helpers";
+import { GAME_STATUS_MESSAGES } from "hooks/use_game_status";
 import { mockAppData,mockFixtures, mockPlayers, mockTeams } from "test";
 import { Player } from "types";
 
@@ -112,7 +113,7 @@ describe("FDR Tests", () => {
 
       await screen.findByTestId("notifier-container").then(() => {
         const notifierContainer = screen.getByTestId("notifier-container");
-        expect(notifierContainer).toHaveTextContent(GAME_STATUS_VALUES.SEASON_FINISHED);
+        expect(notifierContainer).toHaveTextContent(GAME_STATUS_MESSAGES.SEASON_FINISHED);
       });
     });
 

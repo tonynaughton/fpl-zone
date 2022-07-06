@@ -11,13 +11,13 @@ import {
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
-import { GAME_STATUS_VALUES } from "helpers";
 import { useNextFiveTeamFixtures } from "hooks";
+import { GAME_STATUS_MESSAGES } from "hooks/use_game_status";
 import { useNextFiveGameweekIds } from "hooks/use_next_five_gameweek_ids";
 import { isEmpty, map } from "lodash";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
-import { Notifier } from "components/layout";
+import { Notifier, NotifierType } from "components/layout";
 
 import { BaseItemName } from "./base_item_name";
 import { Fixture } from "./fixture";
@@ -35,27 +35,31 @@ interface NextFiveTeamFixturesProps {
 
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<FixtureType[][]>([]);
-  const [fdrStatus, setFdrStatus] = useState<string>("Fetching fixture data..");
+  const [notifierMessage, setNotifierMessage] = useState<string>("Fetching fixture data..");
+  const [notifierType, setNotifierType] = useState<NotifierType>(NotifierType.Loading);
   const { teams } = useContext(AppDataContext) as AppData;
   const baseItem = players || teams;
   const nextFiveGameweekIds = useNextFiveGameweekIds();
 
   useEffect(() => {
     const fetchNextFiveGameweekFixtures = async (): Promise<void> => {
+      if (isEmpty(nextFiveGameweekIds)) {
+        setNotifierMessage(GAME_STATUS_MESSAGES.SEASON_FINISHED);
+        setNotifierType(NotifierType.Error);
+
+        return;
+      }
+
       const nextFiveGameweekFixtures: FixtureType[][] = await Promise.all(
         nextFiveGameweekIds.map((gameweek) => getGameweekFixtures(gameweek))
       );
-
-      if (isEmpty(nextFiveGameweekFixtures)) {
-        setFdrStatus(GAME_STATUS_VALUES.SEASON_FINISHED);
-      }
 
       setNextFiveFixtures(nextFiveGameweekFixtures);
     };
 
     fetchNextFiveGameweekFixtures();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [nextFiveGameweekIds]);
 
   const TeamFixturesRow = ({ item }: NextFiveTeamFixturesProps): JSX.Element => {
     const teamFixtures = useNextFiveTeamFixtures(item, nextFiveGameweekFixtures);
@@ -83,7 +87,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   return isEmpty(nextFiveGameweekFixtures)
     ? (
       <Box className='flex-center' data-testid='notifier-container' height='100%'>
-        <Notifier message={fdrStatus} type={fdrStatus === GAME_STATUS_VALUES.SEASON_FINISHED ? "warning" : "loading"} />
+        <Notifier message={notifierMessage} type={notifierType} />
       </Box>
     )
     : (

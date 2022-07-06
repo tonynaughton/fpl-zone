@@ -5,10 +5,10 @@ import { mockAppData } from "test";
 
 import "@testing-library/jest-dom/extend-expect";
 
-import { DEFAULT_NOTIFIER_MESSAGE, Notifier } from "./notifier";
+import { DEFAULT_NOTIFIER_MESSAGE, Notifier, NotifierType } from "./notifier";
 
 describe("Notifier tests", () => {
-  let mockType: string;
+  let mockType: NotifierType | undefined;
   let mockMessage: string;
 
   const createComponent = (): JSX.Element => {
@@ -42,7 +42,7 @@ describe("Notifier tests", () => {
 
   describe("Type", () => {
     it("error", () => {
-      mockType = "error";
+      mockType = NotifierType.Error;
 
       render(createComponent());
 
@@ -50,7 +50,7 @@ describe("Notifier tests", () => {
     });
 
     it("warning", () => {
-      mockType = "warning";
+      mockType = NotifierType.Warning;
 
       render(createComponent());
 
@@ -58,7 +58,7 @@ describe("Notifier tests", () => {
     });
 
     it("loading", () => {
-      mockType = "loading";
+      mockType = NotifierType.Loading;
 
       render(createComponent());
 
@@ -66,7 +66,7 @@ describe("Notifier tests", () => {
     });
 
     it("default", () => {
-      mockType = "some unknown type";
+      mockType = undefined;
 
       render(createComponent());
 
