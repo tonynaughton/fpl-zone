@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { AppDataContext } from "app_content";
-import { getLocalImage } from "helpers";
+import { getTeamCrestImageUrl } from "helpers";
 import { mockAppData } from "test";
 
 import "@testing-library/jest-dom/extend-expect";
@@ -48,7 +48,7 @@ describe("Summary Stat Tests", () => {
 
     const teamCrestImg = screen.getByTestId(`team-crest-img-${mockSummaryStat.label}`);
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const imgUrl = getLocalImage(`crests/${mockSummaryStat.teamCode!}.png`);
+    const imgUrl = getTeamCrestImageUrl(mockSummaryStat.teamCode!);
 
 
     expect(teamCrestImg).toHaveAttribute("src", imgUrl);

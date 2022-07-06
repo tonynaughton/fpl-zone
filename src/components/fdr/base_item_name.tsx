@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { getLocalImage } from "helpers";
+import { getTeamCrestImageUrl } from "helpers";
 import { has } from "lodash";
 import { Player, Team } from "types";
 
@@ -14,7 +14,7 @@ export const BaseItemName = ({ baseItem }: BaseItemNameProps): JSX.Element => {
   const isPlayerTable = has(baseItem, "web_name");
 
   const name = isPlayerTable ? (baseItem as Player).web_name : (baseItem as Team).name;
-  const teamId = isPlayerTable ? (baseItem as Player).team_code : (baseItem as Team).code;
+  const teamCode = isPlayerTable ? (baseItem as Player).team_code : (baseItem as Team).code;
 
   return (
     <Box
@@ -26,10 +26,10 @@ export const BaseItemName = ({ baseItem }: BaseItemNameProps): JSX.Element => {
       whiteSpace='nowrap'
     >
       <img
-        alt='crest-img'
+        alt={`${teamCode}-crest`}
         data-testid={`base-item-crest-img-${baseItem.id}`}
         height='22px'
-        src={getLocalImage(`crests/${teamId}.png`)}
+        src={getTeamCrestImageUrl(teamCode)}
       />
       <Box overflow='hidden'>
         <Typography

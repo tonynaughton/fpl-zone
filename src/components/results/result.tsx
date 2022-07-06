@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { formatDate, getLocalImage, getTeamById } from "helpers";
+import { formatDate, getTeamById, getTeamCrestImageUrl } from "helpers";
 import { AppData, CustomResult } from "types";
 
 interface ResultProps {
@@ -37,7 +37,7 @@ export const Result = ({ result, started }: ResultProps): JSX.Element => {
         <img
           alt='team-crest'
           height={30}
-          src={getLocalImage(`crests/${homeTeam.code}.png`)}
+          src={getTeamCrestImageUrl(homeTeam.code)}
           width={30}
         />
         <Typography className='text-ellipsis' textAlign='left'>
@@ -65,7 +65,7 @@ export const Result = ({ result, started }: ResultProps): JSX.Element => {
         <img
           alt='team-crest'
           height={30}
-          src={getLocalImage(`crests/${awayTeam.code}.png`)}
+          src={getTeamCrestImageUrl(awayTeam.code)}
           width={30}
         />
       </Box>
