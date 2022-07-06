@@ -79,6 +79,7 @@ export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JS
         bgcolor={theme.palette.secondary.main}
         borderBottom='2px solid black'
         className='flex-center'
+        flexDirection='column'
         gap={1}
         padding={1}
       >

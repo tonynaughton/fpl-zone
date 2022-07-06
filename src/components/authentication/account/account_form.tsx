@@ -118,8 +118,6 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
     <Box
       className='flex-center'
       flexDirection='column'
-      paddingLeft={15}
-      paddingRight={15}
       width='100%'
     >
       {!userFound
