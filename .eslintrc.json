@@ -124,6 +124,7 @@
     "@typescript-eslint/member-delimiter-style": "warn",
     "@typescript-eslint/method-signature-style": "warn",
     "@typescript-eslint/type-annotation-spacing": "warn",
+    "@typescript-eslint/no-non-null-assertion": "off",
 
     // Import
     "import/first": "warn",

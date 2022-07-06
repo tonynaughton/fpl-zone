@@ -74,7 +74,6 @@ describe("Gameweek Summary Tests", () => {
 
     statsWithValue.forEach((stat) => {
       const text = screen.getByTestId(`stat-value-text-${stat.label}`);
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       expect(text).toHaveTextContent(stat.value!.toString());
     });
   });
@@ -86,7 +85,6 @@ describe("Gameweek Summary Tests", () => {
 
     statsWithPlayerName.forEach((stat) => {
       const text = screen.getByTestId(`stat-value-text-${stat.label}`);
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       expect(text).toHaveTextContent(stat.playerName!.toString());
     });
   });
@@ -98,7 +96,6 @@ describe("Gameweek Summary Tests", () => {
 
     statsWithTeamCode.forEach((stat) => {
       const img = screen.getByTestId(`team-crest-img-${stat.label}`);
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const imgUrl = getTeamCrestImageUrl(stat.teamCode!);
 
       expect(img).toHaveAttribute("src", imgUrl);

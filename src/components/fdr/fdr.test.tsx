@@ -4,11 +4,11 @@ import { AppDataContext } from "app_content";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { getTeamCrestImageUrl } from "helpers";
-import { GAME_STATUS_MESSAGES } from "hooks/use_game_status";
 import { mockAppData,mockFixtures, mockPlayers, mockTeams } from "test";
 import { Player } from "types";
 
 import FdrTable from "components/fdr/fdr";
+import { notifierMessageMap as msgMap } from "components/layout";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -113,7 +113,7 @@ describe("FDR Tests", () => {
 
       await screen.findByTestId("notifier-container").then(() => {
         const notifierContainer = screen.getByTestId("notifier-container");
-        expect(notifierContainer).toHaveTextContent(GAME_STATUS_MESSAGES.SEASON_FINISHED);
+        expect(notifierContainer).toHaveTextContent(msgMap.seasonFinished);
       });
     });
 

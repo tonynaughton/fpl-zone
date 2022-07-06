@@ -8,12 +8,6 @@ interface GameStatusValues {
   gameUpdating: boolean;
 }
 
-export const GAME_STATUS_MESSAGES = {
-  GAME_UPDATING: "Game is updating..",
-  SEASON_NOT_STARTED: "This data will be available once the season has started",
-  SEASON_FINISHED: "The current FPL season has finished, check back next season!"
-};
-
 /*
   This hook is used to check the status of the following:
 

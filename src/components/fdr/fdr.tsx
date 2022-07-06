@@ -12,12 +12,11 @@ import {
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import { useNextFiveTeamFixtures } from "hooks";
-import { GAME_STATUS_MESSAGES } from "hooks/use_game_status";
 import { useNextFiveGameweekIds } from "hooks/use_next_five_gameweek_ids";
 import { isEmpty, map } from "lodash";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
-import { Notifier, NotifierType } from "components/layout";
+import { Notifier, notifierMessageMap as msgMsg,NotifierType } from "components/layout";
 
 import { BaseItemName } from "./base_item_name";
 import { Fixture } from "./fixture";
@@ -44,7 +43,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   useEffect(() => {
     const fetchNextFiveGameweekFixtures = async (): Promise<void> => {
       if (isEmpty(nextFiveGameweekIds)) {
-        setNotifierMessage(GAME_STATUS_MESSAGES.SEASON_FINISHED);
+        setNotifierMessage(msgMsg.seasonFinished);
         setNotifierType(NotifierType.Error);
 
         return;

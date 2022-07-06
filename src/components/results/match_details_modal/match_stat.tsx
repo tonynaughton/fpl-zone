@@ -46,9 +46,7 @@ const StatColumn = (stat: StatValue, key: number, name: string, isAway = false):
 export const MatchStat = ({ statName, selectedResult }: MatchStatProps): JSX.Element => {
   const { playerStats } = useContext(AppDataContext) as AppData;
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const stats = selectedResult.stats.find((stat) => stat.identifier === statName)!;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const statTitle = playerStats.find((stat) => stat.name === statName)!;
   const statsExist = stats.h.length > 0 || stats.a.length > 0;
 

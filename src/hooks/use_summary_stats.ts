@@ -8,7 +8,6 @@ import { SummaryStatType } from "../components/gameweek_summary/gameweek_summary
 export const useSummaryStats = (): SummaryStatType[] => {
   const { gameweeks, players } = useContext(AppDataContext) as AppData;
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const getPlayerById = (id: number): Player => players.find((player) => player.id === id)!;
 
   const currentGameweek = gameweeks.find((gw) => gw.is_current);

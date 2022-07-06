@@ -12,6 +12,18 @@ interface LoadingMessageProps {
   message?: string;
 }
 
+export const notifierMessageMap = {
+  gameUpdating: "Game is updating..",
+  seasonNotStarted: "This data will be available once the season has started",
+  seasonFinished: "The current FPL season has finished, check back next season!",
+  loading: "Loading...",
+  fplIdLoginRequired: "You must login with your FPL ID to view this data",
+  fplIdRequired: "A valid FPL ID is required to view this data - please add one to your account",
+  teamDataFetchError: "Error getting your team data",
+  teamPicksFetchError: "Error getting your team picks",
+  fetching: "Fetching data.."
+};
+
 export const DEFAULT_NOTIFIER_MESSAGE = "Loading..";
 
 export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element => {

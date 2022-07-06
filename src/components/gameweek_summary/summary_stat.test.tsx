@@ -47,7 +47,6 @@ describe("Summary Stat Tests", () => {
     render(createComponent());
 
     const teamCrestImg = screen.getByTestId(`team-crest-img-${mockSummaryStat.label}`);
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const imgUrl = getTeamCrestImageUrl(mockSummaryStat.teamCode!);
 
 

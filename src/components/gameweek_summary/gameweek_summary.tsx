@@ -1,8 +1,8 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { GAME_STATUS_MESSAGES, useGameStatus } from "hooks/use_game_status";
+import { useGameStatus } from "hooks/use_game_status";
 
-import { Notifier, NotifierType } from "components/layout";
+import { Notifier, notifierMessageMap as msgMap, NotifierType } from "components/layout";
 
 import { useSummaryStats } from "../../hooks/use_summary_stats";
 
@@ -20,11 +20,11 @@ export default function GameweekSummary(): JSX.Element {
   const summaryData = useSummaryStats();
 
   if (seasonNotStarted) {
-    return <Notifier message={GAME_STATUS_MESSAGES.SEASON_NOT_STARTED} type={NotifierType.Warning} />;
+    return <Notifier message={msgMap.seasonNotStarted} type={NotifierType.Warning} />;
   }
 
   if (gameUpdating) {
-    return <Notifier message={GAME_STATUS_MESSAGES.GAME_UPDATING} type={NotifierType.Warning} />;
+    return <Notifier message={msgMap.gameUpdating} type={NotifierType.Warning} />;
   }
 
   return (

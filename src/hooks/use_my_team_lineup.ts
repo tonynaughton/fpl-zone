@@ -8,7 +8,6 @@ export const useMyTeamLineup = (teamPicks: TeamPicks): Lineup => {
   const { positions, players } = useContext(AppDataContext) as AppData;
   const [selectedPicks, benchPicks] = chunk(teamPicks.picks, 11);
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const getPlayerById = (id: number): Player => players.find((player) => player.id === id)!;
 
   const selected = positions.map((pos => {
