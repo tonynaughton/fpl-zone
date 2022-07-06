@@ -8,11 +8,11 @@ import { SummaryStatType } from "../components/gameweek_summary/gameweek_summary
 export const useSummaryStats = (): SummaryStatType[] => {
   const { gameweeks, players } = useContext(AppDataContext) as AppData;
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const getPlayerById = (id: number): Player => players.find((player) => player.id === id)!;
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const currentGameweek = gameweeks.find((gw) => gw.is_current)!;
+  const currentGameweek = gameweeks.find((gw) => gw.is_current);
+
+  if (!currentGameweek) return [];
 
   const starPlayerId = currentGameweek.top_element_info?.id;
   const starPlayer = starPlayerId ? getPlayerById(starPlayerId) : null;

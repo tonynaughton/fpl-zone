@@ -3,11 +3,12 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { AppDataContext } from "app_content";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { GAME_STATUS_VALUES, getLocalImage } from "helpers";
+import { getTeamCrestImageUrl } from "helpers";
 import { mockAppData,mockFixtures, mockPlayers, mockTeams } from "test";
 import { Player } from "types";
 
 import FdrTable from "components/fdr/fdr";
+import { notifierMessageMap as msgMap } from "components/layout";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -69,7 +70,7 @@ describe("FDR Tests", () => {
       await screen.findByTestId("fdr-container").then(() => {
         mockTeams.forEach((team) => {
           const img = screen.getByTestId(`base-item-crest-img-${team.id}`);
-          const imgUrl = getLocalImage(`crests/${team.code}.png`);
+          const imgUrl = getTeamCrestImageUrl(team.code);
 
           expect(img).toHaveAttribute("src", imgUrl);
         });
@@ -98,7 +99,7 @@ describe("FDR Tests", () => {
       await screen.findByTestId("fdr-container").then(() => {
         mockFdrPlayers.forEach((player) => {
           const img = screen.getByTestId(`base-item-crest-img-${player.id}`);
-          const imgUrl = getLocalImage(`crests/${player.team_code}.png`);
+          const imgUrl = getTeamCrestImageUrl(player.team_code);
 
           expect(img).toHaveAttribute("src", imgUrl);
         });
@@ -112,7 +113,7 @@ describe("FDR Tests", () => {
 
       await screen.findByTestId("notifier-container").then(() => {
         const notifierContainer = screen.getByTestId("notifier-container");
-        expect(notifierContainer).toHaveTextContent(GAME_STATUS_VALUES.SEASON_FINISHED);
+        expect(notifierContainer).toHaveTextContent(msgMap.seasonFinished);
       });
     });
 

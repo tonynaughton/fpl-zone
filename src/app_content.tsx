@@ -11,7 +11,7 @@ import {
 } from "pages";
 import { AppData } from "types";
 
-import { Notifier, Startup } from "components/layout";
+import { Notifier, NotifierType, Startup } from "components/layout";
 
 interface FplIdContextType {
   fplId: number | undefined;
@@ -71,7 +71,7 @@ export default function AppContent(): JSX.Element {
 
     return (
       <Startup>
-        <Notifier message={`An error has occured: ${errorMessage}`} type='error' />
+        <Notifier message={`An error has occured: ${errorMessage}`} type={NotifierType.Error} />
       </Startup>
     );
   }

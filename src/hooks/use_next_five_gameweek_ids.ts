@@ -6,14 +6,10 @@ import { AppData } from "types";
 export const useNextFiveGameweekIds = (): number[] => {
   const { gameweeks } = useContext(AppDataContext) as AppData;
 
-  // Const nextGwId = gameweeks.find((gw) => gw.is_next)?.id;
-  const nextGwId = 20;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const nextGwId = gameweeks.find((gw) => gw.is_next)?.id;
   const lastGwId = maxBy(gameweeks, "id")!.id;
 
-  const nextFiveGameweekIds = nextGwId
+  return nextGwId
     ? range(nextGwId, ((nextGwId + 5) >= (lastGwId + 1) ? (lastGwId + 1) : nextGwId + 5))
     : [];
-
-  return nextFiveGameweekIds;
 };

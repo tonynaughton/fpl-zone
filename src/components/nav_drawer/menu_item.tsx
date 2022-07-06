@@ -11,20 +11,13 @@ interface MenuItemProps {
 
 export const MenuItem = ({ item, active = false }: MenuItemProps): JSX.Element => {
   const theme = useTheme();
-  const shadow = "0px 5px 10px -5px black";
 
   const getStyle = (highlighted = true): Record<string, string | number> => ({
-    pb: 1,
-    pt: 1,
-    mb: 2,
-    border: "1px solid",
-    borderWidth: "1px 0",
+    paddingY: 2,
     transition: "none",
     animation: "none",
-    borderColor: highlighted ? "black" : theme.palette.primary.main,
-    boxShadow: highlighted ? shadow : "none",
     color: highlighted ? "black" : theme.palette.info.main,
-    bgcolor: highlighted ? theme.palette.info.main : "inherit"
+    bgcolor: "inherit"
   });
 
   return (

@@ -21,7 +21,6 @@ describe("Gameweek countdown tests", () => {
   const setGameweekDeadline = (days = 0, hours = 0, minutes = 0): void => {
     const currentDate = moment();
     const mockDeadlineDate = currentDate.add({ days, hours, minutes }).toISOString();
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const nextGameweek = mockAppData.gameweeks.find(gw => gw.is_next)!;
     nextGameweek.deadline_time = mockDeadlineDate;
   };

@@ -34,9 +34,7 @@ describe("Fixture Tests", () => {
   const testTextValue = (fixture: FixtureType, teamId: number): void => {
     const isHome = fixture.team_h === teamId;
     const oppositionId = isHome ? fixture.team_a : fixture.team_h;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const oppositionAbbreviation = getTeamById(oppositionId, mockTeams)!.short_name;
-
     const fixtureContainer = screen.getByTestId("fixture-container");
     const homeOrAwayText = isHome ? "(H)" : "(A)";
 

@@ -82,6 +82,7 @@ export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JS
         flexDirection='column'
         gap={1}
         padding={1}
+        width='100%'
       >
         <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         <GameweekCountdown />

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import { AppDataContext } from "app_content";
-import { getLocalImage } from "helpers";
+import { getTeamCrestImageUrl } from "helpers";
 import { mockAppData, mockPlayers, mockTeams } from "test/test_data";
 
 import { BaseItem } from "components/fdr/fdr";
@@ -37,7 +37,7 @@ describe("Base Item Name Tests", () => {
 
     it("image", () => {
       const img = container.getByTestId(`base-item-crest-img-${mockPlayer.id}`);
-      const imgUrl = getLocalImage(`crests/${mockPlayer.team_code}.png`);
+      const imgUrl = getTeamCrestImageUrl(mockPlayer.team_code);
 
       expect(img).toHaveAttribute("src", imgUrl);
     });
@@ -57,7 +57,7 @@ describe("Base Item Name Tests", () => {
 
     it("image", () => {
       const img = container.getByTestId(`base-item-crest-img-${mockTeam.id}`);
-      const imgUrl = getLocalImage(`crests/${mockTeam.code}.png`);
+      const imgUrl = getTeamCrestImageUrl(mockTeam.code);
 
       expect(img).toHaveAttribute("src", imgUrl);
     });
