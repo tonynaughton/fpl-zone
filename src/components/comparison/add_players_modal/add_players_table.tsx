@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
-import { DataGrid, GridColumnHeaderParams, GridRenderCellParams, GridRowParams, GridSelectionModel } from "@mui/x-data-grid";
+import { DataGrid, GridColumnHeaderParams, GridRenderCellParams, GridRowId, GridRowParams } from "@mui/x-data-grid";
 import { AppDataContext } from "app_content";
-import { formatPrice, getLocalImage, GetPlayerById, getPositionById, getTeamById } from "helpers";
-import { AppData, Player } from "types";
+import { formatPrice, getPositionById, getTeamById, getTeamCrestImageUrl } from "helpers";
 import { startCase } from "lodash";
+import { AppData, Player } from "types";
 
 interface AddPlayersTableProps {
   displayedPlayers: Player[];
-  tempSelectedPlayers: Player[];
-  setTempSelectedPlayers: (players: Player[]) => void;
+  selectionModel: GridRowId[];
+  setSelectionModel: (ids: GridRowId[]) => void;
 }
 
 const TeamCell = (props: GridRenderCellParams<Player>): JSX.Element => {
@@ -26,7 +26,7 @@ const TeamCell = (props: GridRenderCellParams<Player>): JSX.Element => {
         alt='team-crest'
         data-testid={`player-team-crest-${player.id}`}
         height='25vh'
-        src={getLocalImage(`crests/${team.code}.png`)}
+        src={getTeamCrestImageUrl(player.team_code)}
         width='auto'
       />
       <Typography
@@ -40,20 +40,19 @@ const TeamCell = (props: GridRenderCellParams<Player>): JSX.Element => {
 };
 
 const StandardCell = (props: GridRenderCellParams<string>): JSX.Element => (
-  <Typography>{props.value}</Typography>
+  <Typography className='text-ellipsis'>{props.value}</Typography>
 );
 
 const HeaderCell = (props: GridColumnHeaderParams<string, any>): JSX.Element => (
-  <Typography>{startCase(props.field)}</Typography>
+  <Typography className='text-ellipsis'>{startCase(props.field)}</Typography>
 );
 
 export const AddPlayersTable = ({
   displayedPlayers,
-  // tempSelectedPlayers,
-  // setTempSelectedPlayers
+  selectionModel,
+  setSelectionModel
 }: AddPlayersTableProps): JSX.Element => {
-  const { positions, teams, players } = useContext(AppDataContext) as AppData;
-  const [selectionModel, setSelectionModel] = React.useState<GridSelectionModel>([]);
+  const { positions, teams } = useContext(AppDataContext) as AppData;
 
   const teamNameComparator = (playerA: Player, playerB: Player) => {
     const teamA = getTeamById(playerA.team, teams);
@@ -62,8 +61,8 @@ export const AddPlayersTable = ({
     return teamA.name.localeCompare(teamB.name);
   };
 
-  const rows = displayedPlayers.map((player, index) => ({
-    id: index,
+  const rows = displayedPlayers.map((player) => ({
+    id: player.id,
     name: `${player.first_name} ${player.second_name}`,
     team: player,
     position: getPositionById(player.element_type, positions).singular_name_short,
@@ -77,7 +76,7 @@ export const AddPlayersTable = ({
     }
 
     return false;
-  }
+  };
 
   return (
     <Box height='100%' width='100%'>
@@ -91,28 +90,28 @@ export const AddPlayersTable = ({
           { field: "price", headerName: "Price", flex: 0.5, renderHeader: HeaderCell, renderCell: StandardCell },
           { field: "points", headerName: "Total Points", flex: 0.5, renderHeader: HeaderCell, renderCell: StandardCell }
         ]}
-        pagination
-        rows={rows}
         density='compact'
-        pageSize={25}
-        rowsPerPageOptions={[25]}
         disableColumnMenu
-        sx={{
-          '& .MuiDataGrid-columnHeader:focus-within, & .MuiDataGrid-cell:focus-within': {
-            outline: 'none',
-          },
-          '& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus': {
-            outline: 'none',
+        initialState={{
+          sorting: {
+            sortModel: [{ field: "points", sort: "desc" }]
           }
         }}
         isRowSelectable={isRowSelectable}
-        initialState={{
-          sorting: {
-            sortModel: [{ field: 'points', sort: 'desc' }],
+        onSelectionModelChange={newSelectionModel => setSelectionModel(newSelectionModel)}
+        pageSize={25}
+        pagination
+        rows={rows}
+        rowsPerPageOptions={[25]}
+        selectionModel={selectionModel}
+        sx={{
+          "& .MuiDataGrid-columnHeader:focus-within, & .MuiDataGrid-cell:focus-within": {
+            outline: "none"
+          },
+          "& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus": {
+            outline: "none"
           }
         }}
-        selectionModel={selectionModel}
-        onSelectionModelChange={newSelectionModel => setSelectionModel(newSelectionModel)}
       />
     </Box>
   );

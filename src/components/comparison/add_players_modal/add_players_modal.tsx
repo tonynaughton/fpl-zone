@@ -1,8 +1,9 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Box, TextField } from "@mui/material";
+import { GridSelectionModel } from "@mui/x-data-grid";
 import { AppDataContext } from "app_content";
 import { getNormalizedString } from "helpers";
-import { clone, debounce } from "lodash";
+import { debounce } from "lodash";
 import { AppData, Player } from "types";
 
 import { CustomModal } from "components/utils";
@@ -24,12 +25,12 @@ export const AddPlayersModal = ({
 }: AddPlayersModalProps): JSX.Element => {
   const { players } = useContext(AppDataContext) as AppData;
 
-  const [tempSelectedPlayers, setTempSelectedPlayers] = useState<Player[]>([]);
   const [displayedPlayers, setDisplayedPlayers] = useState<Player[]>(players);
   const [searchInput, setSearchInput] = useState<string>("");
+  const [playerIds, setPlayerIds] = React.useState<GridSelectionModel>([]);
 
   useEffect(() => {
-    setTempSelectedPlayers(selectedPlayers);
+    setPlayerIds(selectedPlayers.map(p => p.id));
 
     const close = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
@@ -42,17 +43,6 @@ export const AddPlayersModal = ({
     return () => window.removeEventListener("keydown", close);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPlayers]);
-
-  const onPlayerToggle = (player: Player, value: boolean): void => {
-    if (value) {
-      setTempSelectedPlayers([...tempSelectedPlayers, player]);
-    } else {
-      const clonedTempPlayers = clone(tempSelectedPlayers);
-      const index = clonedTempPlayers.indexOf(player);
-      clonedTempPlayers.splice(index, 1);
-      setTempSelectedPlayers(clonedTempPlayers);
-    }
-  };
 
   const performSearch = (input: string): void => {
     const normalizedInput = getNormalizedString(input);
@@ -84,13 +74,13 @@ export const AddPlayersModal = ({
   const debounceSearch = useCallback(debounce(performSearch, 1000), []);
 
   const onCancelClick = (): void => {
-    setTempSelectedPlayers([]);
+    setPlayerIds([]);
     setAddPlayersModalOpen(false);
   };
 
   const onConfirmClick = (): void => {
-    setSelectedComparisonPlayers(tempSelectedPlayers);
-    setTempSelectedPlayers([]);
+    setSelectedComparisonPlayers(players.filter(p => playerIds.includes(p.id)));
+    setPlayerIds([]);
     setDisplayedPlayers(players);
     setSearchInput("");
     setAddPlayersModalOpen(false);
@@ -132,8 +122,8 @@ export const AddPlayersModal = ({
         >
           <AddPlayersTable
             displayedPlayers={displayedPlayers}
-            tempSelectedPlayers={selectedPlayers}
-            setTempSelectedPlayers={setTempSelectedPlayers}
+            selectionModel={playerIds}
+            setSelectionModel={setPlayerIds}
           />
         </Box>
       </>
