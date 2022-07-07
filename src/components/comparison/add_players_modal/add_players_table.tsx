@@ -9,6 +9,7 @@ import { Notifier, NotifierType } from "components/layout";
 
 import { usePositionColumn } from "./column_hooks/use_position_column";
 import { useTeamColumn } from "./column_hooks/use_team_column";
+import { CustomPagination } from "./pagination";
 
 interface AddPlayersTableProps {
   selectionModel: GridRowId[];
@@ -65,7 +66,8 @@ export const AddPlayersTable = ({
       checkboxSelection
       columns={columns}
       components={{
-        NoRowsOverlay: () => <Notifier message='No players found..' type={NotifierType.Warning} />
+        NoRowsOverlay: () => <Notifier message='No players found..' type={NotifierType.Warning} />,
+        Pagination: CustomPagination
       }}
       density='compact'
       disableColumnFilter
@@ -74,14 +76,16 @@ export const AddPlayersTable = ({
       initialState={{
         sorting: {
           sortModel: [{ field: "points", sort: "desc" }]
+        },
+        pagination: {
+          pageSize: 25
         }
       }}
       isRowSelectable={isRowSelectable}
       onSelectionModelChange={setSelectionModel}
-      pageSize={25}
       pagination
       rows={rows}
-      rowsPerPageOptions={[25]}
+      rowsPerPageOptions={[25, 50, 100]}
       selectionModel={selectionModel}
       sx={{
         "& .MuiDataGrid-columnHeader:focus-within, & .MuiDataGrid-cell:focus-within": {
@@ -92,6 +96,10 @@ export const AddPlayersTable = ({
         },
         "& .MuiDataGrid-columnHeaderCheckbox .MuiDataGrid-columnHeaderTitleContainer": {
           display: "none"
+        },
+        "& .MuiDataGrid-selectedRowCount": {
+          fontSize: "1rem",
+          color: selectionModel.length === 5 ? "red" : "inherit"
         }
       }}
     />
