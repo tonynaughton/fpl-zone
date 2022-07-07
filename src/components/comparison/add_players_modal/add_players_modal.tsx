@@ -1,13 +1,13 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Box, TextField } from "@mui/material";
+import { GridSelectionModel } from "@mui/x-data-grid";
 import { AppDataContext } from "app_content";
-import { getNormalizedString } from "helpers";
-import { clone, debounce } from "lodash";
+import { debounce } from "lodash";
 import { AppData, Player } from "types";
 
 import { CustomModal } from "components/utils";
 
-import { AddPlayersTable } from "..";
+import { AddPlayersTable } from "./add_players_table";
 
 interface AddPlayersModalProps {
   isAddPlayersModalOpen: boolean;
@@ -24,16 +24,16 @@ export const AddPlayersModal = ({
 }: AddPlayersModalProps): JSX.Element => {
   const { players } = useContext(AppDataContext) as AppData;
 
-  const [tempSelectedPlayers, setTempSelectedPlayers] = useState<Player[]>([]);
-  const [displayedPlayers, setDisplayedPlayers] = useState<Player[]>(players);
   const [searchInput, setSearchInput] = useState<string>("");
+  const [filterProp, setFilterProp] = useState<string>("");
+  const [playerIds, setPlayerIds] = React.useState<GridSelectionModel>([]);
 
   useEffect(() => {
-    setTempSelectedPlayers(selectedPlayers);
+    setPlayerIds(selectedPlayers.map(p => p.id));
 
     const close = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
-        setAddPlayersModalOpen(false);
+        resetState();
       }
     };
 
@@ -43,70 +43,30 @@ export const AddPlayersModal = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPlayers]);
 
-  const onPlayerToggle = (player: Player, value: boolean): void => {
-    if (value) {
-      setTempSelectedPlayers([...tempSelectedPlayers, player]);
-    } else {
-      const clonedTempPlayers = clone(tempSelectedPlayers);
-      const index = clonedTempPlayers.indexOf(player);
-      clonedTempPlayers.splice(index, 1);
-      setTempSelectedPlayers(clonedTempPlayers);
-    }
-  };
-
-  const memoizedTable = useMemo(() => AddPlayersTable({
-    onPlayerToggle,
-    displayedPlayers,
-    tempSelectedPlayers
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [displayedPlayers, tempSelectedPlayers]);
-
-  const performSearch = (input: string): void => {
-    const normalizedInput = getNormalizedString(input);
-
-    const filtered = players.filter((player) => {
-
-      let searchResult = false;
-
-      // Searching player web name i.e. 'known as'
-      const normalizedWebName = getNormalizedString(player.web_name);
-      if (normalizedWebName.includes(normalizedInput)) {
-        searchResult = true;
-      }
-
-      // Searching player full name
-      const fullName = `${player.first_name} ${player.second_name}`;
-      const normalizedFullName = getNormalizedString(fullName);
-      if (normalizedFullName.includes(normalizedInput)) {
-        searchResult = true;
-      }
-
-      return searchResult;
-    });
-
-    setDisplayedPlayers(filtered);
-  };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debounceSearch = useCallback(debounce(performSearch, 1000), []);
-
-  const onCancelClick = (): void => {
-    setTempSelectedPlayers([]);
+  const resetState = (): void => {
+    setSearchInput("");
+    setFilterProp("");
     setAddPlayersModalOpen(false);
   };
 
   const onConfirmClick = (): void => {
-    setSelectedComparisonPlayers(tempSelectedPlayers);
-    setTempSelectedPlayers([]);
-    setDisplayedPlayers(players);
-    setSearchInput("");
-    setAddPlayersModalOpen(false);
+    setSelectedComparisonPlayers(players.filter(p => playerIds.includes(p.id)));
+    resetState();
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debounceSearch = useCallback(debounce((searchInput) => setFilterProp(searchInput), 1000), []);
+
+  const onSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const input = event.target.value;
+    setSearchInput(input);
+    debounceSearch(input);
   };
 
   return (
     <CustomModal
       isModalOpen={isAddPlayersModalOpen}
-      onCancelClick={onCancelClick}
+      onCancelClick={resetState}
       onConfirmClick={onConfirmClick}
       setModalOpen={setAddPlayersModalOpen}
       testId='add-players-modal'
@@ -117,26 +77,18 @@ export const AddPlayersModal = ({
           data-testid='player-search-input'
           fullWidth
           margin='normal'
-          onChange={(event): void => {
-            debounceSearch(event.target.value);
-            setSearchInput(event.target.value);
-          }}
-          placeholder='Search by name..'
+          onChange={onSearchInputChange}
+          placeholder='Search by player name..'
           size='small'
           type='search'
           value={searchInput}
         />
-        <Box
-          border='1px solid gray'
-          borderRadius={1}
-          flexGrow={1}
-          marginBottom={1}
-          maxHeight='100%'
-          minHeight='50vh'
-          overflow='auto'
-          width='100%'
-        >
-          {memoizedTable}
+        <Box height='70vh' width='100%'>
+          <AddPlayersTable
+            searchInput={filterProp}
+            selectionModel={playerIds}
+            setSelectionModel={setPlayerIds}
+          />
         </Box>
       </>
     </CustomModal>

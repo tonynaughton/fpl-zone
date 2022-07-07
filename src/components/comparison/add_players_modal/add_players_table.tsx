@@ -1,58 +1,107 @@
-import React from "react";
-import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
-import { Player } from "types";
+import React, { useContext } from "react";
+import { Typography } from "@mui/material";
+import { DataGrid, GridColDef, GridColumnHeaderParams, GridRenderCellParams, GridRowId, GridRowParams } from "@mui/x-data-grid";
+import { AppDataContext } from "app_content";
+import { formatPrice } from "helpers";
+import { AppData } from "types";
 
-import { MAX_PLAYER_COUNT } from "..";
+import { Notifier, NotifierType } from "components/layout";
 
-import { AddPlayersTableRow } from "./add_players_table_row";
+import { usePositionColumn } from "./column_hooks/use_position_column";
+import { useTeamColumn } from "./column_hooks/use_team_column";
+import { CustomPagination } from "./pagination";
 
 interface AddPlayersTableProps {
-  displayedPlayers: Player[];
-  onPlayerToggle: (player: Player, value: boolean) => void;
-  tempSelectedPlayers: Player[];
+  selectionModel: GridRowId[];
+  searchInput: string;
+  setSelectionModel: (ids: GridRowId[]) => void;
 }
 
+export const renderCell = (props: GridRenderCellParams<string>): JSX.Element => (
+  <Typography className='text-ellipsis'>{props.value}</Typography>
+);
+
+export const renderHeader = (props: GridColumnHeaderParams<string>): JSX.Element => (
+  <Typography className='text-ellipsis'>{props.colDef.headerName}</Typography>
+);
+
 export const AddPlayersTable = ({
-  displayedPlayers,
-  onPlayerToggle,
-  tempSelectedPlayers
+  selectionModel,
+  setSelectionModel,
+  searchInput
 }: AddPlayersTableProps): JSX.Element => {
+  const { players } = useContext(AppDataContext) as AppData;
+
+  const rows = players.map((player) => ({
+    id: player.id,
+    name: `${player.first_name} ${player.second_name}`,
+    team: player,
+    position: player,
+    price: formatPrice(player.now_cost),
+    points: player.total_points
+  }));
+
+  const isRowSelectable = (params: GridRowParams): boolean => (
+    selectionModel.length < 5 || selectionModel.includes(params.id)
+  );
+
+  const posCol = usePositionColumn();
+  const teamCol = useTeamColumn();
+
+  const columns: GridColDef[] = [
+    { field: "name", headerName: "Name", flex: 1, renderHeader, renderCell },
+    teamCol,
+    posCol,
+    { field: "price", headerName: "Price", flex: 0.5, renderHeader, renderCell },
+    { field: "points", headerName: "Total Points", flex: 0.5, renderHeader, renderCell }
+  ];
+
+  const filterModel = {
+    items: [{ columnField: "name", operatorValue: "contains", value: searchInput }]
+  };
+
+
   return (
-    <Table
-      stickyHeader
-      sx={{
-        tableLayout: "fixed",
-        "& .MuiTableCell-root": {
-          pl: "0.8vw", pr: "0.8vw", pt: "1vh", pb: "1vh"
+    <DataGrid
+      checkboxSelection
+      columns={columns}
+      components={{
+        NoRowsOverlay: () => <Notifier message='No players found..' type={NotifierType.Warning} />,
+        Pagination: CustomPagination
+      }}
+      density='compact'
+      disableColumnFilter
+      disableColumnMenu
+      filterModel={filterModel}
+      initialState={{
+        sorting: {
+          sortModel: [{ field: "points", sort: "desc" }]
+        },
+        pagination: {
+          pageSize: 25
         }
       }}
-    >
-      <TableHead>
-        <TableRow>
-          <TableCell>
-            <Typography
-              color={tempSelectedPlayers.length >= MAX_PLAYER_COUNT ? "red" : "black"}
-              data-testid='selected-player-count'
-              fontWeight='600'
-            >
-              {tempSelectedPlayers.length}/{MAX_PLAYER_COUNT}
-            </Typography>
-          </TableCell>
-          <TableCell><Typography>Name</Typography></TableCell>
-          <TableCell><Typography>Team</Typography></TableCell>
-          <TableCell><Typography>Position</Typography></TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {displayedPlayers.map((player, key) => (
-          <AddPlayersTableRow
-            key={key}
-            onPlayerToggle={onPlayerToggle}
-            player={player}
-            tempSelectedPlayers={tempSelectedPlayers}
-          />
-        ))}
-      </TableBody>
-    </Table>
+      isRowSelectable={isRowSelectable}
+      onSelectionModelChange={setSelectionModel}
+      pagination
+      rows={rows}
+      rowsPerPageOptions={[25, 50, 100]}
+      selectionModel={selectionModel}
+      sx={{
+        "& .MuiDataGrid-columnHeader:focus-within, & .MuiDataGrid-cell:focus-within": {
+          outline: "none"
+        },
+        "& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus": {
+          outline: "none"
+        },
+        "& .MuiDataGrid-columnHeaderCheckbox .MuiDataGrid-columnHeaderTitleContainer": {
+          display: "none"
+        },
+        "& .MuiDataGrid-selectedRowCount": {
+          fontSize: "1rem",
+          color: selectionModel.length === 5 ? "red" : "inherit"
+        }
+      }}
+    />
   );
 };

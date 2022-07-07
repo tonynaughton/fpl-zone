@@ -7,6 +7,13 @@ export const getTeamById = (id: number, teams: Team[]): Team => teams.find((t) =
 
 export const getPositionById = (id: number, positions: Pos[]): Pos => positions.find((p) => p.id === id)!;
 
+export const formatPrice = (number: number): number => {
+  const numLen = number.toString().length;
+  const numAsString = `${number.toString().slice(0, Math.max(0, numLen - 1))}.${number.toString().slice(Math.max(0, numLen - 1))}`;
+
+  return parseFloat(numAsString);
+};
+
 export const getPlayerImageUrl = (player?: Player): string => {
   if (!player) {
     return `${process.env.PUBLIC_URL}/assets/images/player-placeholder.png`;
