@@ -8,18 +8,20 @@ import { mockAppData, mockPlayers, mockPositions, mockTeams } from "test/test_da
 import "@testing-library/jest-dom/extend-expect";
 
 import { MAX_PLAYER_COUNT } from "../player_comparison";
-import { AddPlayersTable } from "..";
+
+import { AddPlayersTable } from "./add_players_table";
 
 describe("Add players table tests", () => {
   const mockAllPlayers = mockPlayers;
   let mockSelectedPlayerIds: GridRowId[];
+  const mockSearchInput = "";
   const mocksetTempSelectedPlayers = jest.fn();
 
   const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
         <AddPlayersTable
-          displayedPlayers={mockAllPlayers}
+          searchInput={mockSearchInput}
           selectionModel={mockSelectedPlayerIds}
           setSelectionModel={mocksetTempSelectedPlayers}
         />
