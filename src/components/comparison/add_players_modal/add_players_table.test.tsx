@@ -16,11 +16,15 @@ describe("Add players table tests", () => {
   let mockSelectedPlayerIds: GridRowId[];
   const mockSearchInput = "";
   const mocksetTempSelectedPlayers = jest.fn();
+  const mockOnConfirmClick = jest.fn();
+  const mockOnCancelClick = jest.fn();
 
   const createComponent = (): JSX.Element => {
     return (
       <AppDataContext.Provider value={mockAppData}>
         <AddPlayersTable
+          onCancelClick={mockOnCancelClick}
+          onConfirmClick={mockOnConfirmClick}
           searchInput={mockSearchInput}
           selectionModel={mockSelectedPlayerIds}
           setSelectionModel={mocksetTempSelectedPlayers}

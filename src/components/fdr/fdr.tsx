@@ -16,9 +16,9 @@ import { useNextFiveGameweekIds } from "hooks/use_next_five_gameweek_ids";
 import { isEmpty, map } from "lodash";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
-import { Notifier, notifierMessageMap as msgMsg,NotifierType } from "components/layout";
+import { Notifier, notifierMessageMap as msgMsg, NotifierType } from "components/layout";
+import { BaseItemWithCrest } from "components/results/base_item_with_crest";
 
-import { BaseItemName } from "./base_item_name";
 import { Fixture } from "./fixture";
 
 // FDR can display fixtures for players or teams
@@ -35,7 +35,7 @@ interface NextFiveTeamFixturesProps {
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<FixtureType[][]>([]);
   const [notifierMessage, setNotifierMessage] = useState<string>("Fetching fixture data..");
-  const [notifierType, setNotifierType] = useState<NotifierType>(NotifierType.Loading);
+  const [notifierType, setNotifierType] = useState<NotifierType>("loading");
   const { teams } = useContext(AppDataContext) as AppData;
   const baseItem = players || teams;
   const nextFiveGameweekIds = useNextFiveGameweekIds();
@@ -44,7 +44,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     const fetchNextFiveGameweekFixtures = async (): Promise<void> => {
       if (isEmpty(nextFiveGameweekIds)) {
         setNotifierMessage(msgMsg.seasonFinished);
-        setNotifierType(NotifierType.Error);
+        setNotifierType("error");
 
         return;
       }
@@ -64,17 +64,18 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     const teamFixtures = useNextFiveTeamFixtures(item, nextFiveGameweekFixtures);
 
     return (
-      <TableRow data-testid={`fixture-row-${item.id}`}>
+      <TableRow
+        data-testid={`fixture-row-${item.id}`}
+        sx={{
+          "& .MuiTableCell-root:first-of-type": { pl: 1 }
+        }}
+      >
         <TableCell width={baseItemCellWidth}>
-          <BaseItemName baseItem={item} />
+          <BaseItemWithCrest item={item} />
         </TableCell>
         {map(teamFixtures, (fixtures, key) => (
           <TableCell key={key}>
-            <Fixture
-              baseItem={item}
-              fixtures={fixtures}
-              isPlayerTable={!!players}
-            />
+            <Fixture baseItem={item} fixtures={fixtures} />
           </TableCell>
         ))}
       </TableRow>

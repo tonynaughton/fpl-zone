@@ -17,7 +17,6 @@ describe("Fixture Tests", () => {
 
   let mockFixturesProp: FixtureType[];
   let mockBaseItem: BaseItem;
-  let mockIsPlayerTable: boolean;
 
   const createComponent = (): JSX.Element => {
     return (
@@ -25,7 +24,6 @@ describe("Fixture Tests", () => {
         <Fixture
           baseItem={mockBaseItem}
           fixtures={mockFixturesProp}
-          isPlayerTable={mockIsPlayerTable}
         />
       </AppDataContext.Provider>
     );
@@ -53,7 +51,6 @@ describe("Fixture Tests", () => {
   it("Player FDR displays correctly", () => {
     mockBaseItem = mockPlayers[0];
     mockFixturesProp = mockFixtures.slice(0, 2);
-    mockIsPlayerTable = true;
 
     render(createComponent());
 
@@ -68,7 +65,6 @@ describe("Fixture Tests", () => {
   it("Team FDR displays correctly", () => {
     mockBaseItem = mockTeams[0];
     mockFixturesProp = mockFixtures.slice(0, 2);
-    mockIsPlayerTable = false;
 
     render(createComponent());
 

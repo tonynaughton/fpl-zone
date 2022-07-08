@@ -10,7 +10,7 @@ import _ from "lodash";
 import { AppData,Gameweek } from "types";
 
 import FdrTable from "components/fdr/fdr";
-import { AppLayout, ComponentContainer, Notifier, notifierMessageMap as msgMap, NotifierType } from "components/layout";
+import { AppLayout, ComponentContainer, Notifier, notifierMessageMap as msgMap } from "components/layout";
 import { MyTeam } from "components/my_team/my_team";
 
 export const MyFPLPage = (): JSX.Element => {
@@ -52,20 +52,20 @@ export const MyFPLPage = (): JSX.Element => {
 
   const checkConditions = (): JSX.Element | void => {
     if (seasonNotStarted) {
-      return <Notifier message={msgMap.seasonNotStarted} type={NotifierType.Warning} />;
+      return <Notifier message={msgMap.seasonNotStarted} type='warning' />;
     }
 
     if (!fplId) {
       if (!user) {
-        return <Notifier message={msgMap.fplIdLoginRequired} type={NotifierType.Error} />;
+        return <Notifier message={msgMap.fplIdLoginRequired} type='warning' />;
       }
 
-      return <Notifier message={msgMap.fplIdRequired} type={NotifierType.Error} />;
+      return <Notifier message={msgMap.fplIdRequired} type='error' />;
     }
 
     if (teamDataFetchIsLoading || teamPicksFetchIsLoading) return <Notifier message={msgMap.fetching} />;
-    if (teamDataFetchError || !teamData) return <Notifier message={msgMap.teamDataFetchError} type={NotifierType.Error} />;
-    if (teamPicksFetchError || !teamPicks) return <Notifier message={msgMap.teamPicksFetchError} type={NotifierType.Error} />;
+    if (teamDataFetchError || !teamData) return <Notifier message={msgMap.teamDataFetchError} type='error' />;
+    if (teamPicksFetchError || !teamPicks) return <Notifier message={msgMap.teamPicksFetchError} type='error' />;
   };
 
   const renderTeamComponent = (): JSX.Element => {

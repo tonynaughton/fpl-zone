@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
-import { Box, Typography } from "@mui/material";
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { AppDataContext } from "app_content";
-import { getTeamById, getTeamCrestImageUrl } from "helpers";
+import { getTeamById } from "helpers";
 import { AppData,Player } from "types";
+
+import { BaseItemWithCrest } from "components/results/base_item_with_crest";
 
 import { renderHeader } from "../add_players_table";
 
-export const useTeamColumn = (): GridColDef => {
+export const TeamColumn = (): GridColDef => {
   const { teams } = useContext(AppDataContext) as AppData;
 
   const sortComparator = (p1: Player, p2: Player): number => (
@@ -21,23 +22,7 @@ export const useTeamColumn = (): GridColDef => {
 
     const team = getTeamById(player.team, teams);
 
-    return (
-      <Box alignItems='center' display='flex' gap={1}>
-        <img
-          alt='team-crest'
-          data-testid={`player-team-crest-${player.id}`}
-          height='25vh'
-          src={getTeamCrestImageUrl(player.team_code)}
-          width='auto'
-        />
-        <Typography
-          data-testid={`player-team-name-${player.id}`}
-          display='inline'
-        >
-          {team.name}
-        </Typography>
-      </Box>
-    );
+    return <BaseItemWithCrest item={team} />;
   };
 
   return {

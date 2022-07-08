@@ -117,10 +117,10 @@ const getTypographyProps = (fontSize: number, fontWeight = 500) => {
     fontWeight,
     fontSize: `${fontSize}rem`,
     [theme.breakpoints.up("xs")]: {
-      fontSize: `${fontSize * 0.5}rem`
+      fontSize: `${fontSize * 0.6}rem`
     },
     [theme.breakpoints.up("sm")]: {
-      fontSize: `${fontSize * 0.7}rem`
+      fontSize: `${fontSize * 0.8}rem`
     },
     [theme.breakpoints.up("md")]: {
       fontSize: `${fontSize}rem`
@@ -134,13 +134,13 @@ const getTypographyProps = (fontSize: number, fontWeight = 500) => {
   };
 };
 
-theme.typography.h1 = getTypographyProps(1.5, 600);
-theme.typography.h2 = getTypographyProps(1.3, 600);
-theme.typography.h3 = getTypographyProps(1.1, 600);
-theme.typography.h4 = getTypographyProps(0.9, 600);
-theme.typography.h5 = getTypographyProps(0.7, 600);
-theme.typography.body1 = getTypographyProps(0.7);
-theme.typography.body2 = getTypographyProps(0.5);
+theme.typography.h1 = getTypographyProps(1.6, 600);
+theme.typography.h2 = getTypographyProps(1.4, 600);
+theme.typography.h3 = getTypographyProps(1.2, 600);
+theme.typography.h4 = getTypographyProps(1.0, 600);
+theme.typography.h5 = getTypographyProps(0.8, 600);
+theme.typography.body1 = getTypographyProps(0.8);
+theme.typography.body2 = getTypographyProps(0.6);
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -2,11 +2,8 @@ import React from "react";
 import { Warning } from "@mui/icons-material";
 import { Box, CircularProgress, Typography } from "@mui/material";
 
-export enum NotifierType {
-  Error,
-  Warning,
-  Loading,
-}
+export type NotifierType = "loading" | "warning" | "error";
+
 interface LoadingMessageProps {
   type?: NotifierType;
   message?: string;
@@ -24,9 +21,7 @@ export const notifierMessageMap = {
   fetching: "Fetching data.."
 };
 
-export const DEFAULT_NOTIFIER_MESSAGE = "Loading..";
-
-export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element => {
+export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMessageProps): JSX.Element => {
   const NotifierIcon = (): JSX.Element => {
     const iconStyle = {
       fontSize: "3vw",
@@ -34,31 +29,29 @@ export const Notifier = ({ type, message }: LoadingMessageProps): JSX.Element =>
     };
 
     switch (type) {
-    case NotifierType.Error:
+    case "error":
       return <Warning data-testid='error-icon' sx={iconStyle} />;
-    case NotifierType.Warning:
+    case "warning":
       return <Warning data-testid='warning-icon' sx={iconStyle} />;
-    case NotifierType.Loading:
+    case "loading":
       return <CircularProgress data-testid='loading-icon' sx={iconStyle} />;
     default:
-      return <CircularProgress data-testid='default-icon' sx={iconStyle} />;
+      return <CircularProgress data-testid='loading-icon' sx={iconStyle} />;
     }
   };
 
   return (
     <Box
-      alignItems='center'
+      className='flex-center'
       data-testid='notifier'
-      display='flex'
       flexDirection='column'
       gap='3vh'
       height='100%'
-      justifyContent='center'
       margin='auto'
       width='80%'
     >
       <NotifierIcon />
-      <Typography textAlign='center'>{message || DEFAULT_NOTIFIER_MESSAGE}</Typography>
+      <Typography textAlign='center'>{message}</Typography>
     </Box>
   );
 };

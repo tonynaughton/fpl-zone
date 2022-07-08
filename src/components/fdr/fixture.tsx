@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import { Box, Tooltip, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getTeamById } from "helpers";
-import { AppData, Fixture as FixtureType, Player, Team } from "types";
+import { AppData, Fixture as FixtureType } from "types";
+import { isPlayer } from "types/base_item";
 
 import { BaseItem } from "./fdr";
 
 interface FixtureProps {
   fixtures: FixtureType[];
   baseItem: BaseItem;
-  isPlayerTable: boolean;
 }
 
 interface SingleFixtureProps {
@@ -18,14 +18,13 @@ interface SingleFixtureProps {
 
 export const Fixture = ({
   fixtures,
-  baseItem,
-  isPlayerTable
+  baseItem
 }: FixtureProps): JSX.Element => {
   const SingleFixture = ({ fixture }: SingleFixtureProps): JSX.Element => {
     const { teams } = useContext(AppDataContext) as AppData;
     const theme = useTheme();
 
-    const teamId = isPlayerTable ? (baseItem as Player).team : (baseItem as Team).id;
+    const teamId = isPlayer(baseItem) ? baseItem.team : baseItem.id;
     const isHome = fixture.team_h === teamId;
     const oppositionId = isHome ? fixture.team_a : fixture.team_h;
     const difficulty = isHome ? fixture.team_h_difficulty : fixture.team_a_difficulty;

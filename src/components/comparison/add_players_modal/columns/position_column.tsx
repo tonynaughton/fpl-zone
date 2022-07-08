@@ -7,7 +7,7 @@ import { AppData,Player } from "types";
 
 import { renderHeader } from "../add_players_table";
 
-export const usePositionColumn = (): GridColDef => {
+export const PositionColumn = (): GridColDef => {
   const { positions } = useContext(AppDataContext) as AppData;
 
   const sortComparator = (p1: Player, p2: Player): number => p1.element_type - p2.element_type;

@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { formatDate, getTeamById, getTeamCrestImageUrl } from "helpers";
+import { formatDate, getTeamById } from "helpers";
 import { AppData, CustomResult } from "types";
+
+import { BaseItemWithCrest } from "./base_item_with_crest";
 
 interface ResultProps {
   result: CustomResult;
@@ -24,51 +26,10 @@ export const Result = ({ result, started }: ResultProps): JSX.Element => {
   }
 
   return (
-    <Box className='flex-center' width='100%'>
-      <Box
-        alignItems='center'
-        display='flex'
-        flexBasis='40%'
-        gap={1}
-        justifyContent='left'
-        marginRight='auto'
-        overflow='hidden'
-      >
-        <img
-          alt='team-crest'
-          height={30}
-          src={getTeamCrestImageUrl(homeTeam.code)}
-          width={30}
-        />
-        <Typography className='text-ellipsis' textAlign='left'>
-          {homeTeam.name.toUpperCase()}
-        </Typography>
-      </Box>
-      <Box className='flex-center' flexBasis='20%' overflow='hidden'>
-        <Typography variant='h5' whiteSpace='nowrap'>{matchStatus}</Typography>
-      </Box>
-      <Box
-        alignItems='center'
-        display='flex'
-        flexBasis='40%'
-        gap={1}
-        justifyContent='right'
-        marginLeft='auto'
-        overflow='hidden'
-      >
-        <Typography
-          className='text-ellipsis'
-          textAlign='right'
-        >
-          {awayTeam.name.toUpperCase()}
-        </Typography>
-        <img
-          alt='team-crest'
-          height={30}
-          src={getTeamCrestImageUrl(awayTeam.code)}
-          width={30}
-        />
-      </Box>
+    <Box className='flex-center' gap={3} width='100%'>
+      <BaseItemWithCrest item={homeTeam} />
+      <Typography textAlign='center' width='40%'>{matchStatus.toUpperCase()}</Typography>
+      <BaseItemWithCrest crestEnd item={awayTeam} />
     </Box>
   );
 };
