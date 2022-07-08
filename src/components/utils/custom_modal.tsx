@@ -1,14 +1,12 @@
 import React from "react";
 import { Close } from "@mui/icons-material";
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 
 interface CustomModalProps {
   isModalOpen: boolean;
   setModalOpen: (value: boolean) => void;
   compact?: boolean;
   title?: string;
-  onCancelClick?: () => void;
-  onConfirmClick?: () => void;
   testId?: string;
   children: JSX.Element;
 }
@@ -18,8 +16,6 @@ export const CustomModal = ({
   setModalOpen,
   compact = false,
   title,
-  onCancelClick,
-  onConfirmClick,
   testId,
   children
 }: CustomModalProps): JSX.Element => {
@@ -51,7 +47,7 @@ export const CustomModal = ({
         maxWidth={compact ? "30rem" : "70rem"}
         onClick={(event): void => event.stopPropagation()}
         overflow='auto'
-        padding={5}
+        padding={4}
         position='absolute'
         sx={{ transform: "translate(-50%, -50%)" }}
         top='50%'
@@ -66,34 +62,6 @@ export const CustomModal = ({
           <Close />
         </IconButton>
         {children}
-        {(onCancelClick || onConfirmClick) && (
-          <Box
-            alignItems='center'
-            display='flex'
-            gap={4}
-            justifyContent='flex-end'
-            width='100%'
-          >
-            { onCancelClick &&
-              <Button
-                color='warning'
-                onClick={onCancelClick}
-                sx={{ width: "8vw" }}
-                variant='contained'
-              >
-                <Typography>Cancel</Typography>
-              </Button>}
-            { onConfirmClick &&
-              <Button
-                color='success'
-                onClick={onConfirmClick}
-                sx={{ width: "8vw" }}
-                variant='contained'
-              >
-                <Typography>Confirm</Typography>
-              </Button>}
-          </Box>
-        )}
       </Box>
     </Box>
   );

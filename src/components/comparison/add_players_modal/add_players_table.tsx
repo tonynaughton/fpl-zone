@@ -5,16 +5,20 @@ import { AppDataContext } from "app_content";
 import { formatPrice } from "helpers";
 import { AppData } from "types";
 
-import { Notifier, NotifierType } from "components/layout";
+import { Notifier } from "components/layout";
 
-import { usePositionColumn } from "./column_hooks/use_position_column";
-import { useTeamColumn } from "./column_hooks/use_team_column";
-import { CustomPagination } from "./pagination";
+import { MAX_PLAYER_COUNT } from "..";
+
+import { PositionColumn } from "./columns/position_column";
+import { TeamColumn } from "./columns/team_column";
+import { CustomFooter } from "./footer";
 
 interface AddPlayersTableProps {
   selectionModel: GridRowId[];
   searchInput: string;
   setSelectionModel: (ids: GridRowId[]) => void;
+  onConfirmClick: () => void;
+  onCancelClick: () => void;
 }
 
 export const renderCell = (props: GridRenderCellParams<string>): JSX.Element => (
@@ -28,7 +32,9 @@ export const renderHeader = (props: GridColumnHeaderParams<string>): JSX.Element
 export const AddPlayersTable = ({
   selectionModel,
   setSelectionModel,
-  searchInput
+  searchInput,
+  onConfirmClick,
+  onCancelClick
 }: AddPlayersTableProps): JSX.Element => {
   const { players } = useContext(AppDataContext) as AppData;
 
@@ -42,11 +48,11 @@ export const AddPlayersTable = ({
   }));
 
   const isRowSelectable = (params: GridRowParams): boolean => (
-    selectionModel.length < 5 || selectionModel.includes(params.id)
+    selectionModel.length < MAX_PLAYER_COUNT || selectionModel.includes(params.id)
   );
 
-  const posCol = usePositionColumn();
-  const teamCol = useTeamColumn();
+  const posCol = PositionColumn();
+  const teamCol = TeamColumn();
 
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", flex: 1, renderHeader, renderCell },
@@ -66,13 +72,14 @@ export const AddPlayersTable = ({
       checkboxSelection
       columns={columns}
       components={{
-        NoRowsOverlay: () => <Notifier message='No players found..' type={NotifierType.Warning} />,
-        Pagination: CustomPagination
+        NoRowsOverlay: () => <Notifier message='No players found..' type='warning' />,
+        Footer: () => <CustomFooter onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} />
       }}
       density='compact'
       disableColumnFilter
       disableColumnMenu
       filterModel={filterModel}
+      hideFooterSelectedRowCount
       initialState={{
         sorting: {
           sortModel: [{ field: "points", sort: "desc" }]
@@ -96,10 +103,6 @@ export const AddPlayersTable = ({
         },
         "& .MuiDataGrid-columnHeaderCheckbox .MuiDataGrid-columnHeaderTitleContainer": {
           display: "none"
-        },
-        "& .MuiDataGrid-selectedRowCount": {
-          fontSize: "1rem",
-          color: selectionModel.length === 5 ? "red" : "inherit"
         }
       }}
     />

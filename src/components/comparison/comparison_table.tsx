@@ -30,9 +30,7 @@ export const ComparisonTable = ({
         tableLayout: "fixed",
         flexGrow: "1",
         height: "100%",
-        "& .MuiTableCell-root": {
-          pl: "0.8vw", pr: "0.8vw", pt: "1vh", pb: "1vh"
-        }
+        "& .MuiTableCell-root": { px: "0.8vw", py: "0.8vh" }
       }}
     >
       <TableBody component='tbody'>

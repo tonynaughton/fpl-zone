@@ -66,8 +66,6 @@ export const AddPlayersModal = ({
   return (
     <CustomModal
       isModalOpen={isAddPlayersModalOpen}
-      onCancelClick={resetState}
-      onConfirmClick={onConfirmClick}
       setModalOpen={setAddPlayersModalOpen}
       testId='add-players-modal'
       title='Add players to compare'
@@ -85,6 +83,8 @@ export const AddPlayersModal = ({
         />
         <Box height='70vh' width='100%'>
           <AddPlayersTable
+            onCancelClick={resetState}
+            onConfirmClick={onConfirmClick}
             searchInput={filterProp}
             selectionModel={playerIds}
             setSelectionModel={setPlayerIds}

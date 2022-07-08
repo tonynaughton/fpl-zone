@@ -5,7 +5,7 @@ import { mockAppData } from "test";
 
 import "@testing-library/jest-dom/extend-expect";
 
-import { DEFAULT_NOTIFIER_MESSAGE, Notifier, NotifierType } from "./notifier";
+import { Notifier, NotifierType } from "./notifier";
 
 describe("Notifier tests", () => {
   let mockType: NotifierType | undefined;
@@ -36,13 +36,13 @@ describe("Notifier tests", () => {
 
       render(createComponent());
 
-      expect(screen.getByTestId("notifier")).toHaveTextContent(DEFAULT_NOTIFIER_MESSAGE);
+      expect(screen.getByTestId("notifier")).toHaveTextContent("Loading...");
     });
   });
 
   describe("Type", () => {
     it("error", () => {
-      mockType = NotifierType.Error;
+      mockType = "error";
 
       render(createComponent());
 
@@ -50,7 +50,7 @@ describe("Notifier tests", () => {
     });
 
     it("warning", () => {
-      mockType = NotifierType.Warning;
+      mockType = "warning";
 
       render(createComponent());
 
@@ -58,7 +58,7 @@ describe("Notifier tests", () => {
     });
 
     it("loading", () => {
-      mockType = NotifierType.Loading;
+      mockType = "loading";
 
       render(createComponent());
 

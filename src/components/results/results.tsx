@@ -35,6 +35,7 @@ export default function Results(): JSX.Element {
       className='flex-center'
       flexDirection='column'
       height='100%'
+      overflow='hidden'
       position='relative'
       sx={{ pl: 3, pr: 3, pb: 2, pt: 4 }}
     >
