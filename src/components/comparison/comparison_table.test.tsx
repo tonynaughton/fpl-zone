@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { AppDataContext } from "app_content";
-import { mockAppData, mockPlayers, mockPlayerStats, mockTeams } from "test/test_data";
+import { MockProviders } from "test/mock_providers";
+import { mockPlayers, mockPlayerStats, mockTeams } from "test/test_data";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -12,7 +12,7 @@ describe("Comparison table tests", () => {
 
   const createComponent = (): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <ComparisonTable
           onAddPlayerClick={jest.fn()}
           onRemovePlayerClick={jest.fn()}
@@ -20,7 +20,7 @@ describe("Comparison table tests", () => {
           selectedPlayers={mockSelectedPlayers}
           teams={mockTeams}
         />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 

@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Controller,SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -18,11 +18,9 @@ import {
 } from "config";
 import { isError } from "lodash";
 
-import { FplIdPopover } from "../fpl_id_popover";
+import { AuthModalContext } from "components/layout";
 
-interface AccountFormProps {
-  closeAuthModal: () => void;
-}
+import { FplIdPopover } from "../fpl_id_popover";
 
 interface FormInput {
   firstName: string;
@@ -33,8 +31,9 @@ interface FormInput {
   fplId: string;
 }
 
-export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element => {
+export const AccountForm = (): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const { setAuthModalView } = useContext(AuthModalContext);
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const theme = useTheme();
@@ -110,7 +109,7 @@ export const AccountForm = ({ closeAuthModal }: AccountFormProps): JSX.Element =
       return;
     }
 
-    closeAuthModal();
+    setAuthModalView("none");
   };
 
   return (

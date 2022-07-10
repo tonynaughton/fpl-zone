@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { AppDataContext } from "app_content";
 import { mockAppData } from "test";
+import { MockProviders } from "test/mock_providers";
 import { Fixture, Gameweek } from "types";
 
 import Results from "components/results/results";
@@ -13,9 +13,9 @@ describe("Results Tests", () => {
 
   const createComponent = (): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <Results />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 

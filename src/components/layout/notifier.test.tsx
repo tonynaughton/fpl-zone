@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { AppDataContext } from "app_content";
-import { mockAppData } from "test";
+import { MockProviders } from "test/mock_providers";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -9,16 +8,16 @@ import { Notifier, NotifierType } from "./notifier";
 
 describe("Notifier tests", () => {
   let mockType: NotifierType | undefined;
-  let mockMessage: string;
+  let mockMessage: string | undefined;
 
   const createComponent = (): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <Notifier
           message={mockMessage}
           type={mockType}
         />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 
@@ -32,7 +31,7 @@ describe("Notifier tests", () => {
     });
 
     it("displays default text if prop is not defined", () => {
-      mockMessage = "";
+      mockMessage = undefined;
 
       render(createComponent());
 
@@ -63,14 +62,6 @@ describe("Notifier tests", () => {
       render(createComponent());
 
       expect(screen.getByTestId("loading-icon")).toBeInTheDocument();
-    });
-
-    it("default", () => {
-      mockType = undefined;
-
-      render(createComponent());
-
-      expect(screen.getByTestId("default-icon")).toBeInTheDocument();
     });
   });
 });

@@ -1,25 +1,22 @@
-import React, { useContext } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React from "react";
 import { Box, useTheme } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
-import { FplIdContext } from "app_content";
-import { auth, logout } from "config";
 import { getLocalImage } from "helpers";
 
-import { AuthModalView } from "components/layout";
+import { AuthModalView } from "components/authentication/auth_modal";
 
 import { GameweekCountdown } from "./gw_countdown";
 import { MenuList } from "./menu_list";
 
 interface NavDrawerProps {
-  active: string;
-  openAuthModal: (value: AuthModalView) => void;
+  activeId: string;
 }
 
 export interface MenuItemType {
+  id: string;
   label: string;
   href?: string;
-  onItemClick?: () => void;
+  view?: AuthModalView;
 }
 
 export interface MenuItems {
@@ -27,41 +24,28 @@ export interface MenuItems {
   auth: MenuItemType[];
 }
 
-export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JSX.Element {
-  const { fplId, setFplId } = useContext(FplIdContext);
-  const [user] = useAuthState(auth);
+export const menuItems: MenuItems = {
+  nav: [
+    { id: "gw-live", label: "gameweek live", href: "/gameweek-live" },
+    { id: "my-fpl", label: "my fpl", href: "/my-fpl" },
+    { id: "fix-and-res", label: "fixtures & results", href: "/fixtures-and-results" },
+    { id: "analysis", label: "analysis", href: "/analysis" }
+  ],
+  auth: [
+    { id: "logout", label: "logout", view: "logout" },
+    { id: "account", label: "account", view: "account" },
+    { id: "login", label: "login", view: "login" },
+    { id: "register", label: "register", view: "register" }
+  ]
+};
+
+export default function NavDrawer({ activeId }: NavDrawerProps): JSX.Element {
   const theme = useTheme();
-
-  const onLogoutClick = (): void => {
-    if (fplId) {
-      setFplId();
-
-      return;
-    }
-    logout();
-  };
-
-  const menuItems: MenuItems = {
-    nav: [
-      { label: "gameweek live", href: "/gameweek-live" },
-      { label: "my fpl", href: "/my-fpl" },
-      { label: "fixtures & results", href: "/fixtures-and-results" },
-      { label: "analysis", href: "/analysis" }
-    ],
-    auth: fplId || user
-      ? [
-        { label: "logout", onItemClick: () => onLogoutClick() },
-        ...user ? [{ label: "account", onItemClick: () => openAuthModal(AuthModalView.Account) }] : []
-      ]
-      : [
-        { label: "login", onItemClick: () => openAuthModal(AuthModalView.Login) },
-        { label: "register", onItemClick: () => openAuthModal(AuthModalView.Register) }
-      ]
-  };
 
   return (
     <Drawer
       anchor='left'
+      data-testid='nav-drawer'
       sx={{
         p: 0,
         width: "12vw",
@@ -87,7 +71,7 @@ export default function NavDrawer({ active, openAuthModal }: NavDrawerProps): JS
         <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         <GameweekCountdown />
       </Box>
-      <MenuList active={active} items={menuItems} />
+      <MenuList activeId={activeId} items={menuItems} />
     </Drawer>
   );
 }

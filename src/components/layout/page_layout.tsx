@@ -1,67 +1,34 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 
-import { AccountForm, FplIdloginForm, LoginForm, RegisterForm, ResetForm } from "components/authentication";
+import { AuthModal, AuthModalView } from "components/authentication/auth_modal";
 import NavDrawer from "components/nav_drawer/nav_drawer";
-import { CustomModal } from "components/utils";
 
 interface LayoutProps {
-  active: string;
+  activeId: string;
 }
 
-export enum AuthModalView {
-  Login,
-  Register,
-  Account,
-  Reset,
-  FplIdLogin
-};
+interface AuthModalContextType {
+  authModalView: AuthModalView;
+  setAuthModalView: (value: AuthModalView) => void;
+}
 
-export const AppLayout = ({ active, children }: React.PropsWithChildren<LayoutProps>): JSX.Element => {
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
-  const [authModalContent, setAuthModalContent] = useState<JSX.Element>(<></>);
-  const [authModalTitle, setAuthModalTitle] = useState<string>("");
+export const AuthModalContext = React.createContext<AuthModalContextType>({
+  authModalView: "none",
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setAuthModalView: () => {}
+});
 
-  const closeAuthModal = (): void => {
-    setIsAuthModalOpen(false);
-    setAuthModalContent(<></>);
-  };
-
-  const openAuthModal = (view: AuthModalView): void => {
-    setIsAuthModalOpen(true);
-
-    switch (view) {
-    case AuthModalView.Login:
-      setAuthModalTitle("Login");
-      setAuthModalContent(<LoginForm closeAuthModal={closeAuthModal} openAuthModal={openAuthModal} />);
-      break;
-    case AuthModalView.Register:
-      setAuthModalTitle("Register");
-      setAuthModalContent(<RegisterForm closeAuthModal={closeAuthModal} openAuthModal={openAuthModal} />);
-      break;
-    case AuthModalView.Account:
-      setAuthModalTitle("Account");
-      setAuthModalContent(<AccountForm closeAuthModal={closeAuthModal} />);
-      break;
-    case AuthModalView.Reset:
-      setAuthModalTitle("Reset password");
-      setAuthModalContent(<ResetForm openAuthModal={openAuthModal} />);
-      break;
-    case AuthModalView.FplIdLogin:
-      setAuthModalTitle("FPL ID Login");
-      setAuthModalContent(<FplIdloginForm closeAuthModal={closeAuthModal} openAuthModal={openAuthModal} />);
-      break;
-    default:
-      setAuthModalTitle("Login");
-      setAuthModalContent(<LoginForm closeAuthModal={closeAuthModal} openAuthModal={openAuthModal} />);
-      break;
-    };
-  };
+export const AppLayout = ({ activeId, children }: React.PropsWithChildren<LayoutProps>): JSX.Element => {
+  const [authModalView, setAuthModalView] = useState<AuthModalView>("none");
+  const authModalContextValue = { authModalView, setAuthModalView };
 
   return (
     <>
       <Box component='div' display='flex'>
-        <NavDrawer active={active} openAuthModal={openAuthModal} />
+        <AuthModalContext.Provider value={authModalContextValue}>
+          <NavDrawer activeId={activeId} />
+        </AuthModalContext.Provider>
         <Box
           component='main'
           display='flex'
@@ -74,14 +41,9 @@ export const AppLayout = ({ active, children }: React.PropsWithChildren<LayoutPr
           {children}
         </Box>
       </Box>
-      <CustomModal
-        compact
-        isModalOpen={isAuthModalOpen}
-        setModalOpen={setIsAuthModalOpen}
-        title={authModalTitle}
-      >
-        {authModalContent}
-      </CustomModal>
+      <AuthModalContext.Provider value={authModalContextValue}>
+        <AuthModal />
+      </AuthModalContext.Provider>
     </>
   );
 };

@@ -1,8 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { AppDataContext } from "app_content";
 import { numberWithCommas } from "helpers";
-import { mockAppData } from "test/test_data";
+import { MockProviders } from "test/mock_providers";
 import { TeamData, TeamPicks } from "types";
 
 import "@testing-library/jest-dom/extend-expect";
@@ -15,12 +14,12 @@ describe("Lineup details tests", () => {
 
   const createComponent = (): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <LineupDetails
           teamData={mockTeamData}
           teamPicks={mockTeamPicks}
         />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Controller,SubmitHandler, useForm } from "react-hook-form";
 import {
   Box,
@@ -13,16 +13,11 @@ import {
 } from "config";
 import { isError } from "lodash";
 
-import { AuthModalView } from "components/layout";
+import { AuthModalContext } from "components/layout";
 
 import { FplIdPopover } from "../fpl_id_popover";
 
 import "../auth.css";
-
-interface RegisterFormProps {
-  openAuthModal: (value: AuthModalView) => void;
-  closeAuthModal: () => void;
-}
 
 interface FormInput {
   firstName: string;
@@ -33,8 +28,9 @@ interface FormInput {
   fplId: string;
 }
 
-export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProps): JSX.Element => {
+export const RegisterForm = (): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const { setAuthModalView } = useContext(AuthModalContext);
 
   const defaultValues = {
     firstName: "",
@@ -64,7 +60,7 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
     if (isError(response)) {
       setErrorMessage(response.message);
     } else {
-      closeAuthModal();
+      setAuthModalView("none");
     }
   };
 
@@ -203,7 +199,7 @@ export const RegisterForm = ({ openAuthModal, closeAuthModal }: RegisterFormProp
           <Typography textTransform='none' variant='h3'>Register</Typography>
         </Button>
       </form>
-      <Link onClick={(): void => openAuthModal(AuthModalView.Login)}>
+      <Link onClick={(): void => setAuthModalView("login")}>
         <Typography sx={{ mt: 2 }} textAlign='center'>Already have an account? Login now.</Typography>
       </Link>
     </Box>

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { AppDataContext } from "app_content";
-import { mockAppData, mockPlayers } from "test/test_data";
+import { MockProviders } from "test/mock_providers";
+import { mockPlayers } from "test/test_data";
 import { Player, TeamPicks } from "types";
 
 import "@testing-library/jest-dom/extend-expect";
@@ -15,13 +15,13 @@ describe("Lineup row tests", () => {
 
   const createComponent = (): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <LineupRow
           handlePlayerPerformanceClick={mockHandlePlayerPerformanceClick}
           players={mockLineupRowPlayers}
           teamPicks={mockLineupRowTeamPicks}
         />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 
@@ -33,7 +33,7 @@ describe("Lineup row tests", () => {
     mockLineupRowPlayers.forEach((player) => {
       const playerContainer = screen.getByTestId(`player-container-${player.id}`);
 
-      expect(playerContainer).toHaveTextContent(player.web_name);
+      expect(playerContainer).toHaveTextContent(player.web_name.toUpperCase());
       expect(playerContainer).toHaveTextContent(player.event_points.toString());
     });
   });

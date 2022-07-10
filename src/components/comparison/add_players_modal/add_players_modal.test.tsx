@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { AppDataContext } from "app_content";
-import { mockAppData, mockPlayers } from "test/test_data";
+import { MockProviders } from "test/mock_providers";
+import { mockPlayers } from "test/test_data";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -16,14 +16,14 @@ describe("Add players modal tests", () => {
 
   const createComponent = (): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <AddPlayersModal
           isAddPlayersModalOpen={mockIsAddPlayersModalOpen}
           selectedPlayers={mockSelectedPlayers}
           setAddPlayersModalOpen={mockSetAddPlayersModalOpen}
           setSelectedComparisonPlayers={mockSetSelectedComparisonPlayers}
         />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 

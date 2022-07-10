@@ -28,14 +28,13 @@ export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMe
       color: "black"
     };
 
+    // eslint-disable-next-line default-case
     switch (type) {
     case "error":
       return <Warning data-testid='error-icon' sx={iconStyle} />;
     case "warning":
       return <Warning data-testid='warning-icon' sx={iconStyle} />;
     case "loading":
-      return <CircularProgress data-testid='loading-icon' sx={iconStyle} />;
-    default:
       return <CircularProgress data-testid='loading-icon' sx={iconStyle} />;
     }
   };

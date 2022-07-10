@@ -1,8 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { AppDataContext } from "app_content";
 import { getTeamCrestImageUrl } from "helpers";
-import { mockAppData } from "test";
+import { MockProviders } from "test/mock_providers";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -52,9 +51,9 @@ describe("Gameweek Summary Tests", () => {
 
   const createComponent = (): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <GameweekSummary />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 

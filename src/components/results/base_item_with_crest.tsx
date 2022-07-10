@@ -26,11 +26,12 @@ export const BaseItemWithCrest = ({ item, crestEnd = false }: BaseItemWithCrestP
     >
       <img
         alt='team-crest'
+        data-testid={`base-item-crest-img-${item.id}`}
         height={30}
         src={getTeamCrestImageUrl(teamCode)}
         width={30}
       />
-      <Typography className='text-ellipsis' textAlign='left'>
+      <Typography className='text-ellipsis' data-testid={`base-item-text-${item.id}`} textAlign='left'>
         {name}
       </Typography>
     </Box>

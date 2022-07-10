@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
-import { AppDataContext } from "app_content";
 import { getLocalImage } from "helpers";
 import _ from "lodash";
-import { mockAppData, mockPlayers } from "test";
+import { mockPlayers } from "test";
+import { MockProviders } from "test/mock_providers";
 import { TeamData, TeamPicks } from "types";
 
 import Lineup from "components/lineup/lineup";
@@ -23,14 +23,14 @@ describe("Lineup Tests", () => {
 
   const createComponent = (): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <Lineup
           bench={mockBench}
           selected={mockSelected}
           teamData={mockTeamData}
           teamPicks={mockTeamPicks}
         />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 
@@ -43,7 +43,7 @@ describe("Lineup Tests", () => {
       position.forEach((player) => {
         const container = selectedContainer.getByTestId(`player-container-${player.id}`);
 
-        expect(container).toHaveTextContent(player.web_name);
+        expect(container).toHaveTextContent(player.web_name.toUpperCase());
         expect(container).toHaveTextContent(player.event_points.toString());
 
         const kitImg = selectedContainer.getByTestId(`kit-img-player-${player.id}`);
@@ -62,7 +62,7 @@ describe("Lineup Tests", () => {
     mockBench.forEach((player) => {
       const container = benchContainer.getByTestId(`player-container-${player.id}`);
 
-      expect(container).toHaveTextContent(player.web_name);
+      expect(container).toHaveTextContent(player.web_name.toUpperCase());
       expect(container).toHaveTextContent(player.event_points.toString());
 
       const kitImg = screen.getByTestId(`kit-img-player-${player.id}`);

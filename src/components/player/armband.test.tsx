@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { AppDataContext } from "app_content";
-import { mockAppData } from "test";
+import { MockProviders } from "test/mock_providers";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -10,9 +9,9 @@ import { Armband } from "./armband";
 describe("Armband tests", () => {
   const createComponent = (isVice: boolean): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <Armband isVice={isVice} />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 
