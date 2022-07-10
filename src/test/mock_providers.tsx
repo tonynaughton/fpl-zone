@@ -4,6 +4,10 @@ import { AppDataContext } from "app_content";
 
 import { mockAppData } from "./test_data";
 
+interface MockProviderProps {
+  children: JSX.Element;
+}
+
 export const mockTheme = {
   breakpoints: {},
   palette: {
@@ -52,7 +56,7 @@ export const mockTheme = {
   }
 };
 
-export const MockProviders = (children: JSX.Element): JSX.Element => {
+export const MockProviders = ({ children }: MockProviderProps): JSX.Element => {
   const theme = createTheme(mockTheme);
 
   return (
