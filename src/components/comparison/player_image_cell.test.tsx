@@ -41,20 +41,20 @@ describe("Player image cell tests", () => {
       expect(mockOnButtonClick).toHaveBeenCalledTimes(1);
     });
 
-    it("add button present", () => {
+    it("add icon present", () => {
       render(createComponent());
 
       const container = within(screen.getByTestId("player-image-container-placeholder"));
 
-      expect(container.getByTestId("add-button")).toBeInTheDocument();
+      expect(container.getByTestId("add-icon")).toBeInTheDocument();
     });
 
-    it("remove button not present", () => {
+    it("remove icon not present", () => {
       render(createComponent());
 
       const container = within(screen.getByTestId("player-image-container-placeholder"));
 
-      expect(container.queryByTestId("remove-button")).toBeNull();
+      expect(container.queryByTestId("remove-icon")).toBeNull();
     });
   });
 
@@ -81,19 +81,19 @@ describe("Player image cell tests", () => {
       expect(mockOnButtonClick).toHaveBeenCalledTimes(0);
     });
 
-    it("add button not present", () => {
+    it("add icon not present", () => {
       render(createComponent(mockPlayer));
 
       const container = within(screen.getByTestId(`player-image-container-${mockPlayer.id}`));
 
-      expect(container.queryByTestId("add-button")).toBeNull();
+      expect(container.queryByTestId("add-icon")).toBeNull();
     });
 
-    it("remove button present", () => {
+    it("remove icon present", () => {
       render(createComponent(mockPlayer));
 
       const container = within(screen.getByTestId(`player-image-container-${mockPlayer.id}`));
-      const removeButton = container.getByTestId("remove-button");
+      const removeButton = container.getByTestId("remove-icon");
 
       expect(removeButton).toBeInTheDocument();
 
