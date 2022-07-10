@@ -1,24 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { isError } from "react-query";
 import { Box, Button, Link,TextField, Typography } from "@mui/material";
 import { sendPasswordReset } from "config";
 
-import { AuthModalView } from "components/layout";
+import { AuthModalContext } from "components/layout";
 
 import "../auth.css";
-
-interface ResetFormProps {
-  openAuthModal: (value: AuthModalView) => void;
-}
 
 interface FormInput {
   email: string;
 }
 
 
-export const ResetForm = ({ openAuthModal }: ResetFormProps): JSX.Element => {
+export const ResetForm = (): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const { setAuthModalView } = useContext(AuthModalContext);
 
   const defaultValues = { email: "" };
 
@@ -28,7 +25,7 @@ export const ResetForm = ({ openAuthModal }: ResetFormProps): JSX.Element => {
     if (isError(response)) {
       setErrorMessage(response.message);
     } else {
-      openAuthModal(AuthModalView.Login);
+      setAuthModalView("login");
     }
   };
 
@@ -77,7 +74,7 @@ export const ResetForm = ({ openAuthModal }: ResetFormProps): JSX.Element => {
           <Typography textTransform='none' variant='h3'>Reset</Typography>
         </Button>
       </form>
-      <Link onClick={(): void => openAuthModal(AuthModalView.Login)}>
+      <Link onClick={(): void => setAuthModalView("login")}>
         <Typography sx={{ mt: 2 }} textAlign='center'>Return to Login</Typography>
       </Link>
     </Box>

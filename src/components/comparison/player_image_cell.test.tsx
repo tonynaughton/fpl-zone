@@ -1,8 +1,8 @@
 import React from "react";
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import { AppDataContext } from "app_content";
 import { getPlayerImageUrl } from "helpers";
-import { mockAppData, mockPlayers } from "test/test_data";
+import { MockProviders } from "test/mock_providers";
+import { mockPlayers } from "test/test_data";
 import { Player } from "types";
 
 import "@testing-library/jest-dom/extend-expect";
@@ -14,9 +14,9 @@ describe("Player image cell tests", () => {
 
   const createComponent = (player?: Player): JSX.Element => {
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <PlayerImageCell onButtonClick={mockOnButtonClick} player={player} />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 
@@ -41,20 +41,20 @@ describe("Player image cell tests", () => {
       expect(mockOnButtonClick).toHaveBeenCalledTimes(1);
     });
 
-    it("add button present", () => {
+    it("add icon present", () => {
       render(createComponent());
 
       const container = within(screen.getByTestId("player-image-container-placeholder"));
 
-      expect(container.getByTestId("add-button")).toBeInTheDocument();
+      expect(container.getByTestId("add-icon")).toBeInTheDocument();
     });
 
-    it("remove button not present", () => {
+    it("remove icon not present", () => {
       render(createComponent());
 
       const container = within(screen.getByTestId("player-image-container-placeholder"));
 
-      expect(container.queryByTestId("remove-button")).toBeNull();
+      expect(container.queryByTestId("remove-icon")).toBeNull();
     });
   });
 
@@ -81,19 +81,19 @@ describe("Player image cell tests", () => {
       expect(mockOnButtonClick).toHaveBeenCalledTimes(0);
     });
 
-    it("add button not present", () => {
+    it("add icon not present", () => {
       render(createComponent(mockPlayer));
 
       const container = within(screen.getByTestId(`player-image-container-${mockPlayer.id}`));
 
-      expect(container.queryByTestId("add-button")).toBeNull();
+      expect(container.queryByTestId("add-icon")).toBeNull();
     });
 
-    it("remove button present", () => {
+    it("remove icon present", () => {
       render(createComponent(mockPlayer));
 
       const container = within(screen.getByTestId(`player-image-container-${mockPlayer.id}`));
-      const removeButton = container.getByTestId("remove-button");
+      const removeButton = container.getByTestId("remove-icon");
 
       expect(removeButton).toBeInTheDocument();
 

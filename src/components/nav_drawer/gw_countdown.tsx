@@ -30,6 +30,7 @@ export const GameweekCountdown = (): JSX.Element => {
 
     return (
       <Typography
+        data-testid='gameweek-deadline-text'
         p={1}
         textAlign='center'
         textOverflow='ellipsis'

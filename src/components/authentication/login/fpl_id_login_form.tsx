@@ -4,21 +4,17 @@ import { Box, Button, Link,OutlinedInput, Typography, useTheme } from "@mui/mate
 import { getTeamData } from "api/fpl_api_provider";
 import { FplIdContext } from "app_content";
 
-import { AuthModalView } from "components/layout";
+import { AuthModalContext } from "components/layout";
 
 import { FplIdPopover } from "../fpl_id_popover";
-
-interface FplIdLoginFormProps {
-  openAuthModal: (value: AuthModalView) => void;
-  closeAuthModal: () => void;
-}
 
 interface FormInput {
   fplId: string;
 }
 
-export const FplIdloginForm = ({ openAuthModal, closeAuthModal }: FplIdLoginFormProps): JSX.Element => {
+export const FplIdloginForm = (): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const { setAuthModalView } = useContext(AuthModalContext);
   const { setFplId } = useContext(FplIdContext);
   const theme = useTheme();
 
@@ -53,7 +49,7 @@ export const FplIdloginForm = ({ openAuthModal, closeAuthModal }: FplIdLoginForm
     }
 
     setFplId(fplId);
-    closeAuthModal();
+    setAuthModalView("none");
   };
 
   return (
@@ -112,7 +108,7 @@ export const FplIdloginForm = ({ openAuthModal, closeAuthModal }: FplIdLoginForm
           <Typography textTransform='none' variant='h3'>Login with FPL ID</Typography>
         </Button>
       </form>
-      <Link onClick={(): void => openAuthModal(AuthModalView.Login)}>
+      <Link onClick={(): void => setAuthModalView("login")}>
         <Typography sx={{ mt: 2 }} textAlign='center'>Return to Login</Typography>
       </Link>
     </Box>

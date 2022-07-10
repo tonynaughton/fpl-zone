@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import {
   Box,
@@ -12,25 +12,21 @@ import {
 import { logInWithEmailAndPassword } from "config";
 import { isError } from "lodash";
 
-import { AuthModalView } from "components/layout";
+import { AuthModalContext } from "components/layout";
 
 import { FplIdLoginButton } from "./fpl_id_login_button";
 import { GoogleLoginButton } from "./google_login_button";
 
 import "../auth.css";
 
-interface LoginFormProps {
-  openAuthModal: (value: AuthModalView) => void;
-  closeAuthModal: () => void;
-}
-
 interface FormInput {
   email: string;
   password: string;
 }
 
-export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JSX.Element => {
+export const LoginForm = (): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const { setAuthModalView } = useContext(AuthModalContext);
   const theme = useTheme();
 
   const defaultValues = {
@@ -60,7 +56,7 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
     if (isError(response)) {
       setErrorMessage(response.message);
     } else {
-      closeAuthModal();
+      setAuthModalView("none");
     }
   };
 
@@ -122,7 +118,7 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
           <Typography textTransform='none' variant='h3'>Login</Typography>
         </Button>
       </form>
-      <Link onClick={(): void => openAuthModal(AuthModalView.Reset)}>
+      <Link onClick={(): void => setAuthModalView("reset")}>
         <Typography sx={{ mt: 2 }}>Forgotten password?</Typography>
       </Link>
       <Divider sx={{ p: 3, width: "100%" }}><Typography variant='h4'>OR</Typography></Divider>
@@ -133,8 +129,8 @@ export const LoginForm = ({ openAuthModal, closeAuthModal }: LoginFormProps): JS
         width='100%'
       >
         <GoogleLoginButton />
-        <FplIdLoginButton openAuthModal={openAuthModal} />
-        <Link onClick={(): void => openAuthModal(AuthModalView.Register)} >
+        <FplIdLoginButton />
+        <Link onClick={(): void => setAuthModalView("register")} >
           <Typography>Don&apos;t have an account? Click to register.</Typography>
         </Link>
       </Box>

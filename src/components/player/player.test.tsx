@@ -43,7 +43,7 @@ describe("Player Tests", () => {
     render(createComponent());
 
     const playerNameText = screen.getByTestId("player-name");
-    expect(playerNameText).toHaveTextContent(mockPlayer.web_name);
+    expect(playerNameText).toHaveTextContent(mockPlayer.web_name.toUpperCase());
   });
 
   it("Renders player score as expected", () => {

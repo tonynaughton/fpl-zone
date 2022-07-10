@@ -86,7 +86,7 @@ export const MyFPLPage = (): JSX.Element => {
   };
 
   return (
-    <AppLayout active='my fpl'>
+    <AppLayout activeId='my-fpl'>
       <ComponentContainer title='my team'>{renderTeamComponent()}</ComponentContainer>
       <ComponentContainer title='fdr'>{renderFdrTable()}</ComponentContainer>
     </AppLayout>

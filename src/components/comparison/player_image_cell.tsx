@@ -41,7 +41,9 @@ export const PlayerImageCell = ({ player, onButtonClick }: PlayerImageCellProps)
         borderRadius: "50%"
       }}
     >
-      {!player ? <AddCircle fontSize='inherit' /> : <RemoveCircle fontSize='inherit' />}
+      {!player
+        ? <AddCircle data-testid='add-icon' fontSize='inherit' />
+        : <RemoveCircle data-testid='remove-icon' fontSize='inherit' />}
     </Icon>
   </Box>
 );

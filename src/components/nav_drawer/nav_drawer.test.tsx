@@ -2,18 +2,21 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter as Router } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
-import { AppDataContext } from "app_content";
-import { mockAppData } from "test";
-
-import { AuthModalView } from "components/layout";
+import { User } from "firebase/auth";
+import { MockProviders, mockTheme } from "test/mock_providers";
 
 import "@testing-library/jest-dom";
 
-import NavDrawer from "./nav_drawer";
+import NavDrawer, { menuItems } from "./nav_drawer";
+
+let mockUser: User | undefined;
+
+jest.mock("react-firebase-hooks/auth", (): Record<string, () => (User | undefined)[]> => (
+  { useAuthState: () => [mockUser] }
+));
 
 describe("Nav Drawer Tests", () => {
-  let mockLabel: string;
-  let mockOpenAuthModal: (value: AuthModalView) => void;
+  const mockActiveId = "gw-live";
 
   const mockQueryClient = new QueryClient();
 
@@ -21,31 +24,76 @@ describe("Nav Drawer Tests", () => {
     return (
       <QueryClientProvider client={mockQueryClient}>
         <Router>
-          <AppDataContext.Provider value={mockAppData}>
-            <NavDrawer active={mockLabel} openAuthModal={mockOpenAuthModal} />
-          </AppDataContext.Provider>
+          <MockProviders>
+            <NavDrawer activeId={mockActiveId} />
+          </MockProviders>
         </Router>
       </QueryClientProvider>
     );
   };
 
-  describe("Active label has expected styling", () => {
-    it("When 'gameweek live' is active", () => {
-      mockLabel = "gameweek live";
-
+  describe("Nav items", () => {
+    it("Labels displayed as expected", async () => {
       render(createComponent());
 
-      expect(screen.getByText("GAMEWEEK LIVE")).toHaveStyle("color: black");
-      expect(screen.getByText("MY FPL")).toHaveStyle("color: white");
+      await screen.findByTestId("nav-drawer");
+
+      menuItems.nav.forEach(item => {
+        const text = screen.getByTestId(`menu-item-text-${item.id}`);
+        expect(text).toHaveTextContent(item.label.toUpperCase());
+
+        const expectedColor = item.id === mockActiveId ? "black" : mockTheme.palette.info.main;
+        expect(text).toHaveStyle(`color: ${expectedColor}`);
+      });
     });
 
-    it("When 'my team' is active", () => {
-      mockLabel = "my fpl";
+    it("Active item has expected styling", async () => {
+      render(createComponent());
+
+      await screen.findByTestId("nav-drawer");
+
+      menuItems.nav.forEach(item => {
+        const text = screen.getByTestId(`menu-item-text-${item.id}`);
+
+        const expectedColor = item.id === mockActiveId ? "black" : mockTheme.palette.info.main;
+        expect(text).toHaveStyle(`color: ${expectedColor}`);
+      });
+    });
+  });
+
+  describe("Auth items", () => {
+    it("Logged in items displayed as expected", async () => {
+      mockUser = {} as User;
 
       render(createComponent());
 
-      expect(screen.getByText("GAMEWEEK LIVE")).toHaveStyle("color: white");
-      expect(screen.getByText("MY FPL")).toHaveStyle("color: black");
+      await screen.findByTestId("nav-drawer");
+
+      const logoutText = screen.getByTestId("menu-item-text-logout");
+      expect(logoutText).toHaveTextContent("LOGOUT");
+
+      const accountText = screen.getByTestId("menu-item-text-account");
+      expect(accountText).toHaveTextContent("ACCOUNT");
+
+      expect(screen.queryByTestId("menu-item-text-login")).toBeNull();
+      expect(screen.queryByTestId("menu-item-text-register")).toBeNull();
+    });
+
+    it("Logged out items displayed as expected", async () => {
+      mockUser = undefined;
+
+      render(createComponent());
+
+      await screen.findByTestId("nav-drawer");
+
+      const logoutText = screen.getByTestId("menu-item-text-login");
+      expect(logoutText).toHaveTextContent("LOGIN");
+
+      const accountText = screen.getByTestId("menu-item-text-register");
+      expect(accountText).toHaveTextContent("REGISTER");
+
+      expect(screen.queryByTestId("menu-item-text-logout")).toBeNull();
+      expect(screen.queryByTestId("menu-item-text-account")).toBeNull();
     });
   });
 });

@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import { AppDataContext } from "app_content";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { getTeamCrestImageUrl } from "helpers";
-import { mockAppData,mockFixtures, mockPlayers, mockTeams } from "test";
+import { mockFixtures, mockPlayers, mockTeams } from "test";
+import { MockProviders } from "test/mock_providers";
 import { Player } from "types";
 
 import FdrTable from "components/fdr/fdr";
@@ -33,9 +33,9 @@ describe("FDR Tests", () => {
     mockGameweekIds = gameweekIds;
 
     return (
-      <AppDataContext.Provider value={mockAppData}>
+      <MockProviders>
         <FdrTable players={playerFdr ? mockPlayers : undefined} />
-      </AppDataContext.Provider>
+      </MockProviders>
     );
   };
 
@@ -59,7 +59,7 @@ describe("FDR Tests", () => {
         mockTeams.forEach((team) => {
           const teamName = screen.getByTestId(`base-item-text-${team.id}`);
 
-          expect(teamName).toHaveTextContent(team.name.toUpperCase());
+          expect(teamName).toHaveTextContent(team.name);
         });
       });
     });
@@ -86,9 +86,9 @@ describe("FDR Tests", () => {
 
       await screen.findByTestId("fdr-container").then(() => {
         mockFdrPlayers.forEach((player) => {
-          const playerName = screen.getByTestId(`base-item-${player.id}`);
+          const playerName = screen.getByTestId(`base-item-text-${player.id}`);
 
-          expect(playerName).toHaveTextContent(player.web_name.toUpperCase());
+          expect(playerName).toHaveTextContent(player.web_name);
         });
       });
     });

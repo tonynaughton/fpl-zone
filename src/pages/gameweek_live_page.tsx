@@ -6,7 +6,7 @@ import GameweekSummary from "components/gameweek_summary/gameweek_summary";
 import { AppLayout, ComponentContainer } from "components/layout";
 
 export const GameweekLivePage = (): JSX.Element => (
-  <AppLayout active='gameweek live'>
+  <AppLayout activeId='gw-live'>
     <Box
       className='flex-center'
       gap={3}
