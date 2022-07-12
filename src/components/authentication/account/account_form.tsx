@@ -31,6 +31,8 @@ interface FormInput {
   fplId: string;
 }
 
+type DefaultFormValues = Omit<FormInput, "password" | "repeatPassword">;
+
 export const AccountForm = (): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const { setAuthModalView } = useContext(AuthModalContext);
@@ -38,69 +40,60 @@ export const AccountForm = (): JSX.Element => {
   const navigate = useNavigate();
   const theme = useTheme();
 
-  const defaultValues = {
+  const [defaultValues, setDefaultValues] = useState<DefaultFormValues>({
     firstName: "",
     lastName: "",
     email: "",
     fplId: ""
-  };
-
-  const [userData, setUserData] = useState(defaultValues);
-  const [userFound, setUserFound] = useState(false);
-
-  const setDefaultValues = async (): Promise<void> => {
-    if (!user) {
-      setErrorMessage("You are not currently logged in");
-
-      return;
-    }
-
-    const response = await getUserDetails(user);
-
-    if (isError(response)) {
-      setErrorMessage(response.message);
-
-      return;
-    }
-
-    setUserData({
-      firstName: response.firstName,
-      lastName: response.lastName,
-      email: response.email,
-      fplId: response.fplId.toString()
-    });
-    setUserFound(true);
-  };
+  });
 
   const { control, handleSubmit, reset } = useForm<FormInput>({ defaultValues });
 
   useEffect(() => {
     if (loading) return;
-    setDefaultValues();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    if (!user) {
+      setErrorMessage("You are not signed in");
+
+      return;
+    }
+
+    const setUserDetails = async (): Promise<void> => {
+      const response = await getUserDetails(user);
+
+      if (isError(response)) {
+        setErrorMessage(response.message);
+
+        return;
+      }
+
+      setDefaultValues({ ...response, fplId: response.fplId.toString() });
+    };
+
+    setUserDetails();
   }, [loading, navigate, user]);
 
   useEffect(() => {
-    reset(userData);
-  }, [reset, userData]);
+    reset(defaultValues);
+  }, [reset, defaultValues]);
 
   const onDetailsSave: SubmitHandler<FormInput> = async (data: FormInput): Promise<void> => {
     if (data.password !== data.repeatPassword) {
       return;
     }
 
-    if (!user) {
-      setErrorMessage("You are not currently logged in");
+    const fplId = parseInt(data.fplId);
 
-      return;
+    if (!fplId) {
+      setErrorMessage("Your FPL ID must be made up of numbers only");
     }
 
     const response = await updateUserDetails(
-      user.uid,
+      user!.uid,
       data.firstName,
       data.lastName,
       data.email,
-      data.fplId
+      fplId
     );
 
     if (isError(response)) {
@@ -125,7 +118,7 @@ export const AccountForm = (): JSX.Element => {
           render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
             <TextField
               autoFocus
-              disabled={!userFound}
+              disabled={!user}
               error={!!error}
               fullWidth
               margin='dense'
@@ -141,7 +134,7 @@ export const AccountForm = (): JSX.Element => {
           name='lastName'
           render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
             <TextField
-              disabled={!userFound}
+              disabled={!user}
               error={!!error}
               fullWidth
               margin='dense'
@@ -158,7 +151,7 @@ export const AccountForm = (): JSX.Element => {
           render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
             <TextField
               className='text-input'
-              disabled={!userFound}
+              disabled={!user}
               error={!!error}
               fullWidth
               margin='dense'
@@ -176,7 +169,7 @@ export const AccountForm = (): JSX.Element => {
           render={({ field: { onChange, value }, fieldState: { error } }): JSX.Element => (
             <OutlinedInput
               autoFocus
-              disabled={!userFound}
+              disabled={!user}
               endAdornment={<FplIdPopover />}
               error={!!error}
               fullWidth
@@ -184,21 +177,6 @@ export const AccountForm = (): JSX.Element => {
               onChange={onChange}
               placeholder='FPL ID'
               required
-              sx={{
-                mt: 1,
-                "& input[type=number]": {
-                  MozAppearance: "textfield"
-                },
-                "& input[type=number]::-webkit-outer-spin-button": {
-                  WebkitAppearance: "none",
-                  margin: 0
-                },
-                "& input[type=number]::-webkit-inner-spin-button": {
-                  WebkitAppearance: "none",
-                  margin: 0
-                }
-              }}
-              type='number'
               value={value}
             />
           )}
@@ -214,6 +192,7 @@ export const AccountForm = (): JSX.Element => {
         <Button
           className='action-button'
           color='secondary'
+          disabled={!user}
           fullWidth
           sx={{ mt: 2 }}
           type='submit'

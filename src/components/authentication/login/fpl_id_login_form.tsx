@@ -34,11 +34,16 @@ export const FplIdloginForm = (): JSX.Element => {
     return () => {
       document.removeEventListener("keydown", listener);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleSubmit]);
 
   const onLoginClick: SubmitHandler<FormInput> = async (data: FormInput) => {
     const fplId = parseInt(data.fplId);
+
+    if (!fplId) {
+      setErrorMessage("Your FPL ID must be made up of numbers only");
+
+      return;
+    }
 
     try {
       await getTeamData(fplId);
@@ -72,20 +77,6 @@ export const FplIdloginForm = (): JSX.Element => {
               onChange={onChange}
               placeholder='FPL ID'
               required
-              sx={{
-                "& input[type=number]": {
-                  MozAppearance: "textfield"
-                },
-                "& input[type=number]::-webkit-outer-spin-button": {
-                  WebkitAppearance: "none",
-                  margin: 0
-                },
-                "& input[type=number]::-webkit-inner-spin-button": {
-                  WebkitAppearance: "none",
-                  margin: 0
-                }
-              }}
-              type='number'
               value={value}
             />
           )}

@@ -100,6 +100,7 @@
     "template-curly-spacing": "warn",
     
     // React
+    "react-hooks/exhaustive-deps": "off",
     "react/prop-types": "warn",
     "react/boolean-prop-naming": "warn",
     "react/self-closing-comp": "warn",

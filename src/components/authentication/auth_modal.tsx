@@ -69,7 +69,6 @@ export const AuthModal = (): JSX.Element => {
       setAuthModalContent(<LoginForm />);
       break;
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authModalView]);
 
   return (

@@ -40,7 +40,6 @@ export const AddPlayersModal = ({
     window.addEventListener("keydown", close);
 
     return () => window.removeEventListener("keydown", close);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPlayers]);
 
   const resetState = (): void => {
@@ -54,7 +53,6 @@ export const AddPlayersModal = ({
     resetState();
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = useCallback(debounce((searchInput) => setFilterProp(searchInput), 1000), []);
 
   const onSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
