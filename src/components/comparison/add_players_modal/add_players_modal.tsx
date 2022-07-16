@@ -11,16 +11,16 @@ import { AddPlayersTable } from "./add_players_table";
 
 interface AddPlayersModalProps {
   isAddPlayersModalOpen: boolean;
-  setAddPlayersModalOpen: (value: boolean) => void;
+  closeAddPlayersModal: (value: boolean) => void;
   selectedPlayers: Player[];
-  setSelectedComparisonPlayers: (players: Player[]) => void;
+  setSelectedPlayers: (players: Player[]) => void;
 }
 
 export const AddPlayersModal = ({
   isAddPlayersModalOpen,
-  setAddPlayersModalOpen,
+  closeAddPlayersModal: setAddPlayersModalOpen,
   selectedPlayers,
-  setSelectedComparisonPlayers
+  setSelectedPlayers: setSelectedComparisonPlayers
 }: AddPlayersModalProps): JSX.Element => {
   const { players } = useContext(AppDataContext) as AppData;
 
@@ -40,7 +40,6 @@ export const AddPlayersModal = ({
     window.addEventListener("keydown", close);
 
     return () => window.removeEventListener("keydown", close);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPlayers]);
 
   const resetState = (): void => {
@@ -54,7 +53,6 @@ export const AddPlayersModal = ({
     resetState();
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = useCallback(debounce((searchInput) => setFilterProp(searchInput), 1000), []);
 
   const onSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -63,10 +61,14 @@ export const AddPlayersModal = ({
     debounceSearch(input);
   };
 
+  const closeAddPlayersModal = (): void => {
+    setAddPlayersModalOpen(false);
+  };
+
   return (
     <CustomModal
+      closeModal={closeAddPlayersModal}
       isModalOpen={isAddPlayersModalOpen}
-      setModalOpen={setAddPlayersModalOpen}
       testId='add-players-modal'
       title='Add players to compare'
     >

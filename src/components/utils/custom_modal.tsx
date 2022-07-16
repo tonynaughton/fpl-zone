@@ -4,7 +4,7 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 
 interface CustomModalProps {
   isModalOpen: boolean;
-  setModalOpen: (value: boolean) => void;
+  closeModal: () => void;
   compact?: boolean;
   title?: string;
   testId?: string;
@@ -13,7 +13,7 @@ interface CustomModalProps {
 
 export const CustomModal = ({
   isModalOpen,
-  setModalOpen,
+  closeModal,
   compact = false,
   title,
   testId,
@@ -28,7 +28,7 @@ export const CustomModal = ({
       display={isModalOpen ? "block" : "none"}
       height='100%'
       left={0}
-      onClick={(): void => setModalOpen(false)}
+      onClick={closeModal}
       position='absolute'
       top={0}
       width='100%'
@@ -56,7 +56,7 @@ export const CustomModal = ({
       >
         {title && <Typography variant='h3'>{title}</Typography>}
         <IconButton
-          onClick={(): void => setModalOpen(false)}
+          onClick={closeModal}
           sx={{ position: "absolute", top: "4%", right: "4%" }}
         >
           <Close />

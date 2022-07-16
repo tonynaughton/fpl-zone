@@ -3,41 +3,12 @@ import { Box, useTheme } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import { getLocalImage } from "helpers";
 
-import { AuthModalView } from "components/authentication/auth_modal";
-
 import { GameweekCountdown } from "./gw_countdown";
 import { MenuList } from "./menu_list";
 
 interface NavDrawerProps {
   activeId: string;
 }
-
-export interface MenuItemType {
-  id: string;
-  label: string;
-  href?: string;
-  view?: AuthModalView;
-}
-
-export interface MenuItems {
-  nav: MenuItemType[];
-  auth: MenuItemType[];
-}
-
-export const menuItems: MenuItems = {
-  nav: [
-    { id: "gw-live", label: "gameweek live", href: "/gameweek-live" },
-    { id: "my-fpl", label: "my fpl", href: "/my-fpl" },
-    { id: "fix-and-res", label: "fixtures & results", href: "/fixtures-and-results" },
-    { id: "analysis", label: "analysis", href: "/analysis" }
-  ],
-  auth: [
-    { id: "logout", label: "logout", view: "logout" },
-    { id: "account", label: "account", view: "account" },
-    { id: "login", label: "login", view: "login" },
-    { id: "register", label: "register", view: "register" }
-  ]
-};
 
 export default function NavDrawer({ activeId }: NavDrawerProps): JSX.Element {
   const theme = useTheme();
@@ -71,7 +42,7 @@ export default function NavDrawer({ activeId }: NavDrawerProps): JSX.Element {
         <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         <GameweekCountdown />
       </Box>
-      <MenuList activeId={activeId} items={menuItems} />
+      <MenuList activeId={activeId} />
     </Drawer>
   );
 }

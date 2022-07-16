@@ -2,23 +2,42 @@ import React, { useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Box, List } from "@mui/material";
 import { FplIdContext } from "app_content";
-import { auth } from "config";
+import { auth, logout } from "config";
+
+import { AuthModalContext } from "components/layout";
 
 import { MenuItem } from "./menu_item";
-import { MenuItems } from "./nav_drawer";
+import { MenuItemType } from "./types";
 
 interface MenuListProps {
-  items: MenuItems;
   activeId: string;
 }
 
-export const MenuList = ({ items, activeId }: MenuListProps): JSX.Element => {
-  const { fplId } = useContext(FplIdContext);
+export const MenuList = ({ activeId }: MenuListProps): JSX.Element => {
+  const { fplId, setFplId } = useContext(FplIdContext);
   const [user] = useAuthState(auth);
+  const { setAuthModalView } = useContext(AuthModalContext);
 
-  const authItemIds = fplId || user ? ["logout", "account"] : ["login", "register"];
+  const onLogoutClick = (): void => {
+    fplId ? setFplId() : logout();
+  };
 
-  const filteredAuthItems = items.auth.filter(item => authItemIds.includes(item.id));
+  const navMenuItems: MenuItemType[] = [
+    { id: "gw-live", label: "gameweek live", href: "/gameweek-live", type: "nav" },
+    { id: "my-fpl", label: "my fpl", href: "/my-fpl", type: "nav" },
+    { id: "fix-and-res", label: "fixtures & results", href: "/fixtures-and-results", type: "nav" },
+    { id: "analysis", label: "analysis", href: "/analysis", type: "nav" }
+  ];
+
+  const authMenuItems: MenuItemType[] = fplId || user
+    ? [
+      { id: "logout", label: "logout", onClick: onLogoutClick, type: "auth" },
+      ...user ? [{ id: "account", label: "account", onClick: () => setAuthModalView("account"), type: "auth" as const }] : []
+    ]
+    : [
+      { id: "login", label: "login", onClick: () => setAuthModalView("login"), type: "auth" },
+      { id: "register", label: "register", onClick: () => setAuthModalView("register"), type: "auth" }
+    ];
 
   return (
     <Box
@@ -29,12 +48,12 @@ export const MenuList = ({ items, activeId }: MenuListProps): JSX.Element => {
       width='100%'
     >
       <List>
-        {items.nav.map((item, key: number) => (
-          <MenuItem active={activeId === item.id} item={item} key={key} />
+        {navMenuItems.map((item, key: number) => (
+          <MenuItem isActive={activeId === item.id} item={item} key={key} />
         ))}
       </List>
       <List>
-        {filteredAuthItems.map((item, key: number) => (
+        {authMenuItems.map((item, key: number) => (
           <MenuItem item={item} key={key} />
         ))}
       </List>

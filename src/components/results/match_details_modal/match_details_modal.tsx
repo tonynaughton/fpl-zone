@@ -11,13 +11,13 @@ import { MatchStat } from "./match_stat";
 
 interface MatchDetailsModalProps {
   isResultsModalOpen: boolean;
-  setResultsModalOpen: (value: boolean) => void;
+  closeResultsModal: () => void;
   selectedResult: Fixture;
 }
 
 export default function MatchDetailsModal({
   isResultsModalOpen,
-  setResultsModalOpen,
+  closeResultsModal,
   selectedResult
 }: MatchDetailsModalProps): JSX.Element {
   const customResult: CustomResult = {
@@ -39,8 +39,8 @@ export default function MatchDetailsModal({
 
   return (
     <CustomModal
+      closeModal={closeResultsModal}
       isModalOpen={isResultsModalOpen}
-      setModalOpen={setResultsModalOpen}
     >
       <Box
         className='flex-center'

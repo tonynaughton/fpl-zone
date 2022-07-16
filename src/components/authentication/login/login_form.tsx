@@ -48,7 +48,6 @@ export const LoginForm = (): JSX.Element => {
     return () => {
       document.removeEventListener("keydown", listener);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleSubmit]);
 
   const onLoginClick: SubmitHandler<FormInput> = async (data: FormInput) => {

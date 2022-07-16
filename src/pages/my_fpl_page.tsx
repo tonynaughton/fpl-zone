@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
+import { Box } from "@mui/material";
 import { getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import { AppDataContext, FplIdContext } from "app_content";
 import { auth, getUserFplTeamId } from "config";
@@ -87,8 +88,12 @@ export const MyFPLPage = (): JSX.Element => {
 
   return (
     <AppLayout activeId='my-fpl'>
-      <ComponentContainer title='my team'>{renderTeamComponent()}</ComponentContainer>
-      <ComponentContainer title='fdr'>{renderFdrTable()}</ComponentContainer>
+      <Box flexBasis='50%'>
+        <ComponentContainer title='my team'>{renderTeamComponent()}</ComponentContainer>
+      </Box>
+      <Box flexBasis='50%'>
+        <ComponentContainer title='fdr'>{renderFdrTable()}</ComponentContainer>
+      </Box>
     </AppLayout>
   );
 };

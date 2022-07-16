@@ -21,7 +21,7 @@ import { PlayerPerformance } from "./player_performance";
 
 interface PlayerPerformanceModalProps {
   isPlayerPerformanceModalOpen: boolean;
-  setPlayerPerformanceModalOpen: (value: boolean) => void;
+  closePlayerPerformanceModal: () => void;
   selectedPlayer: Player;
   playerStats: PlayerStat[];
   teams: Team[];
@@ -29,7 +29,7 @@ interface PlayerPerformanceModalProps {
 
 export default function PlayerPerformanceModal({
   isPlayerPerformanceModalOpen,
-  setPlayerPerformanceModalOpen,
+  closePlayerPerformanceModal,
   selectedPlayer
 }: PlayerPerformanceModalProps): JSX.Element {
   const { data: playerInfo, isLoading: fetchingPlayerInfo } = useQuery(
@@ -47,8 +47,8 @@ export default function PlayerPerformanceModal({
 
   return (
     <CustomModal
+      closeModal={closePlayerPerformanceModal}
       isModalOpen={isPlayerPerformanceModalOpen}
-      setModalOpen={setPlayerPerformanceModalOpen}
       title={playerName}
     >
       <Box

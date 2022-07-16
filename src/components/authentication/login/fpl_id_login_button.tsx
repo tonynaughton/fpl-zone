@@ -10,7 +10,7 @@ export const FplIdLoginButton = (): JSX.Element => {
   return (
     <Button
       fullWidth
-      onClick={(): void => setAuthModalView("login")}
+      onClick={(): void => setAuthModalView("fplIdLogin")}
       sx={{ fontSize: "1.8em", textTransform: "none", height: "3rem" }}
       variant='contained'
     >

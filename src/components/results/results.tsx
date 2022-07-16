@@ -30,6 +30,8 @@ export default function Results(): JSX.Element {
     setSelectedResult(result);
   };
 
+  const closeResultsModal = (): void => setResultsModalOpen(false);
+
   return (
     <Box
       className='flex-center'
@@ -107,9 +109,9 @@ export default function Results(): JSX.Element {
       </Box>
       {selectedResult && (
         <MatchDetailsModal
+          closeResultsModal={closeResultsModal}
           isResultsModalOpen={isResultsModalOpen}
           selectedResult={selectedResult}
-          setResultsModalOpen={setResultsModalOpen}
         />
       )}
     </Box>

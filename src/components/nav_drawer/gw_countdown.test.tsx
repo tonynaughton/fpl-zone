@@ -17,66 +17,82 @@ describe("Gameweek countdown tests", () => {
     );
   };
 
-  const setGameweekDeadline = (days = 0, hours = 0, minutes = 0): void => {
-    const currentDate = moment();
-    const mockDeadlineDate = currentDate.add({ days, hours, minutes }).toISOString();
-    const nextGameweek = mockAppData.gameweeks.find(gw => gw.is_next)!;
-    nextGameweek.deadline_time = mockDeadlineDate;
+  const mockNextGameweek = mockAppData.gameweeks.find(gw => gw.is_next)!;
+
+  const setGameweekDeadline = (seconds = 0, minutes = 0, hours = 0, days = 0): void => {
+    const mockDeadlineDate = moment().add({ days, hours, minutes, seconds })
+      .toISOString();
+    mockNextGameweek.deadline_time = mockDeadlineDate;
   };
 
-  const nextGameweekName = "GW 34 DEADLINE";
+  describe("Title", () => {
+    it("Displays gameweek deadline message if countdown has not completed", () => {
+      const title = `GW ${mockNextGameweek.id} DEADLINE`;
+      setGameweekDeadline(1, 1, 1, 1);
+      render(createComponent());
 
-  it("Days, hours and minutes", () => {
-    setGameweekDeadline(2, 16, 27);
-    render(createComponent());
+      expect(screen.getByTestId("gameweek-deadline-container")).toHaveTextContent(title);
+    });
 
-    const expectedCountdownText = "2 DAYS 16 HRS 27 MINS";
-    const gameweekDeadlineText = screen.getByTestId("gameweek-deadline-text");
+    it("Displays \"Gameweek in progress\" if countdown has completed", () => {
+      const title = `GAMEWEEK ${mockNextGameweek.id} IN PROGRESS`;
+      setGameweekDeadline();
+      render(createComponent());
 
-    expect(gameweekDeadlineText).toHaveTextContent(nextGameweekName);
-    expect(gameweekDeadlineText).toHaveTextContent(expectedCountdownText);
+      expect(screen.getByTestId("gameweek-deadline-container")).toHaveTextContent(title);
+    });
   });
 
-  it("Hours and minutes only", () => {
-    setGameweekDeadline(0, 3, 52);
-    render(createComponent());
+  describe("Time values", () => {
+    it("Days, hours, minutes and seconds", () => {
+      setGameweekDeadline(3, 27, 16, 2);
+      render(createComponent());
 
-    const expectedCountdownText = "3 HRS 52 MINS";
-    const gameweekDeadlineText = screen.getByTestId("gameweek-deadline-text");
+      const container = screen.getByTestId("gameweek-deadline-container");
 
-    expect(gameweekDeadlineText).toHaveTextContent(nextGameweekName);
-    expect(gameweekDeadlineText).toHaveTextContent(expectedCountdownText);
-  });
+      expect(container).toHaveTextContent("02DAYS");
+      expect(container).toHaveTextContent("16HRS");
+      expect(container).toHaveTextContent("27MINS");
+      expect(container).toHaveTextContent("03SECS");
+    });
 
-  it("Minutes only", () => {
-    setGameweekDeadline(0, 0, 12);
-    render(createComponent());
+    it("Hours, minutes and seconds only", () => {
+      setGameweekDeadline(16, 52, 3);
+      render(createComponent());
 
-    const expectedCountdownText = "12 MINS";
-    const gameweekDeadlineText = screen.getByTestId("gameweek-deadline-text");
+      const container = screen.getByTestId("gameweek-deadline-container");
 
-    expect(gameweekDeadlineText).toHaveTextContent(nextGameweekName);
-    expect(gameweekDeadlineText).toHaveTextContent(expectedCountdownText);
-  });
 
-  it("Singular times", () => {
-    setGameweekDeadline(1, 1, 1);
-    render(createComponent());
+      expect(container).toHaveTextContent("00DAYS");
+      expect(container).toHaveTextContent("03HRS");
+      expect(container).toHaveTextContent("52MINS");
+      expect(container).toHaveTextContent("16SECS");
+    });
 
-    const expectedCountdownText = "1 DAY 1 HR 1 MIN";
-    const gameweekDeadlineText = screen.getByTestId("gameweek-deadline-text");
+    it("Minutes and seconds only", () => {
+      setGameweekDeadline(46, 12);
+      render(createComponent());
 
-    expect(gameweekDeadlineText).toHaveTextContent(nextGameweekName);
-    expect(gameweekDeadlineText).toHaveTextContent(expectedCountdownText);
-  });
+      const container = screen.getByTestId("gameweek-deadline-container");
 
-  it("Displays \"Gameweek in progress\" if duration has elapsed", () => {
-    setGameweekDeadline();
-    render(createComponent());
 
-    const expectedCountdownText = "IN PROGRESS";
-    const gameweekDeadlineText = screen.getByTestId("gameweek-deadline-text");
+      expect(container).toHaveTextContent("00DAYS");
+      expect(container).toHaveTextContent("00HRS");
+      expect(container).toHaveTextContent("12MINS");
+      expect(container).toHaveTextContent("46SECS");
+    });
 
-    expect(gameweekDeadlineText).toHaveTextContent(expectedCountdownText);
+    it("Seconds only", () => {
+      setGameweekDeadline(12);
+      render(createComponent());
+
+      const container = screen.getByTestId("gameweek-deadline-container");
+
+
+      expect(container).toHaveTextContent("00DAYS");
+      expect(container).toHaveTextContent("00HRS");
+      expect(container).toHaveTextContent("00MINS");
+      expect(container).toHaveTextContent("12SECS");
+    });
   });
 });

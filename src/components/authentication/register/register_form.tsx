@@ -50,6 +50,12 @@ export const RegisterForm = (): JSX.Element => {
       return;
     }
 
+    const fplId = parseInt(data.fplId);
+
+    if (!fplId) {
+      setErrorMessage("Your FPL ID must be made up of numbers only");
+    }
+
     const response = await registerWithEmailAndPassword(
       data.firstName,
       data.lastName,
@@ -162,21 +168,6 @@ export const RegisterForm = (): JSX.Element => {
               fullWidth
               onChange={onChange}
               placeholder='FPL ID'
-              sx={{
-                mt: 1,
-                "& input[type=number]": {
-                  MozAppearance: "textfield"
-                },
-                "& input[type=number]::-webkit-outer-spin-button": {
-                  WebkitAppearance: "none",
-                  margin: 0
-                },
-                "& input[type=number]::-webkit-inner-spin-button": {
-                  WebkitAppearance: "none",
-                  margin: 0
-                }
-              }}
-              type='number'
               value={value}
             />
           )}

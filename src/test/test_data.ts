@@ -6,6 +6,7 @@ import { Gameweek } from "types/gameweek";
 import { Player } from "types/player";
 import { Position } from "types/position";
 
+
 export const mockPlayers: Player[] = [
   {
     chance_of_playing_next_round: 60,

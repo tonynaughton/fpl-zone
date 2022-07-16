@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Countdown from "react-countdown";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { AppData } from "types";
 
@@ -14,32 +14,56 @@ export const GameweekCountdown = (): JSX.Element => {
     days: number;
     hours: number;
     minutes: number;
+    seconds: number;
     completed: boolean;
   }
 
-  const CountdownRenderer = ({ days, hours, minutes, completed }: CountdownRendererProps): JSX.Element => {
-    const gameweekName = `GW ${nextGameweek.id}`;
-    const daysLabel = days ? `${days} day${days > 1 ? "s" : ""} ` : "";
-    const hoursLabel = hours ? `${hours} hr${hours > 1 ? "s" : ""} ` : "";
-    const minsLabel = minutes ? `${minutes} min${minutes > 1 ? "s" : ""}` : "";
-    const countdown = [daysLabel, hoursLabel, minsLabel].join("");
+  const CountdownRenderer = ({ days, hours, minutes, seconds, completed }: CountdownRendererProps): JSX.Element => {
+    const title = completed
+      ? `GAMEWEEK ${nextGameweek.id}\nIN PROGRESS`
+      : `GW ${nextGameweek.id} DEADLINE:`;
 
-    const text = completed
-      ? `${gameweekName}\nIN PROGRESS`
-      : `${gameweekName} DEADLINE:\n${countdown.toUpperCase()}`;
+    const times = {
+      days: { value: days, label: "DAYS" },
+      hours: { value: hours, label: "HRS" },
+      minutes: { value: minutes, label: "MINS" },
+      seconds: { value: seconds, label: "SECS" }
+    };
 
     return (
-      <Typography
-        data-testid='gameweek-deadline-text'
-        p={1}
-        textAlign='center'
-        textOverflow='ellipsis'
-        variant='h5'
-        whiteSpace='pre-wrap'
+      <Box
+        className='flex-center'
+        data-testid='gameweek-deadline-container'
+        flexDirection='column'
+        gap={1}
         width='100%'
       >
-        {text}
-      </Typography>
+        <Typography className='text-ellipsis' textAlign='center' variant='h4'>{title}</Typography>
+        { !completed &&
+            <Box
+              display='flex'
+              gap={1}
+              justifyContent='space-between'
+              width='100%'
+            >
+              {Object.keys(times).map((time, key) => (
+                <Box
+                  className='flex-center'
+                  flexDirection='column'
+                  key={key}
+                  overflow='hidden'
+                  width='100%'
+                >
+                  <Typography variant='h3'>
+                    {`0${times[time].value}`.slice(-2)}
+                  </Typography>
+                  <Typography variant='h5'>
+                    {times[time].label}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>}
+      </Box>
     );
   };
 

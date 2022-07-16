@@ -118,7 +118,7 @@ export const updateUserDetails = async (
   firstName: string,
   lastName: string,
   email: string,
-  fplId = ""
+  fplId?: number
 ): Promise<Error | void> => {
   if (!auth.currentUser) {
     return new Error("You are not currently logged in");
