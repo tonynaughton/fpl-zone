@@ -18,10 +18,10 @@ describe("Add players modal tests", () => {
     return (
       <MockProviders>
         <AddPlayersModal
+          closeAddPlayersModal={mockSetAddPlayersModalOpen}
           isAddPlayersModalOpen={mockIsAddPlayersModalOpen}
           selectedPlayers={mockSelectedPlayers}
-          setAddPlayersModalOpen={mockSetAddPlayersModalOpen}
-          setSelectedComparisonPlayers={mockSetSelectedComparisonPlayers}
+          setSelectedPlayers={mockSetSelectedComparisonPlayers}
         />
       </MockProviders>
     );

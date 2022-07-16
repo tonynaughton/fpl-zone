@@ -34,6 +34,8 @@ export default function Lineup({
     setSelectedPlayer(player);
   };
 
+  const closePlayerPerformanceModal = (): void => setPlayerPerformanceModalOpen(false);
+
   return (
     <>
       <Box
@@ -91,10 +93,10 @@ export default function Lineup({
       </Box>
       {selectedPlayer && (
         <PlayerPerformanceModal
+          closePlayerPerformanceModal={closePlayerPerformanceModal}
           isPlayerPerformanceModalOpen={isPlayerPerformanceModalOpen}
           playerStats={playerStats}
           selectedPlayer={selectedPlayer}
-          setPlayerPerformanceModalOpen={setPlayerPerformanceModalOpen}
           teams={teams}
         />
       )}

@@ -11,16 +11,16 @@ import { AddPlayersTable } from "./add_players_table";
 
 interface AddPlayersModalProps {
   isAddPlayersModalOpen: boolean;
-  setAddPlayersModalOpen: (value: boolean) => void;
+  closeAddPlayersModal: (value: boolean) => void;
   selectedPlayers: Player[];
-  setSelectedComparisonPlayers: (players: Player[]) => void;
+  setSelectedPlayers: (players: Player[]) => void;
 }
 
 export const AddPlayersModal = ({
   isAddPlayersModalOpen,
-  setAddPlayersModalOpen,
+  closeAddPlayersModal: setAddPlayersModalOpen,
   selectedPlayers,
-  setSelectedComparisonPlayers
+  setSelectedPlayers: setSelectedComparisonPlayers
 }: AddPlayersModalProps): JSX.Element => {
   const { players } = useContext(AppDataContext) as AppData;
 
@@ -61,10 +61,14 @@ export const AddPlayersModal = ({
     debounceSearch(input);
   };
 
+  const closeAddPlayersModal = (): void => {
+    setAddPlayersModalOpen(false);
+  };
+
   return (
     <CustomModal
+      closeModal={closeAddPlayersModal}
       isModalOpen={isAddPlayersModalOpen}
-      setModalOpen={setAddPlayersModalOpen}
       testId='add-players-modal'
       title='Add players to compare'
     >

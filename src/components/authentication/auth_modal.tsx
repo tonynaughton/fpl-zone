@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FplIdContext } from "app_content";
-import { logout } from "config";
 
 import { AuthModalContext } from "components/layout";
 import { CustomModal } from "components/utils";
@@ -11,22 +9,14 @@ import { LoginForm } from "./login/login_form";
 import { RegisterForm } from "./register/register_form";
 import { ResetForm } from "./reset/reset_form";
 
-export type AuthModalView =
-  "login" |
-  "register" |
-  "account" |
-  "reset" |
-  "fplIdLogin" |
-  "logout" |
-  "none";
-
 export const AuthModal = (): JSX.Element => {
-  const { authModalView } = useContext(AuthModalContext);
-  const { fplId, setFplId } = useContext(FplIdContext);
+  const { authModalView, setAuthModalView } = useContext(AuthModalContext);
 
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
-  const [authModalContent, setAuthModalContent] = useState<JSX.Element>(<></>);
   const [authModalTitle, setAuthModalTitle] = useState<string>("");
+  const [authModalContent, setAuthModalContent] = useState<JSX.Element>(<></>);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+
+  const closeAuthModal = (): void => setAuthModalView("none");
 
   useEffect(() => {
     switch (authModalView) {
@@ -36,46 +26,43 @@ export const AuthModal = (): JSX.Element => {
       setAuthModalContent(<></>);
       break;
     case "login":
-      setIsAuthModalOpen(true);
       setAuthModalTitle("Login");
       setAuthModalContent(<LoginForm />);
+      setIsAuthModalOpen(true);
       break;
     case "register":
-      setIsAuthModalOpen(true);
       setAuthModalTitle("Register");
       setAuthModalContent(<RegisterForm />);
+      setIsAuthModalOpen(true);
       break;
     case "account":
-      setIsAuthModalOpen(true);
       setAuthModalTitle("Account");
       setAuthModalContent(<AccountForm />);
+      setIsAuthModalOpen(true);
       break;
     case "reset":
-      setIsAuthModalOpen(true);
       setAuthModalTitle("Reset password");
       setAuthModalContent(<ResetForm />);
+      setIsAuthModalOpen(true);
       break;
     case "fplIdLogin":
-      setIsAuthModalOpen(true);
       setAuthModalTitle("FPL ID Login");
       setAuthModalContent(<FplIdloginForm />);
-      break;
-    case "logout":
-      fplId ? setFplId() : logout();
+      setIsAuthModalOpen(true);
       break;
     default:
-      setIsAuthModalOpen(true);
       setAuthModalTitle("Login");
       setAuthModalContent(<LoginForm />);
+      setIsAuthModalOpen(true);
       break;
     };
   }, [authModalView]);
 
   return (
     <CustomModal
+      closeModal={closeAuthModal}
       compact
       isModalOpen={isAuthModalOpen}
-      setModalOpen={setIsAuthModalOpen}
       title={authModalTitle}
     >
       {authModalContent}

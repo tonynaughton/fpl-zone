@@ -9,10 +9,10 @@ export const FixturesAndResultsPage = (): JSX.Element => {
   return (
     <AppLayout activeId='fix-and-res'>
       <Box className='flex-center' gap={3} width='100%'>
-        <Box flexBasis='60%' height='100%' minWidth={0}>
+        <Box flexBasis='65%' height='100%' minWidth={0}>
           <ComponentContainer title='fdr'><FdrTable /></ComponentContainer>
         </Box>
-        <Box flexBasis='40%' height='100%' minWidth={0}>
+        <Box flexBasis='35%' height='100%' minWidth={0}>
           <ComponentContainer title='results'><Results /></ComponentContainer>
         </Box>
       </Box>

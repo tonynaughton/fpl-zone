@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 
-import { AuthModal, AuthModalView } from "components/authentication/auth_modal";
+import { AuthModal } from "components/authentication/auth_modal";
 import NavDrawer from "components/nav_drawer/nav_drawer";
 
 interface LayoutProps {
   activeId: string;
 }
+
+export type AuthModalView =
+  "login" |
+  "register" |
+  "account" |
+  "reset" |
+  "fplIdLogin" |
+  "logout" |
+  "none";
 
 interface AuthModalContextType {
   authModalView: AuthModalView;

@@ -13,10 +13,10 @@ export const GameweekLivePage = (): JSX.Element => (
       minWidth={0}
       width='100%'
     >
-      <Box flexBasis='70%' height='100%' minWidth={0}>
+      <Box flexBasis='65%' height='100%' minWidth={0}>
         <ComponentContainer title='dream team'><DreamTeam /></ComponentContainer>
       </Box>
-      <Box flexBasis='30%' height='100%' minWidth={0}>
+      <Box flexBasis='35%' height='100%' minWidth={0}>
         <ComponentContainer title='summary'><GameweekSummary /></ComponentContainer>
       </Box>
     </Box>

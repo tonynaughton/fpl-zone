@@ -15,17 +15,16 @@ export const PlayerComparison = (): JSX.Element => {
   const { playerStats, teams } = useContext(AppDataContext) as AppData;
 
   const [isAddPlayersModalOpen, setIsAddPlayerModalOpen] = useState<boolean>(true);
-  const [selectedComparisonPlayers, setSelectedComparisonPlayers] = useState<Player[]>([]);
+  const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
 
-  const onAddPlayerClick = (): void => {
-    setIsAddPlayerModalOpen(true);
-  };
+  const openAddPlayersModal = (): void => setIsAddPlayerModalOpen(true);
+  const closeAddPlayersModal = (): void => setIsAddPlayerModalOpen(false);
 
   const onRemovePlayerClick = (player: Player): void => {
-    const clonedSelectedPlayers = clone(selectedComparisonPlayers);
+    const clonedSelectedPlayers = clone(selectedPlayers);
     const index = clonedSelectedPlayers.indexOf(player);
     clonedSelectedPlayers.splice(index, 1);
-    setSelectedComparisonPlayers(clonedSelectedPlayers);
+    setSelectedPlayers(clonedSelectedPlayers);
   };
 
   return (
@@ -37,17 +36,17 @@ export const PlayerComparison = (): JSX.Element => {
       overflow='auto'
     >
       <ComparisonTable
-        onAddPlayerClick={onAddPlayerClick}
+        onAddPlayerClick={openAddPlayersModal}
         onRemovePlayerClick={onRemovePlayerClick}
         playerStats={playerStats}
-        selectedPlayers={selectedComparisonPlayers}
+        selectedPlayers={selectedPlayers}
         teams={teams}
       />
       <AddPlayersModal
+        closeAddPlayersModal={closeAddPlayersModal}
         isAddPlayersModalOpen={isAddPlayersModalOpen}
-        selectedPlayers={selectedComparisonPlayers}
-        setAddPlayersModalOpen={setIsAddPlayerModalOpen}
-        setSelectedComparisonPlayers={setSelectedComparisonPlayers}
+        selectedPlayers={selectedPlayers}
+        setSelectedPlayers={setSelectedPlayers}
       />
     </Box>
   );
