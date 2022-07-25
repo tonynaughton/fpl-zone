@@ -40,6 +40,7 @@ export default function Results(): JSX.Element {
       overflow='hidden'
       position='relative'
       sx={{ pl: 3, pr: 3, pb: 2, pt: 4 }}
+      width='100%'
     >
       <Box className='flex-center' overflow='hidden' width='100%'>
         <IconButton

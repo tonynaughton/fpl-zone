@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
-import { Box } from "@mui/material";
 import { getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
-import { AppDataContext, FplIdContext } from "app_content";
+import { AppDataContext, AuthContext } from "app_content";
 import { auth, getUserFplTeamId } from "config";
 import { GetPlayerById } from "helpers";
 import { useGameStatus } from "hooks/use_game_status";
@@ -11,14 +10,14 @@ import _ from "lodash";
 import { AppData,Gameweek } from "types";
 
 import FdrTable from "components/fdr/fdr";
-import { AppLayout, ComponentContainer, Notifier, notifierMessageMap as msgMap } from "components/layout";
+import { ComponentContainer, Notifier, notifierMessageMap as msgMap,PageLayout } from "components/layout";
 import { MyTeam } from "components/my_team/my_team";
 
 export const MyFPLPage = (): JSX.Element => {
   const [user] = useAuthState(auth);
   const { seasonNotStarted } = useGameStatus();
   const { gameweeks, players } = useContext(AppDataContext) as AppData;
-  const { fplId: savedFplId } = useContext(FplIdContext);
+  const { fplId: savedFplId } = useContext(AuthContext);
   const currentGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
   const [fplId, setFplId] = useState<number | undefined>();
 
@@ -87,13 +86,9 @@ export const MyFPLPage = (): JSX.Element => {
   };
 
   return (
-    <AppLayout activeId='my-fpl'>
-      <Box flexBasis='50%'>
-        <ComponentContainer title='my team'>{renderTeamComponent()}</ComponentContainer>
-      </Box>
-      <Box flexBasis='50%'>
-        <ComponentContainer title='fdr'>{renderFdrTable()}</ComponentContainer>
-      </Box>
-    </AppLayout>
+    <PageLayout activeId='my-fpl'>
+      <ComponentContainer title='my team'>{renderTeamComponent()}</ComponentContainer>
+      <ComponentContainer title='fdr'>{renderFdrTable()}</ComponentContainer>
+    </PageLayout>
   );
 };

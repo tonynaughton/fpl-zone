@@ -14,33 +14,50 @@ export const ComponentContainer = ({
 }: ComponentContainerProps): JSX.Element => {
   const theme = useTheme();
 
+  const ComponentLabel = (): JSX.Element => (
+    <Box
+      bgcolor={theme.palette.primary.main}
+      borderBottom='2px solid black'
+      borderRight='2px solid black'
+      color={theme.palette.primary.contrastText}
+      height='auto'
+      left={0}
+      maxWidth='25%'
+      padding={0.8}
+      position='absolute'
+      top={0}
+      width='auto'
+      zIndex='fab'
+    >
+      <Typography
+        className='text-ellipsis'
+        sx={{
+          [theme.breakpoints.down("md")]: {
+            fontSize: "1rem"
+          },
+          [theme.breakpoints.up("md")]: {
+            fontSize: "1.2rem"
+          }
+        }}
+        width='100%'
+      >
+        {title.toUpperCase()}
+      </Typography>
+    </Box>
+  );
+
   return (
     <Box
       border='2px solid black'
       boxShadow={4}
-      height='100%'
+      data-testid='component-container'
+      height='auto'
+      minHeight='50vh'
       minWidth={0}
       position='relative'
       width='100%'
     >
-      <Box
-        bgcolor={theme.palette.primary.main}
-        borderBottom='2px solid black'
-        borderRight='2px solid black'
-        color={theme.palette.primary.contrastText}
-        height='auto'
-        left={0}
-        maxWidth='15vw'
-        padding={0.8}
-        position='absolute'
-        top={0}
-        width='auto'
-        zIndex='fab'
-      >
-        <Typography className='text-ellipsis' variant='h3' width='100%'>
-          {title.toUpperCase()}
-        </Typography>
-      </Box>
+      <ComponentLabel />
       {children}
     </Box>
   );

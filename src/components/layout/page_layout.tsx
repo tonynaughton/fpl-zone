@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 
+import { APP_BAR_HEIGHT, CustomAppBar } from "components/app_bar/app_bar";
 import { AuthModal } from "components/authentication/auth_modal";
 import NavDrawer from "components/nav_drawer/nav_drawer";
 
-interface LayoutProps {
+interface PageLayoutProps {
   activeId: string;
 }
 
@@ -28,24 +29,32 @@ export const AuthModalContext = React.createContext<AuthModalContextType>({
   setAuthModalView: () => {}
 });
 
-export const AppLayout = ({ activeId, children }: React.PropsWithChildren<LayoutProps>): JSX.Element => {
+export const PageLayout = ({ activeId, children }: React.PropsWithChildren<PageLayoutProps>): JSX.Element => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [authModalView, setAuthModalView] = useState<AuthModalView>("none");
+  const [isNavDrawerOpen, setIsNavDrawerOpen] = useState<boolean>(false);
   const authModalContextValue = { authModalView, setAuthModalView };
+
+  const closeNavDrawer = (): void => setIsNavDrawerOpen(false);
+  const openNavDrawer = (): void => setIsNavDrawerOpen(true);
 
   return (
     <>
       <Box component='div' display='flex'>
         <AuthModalContext.Provider value={authModalContextValue}>
-          <NavDrawer activeId={activeId} />
+          <CustomAppBar openNavDrawer={openNavDrawer} />
+          <NavDrawer activeId={activeId} closeNavDrawer={closeNavDrawer} isNavDrawerOpen={isNavDrawerOpen} />
         </AuthModalContext.Provider>
         <Box
           component='main'
           display='flex'
-          flexGrow={1}
+          flexDirection={isMobile ? "column" : "row"}
           gap={3}
           height='100vh'
-          justifyContent='center'
-          padding={3}
+          mt={isMobile ? APP_BAR_HEIGHT : 0}
+          padding={isMobile ? 1.5 : 3}
+          width='100%'
         >
           {children}
         </Box>

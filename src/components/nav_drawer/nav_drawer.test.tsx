@@ -18,13 +18,15 @@ jest.mock("react-firebase-hooks/auth", (): Record<string, () => (User | undefine
 describe("Nav Drawer Tests", () => {
   const mockActiveId = "gw-live";
   const mockQueryClient = new QueryClient();
+  const mockCloseNavDrawer = jest.fn();
+  let mockIsNavDrawerOpen: boolean;
 
   const createComponent = (): JSX.Element => {
     return (
       <QueryClientProvider client={mockQueryClient}>
         <Router>
           <MockProviders>
-            <NavDrawer activeId={mockActiveId} />
+            <NavDrawer activeId={mockActiveId} closeNavDrawer={mockCloseNavDrawer} isNavDrawerOpen={mockIsNavDrawerOpen} />
           </MockProviders>
         </Router>
       </QueryClientProvider>

@@ -116,11 +116,8 @@ const getTypographyProps = (fontSize: number, fontWeight = 500) => {
     fontFamily: ["Grandstander"].join(","),
     fontWeight,
     fontSize: `${fontSize}rem`,
-    [theme.breakpoints.up("xs")]: {
-      fontSize: `${fontSize * 0.6}rem`
-    },
-    [theme.breakpoints.up("sm")]: {
-      fontSize: `${fontSize * 0.8}rem`
+    [theme.breakpoints.down("md")]: {
+      fontSize: `${fontSize * 1.2}rem`
     },
     [theme.breakpoints.up("md")]: {
       fontSize: `${fontSize}rem`

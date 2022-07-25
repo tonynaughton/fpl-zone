@@ -1,22 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Box, ListItemButton, Typography, useTheme } from "@mui/material";
 
-import { isNavMenuItem, MenuItemType } from "./types";
+import { MenuItemType } from "./types";
 
 interface MenuItemProps {
   item: MenuItemType;
   isActive?: boolean;
 }
 
-export const MenuItem = ({ item, isActive: active = false }: MenuItemProps): JSX.Element => {
+export const MenuItem = ({ item, isActive = false }: MenuItemProps): JSX.Element => {
   const theme = useTheme();
 
   const btnStyle = {
     paddingY: 2,
     bgcolor: "inherit",
     "& .MuiTypography-root": {
-      color: active ? "black" : theme.palette.info.main
+      fontWeight: 600,
+      color: isActive ? "black" : theme.palette.info.main,
+      [theme.breakpoints.down("md")]: {
+        fontSize: "1.8rem"
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "1.2rem"
+      }
     },
     "&:hover": {
       bgcolor: "inherit",
@@ -26,18 +32,17 @@ export const MenuItem = ({ item, isActive: active = false }: MenuItemProps): JSX
     }
   };
 
+
   return (
     <ListItemButton
-      component={isNavMenuItem(item) ? Link : Box}
+      component={Box}
       data-testid={`menu-item-button-${item.id}`}
       disableRipple
-      onClick={!isNavMenuItem(item) ? item.onClick : undefined}
+      onClick={item.onClick}
       sx={btnStyle}
-      to={isNavMenuItem(item) ? item.href : undefined}
     >
       <Typography
         data-testid={`menu-item-text-${item.id}`}
-        variant='h2'
       >
         {item.label.toUpperCase()}
       </Typography>

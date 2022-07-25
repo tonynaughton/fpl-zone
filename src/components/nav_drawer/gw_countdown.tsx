@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import Countdown from "react-countdown";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { AppData } from "types";
 
 export const GameweekCountdown = (): JSX.Element => {
+  const theme = useTheme();
   const { gameweeks } = useContext(AppDataContext) as AppData;
   const nextGameweek = gameweeks.find(gw => gw.is_next);
 
@@ -30,6 +31,17 @@ export const GameweekCountdown = (): JSX.Element => {
       seconds: { value: seconds, label: "SECS" }
     };
 
+    const textStyling = (number = false): Record<string, unknown> => ({
+      fontWeight: 600,
+      textAlign: "center",
+      [theme.breakpoints.down("md")]: {
+        fontSize: number ? "1.8rem" : "1rem"
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: number ? "1.2rem" : "0.8rem"
+      }
+    });
+
     return (
       <Box
         className='flex-center'
@@ -38,7 +50,7 @@ export const GameweekCountdown = (): JSX.Element => {
         gap={1}
         width='100%'
       >
-        <Typography className='text-ellipsis' textAlign='center' variant='h4'>{title}</Typography>
+        <Typography className='text-ellipsis' sx={{ ...textStyling() }}>{title}</Typography>
         { !completed &&
             <Box
               display='flex'
@@ -54,10 +66,10 @@ export const GameweekCountdown = (): JSX.Element => {
                   overflow='hidden'
                   width='100%'
                 >
-                  <Typography variant='h3'>
+                  <Typography sx={{ ...textStyling(true) }}>
                     {`0${times[time].value}`.slice(-2)}
                   </Typography>
-                  <Typography variant='h5'>
+                  <Typography sx={{ ...textStyling() }}>
                     {times[time].label}
                   </Typography>
                 </Box>

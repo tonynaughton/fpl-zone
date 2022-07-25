@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
+import { auth } from "config";
+import { User } from "firebase/auth";
 import { isError } from "lodash";
 import {
   AnalysisPage,
@@ -13,18 +16,20 @@ import { AppData } from "types";
 
 import { Notifier, Startup } from "components/layout";
 
-interface FplIdContextType {
+interface AuthContextType {
   fplId: number | undefined;
   setFplId: (value?: number | undefined) => void;
+  user: User | null | undefined;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export const FplIdContext = React.createContext<FplIdContextType>({ fplId: undefined, setFplId: () => {} });
+export const AuthContext = React.createContext<AuthContextType>({ fplId: undefined, setFplId: () => {}, user: undefined });
 export const AppDataContext = React.createContext<AppData | null>(null);
 
 export default function AppContent(): JSX.Element {
+  const [user] = useAuthState(auth);
   const [fplId, setFplId] = useState<number | undefined>();
-  const fplIdContextValue = { fplId, setFplId };
+  const authContextValue = { fplId, setFplId, user };
 
   // Fetching game data which will be made available throughout the app via context provider
   const {
@@ -77,7 +82,7 @@ export default function AppContent(): JSX.Element {
   }
 
   return (
-    <FplIdContext.Provider value={fplIdContextValue}>
+    <AuthContext.Provider value={authContextValue}>
       <AppDataContext.Provider value={appDataContextValue}>
         <Router>
           <Routes>
@@ -90,7 +95,7 @@ export default function AppContent(): JSX.Element {
           </Routes>
         </Router>
       </AppDataContext.Provider>
-    </FplIdContext.Provider>
+    </AuthContext.Provider>
   );
 
 }

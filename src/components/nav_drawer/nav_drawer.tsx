@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, useTheme } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { getLocalImage } from "helpers";
 
 import { GameweekCountdown } from "./gw_countdown";
@@ -8,19 +9,27 @@ import { MenuList } from "./menu_list";
 
 interface NavDrawerProps {
   activeId: string;
+  isNavDrawerOpen: boolean;
+  closeNavDrawer: () => void;
 }
 
-export default function NavDrawer({ activeId }: NavDrawerProps): JSX.Element {
+export default function NavDrawer({ activeId, isNavDrawerOpen, closeNavDrawer }: NavDrawerProps): JSX.Element {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const drawerWidth = isMobile ? "40%" : "12vw";
+  const maxDrawerWidth = isMobile ? "40%" : "15em";
 
   return (
     <Drawer
+      ModalProps={{ onBackdropClick: closeNavDrawer }}
       anchor='left'
       data-testid='nav-drawer'
+      open={isNavDrawerOpen}
       sx={{
         p: 0,
-        width: "12vw",
-        maxWidth: "15em",
+        width: drawerWidth,
+        maxWidth: maxDrawerWidth,
         "& .MuiDrawer-paper": {
           width: "inherit",
           maxWidth: "inherit",
@@ -28,7 +37,7 @@ export default function NavDrawer({ activeId }: NavDrawerProps): JSX.Element {
           borderRight: "2px solid black"
         }
       }}
-      variant='permanent'
+      variant={isMobile ? "temporary" : "permanent"}
     >
       <Box
         bgcolor={theme.palette.secondary.main}
@@ -42,7 +51,7 @@ export default function NavDrawer({ activeId }: NavDrawerProps): JSX.Element {
         <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
         <GameweekCountdown />
       </Box>
-      <MenuList activeId={activeId} />
+      <MenuList activeId={activeId} closeNavDrawer={closeNavDrawer} />
     </Drawer>
   );
 }
