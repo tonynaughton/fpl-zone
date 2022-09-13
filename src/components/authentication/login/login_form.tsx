@@ -114,7 +114,7 @@ export const LoginForm = (): JSX.Element => {
           type='submit'
           variant='contained'
         >
-          <Typography textTransform='none' variant='h3'>Login</Typography>
+          <Typography textTransform='none'>Login</Typography>
         </Button>
       </form>
       <Link onClick={(): void => setAuthModalView("reset")}>

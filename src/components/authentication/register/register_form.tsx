@@ -187,7 +187,7 @@ export const RegisterForm = (): JSX.Element => {
           type='submit'
           variant='contained'
         >
-          <Typography textTransform='none' variant='h3'>Register</Typography>
+          <Typography textTransform='none'>Register</Typography>
         </Button>
       </form>
       <Link onClick={(): void => setAuthModalView("login")}>

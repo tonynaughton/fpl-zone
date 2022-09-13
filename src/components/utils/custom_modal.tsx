@@ -54,7 +54,7 @@ export const CustomModal = ({
         width='90%'
         zIndex='modal'
       >
-        {title && <Typography variant='h3'>{title}</Typography>}
+        {title && <Typography variant='h4'>{title}</Typography>}
         <IconButton
           onClick={closeModal}
           sx={{ position: "absolute", top: "4%", right: "4%" }}

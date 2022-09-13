@@ -71,7 +71,7 @@ export const ResetForm = (): JSX.Element => {
           type='submit'
           variant='contained'
         >
-          <Typography textTransform='none' variant='h3'>Reset</Typography>
+          <Typography textTransform='none'>Reset</Typography>
         </Button>
       </form>
       <Link onClick={(): void => setAuthModalView("login")}>

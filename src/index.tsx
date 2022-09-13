@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CssBaseline } from "@mui/material";
-import { createTheme,ThemeProvider } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes,ThemeProvider } from "@mui/material/styles";
 import AppContent from "app_content";
 
 import "./global.css";
@@ -29,7 +29,7 @@ const breakpoints = {
   }
 };
 
-const theme = createTheme({
+let theme = createTheme({
   breakpoints,
   palette: {
     primary: {
@@ -75,6 +75,9 @@ const theme = createTheme({
   shape: {
     borderRadius: 10
   },
+  typography: {
+    fontFamily: "Grandstander"
+  },
   components: {
     MuiTooltip: {
       defaultProps: {
@@ -110,34 +113,7 @@ const theme = createTheme({
   }
 });
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const getTypographyProps = (fontSize: number, fontWeight = 500) => {
-  return {
-    fontFamily: ["Grandstander"].join(","),
-    fontWeight,
-    fontSize: `${fontSize}rem`,
-    [theme.breakpoints.down("md")]: {
-      fontSize: `${fontSize * 1.2}rem`
-    },
-    [theme.breakpoints.up("md")]: {
-      fontSize: `${fontSize}rem`
-    },
-    [theme.breakpoints.up("lg")]: {
-      fontSize: `${fontSize * 1.2}rem`
-    },
-    [theme.breakpoints.up("xl")]: {
-      fontSize: `${fontSize * 1.4}rem`
-    }
-  };
-};
-
-theme.typography.h1 = getTypographyProps(1.6, 600);
-theme.typography.h2 = getTypographyProps(1.4, 600);
-theme.typography.h3 = getTypographyProps(1.2, 600);
-theme.typography.h4 = getTypographyProps(1.0, 600);
-theme.typography.h5 = getTypographyProps(0.8, 600);
-theme.typography.body1 = getTypographyProps(0.8);
-theme.typography.body2 = getTypographyProps(0.6);
+theme = responsiveFontSizes(theme);
 
 const queryClient = new QueryClient({
   defaultOptions: {

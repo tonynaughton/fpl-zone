@@ -11,6 +11,6 @@ export const GoogleLoginButton = (): JSX.Element => (
     variant='contained'
   >
     <GoogleIcon sx={{ mr: 2 }} />
-    <Typography textTransform='none' variant='h3'>Continue with Google</Typography>
+    <Typography textTransform='none'>Continue with Google</Typography>
   </Button>
 );
