@@ -22,7 +22,6 @@ export const ComponentContainer = ({
       color={theme.palette.primary.contrastText}
       height='auto'
       left={0}
-      maxWidth='25%'
       padding={0.8}
       position='absolute'
       top={0}

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, useTheme } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import { AppDataContext } from "app_content";
 import { getLocalImage } from "helpers";
 
 import { GameweekCountdown } from "./gw_countdown";
@@ -15,7 +15,7 @@ interface NavDrawerProps {
 
 export default function NavDrawer({ activeId, isNavDrawerOpen, closeNavDrawer }: NavDrawerProps): JSX.Element {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const { isMobile } = useContext(AppDataContext);
 
   const drawerWidth = isMobile ? "40%" : "12vw";
   const maxDrawerWidth = isMobile ? "40%" : "15em";

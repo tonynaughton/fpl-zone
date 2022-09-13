@@ -1,15 +1,21 @@
-import React from "react";
-import { Box, ListItemButton, Typography, useTheme } from "@mui/material";
+import React, { useContext } from "react";
+import { Accordion, AccordionDetails, AccordionSummary, Box, List, ListItemButton, Typography, useTheme } from "@mui/material";
+import { AppDataContext } from "app_content";
 
-import { MenuItemType } from "./types";
+import { MenuItemType } from "./menu_list";
 
 interface MenuItemProps {
-  item: MenuItemType;
+  menuItem: MenuItemType;
   isActive?: boolean;
 }
 
-export const MenuItem = ({ item, isActive = false }: MenuItemProps): JSX.Element => {
+interface ButtonMenuItemProps {
+  buttonMenuItem: MenuItemType;
+}
+
+export const MenuItem = ({ menuItem, isActive = false }: MenuItemProps): JSX.Element => {
   const theme = useTheme();
+  const { isMobile } = useContext(AppDataContext);
 
   const btnStyle = {
     paddingY: 2,
@@ -17,12 +23,7 @@ export const MenuItem = ({ item, isActive = false }: MenuItemProps): JSX.Element
     "& .MuiTypography-root": {
       fontWeight: 600,
       color: isActive ? "black" : theme.palette.info.main,
-      [theme.breakpoints.down("md")]: {
-        fontSize: "1.8rem"
-      },
-      [theme.breakpoints.up("md")]: {
-        fontSize: "1.2rem"
-      }
+      fontSize: isMobile ? "1.8rem" : "1.2rem"
     },
     "&:hover": {
       bgcolor: "inherit",
@@ -32,20 +33,41 @@ export const MenuItem = ({ item, isActive = false }: MenuItemProps): JSX.Element
     }
   };
 
-
-  return (
+  const ItemButton = ({ buttonMenuItem }: ButtonMenuItemProps): JSX.Element => (
     <ListItemButton
       component={Box}
-      data-testid={`menu-item-button-${item.id}`}
+      data-testid={`menu-item-button-${buttonMenuItem.id}`}
       disableRipple
-      onClick={item.onClick}
+      onClick={buttonMenuItem.onClick}
       sx={btnStyle}
     >
       <Typography
-        data-testid={`menu-item-text-${item.id}`}
+        data-testid={`menu-item-text-${buttonMenuItem.id}`}
       >
-        {item.label.toUpperCase()}
+        {buttonMenuItem.label.toUpperCase()}
       </Typography>
     </ListItemButton>
   );
+
+  const ButtonWithAccordion = (): JSX.Element => (
+    <Accordion>
+      <AccordionSummary>
+        <Typography
+          data-testid={`menu-item-text-${menuItem.id}`}
+        >
+          {menuItem.label.toUpperCase()}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <List>
+          {menuItem.subItems?.map((subMenuItem: MenuItemType, key: number) => (
+            <ItemButton buttonMenuItem={subMenuItem} key={key} />
+          ))}
+        </List>
+      </AccordionDetails>
+    </Accordion>
+  );
+
+
+  return isMobile ? <ButtonWithAccordion /> : <ItemButton buttonMenuItem={menuItem} />;
 };
