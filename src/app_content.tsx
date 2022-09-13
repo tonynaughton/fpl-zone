@@ -95,7 +95,7 @@ export default function AppContent(): JSX.Element {
             <Route element={<GameweekLivePage />} path='/' />
             <Route element={<GameweekLivePage />} path='gameweek-live' />
             <Route element={<MyFPLPage />} path='/my-fpl' />
-            <Route element={<FixturesAndResultsPage />} path='/fixtures-and-results' />
+            <Route element={<FixturesAndResultsPage />} path='/fix-and-res' />
             <Route element={<AnalysisPage />} path='/analysis' />
           </Routes>
         </Router>
