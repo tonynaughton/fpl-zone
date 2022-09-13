@@ -17,8 +17,8 @@ export default function NavDrawer({ activeId, isNavDrawerOpen, closeNavDrawer }:
   const theme = useTheme();
   const { isMobile } = useContext(AppDataContext);
 
-  const drawerWidth = isMobile ? "40%" : "12vw";
-  const maxDrawerWidth = isMobile ? "40%" : "15em";
+  const drawerWidth = isMobile ? "75%" : "12vw";
+  const maxDrawerWidth = isMobile ? "75%" : "15em";
 
   return (
     <Drawer

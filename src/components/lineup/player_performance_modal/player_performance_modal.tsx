@@ -1,9 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import { useQuery } from "react-query";
-import {
-  Box,
-  Typography
-} from "@mui/material";
+import { Box } from "@mui/material";
 import { getPlayerData } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import {
@@ -71,7 +68,7 @@ export default function PlayerPerformanceModal({
                     </Fragment>
                   );
                 })
-                : <Typography>No fixtures</Typography>}
+                : <Notifier message='No fixtures' type='warning' />}
             </>
           )}
       </Box>

@@ -22,12 +22,6 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
     )
     : null;
 
-  const statValue = `
-    ${stat.playerName || ""}
-    ${stat.playerName && stat.value ? " - " : ""}
-    ${stat.value || ""}
-  `;
-
   return (
     <Box
       className='flex-center'
@@ -39,7 +33,7 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
         className='text-ellipsis'
         data-testid={`stat-label-text-${stat.label}`}
         textAlign='center'
-        variant='h3'
+        variant='h5'
         width='100%'
       >
         {stat.label.toUpperCase()}
@@ -53,7 +47,9 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
       >
         {img}
         <Typography className='text-ellipsis' data-testid={`stat-value-text-${stat.label}`} textAlign='center'>
-          {statValue}
+          {stat.playerName?.toUpperCase() || ""}
+          {stat.playerName?.toUpperCase() && stat.value ? " - " : ""}
+          {stat.value || ""}
         </Typography>
       </Box>
     </Box>

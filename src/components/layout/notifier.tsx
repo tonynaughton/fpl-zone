@@ -24,7 +24,7 @@ export const notifierMessageMap = {
 export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMessageProps): JSX.Element => {
   const NotifierIcon = (): JSX.Element => {
     const iconStyle = {
-      fontSize: "3vw",
+      fontSize: "2.5vw",
       color: "black"
     };
 
@@ -44,13 +44,13 @@ export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMe
       className='flex-center'
       data-testid='notifier'
       flexDirection='column'
-      gap='3vh'
+      gap='2vh'
       height='100%'
       margin='auto'
       width='80%'
     >
       <NotifierIcon />
-      <Typography textAlign='center'>{message}</Typography>
+      <Typography textAlign='center' variant='h5'>{message}</Typography>
     </Box>
   );
 };
