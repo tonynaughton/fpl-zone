@@ -4,6 +4,7 @@ export * from "./game_data";
 export * from "./game_settings";
 export * from "./gameweek";
 export * from "./league";
+export * from "./lineup";
 export * from "./phase";
 export * from "./player";
 export * from "./player_past";

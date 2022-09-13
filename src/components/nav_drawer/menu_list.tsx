@@ -29,7 +29,7 @@ export const MenuList = ({ activeId, closeNavDrawer }: MenuListProps): JSX.Eleme
     >
       <List>
         {menuItems.nav.map((item, key: number) => (
-          <MenuItem isActive={activeId === item.id} key={key} menuItem={item} />
+          <MenuItem activeId={activeId} key={key} menuItem={item} />
         ))}
       </List>
       <List>

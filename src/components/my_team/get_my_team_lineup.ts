@@ -1,11 +1,8 @@
-import { useContext } from "react";
-import { AppDataContext } from "app_content";
 import { chunk } from "lodash";
-import { AppData, Player, TeamPicks } from "types";
+import { Player, Position, TeamPicks } from "types";
 import { Lineup } from "types/lineup";
 
-export const useMyTeamLineup = (teamPicks: TeamPicks): Lineup => {
-  const { positions, players } = useContext(AppDataContext) as AppData;
+export const getMyTeamLineup = (teamPicks: TeamPicks, positions: Position[], players: Player[]): Lineup => {
   const [selectedPicks, benchPicks] = chunk(teamPicks.picks, 11);
 
   const getPlayerById = (id: number): Player => players.find((player) => player.id === id)!;

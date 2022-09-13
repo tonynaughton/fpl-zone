@@ -4,18 +4,18 @@ import { useQuery } from "react-query";
 import { getTeamData, getTeamPicksForGameweek } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import { auth } from "config";
+import { GetPlayerById } from "helpers";
 import { useFplId } from "hooks/use_fpl_id";
 import { useGameStatus } from "hooks/use_game_status";
+import _ from "lodash";
 import { AppData, Gameweek } from "types";
 
+import FdrTable from "components/fdr/fdr";
 import { Notifier, notifierMessageMap as msgMap } from "components/layout";
-import Lineup from "components/lineup/lineup";
 
-import { getMyTeamLineup } from "./get_my_team_lineup";
-
-export const MyTeam = (): JSX.Element => {
+export const MyFdr = (): JSX.Element => {
   const [user] = useAuthState(auth);
-  const { gameweeks, positions, players } = useContext(AppDataContext) as AppData;
+  const { gameweeks, players } = useContext(AppDataContext) as AppData;
   const { seasonNotStarted } = useGameStatus();
   const currentGameweek = gameweeks.find((gw) => gw.is_current) as Gameweek;
   const fplId = useFplId();
@@ -56,13 +56,10 @@ export const MyTeam = (): JSX.Element => {
   if (teamDataFetchError || !teamData) return <Notifier message={msgMap.teamDataFetchError} type='error' />;
   if (teamPicksFetchError || !teamPicks) return <Notifier message={msgMap.teamPicksFetchError} type='error' />;
 
-  const lineup = getMyTeamLineup(teamPicks!, positions, players);
+  const fdrPlayers = _(teamPicks!.picks)
+    .map((pick) => GetPlayerById(pick.element, players))
+    .sortBy("element_type")
+    .value();
 
-  return (
-    <Lineup
-      lineup={lineup}
-      teamData={teamData}
-      teamPicks={teamPicks}
-    />
-  );
+  return <FdrTable players={fdrPlayers} />;
 };

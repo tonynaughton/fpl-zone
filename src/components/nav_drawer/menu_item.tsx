@@ -1,19 +1,20 @@
 import React, { useContext } from "react";
 import { Accordion, AccordionDetails, AccordionSummary, Box, List, ListItemButton, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
+import { isEmpty } from "lodash";
 
 import { MenuItemType } from "./menu_list";
 
 interface MenuItemProps {
   menuItem: MenuItemType;
-  isActive?: boolean;
+  activeId?: string;
 }
 
 interface ButtonMenuItemProps {
   buttonMenuItem: MenuItemType;
 }
 
-export const MenuItem = ({ menuItem, isActive = false }: MenuItemProps): JSX.Element => {
+export const MenuItem = ({ menuItem, activeId }: MenuItemProps): JSX.Element => {
   const theme = useTheme();
   const { isMobile } = useContext(AppDataContext);
 
@@ -21,9 +22,7 @@ export const MenuItem = ({ menuItem, isActive = false }: MenuItemProps): JSX.Ele
     paddingY: 2,
     bgcolor: "inherit",
     "& .MuiTypography-root": {
-      fontWeight: 600,
-      color: isActive ? "black" : theme.palette.info.main,
-      fontSize: isMobile ? "1.8rem" : "1.2rem"
+      fontWeight: 600
     },
     "&:hover": {
       bgcolor: "inherit",
@@ -39,35 +38,46 @@ export const MenuItem = ({ menuItem, isActive = false }: MenuItemProps): JSX.Ele
       data-testid={`menu-item-button-${buttonMenuItem.id}`}
       disableRipple
       onClick={buttonMenuItem.onClick}
-      sx={btnStyle}
+      sx={{
+        ...btnStyle,
+        "& .MuiTypography-root": {
+          color: buttonMenuItem.id === activeId ? "black" : theme.palette.info.main
+        }
+      }}
     >
       <Typography
         data-testid={`menu-item-text-${buttonMenuItem.id}`}
+        variant='h4'
       >
         {buttonMenuItem.label.toUpperCase()}
       </Typography>
     </ListItemButton>
   );
 
-  const ButtonWithAccordion = (): JSX.Element => (
-    <Accordion>
-      <AccordionSummary>
-        <Typography
-          data-testid={`menu-item-text-${menuItem.id}`}
-        >
-          {menuItem.label.toUpperCase()}
-        </Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <List>
-          {menuItem.subItems?.map((subMenuItem: MenuItemType, key: number) => (
-            <ItemButton buttonMenuItem={subMenuItem} key={key} />
-          ))}
-        </List>
-      </AccordionDetails>
-    </Accordion>
+  return (
+    isMobile && !isEmpty(menuItem.subItems)
+      ? (
+        <Accordion sx={{ background: "inherit" }}>
+          <AccordionSummary>
+            <Typography
+              color={theme.palette.info.main}
+              data-testid={`menu-item-text-${menuItem.id}`}
+              variant='h4'
+            >
+              {menuItem.label.toUpperCase()}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <List>
+              {menuItem.subItems?.map((subMenuItem: MenuItemType, key: number) => (
+                <ItemButton buttonMenuItem={subMenuItem} key={key} />
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
+      )
+      : (
+        <ItemButton buttonMenuItem={menuItem} />
+      )
   );
-
-
-  return isMobile ? <ButtonWithAccordion /> : <ItemButton buttonMenuItem={menuItem} />;
 };

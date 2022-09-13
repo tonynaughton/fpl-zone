@@ -25,6 +25,11 @@ export const useMenuItems = (closeNavDrawer: () => void): MenuItems => {
     setAuthModalView(view);
   };
 
+  const onMobileItemClick = (href: string): void => {
+    closeNavDrawer();
+    navigate(href);
+  };
+
   const nav: MenuItemType[] = [
     {
       id: "gw-live",
@@ -34,12 +39,12 @@ export const useMenuItems = (closeNavDrawer: () => void): MenuItems => {
         {
           id: "dream-team",
           label: "dream team",
-          onClick: () => navigate("dream-team")
+          onClick: () => onMobileItemClick("/gw-live/dream-team")
         },
         {
           id: "summary",
           label: "summary",
-          onClick: () => navigate("summary")
+          onClick: () => onMobileItemClick("/gw-live/summary")
         }
       ]
     },
@@ -51,12 +56,12 @@ export const useMenuItems = (closeNavDrawer: () => void): MenuItems => {
         {
           id: "my-team",
           label: "my team",
-          onClick: () => navigate("my-team")
+          onClick: () => onMobileItemClick("/my-fpl/my-team")
         },
         {
-          id: "my-fpl-fdr",
+          id: "my-fdr",
           label: "fdr",
-          onClick: () => navigate("my-fpl-fdr")
+          onClick: () => onMobileItemClick("/my-fpl/my-fdr")
         }
       ]
     },
@@ -68,12 +73,12 @@ export const useMenuItems = (closeNavDrawer: () => void): MenuItems => {
         {
           id: "fix-and-res-fdr",
           label: "fdr",
-          onClick: () => navigate("fix-and-res-fdr")
+          onClick: () => onMobileItemClick("/fix-and-res/fdr")
         },
         {
           id: "results",
           label: "results",
-          onClick: () => navigate("results")
+          onClick: () => onMobileItemClick("/fix-and-res/results")
         }
       ]
     },
@@ -85,7 +90,7 @@ export const useMenuItems = (closeNavDrawer: () => void): MenuItems => {
         {
           id: "comparison",
           label: "comparison",
-          onClick: () => navigate("comparison")
+          onClick: () => onMobileItemClick("/analysis/comparison")
         }
       ]
     }

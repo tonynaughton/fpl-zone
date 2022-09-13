@@ -3,22 +3,20 @@ import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getLocalImage } from "helpers";
 import { sortBy } from "lodash";
-import { AppData, Player as PlayerType, TeamData, TeamPicks } from "types";
+import { AppData, Lineup as LineupType, Player as PlayerType, TeamData, TeamPicks } from "types";
 
 import PlayerPerformanceModal from "./player_performance_modal/player_performance_modal";
 import { LineupDetails } from "./lineup_details";
 import { LineupRow } from "./lineup_row";
 
 interface LineupProps {
-  selected: PlayerType[][];
-  bench: PlayerType[];
+  lineup: LineupType;
   teamPicks?: TeamPicks;
   teamData?: TeamData;
 }
 
 export default function Lineup({
-  selected,
-  bench,
+  lineup,
   teamPicks,
   teamData
 }: LineupProps): JSX.Element {
@@ -27,7 +25,7 @@ export default function Lineup({
   const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
 
-  const sortedBench = sortBy(bench, ["element_type"]);
+  const sortedBench = sortBy(lineup.bench, ["element_type"]);
 
   const handlePlayerPerformanceClick = (player: PlayerType): void => {
     setPlayerPerformanceModalOpen(true);
@@ -68,7 +66,7 @@ export default function Lineup({
             backgroundRepeat: "no-repeat"
           }}
         >
-          {selected.map((players, key) => (
+          {lineup.selected.map((players, key) => (
             <LineupRow
               handlePlayerPerformanceClick={handlePlayerPerformanceClick}
               key={key}

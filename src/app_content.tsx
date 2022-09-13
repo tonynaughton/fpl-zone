@@ -16,7 +16,14 @@ import {
 } from "pages";
 import { AppData } from "types";
 
-import { Startup } from "components/layout";
+import { PlayerComparison } from "components/comparison";
+import DreamTeam from "components/dream_team/dream_team";
+import FdrTable from "components/fdr/fdr";
+import GameweekSummary from "components/gameweek_summary/gameweek_summary";
+import { PageLayout, Startup } from "components/layout";
+import { MyFdr } from "components/my_fdr/my_fdr";
+import { MyTeam } from "components/my_team/my_team";
+import Results from "components/results/results";
 
 interface AuthContextType {
   fplId: number | undefined;
@@ -91,12 +98,21 @@ export default function AppContent(): JSX.Element {
       <AppDataContext.Provider value={appDataContextValue}>
         <Router>
           <Routes>
-            <Route element={<GameweekLivePage />} path='*' />
-            <Route element={<GameweekLivePage />} path='/' />
+            <Route element={isMobile ? <PageLayout activeId='dream-team'><DreamTeam /></PageLayout> : <GameweekLivePage />} path='*' />
+            <Route element={isMobile ? <PageLayout activeId='dream-team'><DreamTeam /></PageLayout> : <GameweekLivePage />} path='/' />
             <Route element={<GameweekLivePage />} path='gameweek-live' />
             <Route element={<MyFPLPage />} path='/my-fpl' />
             <Route element={<FixturesAndResultsPage />} path='/fix-and-res' />
             <Route element={<AnalysisPage />} path='/analysis' />
+
+            {/* Mobile routes */}
+            <Route element={<PageLayout activeId='dream-team'><DreamTeam /></PageLayout>} path='/gw-live/dream-team' />
+            <Route element={<PageLayout activeId='summary'><GameweekSummary /></PageLayout>} path='/gw-live/summary' />
+            <Route element={<PageLayout activeId='my-team'><MyTeam /></PageLayout>} path='/my-fpl/my-team' />
+            <Route element={<PageLayout activeId='my-fdr'><MyFdr /></PageLayout>} path='/my-fpl/my-fdr' />
+            <Route element={<PageLayout activeId='fix-and-res-fdr'><FdrTable /></PageLayout>} path='/fix-and-res/fdr' />
+            <Route element={<PageLayout activeId='fix-and-res-results'><Results /></PageLayout>} path='/fix-and-res/results' />
+            <Route element={<PageLayout activeId='comparison'><PlayerComparison /></PageLayout>} path='/analysis/comparison' />
           </Routes>
         </Router>
       </AppDataContext.Provider>
