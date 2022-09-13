@@ -2,7 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { Box, IconButton, Tooltip, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
+import { isEmpty } from "lodash";
 import { AppData, CustomResult, Fixture } from "types";
+
+import { Notifier } from "components/layout";
 
 import MatchDetailsModal from "./match_details_modal/match_details_modal";
 import { Result } from "./result";
@@ -74,39 +77,47 @@ export default function Results(): JSX.Element {
         flexGrow={1}
         width='100%'
       >
-        {gameweekFixtures.map((result, key) => {
-          const kickOffTime = new Date(result.kickoff_time || "");
-          const matchStarted = kickOffTime < new Date();
-          const customResult: CustomResult = {
-            team_h: result.team_h,
-            team_a: result.team_a,
-            team_h_score: (result.team_h_score as number) || null,
-            team_a_score: (result.team_a_score as number) || null,
-            kickoff_time: result.kickoff_time
-          };
+        {
+          isEmpty(gameweekFixtures)
+            ? (
+              <Notifier message='No fixtures' type='warning' />
+            )
+            : (
+              gameweekFixtures.map((result, key) => {
+                const kickOffTime = new Date(result.kickoff_time || "");
+                const matchStarted = kickOffTime < new Date();
+                const customResult: CustomResult = {
+                  team_h: result.team_h,
+                  team_a: result.team_a,
+                  team_h_score: (result.team_h_score as number) || null,
+                  team_a_score: (result.team_a_score as number) || null,
+                  kickoff_time: result.kickoff_time
+                };
 
-          return (
-            <Box
-              borderBottom='1px solid rgb(224, 224, 224)'
-              className='flex-center'
-              data-testid={`result-${result.id}`}
-              flexGrow={1}
-              key={key}
-              onClick={(): void => (kickOffTime < new Date() ? handleResultClick(result) : undefined)}
-              padding='0.5vw'
-              sx={{
-                "&:last-child": { border: "none" },
-                "&:hover": {
-                  bgcolor: matchStarted ? theme.palette.highlight.main : "inherit",
-                  cursor: matchStarted ? "pointer" : "default"
-                }
-              }}
-              width='100%'
-            >
-              <Result result={customResult} started={matchStarted} />
-            </Box>
-          );
-        })}
+                return (
+                  <Box
+                    borderBottom='1px solid rgb(224, 224, 224)'
+                    className='flex-center'
+                    data-testid={`result-${result.id}`}
+                    flexGrow={1}
+                    key={key}
+                    onClick={(): void => (kickOffTime < new Date() ? handleResultClick(result) : undefined)}
+                    padding='0.5vw'
+                    sx={{
+                      "&:last-child": { border: "none" },
+                      "&:hover": {
+                        bgcolor: matchStarted ? theme.palette.highlight.main : "inherit",
+                        cursor: matchStarted ? "pointer" : "default"
+                      }
+                    }}
+                    width='100%'
+                  >
+                    <Result result={customResult} started={matchStarted} />
+                  </Box>
+                );
+              })
+            )
+        }
       </Box>
       {selectedResult && (
         <MatchDetailsModal

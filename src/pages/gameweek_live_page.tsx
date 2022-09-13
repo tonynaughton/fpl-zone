@@ -6,7 +6,7 @@ import { ComponentContainer,PageLayout } from "components/layout";
 
 export const GameweekLivePage = (): JSX.Element => (
   <PageLayout activeId='gw-live'>
-    <ComponentContainer title='dream team'><DreamTeam /></ComponentContainer>
+    <ComponentContainer flex={3} title='dream team'><DreamTeam /></ComponentContainer>
     <ComponentContainer title='summary'><GameweekSummary /></ComponentContainer>
   </PageLayout>
 );
