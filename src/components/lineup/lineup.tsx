@@ -20,7 +20,7 @@ export default function Lineup({
   teamPicks,
   teamData
 }: LineupProps): JSX.Element {
-  const { teams, playerStats } = useContext(AppDataContext) as AppData;
+  const { teams, playerStats, isMobile } = useContext(AppDataContext) as AppData;
 
   const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
@@ -43,7 +43,7 @@ export default function Lineup({
         height='100%'
         minHeight={0}
         overflow='hidden'
-        padding={3}
+        padding={isMobile ? 1 : 3}
       >
         {teamData && teamPicks &&
           <LineupDetails
@@ -54,12 +54,12 @@ export default function Lineup({
           data-testid='selected-players'
           display='flex'
           flexDirection='column'
-          gap='5vh'
+          gap={isMobile ? 1 : 10}
           height='100%'
           minHeight={0}
           paddingBottom='5%'
-          paddingLeft='5%'
-          paddingRight='5%'
+          paddingLeft={isMobile ? 0 : '5%'}
+          paddingRight={isMobile ? 0 : '5%'}
           sx={{
             backgroundImage: `url(${getLocalImage("pitch.png")})`,
             backgroundSize: "100% 100%",
@@ -79,7 +79,7 @@ export default function Lineup({
           className='flex-center'
           data-testid='bench-players'
           flexDirection='column'
-          minHeight={0}
+          minHeight='20%'
         >
           <Typography variant='h4'>Bench</Typography>
           <LineupRow
