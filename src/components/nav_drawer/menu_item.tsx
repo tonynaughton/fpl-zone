@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { ExpandMore } from "@mui/icons-material";
 import { Accordion, AccordionDetails, AccordionSummary, Box, List, ListItemButton, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { isEmpty } from "lodash";
@@ -57,8 +58,8 @@ export const MenuItem = ({ menuItem, activeId }: MenuItemProps): JSX.Element => 
   return (
     isMobile && !isEmpty(menuItem.subItems)
       ? (
-        <Accordion sx={{ background: "inherit" }}>
-          <AccordionSummary>
+        <Accordion disableGutters square sx={{ background: "inherit", boxShadow: "none" }}>
+          <AccordionSummary expandIcon={<ExpandMore sx={{ color: theme.palette.info.main }} />}>
             <Typography
               color={theme.palette.info.main}
               data-testid={`menu-item-text-${menuItem.id}`}

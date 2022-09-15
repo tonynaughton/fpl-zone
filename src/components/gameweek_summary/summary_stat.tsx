@@ -33,7 +33,7 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
         className='text-ellipsis'
         data-testid={`stat-label-text-${stat.label}`}
         textAlign='center'
-        variant='h5'
+        variant='h4'
         width='100%'
       >
         {stat.label.toUpperCase()}
@@ -46,7 +46,12 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
         width='100%'
       >
         {img}
-        <Typography className='text-ellipsis' data-testid={`stat-value-text-${stat.label}`} textAlign='center'>
+        <Typography
+          className='text-ellipsis'
+          data-testid={`stat-value-text-${stat.label}`}
+          textAlign='center'
+          variant='h5'
+        >
           {stat.playerName?.toUpperCase() || ""}
           {stat.playerName?.toUpperCase() && stat.value ? " - " : ""}
           {stat.value || ""}
