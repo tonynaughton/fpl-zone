@@ -1,6 +1,6 @@
 import React from "react";
 import { Warning } from "@mui/icons-material";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, useTheme } from "@mui/material";
 
 export type NotifierType = "loading" | "warning" | "error";
 
@@ -22,9 +22,11 @@ export const notifierMessageMap = {
 };
 
 export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMessageProps): JSX.Element => {
+  const theme = useTheme();
+
   const NotifierIcon = (): JSX.Element => {
     const iconStyle = {
-      fontSize: "2.5vw",
+      fontSize: theme.typography.h2,
       color: "black"
     };
 
@@ -45,7 +47,7 @@ export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMe
       data-testid='notifier'
       flexDirection='column'
       gap='2vh'
-      height='100%'
+      height='80%'
       margin='auto'
       width='80%'
     >

@@ -130,7 +130,7 @@ export const LoginForm = (): JSX.Element => {
         <GoogleLoginButton />
         <FplIdLoginButton />
         <Link onClick={(): void => setAuthModalView("register")} >
-          <Typography>Don&apos;t have an account? Click to register.</Typography>
+          <Typography textAlign='center' >Don&apos;t have an account? Click to register.</Typography>
         </Link>
       </Box>
     </Box>

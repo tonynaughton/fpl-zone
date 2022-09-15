@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Close } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { AppDataContext } from "app_content";
 
 interface CustomModalProps {
   isModalOpen: boolean;
@@ -20,6 +21,7 @@ export const CustomModal = ({
   children
 }: CustomModalProps): JSX.Element => {
   const theme = useTheme();
+  const { isMobile } = useContext(AppDataContext);
 
   return (
     <Box
@@ -37,7 +39,6 @@ export const CustomModal = ({
       <Box
         alignItems='center'
         bgcolor={theme.palette.info.main}
-        border='2px solid black'
         boxShadow={24}
         display={isModalOpen ? "flex" : "none"}
         flexDirection='column'
@@ -47,7 +48,7 @@ export const CustomModal = ({
         maxWidth={compact ? "30rem" : "70rem"}
         onClick={(event): void => event.stopPropagation()}
         overflow='auto'
-        padding={4}
+        padding={isMobile ? 2 : 4}
         position='absolute'
         sx={{ transform: "translate(-50%, -50%)" }}
         top='50%'
