@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Controller,SubmitHandler, useForm } from "react-hook-form";
 import { Box, Button, Link,OutlinedInput, Typography, useTheme } from "@mui/material";
 import { getTeamData } from "api/fpl_api_provider";
-import { FplIdContext } from "app_content";
+import { AuthContext } from "app_content";
 
 import { AuthModalContext } from "components/layout";
 
@@ -15,7 +15,7 @@ interface FormInput {
 export const FplIdloginForm = (): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const { setAuthModalView } = useContext(AuthModalContext);
-  const { setFplId } = useContext(FplIdContext);
+  const { setFplId } = useContext(AuthContext);
   const theme = useTheme();
 
   const defaultValues = { fplId: "" };

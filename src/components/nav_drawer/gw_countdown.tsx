@@ -30,6 +30,8 @@ export const GameweekCountdown = (): JSX.Element => {
       seconds: { value: seconds, label: "SECS" }
     };
 
+    const textStyling = { fontWeight: 600, textAlign: "center" };
+
     return (
       <Box
         className='flex-center'
@@ -38,7 +40,7 @@ export const GameweekCountdown = (): JSX.Element => {
         gap={1}
         width='100%'
       >
-        <Typography className='text-ellipsis' textAlign='center' variant='h4'>{title}</Typography>
+        <Typography className='text-ellipsis' sx={textStyling}>{title}</Typography>
         { !completed &&
             <Box
               display='flex'
@@ -54,10 +56,10 @@ export const GameweekCountdown = (): JSX.Element => {
                   overflow='hidden'
                   width='100%'
                 >
-                  <Typography variant='h3'>
+                  <Typography sx={textStyling} variant='h5'>
                     {`0${times[time].value}`.slice(-2)}
                   </Typography>
-                  <Typography variant='h5'>
+                  <Typography sx={textStyling}>
                     {times[time].label}
                   </Typography>
                 </Box>

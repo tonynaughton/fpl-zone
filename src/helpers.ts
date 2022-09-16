@@ -28,6 +28,10 @@ export const getTeamCrestImageUrl = (teamCode: number): string => {
   return `https://resources.premierleague.com/premierleague/badges/70/t${teamCode}.png`;
 };
 
+export const getTeamKitImageUrl = (teamCode: number, goalkeeper?: boolean): string => {
+  return `https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_${teamCode}${goalkeeper ? "_1" : ""}-66.png`;
+};
+
 export const getLocalImage = (url: string): string => `${process.env.PUBLIC_URL}/assets/images/${url}`;
 
 export const getNormalizedString = (input: string): string => (
@@ -39,11 +43,9 @@ export const getNormalizedString = (input: string): string => (
 
 export const numberWithCommas = (x: number): string => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-export const formatDate = (date: Date): string => (
-  `${date.toLocaleDateString(navigator.language, { day: "numeric", month: "short" })
-  } ${
-    date.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })}`
-);
+export const getFormattedDate = (date: Date): string => date.toLocaleDateString(navigator.language, { day: "numeric", month: "short" });
+
+export const getFormattedTime = (date: Date): string => date.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" });
 
 // Adding delay before next function call
 export const delay = async (ms: number | undefined): Promise<void> => {

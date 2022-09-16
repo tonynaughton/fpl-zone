@@ -23,30 +23,28 @@ export const LineupDetails = ({
       width='100%'
     >
       {teamData && (
-        <Typography data-testid='team-name' textAlign='center' variant='h2'>
+        <Typography data-testid='team-name' textAlign='center' variant='h4'>
           {teamData.name}
         </Typography>
       )}
       <Box
         alignItems='center'
         display='flex'
-        gap={3}
         justifyContent='space-evenly'
         overflow='hidden'
-        padding={2}
         textAlign='center'
         width='100%'
       >
         <Box>
-          <Typography marginBottom={1} variant='h4'>Active Chip:</Typography>
+          <Typography>Active Chip:</Typography>
           <Typography data-testid='active-chip'>{activeChip}</Typography>
         </Box>
         <Box>
-          <Typography marginBottom={1} variant='h4'>GW Points:</Typography>
+          <Typography>GW Points:</Typography>
           <Typography data-testid='total-points'>{totalPoints}</Typography>
         </Box>
         <Box>
-          <Typography marginBottom={1} variant='h4'>Overall Rank:</Typography>
+          <Typography>Overall Rank:</Typography>
           <Typography data-testid='overall-rank'>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
         </Box>
       </Box>

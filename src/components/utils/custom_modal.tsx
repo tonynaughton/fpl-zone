@@ -37,7 +37,6 @@ export const CustomModal = ({
       <Box
         alignItems='center'
         bgcolor={theme.palette.info.main}
-        border='2px solid black'
         boxShadow={24}
         display={isModalOpen ? "flex" : "none"}
         flexDirection='column'
@@ -54,7 +53,7 @@ export const CustomModal = ({
         width='90%'
         zIndex='modal'
       >
-        {title && <Typography variant='h3'>{title}</Typography>}
+        {title && <Typography variant='h4'>{title}</Typography>}
         <IconButton
           onClick={closeModal}
           sx={{ position: "absolute", top: "4%", right: "4%" }}

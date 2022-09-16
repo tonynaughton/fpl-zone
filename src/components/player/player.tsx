@@ -1,7 +1,8 @@
-import React from "react";
-import { Info } from "@mui/icons-material";
+import React, { useContext } from "react";
+import { Info as InfoIcon } from "@mui/icons-material";
 import { Box, Typography, useTheme } from "@mui/material";
-import { getLocalImage } from "helpers";
+import { AppDataContext } from "app_content";
+import { getTeamKitImageUrl } from "helpers";
 import { Player as PlayerType } from "types/player";
 
 import { Armband } from "./armband";
@@ -24,8 +25,63 @@ export default function Player({
   isViceCaptain = false
 }: PlayerProps): JSX.Element {
   const theme = useTheme();
+  const { isMobile } = useContext(AppDataContext);
+  const isGoalkeeper = player.element_type === 1;
+  const url = getTeamKitImageUrl(player.team_code, isGoalkeeper);
 
-  const url = `kits/${player.team_code}.png`;
+  const Name = (): JSX.Element => (
+    <Box
+      bgcolor={theme.palette.primary.main}
+      className='flex-center'
+      height='100%'
+      overflow='hidden'
+      p={isMobile ? 0.5 : 1}
+      width='100%'
+    >
+      <Typography
+        className='text-ellipsis'
+        color={theme.palette.info.main}
+        data-testid='player-name'
+        fontSize={isMobile ? "0.8rem" : theme.typography.body1.fontSize}
+      >
+        {player.web_name.toUpperCase()}
+      </Typography>
+    </Box>
+  );
+
+  const Score = (): JSX.Element => (
+    <Box
+      bgcolor={theme.palette.secondary.main}
+      className='flex-center'
+      height='100%'
+      overflow='hidden'
+      p={0.75}
+    >
+      <Typography
+        data-testid='player-score'
+        fontSize={isMobile ? "1rem" : theme.typography.body1.fontSize}
+        px={1}
+      >
+        {player.event_points * multiplier}
+      </Typography>
+    </Box>
+  );
+
+  const Info = (): JSX.Element => (
+    <Box
+      bgcolor='black'
+      className='flex-center'
+      data-testid={`player-performance-button-${player.id}`}
+      fontSize='0.8rem'
+      height='100%'
+      minWidth='10px'
+      onClick={(): void => handlePlayerPerformanceClick(player)}
+      p={0.75}
+      sx={{ "& :hover": { cursor: "pointer" } }}
+    >
+      <InfoIcon color='info' sx={{ fontSize: theme.typography.body1 }} />
+    </Box>
+  );
 
   return (
     <Box
@@ -34,11 +90,12 @@ export default function Player({
       flexDirection='column'
       height='100%'
       maxHeight='100%'
+      maxWidth={isMobile ? "65px" : undefined}
       minHeight={0}
       minWidth={0}
       overflow='hidden'
       position='relative'
-      width='8vw'
+      width={isMobile ? "100%" : "10vw"}
     >
       {isCaptain && <Armband />}
       {isViceCaptain && <Armband isVice />}
@@ -46,56 +103,35 @@ export default function Player({
         alt='team-kit'
         className='kit-img'
         data-testid={`kit-img-player-${player.id}`}
-        src={getLocalImage(url)}
+        src={url}
       />
       <Box
         bottom={0}
         display='flex'
-        height='3.5vh'
+        height={isMobile ? "40%" : "3vh"}
         justifyContent='center'
         position='absolute'
         width='100%'
       >
-        <Box
-          bgcolor={theme.palette.primary.main}
-          className='flex-center'
-          flexGrow={1}
-          overflow='hidden'
-          paddingLeft='0.5vw'
-          paddingRight='0.5vw'
-        >
-          <Typography
-            className='text-ellipsis'
-            color={theme.palette.info.main}
-            data-testid='player-name'
-          >
-            {player.web_name.toUpperCase()}
-          </Typography>
-        </Box>
-        <Box
-          bgcolor={theme.palette.secondary.main}
-          className='flex-center'
-          overflow='hidden'
-        >
-          <Typography
-            data-testid='player-score'
-            paddingLeft='0.5vw'
-            paddingRight='0.5vw'
-          >
-            {player.event_points * multiplier}
-          </Typography>
-        </Box>
-        <Box
-          bgcolor='black'
-          className='flex-center'
-          data-testid={`player-performance-button-${player.id}`}
-          minWidth='10px'
-          onClick={(): void => handlePlayerPerformanceClick(player)}
-          padding={0.5}
-          sx={{ "& :hover": { cursor: "pointer" } }}
-        >
-          <Info color='info' sx={{ fontSize: "2vh" }} />
-        </Box>
+        {isMobile
+          ? (
+            <Box display='flex' flexDirection='column' overflow='hidden'>
+              <Box className='flex-center' height='50%'>
+                <Name />
+              </Box>
+              <Box className='flex-center' height='50%'>
+                <Score />
+                <Info />
+              </Box>
+            </Box>
+          )
+          : (
+            <>
+              <Name />
+              <Score />
+              <Info />
+            </>
+          )}
       </Box>
     </Box>
   );

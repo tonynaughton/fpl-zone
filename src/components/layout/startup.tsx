@@ -2,7 +2,14 @@ import React from "react";
 import { Box, useTheme } from "@mui/material";
 import { getLocalImage } from "helpers";
 
-export const Startup = (props: { children: JSX.Element }): JSX.Element => {
+import { Notifier, NotifierType } from "./notifier";
+
+interface StartupProps {
+  notifierMessage?: string;
+  notifierType?: NotifierType;
+}
+
+export const Startup = ({ notifierMessage, notifierType }: StartupProps): JSX.Element => {
   const theme = useTheme();
 
   return (
@@ -26,7 +33,7 @@ export const Startup = (props: { children: JSX.Element }): JSX.Element => {
           width='100%'
         >
           <img alt='fpl-zone-logo' src={getLocalImage(`logo.png`)} width='100%' />
-          {props.children}
+          <Notifier message={notifierMessage} type={notifierType} />
         </Box>
       </Box>
     </Box>

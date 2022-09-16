@@ -1,22 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Box, ListItemButton, Typography, useTheme } from "@mui/material";
+import React, { useContext } from "react";
+import { ExpandMore } from "@mui/icons-material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, List, ListItemButton, Typography, useTheme } from "@mui/material";
+import { AppDataContext } from "app_content";
+import { isEmpty } from "lodash";
 
-import { isNavMenuItem, MenuItemType } from "./types";
+import { MenuItemType } from "./menu_list";
 
 interface MenuItemProps {
-  item: MenuItemType;
-  isActive?: boolean;
+  menuItem: MenuItemType;
+  activeId?: string;
+  expandedPanel?: string | false;
+  setExpandedPanel?: (item: string | false) => void;
 }
 
-export const MenuItem = ({ item, isActive: active = false }: MenuItemProps): JSX.Element => {
+interface ButtonMenuItemProps {
+  buttonMenuItem: MenuItemType;
+}
+
+export const MenuItem = ({ menuItem, activeId, expandedPanel, setExpandedPanel }: MenuItemProps): JSX.Element => {
   const theme = useTheme();
+  const { isMobile } = useContext(AppDataContext);
+
+  const handleChange = (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+    if (setExpandedPanel) {
+      setExpandedPanel(isExpanded ? panel : false);
+    }
+  };
 
   const btnStyle = {
     paddingY: 2,
     bgcolor: "inherit",
     "& .MuiTypography-root": {
-      color: active ? "black" : theme.palette.info.main
+      fontWeight: 600
     },
     "&:hover": {
       bgcolor: "inherit",
@@ -26,21 +41,58 @@ export const MenuItem = ({ item, isActive: active = false }: MenuItemProps): JSX
     }
   };
 
-  return (
+  const ItemButton = ({ buttonMenuItem }: ButtonMenuItemProps): JSX.Element => (
     <ListItemButton
-      component={isNavMenuItem(item) ? Link : Box}
-      data-testid={`menu-item-button-${item.id}`}
+      component={Box}
+      data-testid={`menu-item-button-${buttonMenuItem.id}`}
       disableRipple
-      onClick={!isNavMenuItem(item) ? item.onClick : undefined}
-      sx={btnStyle}
-      to={isNavMenuItem(item) ? item.href : undefined}
+      onClick={buttonMenuItem.onClick}
+      sx={{
+        ...btnStyle,
+        "& .MuiTypography-root": {
+          color: buttonMenuItem.id === activeId ? "black" : theme.palette.info.main
+        }
+      }}
     >
       <Typography
-        data-testid={`menu-item-text-${item.id}`}
-        variant='h2'
+        data-testid={`menu-item-text-${buttonMenuItem.id}`}
+        variant='h5'
       >
-        {item.label.toUpperCase()}
+        {buttonMenuItem.label.toUpperCase()}
       </Typography>
     </ListItemButton>
+  );
+
+  return (
+    isMobile && !isEmpty(menuItem.subItems)
+      ? (
+        <Accordion
+          disableGutters
+          expanded={expandedPanel === menuItem.id}
+          onChange={handleChange(menuItem.id)}
+          square
+          sx={{ background: "inherit", boxShadow: "none" }}
+        >
+          <AccordionSummary expandIcon={<ExpandMore sx={{ color: theme.palette.info.main }} />}>
+            <Typography
+              color={theme.palette.info.main}
+              data-testid={`menu-item-text-${menuItem.id}`}
+              variant='h5'
+            >
+              {menuItem.label.toUpperCase()}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <List>
+              {menuItem.subItems?.map((subMenuItem: MenuItemType, key: number) => (
+                <ItemButton buttonMenuItem={subMenuItem} key={key} />
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
+      )
+      : (
+        <ItemButton buttonMenuItem={menuItem} />
+      )
   );
 };

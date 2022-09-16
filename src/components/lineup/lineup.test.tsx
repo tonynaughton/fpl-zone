@@ -4,7 +4,7 @@ import { getLocalImage } from "helpers";
 import _ from "lodash";
 import { mockPlayers } from "test";
 import { MockProviders } from "test/mock_providers";
-import { TeamData, TeamPicks } from "types";
+import { Lineup as LineupType,TeamData, TeamPicks } from "types";
 
 import Lineup from "components/lineup/lineup";
 
@@ -13,6 +13,7 @@ import "@testing-library/jest-dom/extend-expect";
 describe("Lineup Tests", () => {
   let mockTeamPicks: TeamPicks;
   let mockTeamData: TeamData;
+  let mockLineup: LineupType;
 
   const mockSelected = _(mockPlayers)
     .partition("element_type")
@@ -25,8 +26,7 @@ describe("Lineup Tests", () => {
     return (
       <MockProviders>
         <Lineup
-          bench={mockBench}
-          selected={mockSelected}
+          lineup={mockLineup}
           teamData={mockTeamData}
           teamPicks={mockTeamPicks}
         />

@@ -7,7 +7,7 @@ import Lineup from "components/lineup/lineup";
 
 export default function DreamTeam(): JSX.Element {
   const { seasonNotStarted, gameUpdating } = useGameStatus();
-  const { selected, bench } = useDreamTeamLineup();
+  const lineup = useDreamTeamLineup();
 
   if (seasonNotStarted) {
     return <Notifier message={msgMap.seasonNotStarted} type='warning' />;
@@ -17,5 +17,5 @@ export default function DreamTeam(): JSX.Element {
     return <Notifier message={msgMap.gameUpdating} type='warning' />;
   }
 
-  return <Lineup bench={bench} selected={selected} />;
+  return <Lineup lineup={lineup} />;
 }

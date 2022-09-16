@@ -1,9 +1,9 @@
 import { Fixture } from "./fixture";
+import { Performance } from "./performance";
 import { PlayerPast } from "./player_past";
-import { PlayerPerformance } from "./player_performance";
 
 export interface PlayerSummary {
   fixtures: Fixture[];
-  history: PlayerPerformance[];
+  history: Performance[];
   history_past: PlayerPast[];
 }

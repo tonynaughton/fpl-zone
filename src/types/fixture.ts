@@ -1,3 +1,4 @@
+
 export interface StatValue {
   value: number;
   element: number;
@@ -9,22 +10,14 @@ interface Stat {
   h: StatValue[];
 }
 
-export interface CustomResult {
-  team_h: number;
-  team_a: number;
-  team_h_score: number | null;
-  team_a_score: number | null;
-  kickoff_time: string | null;
-}
-
 export interface Fixture {
   id: number;
   code: number;
   team_h: number;
-  team_h_score?: unknown;
+  team_h_score?: number;
   team_h_difficulty: number;
   team_a: number;
-  team_a_score?: unknown;
+  team_a_score?: number;
   team_a_difficulty: number;
   event: number | null;
   started: boolean | null;

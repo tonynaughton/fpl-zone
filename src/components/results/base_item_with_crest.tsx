@@ -8,10 +8,11 @@ import { BaseItem } from "components/fdr/fdr";
 interface BaseItemWithCrestProps {
   item: BaseItem;
   crestEnd?: boolean;
+  abbreviateTeam?: boolean;
 }
 
-export const BaseItemWithCrest = ({ item, crestEnd = false }: BaseItemWithCrestProps): JSX.Element => {
-  const name = isPlayer(item) ? item.web_name : item.name;
+export const BaseItemWithCrest = ({ item, crestEnd = false, abbreviateTeam = false }: BaseItemWithCrestProps): JSX.Element => {
+  const name = isPlayer(item) ? item.web_name : abbreviateTeam ? item.short_name : item.name;
   const teamCode = isPlayer(item) ? item.team_code : item.code;
 
   return (

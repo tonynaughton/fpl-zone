@@ -7,12 +7,13 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography
+  Typography,
+  useTheme
 } from "@mui/material";
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
-import { useNextFiveTeamFixtures } from "hooks";
-import { useNextFiveGameweekIds } from "hooks/use_next_five_gameweek_ids";
+import { useNextTeamFixtures } from "hooks";
+import { useRemainingGameweekIds } from "hooks/use_next_gameweek_ids";
 import { isEmpty, map } from "lodash";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
@@ -28,49 +29,60 @@ interface FdrTableProps {
   players?: Player[];
 }
 
-interface NextFiveTeamFixturesProps {
+interface NextTeamFixturesProps {
   item: BaseItem;
 }
 
 export default function FdrTable({ players }: FdrTableProps): JSX.Element {
-  const [nextFiveGameweekFixtures, setNextFiveFixtures] = useState<FixtureType[][]>([]);
+  const theme = useTheme();
+  const [nextFixtures, setNextFixtures] = useState<FixtureType[][]>([]);
   const [notifierMessage, setNotifierMessage] = useState<string>("Fetching fixture data..");
   const [notifierType, setNotifierType] = useState<NotifierType>("loading");
-  const { teams } = useContext(AppDataContext) as AppData;
+  const { teams, isMobile } = useContext(AppDataContext) as AppData;
   const baseItem = players || teams;
-  const nextFiveGameweekIds = useNextFiveGameweekIds();
+  const nextGameweekIds = useRemainingGameweekIds();
+
+  const stickyCellStyle = {
+    px: 1,
+    width: isMobile ? "8rem" : "10rem",
+    maxWidth: isMobile ? "8rem" : "10rem",
+    position: "sticky",
+    left: 0,
+    bgcolor: theme.palette.info.main,
+    boxShadow: "-0.5px 0 inset black"
+  };
 
   useEffect(() => {
-    const fetchNextFiveGameweekFixtures = async (): Promise<void> => {
-      if (isEmpty(nextFiveGameweekIds)) {
+    const fetchNextGameweekFixtures = async (): Promise<void> => {
+      if (isEmpty(nextGameweekIds)) {
         setNotifierMessage(msgMsg.seasonFinished);
         setNotifierType("error");
 
         return;
       }
 
-      const nextFiveGameweekFixtures: FixtureType[][] = await Promise.all(
-        nextFiveGameweekIds.map((gameweek) => getGameweekFixtures(gameweek))
+      const nextGameweekFixtures: FixtureType[][] = await Promise.all(
+        nextGameweekIds.map((gameweek) => getGameweekFixtures(gameweek))
       );
 
-      setNextFiveFixtures(nextFiveGameweekFixtures);
+      setNextFixtures(nextGameweekFixtures);
     };
 
-    fetchNextFiveGameweekFixtures();
+    fetchNextGameweekFixtures();
   }, []);
 
-  const TeamFixturesRow = ({ item }: NextFiveTeamFixturesProps): JSX.Element => {
-    const teamFixtures = useNextFiveTeamFixtures(item, nextFiveGameweekFixtures);
+  const TeamFixturesRow = ({ item }: NextTeamFixturesProps): JSX.Element => {
+    const teamFixtures = useNextTeamFixtures(item, nextFixtures);
 
     return (
       <TableRow
         data-testid={`fixture-row-${item.id}`}
         sx={{
-          "& .MuiTableCell-root:first-of-type": { pl: 1 }
+          "& .MuiTableCell-root:first-of-type": stickyCellStyle
         }}
       >
-        <TableCell width={baseItemCellWidth}>
-          <BaseItemWithCrest item={item} />
+        <TableCell>
+          <BaseItemWithCrest abbreviateTeam={isMobile} item={item} />
         </TableCell>
         {map(teamFixtures, (fixtures, key) => (
           <TableCell key={key}>
@@ -81,52 +93,62 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
     );
   };
 
-  const baseItemCellWidth = "20%";
+  if (isEmpty(nextFixtures)) {
+    return <Notifier message={notifierMessage} type={notifierType} />;
+  }
 
-  return isEmpty(nextFiveGameweekFixtures)
-    ? (
-      <Box className='flex-center' data-testid='notifier-container' height='100%'>
-        <Notifier message={notifierMessage} type={notifierType} />
-      </Box>
-    )
-    : (
-      <Box
-        className='flex-center'
-        data-testid='fdr-container'
-        flexDirection='column'
-        height='100%'
-        overflow='hidden'
-        sx={{ "& .MuiTableContainer-root": { height: "100%" } }}
+  return (
+    <Box
+      className='flex-center'
+      data-testid='fdr-container'
+      flexDirection='column'
+      height='100%'
+      sx={{ "& .MuiTableContainer-root": { height: "100%" } }}
+      width='100%'
+    >
+      <TableContainer
+        sx={{
+          overflowY: "hidden",
+          "&::-webkit-scrollbar": {
+            width: 1
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "white",
+            border: "0.5px solid black"
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: theme.palette.primary.main,
+            border: "0.5px solid black"
+          }
+        }}
       >
-        <TableContainer>
-          <Table
-            sx={{
-              tableLayout: "fixed",
-              height: "100%",
-              "& .MuiTableCell-root": {
-                p: 0,
-                border: "0.5px solid black"
-              }
-            }}
-          >
-            <TableHead>
-              <TableRow
-                data-testid='table-head-column-title'
-                sx={{ "& .MuiTableCell-root": { height: "5vh" } }}
-              >
-                <TableCell width={baseItemCellWidth} />
-                {nextFiveGameweekIds.map((gameweekNumber, index) => (
-                  <TableCell key={index}>
-                    <Typography textAlign='center'>GW {gameweekNumber}</Typography>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {baseItem.map((item: BaseItem, key: number) => <TeamFixturesRow item={item} key={key} />)}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-    );
+        <Table
+          sx={{
+            height: "100%",
+            "& .MuiTableCell-root": {
+              p: 0,
+              border: "0.5px solid black"
+            }
+          }}
+        >
+          <TableHead>
+            <TableRow
+              data-testid='table-head-column-title'
+              sx={{ "& .MuiTableCell-root": { height: "6vh" } }}
+            >
+              <TableCell sx={stickyCellStyle} />
+              {nextGameweekIds.map((gameweekNumber, index) => (
+                <TableCell key={index}>
+                  <Typography textAlign='center'>GW {gameweekNumber}</Typography>
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {baseItem.map((item: BaseItem, key: number) => <TeamFixturesRow item={item} key={key} />)}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+  );
 }

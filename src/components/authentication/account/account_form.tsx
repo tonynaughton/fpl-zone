@@ -198,7 +198,7 @@ export const AccountForm = (): JSX.Element => {
           type='submit'
           variant='contained'
         >
-          <Typography textTransform='none' variant='h3'>Update</Typography>
+          <Typography textTransform='none'>Update</Typography>
         </Button>
       </form>
     </Box>

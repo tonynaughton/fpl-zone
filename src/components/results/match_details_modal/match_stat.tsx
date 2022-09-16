@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { Box, Grid,Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getLocalImage, GetPlayerById } from "helpers";
+import { isEmpty } from "lodash";
 import { AppData, Fixture, StatValue } from "types";
 
 export const STAT_IMAGE_NAMES = {
@@ -16,7 +17,14 @@ interface MatchStatProps {
   selectedResult: Fixture;
 }
 
-const StatColumn = (stat: StatValue, key: number, name: string, isAway = false): JSX.Element => {
+interface StatColumnProps {
+  stat: StatValue;
+  key: number;
+  name: string;
+  isAway?: boolean;
+}
+
+const StatColumn = ({ stat, key, name, isAway = false }: StatColumnProps): JSX.Element => {
   const { players } = useContext(AppDataContext) as AppData;
 
   const player = GetPlayerById(stat.element, players);
@@ -48,31 +56,37 @@ export const MatchStat = ({ statName, selectedResult }: MatchStatProps): JSX.Ele
 
   const stats = selectedResult.stats.find((stat) => stat.identifier === statName)!;
   const statTitle = playerStats.find((stat) => stat.name === statName)!;
-  const statsExist = stats.h.length > 0 || stats.a.length > 0;
 
-  return statsExist
-    ? (
-      <Box
-        alignItems='center'
-        display='flex'
-        flexDirection='column'
-        paddingTop={1.5}
-        width='100%'
-      >
-        <Typography component='h4' paddingBottom={1} variant='h5'>
-          {statTitle.label.toUpperCase()}
-        </Typography>
-        <Grid columnSpacing={2} container>
-          <Grid item xs={6}>
-            {stats.h.map((stat, key) => StatColumn(stat, key, statName))}
-          </Grid>
-          <Grid item xs={6}>
-            {stats.a.map((stat, key) => StatColumn(stat, key, statName, true))}
-          </Grid>
-        </Grid>
+  if (isEmpty(stats.h) && isEmpty(stats.a)) {
+    return <></>;
+  }
+
+  return (
+    <Box
+      alignItems='center'
+      display='flex'
+      flexDirection='column'
+      paddingTop={1.5}
+      width='100%'
+    >
+      <Typography component='h4' paddingBottom={1} variant='h5'>
+        {statTitle.label.toUpperCase()}
+      </Typography>
+      <Box display='flex' width='100%'>
+        <Box height='100%' width='50%'>
+          {stats.h.map((stat, key) => <StatColumn key={key} name={statName} stat={stat} />)}
+        </Box>
+        <Box height='100%' width='50%'>
+          {stats.a.map((stat, key) => (
+            <StatColumn
+              isAway
+              key={key}
+              name={statName}
+              stat={stat}
+            />
+          ))}
+        </Box>
       </Box>
-    )
-    : (
-      <></>
-    );
+    </Box>
+  );
 };

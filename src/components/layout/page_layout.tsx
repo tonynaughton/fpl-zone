@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 
+import { APP_BAR_HEIGHT, CustomAppBar } from "components/app_bar/app_bar";
 import { AuthModal } from "components/authentication/auth_modal";
 import NavDrawer from "components/nav_drawer/nav_drawer";
 
-interface LayoutProps {
+interface PageLayoutProps {
   activeId: string;
 }
 
@@ -28,24 +29,38 @@ export const AuthModalContext = React.createContext<AuthModalContextType>({
   setAuthModalView: () => {}
 });
 
-export const AppLayout = ({ activeId, children }: React.PropsWithChildren<LayoutProps>): JSX.Element => {
+export const PageLayout = ({ activeId, children }: React.PropsWithChildren<PageLayoutProps>): JSX.Element => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [authModalView, setAuthModalView] = useState<AuthModalView>("none");
+  const [isNavDrawerOpen, setIsNavDrawerOpen] = useState<boolean>(false);
   const authModalContextValue = { authModalView, setAuthModalView };
+  const NAV_DRAWER_WIDTH = isMobile ? "75%" : "12vw";
+
+  const closeNavDrawer = (): void => setIsNavDrawerOpen(false);
+  const openNavDrawer = (): void => setIsNavDrawerOpen(true);
 
   return (
     <>
       <Box component='div' display='flex'>
         <AuthModalContext.Provider value={authModalContextValue}>
-          <NavDrawer activeId={activeId} />
+          <CustomAppBar openNavDrawer={openNavDrawer} />
+          <NavDrawer
+            activeId={activeId}
+            closeNavDrawer={closeNavDrawer}
+            isNavDrawerOpen={isNavDrawerOpen}
+            navDrawerWidth={NAV_DRAWER_WIDTH}
+          />
         </AuthModalContext.Provider>
         <Box
           component='main'
           display='flex'
-          flexGrow={1}
+          flexDirection={isMobile ? "column" : "row"}
           gap={3}
-          height='100vh'
-          justifyContent='center'
-          padding={3}
+          height={isMobile ? `calc(100vh - ${APP_BAR_HEIGHT})` : "100vh"}
+          mt={isMobile ? APP_BAR_HEIGHT : 0}
+          padding={isMobile ? 0 : 3}
+          width={isMobile ? "100vw" : `calc(100vw - ${NAV_DRAWER_WIDTH})`}
         >
           {children}
         </Box>

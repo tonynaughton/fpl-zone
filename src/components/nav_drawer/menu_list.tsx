@@ -1,43 +1,24 @@
-import React, { useContext } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useState } from "react";
 import { Box, List } from "@mui/material";
-import { FplIdContext } from "app_content";
-import { auth, logout } from "config";
-
-import { AuthModalContext } from "components/layout";
+import { useMenuItems } from "hooks/use_menu_items";
 
 import { MenuItem } from "./menu_item";
-import { MenuItemType } from "./types";
 
 interface MenuListProps {
   activeId: string;
+  closeNavDrawer: () => void;
 }
 
-export const MenuList = ({ activeId }: MenuListProps): JSX.Element => {
-  const { fplId, setFplId } = useContext(FplIdContext);
-  const [user] = useAuthState(auth);
-  const { setAuthModalView } = useContext(AuthModalContext);
+export interface MenuItemType {
+  id: string;
+  label: string;
+  onClick: () => void;
+  subItems?: MenuItemType[];
+}
 
-  const onLogoutClick = (): void => {
-    fplId ? setFplId() : logout();
-  };
-
-  const navMenuItems: MenuItemType[] = [
-    { id: "gw-live", label: "gameweek live", href: "/gameweek-live", type: "nav" },
-    { id: "my-fpl", label: "my fpl", href: "/my-fpl", type: "nav" },
-    { id: "fix-and-res", label: "fixtures & results", href: "/fixtures-and-results", type: "nav" },
-    { id: "analysis", label: "analysis", href: "/analysis", type: "nav" }
-  ];
-
-  const authMenuItems: MenuItemType[] = fplId || user
-    ? [
-      { id: "logout", label: "logout", onClick: onLogoutClick, type: "auth" },
-      ...user ? [{ id: "account", label: "account", onClick: () => setAuthModalView("account"), type: "auth" as const }] : []
-    ]
-    : [
-      { id: "login", label: "login", onClick: () => setAuthModalView("login"), type: "auth" },
-      { id: "register", label: "register", onClick: () => setAuthModalView("register"), type: "auth" }
-    ];
+export const MenuList = ({ activeId, closeNavDrawer }: MenuListProps): JSX.Element => {
+  const menuItems = useMenuItems(closeNavDrawer);
+  const [expandedPanel, setExpandedPanel] = useState<string | false>(false);
 
   return (
     <Box
@@ -48,13 +29,23 @@ export const MenuList = ({ activeId }: MenuListProps): JSX.Element => {
       width='100%'
     >
       <List>
-        {navMenuItems.map((item, key: number) => (
-          <MenuItem isActive={activeId === item.id} item={item} key={key} />
+        {menuItems.nav.map((item, key: number) => (
+          <MenuItem
+            activeId={activeId}
+            expandedPanel={expandedPanel}
+            key={key}
+            menuItem={item}
+            setExpandedPanel={setExpandedPanel}
+          />
         ))}
       </List>
       <List>
-        {authMenuItems.map((item, key: number) => (
-          <MenuItem item={item} key={key} />
+        {menuItems.auth.map((item, key: number) => (
+          <MenuItem
+            activeId={activeId}
+            key={key}
+            menuItem={item}
+          />
         ))}
       </List>
     </Box>

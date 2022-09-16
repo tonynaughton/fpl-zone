@@ -114,7 +114,7 @@ export const LoginForm = (): JSX.Element => {
           type='submit'
           variant='contained'
         >
-          <Typography textTransform='none' variant='h3'>Login</Typography>
+          <Typography textTransform='none'>Login</Typography>
         </Button>
       </form>
       <Link onClick={(): void => setAuthModalView("reset")}>
@@ -130,7 +130,7 @@ export const LoginForm = (): JSX.Element => {
         <GoogleLoginButton />
         <FplIdLoginButton />
         <Link onClick={(): void => setAuthModalView("register")} >
-          <Typography>Don&apos;t have an account? Click to register.</Typography>
+          <Typography textAlign='center' >Don&apos;t have an account? Click to register.</Typography>
         </Link>
       </Box>
     </Box>

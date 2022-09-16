@@ -4545,5 +4545,6 @@ export const mockAppData: AppData = {
   players: mockPlayers,
   playerStats: mockPlayerStats,
   positions: mockPositions,
-  fixtures: mockFixtures
+  fixtures: mockFixtures,
+  isMobile: false
 };
