@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
+import { AppDataContext } from "app_content";
 import { numberWithCommas } from "helpers";
 import { TeamData, TeamPicks } from "types";
-import { AppDataContext } from "app_content";
 
 interface LineupDetailsProps {
   teamData: TeamData;

@@ -39,11 +39,9 @@ export const getNormalizedString = (input: string): string => (
 
 export const numberWithCommas = (x: number): string => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-export const formatDate = (date: Date): string => (
-  `${date.toLocaleDateString(navigator.language, { day: "numeric", month: "short" })
-  } ${
-    date.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" })}`
-);
+export const getFormattedDate = (date: Date): string => date.toLocaleDateString(navigator.language, { day: "numeric", month: "short" });
+
+export const getFormattedTime = (date: Date): string => date.toLocaleTimeString(navigator.language, { hour: "2-digit", minute: "2-digit" });
 
 // Adding delay before next function call
 export const delay = async (ms: number | undefined): Promise<void> => {

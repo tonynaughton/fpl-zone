@@ -86,6 +86,14 @@ export default function Results(): JSX.Element {
               gameweekFixtures.map((result, key) => {
                 const kickOffTime = new Date(result.kickoff_time || "");
                 const matchStarted = kickOffTime < new Date();
+                const onResultClick = matchStarted ? () => handleResultClick(result) : undefined;
+                const style = {
+                  "&:last-child": { border: "none" },
+                  "&:hover": {
+                    bgcolor: matchStarted ? theme.palette.highlight.main : "inherit",
+                    cursor: matchStarted ? "pointer" : "default"
+                  }
+                };
                 const customResult: CustomResult = {
                   team_h: result.team_h,
                   team_a: result.team_a,
@@ -101,18 +109,12 @@ export default function Results(): JSX.Element {
                     data-testid={`result-${result.id}`}
                     flexGrow={1}
                     key={key}
-                    onClick={(): void => (kickOffTime < new Date() ? handleResultClick(result) : undefined)}
-                    padding='0.5vw'
-                    sx={{
-                      "&:last-child": { border: "none" },
-                      "&:hover": {
-                        bgcolor: matchStarted ? theme.palette.highlight.main : "inherit",
-                        cursor: matchStarted ? "pointer" : "default"
-                      }
-                    }}
+                    onClick={onResultClick}
+                    padding={1}
+                    sx={style}
                     width='100%'
                   >
-                    <Result result={customResult} started={matchStarted} />
+                    <Result matchStarted={matchStarted} result={customResult} />
                   </Box>
                 );
               })

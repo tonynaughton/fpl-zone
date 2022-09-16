@@ -31,7 +31,7 @@ export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProp
   return (
     <>
       <Box className='flex-center' width='90%'>
-        <Result result={customResult} started={matchStarted} />
+        <Result matchStarted={matchStarted} result={customResult} />
       </Box>
       {matchStarted && (
         <TableContainer component={Box}>

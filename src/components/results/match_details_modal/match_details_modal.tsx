@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { formatDate } from "helpers";
+import { getFormattedDate, getFormattedTime } from "helpers";
 import { CustomResult, Fixture } from "types";
 
 import { CustomModal } from "components/utils";
@@ -28,7 +28,12 @@ export default function MatchDetailsModal({
     kickoff_time: selectedResult.kickoff_time
   };
 
-  const kickOffTime = selectedResult.kickoff_time && formatDate(new Date(selectedResult.kickoff_time));
+  const kickOffTime = selectedResult.kickoff_time && (
+    <Box className='flex-center' flexDirection='column'>
+      <Typography>{getFormattedDate(new Date(selectedResult.kickoff_time))}</Typography>
+      <Typography>{getFormattedTime(new Date(selectedResult.kickoff_time))}</Typography>
+    </Box>
+  );
 
   const statsToRender = [
     "goals_scored",
@@ -48,8 +53,8 @@ export default function MatchDetailsModal({
         gap={2}
         width='100%'
       >
-        {kickOffTime && <Typography variant='h5'>{kickOffTime}</Typography>}
-        <Result result={customResult} started />
+        {kickOffTime}
+        <Result matchStarted result={customResult} />
         {statsToRender.map((stat, key) => <MatchStat key={key} selectedResult={selectedResult} statName={stat} />)}
       </Box>
     </CustomModal>

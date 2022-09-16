@@ -43,7 +43,7 @@ export default function Lineup({
         height='100%'
         minHeight={0}
         overflow='hidden'
-        padding={isMobile ? 1 : 3}
+        padding={2}
       >
         {teamData && teamPicks &&
           <LineupDetails
@@ -58,8 +58,7 @@ export default function Lineup({
           height='100%'
           minHeight={0}
           paddingBottom='5%'
-          paddingLeft={isMobile ? 0 : '5%'}
-          paddingRight={isMobile ? 0 : '5%'}
+          px={isMobile ? 0 : "5%"}
           sx={{
             backgroundImage: `url(${getLocalImage("pitch.png")})`,
             backgroundSize: "100% 100%",

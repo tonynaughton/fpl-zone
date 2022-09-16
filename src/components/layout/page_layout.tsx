@@ -53,7 +53,7 @@ export const PageLayout = ({ activeId, children }: React.PropsWithChildren<PageL
           gap={3}
           height={isMobile ? `calc(100vh - ${APP_BAR_HEIGHT})` : "100vh"}
           mt={isMobile ? APP_BAR_HEIGHT : 0}
-          padding={isMobile ? 1.5 : 3}
+          padding={isMobile ? 0 : 3}
           width='100%'
         >
           {children}
