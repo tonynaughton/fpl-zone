@@ -35,6 +35,7 @@ export const PageLayout = ({ activeId, children }: React.PropsWithChildren<PageL
   const [authModalView, setAuthModalView] = useState<AuthModalView>("none");
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState<boolean>(false);
   const authModalContextValue = { authModalView, setAuthModalView };
+  const NAV_DRAWER_WIDTH = isMobile ? "75%" : "12vw";
 
   const closeNavDrawer = (): void => setIsNavDrawerOpen(false);
   const openNavDrawer = (): void => setIsNavDrawerOpen(true);
@@ -44,7 +45,12 @@ export const PageLayout = ({ activeId, children }: React.PropsWithChildren<PageL
       <Box component='div' display='flex'>
         <AuthModalContext.Provider value={authModalContextValue}>
           <CustomAppBar openNavDrawer={openNavDrawer} />
-          <NavDrawer activeId={activeId} closeNavDrawer={closeNavDrawer} isNavDrawerOpen={isNavDrawerOpen} />
+          <NavDrawer
+            activeId={activeId}
+            closeNavDrawer={closeNavDrawer}
+            isNavDrawerOpen={isNavDrawerOpen}
+            navDrawerWidth={NAV_DRAWER_WIDTH}
+          />
         </AuthModalContext.Provider>
         <Box
           component='main'
@@ -54,7 +60,7 @@ export const PageLayout = ({ activeId, children }: React.PropsWithChildren<PageL
           height={isMobile ? `calc(100vh - ${APP_BAR_HEIGHT})` : "100vh"}
           mt={isMobile ? APP_BAR_HEIGHT : 0}
           padding={isMobile ? 0 : 3}
-          width='100%'
+          width={isMobile ? "100vw" : `calc(100vw - ${NAV_DRAWER_WIDTH})`}
         >
           {children}
         </Box>

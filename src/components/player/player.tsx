@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Info as InfoIcon } from "@mui/icons-material";
 import { Box, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { getLocalImage } from "helpers";
+import { getTeamKitImageUrl } from "helpers";
 import { Player as PlayerType } from "types/player";
 
 import { Armband } from "./armband";
@@ -26,8 +26,8 @@ export default function Player({
 }: PlayerProps): JSX.Element {
   const theme = useTheme();
   const { isMobile } = useContext(AppDataContext);
-
-  const url = `kits/${player.team_code}.png`;
+  const isGoalkeeper = player.element_type === 1;
+  const url = getTeamKitImageUrl(player.team_code, isGoalkeeper);
 
   const Name = (): JSX.Element => (
     <Box
@@ -103,7 +103,7 @@ export default function Player({
         alt='team-kit'
         className='kit-img'
         data-testid={`kit-img-player-${player.id}`}
-        src={getLocalImage(url)}
+        src={url}
       />
       <Box
         bottom={0}

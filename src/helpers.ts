@@ -28,6 +28,10 @@ export const getTeamCrestImageUrl = (teamCode: number): string => {
   return `https://resources.premierleague.com/premierleague/badges/70/t${teamCode}.png`;
 };
 
+export const getTeamKitImageUrl = (teamCode: number, goalkeeper?: boolean): string => {
+  return `https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_${teamCode}${goalkeeper ? "_1" : ""}-66.png`;
+};
+
 export const getLocalImage = (url: string): string => `${process.env.PUBLIC_URL}/assets/images/${url}`;
 
 export const getNormalizedString = (input: string): string => (

@@ -20,13 +20,19 @@ describe("Nav Drawer Tests", () => {
   const mockQueryClient = new QueryClient();
   const mockCloseNavDrawer = jest.fn();
   let mockIsNavDrawerOpen: boolean;
+  const mockNavDrawerWidth = "20%";
 
   const createComponent = (): JSX.Element => {
     return (
       <QueryClientProvider client={mockQueryClient}>
         <Router>
           <MockProviders>
-            <NavDrawer activeId={mockActiveId} closeNavDrawer={mockCloseNavDrawer} isNavDrawerOpen={mockIsNavDrawerOpen} />
+            <NavDrawer
+              activeId={mockActiveId}
+              closeNavDrawer={mockCloseNavDrawer}
+              isNavDrawerOpen={mockIsNavDrawerOpen}
+              navDrawerWidth={mockNavDrawerWidth}
+            />
           </MockProviders>
         </Router>
       </QueryClientProvider>

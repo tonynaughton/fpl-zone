@@ -11,14 +11,12 @@ interface NavDrawerProps {
   activeId: string;
   isNavDrawerOpen: boolean;
   closeNavDrawer: () => void;
+  navDrawerWidth: string;
 }
 
-export default function NavDrawer({ activeId, isNavDrawerOpen, closeNavDrawer }: NavDrawerProps): JSX.Element {
+export default function NavDrawer({ activeId, isNavDrawerOpen, closeNavDrawer, navDrawerWidth }: NavDrawerProps): JSX.Element {
   const theme = useTheme();
   const { isMobile } = useContext(AppDataContext);
-
-  const drawerWidth = isMobile ? "75%" : "12vw";
-  const maxDrawerWidth = isMobile ? "75%" : "15em";
 
   return (
     <Drawer
@@ -28,8 +26,8 @@ export default function NavDrawer({ activeId, isNavDrawerOpen, closeNavDrawer }:
       open={isNavDrawerOpen}
       sx={{
         p: 0,
-        width: drawerWidth,
-        maxWidth: maxDrawerWidth,
+        width: navDrawerWidth,
+        maxWidth: navDrawerWidth,
         "& .MuiDrawer-paper": {
           width: "inherit",
           maxWidth: "inherit",
