@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
-import { Box, IconButton, Tooltip, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { isEmpty } from "lodash";
 import { AppData, Fixture } from "types";

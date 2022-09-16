@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Close } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { AppDataContext } from "app_content";
 
 interface CustomModalProps {
   isModalOpen: boolean;

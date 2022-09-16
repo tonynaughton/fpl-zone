@@ -34,7 +34,7 @@ export const useMenuItems = (closeNavDrawer: () => void): MenuItems => {
     {
       id: "gw-live",
       label: "gameweek live",
-      onClick: () => navigate("/gameweek-live"),
+      onClick: () => navigate("/gw-live"),
       subItems: [
         {
           id: "dream-team",

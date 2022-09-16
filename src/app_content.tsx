@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
-import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router,Navigate,Route, Routes } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/system";
 import { getAllFixtures, getGameData } from "api/fpl_api_provider";
@@ -98,21 +98,61 @@ export default function AppContent(): JSX.Element {
       <AppDataContext.Provider value={appDataContextValue}>
         <Router>
           <Routes>
-            <Route element={isMobile ? <PageLayout activeId='dream-team'><DreamTeam /></PageLayout> : <GameweekLivePage />} path='*' />
-            <Route element={isMobile ? <PageLayout activeId='dream-team'><DreamTeam /></PageLayout> : <GameweekLivePage />} path='/' />
-            <Route element={<GameweekLivePage />} path='gameweek-live' />
-            <Route element={<MyFPLPage />} path='/my-fpl' />
-            <Route element={<FixturesAndResultsPage />} path='/fix-and-res' />
-            <Route element={<AnalysisPage />} path='/analysis' />
+            {/* Desktop routes */}
+            <Route
+              element={isMobile ? <Navigate to='/gw-live/dream-team' /> : <GameweekLivePage />}
+              path='*'
+            />
+            <Route
+              element={isMobile ? <Navigate to='/gw-live/dream-team' /> : <GameweekLivePage />}
+              path='/'
+            />
+            <Route
+              element={isMobile ? <Navigate to='/gw-live/dream-team' /> : <GameweekLivePage />}
+              path='/gw-live'
+            />
+            <Route
+              element={isMobile ? <Navigate to='/my-fpl/my-team' /> : <MyFPLPage />}
+              path='/my-fpl'
+            />
+            <Route
+              element={isMobile ? <Navigate to='/my-fpl/my-team' /> : <FixturesAndResultsPage />}
+              path='/fix-and-res'
+            />
+            <Route
+              element={isMobile ? <Navigate to='/analysis/comparison' /> : <AnalysisPage />}
+              path='/analysis'
+            />
 
             {/* Mobile routes */}
-            <Route element={<PageLayout activeId='dream-team'><DreamTeam /></PageLayout>} path='/gw-live/dream-team' />
-            <Route element={<PageLayout activeId='summary'><GameweekSummary /></PageLayout>} path='/gw-live/summary' />
-            <Route element={<PageLayout activeId='my-team'><MyTeam /></PageLayout>} path='/my-fpl/my-team' />
-            <Route element={<PageLayout activeId='my-fdr'><MyFdr /></PageLayout>} path='/my-fpl/my-fdr' />
-            <Route element={<PageLayout activeId='fix-and-res-fdr'><FdrTable /></PageLayout>} path='/fix-and-res/fdr' />
-            <Route element={<PageLayout activeId='fix-and-res-results'><Results /></PageLayout>} path='/fix-and-res/results' />
-            <Route element={<PageLayout activeId='comparison'><PlayerComparison /></PageLayout>} path='/analysis/comparison' />
+            <Route
+              element={isMobile ? <PageLayout activeId='dream-team'><DreamTeam /></PageLayout> : <Navigate to='/gw-live' />}
+              path='/gw-live/dream-team'
+            />
+            <Route
+              element={isMobile ? <PageLayout activeId='summary'><GameweekSummary /></PageLayout> : <Navigate to='/gw-live' />}
+              path='/gw-live/summary'
+            />
+            <Route
+              element={isMobile ? <PageLayout activeId='my-team'><MyTeam /></PageLayout> : <Navigate to='/my-fpl' />}
+              path='/my-fpl/my-team'
+            />
+            <Route
+              element={isMobile ? <PageLayout activeId='my-fdr'><MyFdr /></PageLayout> : <Navigate to='/my-fpl' />}
+              path='/my-fpl/my-fdr'
+            />
+            <Route
+              element={isMobile ? <PageLayout activeId='fix-and-res-fdr'><FdrTable /></PageLayout> : <Navigate to='/fix-and-res' />}
+              path='/fix-and-res/fdr'
+            />
+            <Route
+              element={isMobile ? <PageLayout activeId='fix-and-res-results'><Results /></PageLayout> : <Navigate to='/fix-and-res' />}
+              path='/fix-and-res/results'
+            />
+            <Route
+              element={isMobile ? <PageLayout activeId='comparison'><PlayerComparison /></PageLayout> : <Navigate to='/analysis' />}
+              path='/analysis/comparison'
+            />
           </Routes>
         </Router>
       </AppDataContext.Provider>
