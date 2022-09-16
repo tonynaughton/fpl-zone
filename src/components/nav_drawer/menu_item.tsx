@@ -9,15 +9,23 @@ import { MenuItemType } from "./menu_list";
 interface MenuItemProps {
   menuItem: MenuItemType;
   activeId?: string;
+  expandedPanel?: string | false;
+  setExpandedPanel?: (item: string | false) => void;
 }
 
 interface ButtonMenuItemProps {
   buttonMenuItem: MenuItemType;
 }
 
-export const MenuItem = ({ menuItem, activeId }: MenuItemProps): JSX.Element => {
+export const MenuItem = ({ menuItem, activeId, expandedPanel, setExpandedPanel }: MenuItemProps): JSX.Element => {
   const theme = useTheme();
   const { isMobile } = useContext(AppDataContext);
+
+  const handleChange = (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+    if (setExpandedPanel) {
+      setExpandedPanel(isExpanded ? panel : false);
+    }
+  };
 
   const btnStyle = {
     paddingY: 2,
@@ -58,12 +66,18 @@ export const MenuItem = ({ menuItem, activeId }: MenuItemProps): JSX.Element => 
   return (
     isMobile && !isEmpty(menuItem.subItems)
       ? (
-        <Accordion disableGutters square sx={{ background: "inherit", boxShadow: "none" }}>
+        <Accordion
+          disableGutters
+          expanded={expandedPanel === menuItem.id}
+          onChange={handleChange(menuItem.id)}
+          square
+          sx={{ background: "inherit", boxShadow: "none" }}
+        >
           <AccordionSummary expandIcon={<ExpandMore sx={{ color: theme.palette.info.main }} />}>
             <Typography
               color={theme.palette.info.main}
               data-testid={`menu-item-text-${menuItem.id}`}
-              variant='h4'
+              variant='h5'
             >
               {menuItem.label.toUpperCase()}
             </Typography>

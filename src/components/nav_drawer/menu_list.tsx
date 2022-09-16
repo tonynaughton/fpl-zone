@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, List } from "@mui/material";
 import { useMenuItems } from "hooks/use_menu_items";
 
@@ -18,6 +18,7 @@ export interface MenuItemType {
 
 export const MenuList = ({ activeId, closeNavDrawer }: MenuListProps): JSX.Element => {
   const menuItems = useMenuItems(closeNavDrawer);
+  const [expandedPanel, setExpandedPanel] = useState<string | false>(false);
 
   return (
     <Box
@@ -29,12 +30,22 @@ export const MenuList = ({ activeId, closeNavDrawer }: MenuListProps): JSX.Eleme
     >
       <List>
         {menuItems.nav.map((item, key: number) => (
-          <MenuItem activeId={activeId} key={key} menuItem={item} />
+          <MenuItem
+            activeId={activeId}
+            expandedPanel={expandedPanel}
+            key={key}
+            menuItem={item}
+            setExpandedPanel={setExpandedPanel}
+          />
         ))}
       </List>
       <List>
         {menuItems.auth.map((item, key: number) => (
-          <MenuItem key={key} menuItem={item} />
+          <MenuItem
+            activeId={activeId}
+            key={key}
+            menuItem={item}
+          />
         ))}
       </List>
     </Box>
