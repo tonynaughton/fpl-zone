@@ -11,29 +11,32 @@ interface SummaryStatProps {
 }
 
 export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
-  const img: JSX.Element | null = stat.teamCode
-    ? (
+  const CrestImage = (): JSX.Element => {
+    if (!stat.teamCode) {
+      return <></>;
+    }
+
+    return (
       <img
         alt='team-crest-img'
         className='team-crest-img'
         data-testid={`team-crest-img-${stat.label}`}
         src={getTeamCrestImageUrl(stat.teamCode)}
       />
-    )
-    : null;
+    );
+  };
 
   return (
     <Box
       className='flex-center'
       flexDirection='column'
-      height='100%'
-      minHeight={0}
+      height='12%'
     >
       <Typography
         className='text-ellipsis'
         data-testid={`stat-label-text-${stat.label}`}
+        fontWeight='600'
         textAlign='center'
-        variant='h4'
         width='100%'
       >
         {stat.label.toUpperCase()}
@@ -45,12 +48,11 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
         overflow='hidden'
         width='100%'
       >
-        {img}
+        <CrestImage />
         <Typography
           className='text-ellipsis'
           data-testid={`stat-value-text-${stat.label}`}
           textAlign='center'
-          variant='h5'
         >
           {stat.playerName?.toUpperCase() || ""}
           {stat.playerName?.toUpperCase() && stat.value ? " - " : ""}

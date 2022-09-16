@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
-import { getFormattedDate, getFormattedTime } from "helpers";
-import { CustomResult, Fixture } from "types";
+import { AppDataContext } from "app_content";
+import { getFormattedDate, getFormattedTime, getTeamById } from "helpers";
+import { Fixture } from "types";
 
 import { CustomModal } from "components/utils";
 
@@ -10,28 +11,30 @@ import { Result } from "../result";
 import { MatchStat } from "./match_stat";
 
 interface MatchDetailsModalProps {
-  isResultsModalOpen: boolean;
-  closeResultsModal: () => void;
-  selectedResult: Fixture;
+  isFixtureDetailsModalOpen: boolean;
+  closeFixtureDetailsModal: () => void;
+  fixture: Fixture;
 }
 
 export default function MatchDetailsModal({
-  isResultsModalOpen,
-  closeResultsModal,
-  selectedResult
+  isFixtureDetailsModalOpen: isResultsModalOpen,
+  closeFixtureDetailsModal: closeResultsModal,
+  fixture
 }: MatchDetailsModalProps): JSX.Element {
-  const customResult: CustomResult = {
-    team_h: selectedResult.team_h,
-    team_h_score: (selectedResult.team_h_score as number) || null,
-    team_a: selectedResult.team_a,
-    team_a_score: (selectedResult.team_a_score as number) || null,
-    kickoff_time: selectedResult.kickoff_time
-  };
+  const { teams } = useContext(AppDataContext);
 
-  const kickOffTime = selectedResult.kickoff_time && (
+  const homeTeam = getTeamById(fixture.team_h, teams);
+  const awayTeam = getTeamById(fixture.team_a, teams);
+
+  const homeScore = fixture.team_h_score || 0;
+  const awayScore = fixture.team_a_score || 0;
+
+  const kickOff = new Date(fixture.kickoff_time || "");
+
+  const kickOffTime = fixture.kickoff_time && (
     <Box className='flex-center' flexDirection='column'>
-      <Typography>{getFormattedDate(new Date(selectedResult.kickoff_time))}</Typography>
-      <Typography>{getFormattedTime(new Date(selectedResult.kickoff_time))}</Typography>
+      <Typography>{getFormattedDate(kickOff)}</Typography>
+      <Typography>{getFormattedTime(kickOff)}</Typography>
     </Box>
   );
 
@@ -54,8 +57,14 @@ export default function MatchDetailsModal({
         width='100%'
       >
         {kickOffTime}
-        <Result matchStarted result={customResult} />
-        {statsToRender.map((stat, key) => <MatchStat key={key} selectedResult={selectedResult} statName={stat} />)}
+        <Result
+          awayScore={awayScore}
+          awayTeam={awayTeam}
+          homeScore={homeScore}
+          homeTeam={homeTeam}
+          kickOff={kickOff}
+        />
+        {statsToRender.map((stat, key) => <MatchStat key={key} selectedResult={fixture} statName={stat} />)}
       </Box>
     </CustomModal>
   );

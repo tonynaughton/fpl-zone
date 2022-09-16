@@ -3,23 +3,22 @@ import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { Box, IconButton, Tooltip, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { isEmpty } from "lodash";
-import { AppData, CustomResult, Fixture } from "types";
+import { AppData, Fixture } from "types";
 
 import { Notifier } from "components/layout";
 
-import MatchDetailsModal from "./match_details_modal/match_details_modal";
-import { Result } from "./result";
+import FixtureDetailsModal from "./match_details_modal/match_details_modal";
+import { ResultContainer } from "./result_container";
 
 export default function Results(): JSX.Element {
-  const { gameweeks, fixtures } = useContext(AppDataContext) as AppData;
-  const theme = useTheme();
+  const { gameweeks, fixtures, isMobile } = useContext(AppDataContext) as AppData;
 
   const currentGameweek = gameweeks.find((gw) => gw.is_current);
 
   const [selectedGameweek, setSelectedGameweek] = useState<number>(currentGameweek?.id || 1);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
   const [isResultsModalOpen, setResultsModalOpen] = useState<boolean>(false);
-  const [selectedResult, setSelectedResult] = useState<Fixture | null>(null);
+  const [selectedFixture, setSelectedResult] = useState<Fixture | null>(null);
 
   useEffect(() => {
     const currentGameweekFixtures = fixtures.filter(
@@ -28,12 +27,15 @@ export default function Results(): JSX.Element {
     setGameweekFixtures(currentGameweekFixtures);
   }, [fixtures, selectedGameweek]);
 
-  const handleResultClick = (result: Fixture): void => {
+  const handleFixtureClick = (fixture: Fixture): void => {
     setResultsModalOpen(true);
-    setSelectedResult(result);
+    setSelectedResult(fixture);
   };
 
   const closeResultsModal = (): void => setResultsModalOpen(false);
+
+  const onPrevGameweekClick = (): void => setSelectedGameweek(selectedGameweek - 1);
+  const onNextGameweekClick = (): void => setSelectedGameweek(selectedGameweek + 1);
 
   return (
     <Box
@@ -41,28 +43,30 @@ export default function Results(): JSX.Element {
       flexDirection='column'
       height='100%'
       overflow='hidden'
+      pb={2}
       position='relative'
-      sx={{ pl: 3, pr: 3, pb: 2, pt: 4 }}
+      pt={isMobile ? 2 : 6}
+      px={2}
       width='100%'
     >
       <Box className='flex-center' overflow='hidden' width='100%'>
         <IconButton
           data-testid='prev-gameweek-btn'
           disabled={selectedGameweek <= 1}
-          onClick={(): void => setSelectedGameweek(selectedGameweek - 1)}
+          onClick={onPrevGameweekClick}
           size='medium'
         >
           <Tooltip title='Previous gameweek'>
             <ArrowBack />
           </Tooltip>
         </IconButton>
-        <Typography className='text-ellipsis' data-testid='selected-gameweek-title' variant='h4'>
+        <Typography className='text-ellipsis' data-testid='selected-gameweek-title' variant='h5'>
           GAMEWEEK {selectedGameweek}
         </Typography>
         <IconButton
           data-testid='next-gameweek-btn'
           disabled={selectedGameweek >= 38}
-          onClick={(): void => setSelectedGameweek(selectedGameweek + 1)}
+          onClick={onNextGameweekClick}
           size='medium'
         >
           <Tooltip title='Next gameweek'>
@@ -77,55 +81,19 @@ export default function Results(): JSX.Element {
         flexGrow={1}
         width='100%'
       >
-        {
-          isEmpty(gameweekFixtures)
-            ? (
-              <Notifier message='No fixtures' type='warning' />
-            )
-            : (
-              gameweekFixtures.map((result, key) => {
-                const kickOffTime = new Date(result.kickoff_time || "");
-                const matchStarted = kickOffTime < new Date();
-                const onResultClick = matchStarted ? () => handleResultClick(result) : undefined;
-                const style = {
-                  "&:last-child": { border: "none" },
-                  "&:hover": {
-                    bgcolor: matchStarted ? theme.palette.highlight.main : "inherit",
-                    cursor: matchStarted ? "pointer" : "default"
-                  }
-                };
-                const customResult: CustomResult = {
-                  team_h: result.team_h,
-                  team_a: result.team_a,
-                  team_h_score: (result.team_h_score as number) || null,
-                  team_a_score: (result.team_a_score as number) || null,
-                  kickoff_time: result.kickoff_time
-                };
-
-                return (
-                  <Box
-                    borderBottom='1px solid rgb(224, 224, 224)'
-                    className='flex-center'
-                    data-testid={`result-${result.id}`}
-                    flexGrow={1}
-                    key={key}
-                    onClick={onResultClick}
-                    padding={1}
-                    sx={style}
-                    width='100%'
-                  >
-                    <Result matchStarted={matchStarted} result={customResult} />
-                  </Box>
-                );
-              })
-            )
-        }
+        { isEmpty(gameweekFixtures)
+          ? (
+            <Notifier message='No fixtures' type='warning' />
+          )
+          : (
+            gameweekFixtures.map((fixture, key) => <ResultContainer fixture={fixture} key={key} onFixtureClick={handleFixtureClick} />)
+          )}
       </Box>
-      {selectedResult && (
-        <MatchDetailsModal
-          closeResultsModal={closeResultsModal}
-          isResultsModalOpen={isResultsModalOpen}
-          selectedResult={selectedResult}
+      {selectedFixture && (
+        <FixtureDetailsModal
+          closeFixtureDetailsModal={closeResultsModal}
+          fixture={selectedFixture}
+          isFixtureDetailsModalOpen={isResultsModalOpen}
         />
       )}
     </Box>

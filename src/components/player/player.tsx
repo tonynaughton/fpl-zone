@@ -60,7 +60,7 @@ export default function Player({
       <Typography
         data-testid='player-score'
         fontSize={isMobile ? "1rem" : theme.typography.body1.fontSize}
-        px={isMobile ? 1 : 3}
+        px={1}
       >
         {player.event_points * multiplier}
       </Typography>
@@ -79,7 +79,7 @@ export default function Player({
       p={0.75}
       sx={{ "& :hover": { cursor: "pointer" } }}
     >
-      <InfoIcon color='info' sx={{ fontSize: theme.typography.h5 }} />
+      <InfoIcon color='info' sx={{ fontSize: theme.typography.body1 }} />
     </Box>
   );
 
@@ -95,7 +95,7 @@ export default function Player({
       minWidth={0}
       overflow='hidden'
       position='relative'
-      width={isMobile ? "100%" : "8vw"}
+      width={isMobile ? "100%" : "10vw"}
     >
       {isCaptain && <Armband />}
       {isViceCaptain && <Armband isVice />}
@@ -108,7 +108,7 @@ export default function Player({
       <Box
         bottom={0}
         display='flex'
-        height={isMobile ? "40%" : "25%"}
+        height={isMobile ? "40%" : "3vh"}
         justifyContent='center'
         position='absolute'
         width='100%'

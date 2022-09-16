@@ -21,7 +21,6 @@ export const CustomModal = ({
   children
 }: CustomModalProps): JSX.Element => {
   const theme = useTheme();
-  const { isMobile } = useContext(AppDataContext);
 
   return (
     <Box
@@ -48,7 +47,7 @@ export const CustomModal = ({
         maxWidth={compact ? "30rem" : "70rem"}
         onClick={(event): void => event.stopPropagation()}
         overflow='auto'
-        padding={isMobile ? 2 : 4}
+        padding={4}
         position='absolute'
         sx={{ transform: "translate(-50%, -50%)" }}
         top='50%'

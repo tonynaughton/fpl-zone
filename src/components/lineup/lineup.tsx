@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getLocalImage } from "helpers";
 import { sortBy } from "lodash";
@@ -54,7 +54,7 @@ export default function Lineup({
           data-testid='selected-players'
           display='flex'
           flexDirection='column'
-          gap={isMobile ? 1 : 10}
+          gap={isMobile ? 1 : 4}
           height='100%'
           minHeight={0}
           paddingBottom='5%'
@@ -78,9 +78,8 @@ export default function Lineup({
           className='flex-center'
           data-testid='bench-players'
           flexDirection='column'
-          minHeight='20%'
+          minHeight='12vh'
         >
-          <Typography variant='h4'>Bench</Typography>
           <LineupRow
             handlePlayerPerformanceClick={handlePlayerPerformanceClick}
             players={sortedBench}

@@ -48,7 +48,7 @@ export const MenuItem = ({ menuItem, activeId }: MenuItemProps): JSX.Element => 
     >
       <Typography
         data-testid={`menu-item-text-${buttonMenuItem.id}`}
-        variant='h4'
+        variant='h5'
       >
         {buttonMenuItem.label.toUpperCase()}
       </Typography>

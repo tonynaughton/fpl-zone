@@ -1,4 +1,4 @@
-export interface PlayerPerformance {
+export interface Performance {
   element: number;
   fixture: number;
   opponent_team: number;

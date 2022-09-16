@@ -1,43 +1,37 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box, Typography } from "@mui/material";
-import { AppDataContext } from "app_content";
-import { getFormattedDate, getTeamById, getFormattedTime } from "helpers";
-import { AppData, CustomResult } from "types";
+import { getFormattedDate, getFormattedTime } from "helpers";
+import { Team } from "types";
 
 import { BaseItemWithCrest } from "./base_item_with_crest";
 
 interface ResultProps {
-  result: CustomResult;
-  matchStarted: boolean;
+  homeTeam: Team;
+  awayTeam: Team;
+  homeScore: number;
+  awayScore: number;
+  kickOff: Date;
 }
 
-export const Result = ({ result, matchStarted }: ResultProps): JSX.Element => {
-  const { teams, isMobile } = useContext(AppDataContext) as AppData;
-
-  const homeTeam = getTeamById(result.team_h, teams);
-  const awayTeam = getTeamById(result.team_a, teams);
+export const Result = ({ homeTeam, awayTeam, homeScore, awayScore, kickOff }: ResultProps): JSX.Element => {
+  const matchStarted = kickOff < new Date();
 
   const Score = (): JSX.Element => {
-    const homeScore = result.team_h_score || 0;
-    const awayScore = result.team_a_score || 0;
-
     return <Typography textAlign='center' width='40%'>{`${homeScore} - ${awayScore}`}</Typography>;
   };
 
   const KickOffDate = (): JSX.Element => {
-    if (result.kickoff_time) {
-      const date = new Date(result.kickoff_time);
+    if (kickOff) {
 
       return (
         <Box
           className='flex-center'
-          flexDirection={isMobile ? "column" : "row"}
-          gap={1}
+          flexDirection='column'
           textAlign='center'
           width='40%'
         >
-          <Typography className='text-ellipsis'>{getFormattedDate(date)}</Typography>
-          <Typography className='text-ellipsis'>{getFormattedTime(date)}</Typography>
+          <Typography className='text-ellipsis'>{getFormattedDate(kickOff)}</Typography>
+          <Typography className='text-ellipsis'>{getFormattedTime(kickOff)}</Typography>
         </Box>
       );
     }
@@ -46,7 +40,7 @@ export const Result = ({ result, matchStarted }: ResultProps): JSX.Element => {
   };
 
   return (
-    <Box className='flex-center' gap={3} width='100%'>
+    <Box className='flex-center' gap={2.5} width='100%'>
       <BaseItemWithCrest item={homeTeam} />
       { matchStarted ? <Score /> : <KickOffDate /> }
       <BaseItemWithCrest crestEnd item={awayTeam} />

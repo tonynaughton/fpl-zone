@@ -1,28 +1,30 @@
 import React, { useContext } from "react";
 import { Box, Table, TableBody,TableCell, TableContainer, TableHead, TableRow, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
+import { getTeamById } from "helpers";
 import { pickBy } from "lodash";
-import { AppData, CustomResult, Player,PlayerPerformance as PlayerPerformanceType } from "types";
+import { AppData, Performance,Player } from "types";
 
 import { Result } from "components/results/result";
 
 interface PlayerPerformanceProps {
   player: Player;
-  performance: PlayerPerformanceType;
+  performance: Performance;
 }
 
 export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProps): JSX.Element => {
-  const { playerStats } = useContext(AppDataContext) as AppData;
+  const { playerStats, teams } = useContext(AppDataContext) as AppData;
   const theme = useTheme();
 
-  const customResult: CustomResult = {
-    team_h: performance.was_home ? player.team : performance.opponent_team,
-    team_a: performance.was_home ? performance.opponent_team : player.team,
-    team_h_score: performance.team_h_score,
-    team_a_score: performance.team_a_score,
-    kickoff_time: performance.kickoff_time
-  };
-  const matchStarted: boolean = new Date(performance.kickoff_time) < new Date();
+  const homeTeamCode = performance.was_home ? player.team : performance.opponent_team;
+  const homeTeam = getTeamById(homeTeamCode, teams);
+
+  const awayTeamCode = performance.was_home ? performance.opponent_team : player.team;
+  const awayTeam = getTeamById(awayTeamCode, teams);
+
+  const kickOff = new Date(performance.kickoff_time);
+
+  const matchStarted = kickOff < new Date();
   const stats = pickBy(
     performance,
     (value, key) => !!(playerStats.find((el) => el.name === key) && value > 0)
@@ -31,7 +33,13 @@ export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProp
   return (
     <>
       <Box className='flex-center' width='90%'>
-        <Result matchStarted={matchStarted} result={customResult} />
+        <Result
+          awayScore={performance.team_a_score}
+          awayTeam={awayTeam}
+          homeScore={performance.team_h_score}
+          homeTeam={homeTeam}
+          kickOff={kickOff}
+        />
       </Box>
       {matchStarted && (
         <TableContainer component={Box}>

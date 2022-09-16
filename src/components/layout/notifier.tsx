@@ -26,7 +26,7 @@ export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMe
 
   const NotifierIcon = (): JSX.Element => {
     const iconStyle = {
-      fontSize: theme.typography.h2,
+      fontSize: theme.typography.h3,
       color: "black"
     };
 
@@ -46,13 +46,13 @@ export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMe
       className='flex-center'
       data-testid='notifier'
       flexDirection='column'
-      gap='2vh'
+      gap={2}
       height='80%'
       margin='auto'
       width='80%'
     >
       <NotifierIcon />
-      <Typography textAlign='center' variant='h5'>{message}</Typography>
+      <Typography textAlign='center'>{message}</Typography>
     </Box>
   );
 };
