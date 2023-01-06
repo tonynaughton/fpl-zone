@@ -70,13 +70,13 @@ export const AddPlayersModal = ({
       closeModal={closeAddPlayersModal}
       isModalOpen={isAddPlayersModalOpen}
       testId='add-players-modal'
-      title='Add players to compare'
+      title='Add players'
     >
       <>
         <TextField
           data-testid='player-search-input'
           fullWidth
-          margin='normal'
+          margin='none'
           onChange={onSearchInputChange}
           placeholder='Search by player name..'
           size='small'
@@ -85,7 +85,6 @@ export const AddPlayersModal = ({
         />
         <Box height='70vh' width='100%'>
           <AddPlayersTable
-            onCancelClick={resetState}
             onConfirmClick={onConfirmClick}
             searchInput={filterProp}
             selectionModel={playerIds}

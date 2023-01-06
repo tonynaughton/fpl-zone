@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagination } from "@mui/material";
+import { TablePagination } from "@mui/material";
 import { gridPageCountSelector,gridPageSelector, useGridApiContext, useGridSelector } from "@mui/x-data-grid";
 
 export const CustomPagination = (): JSX.Element => {
@@ -8,11 +8,12 @@ export const CustomPagination = (): JSX.Element => {
   const pageCount = useGridSelector(apiRef, gridPageCountSelector);
 
   return (
-    <Pagination
+    <TablePagination
       color='primary'
       count={pageCount}
-      onChange={(_, value): void => apiRef.current.setPage(value - 1)}
+      onPageChange={(_, value): void => apiRef.current.setPage(value - 1)}
       page={page + 1}
+      rowsPerPage={10}
       sx={{
         "& .MuiPaginationItem-root": {
           fontSize: "1rem"

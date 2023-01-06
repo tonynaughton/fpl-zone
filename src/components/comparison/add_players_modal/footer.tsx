@@ -1,40 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Done } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
-
-import { CustomPagination } from "./pagination";
+import { GridPagination } from "@mui/x-data-grid";
+import { AppDataContext } from "app_content";
 
 interface CustomFooterProps {
-  onCancelClick: () => void;
   onConfirmClick: () => void;
 }
 
-export const CustomFooter = ({ onCancelClick, onConfirmClick }: CustomFooterProps): JSX.Element => (
-  <Box
-    alignItems='center'
-    borderTop='1px solid rgba(224, 224, 224, 1)'
-    display='flex'
-    justifyContent='space-between'
-    minHeight={52}
-    p={2}
-  >
-    <CustomPagination />
-    <Box display='flex' gap={3}>
-      <Button
-        color='warning'
-        onClick={onCancelClick}
-        sx={{ width: "8vw" }}
-        variant='contained'
-      >
-        <Typography>Cancel</Typography>
-      </Button>
-      <Button
-        color='success'
-        onClick={onConfirmClick}
-        sx={{ width: "8vw" }}
-        variant='contained'
-      >
-        <Typography>Confirm</Typography>
-      </Button>
+export const CustomFooter = ({ onConfirmClick }: CustomFooterProps): JSX.Element => {
+  const { isMobile } = useContext(AppDataContext);
+
+  const ConfirmButton = (): JSX.Element => (
+    <Button
+      color='success'
+      onClick={onConfirmClick}
+      startIcon={!isMobile && <Done />}
+      variant='contained'
+    >
+      {isMobile ? <Done /> : <Typography>Confirm</Typography>}
+    </Button>
+  );
+
+  return (
+    <Box
+      alignItems='center'
+      borderTop='1px solid rgba(224, 224, 224, 1)'
+      display='flex'
+      justifyContent='space-between'
+      px='1rem'
+      sx={{
+        ".MuiTablePagination-toolbar": {
+          p: 0
+        }
+      }}
+    >
+      <GridPagination />
+      <ConfirmButton />
     </Box>
-  </Box>
-);
+  );
+};

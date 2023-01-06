@@ -40,11 +40,11 @@ export const useSummaryStats = (): SummaryStatType[] => {
   return ([
     {
       label: "highest score",
-      value: `${currentGameweek.highest_score} pts`
+      value: `${currentGameweek.highest_score || 0} pts`
     },
     {
       label: "average score",
-      value: `${currentGameweek.average_entry_score} pts`
+      value: `${currentGameweek.average_entry_score || 0} pts`
     },
     {
       label: "star player",

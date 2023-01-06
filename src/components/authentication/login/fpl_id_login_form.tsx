@@ -96,7 +96,7 @@ export const FplIdloginForm = (): JSX.Element => {
           type='submit'
           variant='contained'
         >
-          <Typography textTransform='none' variant='h3'>Login with FPL ID</Typography>
+          <Typography textTransform='none'>Login with FPL ID</Typography>
         </Button>
       </form>
       <Link onClick={(): void => setAuthModalView("login")}>

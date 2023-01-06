@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
+import { AppDataContext } from "app_content";
 import { getFormattedDate, getFormattedTime } from "helpers";
 import { Team } from "types";
 
@@ -14,6 +15,7 @@ interface ResultProps {
 }
 
 export const Result = ({ homeTeam, awayTeam, homeScore, awayScore, kickOff }: ResultProps): JSX.Element => {
+  const { isMobile } = useContext(AppDataContext);
   const matchStarted = kickOff < new Date();
 
   const Score = (): JSX.Element => {
@@ -21,29 +23,28 @@ export const Result = ({ homeTeam, awayTeam, homeScore, awayScore, kickOff }: Re
   };
 
   const KickOffDate = (): JSX.Element => {
-    if (kickOff) {
-
-      return (
-        <Box
-          className='flex-center'
-          flexDirection='column'
-          textAlign='center'
-          width='40%'
-        >
-          <Typography className='text-ellipsis'>{getFormattedDate(kickOff)}</Typography>
-          <Typography className='text-ellipsis'>{getFormattedTime(kickOff)}</Typography>
-        </Box>
-      );
+    if (!kickOff) {
+      return <Typography>TBC</Typography>;
     }
 
-    return <Typography>TBC</Typography>;
+    return (
+      <Box
+        className='flex-center'
+        flexDirection='column'
+        textAlign='center'
+        width='40%'
+      >
+        <Typography className='text-ellipsis'>{getFormattedDate(kickOff)}</Typography>
+        <Typography className='text-ellipsis'>{getFormattedTime(kickOff)}</Typography>
+      </Box>
+    );
   };
 
   return (
     <Box className='flex-center' gap={2.5} width='100%'>
-      <BaseItemWithCrest item={homeTeam} />
+      <BaseItemWithCrest abbreviateTeam={isMobile} item={homeTeam} />
       { matchStarted ? <Score /> : <KickOffDate /> }
-      <BaseItemWithCrest crestEnd item={awayTeam} />
+      <BaseItemWithCrest abbreviateTeam={isMobile} crestEnd item={awayTeam} />
     </Box>
   );
 };

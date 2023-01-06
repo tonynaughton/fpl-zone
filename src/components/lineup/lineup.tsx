@@ -43,7 +43,7 @@ export default function Lineup({
         height='100%'
         minHeight={0}
         overflow='hidden'
-        padding={2}
+        p={2}
       >
         {teamData && teamPicks &&
           <LineupDetails
@@ -54,10 +54,10 @@ export default function Lineup({
           data-testid='selected-players'
           display='flex'
           flexDirection='column'
-          gap={isMobile ? 1 : 4}
+          gap={1}
           height='100%'
           minHeight={0}
-          paddingBottom='5%'
+          pb={2}
           px={isMobile ? 0 : "5%"}
           sx={{
             backgroundImage: `url(${getLocalImage("pitch.png")})`,
@@ -78,7 +78,7 @@ export default function Lineup({
           className='flex-center'
           data-testid='bench-players'
           flexDirection='column'
-          minHeight='12vh'
+          minHeight='14%'
         >
           <LineupRow
             handlePlayerPerformanceClick={handlePlayerPerformanceClick}

@@ -18,7 +18,6 @@ interface AddPlayersTableProps {
   searchInput: string;
   setSelectionModel: (ids: GridRowId[]) => void;
   onConfirmClick: () => void;
-  onCancelClick: () => void;
 }
 
 export const renderCell = (props: GridRenderCellParams<string>): JSX.Element => (
@@ -33,10 +32,9 @@ export const AddPlayersTable = ({
   selectionModel,
   setSelectionModel,
   searchInput,
-  onConfirmClick,
-  onCancelClick
+  onConfirmClick
 }: AddPlayersTableProps): JSX.Element => {
-  const { players } = useContext(AppDataContext) as AppData;
+  const { players, isMobile } = useContext(AppDataContext) as AppData;
 
   const rows = players.map((player) => ({
     id: player.id,
@@ -73,7 +71,7 @@ export const AddPlayersTable = ({
       columns={columns}
       components={{
         NoRowsOverlay: () => <Notifier message='No players found..' type='warning' />,
-        Footer: () => <CustomFooter onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} />
+        Footer: () => <CustomFooter onConfirmClick={onConfirmClick} />
       }}
       density='compact'
       disableColumnFilter
@@ -92,7 +90,7 @@ export const AddPlayersTable = ({
       onSelectionModelChange={setSelectionModel}
       pagination
       rows={rows}
-      rowsPerPageOptions={[25, 50, 100]}
+      rowsPerPageOptions={isMobile ? [] : [25, 50, 100]}
       selectionModel={selectionModel}
       sx={{
         "& .MuiDataGrid-columnHeader:focus-within, & .MuiDataGrid-cell:focus-within": {

@@ -42,36 +42,38 @@ export default function PlayerPerformanceModal({
   );
   const playerName = `${selectedPlayer.first_name.toUpperCase()} ${selectedPlayer.second_name.toUpperCase()}`;
 
-  return (
-    <CustomModal
-      closeModal={closePlayerPerformanceModal}
-      isModalOpen={isPlayerPerformanceModalOpen}
-      title={playerName}
-    >
+  const ModalContent = (): JSX.Element => {
+    if (fetchingPlayerInfo) {
+      return <Notifier message='Getting performance details..' />;
+    }
+
+    if (!playerPerformances?.length) {
+      return <Notifier message='No fixtures' type='warning' />;
+    }
+
+    return (
       <Box
         className='flex-center'
         flexDirection='column'
         gap={3}
         width='100%'
       >
-        {fetchingPlayerInfo
-          ? (
-            <Notifier message='Getting performance details..' />
-          )
-          : (
-            <>
-              {playerPerformances?.length
-                ? playerPerformances.map((performance, key) => {
-                  return (
-                    <Fragment key={key}>
-                      <PlayerPerformance performance={performance} player={selectedPlayer} />
-                    </Fragment>
-                  );
-                })
-                : <Notifier message='No fixtures' type='warning' />}
-            </>
-          )}
+        {playerPerformances.map((performance, key) => (
+          <Fragment key={key}>
+            <PlayerPerformance performance={performance} player={selectedPlayer} />
+          </Fragment>
+        ))}
       </Box>
+    );
+  };
+
+  return (
+    <CustomModal
+      closeModal={closePlayerPerformanceModal}
+      isModalOpen={isPlayerPerformanceModalOpen}
+      title={playerName}
+    >
+      <ModalContent />
     </CustomModal>
   );
 }

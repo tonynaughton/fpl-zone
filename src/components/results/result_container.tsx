@@ -26,6 +26,7 @@ export const ResultContainer = ({ fixture, onFixtureClick }: ResultContainerProp
 
   const onClick = matchStarted ? (): void => onFixtureClick(fixture) : undefined;
   const style = {
+    height: "4rem",
     "&:last-child": { border: "none" },
     "&:hover": {
       bgcolor: matchStarted ? theme.palette.highlight.main : "inherit",
@@ -38,11 +39,9 @@ export const ResultContainer = ({ fixture, onFixtureClick }: ResultContainerProp
       borderBottom='1px solid rgb(224, 224, 224)'
       className='flex-center'
       data-testid={`result-${fixture.id}`}
-      flexGrow={1}
       onClick={onClick}
-      padding={1}
+      p={1}
       sx={style}
-      width='100%'
     >
       <Result
         awayScore={awayScore}
