@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Close } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { AppDataContext } from "app_content";
 
 interface CustomModalProps {
   isModalOpen: boolean;
@@ -20,6 +21,7 @@ export const CustomModal = ({
   children
 }: CustomModalProps): JSX.Element => {
   const theme = useTheme();
+  const { isMobile } = useContext(AppDataContext);
 
   return (
     <Box
@@ -42,21 +44,21 @@ export const CustomModal = ({
         flexDirection='column'
         gap={2}
         left='50%'
-        maxHeight='90%'
+        maxHeight='95%'
         maxWidth={compact ? "30rem" : "70rem"}
         onClick={(event): void => event.stopPropagation()}
         overflow='auto'
-        padding={4}
+        padding={isMobile ? 2 : 3}
         position='absolute'
         sx={{ transform: "translate(-50%, -50%)" }}
         top='50%'
-        width='90%'
+        width='95%'
         zIndex='modal'
       >
-        {title && <Typography variant='h4'>{title}</Typography>}
+        {title && <Typography variant='h5'>{title}</Typography>}
         <IconButton
           onClick={closeModal}
-          sx={{ position: "absolute", top: "4%", right: "4%" }}
+          sx={{ position: "absolute", top: "2%", right: "2%" }}
         >
           <Close />
         </IconButton>

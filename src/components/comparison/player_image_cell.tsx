@@ -15,18 +15,20 @@ export const PlayerImageCell = ({ player, onButtonClick }: PlayerImageCellProps)
   return (
     <Box
       borderRadius={!player ? "50%" : "auto"}
+      className='flex-center'
       data-testid={`player-image-container-${player ? player.id : "placeholder"}`}
-      height='18vh'
+      height='15vh'
       margin='auto'
       onClick={!player ? onButtonClick : undefined}
       position='relative'
-      sx={{
-        backgroundImage: `url(${(getPlayerImageUrl(player))})`,
-        backgroundSize: "cover",
-        cursor: !player ? "pointer" : "auto"
-      }}
-      width='18vh'
+      width='15vh'
     >
+      <img
+        alt={player ? `${player.web_name} image` : "add player button"}
+        height='100%'
+        src={getPlayerImageUrl(player)}
+        width='auto'
+      />
       <Icon
         color={!player ? "success" : "warning"}
         data-testid='action-button'

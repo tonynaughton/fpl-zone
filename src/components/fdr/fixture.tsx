@@ -20,8 +20,9 @@ export const Fixture = ({
   fixtures,
   baseItem
 }: FixtureProps): JSX.Element => {
+  const { teams, isMobile } = useContext(AppDataContext) as AppData;
+
   const SingleFixture = ({ fixture }: SingleFixtureProps): JSX.Element => {
-    const { teams } = useContext(AppDataContext) as AppData;
     const theme = useTheme();
 
     const teamId = isPlayer(baseItem) ? baseItem.team : baseItem.id;
@@ -34,7 +35,7 @@ export const Fixture = ({
       <Tooltip
         enterDelay={300}
         placement='top'
-        title={text}
+        title={isMobile ? "" : text}
       >
         <Box
           bgcolor={theme.palette.fdr[difficulty]}
@@ -59,8 +60,8 @@ export const Fixture = ({
       data-testid='fixture-container'
       display='flex'
       height='100%'
-      justifyContent='space-evenly'
       sx={{ "& div:nth-of-type(n+2)": { borderLeft: "0.5px solid black" } }}
+      width='8rem'
     >
       {fixtures.map((fixture, key) => <SingleFixture fixture={fixture} key={key} />)}
     </Box>

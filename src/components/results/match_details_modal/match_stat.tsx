@@ -19,12 +19,11 @@ interface MatchStatProps {
 
 interface StatColumnProps {
   stat: StatValue;
-  key: number;
   name: string;
   isAway?: boolean;
 }
 
-const StatColumn = ({ stat, key, name, isAway = false }: StatColumnProps): JSX.Element => {
+const StatColumn = ({ stat, name, isAway = false }: StatColumnProps): JSX.Element => {
   const { players } = useContext(AppDataContext) as AppData;
 
   const player = GetPlayerById(stat.element, players);
@@ -34,7 +33,6 @@ const StatColumn = ({ stat, key, name, isAway = false }: StatColumnProps): JSX.E
       display='flex'
       flexDirection={isAway ? "row" : "row-reverse"}
       justifyContent={isAway ? "right" : "left"}
-      key={key}
       overflow='hidden'
     >
       <Typography className='text-ellipsis'>
@@ -69,7 +67,7 @@ export const MatchStat = ({ statName, selectedResult }: MatchStatProps): JSX.Ele
       paddingTop={1.5}
       width='100%'
     >
-      <Typography component='h4' paddingBottom={1} variant='h5'>
+      <Typography mb={1}>
         {statTitle.label.toUpperCase()}
       </Typography>
       <Box display='flex' width='100%'>

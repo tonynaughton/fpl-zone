@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Info as InfoIcon } from "@mui/icons-material";
 import { Box, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getTeamKitImageUrl } from "helpers";
@@ -35,7 +34,7 @@ export default function Player({
       className='flex-center'
       height='100%'
       overflow='hidden'
-      p={isMobile ? 0.5 : 1}
+      p='0.1rem'
       width='100%'
     >
       <Typography
@@ -55,7 +54,8 @@ export default function Player({
       className='flex-center'
       height='100%'
       overflow='hidden'
-      p={0.75}
+      p='0.1rem'
+      width='100%'
     >
       <Typography
         data-testid='player-score'
@@ -67,35 +67,18 @@ export default function Player({
     </Box>
   );
 
-  const Info = (): JSX.Element => (
-    <Box
-      bgcolor='black'
-      className='flex-center'
-      data-testid={`player-performance-button-${player.id}`}
-      fontSize='0.8rem'
-      height='100%'
-      minWidth='10px'
-      onClick={(): void => handlePlayerPerformanceClick(player)}
-      p={0.75}
-      sx={{ "& :hover": { cursor: "pointer" } }}
-    >
-      <InfoIcon color='info' sx={{ fontSize: theme.typography.body1 }} />
-    </Box>
-  );
-
   return (
     <Box
       className='flex-center'
       data-testid={`player-container-${player.id}`}
       flexDirection='column'
       height='100%'
-      maxHeight='100%'
-      maxWidth={isMobile ? "65px" : undefined}
-      minHeight={0}
-      minWidth={0}
+      maxWidth='8rem'
+      onClick={(): void => handlePlayerPerformanceClick(player)}
       overflow='hidden'
       position='relative'
-      width={isMobile ? "100%" : "10vw"}
+      sx={{ cursor: "pointer" }}
+      width='18%'
     >
       {isCaptain && <Armband />}
       {isViceCaptain && <Armband isVice />}
@@ -108,30 +91,13 @@ export default function Player({
       <Box
         bottom={0}
         display='flex'
-        height={isMobile ? "40%" : "3vh"}
+        flexDirection='column'
         justifyContent='center'
         position='absolute'
         width='100%'
       >
-        {isMobile
-          ? (
-            <Box display='flex' flexDirection='column' overflow='hidden'>
-              <Box className='flex-center' height='50%'>
-                <Name />
-              </Box>
-              <Box className='flex-center' height='50%'>
-                <Score />
-                <Info />
-              </Box>
-            </Box>
-          )
-          : (
-            <>
-              <Name />
-              <Score />
-              <Info />
-            </>
-          )}
+        <Name />
+        <Score />
       </Box>
     </Box>
   );

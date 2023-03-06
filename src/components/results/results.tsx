@@ -37,18 +37,8 @@ export default function Results(): JSX.Element {
   const onPrevGameweekClick = (): void => setSelectedGameweek(selectedGameweek - 1);
   const onNextGameweekClick = (): void => setSelectedGameweek(selectedGameweek + 1);
 
-  return (
-    <Box
-      className='flex-center'
-      flexDirection='column'
-      height='100%'
-      overflow='hidden'
-      pb={2}
-      position='relative'
-      pt={isMobile ? 2 : 6}
-      px={2}
-      width='100%'
-    >
+  const GameweekNavigator = (): JSX.Element => {
+    return (
       <Box className='flex-center' overflow='hidden' width='100%'>
         <IconButton
           data-testid='prev-gameweek-btn'
@@ -74,21 +64,50 @@ export default function Results(): JSX.Element {
           </Tooltip>
         </IconButton>
       </Box>
+    );
+  };
+
+  const GameweekFixtures = (): JSX.Element => {
+    if (isEmpty(gameweekFixtures)) {
+      return <Notifier message='No fixtures' type='warning' />;
+    }
+
+    return (
       <Box
-        alignItems='center'
         display='flex'
         flexDirection='column'
-        flexGrow={1}
+        height='100%'
+        justifyContent='space-evenly'
+        sx={{
+          overflowX: "hidden",
+          overflowY: "auto"
+        }}
         width='100%'
       >
-        { isEmpty(gameweekFixtures)
-          ? (
-            <Notifier message='No fixtures' type='warning' />
-          )
-          : (
-            gameweekFixtures.map((fixture, key) => <ResultContainer fixture={fixture} key={key} onFixtureClick={handleFixtureClick} />)
-          )}
+        {gameweekFixtures.map((fixture, key) => (
+          <ResultContainer
+            fixture={fixture}
+            key={key}
+            onFixtureClick={handleFixtureClick}
+          />
+        ))}
       </Box>
+    );
+  };
+
+  return (
+    <Box
+      alignItems='center'
+      display='flex'
+      flexDirection='column'
+      height='100%'
+      justifyContent='center'
+      overflow='hidden'
+      pt={isMobile ? 3 : 6}
+      width='100%'
+    >
+      <GameweekNavigator />
+      <GameweekFixtures />
       {selectedFixture && (
         <FixtureDetailsModal
           closeFixtureDetailsModal={closeResultsModal}

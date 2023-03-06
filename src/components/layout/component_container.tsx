@@ -56,6 +56,7 @@ export const ComponentContainer = ({
       height='auto'
       minHeight='50vh'
       minWidth={0}
+      overflow='hidden'
       position='relative'
       width='100%'
     >

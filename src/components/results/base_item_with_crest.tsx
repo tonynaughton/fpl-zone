@@ -9,9 +9,15 @@ interface BaseItemWithCrestProps {
   item: BaseItem;
   crestEnd?: boolean;
   abbreviateTeam?: boolean;
+  crestOnly?: boolean;
 }
 
-export const BaseItemWithCrest = ({ item, crestEnd = false, abbreviateTeam = false }: BaseItemWithCrestProps): JSX.Element => {
+export const BaseItemWithCrest = ({
+  item,
+  crestEnd = false,
+  abbreviateTeam = false,
+  crestOnly = false
+}: BaseItemWithCrestProps): JSX.Element => {
   const name = isPlayer(item) ? item.web_name : abbreviateTeam ? item.short_name : item.name;
   const teamCode = isPlayer(item) ? item.team_code : item.code;
 
@@ -32,9 +38,10 @@ export const BaseItemWithCrest = ({ item, crestEnd = false, abbreviateTeam = fal
         src={getTeamCrestImageUrl(teamCode)}
         width={30}
       />
-      <Typography className='text-ellipsis' data-testid={`base-item-text-${item.id}`} textAlign='left'>
-        {name}
-      </Typography>
+      {!crestOnly &&
+        <Typography className='text-ellipsis' data-testid={`base-item-text-${item.id}`} textAlign='left'>
+          {name}
+        </Typography>}
     </Box>
   );
 };

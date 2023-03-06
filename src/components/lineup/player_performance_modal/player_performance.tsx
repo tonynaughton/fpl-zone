@@ -3,7 +3,7 @@ import { Box, Table, TableBody,TableCell, TableContainer, TableHead, TableRow, T
 import { AppDataContext } from "app_content";
 import { getTeamById } from "helpers";
 import { pickBy } from "lodash";
-import { AppData, Performance,Player } from "types";
+import { AppData, Performance, Player } from "types";
 
 import { Result } from "components/results/result";
 
