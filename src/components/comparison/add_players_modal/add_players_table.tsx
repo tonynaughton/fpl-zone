@@ -38,7 +38,7 @@ export const AddPlayersTable = ({
 
   const rows = players.map((player) => ({
     id: player.id,
-    name: `${player.first_name} ${player.second_name}`,
+    name: isMobile ? player.web_name : `${player.first_name} ${player.second_name}`,
     team: player,
     position: player,
     price: formatPrice(player.now_cost),
@@ -53,11 +53,15 @@ export const AddPlayersTable = ({
   const teamCol = TeamColumn();
 
   const columns: GridColDef[] = [
-    { field: "name", headerName: "Name", flex: 1, renderHeader, renderCell },
+    { field: "name", headerName: "Name", flex: isMobile ? 0.3 : 1, renderHeader, renderCell },
     teamCol,
-    posCol,
-    { field: "price", headerName: "Price", flex: 0.5, renderHeader, renderCell },
-    { field: "points", headerName: "Total Points", flex: 0.5, renderHeader, renderCell }
+    ...!isMobile
+      ? [
+        posCol,
+        { field: "price", headerName: "Price", flex: 0.5, renderHeader, renderCell }
+      ]
+      : [],
+    { field: "points", headerName: isMobile ? "Pts." : "Total Points", flex: isMobile ? 0.2 : 0.5, renderHeader, renderCell }
   ];
 
   const filterModel = {

@@ -7,8 +7,6 @@ import { Player } from "types/player";
 
 import { AddPlayersModal, ComparisonTable } from ".";
 
-import "./comparison.css";
-
 export const MAX_PLAYER_COUNT = 5;
 
 export const PlayerComparison = (): JSX.Element => {
@@ -34,6 +32,7 @@ export const PlayerComparison = (): JSX.Element => {
       flexDirection='column'
       height='100%'
       overflow='auto'
+      width='100%'
     >
       <ComparisonTable
         onAddPlayerClick={openAddPlayersModal}

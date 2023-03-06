@@ -9,7 +9,7 @@ import { BaseItemWithCrest } from "components/results/base_item_with_crest";
 import { renderHeader } from "../add_players_table";
 
 export const TeamColumn = (): GridColDef => {
-  const { teams } = useContext(AppDataContext) as AppData;
+  const { teams, isMobile } = useContext(AppDataContext) as AppData;
 
   const sortComparator = (p1: Player, p2: Player): number => (
     getTeamById(p1.team, teams).name.localeCompare(getTeamById(p2.team, teams).name)
@@ -22,13 +22,13 @@ export const TeamColumn = (): GridColDef => {
 
     const team = getTeamById(player.team, teams);
 
-    return <BaseItemWithCrest item={team} />;
+    return <BaseItemWithCrest crestOnly={isMobile} item={team} />;
   };
 
   return {
     field: "team",
     headerName: "Team",
-    flex: 0.5,
+    flex: isMobile ? 0.2 : 0.5,
     renderCell,
     renderHeader,
     sortComparator

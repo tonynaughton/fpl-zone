@@ -23,7 +23,7 @@
     "baseUrl": "src/",
     "alwaysStrict": true,
     "noImplicitReturns": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": false
   },
   "include": [
     "src",
