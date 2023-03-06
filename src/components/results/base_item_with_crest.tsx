@@ -41,8 +41,7 @@ export const BaseItemWithCrest = ({
       {!crestOnly &&
         <Typography className='text-ellipsis' data-testid={`base-item-text-${item.id}`} textAlign='left'>
           {name}
-        </Typography>
-      }
+        </Typography>}
     </Box>
   );
 };

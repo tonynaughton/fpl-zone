@@ -24,7 +24,7 @@ export const PlayerImageCell = ({ player, onButtonClick }: PlayerImageCellProps)
       width='15vh'
     >
       <img
-        alt={player ? `${player.web_name} image` : 'add player button'}
+        alt={player ? `${player.web_name} image` : "add player button"}
         height='100%'
         src={getPlayerImageUrl(player)}
         width='auto'

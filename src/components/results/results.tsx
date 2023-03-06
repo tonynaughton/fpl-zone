@@ -11,7 +11,7 @@ import FixtureDetailsModal from "./match_details_modal/match_details_modal";
 import { ResultContainer } from "./result_container";
 
 export default function Results(): JSX.Element {
-  const { gameweeks, fixtures } = useContext(AppDataContext) as AppData;
+  const { gameweeks, fixtures, isMobile } = useContext(AppDataContext) as AppData;
 
   const currentGameweek = gameweeks.find((gw) => gw.is_current);
 
@@ -74,7 +74,10 @@ export default function Results(): JSX.Element {
 
     return (
       <Box
-        flexGrow={1}
+        display='flex'
+        flexDirection='column'
+        height='100%'
+        justifyContent='space-evenly'
         sx={{
           overflowX: "hidden",
           overflowY: "auto"
@@ -100,7 +103,7 @@ export default function Results(): JSX.Element {
       height='100%'
       justifyContent='center'
       overflow='hidden'
-      pt={6}
+      pt={isMobile ? 3 : 6}
       width='100%'
     >
       <GameweekNavigator />
