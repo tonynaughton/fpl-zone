@@ -1,72 +1,59 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { numberWithCommas } from "helpers";
+import { formatNumber } from "helpers";
 import { MockProviders } from "test/mock_providers";
-import { TeamData, TeamPicks } from "types";
 
 import "@testing-library/jest-dom/extend-expect";
 
-import { LineupDetails } from "./lineup_details";
+import { LineupDetails, TeamStats } from "./lineup_details";
 
-describe("Lineup details tests", () => {
-  let mockTeamData: TeamData;
-  let mockTeamPicks: TeamPicks;
+describe.only("Lineup details tests", () => {
+  let mockTeamName: string;
+  let mockTeamStats: TeamStats;
 
   const createComponent = (): JSX.Element => {
     return (
       <MockProviders>
         <LineupDetails
-          teamData={mockTeamData}
-          teamPicks={mockTeamPicks}
+          teamName={mockTeamName}
+          teamStats={mockTeamStats}
         />
       </MockProviders>
     );
   };
 
   beforeEach(() => {
-    mockTeamData = {
-      name: "mock team name",
-      summary_overall_rank: 1000,
-      summary_event_points: 68
-    } as TeamData;
+    mockTeamName = "mock team name";
 
-    mockTeamPicks = {
-      active_chip: "WILDCARD"
-    } as TeamPicks;
+    mockTeamStats = {
+      activeChip: "BENCH BOOST",
+      totalPoints: 70,
+      overallRank: 100000
+    };
   });
 
   it("Team name displayed correctly", () => {
     render(createComponent());
 
-    expect(screen.getByTestId("team-name")).toHaveTextContent(mockTeamData.name);
+    expect(screen.getByTestId("team-name")).toHaveTextContent(mockTeamName);
   });
 
-  describe("Active chip", () => {
-    it("displayed correctly if prop is defined", () => {
-      render(createComponent());
+  it("Active chip displayed correctly", () => {
+    render(createComponent());
 
-      expect(screen.getByTestId("active-chip")).toHaveTextContent(mockTeamPicks.active_chip.toUpperCase());
-    });
-
-    it("Displays as \"None\" if prop is undefined", () => {
-      mockTeamPicks.active_chip = "";
-
-      render(createComponent());
-
-      expect(screen.getByTestId("active-chip")).toHaveTextContent("None");
-    });
+    expect(screen.getByTestId("active-chip")).toHaveTextContent(mockTeamStats.activeChip);
   });
 
   it("Total points displayed correctly", () => {
     render(createComponent());
 
-    expect(screen.getByTestId("total-points")).toHaveTextContent(mockTeamData.summary_event_points.toString());
+    expect(screen.getByTestId("total-points")).toHaveTextContent(mockTeamStats.totalPoints.toString());
   });
 
   it("Overall rank displayed correctly", () => {
     render(createComponent());
 
-    const expectedText = numberWithCommas(mockTeamData.summary_overall_rank);
+    const expectedText = formatNumber(mockTeamStats.overallRank);
     expect(screen.getByTestId("overall-rank")).toHaveTextContent(expectedText);
   });
 });

@@ -41,7 +41,7 @@ export const getNormalizedString = (input: string): string => (
     .toUpperCase()
 );
 
-export const numberWithCommas = (x: number): string => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+export const formatNumber = (x: number): string => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 export const getFormattedDate = (date: Date): string => date.toLocaleDateString(navigator.language, { day: "numeric", month: "short" });
 

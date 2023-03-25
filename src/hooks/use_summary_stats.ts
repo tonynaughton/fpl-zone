@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AppDataContext } from "app_content";
-import { numberWithCommas } from "helpers";
+import { formatNumber } from "helpers";
 import { AppData, Player } from "types";
 
 import { SummaryStatType } from "../components/gameweek_summary/gameweek_summary";
@@ -30,7 +30,7 @@ export const useSummaryStats = (): SummaryStatType[] => {
     : null;
 
   const mostTransferredInCount = mostTransferredIn
-    ? numberWithCommas(mostTransferredIn?.transfers_in_event)
+    ? formatNumber(mostTransferredIn?.transfers_in_event)
     : null;
 
   const starPlayerScore = currentGameweek.top_element_info

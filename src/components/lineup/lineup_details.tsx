@@ -1,32 +1,31 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { numberWithCommas } from "helpers";
-import { TeamData, TeamPicks } from "types";
+import { formatNumber } from "helpers";
+
+export interface TeamStats {
+  activeChip: string;
+  totalPoints: number;
+  overallRank: number;
+}
 
 interface LineupDetailsProps {
-  teamData: TeamData;
-  teamPicks: TeamPicks;
+  teamName: string;
+  teamStats?: TeamStats;
 }
 
 export const LineupDetails = ({
-  teamData,
-  teamPicks
+  teamName,
+  teamStats
 }: LineupDetailsProps): JSX.Element => {
-  const activeChip = teamPicks?.active_chip ? teamPicks.active_chip.toUpperCase() : "None";
-  const totalPoints = teamData?.summary_event_points;
 
-  return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      gap={1}
-      width='100%'
-    >
-      {teamData && (
-        <Typography data-testid='team-name' textAlign='center' variant='h4'>
-          {teamData.name}
-        </Typography>
-      )}
+  const TeamStats = (): JSX.Element => {
+    if (!teamStats) {
+      return <></>;
+    }
+
+    const { activeChip, totalPoints, overallRank } = teamStats;
+
+    return (
       <Box
         alignItems='center'
         display='flex'
@@ -45,9 +44,23 @@ export const LineupDetails = ({
         </Box>
         <Box>
           <Typography>Overall Rank:</Typography>
-          <Typography data-testid='overall-rank'>{numberWithCommas(teamData.summary_overall_rank)}</Typography>
+          <Typography data-testid='overall-rank'>{formatNumber(overallRank)}</Typography>
         </Box>
       </Box>
+    );
+  };
+
+  return (
+    <Box
+      display='flex'
+      flexDirection='column'
+      gap={1}
+      width='100%'
+    >
+      <Typography data-testid='team-name' textAlign='center' variant='h4'>
+        {teamName}
+      </Typography>
+      <TeamStats />
     </Box>
   );
 };
