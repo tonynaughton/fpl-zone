@@ -11,14 +11,14 @@ import { Result } from "../result";
 import { MatchStat } from "./match_stat";
 
 interface MatchDetailsModalProps {
-  isFixtureDetailsModalOpen: boolean;
-  closeFixtureDetailsModal: () => void;
+  isMatchDetailsModalOpen: boolean;
+  closeMatchDetailsModal: () => void;
   fixture: Fixture;
 }
 
 export default function MatchDetailsModal({
-  isFixtureDetailsModalOpen: isResultsModalOpen,
-  closeFixtureDetailsModal: closeResultsModal,
+  isMatchDetailsModalOpen: isResultsModalOpen,
+  closeMatchDetailsModal: closeResultsModal,
   fixture
 }: MatchDetailsModalProps): JSX.Element {
   const { teams } = useContext(AppDataContext);
@@ -30,13 +30,7 @@ export default function MatchDetailsModal({
   const awayScore = fixture.team_a_score || 0;
 
   const kickOff = new Date(fixture.kickoff_time || "");
-
-  const kickOffTime = fixture.kickoff_time && (
-    <Box className='flex-center' flexDirection='column'>
-      <Typography>{getFormattedDate(kickOff)}</Typography>
-      <Typography>{getFormattedTime(kickOff)}</Typography>
-    </Box>
-  );
+  const kickOffTime = `${getFormattedDate(kickOff)} ${getFormattedTime(kickOff)}`;
 
   const statsToRender = [
     "goals_scored",
@@ -56,7 +50,9 @@ export default function MatchDetailsModal({
         gap={2}
         width='100%'
       >
-        {kickOffTime}
+        <Box className='flex-center' flexDirection='column'>
+          <Typography>{kickOffTime}</Typography>
+        </Box>
         <Result
           awayScore={awayScore}
           awayTeam={awayTeam}

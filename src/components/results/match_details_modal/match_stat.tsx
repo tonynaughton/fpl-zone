@@ -27,19 +27,16 @@ const StatColumn = ({ stat, name, isAway = false }: StatColumnProps): JSX.Elemen
   const { players } = useContext(AppDataContext) as AppData;
 
   const player = GetPlayerById(stat.element, players);
+  const statValue = `${player.web_name} ${stat.value > 1 ? ` (${stat.value})` : ""}`;
 
   return (
     <Box
       display='flex'
       flexDirection={isAway ? "row" : "row-reverse"}
+      gap={1}
       justifyContent={isAway ? "right" : "left"}
-      overflow='hidden'
     >
-      <Typography className='text-ellipsis'>
-        {player.web_name}
-        {stat.value > 1 ? ` (${stat.value})` : ""}
-      </Typography>
-      &nbsp;&nbsp;
+      <Typography className='text-ellipsis'>{statValue}</Typography>
       <img
         alt={STAT_IMAGE_NAMES[name]}
         height={20}
@@ -52,30 +49,31 @@ const StatColumn = ({ stat, name, isAway = false }: StatColumnProps): JSX.Elemen
 export const MatchStat = ({ statName, selectedResult }: MatchStatProps): JSX.Element => {
   const { playerStats } = useContext(AppDataContext) as AppData;
 
-  const stats = selectedResult.stats.find((stat) => stat.identifier === statName)!;
-  const statTitle = playerStats.find((stat) => stat.name === statName)!;
+  const { h: homeStats, a: awayStats } = selectedResult.stats.find((stat) => stat.identifier === statName)!;
 
-  if (isEmpty(stats.h) && isEmpty(stats.a)) {
+  if (isEmpty(homeStats) && isEmpty(awayStats)) {
     return <></>;
   }
+
+  const { label } = playerStats.find((stat) => stat.name === statName)!;
 
   return (
     <Box
       alignItems='center'
       display='flex'
       flexDirection='column'
-      paddingTop={1.5}
+      gap={2}
       width='100%'
     >
-      <Typography mb={1}>
-        {statTitle.label.toUpperCase()}
-      </Typography>
+      <Box className='flex-center' width='100%'>
+        <Typography>{label.toUpperCase()}</Typography>
+      </Box>
       <Box display='flex' width='100%'>
-        <Box height='100%' width='50%'>
-          {stats.h.map((stat, key) => <StatColumn key={key} name={statName} stat={stat} />)}
+        <Box flex={1}>
+          {homeStats.map((stat, key) => <StatColumn key={key} name={statName} stat={stat} />)}
         </Box>
-        <Box height='100%' width='50%'>
-          {stats.a.map((stat, key) => (
+        <Box flex={1}>
+          {awayStats.map((stat, key) => (
             <StatColumn
               isAway
               key={key}

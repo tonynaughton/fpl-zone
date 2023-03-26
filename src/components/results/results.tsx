@@ -7,7 +7,7 @@ import { AppData, Fixture } from "types";
 
 import { Notifier } from "components/layout";
 
-import FixtureDetailsModal from "./match_details_modal/match_details_modal";
+import MatchDetailsModal from "./match_details_modal/match_details_modal";
 import { ResultContainer } from "./result_container";
 
 export default function Results(): JSX.Element {
@@ -17,7 +17,7 @@ export default function Results(): JSX.Element {
 
   const [selectedGameweek, setSelectedGameweek] = useState<number>(currentGameweek?.id || 1);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
-  const [isResultsModalOpen, setResultsModalOpen] = useState<boolean>(false);
+  const [isMatchDetailsModalOpen, setResultsModalOpen] = useState<boolean>(false);
   const [selectedFixture, setSelectedResult] = useState<Fixture | null>(null);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Results(): JSX.Element {
     setSelectedResult(fixture);
   };
 
-  const closeResultsModal = (): void => setResultsModalOpen(false);
+  const closeMatchDetailsModal = (): void => setResultsModalOpen(false);
 
   const onPrevGameweekClick = (): void => setSelectedGameweek(selectedGameweek - 1);
   const onNextGameweekClick = (): void => setSelectedGameweek(selectedGameweek + 1);
@@ -97,10 +97,10 @@ export default function Results(): JSX.Element {
       <GameweekNavigator />
       <GameweekFixtures />
       {selectedFixture && (
-        <FixtureDetailsModal
-          closeFixtureDetailsModal={closeResultsModal}
+        <MatchDetailsModal
+          closeMatchDetailsModal={closeMatchDetailsModal}
           fixture={selectedFixture}
-          isFixtureDetailsModalOpen={isResultsModalOpen}
+          isMatchDetailsModalOpen={isMatchDetailsModalOpen}
         />
       )}
     </Box>
