@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
-import { getLocalImage } from "helpers";
+import { getTeamKitImageUrl } from "helpers";
 import _ from "lodash";
 import { mockPlayers } from "test";
 import { MockProviders } from "test/mock_providers";
-import { Lineup as LineupType,TeamData, TeamPicks } from "types";
+import { Lineup as LineupType, TeamData, TeamPicks } from "types";
 
 import Lineup from "components/lineup/lineup";
 
@@ -34,6 +34,13 @@ describe("Lineup Tests", () => {
     );
   };
 
+  beforeEach(() => {
+    mockLineup = {
+      selected: mockSelected,
+      bench: mockBench
+    };
+  });
+
   it("Selected players displayed correctly", () => {
     render(createComponent());
 
@@ -47,7 +54,8 @@ describe("Lineup Tests", () => {
         expect(container).toHaveTextContent(player.event_points.toString());
 
         const kitImg = selectedContainer.getByTestId(`kit-img-player-${player.id}`);
-        const imgUrl = getLocalImage(`kits/${player.team_code}.png`);
+        const isGoalkeeper = player.element_type === 1;
+        const imgUrl = getTeamKitImageUrl(player.team_code, isGoalkeeper);
 
         expect(kitImg).toHaveAttribute("src", imgUrl);
       });
@@ -66,7 +74,8 @@ describe("Lineup Tests", () => {
       expect(container).toHaveTextContent(player.event_points.toString());
 
       const kitImg = screen.getByTestId(`kit-img-player-${player.id}`);
-      const imgUrl = getLocalImage(`kits/${player.team_code}.png`);
+      const isGoalkeeper = player.element_type === 1;
+      const imgUrl = getTeamKitImageUrl(player.team_code, isGoalkeeper);
 
       expect(kitImg).toHaveAttribute("src", imgUrl);
     });

@@ -3,10 +3,10 @@ import { Box } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getLocalImage } from "helpers";
 import { sortBy } from "lodash";
-import { AppData, Lineup as LineupType, Player as PlayerType, TeamData, TeamPicks } from "types";
+import { AppData, Gameweek, Lineup as LineupType, Player as PlayerType, TeamData, TeamPicks } from "types";
 
 import PlayerPerformanceModal from "./player_performance_modal/player_performance_modal";
-import { LineupDetails } from "./lineup_details";
+import { LineupDetails, TeamStats } from "./lineup_details";
 import { LineupRow } from "./lineup_row";
 
 interface LineupProps {
@@ -20,11 +20,12 @@ export default function Lineup({
   teamPicks,
   teamData
 }: LineupProps): JSX.Element {
-  const { teams, playerStats, isMobile } = useContext(AppDataContext) as AppData;
+  const { teams, playerStats, isMobile, gameweeks } = useContext(AppDataContext) as AppData;
 
   const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
 
+  const currentGameweek = gameweeks.find((event) => event.is_current) as Gameweek;
   const sortedBench = sortBy(lineup.bench, ["element_type"]);
 
   const handlePlayerPerformanceClick = (player: PlayerType): void => {
@@ -32,7 +33,22 @@ export default function Lineup({
     setSelectedPlayer(player);
   };
 
+  const getTeamStats = (): TeamStats | undefined => {
+    if (!teamData || !teamPicks) {
+      return;
+    }
+
+    return ({
+      activeChip: teamPicks.active_chip?.toUpperCase() || "None",
+      totalPoints: teamData.summary_event_points,
+      overallRank: teamData.summary_overall_rank
+    });
+  };
+
   const closePlayerPerformanceModal = (): void => setPlayerPerformanceModalOpen(false);
+
+  const teamName = teamData ? teamData.name : `Gameweek ${currentGameweek.id} Dream Team`;
+  const teamStats = getTeamStats();
 
   return (
     <>
@@ -45,11 +61,10 @@ export default function Lineup({
         overflow='hidden'
         p={2}
       >
-        {teamData && teamPicks &&
-          <LineupDetails
-            teamData={teamData}
-            teamPicks={teamPicks}
-          />}
+        <LineupDetails
+          teamName={teamName}
+          teamStats={teamStats}
+        />
         <Box
           data-testid='selected-players'
           display='flex'

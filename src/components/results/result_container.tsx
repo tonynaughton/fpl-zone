@@ -15,12 +15,6 @@ export const ResultContainer = ({ fixture, onFixtureClick }: ResultContainerProp
   const { teams } = useContext(AppDataContext);
   const theme = useTheme();
 
-  const homeTeam = getTeamById(fixture.team_h, teams);
-  const awayTeam = getTeamById(fixture.team_a, teams);
-
-  const homeScore = fixture.team_h_score || 0;
-  const awayScore = fixture.team_a_score || 0;
-
   const kickOff = new Date(fixture.kickoff_time || "");
   const matchStarted = kickOff < new Date();
 
@@ -29,9 +23,7 @@ export const ResultContainer = ({ fixture, onFixtureClick }: ResultContainerProp
     minHeight: "4rem",
     height: "100%",
     p: 2,
-    border: "1px solid rgb(224, 224, 224)",
-    "&:first-child": { borderTop: "none" },
-    "&:last-child": { borderBottom: "none" },
+    borderTop: "1px solid rgb(224, 224, 224)",
     "&:hover": {
       bgcolor: matchStarted ? theme.palette.highlight.main : "inherit",
       cursor: matchStarted ? "pointer" : "default"
@@ -46,10 +38,10 @@ export const ResultContainer = ({ fixture, onFixtureClick }: ResultContainerProp
       sx={style}
     >
       <Result
-        awayScore={awayScore}
-        awayTeam={awayTeam}
-        homeScore={homeScore}
-        homeTeam={homeTeam}
+        awayScore={fixture.team_a_score || 0}
+        awayTeam={getTeamById(fixture.team_a, teams)}
+        homeScore={fixture.team_h_score || 0}
+        homeTeam={getTeamById(fixture.team_h, teams)}
         kickOff={kickOff}
       />
     </Box>

@@ -7,17 +7,17 @@ import { AppData, Fixture } from "types";
 
 import { Notifier } from "components/layout";
 
-import FixtureDetailsModal from "./match_details_modal/match_details_modal";
+import MatchDetailsModal from "./match_details_modal/match_details_modal";
 import { ResultContainer } from "./result_container";
 
 export default function Results(): JSX.Element {
-  const { gameweeks, fixtures, isMobile } = useContext(AppDataContext) as AppData;
+  const { gameweeks, fixtures } = useContext(AppDataContext) as AppData;
 
   const currentGameweek = gameweeks.find((gw) => gw.is_current);
 
   const [selectedGameweek, setSelectedGameweek] = useState<number>(currentGameweek?.id || 1);
   const [gameweekFixtures, setGameweekFixtures] = useState<Fixture[]>([]);
-  const [isResultsModalOpen, setResultsModalOpen] = useState<boolean>(false);
+  const [isMatchDetailsModalOpen, setResultsModalOpen] = useState<boolean>(false);
   const [selectedFixture, setSelectedResult] = useState<Fixture | null>(null);
 
   useEffect(() => {
@@ -32,14 +32,14 @@ export default function Results(): JSX.Element {
     setSelectedResult(fixture);
   };
 
-  const closeResultsModal = (): void => setResultsModalOpen(false);
+  const closeMatchDetailsModal = (): void => setResultsModalOpen(false);
 
   const onPrevGameweekClick = (): void => setSelectedGameweek(selectedGameweek - 1);
   const onNextGameweekClick = (): void => setSelectedGameweek(selectedGameweek + 1);
 
   const GameweekNavigator = (): JSX.Element => {
     return (
-      <Box className='flex-center' overflow='hidden' width='100%'>
+      <Box className='flex-center' pt={1} width='100%'>
         <IconButton
           data-testid='prev-gameweek-btn'
           disabled={selectedGameweek <= 1}
@@ -67,52 +67,40 @@ export default function Results(): JSX.Element {
     );
   };
 
-  const GameweekFixtures = (): JSX.Element => {
-    if (isEmpty(gameweekFixtures)) {
-      return <Notifier message='No fixtures' type='warning' />;
-    }
-
-    return (
-      <Box
-        display='flex'
-        flexDirection='column'
-        height='100%'
-        justifyContent='space-evenly'
-        sx={{
-          overflowX: "hidden",
-          overflowY: "auto"
-        }}
-        width='100%'
-      >
-        {gameweekFixtures.map((fixture, key) => (
-          <ResultContainer
-            fixture={fixture}
-            key={key}
-            onFixtureClick={handleFixtureClick}
-          />
-        ))}
-      </Box>
-    );
-  };
+  const GameweekFixtures = (): JSX.Element => (
+    <Box
+      display='flex'
+      flexDirection='column'
+      flexGrow={1}
+      overflow='scroll'
+    >
+      {
+        isEmpty(gameweekFixtures)
+          ? <Notifier message='No fixtures' type='warning' />
+          : gameweekFixtures.map((fixture, key) => (
+            <ResultContainer
+              fixture={fixture}
+              key={key}
+              onFixtureClick={handleFixtureClick}
+            />
+          ))
+      }
+    </Box>
+  );
 
   return (
     <Box
-      alignItems='center'
       display='flex'
       flexDirection='column'
       height='100%'
-      justifyContent='center'
-      overflow='hidden'
-      pt={isMobile ? 3 : 6}
-      width='100%'
     >
       <GameweekNavigator />
       <GameweekFixtures />
       {selectedFixture && (
-        <FixtureDetailsModal
-          closeFixtureDetailsModal={closeResultsModal}
+        <MatchDetailsModal
+          closeMatchDetailsModal={closeMatchDetailsModal}
           fixture={selectedFixture}
-          isFixtureDetailsModalOpen={isResultsModalOpen}
+          isMatchDetailsModalOpen={isMatchDetailsModalOpen}
         />
       )}
     </Box>

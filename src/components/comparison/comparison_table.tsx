@@ -94,6 +94,7 @@ export const ComparisonTable = ({
         sx={{
           height: "100%",
           width: "100%",
+          tableLayout: "fixed",
           "& .MuiTableCell-root": { px: "0.8vw", py: "0.8vh" }
         }}
       >

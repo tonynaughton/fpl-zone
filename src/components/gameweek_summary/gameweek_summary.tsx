@@ -33,9 +33,7 @@ export default function GameweekSummary(): JSX.Element {
       flexDirection='column'
       height='100%'
       justifyContent='space-between'
-      pb={4}
-      pt={8}
-      px={4}
+      p={4}
     >
       {summaryData.map((stat, key): JSX.Element => <SummaryStat key={key} stat={stat} />)}
     </Box>
