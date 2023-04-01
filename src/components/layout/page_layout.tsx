@@ -47,6 +47,9 @@ export const PageLayout = ({ activeId, children }: React.PropsWithChildren<PageL
         display='flex'
         height='100vh'
         overflow='hidden'
+        sx={{
+          minHeight: "-webkit-fill-available"
+        }}
       >
         <AuthModalContext.Provider value={authModalContextValue}>
           <CustomAppBar openNavDrawer={openNavDrawer} />
@@ -62,8 +65,8 @@ export const PageLayout = ({ activeId, children }: React.PropsWithChildren<PageL
           display='flex'
           flexDirection={isMobile ? "column" : "row"}
           gap={3}
-          mt={isMobile ? APP_BAR_HEIGHT : 0}
-          padding={isMobile ? 0 : 3}
+          p={isMobile ? 0 : 3}
+          pt={isMobile ? APP_BAR_HEIGHT : 0}
           width={isMobile ? "100vw" : `calc(100vw - ${NAV_DRAWER_WIDTH})`}
         >
           {children}
