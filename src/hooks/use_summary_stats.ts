@@ -66,7 +66,7 @@ export const useSummaryStats = (): SummaryStatType[] => {
       label: "most transferred in",
       teamCode: mostTransferredIn?.team_code,
       playerName: mostTransferredIn?.web_name || "",
-      value: mostTransferredInCount || ""
+      value: mostTransferredInCount || "N/A"
     }
   ]);
 };

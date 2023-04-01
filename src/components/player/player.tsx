@@ -5,16 +5,16 @@ import { AppDataContext } from "app_content";
 import { getLocalImage } from "helpers";
 import { FixtureLocation,Player as PlayerType } from "types";
 
-import { Armband } from "./armband";
-
-import "./player.css";
-
 interface PlayerProps {
   player: PlayerType;
   handlePlayerPerformanceClick: (player: PlayerType) => void;
   multiplier: number;
   isCaptain?: boolean;
   isViceCaptain?: boolean;
+}
+
+interface ArmbandProps {
+  isVice?: boolean;
 }
 
 export default function Player({
@@ -26,7 +26,7 @@ export default function Player({
 }: PlayerProps): JSX.Element {
   const theme = useTheme();
   const { isMobile } = useContext(AppDataContext);
-  const [fixtureLocation, setFixtureLocation] = useState<FixtureLocation>("home");
+  const [fixtureLocation, setFixtureLocation] = useState<FixtureLocation | null>(null);
 
   useEffect(() => {
     const getPlayerPerformance = async (): Promise<void> => {
@@ -49,7 +49,7 @@ export default function Player({
       height='100%'
       overflow='hidden'
       p='0.1rem'
-      width='100%'
+      width='75%'
     >
       <Typography
         className='text-ellipsis'
@@ -62,6 +62,24 @@ export default function Player({
     </Box>
   );
 
+  const Armband = ({ isVice = false }: ArmbandProps): JSX.Element => (
+    <Box
+      bgcolor={theme.palette.info.main}
+      border='1px solid black'
+      borderRadius='50%'
+      className='flex-center'
+      data-testid='armband-container'
+      height='1.8rem'
+      left={0}
+      position='absolute'
+      top={0}
+      width='1.8rem'
+    >
+      <Typography>{isVice ? "V" : "C"}</Typography>
+    </Box>
+  );
+
+
   const Score = (): JSX.Element => (
     <Box
       bgcolor={theme.palette.secondary.main}
@@ -69,7 +87,7 @@ export default function Player({
       height='100%'
       overflow='hidden'
       p='0.1rem'
-      width='100%'
+      width='25%'
     >
       <Typography
         data-testid='player-score'
@@ -89,23 +107,26 @@ export default function Player({
       height='100%'
       maxWidth='8rem'
       onClick={(): void => handlePlayerPerformanceClick(player)}
-      overflow='hidden'
       position='relative'
       sx={{ cursor: "pointer" }}
-      width='18%'
+      width='100%'
     >
       {isCaptain && <Armband />}
       {isViceCaptain && <Armband isVice />}
-      <img
-        alt='team-kit'
-        className='kit-img'
-        data-testid={`kit-img-player-${player.id}`}
-        src={url}
+      <Box
+        height='100%'
+        sx={{
+          backgroundImage: `url(${url})`,
+          backgroundSize: "auto 100%",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center"
+        }}
+        width='100%'
       />
       <Box
         bottom={0}
         display='flex'
-        flexDirection='column'
+        height='25%'
         justifyContent='center'
         position='absolute'
         width='100%'

@@ -45,8 +45,6 @@ export const getGameweekData = async (gameweek: number): Promise<Gameweek> => {
 export const getTeamData = async (teamId: number | undefined): Promise<TeamData> => {
   const response = await axios.get(`${base_url}entry/${teamId}/`);
 
-  console.log("🚀 ~ file: fpl_api_provider.ts:48 ~ getTeamData ~ response:", response);
-
   return response.data;
 };
 
