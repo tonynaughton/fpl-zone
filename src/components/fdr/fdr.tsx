@@ -13,7 +13,7 @@ import {
 import { getGameweekFixtures } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import { useNextTeamFixtures } from "hooks";
-import { useRemainingGameweekIds } from "hooks/use_next_gameweek_ids";
+import { useNextGameweekIds } from "hooks/use_next_gameweek_ids";
 import { isEmpty, map } from "lodash";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
@@ -40,7 +40,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const [notifierType, setNotifierType] = useState<NotifierType>("loading");
   const { teams, isMobile } = useContext(AppDataContext) as AppData;
   const baseItem = players || teams;
-  const nextGameweekIds = useRemainingGameweekIds();
+  const nextGameweekIds = useNextGameweekIds();
 
   const stickyCellStyle = {
     px: 1,
