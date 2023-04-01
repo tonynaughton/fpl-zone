@@ -20,7 +20,7 @@ export default function Lineup({
   teamPicks,
   teamData
 }: LineupProps): JSX.Element {
-  const { teams, playerStats, isMobile, gameweeks } = useContext(AppDataContext) as AppData;
+  const { teams, playerStats, gameweeks, isMobile } = useContext(AppDataContext) as AppData;
 
   const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
@@ -33,14 +33,20 @@ export default function Lineup({
     setSelectedPlayer(player);
   };
 
+
   const getTeamStats = (): TeamStats | undefined => {
     if (!teamData || !teamPicks) {
       return;
     }
 
+    const totalPoints = lineup.selected
+      .flat()
+      .map(player => player.event_points)
+      .reduce((pointsA, pointsB) => pointsA + pointsB);
+
     return ({
       activeChip: teamPicks.active_chip?.toUpperCase() || "None",
-      totalPoints: teamData.summary_event_points,
+      totalPoints,
       overallRank: teamData.summary_overall_rank
     });
   };
@@ -55,10 +61,9 @@ export default function Lineup({
       <Box
         display='flex'
         flexDirection='column'
-        gap={2}
+        gap={1}
         height='100%'
-        minHeight={0}
-        overflow='hidden'
+        justifyContent='space-between'
         p={2}
       >
         <LineupDetails
@@ -68,14 +73,13 @@ export default function Lineup({
         <Box
           data-testid='selected-players'
           display='flex'
+          flex={1}
           flexDirection='column'
-          gap={1}
-          height='100%'
-          minHeight={0}
+          gap={isMobile ? 8 : 2}
+          justifyContent='space-between'
           pb={2}
-          px={isMobile ? 0 : "5%"}
           sx={{
-            backgroundImage: `url(${getLocalImage("pitch.png")})`,
+            backgroundImage: `url(${getLocalImage("misc/pitch.png")})`,
             backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat"
           }}
@@ -92,8 +96,8 @@ export default function Lineup({
         <Box
           className='flex-center'
           data-testid='bench-players'
+          flex={0.2}
           flexDirection='column'
-          minHeight='14%'
         >
           <LineupRow
             handlePlayerPerformanceClick={handlePlayerPerformanceClick}

@@ -40,7 +40,7 @@ const StatColumn = ({ stat, name, isAway = false }: StatColumnProps): JSX.Elemen
       <img
         alt={STAT_IMAGE_NAMES[name]}
         height={20}
-        src={getLocalImage(`${STAT_IMAGE_NAMES[name]}.png`)}
+        src={getLocalImage(`misc/${STAT_IMAGE_NAMES[name]}.png`)}
       />
     </Box>
   );

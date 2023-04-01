@@ -20,7 +20,7 @@ export const GameweekCountdown = (): JSX.Element => {
 
   const CountdownRenderer = ({ days, hours, minutes, seconds, completed }: CountdownRendererProps): JSX.Element => {
     const title = completed
-      ? `GAMEWEEK ${nextGameweek.id}\nIN PROGRESS`
+      ? `GAMEWEEK ${nextGameweek.id} \n IN PROGRESS`
       : `GW ${nextGameweek.id} DEADLINE:`;
 
     const times = {
@@ -40,7 +40,7 @@ export const GameweekCountdown = (): JSX.Element => {
         gap={1}
         width='100%'
       >
-        <Typography className='text-ellipsis' sx={textStyling}>{title}</Typography>
+        <Typography sx={textStyling}>{title}</Typography>
         { !completed &&
             <Box
               display='flex'

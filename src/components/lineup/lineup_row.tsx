@@ -15,6 +15,7 @@ export const LineupRow = ({
   handlePlayerPerformanceClick,
   teamPicks
 }: LineupRowProps): JSX.Element => {
+
   return (
     <Box
       alignItems='center'
@@ -23,7 +24,6 @@ export const LineupRow = ({
       gap={1}
       height='100%'
       justifyContent='space-around'
-      minHeight={0}
       width='100%'
     >
       {players.map((player, key) => {

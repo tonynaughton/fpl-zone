@@ -33,7 +33,7 @@ export const CustomAppBar = ({ openNavDrawer }: CustomAppBarProps): JSX.Element 
         <img
           alt='fpl-zone-logo'
           height='35px'
-          src={getLocalImage("logo.png")}
+          src={getLocalImage("misc/logo.png")}
           width='auto'
         />
       </Toolbar>

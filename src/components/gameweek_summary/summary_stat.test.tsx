@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { getTeamCrestImageUrl } from "helpers";
+import { getLocalImage } from "helpers";
 import { MockProviders } from "test/mock_providers";
 
 import "@testing-library/jest-dom/extend-expect";
@@ -46,7 +46,7 @@ describe("Summary Stat Tests", () => {
     render(createComponent());
 
     const teamCrestImg = screen.getByTestId(`team-crest-img-${mockSummaryStat.label}`);
-    const imgUrl = getTeamCrestImageUrl(mockSummaryStat.teamCode!);
+    const imgUrl = getLocalImage(`crests/${mockSummaryStat.teamCode}`);
 
 
     expect(teamCrestImg).toHaveAttribute("src", imgUrl);

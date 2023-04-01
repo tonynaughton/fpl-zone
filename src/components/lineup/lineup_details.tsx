@@ -34,15 +34,15 @@ export const LineupDetails = ({
         textAlign='center'
         width='100%'
       >
-        <Box>
+        <Box flex={1}>
           <Typography>Active Chip:</Typography>
           <Typography data-testid='active-chip'>{activeChip}</Typography>
         </Box>
-        <Box>
-          <Typography>GW Points:</Typography>
+        <Box flex={1}>
+          <Typography>Points:</Typography>
           <Typography data-testid='total-points'>{totalPoints}</Typography>
         </Box>
-        <Box>
+        <Box flex={1}>
           <Typography>Overall Rank:</Typography>
           <Typography data-testid='overall-rank'>{formatNumber(overallRank)}</Typography>
         </Box>

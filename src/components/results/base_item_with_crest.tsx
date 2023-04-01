@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { getTeamCrestImageUrl } from "helpers";
+import { getLocalImage } from "helpers";
 import { isPlayer } from "types/base_item";
 
 import { BaseItem } from "components/fdr/fdr";
@@ -20,6 +20,7 @@ export const BaseItemWithCrest = ({
 }: BaseItemWithCrestProps): JSX.Element => {
   const name = isPlayer(item) ? item.web_name : abbreviateTeam ? item.short_name : item.name;
   const teamCode = isPlayer(item) ? item.team_code : item.code;
+  const crestImgSrc = getLocalImage(`crests/${teamCode}.png`);
 
   return (
     <Box
@@ -35,7 +36,7 @@ export const BaseItemWithCrest = ({
         alt='team-crest'
         data-testid={`base-item-crest-img-${item.id}`}
         height={30}
-        src={getTeamCrestImageUrl(teamCode)}
+        src={crestImgSrc}
         width={30}
       />
       {!crestOnly &&

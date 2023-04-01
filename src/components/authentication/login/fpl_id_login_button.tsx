@@ -14,7 +14,7 @@ export const FplIdLoginButton = (): JSX.Element => {
       sx={{ fontSize: "1.8em", textTransform: "none", height: "3rem" }}
       variant='contained'
     >
-      <img alt='premier-league-logo' className='premier-league-logo' src={getLocalImage("premier-league-logo.png")} />
+      <img alt='premier-league-logo' className='premier-league-logo' src={getLocalImage("misc/premier-league-logo.png")} />
       <Typography sx={{ ml: 1 }} textTransform='none'>Login with FPL ID</Typography>
     </Button>
   );
