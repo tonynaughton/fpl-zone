@@ -32,7 +32,7 @@ export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProp
 
   return (
     <>
-      <Box className='flex-center' width='90%'>
+      <Box className='flex-center' py={2}>
         <Result
           awayScore={performance.team_a_score}
           awayTeam={awayTeam}
