@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
+import { getPlayerData } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
-import { getTeamKitImageUrl } from "helpers";
-import { Player as PlayerType } from "types/player";
+import { getLocalImage } from "helpers";
+import { FixtureLocation,Player as PlayerType } from "types";
 
 import { Armband } from "./armband";
 
@@ -25,8 +26,21 @@ export default function Player({
 }: PlayerProps): JSX.Element {
   const theme = useTheme();
   const { isMobile } = useContext(AppDataContext);
-  const isGoalkeeper = player.element_type === 1;
-  const url = getTeamKitImageUrl(player.team_code, isGoalkeeper);
+  const [fixtureLocation, setFixtureLocation] = useState<FixtureLocation>("home");
+
+  useEffect(() => {
+    const getPlayerPerformance = async (): Promise<void> => {
+      const { history } = await getPlayerData(player.id);
+
+      const latestFixture = history[history.length - 1];
+
+      setFixtureLocation(latestFixture.was_home ? "home" : "away");
+    };
+
+    getPlayerPerformance();
+  }, []);
+
+  const url = getLocalImage(`kits/${player.team_code}_${fixtureLocation}.png`);
 
   const Name = (): JSX.Element => (
     <Box

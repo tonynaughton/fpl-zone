@@ -1,4 +1,6 @@
 
+export type FixtureLocation = "home" | "away";
+
 export interface StatValue {
   value: number;
   element: number;

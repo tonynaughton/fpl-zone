@@ -32,7 +32,7 @@ export const Startup = ({ notifierMessage, notifierType }: StartupProps): JSX.El
           height='50%'
           width='100%'
         >
-          <img alt='fpl-zone-logo' src={getLocalImage(`logo.png`)} width='100%' />
+          <img alt='fpl-zone-logo' src={getLocalImage("misc/logo.png")} width='100%' />
           <Notifier message={notifierMessage} type={notifierType} />
         </Box>
       </Box>

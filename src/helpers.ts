@@ -1,11 +1,12 @@
+import { keyBy } from "lodash";
 import { Position as Pos, Team } from "types";
 import { Player } from "types/player";
 
-export const GetPlayerById = (id: number, players: Player[]): Player => players.find(p => p.id === id)!;
+export const GetPlayerById = (id: number, players: Player[]): Player => keyBy(players, "id")[id];
 
-export const getTeamById = (id: number, teams: Team[]): Team => teams.find((t) => t.id === id)!;
+export const getTeamById = (id: number, teams: Team[]): Team => keyBy(teams, "id")[id];
 
-export const getPositionById = (id: number, positions: Pos[]): Pos => positions.find((p) => p.id === id)!;
+export const getPositionById = (id: number, positions: Pos[]): Pos => keyBy(positions, "id")[id];
 
 export const formatPrice = (number: number): number => {
   const numLen = number.toString().length;
@@ -22,14 +23,6 @@ export const getPlayerImageUrl = (player?: Player): string => {
   const imgId = player.photo.replace(".jpg", "");
 
   return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${imgId}.png`;
-};
-
-export const getTeamCrestImageUrl = (teamCode: number): string => {
-  return `https://resources.premierleague.com/premierleague/badges/70/t${teamCode}.png`;
-};
-
-export const getTeamKitImageUrl = (teamCode: number, goalkeeper?: boolean): string => {
-  return `https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_${teamCode}${goalkeeper ? "_1" : ""}-66.png`;
 };
 
 export const getLocalImage = (url: string): string => `${process.env.PUBLIC_URL}/assets/images/${url}`;

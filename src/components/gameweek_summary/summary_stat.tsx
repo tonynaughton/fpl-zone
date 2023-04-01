@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { getTeamCrestImageUrl } from "helpers";
+import { getLocalImage } from "helpers";
 
 import { SummaryStatType } from "./gameweek_summary";
 
@@ -21,7 +21,7 @@ export const SummaryStat = ({ stat }: SummaryStatProps): JSX.Element => {
         alt='team-crest-img'
         className='team-crest-img'
         data-testid={`team-crest-img-${stat.label}`}
-        src={getTeamCrestImageUrl(stat.teamCode)}
+        src={getLocalImage(`crests/${stat.teamCode}.png`)}
       />
     );
   };

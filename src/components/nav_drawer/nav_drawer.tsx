@@ -46,7 +46,7 @@ export default function NavDrawer({ activeId, isNavDrawerOpen, closeNavDrawer, n
         padding={1}
         width='100%'
       >
-        <img alt='fpl-zone-logo' src={getLocalImage("logo.png")} width='100%' />
+        <img alt='fpl-zone-logo' src={getLocalImage("misc/logo.png")} width='100%' />
         <GameweekCountdown />
       </Box>
       <MenuList activeId={activeId} closeNavDrawer={closeNavDrawer} />

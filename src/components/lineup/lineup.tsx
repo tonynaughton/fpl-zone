@@ -75,7 +75,7 @@ export default function Lineup({
           pb={2}
           px={isMobile ? 0 : "5%"}
           sx={{
-            backgroundImage: `url(${getLocalImage("pitch.png")})`,
+            backgroundImage: `url(${getLocalImage("misc/pitch.png")})`,
             backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat"
           }}
