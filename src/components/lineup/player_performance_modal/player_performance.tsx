@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Box, Table, TableBody,TableCell, TableContainer, TableHead, TableRow, Typography, useTheme } from "@mui/material";
 import { AppDataContext } from "app_content";
 import { getTeamById } from "helpers";
-import { pickBy } from "lodash";
+import { isNumber,pickBy } from "lodash";
 import { AppData, Performance, Player } from "types";
 
 import { Result } from "components/results/result";
@@ -25,10 +25,9 @@ export const PlayerPerformance = ({ player, performance }: PlayerPerformanceProp
   const kickOff = new Date(performance.kickoff_time);
 
   const matchStarted = kickOff < new Date();
-  const stats = pickBy(
-    performance,
-    (value, key) => !!(playerStats.find((el) => el.name === key) && value > 0)
-  );
+  const stats = pickBy(performance, (value, key) => {
+    return playerStats.find(stat => stat.name === key) && !(isNumber(value) && value === 0);
+  });
 
   return (
     <>
