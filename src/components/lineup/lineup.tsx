@@ -20,7 +20,7 @@ export default function Lineup({
   teamPicks,
   teamData
 }: LineupProps): JSX.Element {
-  const { teams, playerStats, gameweeks, isMobile } = useContext(AppDataContext) as AppData;
+  const { teams, playerStats, gameweeks } = useContext(AppDataContext) as AppData;
 
   const [isPlayerPerformanceModalOpen, setPlayerPerformanceModalOpen] = useState<boolean>(false);
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerType | null>(null);
@@ -75,7 +75,6 @@ export default function Lineup({
           display='flex'
           flex={1}
           flexDirection='column'
-          gap={isMobile ? 8 : 2}
           justifyContent='space-between'
           pb={2}
           sx={{
