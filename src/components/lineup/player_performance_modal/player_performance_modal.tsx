@@ -13,7 +13,6 @@ import {
 } from "types";
 
 import { Notifier } from "components/layout";
-import { BaseItemWithCrest } from "components/results/base_item_with_crest";
 import { CustomModal } from "components/utils";
 
 import { PlayerPerformance } from "./player_performance";
@@ -66,26 +65,32 @@ export default function PlayerPerformanceModal({
           display='flex'
           gap={1}
           height='10rem'
-          pb={1}
+          // Avoid clipping modal close button
           pr={3}
           width='100%'
         >
-          <Box
-            flex={0.5}
+          <img
+            alt={`${playerName} portrait`}
             height='100%'
-            sx={{
-              backgroundImage: `url(${playerImageUrl})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat"
-            }}
-            width='25%'
+            src={playerImageUrl}
           />
-          <Box flex={1}>
-            <Typography textTransform='uppercase' variant='h5'>{playerName}</Typography>
-            <Typography textTransform='uppercase'><BaseItemWithCrest item={playerTeam} /></Typography>
-            <Typography textTransform='uppercase'>{positionLabel}</Typography>
-            <Typography textTransform='uppercase'>£{formatPrice(selectedPlayer.now_cost)}m</Typography>
+          <Box flexGrow={1}>
+            <Typography
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "3",
+                WebkitBoxOrient: "vertical"
+              }}
+              textTransform='uppercase'
+              variant='h4'
+            >
+              {playerName}
+            </Typography>
+            <Typography className='text-ellipsis' textTransform='uppercase'>{playerTeam.name}</Typography>
+            <Typography className='text-ellipsis' textTransform='uppercase'>{positionLabel}</Typography>
+            <Typography className='text-ellipsis' textTransform='uppercase'>£{formatPrice(selectedPlayer.now_cost)}m</Typography>
           </Box>
         </Box>
         {playerPerformances.map((performance, key) => (

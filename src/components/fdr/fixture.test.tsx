@@ -14,6 +14,7 @@ import { Fixture } from "./fixture";
 describe("Fixture Tests", () => {
   let mockFixturesProp: FixtureType[];
   let mockBaseItem: BaseItem;
+  let mockIsTableFixed: boolean;
 
   const createComponent = (): JSX.Element => {
     return (
@@ -21,6 +22,7 @@ describe("Fixture Tests", () => {
         <Fixture
           baseItem={mockBaseItem}
           fixtures={mockFixturesProp}
+          isTableFixed={mockIsTableFixed}
         />
       </MockProviders>
     );
