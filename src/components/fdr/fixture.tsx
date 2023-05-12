@@ -10,6 +10,7 @@ import { BaseItem } from "./fdr";
 interface FixtureProps {
   fixtures: FixtureType[];
   baseItem: BaseItem;
+  isTableFixed: boolean;
 }
 
 interface SingleFixtureProps {
@@ -18,7 +19,8 @@ interface SingleFixtureProps {
 
 export const Fixture = ({
   fixtures,
-  baseItem
+  baseItem,
+  isTableFixed
 }: FixtureProps): JSX.Element => {
   const { teams, isMobile } = useContext(AppDataContext) as AppData;
 
@@ -35,7 +37,8 @@ export const Fixture = ({
       <Tooltip
         enterDelay={300}
         placement='top'
-        title={isMobile ? "" : text}
+        // Tooltip only displayed in mobile and if there is more than one fixture in the gameweek
+        title={isMobile || fixtures.length <= 1 ? "" : text}
       >
         <Box
           bgcolor={theme.palette.fdr[difficulty]}
@@ -61,7 +64,7 @@ export const Fixture = ({
       display='flex'
       height='100%'
       sx={{ "& div:nth-of-type(n+2)": { borderLeft: "0.5px solid black" } }}
-      width='8rem'
+      width={isTableFixed ? "100%" : "8rem"}
     >
       {fixtures.map((fixture, key) => <SingleFixture fixture={fixture} key={key} />)}
     </Box>

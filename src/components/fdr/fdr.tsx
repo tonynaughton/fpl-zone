@@ -41,6 +41,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   const { teams, isMobile } = useContext(AppDataContext) as AppData;
   const baseItem = players || teams;
   const nextGameweekIds = useNextGameweekIds();
+  const isTableFixed = nextGameweekIds.length < 5;
 
   const stickyCellStyle = {
     px: 1,
@@ -86,7 +87,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
         </TableCell>
         {map(teamFixtures, (fixtures, key) => (
           <TableCell key={key}>
-            <Fixture baseItem={item} fixtures={fixtures} />
+            <Fixture baseItem={item} fixtures={fixtures} isTableFixed={isTableFixed} />
           </TableCell>
         ))}
       </TableRow>
@@ -124,6 +125,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
       >
         <Table
           sx={{
+            tableLayout: isTableFixed ? "fixed" : "auto",
             height: "100%",
             "& .MuiTableCell-root": {
               p: 0,
