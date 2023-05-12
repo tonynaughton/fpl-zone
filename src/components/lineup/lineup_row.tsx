@@ -21,9 +21,9 @@ export const LineupRow = ({
       alignItems='center'
       data-testid='lineup-row-container'
       display='flex'
-      gap={1}
       height='100%'
       justifyContent='space-around'
+      maxHeight='12rem'
       width='100%'
     >
       {players.map((player, key) => {

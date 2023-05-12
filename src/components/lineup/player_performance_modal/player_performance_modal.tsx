@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
-import { Box, Divider, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { getPlayerData } from "api/fpl_api_provider";
 import { AppDataContext } from "app_content";
 import { formatPrice,getPlayerImageUrl, getPositionById, getTeamById } from "helpers";
@@ -31,7 +31,6 @@ export default function PlayerPerformanceModal({
   closePlayerPerformanceModal,
   selectedPlayer
 }: PlayerPerformanceModalProps): JSX.Element {
-  const theme = useTheme();
   const { data: playerInfo, isLoading: fetchingPlayerInfo } = useQuery(
     [selectedPlayer],
     () => getPlayerData(selectedPlayer.id)
@@ -103,7 +102,6 @@ export default function PlayerPerformanceModal({
     <CustomModal
       closeModal={closePlayerPerformanceModal}
       isModalOpen={isPlayerPerformanceModalOpen}
-      // Title={playerName}
     >
       <ModalContent />
     </CustomModal>

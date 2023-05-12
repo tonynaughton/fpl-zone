@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { getPlayerData } from "api/fpl_api_provider";
-import { AppDataContext } from "app_content";
 import { getLocalImage } from "helpers";
 import { FixtureLocation,Player as PlayerType } from "types";
 
@@ -25,7 +24,6 @@ export default function Player({
   isViceCaptain = false
 }: PlayerProps): JSX.Element {
   const theme = useTheme();
-  const { isMobile } = useContext(AppDataContext);
   const [fixtureLocation, setFixtureLocation] = useState<FixtureLocation | null>(null);
 
   useEffect(() => {
@@ -41,26 +39,6 @@ export default function Player({
   }, []);
 
   const url = getLocalImage(`kits/${player.team_code}_${fixtureLocation}.png`);
-
-  const Name = (): JSX.Element => (
-    <Box
-      bgcolor={theme.palette.primary.main}
-      className='flex-center'
-      height='100%'
-      overflow='hidden'
-      p='0.1rem'
-      width='75%'
-    >
-      <Typography
-        className='text-ellipsis'
-        color={theme.palette.info.main}
-        data-testid='player-name'
-        fontSize={isMobile ? "0.8rem" : theme.typography.body1.fontSize}
-      >
-        {player.web_name.toUpperCase()}
-      </Typography>
-    </Box>
-  );
 
   const Armband = ({ isVice = false }: ArmbandProps): JSX.Element => (
     <Box
@@ -79,6 +57,23 @@ export default function Player({
     </Box>
   );
 
+  const Name = (): JSX.Element => (
+    <Box
+      bgcolor={theme.palette.primary.main}
+      className='flex-center'
+      height='100%'
+      overflow='hidden'
+      width='100%'
+    >
+      <Typography
+        className='text-ellipsis'
+        color={theme.palette.info.main}
+        data-testid='player-name'
+      >
+        {player.web_name.toUpperCase()}
+      </Typography>
+    </Box>
+  );
 
   const Score = (): JSX.Element => (
     <Box
@@ -86,13 +81,10 @@ export default function Player({
       className='flex-center'
       height='100%'
       overflow='hidden'
-      p='0.1rem'
-      width='25%'
+      width='100%'
     >
       <Typography
         data-testid='player-score'
-        fontSize={isMobile ? "1rem" : theme.typography.body1.fontSize}
-        px={1}
       >
         {player.event_points * multiplier}
       </Typography>
@@ -105,11 +97,11 @@ export default function Player({
       data-testid={`player-container-${player.id}`}
       flexDirection='column'
       height='100%'
-      maxWidth='8rem'
+      maxWidth='12rem'
       onClick={(): void => handlePlayerPerformanceClick(player)}
       position='relative'
       sx={{ cursor: "pointer" }}
-      width='100%'
+      width='20%'
     >
       {isCaptain && <Armband />}
       {isViceCaptain && <Armband isVice />}
@@ -117,7 +109,7 @@ export default function Player({
         height='100%'
         sx={{
           backgroundImage: `url(${url})`,
-          backgroundSize: "auto 100%",
+          backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center"
         }}
@@ -126,8 +118,8 @@ export default function Player({
       <Box
         bottom={0}
         display='flex'
-        height='25%'
-        justifyContent='center'
+        flexDirection='column'
+        maxWidth='8rem'
         position='absolute'
         width='100%'
       >
