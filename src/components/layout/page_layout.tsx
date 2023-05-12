@@ -66,7 +66,7 @@ export const PageLayout = ({ activeId, children }: React.PropsWithChildren<PageL
           flexDirection={isMobile ? "column" : "row"}
           gap={3}
           p={isMobile ? 0 : 3}
-          pt={isMobile ? APP_BAR_HEIGHT : 0}
+          pt={isMobile ? APP_BAR_HEIGHT : 3}
           width={isMobile ? "100vw" : `calc(100vw - ${NAV_DRAWER_WIDTH})`}
         >
           {children}
