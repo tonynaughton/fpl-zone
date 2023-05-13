@@ -94,7 +94,7 @@ export const AddPlayersTable = ({
       onSelectionModelChange={setSelectionModel}
       pagination
       rows={rows}
-      rowsPerPageOptions={isMobile ? [] : [25, 50, 100]}
+      rowsPerPageOptions={[25]}
       selectionModel={selectionModel}
       sx={{
         "& .MuiDataGrid-columnHeader:focus-within, & .MuiDataGrid-cell:focus-within": {
