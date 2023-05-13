@@ -4,6 +4,7 @@ import { AppDataContext } from "app_content";
 import { getTeamById } from "helpers";
 import { AppData, Player,PlayerStat, Team } from "types";
 
+import { AddPlayerCell } from "./add_player_cell";
 import { MAX_PLAYER_COUNT, PlayerImageCell } from ".";
 
 interface ComparisonTableProps {
@@ -14,55 +15,58 @@ interface ComparisonTableProps {
   onRemovePlayerClick: (player: Player) => void;
 }
 
-interface TableCellProps {
-  testId?: string;
-}
-
 export const ComparisonTable = ({
   selectedPlayers,
   playerStats,
   onAddPlayerClick,
   onRemovePlayerClick
 }: ComparisonTableProps): JSX.Element => {
-  const { teams, isMobile } = useContext(AppDataContext) as AppData;
+  const { teams } = useContext(AppDataContext) as AppData;
   const theme = useTheme();
+  const isMaxPlayersSelected = selectedPlayers.length >= MAX_PLAYER_COUNT;
 
-  const firstCellStyle = {
-    border: "1px solid rgb(96, 96, 96)",
-    borderLeft: 0,
-    backgroundColor: "rgb(196, 196, 196)",
-    width: isMobile ? "10rem" : "15%",
-    maxWidth: isMobile ? "10rem" : "15%",
-    position: "sticky",
-    left: 0,
-    zIndex: "fab"
+  const tableContainerStyle = {
+    "&::-webkit-scrollbar": {
+      width: 1
+    },
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: "white",
+      border: "0.5px solid black"
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.primary.main,
+      border: "0.5px solid black"
+    }
+  };
+
+  const tableStyle = {
+    height: "100%",
+    width: "100%",
+    "& .MuiTableCell-root": { p: "0.5rem" },
+    tableLayout: "fixed"
   };
 
   const standardCellStyle = {
     border: "1px solid rgb(96, 96, 96)",
-    position: "relative"
+    width: "8rem",
+    height: "2.5rem"
   };
 
-  const FirstCell = ({ testId, children }: React.PropsWithChildren<TableCellProps>): JSX.Element => (
-    <TableCell
-      component='td'
-      data-testid={testId}
-      sx={firstCellStyle}
-    >
-      {children}
-    </TableCell>
-  );
+  const firstCellStyle = {
+    ...standardCellStyle,
+    borderLeft: 0,
+    backgroundColor: "rgb(196, 196, 196)",
+    position: "sticky",
+    left: 0,
+    zIndex: "fab",
+    maxWidth: "8rem"
+  };
 
-  const StandardCell = ({ testId, children }: React.PropsWithChildren<TableCellProps>): JSX.Element => (
-    <TableCell
-      className='first-cell'
-      component='td'
-      data-testid={testId}
-      sx={standardCellStyle}
-    >
-      {children}
-    </TableCell>
-  );
+  const playerImgCellStyle = {
+    ...standardCellStyle,
+    position: "relative",
+    height: "10rem"
+  };
 
   const EmptyCell = (): JSX.Element => (
     <TableCell
@@ -73,30 +77,11 @@ export const ComparisonTable = ({
   );
 
   return (
-    <TableContainer
-      sx={{
-        "&::-webkit-scrollbar": {
-          width: 1
-        },
-        "&::-webkit-scrollbar-track": {
-          backgroundColor: "white",
-          border: "0.5px solid black"
-        },
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: theme.palette.primary.main,
-          border: "0.5px solid black"
-        }
-      }}
-    >
+    <TableContainer sx={tableContainerStyle}>
       <Table
         aria-label='player comparison table'
         component='table'
-        sx={{
-          height: "100%",
-          width: "100%",
-          tableLayout: "fixed",
-          "& .MuiTableCell-root": { px: "0.8vw", py: "0.8vh" }
-        }}
+        sx={tableStyle}
       >
         <TableBody component='tbody'>
 
@@ -104,52 +89,82 @@ export const ComparisonTable = ({
           <TableRow component='tr'>
 
             {/* Empty cell */}
-            <FirstCell />
+            <TableCell component='td' sx={firstCellStyle} />
 
             {/* Player image cells */}
             {selectedPlayers.map((player, key) => (
-              <StandardCell key={key}>
+              <TableCell
+                className='first-cell'
+                component='td'
+                data-testid={player.id}
+                key={key}
+                sx={playerImgCellStyle}
+              >
                 <PlayerImageCell onButtonClick={(): void => onRemovePlayerClick(player)} player={player} />
-              </StandardCell>
+              </TableCell>
             ))}
 
-            {/* Add more players cell */}
-            {selectedPlayers.length < MAX_PLAYER_COUNT &&
-              <StandardCell>
-                <PlayerImageCell onButtonClick={onAddPlayerClick} />
-              </StandardCell>}
+            {/* Add players cell */}
+            {!isMaxPlayersSelected &&
+              <TableCell
+                className='first-cell'
+                component='td'
+                data-testid='add-player-cell'
+                sx={playerImgCellStyle}
+              >
+                <AddPlayerCell onButtonClick={onAddPlayerClick} />
+              </TableCell>}
           </TableRow>
 
           {/* Player name row */}
           <TableRow component='tr'>
-            <FirstCell>
+            <TableCell
+              component='td'
+              data-testid='player-name-row-label-cell'
+              sx={firstCellStyle}
+            >
               <Typography className='text-ellipsis'>Name</Typography>
-            </FirstCell>
+            </TableCell>
 
             {/* Player name cells */}
             { selectedPlayers.map((player, key) => (
-              <StandardCell key={key} testId={`player-name-row-${player.id}`}>
+              <TableCell
+                component='td'
+                data-testid={`player-name-row-${player.id}`}
+                key={key}
+                sx={standardCellStyle}
+              >
                 <Typography className='text-ellipsis'>
                   {`${player.first_name} ${player.second_name}`}
                 </Typography>
-              </StandardCell>
+              </TableCell>
             ))}
-            {selectedPlayers.length < MAX_PLAYER_COUNT && <EmptyCell />}
+            {!isMaxPlayersSelected && <EmptyCell />}
           </TableRow>
 
           {/* Team name row */}
           <TableRow component='tr'>
-            <FirstCell>
+            <TableCell
+              component='td'
+              data-testid='team-name-row-label-cell'
+              sx={firstCellStyle}
+            >
               <Typography className='text-ellipsis'>Team</Typography>
-            </FirstCell>
+            </TableCell>
 
             {/* Team name cells */}
             {selectedPlayers.map((player, key) => (
-              <StandardCell key={key} testId={`team-name-row-${player.id}`}>
+              <TableCell
+                className='first-cell'
+                component='td'
+                data-testid={`team-name-row-${player.id}`}
+                key={key}
+                sx={standardCellStyle}
+              >
                 <Typography>{getTeamById(player.team, teams).name}</Typography>
-              </StandardCell>
+              </TableCell>
             ))}
-            {selectedPlayers.length < MAX_PLAYER_COUNT && <EmptyCell />}
+            {!isMaxPlayersSelected && <EmptyCell />}
           </TableRow>
 
           {/* Stats rows */}
@@ -160,17 +175,25 @@ export const ComparisonTable = ({
                 data-testid={`stat-row-${stat.name}`}
                 key={key}
               >
-                <FirstCell testId={`stat-label-cell-${stat.name}`}>
-                  <Typography className='text-ellipsis'>
-                    {stat.label}
-                  </Typography>
-                </FirstCell>
+                <TableCell
+                  component='td'
+                  data-testid={`stat-label-cell-${stat.name}`}
+                  sx={firstCellStyle}
+                >
+                  <Typography className='text-ellipsis'>{stat.label}</Typography>
+                </TableCell>
                 {selectedPlayers.map((player, key) => (
-                  <StandardCell key={key} testId={`stat-value-cell-${stat.name}-${player.id}`}>
+                  <TableCell
+                    className='first-cell'
+                    component='td'
+                    data-testid={`stat-value-cell-${stat.name}-${player.id}`}
+                    key={key}
+                    sx={standardCellStyle}
+                  >
                     <Typography>{player[stat.name]}</Typography>
-                  </StandardCell>
+                  </TableCell>
                 ))}
-                {selectedPlayers.length < MAX_PLAYER_COUNT && <EmptyCell />}
+                {!isMaxPlayersSelected && <EmptyCell />}
               </TableRow>
             );
           })}

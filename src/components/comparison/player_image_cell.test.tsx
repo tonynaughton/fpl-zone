@@ -12,51 +12,13 @@ import { PlayerImageCell } from ".";
 describe("Player image cell tests", () => {
   const mockOnButtonClick = jest.fn();
 
-  const createComponent = (player?: Player): JSX.Element => {
+  const createComponent = (player: Player): JSX.Element => {
     return (
       <MockProviders>
         <PlayerImageCell onButtonClick={mockOnButtonClick} player={player} />
       </MockProviders>
     );
   };
-
-  describe("if no player prop is present", () => {
-    it("has expected style properties", () => {
-      render(createComponent());
-
-      const container = screen.getByTestId("player-image-container-placeholder");
-      const placeHolderImageUrl = getPlayerImageUrl();
-
-      expect(container).toHaveStyle(`background-image: url(${placeHolderImageUrl})`);
-      expect(container).toHaveStyle(`cursor: pointer`);
-      expect(container).toHaveStyle(`borderRadius: 50%`);
-    });
-
-    it("has onClick attribute if no player prop was passed", () => {
-      render(createComponent());
-
-      const container = screen.getByTestId("player-image-container-placeholder");
-      fireEvent.click(container);
-
-      expect(mockOnButtonClick).toHaveBeenCalledTimes(1);
-    });
-
-    it("add icon present", () => {
-      render(createComponent());
-
-      const container = within(screen.getByTestId("player-image-container-placeholder"));
-
-      expect(container.getByTestId("add-icon")).toBeInTheDocument();
-    });
-
-    it("remove icon not present", () => {
-      render(createComponent());
-
-      const container = within(screen.getByTestId("player-image-container-placeholder"));
-
-      expect(container.queryByTestId("remove-icon")).toBeNull();
-    });
-  });
 
   describe("if a player prop is present", () => {
     const mockPlayer = mockPlayers[0];
