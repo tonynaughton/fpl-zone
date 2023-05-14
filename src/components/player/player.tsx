@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import { getLocalImage } from "helpers";
+import { getLocalImgUrl } from "helpers";
 import { Player as PlayerType } from "types";
 
 interface PlayerProps {
@@ -24,7 +24,7 @@ export default function Player({
 }: PlayerProps): JSX.Element {
   const theme = useTheme();
 
-  const url = getLocalImage(`kits/${player.team_code}_home.png`);
+  const url = getLocalImgUrl(`kits/${player.team_code}_home.png`);
 
   const Armband = ({ isVice = false }: ArmbandProps): JSX.Element => (
     <Box

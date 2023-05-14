@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Box } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { getLocalImage } from "helpers";
+import { getLocalImgUrl } from "helpers";
 import { sortBy } from "lodash";
 import { AppData, Gameweek, Lineup as LineupType, Player as PlayerType, TeamData, TeamPicks } from "types";
 
@@ -78,7 +78,7 @@ export default function Lineup({
           justifyContent='space-between'
           pb={2}
           sx={{
-            backgroundImage: `url(${getLocalImage("misc/pitch.png")})`,
+            backgroundImage: `url(${getLocalImgUrl("misc/pitch.png")})`,
             backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat"
           }}

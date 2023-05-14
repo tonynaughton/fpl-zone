@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
-import { getLocalImage } from "helpers";
+import { getLocalImgUrl } from "helpers";
 import _ from "lodash";
 import { mockPlayers } from "test";
 import { MockProviders } from "test/mock_providers";
@@ -54,7 +54,7 @@ describe("Lineup Tests", () => {
         expect(container).toHaveTextContent(player.event_points.toString());
 
         const kitImg = selectedContainer.getByTestId(`kit-img-player-${player.id}`);
-        const imgUrl = getLocalImage(`kits/${player.team_code}`);
+        const imgUrl = getLocalImgUrl(`kits/${player.team_code}`);
 
         expect(kitImg).toHaveAttribute("src", imgUrl);
       });
@@ -73,7 +73,7 @@ describe("Lineup Tests", () => {
       expect(container).toHaveTextContent(player.event_points.toString());
 
       const kitImg = screen.getByTestId(`kit-img-player-${player.id}`);
-      const imgUrl = getLocalImage(`kits/${player.team_code}`);
+      const imgUrl = getLocalImgUrl(`kits/${player.team_code}`);
 
       expect(kitImg).toHaveAttribute("src", imgUrl);
     });

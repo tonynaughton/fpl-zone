@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu } from "@mui/icons-material";
 import { AppBar, Box, IconButton, Toolbar, useMediaQuery, useTheme } from "@mui/material";
-import { getLocalImage } from "helpers";
+import { getLocalImgUrl } from "helpers";
 
 interface CustomAppBarProps {
   openNavDrawer: () => void;
@@ -33,7 +33,7 @@ export const CustomAppBar = ({ openNavDrawer }: CustomAppBarProps): JSX.Element 
         <img
           alt='fpl-zone-logo'
           height='35px'
-          src={getLocalImage("misc/logo.png")}
+          src={getLocalImgUrl("misc/logo.png")}
           width='auto'
         />
       </Toolbar>

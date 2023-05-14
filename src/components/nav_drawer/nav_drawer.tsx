@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Box, useTheme } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import { AppDataContext } from "app_content";
-import { getLocalImage } from "helpers";
+import { getLocalImgUrl } from "helpers";
 
 import { GameweekCountdown } from "./gw_countdown";
 import { MenuList } from "./menu_list";
@@ -46,7 +46,7 @@ export default function NavDrawer({ activeId, isNavDrawerOpen, closeNavDrawer, n
         padding={1}
         width='100%'
       >
-        <img alt='fpl-zone-logo' src={getLocalImage("misc/logo.png")} width='100%' />
+        <img alt='fpl-zone-logo' src={getLocalImgUrl("misc/logo.png")} width='100%' />
         <GameweekCountdown />
       </Box>
       <MenuList activeId={activeId} closeNavDrawer={closeNavDrawer} />

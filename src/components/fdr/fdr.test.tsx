@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { getLocalImage } from "helpers";
+import { getLocalImgUrl } from "helpers";
 import { mockFixtures, mockPlayers, mockTeams } from "test";
 import { MockProviders } from "test/mock_providers";
 import { Player } from "types";
@@ -69,7 +69,7 @@ describe("FDR Tests", () => {
       await screen.findByTestId("fdr-container").then(() => {
         mockTeams.forEach((team) => {
           const img = screen.getByTestId(`base-item-crest-img-${team.id}`);
-          const imgUrl = getLocalImage(`crests/${team.code}.png`);
+          const imgUrl = getLocalImgUrl(`crests/${team.code}.png`);
 
           expect(img).toHaveAttribute("src", imgUrl);
         });
@@ -100,7 +100,7 @@ describe("FDR Tests", () => {
       await screen.findByTestId("fdr-container").then(() => {
         mockFdrPlayers?.forEach((player) => {
           const img = screen.getByTestId(`base-item-crest-img-${player.id}`);
-          const imgUrl = getLocalImage(`crests/${player.team_code}.png`);
+          const imgUrl = getLocalImgUrl(`crests/${player.team_code}.png`);
 
           expect(img).toHaveAttribute("src", imgUrl);
         });

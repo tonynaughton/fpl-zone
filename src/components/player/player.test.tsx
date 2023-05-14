@@ -1,6 +1,6 @@
 import React from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { getLocalImage } from "helpers";
+import { getLocalImgUrl } from "helpers";
 import { Player as PlayerType } from "types";
 
 import Player from "components/player/player";
@@ -57,7 +57,7 @@ describe("Player Tests", () => {
     render(createComponent());
 
     const kitImg = screen.getByTestId(`kit-img-player-${mockPlayer.id}`) as HTMLImageElement;
-    const imgUrl = getLocalImage(`kits/${mockPlayer.team_code}.png`);
+    const imgUrl = getLocalImgUrl(`kits/${mockPlayer.team_code}.png`);
     expect(kitImg).toHaveAttribute("src", imgUrl);
   });
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
 import { AppDataContext } from "app_content";
-import { getLocalImage, GetPlayerById } from "helpers";
+import { getLocalImgUrl, GetPlayerById } from "helpers";
 import { isEmpty } from "lodash";
 import { AppData, Fixture, StatValue } from "types";
 
@@ -40,7 +40,7 @@ const StatColumn = ({ stat, name, isAway = false }: StatColumnProps): JSX.Elemen
       <img
         alt={STAT_IMAGE_NAMES[name]}
         height={20}
-        src={getLocalImage(`misc/${STAT_IMAGE_NAMES[name]}.png`)}
+        src={getLocalImgUrl(`misc/${STAT_IMAGE_NAMES[name]}.png`)}
       />
     </Box>
   );
