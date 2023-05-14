@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import { getPlayerData } from "api/fpl_api_provider";
 import { getLocalImage } from "helpers";
-import { FixtureLocation,Player as PlayerType } from "types";
+import { Player as PlayerType } from "types";
 
 interface PlayerProps {
   player: PlayerType;
@@ -24,21 +23,8 @@ export default function Player({
   isViceCaptain = false
 }: PlayerProps): JSX.Element {
   const theme = useTheme();
-  const [fixtureLocation, setFixtureLocation] = useState<FixtureLocation | null>(null);
 
-  useEffect(() => {
-    const getPlayerPerformance = async (): Promise<void> => {
-      const { history } = await getPlayerData(player.id);
-
-      const latestFixture = history[history.length - 1];
-
-      setFixtureLocation(latestFixture.was_home ? "home" : "away");
-    };
-
-    getPlayerPerformance();
-  }, []);
-
-  const url = getLocalImage(`kits/${player.team_code}_${fixtureLocation}.png`);
+  const url = getLocalImage(`kits/${player.team_code}_home.png`);
 
   const Armband = ({ isVice = false }: ArmbandProps): JSX.Element => (
     <Box
