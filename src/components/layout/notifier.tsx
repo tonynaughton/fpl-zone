@@ -7,6 +7,7 @@ export type NotifierType = "loading" | "warning" | "error";
 interface LoadingMessageProps {
   type?: NotifierType;
   message?: string;
+  color?: string;
 }
 
 export const notifierMessageMap = {
@@ -21,13 +22,13 @@ export const notifierMessageMap = {
   fetching: "Fetching data.."
 };
 
-export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMessageProps): JSX.Element => {
+export const Notifier = ({ type = "loading", message = "Loading...", color }: LoadingMessageProps): JSX.Element => {
   const theme = useTheme();
 
   const NotifierIcon = (): JSX.Element => {
     const iconStyle = {
       fontSize: theme.typography.h3,
-      color: "black"
+      color: color || theme.palette.primary.contrastText
     };
 
     // eslint-disable-next-line default-case
@@ -52,7 +53,12 @@ export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMe
       width='80%'
     >
       <NotifierIcon />
-      <Typography textAlign='center'>{message}</Typography>
+      <Typography
+        color={color || theme.palette.primary.contrastText}
+        textAlign='center'
+      >
+        {message}
+      </Typography>
     </Box>
   );
 };
