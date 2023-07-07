@@ -51,11 +51,11 @@ let theme = createTheme({
       secondary: "#16B7EA"
     },
     warning: {
-      main: "#DF2935",
+      main: "#F7E00A",
       contrastText: "#F9F9F9"
     },
     error: {
-      main: "#FF686B"
+      main: "#DE0B24"
     },
     success: {
       main: "#64F58D",

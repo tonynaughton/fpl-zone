@@ -17,7 +17,7 @@ import { useNextGameweekIds } from "hooks/use_next_gameweek_ids";
 import { isEmpty, map } from "lodash";
 import { AppData, Fixture as FixtureType, Player, Team } from "types";
 
-import { Notifier, notifierMessageMap as msgMsg, NotifierType } from "components/layout";
+import { Notifier, NotifierType } from "components/layout";
 import { BaseItemWithCrest } from "components/results/base_item_with_crest";
 
 import { Fixture } from "./fixture";
@@ -56,7 +56,7 @@ export default function FdrTable({ players }: FdrTableProps): JSX.Element {
   useEffect(() => {
     const fetchNextGameweekFixtures = async (): Promise<void> => {
       if (isEmpty(nextGameweekIds)) {
-        setNotifierMessage(msgMsg.seasonFinished);
+        setNotifierMessage("The current FPL season has finished, check back next season!");
         setNotifierType("error");
 
         return;

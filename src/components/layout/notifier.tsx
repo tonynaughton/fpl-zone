@@ -1,6 +1,6 @@
 import React from "react";
-import { Warning } from "@mui/icons-material";
-import { Box, CircularProgress, Typography, useTheme } from "@mui/material";
+import { Error, Warning } from "@mui/icons-material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 
 export type NotifierType = "loading" | "warning" | "error";
 
@@ -9,35 +9,17 @@ interface LoadingMessageProps {
   message?: string;
 }
 
-export const notifierMessageMap = {
-  gameUpdating: "Game is updating..",
-  seasonNotStarted: "This data will be available once the season has started",
-  seasonFinished: "The current FPL season has finished, check back next season!",
-  loading: "Loading...",
-  fplIdLoginRequired: "You must login with your FPL ID to view this data",
-  fplIdRequired: "A valid FPL ID is required to view this data - please add one to your account",
-  teamDataFetchError: "Error getting your team data",
-  teamPicksFetchError: "Error getting your team picks",
-  fetching: "Fetching data.."
-};
-
 export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMessageProps): JSX.Element => {
-  const theme = useTheme();
-
   const NotifierIcon = (): JSX.Element => {
-    const iconStyle = {
-      fontSize: theme.typography.h3,
-      color: "black"
-    };
-
-    // eslint-disable-next-line default-case
     switch (type) {
     case "error":
-      return <Warning data-testid='error-icon' sx={iconStyle} />;
+      return <Error data-testid='error-icon' fontSize='large' />;
     case "warning":
-      return <Warning data-testid='warning-icon' sx={iconStyle} />;
+      return <Warning data-testid='warning-icon' fontSize='large' />;
     case "loading":
-      return <CircularProgress data-testid='loading-icon' sx={iconStyle} />;
+      return <CircularProgress color='inherit' data-testid='loading-icon' />;
+    default:
+      return <Warning data-testid='error-icon' fontSize='large' />;
     }
   };
 
@@ -47,9 +29,8 @@ export const Notifier = ({ type = "loading", message = "Loading..." }: LoadingMe
       data-testid='notifier'
       flexDirection='column'
       gap={2}
-      height='80%'
-      margin='auto'
-      width='80%'
+      height='100%'
+      p={4}
     >
       <NotifierIcon />
       <Typography textAlign='center'>{message}</Typography>
