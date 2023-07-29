@@ -8,7 +8,7 @@ import { useFplId } from "hooks/use_fpl_id";
 import { useGameStatus } from "hooks/use_game_status";
 import { AppData, Gameweek } from "types";
 
-import { Notifier, notifierMessageMap as msgMap } from "components/layout";
+import { Notifier } from "components/layout";
 import Lineup from "components/lineup/lineup";
 
 import { getMyTeamLineup } from "./get_my_team_lineup";
@@ -41,20 +41,28 @@ export const MyTeam = (): JSX.Element => {
   );
 
   if (seasonNotStarted) {
-    return <Notifier message={msgMap.seasonNotStarted} type='warning' />;
+    return <Notifier message='This data will be available once the season has started.' type='warning' />;
   }
 
   if (!fplId) {
     if (!user) {
-      return <Notifier message={msgMap.fplIdLoginRequired} type='warning' />;
+      return <Notifier message='You must login with your FPL ID to view this data' type='warning' />;
     }
 
-    return <Notifier message={msgMap.fplIdRequired} type='error' />;
+    return <Notifier message='A valid FPL ID is required to view this data - please add one to your account' type='error' />;
   }
 
-  if (teamDataFetchIsLoading || teamPicksFetchIsLoading) return <Notifier message={msgMap.fetching} />;
-  if (teamDataFetchError || !teamData) return <Notifier message={msgMap.teamDataFetchError} type='error' />;
-  if (teamPicksFetchError || !teamPicks) return <Notifier message={msgMap.teamPicksFetchError} type='error' />;
+  if (teamDataFetchIsLoading || teamPicksFetchIsLoading) {
+    return <Notifier message='Fetching data..' />;
+  }
+
+  if (teamDataFetchError || !teamData) {
+    return <Notifier message='Error getting your team data' type='error' />;
+  }
+
+  if (teamPicksFetchError || !teamPicks) {
+    return <Notifier message='Error getting your team picks' type='error' />;
+  }
 
   const lineup = getMyTeamLineup(teamPicks!, positions, players);
 

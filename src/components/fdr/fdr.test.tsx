@@ -8,7 +8,6 @@ import { MockProviders } from "test/mock_providers";
 import { Player } from "types";
 
 import FdrTable from "components/fdr/fdr";
-import { notifierMessageMap as msgMap } from "components/layout";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -114,7 +113,7 @@ describe("FDR Tests", () => {
 
       render(createComponent());
 
-      expect(screen.getByTestId("notifier")).toHaveTextContent(msgMap.seasonFinished);
+      expect(screen.getByTestId("notifier")).toHaveTextContent("The current FPL season has finished, check back next season!");
     });
 
     it("displays expected message if fixtures are being fetched", async () => {
